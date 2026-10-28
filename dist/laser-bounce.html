@@ -248,6 +248,17 @@ kbd { font-family: var(--mono); font-size: 12px; border: 1px solid var(--line); 
 .time-track { position: absolute; left: 0; right: 0; bottom: 0; height: 6px; background: rgba(255,255,255,0.06); pointer-events: none; }
 .time-bar { height: 100%; width: 100%; background: var(--code); }
 .card #retry-btn { margin-bottom: 4px; }
+/* ---- Balance Duel ---- */
+.hand { display: flex; flex-wrap: wrap; gap: 6px; }
+.hand .none { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.weight { font-family: var(--mono); font-size: 14px; padding: var(--wpad, 4px) 10px; border-color: var(--pc); color: var(--text); }
+.weight.selected { background: var(--pc); color: #10131f; }
+.weight:disabled { opacity: 0.5; }
+.weight.selected:disabled { opacity: 0.8; }
+.hint-line { margin: 0; font-family: system-ui, sans-serif; font-size: 13.5px; color: var(--muted); line-height: 1.4; }
+.pivot-row { display: flex; gap: 8px; }
+.pivot-row button { flex: 1; }
+#p2-select { font-family: var(--display); font-weight: 700; font-size: 14px; color: var(--text); background: var(--panel-2); border: 1px solid var(--line); border-radius: 5px; padding: 3px 4px; }
 </style>
 </head>
 <body>
@@ -346,6 +357,14 @@ window.QUESTION_BANK = [
   ["Forces", "A seesaw is which kind of simple machine?", ["A lever", "A pulley", "A screw", "A wedge"], "A lever is a bar that turns on a pivot point."],
   ["Forces", "To lift a heavy rock with a lever, where should the pivot go?", ["Close to the rock", "Close to your hands", "Exactly in the middle always", "It doesn't matter"], "A pivot near the load lets a small push on the long end lift a big weight."],
   ["Forces", "How does a ramp help you get a heavy box onto a truck?", ["You push with less force over a longer distance", "It turns gravity off", "It makes the box lighter", "It adds friction to help"], "You trade a longer path for a smaller push."],
+  ["Forces", "A heavy kid sits close to the middle of a seesaw and a light kid sits far out. Can they balance?", ["Yes, if weight × distance is the same on both sides", "No, the heavier kid always goes down", "Only if they weigh the same", "Only if they both sit at the ends"], "Distance from the pivot matters as much as weight."],
+  ["Forces", "A 2 kg weight sits 3 spaces from the pivot. How much turning force does it make?", ["6", "5", "1.5", "23"], "Turning force = weight × distance, and 2 × 3 = 6."],
+  ["Forces", "A 4 kg weight sits 2 spaces left of the pivot. Which of these balances it?", ["A 2 kg weight 4 spaces to the right", "A 4 kg weight 4 spaces to the right", "A 1 kg weight 1 space to the right", "A 2 kg weight 2 spaces to the right"], "4 × 2 = 8 on the left, and 2 × 4 = 8 on the right."],
+  ["Forces", "Where should you push a door to open it most easily?", ["Far from the hinges", "Right next to the hinges", "On the hinges", "It doesn't matter"], "Pushing far from the turning point gives the most turning force."],
+  ["Forces", "The point a lever turns around is called the...", ["Fulcrum, or pivot", "Load", "Axle", "Ramp"], "A seesaw's fulcrum is the stand in the middle."],
+  ["Forces", "Why is it easier to loosen a tight bolt with a long wrench?", ["Your push is farther from the turning point", "Long wrenches are heavier", "Long wrenches are made of stronger metal", "It isn't easier"], "More distance means more turning force for the same push."],
+  ["Forces", "A seesaw is tipping down on the left. What would help balance it?", ["Add weight on the right, or move right-side weights farther out", "Add more weight on the left", "Move the right-side weights toward the middle", "Make the seesaw shorter on both sides"], "You need more turning force on the right side."],
+  ["Forces", "Which of these tools is a lever?", ["A bottle opener", "A ramp", "A screw", "A wheel"], "The bottle opener turns on the cap's edge, its fulcrum."],
   ["Forces", "Why is it hard to stop a car on ice?", ["Ice has very little friction", "Ice pulls the car forward", "Cars weigh more on ice", "Gravity is weaker on ice"], "Tires need friction to grip, and ice gives them very little."],
 
   // ---- Motion ----
@@ -708,6 +727,22 @@ window.SCIENCE_FACTS.electricity = [
   "Static electricity is what makes a balloon stick to the wall after you rub it on your hair.",
   "Thomas Edison's lab made one of the first long-lasting light bulbs in 1879.",
   "LED bulbs use much less electricity than old bulbs, which wasted most of their energy as heat."
+];
+window.SCIENCE_FACTS.levers = [
+  "A lever is a stiff bar that turns around a point called the fulcrum, or pivot.",
+  "Turning force = weight × distance from the pivot. Double the distance and you double the turning force.",
+  "A seesaw balances when weight × distance is the same on both sides.",
+  "The ancient Greek scientist Archimedes said that with a long enough lever and a place to stand, he could move the world.",
+  "Scissors are two levers joined at a pivot.",
+  "Door handles are far from the hinges so a small push can turn the whole door.",
+  "Your arm is a lever: your elbow is the pivot, and your muscles pull close to it.",
+  "A wheelbarrow is a lever that lets you lift heavy loads with less force.",
+  "With a crowbar, one person can lift things much heavier than they could by hand.",
+  "A long wrench loosens a tight bolt more easily than a short one.",
+  "Tower cranes use heavy counterweights on the short arm so they don't tip over.",
+  "Tightrope walkers carry long poles to help them keep their balance.",
+  "A bottle opener is a lever: it pivots on the edge of the cap.",
+  "On a seesaw, the heavier side goes down unless its weight sits closer to the middle."
 ];
 </script>
 <script>

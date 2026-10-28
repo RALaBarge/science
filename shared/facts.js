@@ -198,3 +198,19 @@ window.SCIENCE_FACTS.electricity = [
   "Thomas Edison's lab made one of the first long-lasting light bulbs in 1879.",
   "LED bulbs use much less electricity than old bulbs, which wasted most of their energy as heat."
 ];
+window.SCIENCE_FACTS.levers = [
+  "A lever is a stiff bar that turns around a point called the fulcrum, or pivot.",
+  "Turning force = weight × distance from the pivot. Double the distance and you double the turning force.",
+  "A seesaw balances when weight × distance is the same on both sides.",
+  "The ancient Greek scientist Archimedes said that with a long enough lever and a place to stand, he could move the world.",
+  "Scissors are two levers joined at a pivot.",
+  "Door handles are far from the hinges so a small push can turn the whole door.",
+  "Your arm is a lever: your elbow is the pivot, and your muscles pull close to it.",
+  "A wheelbarrow is a lever that lets you lift heavy loads with less force.",
+  "With a crowbar, one person can lift things much heavier than they could by hand.",
+  "A long wrench loosens a tight bolt more easily than a short one.",
+  "Tower cranes use heavy counterweights on the short arm so they don't tip over.",
+  "Tightrope walkers carry long poles to help them keep their balance.",
+  "A bottle opener is a lever: it pivots on the edge of the cap.",
+  "On a seesaw, the heavier side goes down unless its weight sits closer to the middle."
+];

@@ -237,3 +237,14 @@ kbd { font-family: var(--mono); font-size: 12px; border: 1px solid var(--line); 
 .time-track { position: absolute; left: 0; right: 0; bottom: 0; height: 6px; background: rgba(255,255,255,0.06); pointer-events: none; }
 .time-bar { height: 100%; width: 100%; background: var(--code); }
 .card #retry-btn { margin-bottom: 4px; }
+/* ---- Balance Duel ---- */
+.hand { display: flex; flex-wrap: wrap; gap: 6px; }
+.hand .none { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.weight { font-family: var(--mono); font-size: 14px; padding: var(--wpad, 4px) 10px; border-color: var(--pc); color: var(--text); }
+.weight.selected { background: var(--pc); color: #10131f; }
+.weight:disabled { opacity: 0.5; }
+.weight.selected:disabled { opacity: 0.8; }
+.hint-line { margin: 0; font-family: system-ui, sans-serif; font-size: 13.5px; color: var(--muted); line-height: 1.4; }
+.pivot-row { display: flex; gap: 8px; }
+.pivot-row button { flex: 1; }
+#p2-select { font-family: var(--display); font-weight: 700; font-size: 14px; color: var(--text); background: var(--panel-2); border: 1px solid var(--line); border-radius: 5px; padding: 3px 4px; }

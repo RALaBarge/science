@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Balance Duel</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@500;700;800&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../shared/core.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="bar">
+    <h1>Balance Duel <span>don’t tip it</span></h1>
+    <div class="seed">
+      <label for="seed-input">Duel code</label>
+      <input id="seed-input" spellcheck="false" autocomplete="off" aria-label="Duel code">
+      <button id="load-btn" type="button">Load</button>
+      <button id="new-btn" type="button">New code</button>
+      <button id="daily-btn" type="button">Daily</button>
+    </div>
+  </header>
+
+  <section class="stage" id="stage">
+    <canvas id="cv" width="1000" height="520" aria-label="A seesaw beam on a pivot, with weights placed on numbered slots"></canvas>
+    <div class="stage-label" id="stage-label"></div>
+    <div class="overlay" id="banner" hidden>
+      <div class="card">
+        <h2 id="banner-title"></h2>
+        <p id="banner-text"></p>
+        <div class="chips" id="banner-chips"></div>
+        <button id="next-btn" type="button">Next round</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="hud">
+    <div class="player" data-p="0" id="card-0">
+      <div class="name-row"><span class="dot"></span><input id="name-0" value="Player 1" maxlength="16" aria-label="Player 1 name"></div>
+      <div class="wins"><span id="wins-0">0</span><small>rounds</small></div>
+      <div class="hand" id="hand-0"></div>
+      <div class="stats"><span id="trick-0"></span></div>
+    </div>
+
+    <div class="controls">
+      <div class="turn"><strong id="turn-label">Player 1 to place a weight</strong><span id="safe-info"></span></div>
+      <p class="hint-line">Pick a weight, then click a spot on the beam. Numbers under the beam are distances from the pivot.</p>
+      <button id="pivot-btn" type="button">Pivot trick (answer 1 question)</button>
+      <div class="pivot-row">
+        <button id="pivot-left" type="button" hidden>◀ Pivot left</button>
+        <button id="pivot-right" type="button" hidden>Pivot right ▶</button>
+      </div>
+      <button id="rescue-btn" type="button">Rescue (answer 4 questions)</button>
+    </div>
+
+    <div class="player" data-p="1" id="card-1">
+      <div class="name-row"><span class="dot"></span><input id="name-1" value="" placeholder="CPU" maxlength="16" aria-label="Player 2 name">
+        <select id="p2-select" aria-label="Who plays blue"><option value="cpu">CPU</option><option value="human">Human</option></select></div>
+      <div class="wins"><span id="wins-1">0</span><small>rounds</small></div>
+      <div class="hand" id="hand-1"></div>
+      <div class="stats"><span id="trick-1"></span></div>
+    </div>
+  </section>
+
+  <div class="meta">
+    <span>Round <b id="round-num">1</b></span>
+    <span>Draws <b id="draws">0</b></span>
+    <span>Tip limit <b id="limit">–</b></span>
+    <span class="sep" aria-hidden="true">|</span>
+    <button type="button" class="linkish" id="practice-btn" data-demo-keep title="Open during the demo or after a round ends">Practice quiz</button>
+    <span class="chips" id="badges"></span>
+  </div>
+
+  <details class="howto">
+    <summary>How to play and the science</summary>
+    <div class="howto-body">
+      <p>Take turns putting one of your weights on the beam: pick a weight, then click a spot (or use number keys for the weight, <kbd>←</kbd><kbd>→</kbd> to choose a spot and <kbd>Space</kbd> to place). Each spot holds one weight, so the spots near the pivot fill up fast. If your weight makes the beam tip, you lose the round. If every weight goes on and the beam stays up, it’s a draw.</p>
+      <p>Each weight turns the beam with a force equal to its <b>mass × its distance from the pivot</b>. A 2kg weight 3 spots out turns the beam just as hard as a 3kg weight 2 spots out (both make 6). The gauge at the top adds up the left and right turning forces. When the difference passes the tip limit, over it goes.</p>
+      <p>Trying to leave the other player with no safe spot is the whole game. <b>Pivot trick:</b> answer one question to slide the pivot one step, once per round. That changes every weight’s distance at once, just like moving a real seesaw’s stand, so it can save you or tip the beam. <b>Rescue:</b> if you have no safe move, answer 4 questions and each right answer lifts the weight doing the most damage off the beam.</p>
+      <p>Play against a friend or the CPU (the menu by Player 2’s name). Both players always get the same weights, and who goes first switches every round.</p>
+    </div>
+  </details>
+</div>
+<script src="../shared/questions.js"></script>
+<script src="../shared/facts.js"></script>
+<script src="../shared/core.js"></script>
+<script src="balance-duel.js"></script>
+</body>
+</html>

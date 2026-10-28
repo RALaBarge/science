@@ -27,6 +27,14 @@ window.QUESTION_BANK = [
   ["Forces", "A seesaw is which kind of simple machine?", ["A lever", "A pulley", "A screw", "A wedge"], "A lever is a bar that turns on a pivot point."],
   ["Forces", "To lift a heavy rock with a lever, where should the pivot go?", ["Close to the rock", "Close to your hands", "Exactly in the middle always", "It doesn't matter"], "A pivot near the load lets a small push on the long end lift a big weight."],
   ["Forces", "How does a ramp help you get a heavy box onto a truck?", ["You push with less force over a longer distance", "It turns gravity off", "It makes the box lighter", "It adds friction to help"], "You trade a longer path for a smaller push."],
+  ["Forces", "A heavy kid sits close to the middle of a seesaw and a light kid sits far out. Can they balance?", ["Yes, if weight × distance is the same on both sides", "No, the heavier kid always goes down", "Only if they weigh the same", "Only if they both sit at the ends"], "Distance from the pivot matters as much as weight."],
+  ["Forces", "A 2 kg weight sits 3 spaces from the pivot. How much turning force does it make?", ["6", "5", "1.5", "23"], "Turning force = weight × distance, and 2 × 3 = 6."],
+  ["Forces", "A 4 kg weight sits 2 spaces left of the pivot. Which of these balances it?", ["A 2 kg weight 4 spaces to the right", "A 4 kg weight 4 spaces to the right", "A 1 kg weight 1 space to the right", "A 2 kg weight 2 spaces to the right"], "4 × 2 = 8 on the left, and 2 × 4 = 8 on the right."],
+  ["Forces", "Where should you push a door to open it most easily?", ["Far from the hinges", "Right next to the hinges", "On the hinges", "It doesn't matter"], "Pushing far from the turning point gives the most turning force."],
+  ["Forces", "The point a lever turns around is called the...", ["Fulcrum, or pivot", "Load", "Axle", "Ramp"], "A seesaw's fulcrum is the stand in the middle."],
+  ["Forces", "Why is it easier to loosen a tight bolt with a long wrench?", ["Your push is farther from the turning point", "Long wrenches are heavier", "Long wrenches are made of stronger metal", "It isn't easier"], "More distance means more turning force for the same push."],
+  ["Forces", "A seesaw is tipping down on the left. What would help balance it?", ["Add weight on the right, or move right-side weights farther out", "Add more weight on the left", "Move the right-side weights toward the middle", "Make the seesaw shorter on both sides"], "You need more turning force on the right side."],
+  ["Forces", "Which of these tools is a lever?", ["A bottle opener", "A ramp", "A screw", "A wheel"], "The bottle opener turns on the cap's edge, its fulcrum."],
   ["Forces", "Why is it hard to stop a car on ice?", ["Ice has very little friction", "Ice pulls the car forward", "Cars weigh more on ice", "Gravity is weaker on ice"], "Tires need friction to grip, and ice gives them very little."],
 
   // ---- Motion ----
