@@ -236,3 +236,23 @@ window.SCIENCE_FACTS.matter = [
   "Ice is slippery partly because a very thin layer on its surface acts almost like a liquid.",
   "Hot air rises because it's less dense than the cooler air around it."
 ];
+
+window.SCIENCE_FACTS.football = [
+  "Without air, a 45° throw goes the farthest. Real footballs fly farthest a little lower, around 30–40°, because air slows them.",
+  "A thrown football follows a curved path called a parabola. Gravity bends it down the whole way.",
+  "A spiral is spinning about 600 times a minute. The spin keeps it steady, like a spinning top, so it flies point-first.",
+  "A wobbly pass (a 'duck') tumbles and catches more air, so it slows down and drops short.",
+  "An NFL quarterback can throw about 60 miles per hour. That's about 29 yards every second.",
+  "A football weighs about 14 to 15 ounces, a little less than a can of soup.",
+  "Momentum is mass × speed. A heavy lineman moving slowly can have as much momentum as a light receiver sprinting.",
+  "Newton's third law: when a tackler hits a runner, the runner hits the tackler back just as hard.",
+  "Cleats dig into the grass to add friction. Without friction, players couldn't push off to run or turn.",
+  "Helmets have padding that squishes on a hit. Squishing makes the stop take a little longer, which makes the force smaller.",
+  "Kickers lean into the ball and follow through to keep their foot on it longer, giving the ball more speed.",
+  "Cold footballs are harder and don't bounce as much. The air inside shrinks when it gets cold.",
+  "On the moon, with 1/6 of Earth's gravity, the same throw would stay up about 6 times longer and go about 6 times farther.",
+  "Receivers 'look the ball in' because their eyes and brain need time to predict where it will come down.",
+  "The fastest NFL players reach about 22 miles per hour, roughly 11 yards every second.",
+  "A punt with a lot of hang time gives the coverage team time to run downfield. Higher kicks stay up longer.",
+  "Rain makes the ball slippery because water lowers the friction between the ball and a player's hands."
+];

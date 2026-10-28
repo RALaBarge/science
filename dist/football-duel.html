@@ -1,0 +1,2276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Football Duel</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@500;700;800&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: one console screen. Header with map code, the star field as the hero, the duel controls docked beneath. */
+:root {
+  --space: #0a0f1f;
+  --panel: #121a30;
+  --panel-2: #18223d;
+  --line: #2a3658;
+  --text: #e7e9f3;
+  --muted: #8f99b8;
+  --p1: #ff8a5c;
+  --p2: #5cc8ff;
+  --code: #ffd166;
+  --good: #7ee0a1;
+  --bad: #ff6b81;
+  --scrim: rgba(5, 8, 18, 0.78);
+  --display: "Saira Semi Condensed", "Arial Narrow", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --turn: var(--p1);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  background: var(--space);
+  color: var(--text);
+  font-family: var(--display);
+  font-size: 16px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 14px 28px;
+}
+.wrap { max-width: 1100px; margin: 0 auto; display: grid; gap: 14px; }
+
+header.bar {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;
+}
+h1 {
+  margin: 0; font-weight: 800; font-size: clamp(26px, 4vw, 36px); letter-spacing: 0.02em;
+  text-transform: uppercase; line-height: 1;
+}
+h1 span { color: var(--muted); font-weight: 500; font-size: 0.5em; letter-spacing: 0.12em; margin-left: 10px; vertical-align: middle; }
+.seed { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.seed label { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+#seed-input {
+  font-family: var(--mono); font-size: 16px; font-weight: 600; letter-spacing: 0.06em;
+  color: var(--code); background: var(--panel); border: 1px solid var(--line); border-radius: 6px;
+  padding: 7px 10px; width: 25ch; max-width: 100%; text-transform: uppercase;
+}
+button {
+  font-family: var(--display); font-weight: 700; font-size: 15px; letter-spacing: 0.04em;
+  color: var(--text); background: var(--panel-2); border: 1px solid var(--line); border-radius: 6px;
+  padding: 7px 12px; cursor: pointer;
+}
+button:hover { border-color: var(--muted); }
+button:focus-visible, input:focus-visible, summary:focus-visible { outline: 2px solid var(--code); outline-offset: 2px; }
+
+.stage {
+  position: relative; border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
+  background: var(--space); touch-action: none;
+}
+canvas { display: block; width: 100%; height: auto; cursor: crosshair; }
+.overlay {
+  position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none;
+}
+.card {
+  pointer-events: auto; background: color-mix(in srgb, var(--panel) 92%, transparent);
+  border: 1px solid var(--line); border-radius: 10px; padding: 18px 22px; text-align: center;
+  display: grid; gap: 10px; max-width: min(90%, 420px);
+}
+.card h2 { margin: 0; font-size: 26px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.03em; }
+.card p { margin: 0; color: var(--muted); font-size: 15px; }
+.card .chips { justify-content: center; }
+#busy .card { font-family: var(--mono); font-size: 14px; color: var(--muted); }
+.stage-label {
+  position: absolute; left: 10px; top: 8px; font-family: var(--mono); font-size: 12px; color: var(--muted);
+  pointer-events: none; letter-spacing: 0.04em;
+}
+
+.demo-tag {
+  position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%);
+  max-width: calc(100% - 24px); text-align: center;
+  background: var(--code); color: #10131f; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase;
+  font-size: clamp(12px, 2vw, 16px); padding: 8px 16px; border-radius: 999px; pointer-events: none;
+  animation: demo-pulse 1.6s ease-in-out infinite;
+}
+@keyframes demo-pulse { 50% { opacity: 0.6; } }
+@media (prefers-reduced-motion: reduce) { .demo-tag { animation: none; } }
+.hud { display: grid; grid-template-columns: 1fr 1.4fr 1fr; gap: 12px; align-items: stretch; }
+.player {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px;
+  display: grid; gap: 6px; align-content: start; min-width: 0;
+}
+.player.active { border-color: var(--pc); box-shadow: 0 0 0 1px var(--pc) inset; }
+.player[data-p="0"] { --pc: var(--p1); }
+.player[data-p="1"] { --pc: var(--p2); }
+.player .name-row { display: flex; align-items: center; gap: 8px; }
+.dot { width: 12px; height: 12px; border-radius: 50%; background: var(--pc); flex: none; }
+.player input {
+  font-family: var(--display); font-weight: 700; font-size: 18px; color: var(--pc);
+  background: transparent; border: 1px solid transparent; border-radius: 4px; padding: 2px 4px;
+  width: 100%; min-width: 0;
+}
+.player input:hover { border-color: var(--line); }
+.wins { font-size: 40px; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
+.wins small { font-size: 13px; font-weight: 500; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-left: 6px; }
+.stats { font-family: var(--mono); font-size: 12.5px; color: var(--muted); display: grid; gap: 2px; font-variant-numeric: tabular-nums; }
+.stats b { color: var(--text); font-weight: 600; }
+
+.controls {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px;
+  display: grid; gap: 10px; min-width: 0;
+}
+.turn { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.turn strong { font-size: 18px; color: var(--turn); text-transform: uppercase; letter-spacing: 0.04em; }
+.turn span { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.knob { display: grid; grid-template-columns: 4.5em 1fr 4.2em; align-items: center; gap: 10px; }
+.knob label { font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.knob input[type=range] { width: 100%; accent-color: var(--turn); min-width: 0; }
+.knob input[type=number] {
+  font-family: var(--mono); font-size: 14px; color: var(--text); background: var(--panel-2);
+  border: 1px solid var(--line); border-radius: 5px; padding: 4px 6px; width: 100%;
+}
+#fire {
+  font-size: 20px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em;
+  background: var(--turn); color: #10131f; border: none; padding: 10px; border-radius: 8px;
+}
+#fire:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.meta { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.meta b { color: var(--text); font-weight: 600; }
+.meta label { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
+.meta .sep { color: var(--line); }
+.linkish {
+  background: none; border: none; padding: 0; font-family: var(--mono); font-size: 13px; font-weight: 600;
+  color: var(--code); text-decoration: underline; text-underline-offset: 3px; letter-spacing: 0;
+}
+.linkish:disabled { color: var(--muted); text-decoration: none; cursor: default; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  font-family: var(--mono); font-size: 12px; padding: 3px 8px; border-radius: 999px;
+  border: 1px solid var(--line); color: var(--text); background: var(--panel-2);
+}
+.chip.gold { border-color: var(--code); color: var(--code); }
+
+details.howto {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px;
+}
+details.howto summary { cursor: pointer; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; font-size: 14px; }
+.howto-body { display: grid; gap: 10px; padding-top: 10px; max-width: 70ch; font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.55; color: var(--text); }
+.howto-body p { margin: 0; }
+.formula { font-family: var(--mono); color: var(--code); font-size: 15px; }
+kbd { font-family: var(--mono); font-size: 12px; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; padding: 0 5px; background: var(--panel-2); }
+
+#toast {
+  position: fixed; left: 50%; transform: translateX(-50%);
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  background: var(--panel-2); border: 1px solid var(--code); color: var(--code);
+  font-family: var(--mono); font-size: 14px; padding: 8px 14px; border-radius: 8px; z-index: 20;
+}
+
+.items { display: flex; flex-wrap: wrap; gap: 6px; min-height: 28px; }
+.items .none { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.item {
+  font-family: var(--mono); font-size: 12px; font-weight: 600; padding: 4px 9px; border-radius: 999px;
+  border: 1px solid var(--code); color: var(--code); background: transparent; letter-spacing: 0;
+}
+.item:disabled { opacity: 0.45; cursor: default; }
+.item.armed { background: var(--code); color: #10131f; }
+.resize-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-family: var(--mono); font-size: 13px; color: var(--code); }
+.resize-bar span { flex: 1 1 12em; }
+.resize-bar button { font-size: 14px; padding: 5px 10px; }
+.body-types { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; width: 100%; }
+.body-types button { display: grid; gap: 1px; text-align: left; font-size: 13px; padding: 6px 8px; min-width: 0; }
+.body-types small { font-family: var(--mono); font-size: 11px; font-weight: 400; color: var(--muted); }
+@media (max-width: 420px) { .body-types { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.quiz {
+  position: fixed; inset: 0; z-index: 30; background: var(--scrim);
+  display: grid; place-items: center; overflow-y: auto;
+  padding-top: max(16px, env(safe-area-inset-top, 0px));
+  padding-bottom: max(16px, env(safe-area-inset-bottom, 0px));
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.quiz-card {
+  width: min(100%, 580px); background: var(--panel); border: 1px solid var(--line);
+  border-top: 4px solid var(--qc, var(--code)); border-radius: 12px; padding: 18px 20px;
+  display: grid; gap: 12px;
+}
+.quiz-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.quiz-head strong { color: var(--qc); font-size: 18px; text-transform: uppercase; letter-spacing: 0.04em; }
+.quiz-head span { font-family: var(--mono); font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.quiz-topic { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--code); }
+.quiz-card h2 { margin: 0; font-size: 22px; font-weight: 700; line-height: 1.25; text-wrap: balance; }
+.quiz-intro { margin: 0; color: var(--muted); font-size: 15px; }
+.quiz-choices { display: grid; gap: 8px; }
+.choice {
+  display: flex; gap: 10px; align-items: baseline; text-align: left; width: 100%;
+  font-family: system-ui, sans-serif; font-weight: 500; font-size: 16px; line-height: 1.35;
+  padding: 10px 12px; background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px;
+}
+.choice .k { font-family: var(--mono); font-size: 13px; color: var(--muted); flex: none; }
+.choice:disabled { cursor: default; opacity: 0.7; }
+.choice.right { border-color: var(--good); color: var(--good); opacity: 1; }
+.choice.wrong { border-color: var(--bad); color: var(--bad); opacity: 1; }
+.quiz-explain { margin: 0; font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.5; color: var(--text); }
+.quiz-explain b { color: var(--good); }
+.quiz-explain b.miss { color: var(--bad); }
+.quiz-score { font-size: 48px; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; color: var(--qc); }
+.facts-list { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; font-family: system-ui, sans-serif; font-size: 16px; line-height: 1.45; }
+.facts-list li::marker { color: var(--code); }
+.facts-actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+#facts-close { background: var(--qc, var(--code)); color: #10131f; border: none; }
+#quiz-next { justify-self: end; background: var(--qc, var(--code)); color: #10131f; border: none; font-size: 16px; padding: 9px 16px; }
+
+@media (max-width: 820px) {
+  .hud { grid-template-columns: 1fr 1fr; }
+  .controls { grid-column: 1 / -1; order: -1; }
+}
+@media (max-width: 420px) {
+  .wins { font-size: 32px; }
+  .knob { grid-template-columns: 4em 1fr 3.8em; gap: 8px; }
+}
+
+/* ---- Gravity Duel modes ---- */
+#mode-select {
+  font-family: var(--display); font-weight: 700; font-size: 15px; color: var(--text);
+  background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 7px 8px;
+}
+.card-title { font-size: 18px; color: var(--code); letter-spacing: 0.04em; text-transform: uppercase; }
+.pole-btn { font-family: var(--mono); font-size: 14px; }
+.pole-btn[data-pole="N"] { border-color: #ff5d5d; color: #ff8f8f; }
+.pole-btn[data-pole="S"] { border-color: #4f9bff; color: #8fbcff; }
+
+.controls { align-content: start; }
+.stats.scorecard { grid-template-columns: 1fr 1fr; column-gap: 12px; }
+.legend span { line-height: 1.35; }
+.controls > button:not(#fire) { width: 100%; }
+.time-track { position: absolute; left: 0; right: 0; bottom: 0; height: 6px; background: rgba(255,255,255,0.06); pointer-events: none; }
+.time-bar { height: 100%; width: 100%; background: var(--code); }
+.card #retry-btn { margin-bottom: 4px; }
+/* ---- Balance Duel ---- */
+.hand { display: flex; flex-wrap: wrap; gap: 6px; }
+.hand .none { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.weight { font-family: var(--mono); font-size: 14px; padding: var(--wpad, 4px) 10px; border-color: var(--pc); color: var(--text); }
+.weight.selected { background: var(--pc); color: #10131f; }
+.weight:disabled { opacity: 0.5; }
+.weight.selected:disabled { opacity: 0.8; }
+.hint-line { margin: 0; font-family: system-ui, sans-serif; font-size: 13.5px; color: var(--muted); line-height: 1.4; }
+.pivot-row { display: flex; gap: 8px; }
+.pivot-row button { flex: 1; }
+#p2-select { font-family: var(--display); font-weight: 700; font-size: 14px; color: var(--text); background: var(--panel-2); border: 1px solid var(--line); border-radius: 5px; padding: 3px 4px; }
+/* ---- Phase Runner ---- */
+.select { font-family: var(--display); font-weight: 700; font-size: 15px; color: var(--text); background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 7px 8px; }
+.check { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; letter-spacing: 0; text-transform: none; color: var(--text); cursor: pointer; }
+.thermo { display: grid; gap: 6px; }
+.thermo-track { position: relative; height: 16px; border-radius: 999px; background: linear-gradient(90deg, #6fb6e0 0%, #6fb6e0 27%, #3d8bff 27%, #3d8bff 73%, #ff7a3d 73%); opacity: 0.35; }
+.thermo-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 36%; border-radius: 999px; background: #3d8bff; }
+.thermo-fill[data-form="ice"] { background: #bfe8ff; }
+.thermo-fill[data-form="steam"] { background: #ffffff; }
+.thermo-track:has(.thermo-fill) { opacity: 1; background: linear-gradient(90deg, rgba(111,182,224,0.25) 0%, rgba(111,182,224,0.25) 27.3%, rgba(61,139,255,0.25) 27.3%, rgba(61,139,255,0.25) 72.7%, rgba(255,122,61,0.25) 72.7%); }
+.thermo .mark { position: absolute; top: -3px; bottom: -3px; width: 2px; background: var(--text); }
+.thermo .m0 { left: 27.3%; } .thermo .m100 { left: 72.7%; }
+.thermo-scale { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.thermo-text { font-family: var(--mono); font-size: 14px; font-weight: 600; color: var(--text); }
+.touch-pad { position: absolute; left: 10px; bottom: 10px; display: none; gap: 8px; }
+.touch-pad button { width: 56px; height: 56px; font-size: 22px; opacity: 0.8; touch-action: none; }
+@media (pointer: coarse) { .touch-pad { display: flex; } }
+
+/* Gravity Duel: controls on top, play field sized to the rest of the screen */
+.wrap > .stage { justify-self: center; width: 100%; }
+/* compact panels when they sit above the play field */
+.hud.compact { gap: 10px; }
+.hud.compact .player, .hud.compact .controls { padding: 8px 12px; gap: 4px; }
+.hud.compact .player { grid-template-columns: auto 1fr; column-gap: 12px; align-items: start; }
+.hud.compact .player > .name-row, .hud.compact .player > .items { grid-column: 1 / -1; }
+.hud.compact .wins { font-size: 30px; display: grid; justify-items: start; }
+.hud.compact .wins small { margin-left: 0; font-size: 11px; }
+.hud.compact .stats { font-size: 11.5px; gap: 0; }
+.hud.compact .controls { gap: 6px; }
+.hud.compact #fire { font-size: 17px; padding: 6px; }
+.hud.compact .items .none { font-size: 11px; }
+/* ---- Football Duel ---- */
+.clockline { display: flex; align-items: baseline; gap: 10px; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.clockline b { font-size: 26px; line-height: 1; color: var(--text); font-variant-numeric: tabular-nums; min-width: 2ch; }
+.clockline b.low { color: var(--bad); }
+.clockline #drive-label { margin-left: auto; }
+.throws { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.throw { padding: 5px 6px; font-size: 15px; display: grid; gap: 1px; line-height: 1.1; }
+.throw small { font-family: var(--mono); font-weight: 400; font-size: 10.5px; color: var(--muted); letter-spacing: 0; }
+.throw.on { border-color: var(--turn); box-shadow: 0 0 0 1px var(--turn) inset; color: var(--turn); }
+.play-banner {
+  position: absolute; left: 50%; top: 10px; transform: translateX(-50%); max-width: calc(100% - 20px);
+  background: color-mix(in srgb, var(--panel) 94%, transparent); border: 1px solid var(--line); border-left: 4px solid var(--bc, var(--code));
+  border-radius: 8px; padding: 6px 14px; font-weight: 700; font-size: 18px; letter-spacing: 0.02em; text-align: center; pointer-events: none;
+}
+.play-banner small { display: block; font-family: var(--mono); font-weight: 400; font-size: 12px; color: var(--muted); }
+.fb-panel { position: absolute; inset: 0; display: grid; place-items: center; padding: 10px; overflow-y: auto; background: rgba(5, 8, 18, 0.45); }
+.fb-card {
+  width: min(100%, 640px); background: var(--panel); border: 1px solid var(--line); border-top: 4px solid var(--qc, var(--code));
+  border-radius: 12px; padding: 14px 16px; display: grid; gap: 10px;
+}
+.fb-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.fb-head strong { color: var(--qc); font-size: 18px; text-transform: uppercase; letter-spacing: 0.04em; }
+.fb-head span { font-family: var(--mono); font-size: 20px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.fb-head span.low { color: var(--bad); }
+.fb-sub { margin: 0; color: var(--muted); font-size: 15px; }
+.fb-card h2 { margin: 0; font-size: 21px; font-weight: 700; line-height: 1.25; text-wrap: balance; }
+.fb-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.fb-cards button { padding: 14px 8px; font-size: 18px; display: grid; gap: 4px; }
+.fb-cards button small { font-family: var(--mono); font-weight: 400; font-size: 11px; color: var(--muted); }
+.fb-choices { display: grid; gap: 7px; }
+.fb-row { display: grid; grid-template-columns: auto 1fr auto; gap: 6px; align-items: stretch; }
+.fb-row .choice { align-items: center; }
+.fb-tab { min-width: 46px; font-family: var(--mono); font-size: 15px; padding: 4px 8px; color: #10131f; border: 0; }
+.fb-tab[data-p="0"] { background: var(--p1); }
+.fb-tab[data-p="1"] { background: var(--p2); }
+.fb-tab:disabled { opacity: 0.25; cursor: default; }
+.fb-tab.mark { box-shadow: 0 0 0 3px var(--text) inset; opacity: 1; }
+@media (max-width: 560px) { .fb-cards { grid-template-columns: 1fr; } .fb-cards button { padding: 8px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="bar">
+    <h1>Football Duel <span>answer to snap</span></h1>
+    <div class="seed">
+      <label for="seed-input">Game code</label>
+      <select id="length-select" class="select" aria-label="Drives for each team">
+        <option value="2">2 drives each</option>
+        <option value="3" selected>3 drives each</option>
+        <option value="4">4 drives each</option>
+      </select>
+      <input id="seed-input" spellcheck="false" autocomplete="off" aria-label="Game code">
+      <button id="load-btn" type="button">Load</button>
+      <button id="new-btn" type="button">New code</button>
+      <button id="daily-btn" type="button">Daily</button>
+    </div>
+  </header>
+
+  <section class="hud compact fb-hud">
+    <div class="player" data-p="0" id="card-0">
+      <div class="name-row"><span class="dot"></span><input id="name-0" value="Player 1" maxlength="16" aria-label="Player 1 name"></div>
+      <div class="wins"><span id="score-0">0</span><small id="role-0">offense</small></div>
+      <div class="stats" id="stats-0"></div>
+    </div>
+
+    <div class="controls">
+      <div class="turn"><strong id="turn-label">1st &amp; 10</strong><span id="spot-label">Ball on own 25</span></div>
+      <div class="clockline"><span>Play clock</span><b id="clock">15</b><span id="drive-label">Drive 1 of 6</span></div>
+      <div class="throws" role="group" aria-label="Throw type">
+        <button type="button" class="throw" data-t="0">Bullet <small>20° · fast, low</small></button>
+        <button type="button" class="throw" data-t="1">Touch <small>35° · in between</small></button>
+        <button type="button" class="throw" data-t="2">Lob <small>50° · high, slow</small></button>
+      </div>
+    </div>
+
+    <div class="player" data-p="1" id="card-1">
+      <div class="name-row"><span class="dot"></span><input id="name-1" value="" placeholder="CPU" maxlength="16" aria-label="Player 2 name">
+        <select id="p2-select" aria-label="Who plays blue"><option value="cpu">CPU</option><option value="human">Human</option></select></div>
+      <div class="wins"><span id="score-1">0</span><small id="role-1">defense</small></div>
+      <div class="stats" id="stats-1"></div>
+    </div>
+  </section>
+
+  <section class="stage" id="stage">
+    <canvas id="cv" width="1000" height="560" aria-label="Top-down football field with receivers, defenders and the quarterback"></canvas>
+    <div class="stage-label" id="stage-label"></div>
+    <div class="play-banner" id="play-banner" hidden></div>
+
+    <div class="fb-panel" id="panel" hidden>
+      <div class="fb-card" id="panel-card">
+        <div class="fb-head"><strong id="panel-title"></strong><span id="panel-clock"></span></div>
+        <p class="fb-sub" id="panel-sub"></p>
+        <div class="fb-cards" id="topic-cards"></div>
+        <div class="quiz-topic" id="panel-topic"></div>
+        <h2 id="panel-q"></h2>
+        <div class="fb-choices" id="panel-choices"></div>
+        <p class="quiz-explain" id="panel-explain" hidden></p>
+      </div>
+    </div>
+
+    <div class="overlay" id="banner" hidden>
+      <div class="card">
+        <h2 id="banner-title"></h2>
+        <p id="banner-text"></p>
+        <div class="chips" id="banner-chips"></div>
+        <button id="again-btn" type="button">Play again</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="meta">
+    <span>Keys: Orange <kbd>1</kbd>–<kbd>4</kbd> · Blue <kbd>7</kbd>–<kbd>0</kbd></span>
+    <span>Throw <kbd>Z</kbd> <kbd>X</kbd> <kbd>C</kbd></span>
+    <span class="sep" aria-hidden="true">|</span>
+    <button type="button" class="linkish" id="practice-btn" data-demo-keep title="Open during the demo or after the game ends">Practice quiz</button>
+    <span class="chips" id="badges"></span>
+  </div>
+
+  <details class="howto">
+    <summary>How to play and the physics</summary>
+    <div class="howto-body">
+      <p><b>Every play starts with a question.</b> The defense picks a science topic card, and the offense answers a question from it before the 15-second play clock runs out. Answer right and the ball is snapped. Answer wrong and the quarterback is sacked (lose 5 yards and the down). Let the clock run out and it’s delay of game: back 5 yards, and you replay the down with a new question.</p>
+      <p><b>Throwing.</b> After the snap, receivers run their routes and you click (or tap) the spot where you want the ball to come down. Lead your receiver: throw to where they <i>will</i> be. Pick the throw before you click: <b>Bullet</b> (20°) gets there fast but stays low, so a defender in the way can grab it. <b>Lob</b> (50°) sails over defenders but hangs in the air, so they have time to catch up. <b>Touch</b> (35°) is in between. Throw before the pass rusher gets to you.</p>
+      <p><b>Jump balls.</b> If a receiver and a defender both get to the ball, it’s a jump ball: both players get the same question and the first right answer wins it. Offense wins: catch. Defense wins: interception. A wrong answer locks you out, so the other player can take their time. If a defender gets to the ball alone, the defense answers one question to hold on for the interception.</p>
+      <p><b>The physics.</b> A thrown ball moves forward at a steady speed while gravity pulls it down, so it flies in a curve (a parabola). Its time in the air is <span class="formula">2 × speed × sin(angle) ÷ gravity</span>. With no air, 45° throws farthest. Gravity here is real Earth gravity: 9.8 m/s², about 10.7 yards per second per second.</p>
+      <p>Get 10 yards in 4 downs for a new set of downs. A touchdown is 6 points, and one more right answer adds the extra point. Each team gets the same number of drives; most points wins.</p>
+    </div>
+  </details>
+</div>
+<script>
+// ===================== QUESTION BANK =====================
+// Format: [topic, question, [CORRECT answer first, then 3 wrong answers], explanation]
+// Choices are shuffled when shown, so always put the right answer first here.
+// Topics match the K-5 foundations doc so results can be tracked by concept later.
+window.QUESTION_BANK = [
+  // ---- Gravity ----
+  ["Gravity", "A shot is twice as far from a planet as before. How strong is the planet's pull now?", ["One quarter as strong", "Half as strong", "Twice as strong", "Exactly the same"], "Gravity weakens with distance squared. Twice as far means 2 × 2 = 4 times weaker."],
+  ["Gravity", "A planet's mass doubles. What happens to its pull on your shot?", ["It gets twice as strong", "It gets four times as strong", "It gets half as strong", "It stays the same"], "Pull grows in step with mass. Double the mass, double the pull."],
+  ["Gravity", "Which planet pulls harder: a big, light planet or a small planet with much more mass?", ["The small planet with more mass", "The big, light planet", "They pull the same", "Neither one pulls"], "Gravity depends on mass, not size. That's why the dense planets in the game pull so hard."],
+  ["Gravity", "Astronauts dropped a hammer and a feather on the moon at the same time. What happened?", ["They landed at the same time", "The hammer landed first", "The feather landed first", "They both floated away"], "With no air to slow the feather, gravity speeds up heavy and light things the same amount."],
+  ["Gravity", "On Earth, why does a feather fall slower than a rock?", ["Air pushes against the feather more", "Gravity pulls the feather less", "Feathers have no mass", "Gravity only pulls heavy things"], "Air resistance slows the light, wide feather. Without air they would fall together."],
+  ["Gravity", "What keeps the moon going around Earth?", ["Earth's gravity", "Wind in space", "Light from the sun pushing it", "Magnetism"], "The moon is always moving forward, and Earth's gravity keeps bending its path into a circle."],
+  ["Gravity", "In space with nothing pulling or pushing on it, a moving object will...", ["Keep moving at the same speed in a straight line", "Slowly come to a stop", "Keep speeding up", "Start to spin"], "This is inertia. Things only slow down on Earth because of friction and air."],
+  ["Gravity", "If you stood on the moon, your weight would be...", ["Less, because the moon's gravity is weaker", "More, because the moon is closer to the sun", "Exactly the same", "Zero"], "The moon has much less mass than Earth, so it pulls on you about one sixth as hard."],
+  ["Gravity", "When you travel to the moon, what happens to your mass?", ["It stays the same; only your weight changes", "It gets smaller", "It gets bigger", "It disappears"], "Mass is how much stuff you're made of. Weight is how hard gravity pulls on that stuff."],
+  ["Gravity", "Which way does Earth's gravity pull, no matter where you stand on Earth?", ["Toward Earth's center", "Toward the North Pole", "Toward the sun", "Away from Earth"], "That's why down in Australia and down in Michigan point in different directions in space."],
+  ["Gravity", "What is gravity?", ["A pull between any two objects that have mass", "A push from the air", "A force only Earth has", "A kind of magnetism"], "Everything with mass pulls on everything else. Big masses like planets pull strongly enough to notice."],
+  ["Gravity", "In Gravity Duel, why does your shot travel in a curve?", ["Planets pull it sideways as it passes", "Wind blows it off course", "It runs out of fuel", "The wall pushes it"], "Each planet tugs the shot toward its center, bending its path."],
+
+  // ---- Forces ----
+  ["Forces", "A box sits still on the floor. What is true about the forces on it?", ["They are balanced", "There are no forces on it", "Only gravity acts on it", "They are unbalanced"], "Gravity pulls it down and the floor pushes it up just as hard, so it doesn't move."],
+  ["Forces", "Two kids push a box from opposite sides with exactly the same force. The box...", ["Doesn't move", "Moves left", "Moves right", "Lifts off the floor"], "Equal pushes in opposite directions are balanced forces, so nothing changes."],
+  ["Forces", "What force slows down a sled sliding on snow?", ["Friction", "Magnetism", "Inertia", "Electricity"], "Friction between the sled and snow works against the motion."],
+  ["Forces", "Which surface has the most friction?", ["Sandpaper", "Ice", "A polished floor", "Wet glass"], "Rough surfaces grab more, so they have more friction."],
+  ["Forces", "To make something speed up, slow down or turn, you need...", ["An unbalanced force", "Balanced forces", "No force at all", "A heavier object"], "Only an unbalanced force changes how something moves."],
+  ["Forces", "You push a full shopping cart and an empty one with the same force. Which speeds up more?", ["The empty cart", "The full cart", "They speed up the same", "Neither one moves"], "Less mass means the same push changes its speed more."],
+  ["Forces", "A seesaw is which kind of simple machine?", ["A lever", "A pulley", "A screw", "A wedge"], "A lever is a bar that turns on a pivot point."],
+  ["Forces", "To lift a heavy rock with a lever, where should the pivot go?", ["Close to the rock", "Close to your hands", "Exactly in the middle always", "It doesn't matter"], "A pivot near the load lets a small push on the long end lift a big weight."],
+  ["Forces", "How does a ramp help you get a heavy box onto a truck?", ["You push with less force over a longer distance", "It turns gravity off", "It makes the box lighter", "It adds friction to help"], "You trade a longer path for a smaller push."],
+  ["Forces", "A heavy kid sits close to the middle of a seesaw and a light kid sits far out. Can they balance?", ["Yes, if weight × distance is the same on both sides", "No, the heavier kid always goes down", "Only if they weigh the same", "Only if they both sit at the ends"], "Distance from the pivot matters as much as weight."],
+  ["Forces", "A 2 kg weight sits 3 spaces from the pivot. How much turning force does it make?", ["6", "5", "1.5", "23"], "Turning force = weight × distance, and 2 × 3 = 6."],
+  ["Forces", "A 4 kg weight sits 2 spaces left of the pivot. Which of these balances it?", ["A 2 kg weight 4 spaces to the right", "A 4 kg weight 4 spaces to the right", "A 1 kg weight 1 space to the right", "A 2 kg weight 2 spaces to the right"], "4 × 2 = 8 on the left, and 2 × 4 = 8 on the right."],
+  ["Forces", "Where should you push a door to open it most easily?", ["Far from the hinges", "Right next to the hinges", "On the hinges", "It doesn't matter"], "Pushing far from the turning point gives the most turning force."],
+  ["Forces", "The point a lever turns around is called the...", ["Fulcrum, or pivot", "Load", "Axle", "Ramp"], "A seesaw's fulcrum is the stand in the middle."],
+  ["Forces", "Why is it easier to loosen a tight bolt with a long wrench?", ["Your push is farther from the turning point", "Long wrenches are heavier", "Long wrenches are made of stronger metal", "It isn't easier"], "More distance means more turning force for the same push."],
+  ["Forces", "A seesaw is tipping down on the left. What would help balance it?", ["Add weight on the right, or move right-side weights farther out", "Add more weight on the left", "Move the right-side weights toward the middle", "Make the seesaw shorter on both sides"], "You need more turning force on the right side."],
+  ["Forces", "Which of these tools is a lever?", ["A bottle opener", "A ramp", "A screw", "A wheel"], "The bottle opener turns on the cap's edge, its fulcrum."],
+  ["Forces", "Why is it hard to stop a car on ice?", ["Ice has very little friction", "Ice pulls the car forward", "Cars weigh more on ice", "Gravity is weaker on ice"], "Tires need friction to grip, and ice gives them very little."],
+
+  // ---- Motion ----
+  ["Motion", "A ball rolls 10 meters in 2 seconds. What is its speed?", ["5 meters per second", "20 meters per second", "12 meters per second", "8 meters per second"], "Speed = distance ÷ time, and 10 ÷ 2 = 5."],
+  ["Motion", "How can you make a pendulum swing back and forth faster?", ["Make the string shorter", "Add more weight to the end", "Paint it a brighter color", "Push it with the same string length"], "Only the string length (and gravity) changes the swing time. Shorter swings faster."],
+  ["Motion", "Which change does NOT change how long a pendulum takes to swing?", ["Adding more weight to the end", "Making the string shorter", "Making the string longer", "Taking it to the moon"], "Heavy and light pendulums swing in the same time. The moon's weaker gravity would slow it."],
+  ["Motion", "On a distance-time graph, a steeper line means the object is...", ["Moving faster", "Moving slower", "Stopped", "Getting smaller"], "Steeper means more distance in the same time."],
+  ["Motion", "A ball rolls down a smooth ramp. Where is it moving fastest?", ["At the bottom", "At the top", "Halfway down", "It goes the same speed everywhere"], "Gravity keeps speeding it up the whole way down."],
+  // ---- Motion: throwing and football (Football Duel) ----
+  ["Motion", "With no air in the way, which launch angle throws a ball the farthest?", ["45 degrees", "15 degrees", "75 degrees", "90 degrees (straight up)"], "45° splits the throw's speed evenly between going up (time in the air) and going forward."],
+  ["Motion", "A quarterback throws the same speed at 20° and at 50°. Which pass gets there sooner?", ["The 20° pass", "The 50° pass", "They take the same time", "Whichever is heavier"], "A flatter throw spends less time going up and coming down, so it arrives sooner."],
+  ["Motion", "Why does a quarterback lead a running receiver?", ["The receiver keeps moving while the ball flies", "The ball speeds up in the air", "Gravity pulls the ball forward", "Receivers can't run backward"], "The ball takes time to get there, so you throw to where the receiver will be."],
+  ["Motion", "A receiver runs 6 yards every second. How far does he go during a 2-second pass?", ["12 yards", "3 yards", "8 yards", "6 yards"], "Distance = speed × time, and 6 × 2 = 12."],
+  ["Motion", "At the very top of its arc, which way is a thrown football moving?", ["Only forward", "Only up", "Only down", "It is not moving at all"], "At the peak it has stopped going up for an instant but is still moving forward."],
+  ["Motion", "What pulls a thrown football back down to the ground?", ["Gravity", "The wind", "Its spin", "The receiver's hands"], "Gravity pulls down on the ball the whole time it is in the air."],
+  ["Motion", "Why do quarterbacks throw a spiral?", ["The spin keeps the ball pointed straight so it cuts through the air", "Spinning makes the ball heavier", "Spinning turns off gravity", "Referees require it"], "A spinning ball is steady like a top, so it flies point-first with less air resistance."],
+  ["Forces", "A big linebacker and a small receiver run at the same speed. Who is harder to stop?", ["The linebacker, because he has more mass", "The receiver, because he is smaller", "Neither, they are the same", "Whoever is wearing heavier shoes"], "Momentum is mass × speed. Same speed, more mass, more momentum."],
+  ["Forces", "When a tackler hits a runner, the runner pushes back on the tackler...", ["With an equal force", "With no force", "With a much smaller force", "Only if the runner is bigger"], "Newton's third law: every push comes with an equal push back."],
+  ["Forces", "Why do football cleats have spikes on the bottom?", ["More friction so feet don't slip", "To make players taller", "To make shoes lighter", "To reduce friction"], "The spikes dig into the grass and add friction, so players can push off and turn."],
+  ["Motion", "On the moon, gravity is about 1/6 as strong. A thrown football would...", ["Stay in the air longer and fly much farther", "Fall faster", "Fly the same distance", "Not move at all"], "Weaker gravity pulls the ball down more slowly, so it stays up longer and goes farther."],
+  ["Motion", "A football is thrown straight up. Ignoring air, how long does it take to come down compared to going up?", ["The same time", "Twice as long", "Half as long", "It never comes down"], "Gravity slows it on the way up just as much as it speeds it up on the way down."],
+
+  // ---- Energy ----
+  ["Energy", "Which has the most energy of motion?", ["A fast bowling ball", "A slow bowling ball", "A bowling ball sitting still", "They all have the same"], "Faster objects carry more motion energy."],
+  ["Energy", "A ball held high above the ground has stored energy because of its...", ["Height", "Color", "Temperature", "Shape"], "Lifting it against gravity stored energy that turns into motion when it falls."],
+  ["Energy", "Rubbing your hands together makes them warm. Motion energy turned into...", ["Heat", "Light", "Electricity", "Mass"], "Friction turns motion energy into heat."],
+  ["Energy", "Where did the energy in the food you eat originally come from?", ["The sun", "The soil", "Water", "The refrigerator"], "Plants capture sunlight to make food, and animals get energy by eating plants or other animals."],
+  ["Energy", "A flashlight changes energy stored in its batteries into...", ["Light (and some heat)", "Sound", "Motion", "Food energy"], "Batteries store chemical energy; the bulb turns electricity into light and a little heat."],
+  ["Energy", "A rolling ball hits a still ball. What happens to the energy?", ["Some moves into the ball that was still", "It disappears", "It doubles", "It all turns into light"], "Energy is never destroyed. It moves from one object to another or changes form."],
+  ["Energy", "Which energy source is renewable?", ["Wind", "Coal", "Oil", "Natural gas"], "Wind keeps blowing. Coal, oil and gas take millions of years to form."],
+  ["Energy", "A car brakes to a stop. Where did its motion energy go?", ["It became heat in the brakes", "It was destroyed", "It went back into the gas tank", "It turned into extra mass"], "Brakes use friction, which turns motion energy into heat."],
+  ["Energy", "You stretch a rubber band and let go. Its stored energy becomes...", ["Motion energy", "Light", "Electricity", "Nothing; it disappears"], "Stretching stores energy, and letting go turns it into motion."],
+  ["Energy", "When your shot slams into a planet, its mass times its speed decides how hard it pushes. What is mass × speed called?", ["Momentum", "Kinetic energy", "Gravity", "Friction"], "Momentum is mass × speed. Kinetic energy is close but different: it grows with speed × speed, so doubling the speed gives four times the energy but only twice the momentum."],
+
+  // ---- Matter ----
+  ["Matter", "All matter is made of tiny pieces, too small to see, called...", ["Particles (atoms and molecules)", "Cells", "Pixels", "Crystals"], "Everything, including air and water, is made of particles."],
+  ["Matter", "Which of these is a gas?", ["Water vapor (steam)", "Ice", "Wood", "Milk"], "Water vapor is water in its gas state."],
+  ["Matter", "Liquid water turning into ice is called...", ["Freezing", "Melting", "Evaporation", "Condensation"], "Cooling a liquid until it becomes solid is freezing."],
+  ["Matter", "Water drops form on the outside of a glass of ice water. Where did they come from?", ["Water vapor in the air condensed on the cold glass", "Water leaked through the glass", "The glass is melting", "The ice is sweating through"], "Cold surfaces turn water vapor in the air back into liquid."],
+  ["Matter", "A puddle disappears on a sunny day. Where did the water go?", ["It evaporated into the air", "It was destroyed", "It froze", "It turned into dirt"], "Heat from the sun turned the liquid water into water vapor."],
+  ["Matter", "You dissolve 10 grams of salt in 100 grams of water. What does the mix weigh?", ["110 grams", "100 grams", "90 grams", "10 grams"], "Mass is conserved. The salt is still there, just spread out."],
+  ["Matter", "Which change can NOT easily be undone?", ["Burning paper", "Melting ice", "Freezing juice", "Dissolving sugar in water"], "Burning makes new substances like ash and smoke. You can't turn them back into paper."],
+  ["Matter", "Which is a sign that a new substance has formed?", ["Gas bubbles appear when two things are mixed", "Ice melts", "Sand is poured into a cup", "A rock breaks in half"], "Bubbles from mixing (like baking soda and vinegar) show a chemical reaction."],
+  ["Matter", "How could you separate sand from water?", ["Pour it through a filter", "Use a magnet", "Freeze it", "Stir it faster"], "A filter lets water through but catches the sand."],
+  ["Matter", "How could you get salt back out of salt water?", ["Let the water evaporate", "Pour it through a filter", "Use a magnet", "Shake it"], "The water leaves as vapor and the salt stays behind."],
+  ["Matter", "Does air have mass?", ["Yes, air is matter and takes up space", "No, air is nothing", "Only when it's windy", "Only cold air does"], "A blown-up balloon weighs a tiny bit more than an empty one."],
+  ["Matter", "In a solid, the particles...", ["Are packed close and vibrate in place", "Fly around far apart", "Never move at all", "Slide past each other freely"], "Solid particles still jiggle, but they stay in place."],
+  ["Matter", "Which material is best for a raincoat?", ["Plastic, because it is waterproof", "Paper", "A cotton towel", "A sponge"], "Pick materials by their properties. Plastic doesn't soak up water."],
+
+  // ---- Light ----
+  ["Light", "We can see a book because...", ["Light bounces off it into our eyes", "Our eyes send out light", "The book makes its own light", "Sound waves hit our eyes"], "Most things don't glow. We see them by the light they reflect."],
+  ["Light", "Light travels in...", ["Straight lines", "Circles", "Curves around objects", "Zigzags"], "That's why shadows have sharp edges and you can't see around corners."],
+  ["Light", "A shadow forms when...", ["An object blocks light", "Light bends around an object", "An object gives off darkness", "Light reflects off a mirror"], "Light can't pass through the object, so the space behind it is darker."],
+  ["Light", "Which material is transparent?", ["Clear glass", "Wood", "Wax paper", "Metal"], "Transparent means light passes straight through so you can see clearly."],
+  ["Light", "Wax paper lets some light through, but you can't see clearly through it. It is...", ["Translucent", "Transparent", "Opaque", "Magnetic"], "Translucent things let some light through but scatter it."],
+  ["Light", "How does a mirror work?", ["It reflects light", "It absorbs light", "It makes its own light", "It bends sound"], "A smooth, shiny surface bounces light back in an orderly way."],
+  ["Light", "Light hits a flat mirror at a slant. How does it bounce off?", ["At the same angle it came in", "Straight back the way it came, every time", "At a random angle", "It doesn't bounce; it goes through"], "Light leaves a mirror at the same angle it arrived. That's how you can aim a laser with mirrors."],
+  ["Light", "What is white light made of?", ["All the colors mixed together", "No colors at all", "Only white", "Only yellow and blue"], "A prism or a rainbow spreads white light out into all its colors."],
+  ["Light", "White light shines through a red filter. What color comes out?", ["Red", "White", "Blue", "No light at all"], "A red filter lets red light through and soaks up the other colors."],
+  ["Light", "Red light shines on a blue filter. What happens?", ["Most of the light is blocked", "It turns blue", "It gets brighter", "It turns white"], "A blue filter only lets blue light through. Red light has no blue in it, so it is stopped."],
+  ["Light", "Which tool uses two mirrors to let you see over a wall?", ["A periscope", "A microscope", "A thermometer", "A magnifying glass"], "Each mirror turns the light, so it goes up, across and back down to your eye."],
+  ["Light", "Why does a straw look bent in a glass of water?", ["Light changes direction when it passes between water and air", "The water bends the straw", "The straw is actually bent", "Water makes part of the light disappear"], "This bending of light is called refraction."],
+  ["Light", "Which of these travels fastest?", ["Light", "Sound", "A jet plane", "A race car"], "Light could circle Earth more than 7 times in one second."],
+  ["Light", "Why does an apple look red?", ["It reflects red light and absorbs the other colors", "It makes its own red light", "It absorbs all the red light", "It reflects every color equally"], "The color you see is the light an object bounces back to your eyes."],
+  ["Light", "Which of these makes the darkest shadow?", ["A wooden block", "A sheet of clear plastic", "Wax paper", "Thin tissue paper"], "Opaque things like wood block all the light. Translucent things let some through."],
+  ["Light", "Why does a prism split white light into a rainbow?", ["Each color bends a different amount", "The prism paints the light", "The prism adds new colors", "Light turns into sound inside it"], "Violet bends the most and red the least, so the colors spread apart."],
+  ["Light", "Scientists bounce lasers off mirrors that astronauts left on the Moon. What does that measure?", ["How far away the Moon is", "The Moon's temperature", "How heavy the Moon is", "What the Moon is made of"], "They time how long the light takes to go there and back."],
+
+  // ---- Sound ----
+  ["Sound", "Every sound is made by...", ["Vibrations", "Light", "Heat", "Magnets"], "Something moves back and forth quickly and pushes on the air."],
+  ["Sound", "Tightening a guitar string makes its note...", ["Higher", "Lower", "Silent", "Change color"], "A tighter string vibrates faster, which makes a higher pitch."],
+  ["Sound", "Sound can travel through...", ["Air, water and solids", "Only air", "Only water", "Empty space"], "Sound needs matter to carry its vibrations."],
+  ["Sound", "Why is there no sound in space?", ["There's no air to carry the vibrations", "It's too cold", "It's too dark", "Space is too big"], "With nothing to vibrate, sound can't travel."],
+  ["Sound", "A louder sound has...", ["Bigger vibrations", "A higher pitch", "A different color", "Less energy"], "Bigger vibrations (more amplitude) carry more energy and sound louder."],
+
+  // ---- Electricity ----
+  ["Electricity", "For a bulb to light up, the circuit must be...", ["Complete, with no gaps", "Open", "Cut in half", "Made of plastic"], "Electricity needs a full loop from the battery, through the bulb, and back."],
+  ["Electricity", "Which is a good conductor of electricity?", ["Copper wire", "Rubber", "Plastic", "Wood"], "Metals like copper let electricity flow easily."],
+  ["Electricity", "Why are wires covered in plastic?", ["Plastic is an insulator that keeps electricity in the wire", "Plastic makes electricity faster", "To make wires heavier", "Plastic conducts best"], "Insulators block electricity, which keeps you safe."],
+  ["Electricity", "How does a switch turn a light off?", ["It opens a gap in the circuit", "It uses up the electricity", "It cools the battery", "It blocks the light"], "With a gap, the loop is broken and electricity stops flowing."],
+  ["Electricity", "You add more bulbs in one single loop with the same battery. Each bulb gets...", ["Dimmer", "Brighter", "Exactly the same", "A different color"], "In a series circuit, the bulbs share the battery's energy."],
+  ["Electricity", "A battery stores energy as...", ["Chemical energy", "Sound energy", "Light energy", "Motion energy"], "Chemicals inside react to push electricity through the circuit."],
+  ["Electricity", "What do you call a complete loop that electricity can flow around?", ["A circuit", "A switch", "An insulator", "A magnet"], "Electricity only flows when there's an unbroken loop from the battery and back."],
+  ["Electricity", "Two bulbs are on one single loop with a battery. You unscrew one. What happens to the other?", ["It goes out too", "It gets brighter", "It stays exactly the same", "It changes color"], "In a series circuit there's only one path. Break it anywhere and everything stops."],
+  ["Electricity", "Two bulbs each have their own path to the battery. You unscrew one. What happens to the other?", ["It stays lit", "It goes out too", "It explodes", "It turns into a switch"], "This is a parallel circuit. Each bulb has its own path, the way homes are wired."],
+  ["Electricity", "What is a short circuit?", ["Electricity taking an easy path that skips the bulb or device", "A circuit made with short wires", "A very small battery", "A bulb that is burned out"], "Current rushes through the easy path, so the bulb gets nothing and the wires can get hot."],
+  ["Electricity", "Why can a short circuit be dangerous?", ["Too much current flows and the wires get very hot", "It makes the battery bigger", "It makes lights too bright", "It turns wires into magnets forever"], "That's why homes have fuses and circuit breakers to cut the power."],
+  ["Electricity", "Which of these is an insulator?", ["A rubber glove", "A copper wire", "A steel nail", "Salt water"], "Rubber blocks electricity. Metals and salt water let it through."],
+  ["Electricity", "What does a battery do in a circuit?", ["It gives the push that makes electricity flow", "It makes the light", "It blocks electricity", "It turns the circuit on and off"], "The battery's chemicals push electricity around the loop."],
+  ["Electricity", "Electricity in a wire is a flow of tiny particles called...", ["Electrons", "Photons", "Bubbles", "Cells"], "Electrons are tiny particles found in every atom."],
+  ["Electricity", "You add a third bulb to a single loop that already has two bulbs. What happens?", ["All three bulbs get dimmer", "All three get brighter", "Only the new bulb lights", "Nothing changes"], "Bulbs in series share the battery's push, so each one gets less."],
+  ["Electricity", "Which device turns electricity into motion?", ["A motor", "A light bulb", "A switch", "A wire"], "Motors in fans, cars and toys use electricity and magnets to spin."],
+
+  // ---- Magnets ----
+  ["Magnets", "Which will a magnet pick up?", ["A steel paper clip", "An aluminum can", "A plastic spoon", "A wooden pencil"], "Magnets attract iron and steel, but not aluminum, plastic or wood."],
+  ["Magnets", "Two north poles of magnets are pushed together. They...", ["Push apart", "Snap together", "Stick forever", "Do nothing"], "Like poles repel and opposite poles attract."],
+  ["Magnets", "A magnet moves a paper clip without touching it. That's because magnetic force...", ["Can act at a distance", "Needs friction", "Is a kind of sound", "Only works on paper"], "Magnetism, like gravity, can pull without touching."],
+  ["Magnets", "A magnet's pull on a paper clip gets weaker when...", ["The paper clip is farther away", "The paper clip is closer", "The magnet is painted", "The magnet is turned over"], "Magnetic force gets weaker with distance, like gravity does."],
+
+  // ---- Heat ----
+  ["Heat", "Which cup best keeps hot cocoa hot?", ["A foam cup", "A thin metal cup", "A thin glass cup", "A paper towel wrapped cup"], "Foam is an insulator, so heat escapes slowly."],
+  ["Heat", "Heat always moves from...", ["Warmer things to cooler things", "Cooler things to warmer things", "Big things to small things", "Only upward"], "That's why ice melts in your hand and your hand gets cold."],
+  ["Heat", "A metal spoon in hot soup gets hot quickly because metal is a good...", ["Conductor of heat", "Insulator", "Magnet", "Mirror"], "Conductors let heat move through them easily."],
+  ["Heat", "Why does a black shirt feel hotter in the sun than a white one?", ["Dark colors absorb more sunlight", "Black shirts make their own heat", "Black shirts are always thicker", "White shirts block air"], "Dark colors soak up light energy; light colors reflect more of it."],
+  ["Heat", "At what temperature does pure water boil at sea level?", ["100°C (212°F)", "0°C (32°F)", "50°C (122°F)", "37°C (98.6°F)"], "Above 100°C, liquid water turns into steam (a gas)."],
+  ["Heat", "At what temperature does pure water freeze?", ["0°C (32°F)", "100°C (212°F)", "−100°C (−148°F)", "20°C (68°F)"], "Below 0°C, liquid water turns into ice (a solid)."],
+  ["Matter", "Ice cubes float in a glass of water. Why?", ["Ice is less dense than liquid water", "Ice is heavier than water", "Ice is full of air bubbles from the freezer", "Cold things always float"], "Water expands when it freezes, so ice takes up more space for the same mass."],
+  ["Matter", "In which state do water particles move the fastest?", ["Steam (gas)", "Ice (solid)", "Liquid water", "They all move the same"], "Heating gives particles more energy, so gas particles zoom around."],
+  ["Matter", "Steam touches a cold window and turns into drops. What is this called?", ["Condensation", "Evaporation", "Melting", "Freezing"], "Cooling a gas turns it back into a liquid."],
+  ["Matter", "What happens to water particles when water freezes?", ["They slow down and lock into place", "They speed up and spread out", "They disappear", "They turn into air"], "In a solid, particles only jiggle in place."],
+
+  // ---- Plants ----
+  ["Plants", "Where does most of a tree's wood mass come from?", ["Carbon dioxide from the air, plus water", "The soil", "Fertilizer", "Sunlight itself"], "Plants build themselves mostly from air and water, using sunlight's energy. The soil barely shrinks."],
+  ["Plants", "What do plants need to make their own food?", ["Sunlight, water and carbon dioxide", "Soil and sugar", "Oxygen and darkness", "Meat and water"], "This process is called photosynthesis."],
+  ["Plants", "Which part of a plant takes in water from the soil?", ["Roots", "Leaves", "Flowers", "Seeds"], "Roots soak up water and hold the plant in place."],
+  ["Plants", "How do bees help flowering plants?", ["They carry pollen from flower to flower", "They water them", "They make soil", "They give them sunlight"], "Moving pollen lets the plant make seeds."],
+  ["Plants", "A burr sticks to a dog's fur. This helps the plant...", ["Spread its seeds", "Protect the dog", "Make pollen", "Store water"], "The dog carries the seeds somewhere new."],
+  ["Plants", "Plants give off which gas that animals need to breathe?", ["Oxygen", "Carbon dioxide", "Helium", "Smoke"], "Photosynthesis takes in carbon dioxide and releases oxygen."],
+  ["Plants", "Most leaves are green because of...", ["Chlorophyll, which captures sunlight", "The water inside", "The soil", "Oxygen"], "Chlorophyll absorbs light energy for making food."],
+
+  // ---- Human body and animals ----
+  ["Body", "What does your heart do?", ["Pumps blood around your body", "Digests food", "Helps you think", "Fills with air"], "Blood carries oxygen and food to every part of you."],
+  ["Body", "Which organs take in oxygen from the air?", ["Lungs", "Stomach", "Heart", "Kidneys"], "Oxygen passes from your lungs into your blood."],
+  ["Body", "What is the job of your skeleton?", ["To support and protect your body", "To pump blood", "To digest food", "To help you breathe in"], "Bones hold you up and protect organs like your brain and heart."],
+  ["Body", "Where does your body absorb most of the food you digest?", ["Small intestine", "Lungs", "Heart", "Mouth"], "Digested food passes through the small intestine wall into the blood."],
+  ["Body", "How do your muscles move your bones?", ["By pulling on them", "By pushing them", "By melting", "By blowing air"], "Muscles can only pull, so they work in pairs."],
+  ["Animals", "An owl's very large eyes help it...", ["See in dim light to hunt at night", "Fly faster", "Stay warm", "Smell its prey"], "Big eyes collect more light."],
+  ["Animals", "Which animal is a vertebrate (has a backbone)?", ["Frog", "Worm", "Jellyfish", "Spider"], "Fish, frogs, reptiles, birds and mammals all have backbones."],
+  ["Animals", "How many legs do all insects have?", ["Six", "Eight", "Four", "Ten"], "Spiders have eight legs, which is one way to tell they aren't insects."],
+  ["Animals", "Living things too small to see without a microscope, like bacteria, are called...", ["Microorganisms", "Insects", "Seeds", "Fossils"], "Micro means very small."],
+
+  // ---- Life cycles and heredity ----
+  ["Life cycles", "A tadpole changing into a frog is called...", ["Metamorphosis", "Pollination", "Evaporation", "Photosynthesis"], "Metamorphosis is a big change in body form during a life cycle."],
+  ["Life cycles", "What is the correct order of a butterfly's life cycle?", ["Egg, caterpillar, chrysalis, adult", "Caterpillar, egg, adult, chrysalis", "Egg, adult, caterpillar, chrysalis", "Chrysalis, egg, caterpillar, adult"], "The caterpillar eats and grows, then changes inside the chrysalis."],
+  ["Heredity", "Which trait did you inherit from your parents?", ["Eye color", "A scar on your knee", "Knowing how to ride a bike", "Your favorite food"], "Inherited traits are passed down. Scars and skills come from life experiences."],
+  ["Heredity", "Which trait comes from the environment, not the parents?", ["A plant growing taller because it got more sunlight", "A dog's fur color", "A cat's eye color", "A flower's petal shape"], "Sunlight, food and water can change how living things grow."],
+  ["Heredity", "Puppies from the same parents all look a little different. This is called...", ["Variation", "Metamorphosis", "Erosion", "Pollination"], "Offspring get different mixes of traits from their parents."],
+  ["Life cycles", "Fossils tell us about...", ["Living things and environments from long ago", "Tomorrow's weather", "The center of the sun", "What dinosaurs sounded like"], "A fish fossil on a mountain shows that place was once under water."],
+
+  // ---- Ecosystems and adaptation ----
+  ["Ecosystems", "In a food chain, plants are called...", ["Producers", "Consumers", "Decomposers", "Predators"], "Plants produce their own food from sunlight."],
+  ["Ecosystems", "Mushrooms and worms that break down dead things are...", ["Decomposers", "Producers", "Predators", "Herbivores"], "Decomposers return nutrients to the soil."],
+  ["Ecosystems", "In grass → rabbit → fox, what do the arrows show?", ["Energy moving to the animal that eats", "The rabbit eats the fox", "Which one is biggest", "Which way they walk"], "The arrow points from the food to the eater."],
+  ["Ecosystems", "If all the rabbits in a forest disappeared, the foxes would most likely...", ["Have less food, so their numbers drop", "Grow in number", "Turn into plant eaters overnight", "Not be affected"], "Every part of a food web depends on the others."],
+  ["Adaptation", "A polar bear's thick fur and fat are adaptations for...", ["Living in the cold", "Swimming in warm water", "Climbing trees", "Hiding in the desert"], "Adaptations are traits that help an animal survive where it lives."],
+  ["Adaptation", "Why does a cactus store water in its thick stem?", ["Deserts get very little rain", "It likes being heavy", "Its roots don't work", "It rains every day in the desert"], "Storing water helps it survive long dry times."],
+  ["Adaptation", "Animals with traits that help them survive are more likely to...", ["Have babies that inherit those traits", "Change their traits on purpose", "Live forever", "Become a new animal right away"], "Over many generations, helpful traits become more common. This is natural selection."],
+
+  // ---- Weather and Earth ----
+  ["Weather", "Weather is ___, while climate is ___.", ["Day-to-day conditions; the long-term pattern", "The long-term pattern; day-to-day conditions", "Rain; snow", "Hot; cold"], "It might snow today (weather) in a place that is usually warm (climate)."],
+  ["Weather", "Which tool measures temperature?", ["Thermometer", "Rain gauge", "Ruler", "Wind vane"], "A wind vane shows wind direction and a rain gauge collects rain."],
+  ["Earth", "Breaking rock into small pieces is weathering. Carrying the pieces away is...", ["Erosion", "Condensation", "Evaporation", "Photosynthesis"], "Water, wind and ice carry broken rock away. That's erosion."],
+  ["Earth", "Which Earth change happens fast?", ["An earthquake", "A canyon forming", "A mountain wearing down", "Sand dunes slowly moving"], "Earthquakes, volcanoes and floods change land quickly. Erosion takes a very long time."],
+  ["Earth", "Most of Earth's water is...", ["Salt water in the oceans", "Fresh water in lakes", "Ice in glaciers", "Water vapor in the air"], "About 97 out of every 100 drops are salty ocean water."],
+  ["Earth", "What forms clouds?", ["Water vapor cooling into tiny drops", "Smoke from fires", "Salt from the ocean", "Melting ice"], "When water vapor rises and cools, it condenses into tiny drops."],
+  ["Earth", "What powers the water cycle?", ["Energy from the sun", "The moon", "Earth's magnetism", "Wind turbines"], "The sun's heat evaporates water, and gravity brings rain back down."],
+  ["Earth", "In layers of rock, the layers near the bottom are usually...", ["Older than the layers on top", "Younger than the layers on top", "The same age", "Made only of lava"], "New layers settle on top of older ones."],
+  ["Earth", "Why are coal and oil called nonrenewable?", ["They take millions of years to form", "They are expensive", "They are black", "They burn"], "We use them much faster than nature can make more."],
+  ["Earth", "A levee or sea wall helps reduce damage from...", ["Floods", "Earthquakes", "Volcanic ash", "Tornado winds"], "Engineers design walls to keep rising water out."],
+
+  // ---- Space ----
+  ["Space", "What causes day and night?", ["Earth spinning on its axis", "Earth moving around the sun", "The sun moving around Earth", "Clouds blocking the sun"], "One full spin takes about 24 hours."],
+  ["Space", "How long does Earth take to travel once around the sun?", ["About one year", "One day", "One month", "One week"], "That trip is about 365 days."],
+  ["Space", "Why does the sun look so much bigger and brighter than other stars?", ["It's much closer to us", "It's the biggest star in the universe", "It's the only real star", "Other stars turn off during the day"], "Many stars are bigger and brighter, but they are much farther away."],
+  ["Space", "Why does the moon seem to change shape over a month?", ["We see different amounts of its sunlit side as it orbits", "Earth's shadow covers part of it", "Clouds cover part of it", "The moon actually changes shape"], "Half the moon is always lit. Its position decides how much of that half we see."],
+  ["Space", "Why does the moon shine?", ["It reflects sunlight", "It's on fire", "It makes its own light", "It's a star"], "The moon is rock. Sunlight bounces off it."],
+  ["Space", "Why does Earth have seasons?", ["Earth's axis is tilted", "Earth gets much closer to the sun in summer", "The sun gets hotter in summer", "The moon blocks the sun in winter"], "The tilt makes sunlight hit us more directly in summer. Earth is actually closest to the sun in January."],
+  ["Space", "Which of these is a planet?", ["Mars", "The moon", "The sun", "The North Star"], "The sun and North Star are stars, and the moon orbits Earth."],
+  ["Space", "When is your shadow shortest on a sunny day?", ["Around noon", "Early morning", "At sunset", "It never changes"], "The sun is highest in the sky around noon."],
+  ["Space", "Why do we see different groups of stars in summer and winter?", ["Earth moves around the sun, so our night side faces different stars", "Stars move away in winter", "Clouds hide them in summer", "The moon hides them"], "As Earth orbits, the night sky points toward a different part of space."],
+
+  // ---- Science skills ----
+  ["Skills", "In a fair test, you should change...", ["Only one thing at a time", "Everything at once", "Nothing", "As many things as possible"], "Changing one thing lets you know what caused the result."],
+  ["Skills", "Why do scientists repeat an experiment several times?", ["To make sure the results are reliable", "To use up supplies", "Because the first try is always wrong", "To get a different answer"], "If the results match each time, you can trust them more."],
+  ["Skills", "Which unit measures mass?", ["Grams", "Meters", "Liters", "Degrees"], "Meters measure length, liters measure volume, and degrees measure temperature."],
+  ["Skills", "Which unit measures the volume of a liquid?", ["Milliliters", "Grams", "Centimeters", "Seconds"], "Milliliters and liters measure how much space a liquid fills."],
+  ["Skills", "In a claim backed by evidence, the evidence is...", ["Data or observations that support the claim", "Your opinion", "A guess", "The title of your report"], "Evidence is what you measured or saw."],
+  ["Skills", "You test whether the surface changes how far a toy car rolls. What must stay the same?", ["The car and the ramp height", "The surface", "The distance rolled", "Nothing needs to stay the same"], "Keep everything the same except the surface."],
+  ["Skills", "Which graph best shows how a plant's height changed each week?", ["A line graph", "A pie chart", "A map", "A Venn diagram"], "Line graphs show change over time."]
+];
+</script>
+<script>
+// ===================== SPACE FACTS =====================
+// Shown when a player turns a planet into one of these objects with the Resize power-up.
+// Three random facts appear each time. Keys match BODY_TYPES in the game code.
+window.SPACE_FACTS = {
+  moon: [
+    "The Moon is about 384,000 km (239,000 miles) from Earth.",
+    "The Moon is about one quarter as wide as Earth.",
+    "Gravity on the Moon is about one sixth as strong as on Earth, so you could jump about six times higher.",
+    "The same side of the Moon always faces Earth.",
+    "The Moon has almost no air, so there is no wind, no weather and no sound.",
+    "Astronaut footprints on the Moon could last millions of years, because there is no wind to blow them away.",
+    "Twelve astronauts walked on the Moon between 1969 and 1972.",
+    "The Moon doesn't make its own light. It reflects sunlight.",
+    "The Moon's craters were made by asteroids and comets crashing into it.",
+    "The dark patches on the Moon are old lava plains called maria, the Latin word for seas.",
+    "The Moon's gravity pulls on Earth's oceans and causes the tides.",
+    "The Moon takes about 27 days to travel once around Earth.",
+    "A full cycle of Moon phases, from new moon to new moon, takes about 29½ days.",
+    "The Moon is slowly drifting away from Earth, about 4 cm (1.5 inches) every year.",
+    "In sunlight the Moon's surface gets hotter than boiling water. At night it gets colder than −150°C.",
+    "Scientists think the Moon formed when a Mars-sized object crashed into the young Earth.",
+    "There is frozen water ice hiding in dark craters near the Moon's poles.",
+    "Saturn has more than 100 known moons. Earth has just one.",
+    "Jupiter's moon Ganymede is bigger than the planet Mercury.",
+    "Moonlight takes just over 1 second to reach Earth."
+  ],
+  earth: [
+    "Earth is the only planet known to have life.",
+    "About 71% of Earth's surface is covered by water.",
+    "Earth is about 150 million km (93 million miles) from the Sun.",
+    "Earth spins once about every 24 hours, which gives us day and night.",
+    "Earth takes about 365¼ days to orbit the Sun. The extra quarter day is why we have leap years.",
+    "Earth's axis is tilted about 23.5 degrees, and that tilt causes the seasons.",
+    "Earth is the densest planet in the solar system.",
+    "Earth's air is mostly nitrogen (about 78%) and oxygen (about 21%).",
+    "Earth's core is mostly iron and nickel, and it is about as hot as the surface of the Sun.",
+    "Earth's magnetic field protects us from particles blasted out by the Sun, and it helps make the northern lights.",
+    "Earth is the biggest of the four rocky planets.",
+    "Earth is about 4.5 billion years old.",
+    "Earth's surface is broken into giant plates that move about as fast as your fingernails grow.",
+    "Mount Everest, the highest point on Earth, is about 8,849 m (29,032 feet) tall.",
+    "The deepest place in the ocean, the Challenger Deep, is about 11 km (7 miles) down.",
+    "Earth bulges a little at the equator because it spins.",
+    "Sunlight takes about 8 minutes to reach Earth.",
+    "Earth races around the Sun at about 30 km (18 miles) every second.",
+    "Earth sits in the Goldilocks zone: not too hot and not too cold for liquid water.",
+    "Earth has one moon, but small asteroids are sometimes caught for a while as mini-moons."
+  ],
+  jupiter: [
+    "Jupiter is the biggest planet in our solar system.",
+    "More than 1,300 Earths could fit inside Jupiter.",
+    "Jupiter is a gas giant made mostly of hydrogen and helium, the same main ingredients as a star.",
+    "Jupiter has no solid surface you could stand on.",
+    "The Great Red Spot is a giant storm wider than Earth.",
+    "The Great Red Spot has been spinning for well over 150 years.",
+    "A day on Jupiter lasts under 10 hours, the shortest day of any planet.",
+    "Jupiter takes about 12 Earth years to go once around the Sun.",
+    "Jupiter has more than 90 known moons.",
+    "Galileo discovered Jupiter's four biggest moons in 1610.",
+    "Jupiter's moon Europa may hide an ocean of liquid water under its icy crust.",
+    "Jupiter's moon Io has hundreds of volcanoes. It is the most volcanic place in the solar system.",
+    "Jupiter has thin, faint rings.",
+    "Jupiter has more than twice the mass of all the other planets put together.",
+    "Jupiter's strong gravity can pull in comets or fling them away.",
+    "Jupiter is about 5 times farther from the Sun than Earth is.",
+    "Jupiter's stripes are bands of clouds blowing in opposite directions.",
+    "Jupiter has the strongest magnetic field of any planet.",
+    "After the Moon and Venus, Jupiter is usually the brightest thing in the night sky.",
+    "NASA's Juno spacecraft has been orbiting Jupiter since 2016."
+  ],
+  sun: [
+    "The Sun is a star, the closest star to Earth.",
+    "About 1.3 million Earths could fit inside the Sun.",
+    "The Sun holds about 99.8% of all the mass in our solar system.",
+    "The Sun is made mostly of hydrogen and helium.",
+    "The Sun makes energy by squeezing hydrogen into helium deep in its core.",
+    "The Sun's surface is about 5,500°C (10,000°F).",
+    "The Sun's core is about 15 million °C.",
+    "Sunlight takes about 8 minutes to reach Earth.",
+    "The Sun is about 4.6 billion years old, about halfway through its life.",
+    "The Sun is a medium-sized star. Many stars are much bigger.",
+    "In about 5 billion years the Sun will swell up into a red giant.",
+    "The Sun will never become a black hole. It isn't heavy enough, so it will end as a small white dwarf.",
+    "Sunspots are cooler, darker patches on the Sun caused by its magnetic field.",
+    "Solar flares are giant explosions on the Sun's surface.",
+    "The Sun spins too, about once every 25 days at its middle.",
+    "The solar wind is a stream of particles from the Sun. It makes the northern lights when it hits Earth's magnetic field.",
+    "Never look straight at the Sun. It can permanently damage your eyes.",
+    "Plants catch sunlight to make food, so the Sun powers almost all life on Earth.",
+    "The Sun carries the whole solar system around the Milky Way about once every 230 million years.",
+    "The Sun is actually white. Earth's air makes it look yellow."
+  ],
+  neutron: [
+    "A neutron star is what's left after a giant star explodes in a supernova.",
+    "A neutron star is only about 20 km (12 miles) across, about the size of a city.",
+    "A neutron star can have more mass than the whole Sun squeezed into that tiny ball.",
+    "A teaspoon of neutron star would weigh about a billion tons on Earth.",
+    "Neutron stars are made almost entirely of neutrons, the tiny particles found in the center of atoms.",
+    "Some neutron stars spin hundreds of times every second.",
+    "Pulsars are spinning neutron stars whose beams sweep past Earth like a lighthouse.",
+    "Jocelyn Bell Burnell discovered the first pulsar in 1967, while she was a student.",
+    "Gravity on a neutron star's surface is more than 100 billion times stronger than on Earth.",
+    "Some neutron stars, called magnetars, have the strongest magnetic fields in the universe.",
+    "When two neutron stars crash together, they make gold and other heavy metals.",
+    "In 2017 scientists detected ripples in space from two neutron stars smashing together.",
+    "Inside a neutron star, atoms are crushed so tightly that they stop being atoms.",
+    "Only stars at least about 8 times heavier than our Sun end up as neutron stars.",
+    "If a neutron star gains too much mass, it collapses into a black hole.",
+    "There are probably hundreds of millions of neutron stars in our galaxy.",
+    "The Crab Nebula has a pulsar at its center, left from a supernova people saw in the year 1054.",
+    "A neutron star's gravity bends light so much that you could see part of its back side.",
+    "To escape a neutron star's gravity, you would have to fly at about a third of the speed of light.",
+    "Young neutron stars can be hundreds of thousands of degrees hot."
+  ],
+  quasar: [
+    "A quasar is the super-bright center of a faraway galaxy.",
+    "A quasar is powered by a giant black hole swallowing gas and dust.",
+    "Gas swirling toward the black hole forms a hot, glowing disk, and that disk is what shines.",
+    "A bright quasar can give off more light than trillions of Suns.",
+    "Quasars are among the brightest objects in the whole universe.",
+    "The black hole in a quasar can have as much mass as billions of Suns.",
+    "Some quasars shoot jets of particles out into space at nearly the speed of light.",
+    "Quasar is short for quasi-stellar radio source, because at first they looked like stars.",
+    "Quasars were discovered in the early 1960s.",
+    "The nearest quasars are hundreds of millions of light-years away.",
+    "Quasar light can travel for billions of years to reach us, so we see quasars as they were long ago.",
+    "Most quasars blazed when the universe was young.",
+    "A quasar's glowing disk is many times hotter than the surface of the Sun.",
+    "Even though they are so bright, quasars are too far away to see without a telescope.",
+    "The first quasar identified, 3C 273, is also the brightest one in our sky.",
+    "Our Milky Way has a giant black hole at its center, but it is quiet, not a quasar.",
+    "Some quasars swallow gas equal to many Suns every year.",
+    "Astronomers have found hundreds of thousands of quasars.",
+    "Quasar light passes through gas between galaxies, so scientists use it to study that gas.",
+    "The light doesn't come from inside the black hole. Nothing escapes from there. It comes from the hot gas around it."
+  ]
+};
+
+// ===================== OTHER SCIENCE FACTS =====================
+// Fact cards for the other games and modes. Same idea: plain sentences, three shown at a time.
+window.SCIENCE_FACTS = window.SCIENCE_FACTS || {};
+window.SCIENCE_FACTS.magnets = [
+  "Every magnet has a north pole and a south pole. Cut a magnet in half and each half gets its own north and south pole.",
+  "Opposite poles pull together. Like poles push apart.",
+  "Real magnets never come as a single pole. The game pretends each planet is one end of a giant bar magnet.",
+  "Earth is a giant magnet. That's why a compass works.",
+  "The north end of a compass needle is pulled toward the Arctic, because the magnetic pole up there is actually a south pole.",
+  "Magnets pull on iron, nickel and cobalt, and on steel because steel contains iron.",
+  "Aluminum, copper, gold, wood and plastic are not pulled by magnets.",
+  "Magnetic force gets weaker quickly as you move away from the magnet.",
+  "Electricity flowing through a coil of wire makes an electromagnet, which you can switch on and off.",
+  "Junkyard cranes use giant electromagnets to lift whole cars, then switch off to drop them.",
+  "MRI machines in hospitals use very strong magnets to take pictures of the inside of your body.",
+  "Heat a magnet enough and it loses its magnetism.",
+  "Sea turtles and some birds can sense Earth's magnetic field and use it to find their way.",
+  "Magnetism and gravity both work without touching, but magnetism can push as well as pull. Gravity only pulls.",
+  "Earth's magnetic poles slowly wander, and they have flipped places many times in Earth's history."
+];
+window.SCIENCE_FACTS.light = [
+  "Light travels about 300,000 km (186,000 miles) every second. That's fast enough to circle Earth more than 7 times in one second.",
+  "Light travels in straight lines until something reflects it, bends it or blocks it.",
+  "When light hits a mirror, it bounces off at the same angle it came in.",
+  "Words look backward in a mirror because the mirror flips things front to back.",
+  "Transparent materials, like clear glass, let almost all light straight through.",
+  "Translucent materials, like frosted glass and wax paper, let some light through but scatter it, so you can't see clearly.",
+  "Opaque materials, like wood and metal, block light completely. That's what makes shadows.",
+  "White light is a mix of all the colors of the rainbow.",
+  "A prism splits white light into a rainbow because each color bends a different amount.",
+  "A red filter lets red light through and soaks up the other colors.",
+  "Red light can't get through a blue filter, because a blue filter only lets blue through.",
+  "An apple looks red because it reflects red light and absorbs the other colors.",
+  "Your eyes have cones, which see color, and rods, which help you see in dim light.",
+  "Sunlight takes about 8 minutes to reach Earth.",
+  "A laser makes light of one color with its waves lined up, so the beam stays narrow over long distances.",
+  "Astronauts left mirrors on the Moon. Scientists still bounce lasers off them to measure how far away the Moon is.",
+  "Light slows down when it goes into glass or water. That's why a straw in water looks bent.",
+  "A periscope uses two mirrors so you can see over a wall.",
+  "Fiber-optic cables carry internet data as flashes of light bouncing along inside thin strands of glass.",
+  "Plants look green because they reflect green light and use the red and blue light to make food."
+];
+window.SCIENCE_FACTS.electricity = [
+  "Electricity is a flow of tiny particles called electrons.",
+  "Electricity needs a complete loop, called a circuit, to flow.",
+  "Metals like copper are good conductors. That's why wires are made of copper.",
+  "Rubber and plastic are insulators. They coat wires to keep the electricity inside.",
+  "A switch works by opening a gap in the circuit, which stops the flow.",
+  "In a series circuit everything is on one loop, so if one bulb breaks they all go out.",
+  "In a parallel circuit each bulb has its own path, so one can go out while the others stay on. Homes are wired this way.",
+  "Adding more bulbs in series makes each one dimmer, because they share the battery's push.",
+  "A short circuit happens when electricity finds an easy path that skips what it should power. Lots of current flows and wires can get dangerously hot.",
+  "Fuses and circuit breakers protect homes by cutting the power when too much current flows.",
+  "Lightning is a giant spark of electricity, hotter than the surface of the Sun.",
+  "Benjamin Franklin is said to have flown a kite in a storm in 1752 to show that lightning is electricity.",
+  "Your nerves send messages to and from your brain as tiny electrical signals.",
+  "Electric eels can make a shock of up to about 800 volts to stun their prey.",
+  "Batteries store energy in chemicals and turn it into electricity when the circuit is complete.",
+  "Static electricity is what makes a balloon stick to the wall after you rub it on your hair.",
+  "Thomas Edison's lab made one of the first long-lasting light bulbs in 1879.",
+  "LED bulbs use much less electricity than old bulbs, which wasted most of their energy as heat."
+];
+window.SCIENCE_FACTS.levers = [
+  "A lever is a stiff bar that turns around a point called the fulcrum, or pivot.",
+  "Turning force = weight × distance from the pivot. Double the distance and you double the turning force.",
+  "A seesaw balances when weight × distance is the same on both sides.",
+  "The ancient Greek scientist Archimedes said that with a long enough lever and a place to stand, he could move the world.",
+  "Scissors are two levers joined at a pivot.",
+  "Door handles are far from the hinges so a small push can turn the whole door.",
+  "Your arm is a lever: your elbow is the pivot, and your muscles pull close to it.",
+  "A wheelbarrow is a lever that lets you lift heavy loads with less force.",
+  "With a crowbar, one person can lift things much heavier than they could by hand.",
+  "A long wrench loosens a tight bolt more easily than a short one.",
+  "Tower cranes use heavy counterweights on the short arm so they don't tip over.",
+  "Tightrope walkers carry long poles to help them keep their balance.",
+  "A bottle opener is a lever: it pivots on the edge of the cap.",
+  "On a seesaw, the heavier side goes down unless its weight sits closer to the middle."
+];
+window.SCIENCE_FACTS.matter = [
+  "Everything is made of tiny particles that are always moving, even in a solid.",
+  "In ice (a solid), water particles are locked in place and only jiggle.",
+  "In liquid water, the particles slide past each other, so water flows and takes the shape of its container.",
+  "In steam (a gas), the particles zoom around far apart and spread out to fill any space.",
+  "Pure water freezes at 0°C (32°F) and boils at 100°C (212°F) at sea level.",
+  "On a tall mountain, water boils below 100°C because there's less air pushing down on it.",
+  "Water expands when it freezes. That's why ice floats and why frozen pipes can burst.",
+  "Melting and freezing don't change the mass. A melted ice cube weighs exactly what the ice did.",
+  "Evaporation is liquid turning into gas. Puddles evaporate even without boiling, just more slowly.",
+  "Condensation is gas turning back into liquid. It's why a cold glass gets wet on the outside.",
+  "Clouds are made of tiny water drops or ice crystals that condensed from water vapor.",
+  "The water cycle moves water around Earth: evaporation, condensation, precipitation, and collection.",
+  "The steam you can see from a kettle is actually tiny drops of condensed water. Real steam is invisible.",
+  "Heating makes particles move faster. Cooling makes them slow down.",
+  "Some solids skip the liquid stage. Dry ice turns straight from a solid into a gas.",
+  "Salt lowers the temperature water freezes at. That's why trucks spread salt on icy roads.",
+  "Most of Earth's fresh water is frozen in glaciers and ice caps.",
+  "The water you drink is billions of years old. It has cycled through oceans, clouds and rivers many times.",
+  "Ice is slippery partly because a very thin layer on its surface acts almost like a liquid.",
+  "Hot air rises because it's less dense than the cooler air around it."
+];
+
+window.SCIENCE_FACTS.football = [
+  "Without air, a 45° throw goes the farthest. Real footballs fly farthest a little lower, around 30–40°, because air slows them.",
+  "A thrown football follows a curved path called a parabola. Gravity bends it down the whole way.",
+  "A spiral is spinning about 600 times a minute. The spin keeps it steady, like a spinning top, so it flies point-first.",
+  "A wobbly pass (a 'duck') tumbles and catches more air, so it slows down and drops short.",
+  "An NFL quarterback can throw about 60 miles per hour. That's about 29 yards every second.",
+  "A football weighs about 14 to 15 ounces, a little less than a can of soup.",
+  "Momentum is mass × speed. A heavy lineman moving slowly can have as much momentum as a light receiver sprinting.",
+  "Newton's third law: when a tackler hits a runner, the runner hits the tackler back just as hard.",
+  "Cleats dig into the grass to add friction. Without friction, players couldn't push off to run or turn.",
+  "Helmets have padding that squishes on a hit. Squishing makes the stop take a little longer, which makes the force smaller.",
+  "Kickers lean into the ball and follow through to keep their foot on it longer, giving the ball more speed.",
+  "Cold footballs are harder and don't bounce as much. The air inside shrinks when it gets cold.",
+  "On the moon, with 1/6 of Earth's gravity, the same throw would stay up about 6 times longer and go about 6 times farther.",
+  "Receivers 'look the ball in' because their eyes and brain need time to predict where it will come down.",
+  "The fastest NFL players reach about 22 miles per hour, roughly 11 yards every second.",
+  "A punt with a lot of hang time gives the coverage team time to run downfield. Higher kicks stay up longer.",
+  "Rain makes the ball slippery because water lowers the friction between the ball and a player's hands."
+];
+</script>
+<script>
+// Science Arcade shared core.
+// Every game loads questions.js, then this file, then its own script. Load it at the end of <body>.
+// Exposes window.Arcade (A below). Nothing in here knows about any particular game.
+(function () {
+  'use strict';
+  const A = (window.Arcade = {});
+  const $ = (A.$ = (id) => document.getElementById(id));
+  A.reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+  // ===================== seeded randomness =====================
+  // Same text in, same numbers out, on every machine. Map codes and daily puzzles depend on it.
+  function hashStr(str) {
+    let h = 1779033703 ^ str.length;
+    for (let i = 0; i < str.length; i++) {
+      h = Math.imul(h ^ str.charCodeAt(i), 3432918353);
+      h = (h << 13) | (h >>> 19);
+    }
+    h = Math.imul(h ^ (h >>> 16), 2246822507);
+    h = Math.imul(h ^ (h >>> 13), 3266489909);
+    return (h ^= h >>> 16) >>> 0;
+  }
+  function mulberry32(a) {
+    return function () {
+      a |= 0; a = (a + 0x6D2B79F5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  A.hashStr = hashStr;
+  A.rngFor = (s) => mulberry32(hashStr(s));
+  A.pick = (rng, arr) => arr[Math.floor(rng() * arr.length)];
+  A.int = (rng, lo, hi) => lo + Math.floor(rng() * (hi - lo + 1)); // inclusive
+
+  const WORDS_A = ['COMET', 'NOVA', 'ORBIT', 'LUNA', 'QUARK', 'PULSAR', 'NEBULA', 'ROCKET', 'METEOR', 'ZENITH', 'SOLAR', 'CRATER', 'HALO', 'VORTEX', 'COSMIC', 'ASTRO'];
+  const WORDS_B = ['FROG', 'MOOSE', 'OTTER', 'WOMBAT', 'BADGER', 'PICKLE', 'WAFFLE', 'TACO', 'NOODLE', 'LLAMA', 'GECKO', 'MUFFIN', 'PANDA', 'YETI', 'TOAST', 'NARWHAL'];
+  A.codeFrom = (rng) => A.pick(rng, WORDS_A) + '-' + A.pick(rng, WORDS_B) + '-' + String(Math.floor(rng() * 90) + 10);
+  A.randomCode = () => A.codeFrom(Math.random);
+  A.todayKey = () => {
+    const d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  };
+  // Each game passes its own salt so the daily puzzles differ between games.
+  A.dailyCode = (salt) => A.codeFrom(A.rngFor('daily|' + (salt || '') + '|' + A.todayKey()));
+  A.cleanCode = (s) => String(s || '').toUpperCase().replace(/[^A-Z0-9-]/g, '').replace(/-+/g, '-').replace(/^-|-$/g, '').slice(0, 40);
+  A.shuffled = (arr, rng) => {
+    const r = rng || Math.random, a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; }
+    return a;
+  };
+
+  // ===================== deterministic math =====================
+  // The JavaScript spec makes + − × ÷ and Math.sqrt give identical results in every browser, but lets
+  // Math.sin, Math.cos, Math.hypot and ** differ in the last digit. Anything that decides what happens
+  // in a game uses these instead, so a code or a replay plays out the same on any machine.
+  const HALF_PI = 1.5707963267948966;
+  A.DEG = Math.PI / 180;
+  const sc = (A.sc = { sin: 0, cos: 1 }); // sincos writes here instead of allocating
+  A.sincos = function (x) {
+    const k = Math.round(x / HALF_PI), r = x - k * HALF_PI, r2 = r * r;
+    // Taylor series on [−π/4, π/4]; the next terms are below double precision.
+    const s = r * (1 + r2 * (-1 / 6 + r2 * (1 / 120 + r2 * (-1 / 5040 + r2 * (1 / 362880 + r2 * (-1 / 39916800 + r2 * (1 / 6227020800 + r2 * (-1 / 1307674368000))))))));
+    const c = 1 + r2 * (-1 / 2 + r2 * (1 / 24 + r2 * (-1 / 720 + r2 * (1 / 40320 + r2 * (-1 / 3628800 + r2 * (1 / 479001600 + r2 * (-1 / 87178291200 + r2 * (1 / 20922789888000))))))));
+    const q = ((k % 4) + 4) % 4;
+    if (q === 0) { sc.sin = s; sc.cos = c; } else if (q === 1) { sc.sin = c; sc.cos = -s; } else if (q === 2) { sc.sin = -s; sc.cos = -c; } else { sc.sin = -c; sc.cos = s; }
+  };
+  A.dist = (dx, dy) => Math.sqrt(dx * dx + dy * dy);
+  A.clamp = (v, lo, hi) => (v < lo ? lo : v > hi ? hi : v);
+
+  // ===================== work slicing =====================
+  // Heavy searches (fairness checks, solvers, CPU players) are written as generators that yield often.
+  // runSliced runs them in ~12 ms slices so the page keeps drawing and answering clicks.
+  // A MessageChannel hands control back immediately; setTimeout(0) adds a forced delay per slice.
+  const sliceQueue = [], sliceChannel = new MessageChannel();
+  sliceChannel.port1.onmessage = () => sliceQueue.shift()();
+  const soon = (fn) => { sliceQueue.push(fn); sliceChannel.port2.postMessage(0); };
+  A.runSliced = function (gen, done, cancelled) {
+    cancelled = cancelled || (() => false);
+    (function slice() {
+      if (cancelled()) return;
+      const t0 = performance.now();
+      let r;
+      while (!(r = gen.next()).done) {
+        if (performance.now() - t0 > 12) { soon(slice); return; }
+      }
+      done(r.value);
+    })();
+  };
+  A.runNow = (gen) => { let r; while (!(r = gen.next()).done); return r.value; }; // for tests
+
+  // ===================== frame loop =====================
+  // Draw only when something changed. Games call wake() after any change; while animating() is true
+  // the loop keeps running, otherwise it sleeps and the page costs almost no CPU.
+  A.loop = function (frame, animating) {
+    let id = 0;
+    const tick = (t) => { id = 0; frame(t); if (animating()) wake(); };
+    const wake = () => { if (!id) id = requestAnimationFrame(tick); };
+    return { wake };
+  };
+  // Size a canvas to its CSS width at device resolution (capped at 2×). Returns the scale info.
+  A.fitCanvas = function (canvas, logicalW, logicalH) {
+    const cssW = canvas.parentElement.clientWidth;
+    const cssH = cssW * (logicalH / logicalW);
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.style.height = cssH + 'px';
+    canvas.width = Math.round(cssW * dpr);
+    canvas.height = Math.round(cssH * dpr);
+    return { dpr, scale: cssW / logicalW, k: dpr * (cssW / logicalW) };
+  };
+  A.toLogical = function (canvas, e, logicalW, logicalH) {
+    const r = canvas.getBoundingClientRect();
+    return { x: (e.clientX - r.left) / r.width * logicalW, y: (e.clientY - r.top) / r.height * logicalH };
+  };
+
+  // ===================== shared UI =====================
+  document.body.insertAdjacentHTML('beforeend', `
+<div id="toast" hidden></div>
+<div class="quiz" id="quiz" hidden>
+  <div class="quiz-card" role="dialog" aria-modal="true" aria-labelledby="quiz-q">
+    <div class="quiz-head"><strong id="quiz-who"></strong><span id="quiz-count"></span></div>
+    <p class="quiz-intro" id="quiz-intro"></p>
+    <div class="quiz-topic" id="quiz-topic"></div>
+    <div class="quiz-score" id="quiz-score" hidden></div>
+    <h2 id="quiz-q"></h2>
+    <div class="quiz-choices" id="quiz-choices"></div>
+    <p class="quiz-explain" id="quiz-explain" hidden></p>
+    <button id="quiz-next" type="button" hidden>Next question</button>
+  </div>
+</div>
+<div class="quiz" id="facts" hidden>
+  <div class="quiz-card" id="facts-card" role="dialog" aria-modal="true" aria-labelledby="facts-title">
+    <div class="quiz-topic" id="facts-kicker">Science facts</div>
+    <h2 id="facts-title"></h2>
+    <p class="quiz-intro" id="facts-sub"></p>
+    <ul class="facts-list" id="facts-list"></ul>
+    <div class="facts-actions">
+      <button id="facts-more" type="button">3 more facts</button>
+      <button id="facts-close" type="button">Back to the game</button>
+    </div>
+  </div>
+</div>`);
+
+  A.quiet = () => A.demo.active; // no toasts or badges while the demo plays
+  A.toast = function (msg) {
+    if (A.quiet()) return;
+    const t = $('toast');
+    t.textContent = msg;
+    t.hidden = false;
+    clearTimeout(A.toast._t);
+    A.toast._t = setTimeout(() => { t.hidden = true; }, 2600);
+  };
+
+  A.makeBadges = function (el) {
+    const set = new Set();
+    const render = () => {
+      el.innerHTML = '';
+      set.forEach((b) => { const c = document.createElement('span'); c.className = 'chip gold'; c.textContent = b; el.appendChild(c); });
+    };
+    return {
+      award(name) { if (A.quiet() || set.has(name)) return false; set.add(name); A.toast('Badge earned: ' + name); render(); return true; },
+      has: (name) => set.has(name),
+      list: () => Array.from(set),
+      load(names) { (names || []).forEach((n) => set.add(n)); render(); },
+      clear() { set.clear(); render(); }
+    };
+  };
+
+  A.modalOpen = () => A.quiz.isOpen || A.facts.isOpen;
+  A.listeners = []; // games can subscribe to modal open/close to refresh their HUD
+  A.onModal = (fn) => A.listeners.push(fn);
+  const modalChanged = () => A.listeners.forEach((fn) => fn());
+
+  // ===================== quiz =====================
+  // Every game uses the same bank and the same quiz screen. A game opens a quiz with a few options and
+  // gets the number of right answers back in onClose. Every answer is logged in A.answers, tagged with
+  // the game and topic, ready for a scoreboard to store per student.
+  const BANK = Array.isArray(window.QUESTION_BANK) ? window.QUESTION_BANK : [];
+  A.answers = [];
+  const decks = {};
+  function drawFrom(key, idxs) {
+    if (!decks[key] || !decks[key].length) decks[key] = A.shuffled(idxs);
+    return decks[key].pop();
+  }
+  const allIdx = BANK.map((_, i) => i);
+  function drawQuestion(topics, strict) {
+    let i;
+    // When a game names topics, about half its questions come from them; the rest review everything.
+    // strict: always from those topics (Football Duel's defense picks the topic).
+    if (topics && topics.length && (strict || Math.random() < 0.5)) {
+      const idxs = allIdx.filter((k) => topics.includes(BANK[k][0]));
+      i = idxs.length ? drawFrom('t:' + topics.join(','), idxs) : drawFrom('all', allIdx);
+    } else i = drawFrom('all', allIdx);
+    const [topic, q, choices, explain] = BANK[i];
+    const order = A.shuffled([0, 1, 2, 3]);
+    return { topic, q, explain, choices: order.map((k) => choices[k]), answer: order.indexOf(0) };
+  }
+
+  // For games that show questions in their own panels. Returns { topic, q, explain, choices, answer }.
+  A.drawQuestion = drawQuestion;
+  A.topicCounts = () => BANK.reduce((m, b) => { m[b[0]] = (m[b[0]] || 0) + 1; return m; }, {});
+  const quiz = (A.quiz = { isOpen: false });
+  let qo = null, items = [], qi = 0, correct = 0, answered = false, finished = false;
+
+  // opts: { game, player, color, title, intro, count, topics,
+  //         lastLabel, resultScore(n, count), resultText(n, count), doneLabel(n), singleLabel(right), onClose(n) }
+  // count 1 = a single unlock question: no results screen, singleLabel(right) names the button.
+  quiz.open = function (opts) {
+    qo = Object.assign({ count: 4, color: '#ffd166', title: 'Quiz', intro: '', game: '', player: '' }, opts);
+    if (!BANK.length) { if (qo.onClose) qo.onClose(qo.count); return; }
+    items = Array.from({ length: qo.count }, () => drawQuestion(qo.topics));
+    qi = 0; correct = 0; finished = false;
+    quiz.isOpen = true;
+    $('quiz').querySelector('.quiz-card').style.setProperty('--qc', qo.color);
+    $('quiz-who').textContent = qo.title;
+    $('quiz-intro').textContent = qo.intro;
+    $('quiz').hidden = false;
+    renderQuestion();
+    modalChanged();
+  };
+  // The practice quiz every game links to: four questions, nothing at stake.
+  quiz.practice = function (opts) {
+    quiz.open(Object.assign({
+      title: 'Practice quiz',
+      intro: '4 science questions for practice. Nothing is on the line.',
+      player: 'practice',
+      lastLabel: 'See your score',
+      resultScore: (n, c) => n + '/' + c,
+      resultText: (n, c) => (n === c ? 'Perfect score!' : n + ' of ' + c + ' right. Try another set any time.'),
+      doneLabel: () => 'Done'
+    }, opts));
+  };
+
+  function renderQuestion() {
+    const it = items[qi];
+    answered = false;
+    $('quiz-count').textContent = qo.count === 1 ? 'One question' : 'Question ' + (qi + 1) + ' of ' + qo.count + ' · ' + correct + ' right';
+    $('quiz-intro').hidden = qi > 0 || !qo.intro;
+    $('quiz-topic').textContent = it.topic;
+    $('quiz-topic').hidden = false;
+    $('quiz-score').hidden = true;
+    $('quiz-q').textContent = it.q;
+    const box = $('quiz-choices');
+    box.innerHTML = '';
+    it.choices.forEach((c, k) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'choice';
+      b.innerHTML = '<span class="k">' + (k + 1) + '</span><span></span>';
+      b.lastChild.textContent = c;
+      b.addEventListener('click', () => answer(k));
+      box.appendChild(b);
+    });
+    $('quiz-explain').hidden = true;
+    $('quiz-next').hidden = true;
+    box.firstChild.focus({ preventScroll: true });
+  }
+
+  function answer(k) {
+    if (answered || finished) return;
+    answered = true;
+    const it = items[qi];
+    const right = k === it.answer;
+    if (right) correct++;
+    A.answers.push({ game: qo.game, player: qo.player, topic: it.topic, question: it.q, correct: right, at: Date.now() });
+    const btns = $('quiz-choices').children;
+    for (let j = 0; j < btns.length; j++) {
+      btns[j].disabled = true;
+      if (j === it.answer) btns[j].classList.add('right');
+      else if (j === k) btns[j].classList.add('wrong');
+    }
+    const ex = $('quiz-explain');
+    ex.innerHTML = right ? '<b>Right.</b> ' : '<b class="miss">Not quite.</b> ';
+    ex.appendChild(document.createTextNode(it.explain));
+    ex.hidden = false;
+    const nb = $('quiz-next');
+    if (qo.count === 1) {
+      finished = true;
+      nb.textContent = qo.singleLabel ? qo.singleLabel(right) : 'Continue';
+    } else {
+      $('quiz-count').textContent = 'Question ' + (qi + 1) + ' of ' + qo.count + ' · ' + correct + ' right';
+      nb.textContent = qi < qo.count - 1 ? 'Next question' : (qo.lastLabel || 'See your result');
+    }
+    nb.hidden = false;
+    nb.focus({ preventScroll: true });
+  }
+
+  function next() {
+    if (finished) { close(); return; }
+    if (!answered) return;
+    if (qi < qo.count - 1) { qi++; renderQuestion(); return; }
+    finished = true;
+    $('quiz-intro').hidden = true;
+    $('quiz-topic').hidden = true;
+    $('quiz-count').textContent = qo.count + ' of ' + qo.count + ' answered';
+    $('quiz-score').textContent = qo.resultScore ? qo.resultScore(correct, qo.count) : correct + '/' + qo.count;
+    $('quiz-score').hidden = false;
+    $('quiz-q').textContent = qo.resultText ? qo.resultText(correct, qo.count) : correct + ' of ' + qo.count + ' right.';
+    $('quiz-choices').innerHTML = '';
+    $('quiz-explain').hidden = true;
+    const nb = $('quiz-next');
+    nb.textContent = qo.doneLabel ? qo.doneLabel(correct) : 'Continue';
+    nb.focus({ preventScroll: true });
+  }
+
+  function close() {
+    $('quiz').hidden = true;
+    quiz.isOpen = false;
+    const cb = qo.onClose, n = correct;
+    modalChanged();
+    if (cb) cb(n);
+  }
+  quiz.close = function () { if (quiz.isOpen) { $('quiz').hidden = true; quiz.isOpen = false; modalChanged(); } }; // abandon, no callback
+  $('quiz-next').addEventListener('click', next);
+  quiz.answer = answer; // for keyboard and tests
+
+  // ===================== facts pop-up =====================
+  const facts = (A.facts = { isOpen: false });
+  let factDeck = [], factOpts = null;
+  // opts: { title, sub, kicker, facts: [...], color, onClose }
+  facts.show = function (opts, more) {
+    if (!more) { factOpts = opts; factDeck = []; }
+    const all = factOpts.facts || [];
+    if (!all.length) return;
+    if (factDeck.length < 3) factDeck = A.shuffled(all);
+    facts.isOpen = true;
+    $('facts-card').style.setProperty('--qc', factOpts.color || '#ffd166');
+    $('facts-kicker').textContent = factOpts.kicker || 'Science facts';
+    $('facts-title').textContent = factOpts.title;
+    $('facts-sub').textContent = factOpts.sub || '';
+    $('facts-sub').hidden = !factOpts.sub;
+    const list = $('facts-list');
+    list.innerHTML = '';
+    factDeck.splice(0, 3).forEach((f) => { const li = document.createElement('li'); li.textContent = f; list.appendChild(li); });
+    $('facts-more').hidden = all.length <= 3;
+    $('facts').hidden = false;
+    $('facts-close').focus({ preventScroll: true });
+    modalChanged();
+  };
+  facts.close = function () {
+    if (!facts.isOpen) return;
+    $('facts').hidden = true;
+    facts.isOpen = false;
+    modalChanged();
+    if (factOpts && factOpts.onClose) factOpts.onClose();
+  };
+  $('facts-more').addEventListener('click', () => facts.show(null, true));
+  $('facts-close').addEventListener('click', facts.close);
+
+  // While a quiz or facts card is open, it owns the keyboard: 1–4 answer, Enter continues, Escape closes facts.
+  window.addEventListener('keydown', (e) => {
+    if (quiz.isOpen) {
+      if (/^[1-4]$/.test(e.key)) { answer(+e.key - 1); e.preventDefault(); }
+      else if (e.key === 'Enter' && !$('quiz-next').hidden && document.activeElement !== $('quiz-next')) { next(); e.preventDefault(); }
+      if (e.key !== 'Tab') e.stopImmediatePropagation();
+    } else if (facts.isOpen) {
+      if (e.key === 'Escape') { facts.close(); e.preventDefault(); }
+      if (e.key !== 'Tab') e.stopImmediatePropagation();
+    }
+  }, true);
+
+  // ===================== demo mode =====================
+  // On load each game plays itself. The first click or key press ends the demo and starts a real game.
+  // The game supplies onExit (start a real game). Clicks on [data-demo-keep] elements (like the
+  // practice quiz link) don't end the demo, and neither does anything while a quiz is open.
+  const demo = (A.demo = { active: false });
+  let demoOpts = null;
+  demo.start = function (opts) {
+    demoOpts = opts;
+    demo.active = true;
+    let tag = $('demo-tag');
+    if (!tag) {
+      tag = document.createElement('div');
+      tag.id = 'demo-tag';
+      tag.className = 'demo-tag';
+      opts.stage.appendChild(tag);
+    }
+    tag.textContent = opts.text || 'Demo · click anywhere or press any key to play';
+    tag.hidden = false;
+  };
+  demo.stop = function () {
+    demo.active = false;
+    const tag = $('demo-tag');
+    if (tag) tag.hidden = true;
+  };
+  function demoInput(e) {
+    if (!demo.active || A.modalOpen()) return;
+    if (e.type === 'keydown' && (e.key === 'Tab' || e.altKey || e.ctrlKey || e.metaKey)) return;
+    if (e.target && e.target.closest && e.target.closest('[data-demo-keep]')) return;
+    const onStage = demoOpts.stage && demoOpts.stage.contains(e.target);
+    if (e.type === 'keydown' || onStage) { e.preventDefault(); e.stopPropagation(); }
+    demo.stop();
+    demoOpts.onExit();
+  }
+  window.addEventListener('pointerdown', demoInput, true);
+  window.addEventListener('keydown', demoInput, true);
+
+  // ===================== hacker layer =====================
+  // Each game exposes one object as window.game for curious kids to poke at in the browser console.
+  // A.hacker adds game.help(), which lists every value and method with a note, and prints a
+  // ready-to-paste line that lists them without help().
+  A.hacker = function (title, obj, notes, tries) {
+    notes = Object.assign({ help: 'shows this list' }, notes || {});
+    obj.help = function () {
+      for (const k in obj) console.log(k, typeof obj[k] === 'function' ? '(method)' : obj[k], notes[k] ? ' ← ' + notes[k] : '');
+    };
+    window.game = obj;
+    try {
+      console.log('%c' + title, 'font: 700 18px sans-serif; color: #ffd166');
+      console.log('Psst. The whole game is in window.game. Go ahead, poke at it.');
+      (tries || []).forEach((t) => console.log('Try:  ' + t));
+      console.log('See everything:  game.help()');
+      console.log('Or paste this to list every value and method yourself:');
+      console.log("for (const k in game) console.log(k, typeof game[k] === 'function' ? '(method)' : game[k])");
+    } catch (e) { /* ignore */ }
+    return obj;
+  };
+
+  // Per-viewer convenience storage. Never required: every read and write tolerates failure.
+  A.store = {
+    get(k, d) { try { const v = localStorage.getItem('arcade:' + k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+    set(k, v) { try { localStorage.setItem('arcade:' + k, JSON.stringify(v)); } catch (e) { /* ignore */ } }
+  };
+})();
+</script>
+<script>
+// Football Duel: two players (or one and the CPU) take turns on offense. Every play starts with a
+// science question: the defense picks the topic, the offense answers before the 15-second play clock
+// runs out. A right answer snaps the ball; the quarterback throws to a spot on the field. If a receiver
+// and a defender both reach the ball, both players race to answer the same question for it.
+// Science: projectile motion. Flight time = 2·v·sin(angle)/g, range = v²·sin(2·angle)/g.
+(function () {
+  'use strict';
+  const A = window.Arcade;
+  const { $, rngFor, randomCode, cleanCode, toast } = A;
+  const dailyCode = () => A.dailyCode('football');
+  const TEST = /[?&]test\b/.test(location.search);
+
+  // ---------- constants (field units are yards, time is seconds) ----------
+  const W = 1000, H = 560;     // canvas logical size
+  const PX = 14;               // pixels per yard
+  const FW = 40;               // field width in yards (a 7-on-7 field)
+  const VIEW = W / PX;         // yards visible across the canvas
+  const DT = 1 / 60;           // fixed physics step
+  const COLORS = ['#ff8a5c', '#5cc8ff'];
+  const THROWS = [{ name: 'Bullet', deg: 20 }, { name: 'Touch', deg: 35 }, { name: 'Lob', deg: 50 }];
+  const REACH = 1.3;           // how far a player can reach for the ball (yards)
+  const CONTEST = 1.5;         // a second player this close turns a catch into a jump ball
+  const REACT = 0.35;          // seconds a defender needs to react to a cut or a throw
+  const LAG = Math.round(REACT / (1 / 60));
+  const REACH_H = 2.4;         // the ball is catchable below this height (yards)
+  const QB_DEPTH = 5;          // shotgun: the quarterback stands 5 yards behind the line
+  const DEFAULTS = { gravity: 10.7, arm: 25, receiverSpeed: 6.4, defenderSpeed: 1, playClock: 15, pocketTime: 1 };
+  const P = Object.assign({}, DEFAULTS); // hackable from the console
+  const counts = A.topicCounts();
+  const TOPIC_POOL = ['Motion', 'Forces', 'Gravity', 'Energy', 'Matter', 'Light', 'Electricity', 'Heat', 'Sound', 'Space', 'Earth', 'Plants', 'Skills']
+    .filter((t) => (counts[t] || 0) >= 5);
+
+  // Routes: waypoints as [yards forward, yards toward the middle of the field] from where the receiver lines up.
+  const ROUTES = {
+    go: { pts: [[34, 0]] },
+    seam: { pts: [[30, 2]] },
+    slant: { pts: [[3, 0], [16, 11]] },
+    out: { pts: [[8, 0], [9, -14]] },
+    dig: { pts: [[11, 0], [11, 16]] },
+    post: { pts: [[10, 0], [26, 10]] },
+    corner: { pts: [[10, 0], [24, -9]] },
+    curl: { pts: [[11, 0], [9, 1]], stop: true },
+    flat: { pts: [[1, 0], [3, -12]] }
+  };
+  const SHORT = ['slant', 'curl', 'flat', 'out'], DEEP = ['go', 'post', 'corner', 'seam'], MID = ['dig', 'out', 'slant', 'curl', 'post'];
+  const LINEUP = [5, 13, 35]; // receivers' starting spots across the field
+
+  const clampY = (y) => (y < 1 ? 1 : y > FW - 1 ? FW - 1 : y);
+
+  // ---------- a play, built from the game code ----------
+  // Same code + same play number = same routes, coverage, topic cards and CPU behavior.
+  function buildPlay(code, n) {
+    const rng = rngFor(code + '|play|' + n);
+    const routes = A.shuffled([A.pick(rng, SHORT), A.pick(rng, DEEP), A.pick(rng, MID)], rng);
+    const cover = LINEUP.map(() => ({ cushion: 2.5 + rng() * 5, speed: 5.2 + rng() * 1.1 }));
+    const cards = A.shuffled(TOPIC_POOL, rng).slice(0, 3);
+    const err = () => (rng() - 0.5) * 1.8;
+    return {
+      n, routes, cover, cards,
+      pocket: 3.4 + rng() * 1.4,
+      cpu: {
+        throwAt: 1.1 + rng() * 1.4, aim: [err(), err()],
+        ansDelay: 1.8 + rng() * 4.5, ansRight: rng() < 0.72,
+        raceDelay: [2.5 + rng() * 5, 2.5 + rng() * 5], raceRight: [rng() < 0.7, rng() < 0.7],
+        pickDelay: 2 + rng() * 4, pickRight: rng() < 0.6, demoRight: rng() < 0.88
+      }
+    };
+  }
+
+  // ---------- physics of a throw ----------
+  // Given where the ball should land and the launch angle, find the speed it needs. If that's more
+  // than the quarterback's arm, the ball falls short at the farthest the arm can throw at that angle.
+  function flight(qx, qy, tx, ty, type) {
+    A.sincos(THROWS[type].deg * A.DEG);
+    const s = A.sc.sin, c = A.sc.cos, sin2 = 2 * s * c;
+    let dx = tx - qx, dy = ty - qy, R = A.dist(dx, dy);
+    if (R < 1) { dx = 1; dy = 0; R = 1; }
+    let v = Math.sqrt(R * P.gravity / sin2), clamped = false;
+    if (v > P.arm) {
+      v = P.arm;
+      const Rmax = v * v * sin2 / P.gravity;
+      dx = dx * Rmax / R; dy = dy * Rmax / R; R = Rmax; clamped = true;
+    }
+    const vz = v * s, T = 2 * vz / P.gravity;
+    return { x0: qx, y0: qy, dx, dy, R, T, vz, v, clamped, tx: qx + dx, ty: qy + dy, type };
+  }
+  const ballAt = (b, t) => ({ x: b.x0 + b.dx * t / b.T, y: b.y0 + b.dy * t / b.T, h: b.vz * t - P.gravity * t * t / 2 });
+
+  // ---------- the field simulation (no DOM, so tests can run it) ----------
+  function makeSim(play, los) {
+    const recs = LINEUP.map((y0, i) => {
+      const sgn = y0 < FW / 2 ? 1 : -1;
+      const r = ROUTES[play.routes[i]];
+      const pts = r.pts.map(([f, inw]) => [los + f, clampY(y0 + inw * sgn)]);
+      return { x: los, y: y0, vx: 0, vy: 0, pts, wp: 0, stop: !!r.stop, route: play.routes[i], target: null, hx: [], hy: [] };
+    });
+    const defs = recs.map((r, i) => {
+      const c = play.cover[i];
+      return { x: los + c.cushion, y: r.y + (r.y < FW / 2 ? 1 : -1), vx: 0, vy: 0, man: i, c0: c.cushion, v: c.speed * P.defenderSpeed, hawk: false };
+    });
+    const qb = { x: los - QB_DEPTH, y: FW / 2 };
+    const rusher = { x: los + 1, y: FW / 2 + 3, vx: 0, vy: 0 };
+    const pocket = play.pocket * P.pocketTime;
+    rusher.v = A.dist(rusher.x - qb.x, rusher.y - qb.y) / pocket;
+    return { t: 0, los, qb, recs, defs, rusher, ball: null, bt: 0, carrier: -1, done: false, cpuWaited: false, throwAt: play.cpu.throwAt };
+  }
+
+  function moveToward(o, tx, ty, v) {
+    const dx = tx - o.x, dy = ty - o.y, d = A.dist(dx, dy), step = v * DT;
+    if (d <= step || d === 0) { o.vx = d === 0 ? 0 : dx / DT; o.vy = d === 0 ? 0 : dy / DT; o.x = tx; o.y = ty; return true; }
+    o.vx = dx / d * v; o.vy = dy / d * v;
+    o.x += o.vx * DT; o.y += o.vy * DT;
+    return false;
+  }
+
+  function runRoute(r) {
+    if (r.target) { if (moveToward(r, r.target.x, r.target.y, P.receiverSpeed)) { r.vx = 0; r.vy = 0; } return; }
+    if (r.wp >= r.pts.length) {
+      if (r.stop) { r.vx = 0; r.vy = 0; return; }
+      // keep running the way the route ends
+      const a = r.pts.length > 1 ? r.pts[r.pts.length - 2] : [r.pts[0][0] - 1, r.pts[0][1]];
+      const b = r.pts[r.pts.length - 1];
+      const dx = b[0] - a[0], dy = b[1] - a[1], d = A.dist(dx, dy) || 1;
+      r.pts.push([Math.min(118, b[0] + dx / d * 40), clampY(b[1] + dy / d * 40)]);
+    }
+    const p = r.pts[r.wp];
+    if (moveToward(r, p[0], p[1], P.receiverSpeed)) r.wp++;
+    r.y = clampY(r.y);
+  }
+
+  // One physics step. Returns an event when the play reaches a decision, or null.
+  function stepSim(sim) {
+    if (sim.done) return null;
+    sim.t += DT;
+    const t = sim.t;
+    if (sim.carrier >= 0) return stepRun(sim);
+    for (const r of sim.recs) {
+      runRoute(r);
+      r.hx.push(r.x); r.hy.push(r.y);
+      if (r.hx.length > LAG + 2) { r.hx.shift(); r.hy.shift(); }
+    }
+    // Defenders cover their receiver, but they react to where he was a moment ago, so a sharp cut gains
+    // a step. After a throw, the ones who can get to the ball in time go for it.
+    if (sim.ball && !sim.hawked && sim.bt >= REACT) {
+      sim.hawked = true;
+      const left = sim.ball.T - sim.bt;
+      for (const d of sim.defs) if (A.dist(d.x - sim.ball.tx, d.y - sim.ball.ty) < d.v * left + 1) d.hawk = true;
+    }
+    for (const d of sim.defs) {
+      if (d.hawk) { moveToward(d, sim.ball.tx, sim.ball.ty, d.v); continue; }
+      if (t < REACT) { d.x += 2 * DT; d.vx = 2; d.vy = 0; continue; } // read the play: backpedal
+      const r = sim.recs[d.man], n = r.hx.length;
+      const lx = r.hx[0], ly = r.hy[0], vx = n > 1 ? (r.hx[1] - r.hx[0]) / DT : 0, vy = n > 1 ? (r.hy[1] - r.hy[0]) / DT : 0;
+      const k = 1 - t / 2.5, c = d.c0 * (k > 0 ? k : 0) + 0.6;
+      moveToward(d, lx + vx * 0.6 + c, ly + vy * 0.6, d.v);
+    }
+    if (!sim.ball) {
+      moveToward(sim.rusher, sim.qb.x, sim.qb.y, sim.rusher.v);
+      if (A.dist(sim.rusher.x - sim.qb.x, sim.rusher.y - sim.qb.y) < 1) { sim.done = true; return { type: 'sack', x: sim.qb.x }; }
+      return null;
+    }
+    // the ball is in the air
+    sim.bt += DT;
+    const b = sim.ball, p = ballAt(b, sim.bt);
+    sim.rusher.vx = 0; sim.rusher.vy = 0;
+    if (p.h <= REACH_H && A.dist(p.x - b.x0, p.y - b.y0) > 3) {
+      let dr = 99, ri = -1, dd = 99, di = -1;
+      sim.recs.forEach((r, i) => { const d = A.dist(r.x - p.x, r.y - p.y); if (d < dr) { dr = d; ri = i; } });
+      sim.defs.forEach((o, i) => { const d = A.dist(o.x - p.x, o.y - p.y); if (d < dd) { dd = d; di = i; } });
+      const at = { x: p.x, y: p.y };
+      if ((dr <= REACH && dd <= CONTEST) || (dd <= REACH && dr <= CONTEST)) { sim.done = true; return { type: 'race', r: ri, d: di, at }; }
+      if (dr <= REACH) {
+        if (p.y < 0 || p.y > FW || p.x > 110) { sim.done = true; return { type: 'incomplete', why: 'out' }; }
+        sim.carrier = ri; sim.catchAt = at; sim.carrierStart = sim.t;
+        const r = sim.recs[ri]; r.x = p.x; r.y = clampY(p.y);
+        if (p.x >= 100) { sim.done = true; return { type: 'td', x: p.x, at, r: ri }; }
+        return { type: 'catch', r: ri, at };
+      }
+      if (dd <= REACH) { sim.done = true; return { type: 'pick', d: di, at }; }
+    }
+    if (p.h < 0) { sim.done = true; return { type: 'incomplete', at: { x: p.x, y: p.y } }; }
+    return null;
+  }
+
+  // After a clean catch the receiver runs for the end zone and the defenders chase.
+  function stepRun(sim) {
+    const c = sim.recs[sim.carrier];
+    const cv = P.receiverSpeed * 0.88; // slower with the ball
+    c.vx = cv; c.vy = 0; c.x += cv * DT;
+    for (const d of sim.defs) {
+      moveToward(d, c.x + cv * 0.5, c.y, d.v * 1.25); // pursuit angle: aim ahead of the runner
+      if (A.dist(d.x - c.x, d.y - c.y) < 1) { sim.done = true; return { type: 'tackle', x: c.x }; }
+    }
+    if (c.x >= 100) { sim.done = true; return { type: 'td', x: c.x }; }
+    if (sim.t - sim.carrierStart > 3) { sim.done = true; return { type: 'tackle', x: c.x }; }
+    return null;
+  }
+
+  function throwBall(sim, tx, ty, type) {
+    if (sim.ball || sim.done) return null;
+    const f = flight(sim.qb.x, sim.qb.y, tx, ty, type);
+    sim.ball = f; sim.bt = 0;
+    // the receiver closest to where it will land goes for it; defenders who can get there do too
+    let best = -1, bd = 1e9;
+    sim.recs.forEach((r, i) => { const d = A.dist(r.x - f.tx, r.y - f.ty); if (d < bd) { bd = d; best = i; } });
+    if (bd < P.receiverSpeed * f.T + 4) sim.recs[best].target = { x: f.tx, y: f.ty };
+    sim.hawked = false;
+    return f;
+  }
+
+  // The CPU quarterback: for each receiver and each throw, predict where they meet and how close
+  // the nearest defender could get by then. Throw to the most open spot, a bit deeper if it can.
+  function cpuChoose(sim) {
+    let best = null;
+    for (let ri = 0; ri < sim.recs.length; ri++) for (let ty = 0; ty < 3; ty++) {
+      const r = sim.recs[ri];
+      let lx = r.x + r.vx * 1.2, ly = r.y + r.vy * 1.2, f = null;
+      for (let it = 0; it < 3; it++) {
+        f = flight(sim.qb.x, sim.qb.y, lx, ly, ty);
+        lx = r.x + r.vx * f.T; ly = clampY(r.y + r.vy * f.T);
+      }
+      f = flight(sim.qb.x, sim.qb.y, lx, ly, ty);
+      if (f.clamped) continue;
+      let sep = 99;
+      for (const d of sim.defs) { const s = A.dist(d.x - f.tx, d.y - f.ty) - d.v * (f.T - REACT); if (s < sep) sep = s; }
+      const score = sep + 0.05 * (f.tx - sim.los) - 0.6 * f.T;
+      if (!best || score > best.score) best = { score, sep, x: lx, y: ly, type: ty };
+    }
+    return best;
+  }
+  function cpuMaybeThrow(sim, play) {
+    if (sim.ball || sim.t < sim.throwAt) return null;
+    const best = cpuChoose(sim);
+    if (!best) return null;
+    if (best.sep < 0 && !sim.cpuWaited && sim.t < play.pocket * P.pocketTime - 0.8) { sim.cpuWaited = true; sim.throwAt += 0.5; return null; }
+    return throwBall(sim, best.x + play.cpu.aim[0], clampY(best.y + play.cpu.aim[1]), best.type);
+  }
+
+  // ---------- game state ----------
+  const S = {
+    code: '', drivesEach: 3, drive: 0, poss: 0, score: [0, 0],
+    los: 25, down: 1, fd: 35, playN: 0, play: null, sim: null,
+    phase: 'idle', pat: false, q: null, answered: [false, false], qWho: -1, clockLeft: 15,
+    throwType: [1, 1], cam: 13, aim: null, gen: 0, over: false, hacked: false,
+    driveClean: true, factsShown: false, raceTimers: [],
+    stats: [newStats(), newStats()], topicRec: [{}, {}], p2cpu: true
+  };
+  function newStats() { return { att: 0, comp: 0, yds: 0, int: 0, td: 0, qr: 0, qt: 0, races: 0 }; }
+  const isCpu = (p) => A.demo.active || (p === 1 && S.p2cpu);
+  const offense = () => S.poss, defense = () => 1 - S.poss;
+  const later = (fn, ms) => { const g = S.gen; setTimeout(() => { if (g === S.gen) fn(); }, ms); };
+  const pace = (ms) => (A.demo.active ? ms * 0.6 : ms);
+
+  // ---------- DOM ----------
+  const cv = $('cv'), ctx = cv.getContext('2d'), stage = $('stage');
+  const names = [$('name-0'), $('name-1')];
+  const nameOf = (p) => names[p].value.trim() || (p === 1 && S.p2cpu ? 'CPU' : 'Player ' + (p + 1));
+  const badges = A.makeBadges($('badges'));
+  let dpr = 1, scale = 1;
+  const animating = () => S.phase === 'live' || Math.abs(S.cam - camTarget()) > 0.02;
+  const loop = A.loop(frame, animating);
+  const wake = loop.wake;
+
+  function resize() {
+    const top = stage.getBoundingClientRect().top + window.scrollY;
+    const room = window.innerHeight - top - 64;
+    stage.style.maxWidth = Math.max(420, Math.floor(room * W / H)) + 'px';
+    const cssW = stage.clientWidth;
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    cv.style.height = cssW * (H / W) + 'px';
+    cv.width = Math.round(cssW * dpr);
+    cv.height = Math.round(cssW * (H / W) * dpr);
+    scale = cssW / W;
+    wake();
+  }
+  window.addEventListener('resize', resize);
+
+  // ---------- drawing ----------
+  function camTarget() {
+    const base = S.los - 12;
+    const sim = S.sim;
+    if (!sim || S.phase === 'call' || S.phase === 'clock') return base;
+    let x = base;
+    if (sim.carrier >= 0) x = Math.max(base, sim.recs[sim.carrier].x - VIEW + 14);
+    else if (sim.ball) x = Math.max(base, sim.ball.tx - VIEW + 12);
+    return Math.min(x, 110 + 2 - VIEW);
+  }
+  const sx = (x) => (x - S.cam) * PX, sy = (y) => y * PX;
+
+  function frame(now) {
+    // physics: fixed steps, paced by real time
+    if (S.phase === 'live' && !A.modalOpen()) {
+      const last = frame.last || now;
+      let acc = (frame.acc || 0) + Math.min(0.1, (now - last) / 1000);
+      while (acc >= DT && S.phase === 'live') { acc -= DT; tick(); }
+      frame.acc = acc;
+    }
+    frame.last = now;
+    const tgt = camTarget();
+    S.cam += (tgt - S.cam) * (A.reduceMotion ? 1 : 0.12);
+    if (Math.abs(tgt - S.cam) < 0.02) S.cam = tgt;
+    draw();
+  }
+
+  function draw() {
+    const k = dpr * scale;
+    ctx.setTransform(k, 0, 0, k, 0, 0);
+    const own = COLORS[offense()], opp = COLORS[defense()];
+    // ground: 5-yard stripes, end zones in each team's color
+    const first = Math.floor(S.cam / 5) * 5;
+    for (let x = first; x < S.cam + VIEW + 5; x += 5) {
+      let col;
+      if (x < -10 || x >= 110) col = '#0d1a12';
+      else if (x < 0) col = mix(own);
+      else if (x >= 100) col = mix(opp);
+      else col = (x / 5) % 2 === 0 ? '#2e6e3a' : '#2a6535';
+      ctx.fillStyle = col;
+      ctx.fillRect(sx(x), 0, 5 * PX + 1, H);
+    }
+    // yard lines, numbers, hash marks
+    ctx.strokeStyle = 'rgba(255,255,255,0.55)'; ctx.lineWidth = 2;
+    ctx.fillStyle = 'rgba(255,255,255,0.6)'; ctx.font = '700 22px "Saira Semi Condensed", sans-serif'; ctx.textAlign = 'center';
+    for (let x = Math.max(0, first); x <= Math.min(100, S.cam + VIEW); x += 5) {
+      ctx.beginPath(); ctx.moveTo(sx(x), 0); ctx.lineTo(sx(x), H); ctx.stroke();
+      if (x % 10 === 0 && x > 0 && x < 100) {
+        const n = String(x <= 50 ? x : 100 - x);
+        ctx.fillText(n, sx(x), 52); ctx.fillText(n, sx(x), H - 34);
+      }
+    }
+    ctx.fillStyle = 'rgba(255,255,255,0.45)';
+    for (let x = Math.ceil(Math.max(0, S.cam)); x < Math.min(100, S.cam + VIEW); x++) {
+      ctx.fillRect(sx(x) - 1, sy(FW / 3) - 4, 2, 8); ctx.fillRect(sx(x) - 1, sy(FW * 2 / 3) - 4, 2, 8);
+    }
+    // end zone names
+    ctx.save(); ctx.font = '800 30px "Saira Semi Condensed", sans-serif'; ctx.fillStyle = 'rgba(255,255,255,0.35)';
+    for (const [x, p] of [[-5, offense()], [105, defense()]]) {
+      if (sx(x) < -40 || sx(x) > W + 40) continue;
+      ctx.save(); ctx.translate(sx(x), H / 2); ctx.rotate(x < 0 ? -Math.PI / 2 : Math.PI / 2);
+      ctx.fillText(nameOf(p).toUpperCase(), 0, 10); ctx.restore();
+    }
+    ctx.restore();
+    // line of scrimmage and the first-down line
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = '#6fb6ff'; ctx.beginPath(); ctx.moveTo(sx(S.los), 0); ctx.lineTo(sx(S.los), H); ctx.stroke();
+    if (S.fd < 100) { ctx.strokeStyle = '#ffd166'; ctx.beginPath(); ctx.moveTo(sx(S.fd), 0); ctx.lineTo(sx(S.fd), H); ctx.stroke(); }
+
+    const sim = S.sim;
+    if (!sim) return;
+    // route art: before the snap, and faintly until the throw so the quarterback can lead the receiver
+    const pre = S.phase === 'call' || S.phase === 'clock' || S.phase === 'presnap' || S.phase === 'reveal';
+    if (pre || (S.phase === 'live' && !sim.ball)) {
+      ctx.setLineDash([6, 6]); ctx.lineWidth = 2; ctx.strokeStyle = pre ? 'rgba(255,255,255,0.45)' : 'rgba(255,255,255,0.22)';
+      for (const r of sim.recs) {
+        ctx.beginPath(); ctx.moveTo(sx(r.x), sy(r.y));
+        for (let i = r.wp; i < r.pts.length; i++) ctx.lineTo(sx(r.pts[i][0]), sy(r.pts[i][1]));
+        ctx.stroke();
+      }
+      ctx.setLineDash([]);
+    }
+    // aim helper for a human quarterback
+    if (S.phase === 'live' && !sim.ball && S.aim && !isCpu(offense())) {
+      const f = flight(sim.qb.x, sim.qb.y, S.aim.x, S.aim.y, S.throwType[offense()]);
+      ctx.setLineDash([4, 6]); ctx.strokeStyle = 'rgba(255,255,255,0.7)'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(sx(sim.qb.x), sy(sim.qb.y)); ctx.lineTo(sx(f.tx), sy(f.ty)); ctx.stroke(); ctx.setLineDash([]);
+      ctx.strokeStyle = f.clamped ? '#ff6b81' : '#ffd166'; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.arc(sx(f.tx), sy(f.ty), REACH * PX, 0, Math.PI * 2); ctx.stroke();
+      label(f.tx, f.ty - 2.2, (f.clamped ? 'Max range · ' : '') + f.T.toFixed(1) + ' s in the air', f.clamped ? '#ff6b81' : '#ffd166');
+    }
+    // players: offense are circles, defense are X's (like a coach's chalkboard)
+    drawPlayer(sim.qb.x, sim.qb.y, own, 'QB', false);
+    sim.recs.forEach((r, i) => drawPlayer(r.x, r.y, own, String(i + 1), false, sim.carrier === i));
+    sim.defs.forEach((d) => drawPlayer(d.x, d.y, opp, '', true));
+    drawPlayer(sim.rusher.x, sim.rusher.y, opp, '', true);
+    // the ball: a shadow on the grass and the ball raised by its height
+    if (sim.ball && sim.carrier < 0 && !sim.frozenAt) {
+      const p = ballAt(sim.ball, sim.bt);
+      drawBall(p.x, p.y, p.h > 0 ? p.h : 0);
+    } else if (sim.frozenAt) drawBall(sim.frozenAt.x, sim.frozenAt.y, 1.2);
+  }
+  const mixCache = {};
+  function mix(c) { return mixCache[c] || (mixCache[c] = c + '55'); }
+  function label(x, y, text, color) {
+    ctx.font = '600 13px "IBM Plex Mono", monospace'; ctx.textAlign = 'center';
+    const w = ctx.measureText(text).width + 12;
+    ctx.fillStyle = 'rgba(10,15,31,0.82)'; ctx.fillRect(sx(x) - w / 2, sy(y) - 13, w, 19);
+    ctx.fillStyle = color; ctx.fillText(text, sx(x), sy(y) + 1);
+  }
+  function drawPlayer(x, y, color, text, isX, carrier) {
+    const X = sx(x), Y = sy(y), r = 0.85 * PX;
+    if (X < -20 || X > W + 20) return;
+    if (isX) {
+      ctx.strokeStyle = color; ctx.lineWidth = 4; ctx.lineCap = 'round';
+      ctx.beginPath(); ctx.moveTo(X - r * 0.8, Y - r * 0.8); ctx.lineTo(X + r * 0.8, Y + r * 0.8);
+      ctx.moveTo(X + r * 0.8, Y - r * 0.8); ctx.lineTo(X - r * 0.8, Y + r * 0.8); ctx.stroke();
+      return;
+    }
+    ctx.fillStyle = color; ctx.beginPath(); ctx.arc(X, Y, r, 0, Math.PI * 2); ctx.fill();
+    if (carrier) { ctx.strokeStyle = '#ffd166'; ctx.lineWidth = 3; ctx.stroke(); }
+    ctx.fillStyle = '#10131f'; ctx.font = '700 12px "IBM Plex Mono", monospace'; ctx.textAlign = 'center';
+    ctx.fillText(text, X, Y + 4);
+  }
+  function drawBall(x, y, h) {
+    const X = sx(x), Y = sy(y);
+    ctx.fillStyle = 'rgba(0,0,0,0.35)'; ctx.beginPath(); ctx.ellipse(X, Y, 7, 4, 0, 0, Math.PI * 2); ctx.fill();
+    const lift = h * PX * 0.55, s = 1 + h / 10;
+    ctx.fillStyle = '#9a5b2e'; ctx.beginPath(); ctx.ellipse(X, Y - lift, 8 * s, 5 * s, -0.3, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = '#f3e6d0'; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(X - 3 * s, Y - lift - 1); ctx.lineTo(X + 3 * s, Y - lift + 1); ctx.stroke();
+  }
+
+  // ---------- play flow ----------
+  function tick() {
+    const sim = S.sim;
+    if (isCpu(offense()) && !sim.ball) { const f = cpuMaybeThrow(sim, S.play); if (f) onThrow(f); }
+    const ev = stepSim(sim);
+    if (ev) onEvent(ev);
+  }
+
+  function startGame(code, keepDemo) {
+    S.gen++; stopClock(); pending = null;
+    S.code = cleanCode(code) || dailyCode();
+    $('seed-input').value = S.code;
+    S.drivesEach = A.demo.active ? 2 : +$('length-select').value || 3;
+    S.drive = 0; S.score = [0, 0]; S.over = false; S.playN = 0;
+    S.stats = [newStats(), newStats()]; S.topicRec = [{}, {}];
+    S.poss = rngFor(S.code + '|coin')() < 0.5 ? 0 : 1;
+    $('banner').hidden = true;
+    if (!keepDemo) S.hacked = Object.keys(DEFAULTS).some((k) => P[k] !== DEFAULTS[k]);
+    if (!A.demo.active) { try { history.replaceState(null, '', '#' + S.code); } catch (e) { /* ignore */ } }
+    startDrive(25);
+  }
+  function startDrive(los) {
+    S.los = los; S.down = 1; S.fd = Math.min(100, los + 10); S.driveClean = true;
+    S.cam = camTargetFor(los);
+    nextPlay();
+  }
+  const camTargetFor = (los) => los - 12;
+
+  function nextPlay(pat) {
+    stopClock();
+    S.pat = !!pat;
+    S.play = buildPlay(S.code, S.playN++);
+    S.sim = makeSim(S.play, S.los);
+    S.aim = null;
+    S.phase = 'call';
+    renderHud();
+    openCall();
+    wake();
+  }
+
+  // The defense picks the topic.
+  function openCall() {
+    const d = defense(), o = offense();
+    showPanel(COLORS[d]);
+    $('panel-title').textContent = (S.pat ? 'Extra point · ' : '') + nameOf(d) + ': pick the topic';
+    const keys = d === 0 ? '1–3' : '7–9';
+    $('panel-sub').textContent = nameOf(o) + ' has to answer a question from it' + (S.pat ? ' for the extra point.' : ' to snap the ball.') +
+      (isCpu(d) ? '' : ' (keys ' + keys + ')');
+    $('panel-clock').textContent = '';
+    const box = $('topic-cards'); box.innerHTML = ''; box.hidden = false;
+    S.play.cards.forEach((t, i) => {
+      const b = document.createElement('button'); b.type = 'button';
+      const rec = S.topicRec[o][t];
+      b.innerHTML = '<span></span><small></small>';
+      b.firstChild.textContent = t;
+      b.lastChild.textContent = rec ? nameOf(o) + ' ' + rec[0] + '/' + rec[1] + ' right' : 'no ' + t + ' questions yet';
+      b.disabled = isCpu(d);
+      b.addEventListener('click', () => pickTopic(i));
+      box.appendChild(b);
+    });
+    $('panel-topic').hidden = true; $('panel-q').hidden = true; $('panel-choices').innerHTML = ''; $('panel-explain').hidden = true;
+    if (isCpu(d)) later(() => { if (S.phase === 'call') pickTopic(cpuTopic(o)); }, pace(1100));
+  }
+  // The CPU defense goes after the offense's weakest topic so far.
+  function cpuTopic(o) {
+    let best = 0, worst = 2;
+    S.play.cards.forEach((t, i) => { const r = S.topicRec[o][t] || [0, 0]; const rate = (r[0] + 1) / (r[1] + 2); if (rate < worst) { worst = rate; best = i; } });
+    return best;
+  }
+
+  function pickTopic(i) {
+    if (S.phase !== 'call') return;
+    S.topic = S.play.cards[i];
+    askSingle(offense(), S.pat ? 'pat' : 'clock');
+  }
+
+  // One player answers on the play clock: the offense before the snap or the extra point,
+  // or the defense trying to hold on to an interception.
+  function askSingle(p, phase) {
+    S.phase = phase; S.qWho = p; S.answered = [false, false];
+    S.q = A.drawQuestion([phase === 'pick' ? A.pick(Math.random, S.play.cards) : S.topic], true);
+    S.clockLeft = P.playClock;
+    showPanel(COLORS[p]);
+    const titles = { clock: nameOf(p) + ': answer to snap the ball', pat: nameOf(p) + ': answer for the extra point', pick: nameOf(p) + ': answer to hold on for the interception' };
+    $('panel-title').textContent = titles[phase];
+    $('panel-sub').textContent = phase === 'clock' ? 'Right: the ball is snapped. Wrong: sacked for a 5-yard loss. Out of time: delay of game.' :
+      phase === 'pat' ? 'Right answer: 1 more point.' : 'Right: it’s an interception. Wrong: the ball pops loose, incomplete.';
+    $('topic-cards').hidden = true;
+    renderQ([p]);
+    startClock();
+    if (isCpu(p)) {
+      const c = S.play.cpu;
+      const delay = phase === 'pick' ? c.pickDelay : c.ansDelay;
+      const right = A.demo.active ? c.demoRight : phase === 'pick' ? c.pickRight : c.ansRight;
+      cpuAnswer(p, pace(delay * 1000), right);
+    }
+  }
+
+  // Both players race to answer the same question for a ball in the air.
+  function askRace(ev) {
+    S.phase = 'race'; S.answered = [false, false]; S.qWho = -1;
+    S.q = A.drawQuestion(S.play.cards, true);
+    S.raceAt = ev.at;
+    S.clockLeft = P.playClock;
+    showPanel('#ffd166');
+    $('panel-title').textContent = 'Jump ball!';
+    $('panel-sub').textContent = 'First right answer wins it. ' + nameOf(offense()) + ' catches it; ' + nameOf(defense()) + ' intercepts it. A wrong answer locks you out.';
+    $('topic-cards').hidden = true;
+    renderQ([0, 1]);
+    startClock();
+    const c = S.play.cpu;
+    [0, 1].forEach((p) => { if (isCpu(p)) cpuAnswer(p, pace(c.raceDelay[p] * 1000), c.raceRight[p]); });
+  }
+  function cpuAnswer(p, ms, right) {
+    later(function go() {
+      if (A.modalOpen()) { later(go, 300); return; }
+      if (!S.q || S.answered[p] || !['clock', 'pat', 'pick', 'race'].includes(S.phase)) return;
+      const k = right ? S.q.answer : (S.q.answer + 1 + Math.floor(Math.random() * 3)) % 4;
+      answer(p, k);
+    }, ms);
+  }
+
+  function renderQ(players) {
+    const q = S.q;
+    $('panel-topic').textContent = q.topic; $('panel-topic').hidden = false;
+    $('panel-q').textContent = q.q; $('panel-q').hidden = false;
+    $('panel-explain').hidden = true;
+    const box = $('panel-choices'); box.innerHTML = '';
+    q.choices.forEach((c, k) => {
+      if (players.length === 1) {
+        const p = players[0];
+        const b = document.createElement('button'); b.type = 'button'; b.className = 'choice';
+        b.innerHTML = '<span class="k">' + keyFor(p, k) + '</span><span></span>';
+        b.lastChild.textContent = c;
+        b.disabled = isCpu(p);
+        b.addEventListener('click', () => answer(p, k));
+        box.appendChild(b);
+      } else {
+        const row = document.createElement('div'); row.className = 'fb-row';
+        const tab = (p) => {
+          const t = document.createElement('button'); t.type = 'button'; t.className = 'fb-tab'; t.dataset.p = p;
+          t.textContent = keyFor(p, k); t.disabled = isCpu(p);
+          t.setAttribute('aria-label', nameOf(p) + ' answers ' + c);
+          t.addEventListener('click', () => answer(p, k));
+          return t;
+        };
+        const mid = document.createElement('div'); mid.className = 'choice'; mid.textContent = c;
+        row.append(tab(0), mid, tab(1));
+        box.appendChild(row);
+      }
+    });
+  }
+  const keyFor = (p, k) => (p === 0 ? String(k + 1) : String((k + 7) % 10));
+
+  function answer(p, k) {
+    const ph = S.phase;
+    if (!S.q || S.answered[p]) return;
+    if (ph === 'race') { if (S.answered[1 - p] === 'right') return; }
+    else if (!['clock', 'pat', 'pick'].includes(ph) || p !== S.qWho) return;
+    const right = k === S.q.answer;
+    S.answered[p] = right ? 'right' : 'wrong';
+    A.answers.push({ game: 'football', player: nameOf(p), topic: S.q.topic, question: S.q.q, correct: right, at: Date.now() });
+    if (!A.demo.active) {
+      const st = S.stats[p]; st.qt++; if (right) st.qr++;
+      const rec = S.topicRec[p][S.q.topic] || (S.topicRec[p][S.q.topic] = [0, 0]); rec[1]++; if (right) rec[0]++;
+      if (!right && p === offense()) S.driveClean = false;
+    }
+    markChoice(p, k, right);
+    if (ph === 'race') {
+      if (right) return finishQ(() => raceWon(p), true);
+      if (S.answered[1 - p] === 'wrong') return finishQ(() => resolve({ kind: 'incomplete', text: 'Nobody came down with it', sub: 'Both answers were wrong. Incomplete.' }), false);
+      return; // the other player can still answer
+    }
+    finishQ(() => singleDone(ph, right), right);
+  }
+  function markChoice(p, k, right) {
+    const box = $('panel-choices');
+    if (S.phase === 'race') {
+      const tab = box.children[k].querySelector('.fb-tab[data-p="' + p + '"]');
+      tab.classList.add('mark');
+      box.querySelectorAll('.fb-tab[data-p="' + p + '"]').forEach((t) => { t.disabled = true; });
+      if (right) box.children[k].querySelector('.choice').classList.add('right');
+      else box.children[k].querySelector('.choice').classList.add('wrong');
+    } else {
+      [...box.children].forEach((b, j) => { b.disabled = true; if (j === S.q.answer) b.classList.add('right'); else if (j === k) b.classList.add('wrong'); });
+    }
+  }
+  // Show the explanation for a moment, then move on. Wrong answers stay up longer so there's time to read.
+  function finishQ(next, right) {
+    stopClock();
+    if (S.phase === 'race') {
+      $('panel-choices').querySelectorAll('.fb-tab').forEach((t) => { t.disabled = true; });
+      $('panel-choices').children[S.q.answer].querySelector('.choice').classList.add('right');
+    }
+    const ex = $('panel-explain');
+    ex.innerHTML = right ? '<b>Right.</b> ' : '<b class="miss">Not quite.</b> ';
+    ex.appendChild(document.createTextNode(S.q.explain));
+    ex.hidden = false;
+    S.phase = 'reveal';
+    S.q = null;
+    continueAfter(next, right ? 1300 : 2800);
+  }
+  // Pauses that a click on the field, the panel, or Enter can skip.
+  let pending = null;
+  function continueAfter(fn, ms) {
+    const g = S.gen;
+    pending = () => { if (g !== S.gen) return; pending = null; fn(); };
+    const mine = pending;
+    setTimeout(() => { if (pending === mine && !A.modalOpen()) mine(); else if (pending === mine) continueAfter(fn, 400); }, pace(ms));
+  }
+  function skip() { if (pending) pending(); }
+
+  function singleDone(ph, right) {
+    hidePanel();
+    if (ph === 'clock') {
+      if (right) return snap();
+      return resolve({ kind: 'sack', x: S.los - QB_DEPTH, text: 'Sacked!', sub: 'Wrong answer. Loss of ' + QB_DEPTH + ' yards.' });
+    }
+    if (ph === 'pat') {
+      if (right) { S.score[offense()] += 1; renderHud(); }
+      banner(right ? 'Extra point is good!' : 'Extra point missed', right ? '+1 point' : 'No extra point', COLORS[offense()]);
+      return continueAfter(() => endDrive(25), 1500);
+    }
+    if (ph === 'pick') {
+      if (right) return resolve({ kind: 'int', x: S.raceAt.x, text: 'Intercepted!', sub: nameOf(defense()) + ' held on.' });
+      return resolve({ kind: 'incomplete', text: 'Dropped!', sub: 'The defender couldn’t hold on. Incomplete.' });
+    }
+  }
+  function raceWon(p) {
+    hidePanel();
+    if (!A.demo.active) S.stats[p].races++;
+    if (p === offense()) {
+      if (!A.demo.active && !isCpu(p)) badges.award('Jump ball winner');
+      return resolve({ kind: 'complete', x: S.raceAt.x, air: S.raceAt.x - S.los, text: 'Caught it!', sub: nameOf(p) + ' won the jump ball.' });
+    }
+    if (!A.demo.active && !isCpu(p)) badges.award('Ball hawk');
+    return resolve({ kind: 'int', x: S.raceAt.x, text: 'Intercepted!', sub: nameOf(p) + ' won the jump ball.' });
+  }
+
+  function snap() {
+    S.phase = 'presnap'; renderHud();
+    banner('Hut, hut!', isCpu(offense()) ? '' : 'Click where the ball should come down', COLORS[offense()]);
+    later(() => {
+      if (S.phase !== 'presnap') return;
+      S.phase = 'live'; frame.last = 0; frame.acc = 0; hideBanner(); renderHud(); wake();
+    }, pace(800));
+  }
+
+  function onThrow(f) {
+    if (!A.demo.active) S.stats[offense()].att++;
+    renderHud();
+  }
+  function onEvent(ev) {
+    const sim = S.sim;
+    if (ev.type === 'catch') { banner('Caught!', 'Run!', COLORS[offense()]); return; }
+    S.phase = 'resolving';
+    if (ev.type === 'sack') return resolve({ kind: 'sack', x: ev.x, text: 'Sacked!', sub: 'Throw before the rusher gets there.' });
+    if (ev.type === 'incomplete') return resolve({ kind: 'incomplete', text: 'Incomplete', sub: ev.why === 'out' ? 'Caught out of bounds.' : 'The ball hit the grass.' });
+    if (ev.type === 'tackle') return resolve({ kind: 'complete', x: ev.x, air: sim.catchAt.x - S.los, text: 'Complete!', sub: '' });
+    if (ev.type === 'td') return resolve({ kind: 'complete', x: Math.max(100, ev.x), air: (sim.catchAt || ev.at || { x: ev.x }).x - S.los, text: 'Touchdown!', sub: '' });
+    if (ev.type === 'race') { sim.frozenAt = ev.at; wake(); return askRace(ev); }
+    if (ev.type === 'pick') { sim.frozenAt = ev.at; S.raceAt = ev.at; wake(); return askSingle(defense(), 'pick'); }
+  }
+
+  // Apply a play's result to the down, distance and score, then set up what comes next.
+  function resolve(r) {
+    S.phase = 'result';
+    hidePanel();
+    const o = offense(), d = defense(), st = S.stats[o], demo = A.demo.active;
+    let next = null, sub = r.sub || '';
+    if (r.kind === 'complete') {
+      const x = Math.min(100, r.x), gain = Math.round(x - S.los);
+      if (!demo) { st.comp++; st.yds += gain; }
+      if (r.air >= 30 && !demo && !isCpu(o)) badges.award('Deep threat');
+      if (x >= 100) return touchdown(r);
+      S.los = x;
+      sub = (gain >= 0 ? 'Gain of ' + gain : 'Loss of ' + -gain) + (gain === 1 || gain === -1 ? ' yard' : ' yards') + (sub ? '. ' + sub : '');
+      if (x >= S.fd) { S.down = 1; S.fd = Math.min(100, Math.ceil(x) + 10); sub += ' · First down!'; } else S.down++;
+      if (!demo && !S.factsShown && !isCpu(o)) { S.factsShown = true; next = 'facts'; }
+    } else if (r.kind === 'incomplete') {
+      S.down++;
+    } else if (r.kind === 'sack') {
+      S.los = r.x;
+      if (S.los <= 0) {
+        S.score[d] += 2; renderHud();
+        banner('Safety!', nameOf(d) + ' scores 2 points.', COLORS[d]);
+        return continueAfter(() => endDrive(25), 2000);
+      }
+      S.down++;
+    } else if (r.kind === 'int') {
+      if (!demo) S.stats[d].int++;
+      const spot = r.x >= 100 ? 20 : Math.max(1, Math.round(100 - r.x));
+      banner(r.text, sub + ' ' + nameOf(d) + ' takes over' + (r.x >= 100 ? ' at the 20 (touchback).' : '.'), COLORS[d]);
+      return continueAfter(() => endDrive(spot), 2400);
+    }
+    S.los = Math.max(1, Math.round(S.los));
+    if (S.down > 4) {
+      banner(r.text, 'Turnover on downs. ' + nameOf(d) + ' takes over.', COLORS[d]);
+      const spot = 100 - S.los;
+      return continueAfter(() => endDrive(spot), 2400);
+    }
+    banner(r.text, sub, r.kind === 'complete' ? COLORS[o] : r.kind === 'incomplete' ? '#8f99b8' : COLORS[d]);
+    renderHud();
+    if (next === 'facts') {
+      return continueAfter(() => A.facts.show({
+        kicker: 'Football physics', title: 'Why passes fly the way they do', color: COLORS[o],
+        sub: 'You just completed a pass. Here’s the science behind it.',
+        facts: (window.SCIENCE_FACTS && window.SCIENCE_FACTS.football) || [], onClose: () => nextPlay()
+      }), 1600);
+    }
+    continueAfter(() => nextPlay(), 2200);
+  }
+
+  function touchdown(r) {
+    const o = offense();
+    S.score[o] += 6;
+    if (!A.demo.active) {
+      S.stats[o].td++;
+      if (!isCpu(o)) {
+        badges.award('Touchdown!');
+        if (S.driveClean) badges.award('Perfect drive');
+        if (S.hacked) badges.award('Field hacker');
+      }
+    }
+    S.los = 100; renderHud();
+    banner('Touchdown!', nameOf(o) + ' scores 6. Answer one more for the extra point.', COLORS[o]);
+    continueAfter(() => { S.los = 97; S.fd = 100; nextPlay(true); }, 2400);
+  }
+
+  function endDrive(nextLos) {
+    hideBanner();
+    S.drive++;
+    if (S.drive >= S.drivesEach * 2) return gameOver();
+    S.poss = 1 - S.poss;
+    startDrive(nextLos);
+  }
+
+  function gameOver() {
+    S.phase = 'over'; S.over = true; S.sim = null;
+    hidePanel(); hideBanner(); renderHud();
+    if (A.demo.active) { later(() => { if (A.demo.active) startGame(randomCode(), true); }, 2500); }
+    const [a, b] = S.score;
+    $('banner-title').textContent = a === b ? 'Tie game!' : nameOf(a > b ? 0 : 1) + ' wins!';
+    $('banner-title').style.color = a === b ? '' : COLORS[a > b ? 0 : 1];
+    $('banner-text').textContent = nameOf(0) + ' ' + a + ' · ' + nameOf(1) + ' ' + b + ' · code ' + S.code;
+    const chips = $('banner-chips'); chips.innerHTML = '';
+    [0, 1].forEach((p) => {
+      const st = S.stats[p], c = document.createElement('span'); c.className = 'chip';
+      c.textContent = nameOf(p) + ': passes ' + st.comp + '/' + st.att + ', questions ' + st.qr + '/' + st.qt;
+      chips.appendChild(c);
+    });
+    $('banner').hidden = A.demo.active;
+    wake();
+  }
+
+  // ---------- play clock ----------
+  let clockId = 0, clockLast = 0;
+  function startClock() {
+    stopClock(); clockLast = performance.now(); renderClock();
+    clockId = setInterval(() => {
+      const now = performance.now(), el = (now - clockLast) / 1000; clockLast = now;
+      if (A.modalOpen()) return;
+      S.clockLeft -= el;
+      renderClock();
+      if (S.clockLeft <= 0) { stopClock(); timeout(); }
+    }, 100);
+  }
+  function stopClock() { if (clockId) clearInterval(clockId); clockId = 0; }
+  function renderClock() {
+    const s = Math.max(0, Math.ceil(S.clockLeft)), low = s <= 5;
+    $('clock').textContent = s; $('clock').classList.toggle('low', low);
+    $('panel-clock').textContent = s + 's'; $('panel-clock').classList.toggle('low', low);
+  }
+  function timeout() {
+    const ph = S.phase;
+    S.q = null; hidePanel();
+    if (ph === 'clock') {
+      if (!A.demo.active) S.driveClean = false;
+      S.los = Math.max(1, S.los - 5);
+      banner('Delay of game', '5-yard penalty. Replay the down.', '#ff6b81');
+      return continueAfter(() => nextPlay(), 2000);
+    }
+    if (ph === 'pat') { banner('Extra point missed', 'Out of time.', '#ff6b81'); return continueAfter(() => endDrive(25), 1800); }
+    if (ph === 'pick') return resolve({ kind: 'incomplete', text: 'Dropped!', sub: 'Out of time. Incomplete.' });
+    if (ph === 'race') return resolve({ kind: 'incomplete', text: 'Nobody came down with it', sub: 'Out of time. Incomplete.' });
+  }
+
+  // ---------- HUD and panels ----------
+  function showPanel(color) { $('panel').hidden = false; $('panel-card').style.setProperty('--qc', color); $('panel-q').hidden = false; }
+  function hidePanel() { $('panel').hidden = true; }
+  function banner(title, sub, color) {
+    const b = $('play-banner');
+    b.innerHTML = ''; b.textContent = title;
+    if (sub) { const s = document.createElement('small'); s.textContent = sub; b.appendChild(s); }
+    b.style.setProperty('--bc', color || '#ffd166');
+    b.hidden = false;
+  }
+  function hideBanner() { $('play-banner').hidden = true; }
+  const ORD = ['', '1st', '2nd', '3rd', '4th'];
+  function spotText(x) {
+    x = Math.round(x);
+    return x === 50 ? 'Ball on the 50' : x < 50 ? 'Ball on own ' + x : 'Ball on their ' + (100 - x);
+  }
+  function renderHud() {
+    const o = offense();
+    document.documentElement.style.setProperty('--turn', COLORS[o]);
+    [0, 1].forEach((p) => {
+      $('score-' + p).textContent = S.score[p];
+      $('role-' + p).textContent = S.over ? 'final' : p === o ? 'offense' : 'defense';
+      $('card-' + p).classList.toggle('active', !S.over && p === o);
+      const st = S.stats[p];
+      $('stats-' + p).innerHTML = '<span>Passes <b>' + st.comp + '/' + st.att + '</b> · <b>' + st.yds + '</b> yds</span>' +
+        '<span>TD <b>' + st.td + '</b> · INT <b>' + st.int + '</b></span>' +
+        '<span>Questions <b>' + st.qr + '/' + st.qt + '</b></span>';
+    });
+    const toGo = S.fd >= 100 ? 'Goal' : Math.max(1, Math.ceil(S.fd - S.los));
+    $('turn-label').textContent = S.over ? 'Final' : S.pat ? 'Extra point' : ORD[Math.min(4, S.down)] + ' & ' + toGo;
+    $('spot-label').textContent = S.over ? 'code ' + S.code : spotText(S.los);
+    $('drive-label').textContent = 'Drive ' + Math.min(S.drive + 1, S.drivesEach * 2) + ' of ' + S.drivesEach * 2;
+    if (!clockId) { $('clock').textContent = Math.round(P.playClock); $('clock').classList.remove('low'); }
+    document.querySelectorAll('.throw').forEach((b) => {
+      b.classList.toggle('on', +b.dataset.t === S.throwType[o]);
+      b.disabled = isCpu(o);
+    });
+    $('practice-btn').disabled = !(A.demo.active || S.over);
+    $('stage-label').textContent = (A.demo.active ? 'Demo · ' : '') + nameOf(o) + ' on offense';
+  }
+
+  // ---------- input ----------
+  function setThrow(t) { const o = offense(); if (isCpu(o)) return; S.throwType[o] = t; renderHud(); wake(); }
+  document.querySelectorAll('.throw').forEach((b) => b.addEventListener('click', () => setThrow(+b.dataset.t)));
+  stage.addEventListener('pointermove', (e) => {
+    if (S.phase !== 'live' || !S.sim || S.sim.ball) return;
+    const p = A.toLogical(cv, e, W, H);
+    S.aim = { x: S.cam + p.x / PX, y: p.y / PX };
+    wake();
+  });
+  stage.addEventListener('pointerdown', (e) => {
+    if (A.demo.active) return;
+    if (pending && !e.target.closest('button')) { skip(); return; }
+    if (S.phase !== 'live' || !S.sim || S.sim.ball || isCpu(offense()) || e.target !== cv) return;
+    const p = A.toLogical(cv, e, W, H);
+    const f = throwBall(S.sim, S.cam + p.x / PX, p.y / PX, S.throwType[offense()]);
+    if (f) onThrow(f);
+    wake();
+  });
+  window.addEventListener('keydown', (e) => {
+    if (A.modalOpen() || A.demo.active || e.ctrlKey || e.metaKey || e.altKey) return;
+    if (e.target && /INPUT|SELECT|TEXTAREA/.test(e.target.tagName)) return;
+    const key = e.key.toLowerCase();
+    let p = -1, k = -1;
+    if (/^[1-4]$/.test(key)) { p = 0; k = +key - 1; }
+    else if (/^[7890]$/.test(key)) { p = 1; k = (+key + 3) % 10; }
+    if (p >= 0) {
+      e.preventDefault();
+      if (S.phase === 'call' && p === defense() && !isCpu(p) && k < 3) pickTopic(k);
+      else if (!isCpu(p)) answer(p, k);
+      return;
+    }
+    const t = { z: 0, x: 1, c: 2 }[key];
+    if (t !== undefined) { setThrow(t); e.preventDefault(); return; }
+    if ((key === 'enter' || key === ' ') && pending) { skip(); e.preventDefault(); }
+  });
+  $('panel').addEventListener('pointerdown', (e) => { if (pending && !e.target.closest('button')) skip(); });
+
+  // header controls
+  const seedInput = $('seed-input');
+  function save() { A.store.set('football', { names: names.map((n) => n.value), p2: $('p2-select').value, len: $('length-select').value }); }
+  function fresh(code) { A.demo.stop(); startGame(code); save(); }
+  $('load-btn').addEventListener('click', () => fresh(seedInput.value));
+  $('new-btn').addEventListener('click', () => fresh(randomCode()));
+  $('daily-btn').addEventListener('click', () => fresh(dailyCode()));
+  seedInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') fresh(seedInput.value); });
+  $('again-btn').addEventListener('click', () => fresh(S.code));
+  $('length-select').addEventListener('change', () => { save(); if (!A.demo.active) fresh(S.code); });
+  $('p2-select').addEventListener('change', () => { S.p2cpu = $('p2-select').value === 'cpu'; names[1].placeholder = S.p2cpu ? 'CPU' : 'Player 2'; save(); if (!A.demo.active) fresh(S.code); });
+  names.forEach((n) => n.addEventListener('change', () => { save(); renderHud(); }));
+  $('practice-btn').addEventListener('click', () => A.quiz.practice({ game: 'football', topics: ['Motion', 'Forces'] }));
+  A.onModal(renderHud);
+
+  // ---------- console hacker layer ----------
+  const knob = (k, lo, hi, note) => ({
+    get() { return P[k]; },
+    set(v) { v = +v; if (!(v >= lo && v <= hi)) { console.log(k + ' must be between ' + lo + ' and ' + hi); return; } P[k] = v; S.hacked = true; console.log(k + ' = ' + v + (note ? '  (' + note + ')' : '')); }
+  });
+  const game = {};
+  Object.defineProperties(game, {
+    gravity: Object.assign(knob('gravity', 0.5, 100, 'Earth is 10.7 yd/s². The moon is about 1.8.'), { enumerable: true }),
+    arm: Object.assign(knob('arm', 5, 80, 'fastest throw, yards per second'), { enumerable: true }),
+    receiverSpeed: Object.assign(knob('receiverSpeed', 1, 20), { enumerable: true }),
+    defenderSpeed: Object.assign(knob('defenderSpeed', 0.1, 3, 'multiplier, applies next play'), { enumerable: true }),
+    playClock: Object.assign(knob('playClock', 3, 120, 'seconds'), { enumerable: true }),
+    pocketTime: Object.assign(knob('pocketTime', 0.3, 5, 'multiplier: how long until the rusher gets you'), { enumerable: true }),
+    score: { get() { return S.score.slice(); }, enumerable: true },
+    code: { get() { return S.code; }, enumerable: true },
+    answers: { get() { return A.answers; }, enumerable: true }
+  });
+  game.reset = () => { Object.assign(P, DEFAULTS); console.log('Physics back to normal.'); };
+  game.maxRange = (deg) => { A.sincos((deg || 45) * A.DEG); return Math.round(P.arm * P.arm * 2 * A.sc.sin * A.sc.cos / P.gravity * 10) / 10 + ' yards'; };
+  A.hacker('Football Duel', game, {
+    gravity: 'how hard the ball is pulled down (yards per second per second)',
+    arm: 'the quarterback\'s fastest throw',
+    receiverSpeed: 'yards per second', defenderSpeed: 'defender speed multiplier',
+    playClock: 'seconds to answer', pocketTime: 'pass-rush time multiplier',
+    score: 'read only', code: 'this game\'s code', answers: 'every question answered so far',
+    reset: 'puts the physics back to normal', maxRange: 'how far the arm can throw at an angle: game.maxRange(45)'
+  }, ['game.gravity = 1.8   (moon gravity: watch the lobs hang)', 'game.maxRange(20) vs game.maxRange(45)', 'game.playClock = 60']);
+
+  if (TEST) {
+    window.__s = S;
+    window.__fb = {
+      buildPlay, makeSim, stepSim, throwBall, cpuChoose, cpuMaybeThrow, flight, P, answer, pickTopic, skip, askRace, onEvent,
+      // run a whole play with the CPU quarterback and no questions: returns the deciding event
+      autoplay(code, n, los) {
+        const play = buildPlay(code, n), sim = makeSim(play, los || 25);
+        let ev = null, guard = 0, firstEv = null;
+        while (!sim.done && guard++ < 2000) {
+          if (!sim.ball) cpuMaybeThrow(sim, play);
+          ev = stepSim(sim);
+          if (ev && !firstEv) firstEv = ev;
+        }
+        return { first: firstEv, last: ev, ball: sim.ball && { T: sim.ball.T, type: sim.ball.type, R: sim.ball.R }, t: sim.t };
+      }
+    };
+  }
+
+  // ---------- boot ----------
+  const saved = A.store.get('football', {});
+  if (saved.names) saved.names.forEach((n, i) => { if (n) names[i].value = n; });
+  if (saved.p2) $('p2-select').value = saved.p2;
+  if (saved.len) $('length-select').value = saved.len;
+  S.p2cpu = $('p2-select').value === 'cpu';
+  names[1].placeholder = S.p2cpu ? 'CPU' : 'Player 2';
+  resize();
+  const fromHash = cleanCode(location.hash.slice(1));
+  A.demo.start({ stage, text: 'Demo game · click anywhere or press any key to play', onExit: () => { startGame(fromHash || dailyCode()); save(); } });
+  startGame(randomCode(), true);
+  setTimeout(resize, 300);
+})();
+</script>
+</body>
+</html>

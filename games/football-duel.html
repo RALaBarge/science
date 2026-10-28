@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Football Duel</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@500;700;800&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../shared/core.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="bar">
+    <h1>Football Duel <span>answer to snap</span></h1>
+    <div class="seed">
+      <label for="seed-input">Game code</label>
+      <select id="length-select" class="select" aria-label="Drives for each team">
+        <option value="2">2 drives each</option>
+        <option value="3" selected>3 drives each</option>
+        <option value="4">4 drives each</option>
+      </select>
+      <input id="seed-input" spellcheck="false" autocomplete="off" aria-label="Game code">
+      <button id="load-btn" type="button">Load</button>
+      <button id="new-btn" type="button">New code</button>
+      <button id="daily-btn" type="button">Daily</button>
+    </div>
+  </header>
+
+  <section class="hud compact fb-hud">
+    <div class="player" data-p="0" id="card-0">
+      <div class="name-row"><span class="dot"></span><input id="name-0" value="Player 1" maxlength="16" aria-label="Player 1 name"></div>
+      <div class="wins"><span id="score-0">0</span><small id="role-0">offense</small></div>
+      <div class="stats" id="stats-0"></div>
+    </div>
+
+    <div class="controls">
+      <div class="turn"><strong id="turn-label">1st &amp; 10</strong><span id="spot-label">Ball on own 25</span></div>
+      <div class="clockline"><span>Play clock</span><b id="clock">15</b><span id="drive-label">Drive 1 of 6</span></div>
+      <div class="throws" role="group" aria-label="Throw type">
+        <button type="button" class="throw" data-t="0">Bullet <small>20° · fast, low</small></button>
+        <button type="button" class="throw" data-t="1">Touch <small>35° · in between</small></button>
+        <button type="button" class="throw" data-t="2">Lob <small>50° · high, slow</small></button>
+      </div>
+    </div>
+
+    <div class="player" data-p="1" id="card-1">
+      <div class="name-row"><span class="dot"></span><input id="name-1" value="" placeholder="CPU" maxlength="16" aria-label="Player 2 name">
+        <select id="p2-select" aria-label="Who plays blue"><option value="cpu">CPU</option><option value="human">Human</option></select></div>
+      <div class="wins"><span id="score-1">0</span><small id="role-1">defense</small></div>
+      <div class="stats" id="stats-1"></div>
+    </div>
+  </section>
+
+  <section class="stage" id="stage">
+    <canvas id="cv" width="1000" height="560" aria-label="Top-down football field with receivers, defenders and the quarterback"></canvas>
+    <div class="stage-label" id="stage-label"></div>
+    <div class="play-banner" id="play-banner" hidden></div>
+
+    <div class="fb-panel" id="panel" hidden>
+      <div class="fb-card" id="panel-card">
+        <div class="fb-head"><strong id="panel-title"></strong><span id="panel-clock"></span></div>
+        <p class="fb-sub" id="panel-sub"></p>
+        <div class="fb-cards" id="topic-cards"></div>
+        <div class="quiz-topic" id="panel-topic"></div>
+        <h2 id="panel-q"></h2>
+        <div class="fb-choices" id="panel-choices"></div>
+        <p class="quiz-explain" id="panel-explain" hidden></p>
+      </div>
+    </div>
+
+    <div class="overlay" id="banner" hidden>
+      <div class="card">
+        <h2 id="banner-title"></h2>
+        <p id="banner-text"></p>
+        <div class="chips" id="banner-chips"></div>
+        <button id="again-btn" type="button">Play again</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="meta">
+    <span>Keys: Orange <kbd>1</kbd>–<kbd>4</kbd> · Blue <kbd>7</kbd>–<kbd>0</kbd></span>
+    <span>Throw <kbd>Z</kbd> <kbd>X</kbd> <kbd>C</kbd></span>
+    <span class="sep" aria-hidden="true">|</span>
+    <button type="button" class="linkish" id="practice-btn" data-demo-keep title="Open during the demo or after the game ends">Practice quiz</button>
+    <span class="chips" id="badges"></span>
+  </div>
+
+  <details class="howto">
+    <summary>How to play and the physics</summary>
+    <div class="howto-body">
+      <p><b>Every play starts with a question.</b> The defense picks a science topic card, and the offense answers a question from it before the 15-second play clock runs out. Answer right and the ball is snapped. Answer wrong and the quarterback is sacked (lose 5 yards and the down). Let the clock run out and it’s delay of game: back 5 yards, and you replay the down with a new question.</p>
+      <p><b>Throwing.</b> After the snap, receivers run their routes and you click (or tap) the spot where you want the ball to come down. Lead your receiver: throw to where they <i>will</i> be. Pick the throw before you click: <b>Bullet</b> (20°) gets there fast but stays low, so a defender in the way can grab it. <b>Lob</b> (50°) sails over defenders but hangs in the air, so they have time to catch up. <b>Touch</b> (35°) is in between. Throw before the pass rusher gets to you.</p>
+      <p><b>Jump balls.</b> If a receiver and a defender both get to the ball, it’s a jump ball: both players get the same question and the first right answer wins it. Offense wins: catch. Defense wins: interception. A wrong answer locks you out, so the other player can take their time. If a defender gets to the ball alone, the defense answers one question to hold on for the interception.</p>
+      <p><b>The physics.</b> A thrown ball moves forward at a steady speed while gravity pulls it down, so it flies in a curve (a parabola). Its time in the air is <span class="formula">2 × speed × sin(angle) ÷ gravity</span>. With no air, 45° throws farthest. Gravity here is real Earth gravity: 9.8 m/s², about 10.7 yards per second per second.</p>
+      <p>Get 10 yards in 4 downs for a new set of downs. A touchdown is 6 points, and one more right answer adds the extra point. Each team gets the same number of drives; most points wins.</p>
+    </div>
+  </details>
+</div>
+<script src="../shared/questions.js"></script>
+<script src="../shared/facts.js"></script>
+<script src="../shared/core.js"></script>
+<script src="football-duel.js"></script>
+</body>
+</html>

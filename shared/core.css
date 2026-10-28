@@ -278,3 +278,41 @@ kbd { font-family: var(--mono); font-size: 12px; border: 1px solid var(--line); 
 .hud.compact .controls { gap: 6px; }
 .hud.compact #fire { font-size: 17px; padding: 6px; }
 .hud.compact .items .none { font-size: 11px; }
+/* ---- Football Duel ---- */
+.clockline { display: flex; align-items: baseline; gap: 10px; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.clockline b { font-size: 26px; line-height: 1; color: var(--text); font-variant-numeric: tabular-nums; min-width: 2ch; }
+.clockline b.low { color: var(--bad); }
+.clockline #drive-label { margin-left: auto; }
+.throws { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.throw { padding: 5px 6px; font-size: 15px; display: grid; gap: 1px; line-height: 1.1; }
+.throw small { font-family: var(--mono); font-weight: 400; font-size: 10.5px; color: var(--muted); letter-spacing: 0; }
+.throw.on { border-color: var(--turn); box-shadow: 0 0 0 1px var(--turn) inset; color: var(--turn); }
+.play-banner {
+  position: absolute; left: 50%; top: 10px; transform: translateX(-50%); max-width: calc(100% - 20px);
+  background: color-mix(in srgb, var(--panel) 94%, transparent); border: 1px solid var(--line); border-left: 4px solid var(--bc, var(--code));
+  border-radius: 8px; padding: 6px 14px; font-weight: 700; font-size: 18px; letter-spacing: 0.02em; text-align: center; pointer-events: none;
+}
+.play-banner small { display: block; font-family: var(--mono); font-weight: 400; font-size: 12px; color: var(--muted); }
+.fb-panel { position: absolute; inset: 0; display: grid; place-items: center; padding: 10px; overflow-y: auto; background: rgba(5, 8, 18, 0.45); }
+.fb-card {
+  width: min(100%, 640px); background: var(--panel); border: 1px solid var(--line); border-top: 4px solid var(--qc, var(--code));
+  border-radius: 12px; padding: 14px 16px; display: grid; gap: 10px;
+}
+.fb-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.fb-head strong { color: var(--qc); font-size: 18px; text-transform: uppercase; letter-spacing: 0.04em; }
+.fb-head span { font-family: var(--mono); font-size: 20px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.fb-head span.low { color: var(--bad); }
+.fb-sub { margin: 0; color: var(--muted); font-size: 15px; }
+.fb-card h2 { margin: 0; font-size: 21px; font-weight: 700; line-height: 1.25; text-wrap: balance; }
+.fb-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.fb-cards button { padding: 14px 8px; font-size: 18px; display: grid; gap: 4px; }
+.fb-cards button small { font-family: var(--mono); font-weight: 400; font-size: 11px; color: var(--muted); }
+.fb-choices { display: grid; gap: 7px; }
+.fb-row { display: grid; grid-template-columns: auto 1fr auto; gap: 6px; align-items: stretch; }
+.fb-row .choice { align-items: center; }
+.fb-tab { min-width: 46px; font-family: var(--mono); font-size: 15px; padding: 4px 8px; color: #10131f; border: 0; }
+.fb-tab[data-p="0"] { background: var(--p1); }
+.fb-tab[data-p="1"] { background: var(--p2); }
+.fb-tab:disabled { opacity: 0.25; cursor: default; }
+.fb-tab.mark { box-shadow: 0 0 0 3px var(--text) inset; opacity: 1; }
+@media (max-width: 560px) { .fb-cards { grid-template-columns: 1fr; } .fb-cards button { padding: 8px; } }

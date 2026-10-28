@@ -289,6 +289,44 @@ kbd { font-family: var(--mono); font-size: 12px; border: 1px solid var(--line); 
 .hud.compact .controls { gap: 6px; }
 .hud.compact #fire { font-size: 17px; padding: 6px; }
 .hud.compact .items .none { font-size: 11px; }
+/* ---- Football Duel ---- */
+.clockline { display: flex; align-items: baseline; gap: 10px; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.clockline b { font-size: 26px; line-height: 1; color: var(--text); font-variant-numeric: tabular-nums; min-width: 2ch; }
+.clockline b.low { color: var(--bad); }
+.clockline #drive-label { margin-left: auto; }
+.throws { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.throw { padding: 5px 6px; font-size: 15px; display: grid; gap: 1px; line-height: 1.1; }
+.throw small { font-family: var(--mono); font-weight: 400; font-size: 10.5px; color: var(--muted); letter-spacing: 0; }
+.throw.on { border-color: var(--turn); box-shadow: 0 0 0 1px var(--turn) inset; color: var(--turn); }
+.play-banner {
+  position: absolute; left: 50%; top: 10px; transform: translateX(-50%); max-width: calc(100% - 20px);
+  background: color-mix(in srgb, var(--panel) 94%, transparent); border: 1px solid var(--line); border-left: 4px solid var(--bc, var(--code));
+  border-radius: 8px; padding: 6px 14px; font-weight: 700; font-size: 18px; letter-spacing: 0.02em; text-align: center; pointer-events: none;
+}
+.play-banner small { display: block; font-family: var(--mono); font-weight: 400; font-size: 12px; color: var(--muted); }
+.fb-panel { position: absolute; inset: 0; display: grid; place-items: center; padding: 10px; overflow-y: auto; background: rgba(5, 8, 18, 0.45); }
+.fb-card {
+  width: min(100%, 640px); background: var(--panel); border: 1px solid var(--line); border-top: 4px solid var(--qc, var(--code));
+  border-radius: 12px; padding: 14px 16px; display: grid; gap: 10px;
+}
+.fb-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.fb-head strong { color: var(--qc); font-size: 18px; text-transform: uppercase; letter-spacing: 0.04em; }
+.fb-head span { font-family: var(--mono); font-size: 20px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.fb-head span.low { color: var(--bad); }
+.fb-sub { margin: 0; color: var(--muted); font-size: 15px; }
+.fb-card h2 { margin: 0; font-size: 21px; font-weight: 700; line-height: 1.25; text-wrap: balance; }
+.fb-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.fb-cards button { padding: 14px 8px; font-size: 18px; display: grid; gap: 4px; }
+.fb-cards button small { font-family: var(--mono); font-weight: 400; font-size: 11px; color: var(--muted); }
+.fb-choices { display: grid; gap: 7px; }
+.fb-row { display: grid; grid-template-columns: auto 1fr auto; gap: 6px; align-items: stretch; }
+.fb-row .choice { align-items: center; }
+.fb-tab { min-width: 46px; font-family: var(--mono); font-size: 15px; padding: 4px 8px; color: #10131f; border: 0; }
+.fb-tab[data-p="0"] { background: var(--p1); }
+.fb-tab[data-p="1"] { background: var(--p2); }
+.fb-tab:disabled { opacity: 0.25; cursor: default; }
+.fb-tab.mark { box-shadow: 0 0 0 3px var(--text) inset; opacity: 1; }
+@media (max-width: 560px) { .fb-cards { grid-template-columns: 1fr; } .fb-cards button { padding: 8px; } }
 </style>
 </head>
 <body>
@@ -410,6 +448,19 @@ window.QUESTION_BANK = [
   ["Motion", "Which change does NOT change how long a pendulum takes to swing?", ["Adding more weight to the end", "Making the string shorter", "Making the string longer", "Taking it to the moon"], "Heavy and light pendulums swing in the same time. The moon's weaker gravity would slow it."],
   ["Motion", "On a distance-time graph, a steeper line means the object is...", ["Moving faster", "Moving slower", "Stopped", "Getting smaller"], "Steeper means more distance in the same time."],
   ["Motion", "A ball rolls down a smooth ramp. Where is it moving fastest?", ["At the bottom", "At the top", "Halfway down", "It goes the same speed everywhere"], "Gravity keeps speeding it up the whole way down."],
+  // ---- Motion: throwing and football (Football Duel) ----
+  ["Motion", "With no air in the way, which launch angle throws a ball the farthest?", ["45 degrees", "15 degrees", "75 degrees", "90 degrees (straight up)"], "45° splits the throw's speed evenly between going up (time in the air) and going forward."],
+  ["Motion", "A quarterback throws the same speed at 20° and at 50°. Which pass gets there sooner?", ["The 20° pass", "The 50° pass", "They take the same time", "Whichever is heavier"], "A flatter throw spends less time going up and coming down, so it arrives sooner."],
+  ["Motion", "Why does a quarterback lead a running receiver?", ["The receiver keeps moving while the ball flies", "The ball speeds up in the air", "Gravity pulls the ball forward", "Receivers can't run backward"], "The ball takes time to get there, so you throw to where the receiver will be."],
+  ["Motion", "A receiver runs 6 yards every second. How far does he go during a 2-second pass?", ["12 yards", "3 yards", "8 yards", "6 yards"], "Distance = speed × time, and 6 × 2 = 12."],
+  ["Motion", "At the very top of its arc, which way is a thrown football moving?", ["Only forward", "Only up", "Only down", "It is not moving at all"], "At the peak it has stopped going up for an instant but is still moving forward."],
+  ["Motion", "What pulls a thrown football back down to the ground?", ["Gravity", "The wind", "Its spin", "The receiver's hands"], "Gravity pulls down on the ball the whole time it is in the air."],
+  ["Motion", "Why do quarterbacks throw a spiral?", ["The spin keeps the ball pointed straight so it cuts through the air", "Spinning makes the ball heavier", "Spinning turns off gravity", "Referees require it"], "A spinning ball is steady like a top, so it flies point-first with less air resistance."],
+  ["Forces", "A big linebacker and a small receiver run at the same speed. Who is harder to stop?", ["The linebacker, because he has more mass", "The receiver, because he is smaller", "Neither, they are the same", "Whoever is wearing heavier shoes"], "Momentum is mass × speed. Same speed, more mass, more momentum."],
+  ["Forces", "When a tackler hits a runner, the runner pushes back on the tackler...", ["With an equal force", "With no force", "With a much smaller force", "Only if the runner is bigger"], "Newton's third law: every push comes with an equal push back."],
+  ["Forces", "Why do football cleats have spikes on the bottom?", ["More friction so feet don't slip", "To make players taller", "To make shoes lighter", "To reduce friction"], "The spikes dig into the grass and add friction, so players can push off and turn."],
+  ["Motion", "On the moon, gravity is about 1/6 as strong. A thrown football would...", ["Stay in the air longer and fly much farther", "Fall faster", "Fly the same distance", "Not move at all"], "Weaker gravity pulls the ball down more slowly, so it stays up longer and goes farther."],
+  ["Motion", "A football is thrown straight up. Ignoring air, how long does it take to come down compared to going up?", ["The same time", "Twice as long", "Half as long", "It never comes down"], "Gravity slows it on the way up just as much as it speeds it up on the way down."],
 
   // ---- Energy ----
   ["Energy", "Which has the most energy of motion?", ["A fast bowling ball", "A slow bowling ball", "A bowling ball sitting still", "They all have the same"], "Faster objects carry more motion energy."],
@@ -809,6 +860,26 @@ window.SCIENCE_FACTS.matter = [
   "Ice is slippery partly because a very thin layer on its surface acts almost like a liquid.",
   "Hot air rises because it's less dense than the cooler air around it."
 ];
+
+window.SCIENCE_FACTS.football = [
+  "Without air, a 45° throw goes the farthest. Real footballs fly farthest a little lower, around 30–40°, because air slows them.",
+  "A thrown football follows a curved path called a parabola. Gravity bends it down the whole way.",
+  "A spiral is spinning about 600 times a minute. The spin keeps it steady, like a spinning top, so it flies point-first.",
+  "A wobbly pass (a 'duck') tumbles and catches more air, so it slows down and drops short.",
+  "An NFL quarterback can throw about 60 miles per hour. That's about 29 yards every second.",
+  "A football weighs about 14 to 15 ounces, a little less than a can of soup.",
+  "Momentum is mass × speed. A heavy lineman moving slowly can have as much momentum as a light receiver sprinting.",
+  "Newton's third law: when a tackler hits a runner, the runner hits the tackler back just as hard.",
+  "Cleats dig into the grass to add friction. Without friction, players couldn't push off to run or turn.",
+  "Helmets have padding that squishes on a hit. Squishing makes the stop take a little longer, which makes the force smaller.",
+  "Kickers lean into the ball and follow through to keep their foot on it longer, giving the ball more speed.",
+  "Cold footballs are harder and don't bounce as much. The air inside shrinks when it gets cold.",
+  "On the moon, with 1/6 of Earth's gravity, the same throw would stay up about 6 times longer and go about 6 times farther.",
+  "Receivers 'look the ball in' because their eyes and brain need time to predict where it will come down.",
+  "The fastest NFL players reach about 22 miles per hour, roughly 11 yards every second.",
+  "A punt with a lot of hang time gives the coverage team time to run downfield. Higher kicks stay up longer.",
+  "Rain makes the ball slippery because water lowers the friction between the ball and a player's hands."
+];
 </script>
 <script>
 // Science Arcade shared core.
@@ -995,10 +1066,11 @@ window.SCIENCE_FACTS.matter = [
     return decks[key].pop();
   }
   const allIdx = BANK.map((_, i) => i);
-  function drawQuestion(topics) {
+  function drawQuestion(topics, strict) {
     let i;
     // When a game names topics, about half its questions come from them; the rest review everything.
-    if (topics && topics.length && Math.random() < 0.5) {
+    // strict: always from those topics (Football Duel's defense picks the topic).
+    if (topics && topics.length && (strict || Math.random() < 0.5)) {
       const idxs = allIdx.filter((k) => topics.includes(BANK[k][0]));
       i = idxs.length ? drawFrom('t:' + topics.join(','), idxs) : drawFrom('all', allIdx);
     } else i = drawFrom('all', allIdx);
@@ -1007,6 +1079,9 @@ window.SCIENCE_FACTS.matter = [
     return { topic, q, explain, choices: order.map((k) => choices[k]), answer: order.indexOf(0) };
   }
 
+  // For games that show questions in their own panels. Returns { topic, q, explain, choices, answer }.
+  A.drawQuestion = drawQuestion;
+  A.topicCounts = () => BANK.reduce((m, b) => { m[b[0]] = (m[b[0]] || 0) + 1; return m; }, {});
   const quiz = (A.quiz = { isOpen: false });
   let qo = null, items = [], qi = 0, correct = 0, answered = false, finished = false;
 

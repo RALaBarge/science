@@ -182,10 +182,11 @@
     return decks[key].pop();
   }
   const allIdx = BANK.map((_, i) => i);
-  function drawQuestion(topics) {
+  function drawQuestion(topics, strict) {
     let i;
     // When a game names topics, about half its questions come from them; the rest review everything.
-    if (topics && topics.length && Math.random() < 0.5) {
+    // strict: always from those topics (Football Duel's defense picks the topic).
+    if (topics && topics.length && (strict || Math.random() < 0.5)) {
       const idxs = allIdx.filter((k) => topics.includes(BANK[k][0]));
       i = idxs.length ? drawFrom('t:' + topics.join(','), idxs) : drawFrom('all', allIdx);
     } else i = drawFrom('all', allIdx);
@@ -194,6 +195,9 @@
     return { topic, q, explain, choices: order.map((k) => choices[k]), answer: order.indexOf(0) };
   }
 
+  // For games that show questions in their own panels. Returns { topic, q, explain, choices, answer }.
+  A.drawQuestion = drawQuestion;
+  A.topicCounts = () => BANK.reduce((m, b) => { m[b[0]] = (m[b[0]] || 0) + 1; return m; }, {});
   const quiz = (A.quiz = { isOpen: false });
   let qo = null, items = [], qi = 0, correct = 0, answered = false, finished = false;
 

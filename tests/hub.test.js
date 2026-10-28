@@ -3,7 +3,7 @@ const { open, answer, check } = require('./helpers');
   const { browser, page: p, errors } = await open('index.html');
   await p.waitForTimeout(300);
   const links = await p.evaluate(() => [...document.querySelectorAll('.game-card')].map((a) => a.getAttribute('href')));
-  check('hub links all five games', links.length === 5, links.join(', '));
+  check('hub links all six games', links.length === 6, links.join(', '));
   await p.click('#practice-btn');
   for (let i = 0; i < 4; i++) await answer(p, true);
   check('hub practice quiz works', (await p.textContent('#quiz-score')) === '4/4');

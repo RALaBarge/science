@@ -1,7 +1,7 @@
 // CPU (main thread, % of one core) with the CPU slowed 4× to approximate a school Chromebook.
 const { open, cpuMeter } = require('./helpers');
 (async () => {
-  for (const f of (process.argv[2] || 'gravity-duel.html,laser-bounce.html,short-circuit.html,balance-duel.html,phase-runner.html').split(',')) {
+  for (const f of (process.argv[2] || 'gravity-duel.html,laser-bounce.html,short-circuit.html,balance-duel.html,phase-runner.html,football-duel.html').split(',')) {
     const { browser, page, errors } = await open(f, '', { dpr: 1.5 });
     const cpu = await cpuMeter(page, 4);
     await page.waitForTimeout(2500);

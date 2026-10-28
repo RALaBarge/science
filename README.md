@@ -1,6 +1,6 @@
 # Science Arcade
 
-Five browser games that teach K–6 physical science, built to run on locked-down school Chromebooks: no installs, no sign-in, no server. Each game plays a demo on its own until someone clicks, and uses a shared bank of 165 science questions to unlock bonuses.
+Six browser games that teach K–6 physical science, built to run on locked-down school Chromebooks: no installs, no sign-in, no server. Each game plays a demo on its own until someone clicks, and uses a shared bank of 177 science questions to unlock bonuses.
 
 | Game | What you do | Science |
 | --- | --- | --- |
@@ -9,6 +9,7 @@ Five browser games that teach K–6 physical science, built to run on locked-dow
 | **Short Circuit** | Turn wire tiles to light every bulb before time runs out | Complete circuits, conductors / insulators, series dimming, shorts |
 | **Balance Duel** | Place weights on a seesaw without tipping it (vs a friend or CPU) | Levers, torque = mass × distance, balanced forces |
 | **Phase Runner** | Platformer as a water blob that turns to ice or steam | States of matter, melting/freezing at 0 °C, boiling at 100 °C, condensation |
+| **Football Duel** | The defense picks a topic, the offense answers on a 15-second play clock to snap, then throws; close catches are jump-ball question races (vs a friend or CPU) | Projectile motion (launch angle, hang time, range), speed × time, plus every topic in the bank |
 
 ## Play it
 
@@ -25,7 +26,7 @@ Before relying on it at the community center, open the Pages link on one of the 
 ## What every game has
 
 - **Seeded levels and daily challenges.** A code like `COMET-FROG-42` always builds the same map or puzzle, so kids can share codes and compare scores. The Daily button gives everyone the same one each day.
-- **Checked before you see it.** Gravity Duel test-fires 1,800+ shots per side so both players can win; Laser Bounce runs a solver to set par; Short Circuit's solution is verified with real circuit math; Phase Runner's levels are proven finishable by test bots.
+- **Checked before you see it.** Gravity Duel test-fires 1,800+ shots per side so both players can win; Laser Bounce runs a solver to set par; Short Circuit's solution is verified with real circuit math; Phase Runner's levels are proven finishable by test bots; Football Duel's flight times are checked against 2·v·sin(angle)/g.
 - **Questions that unlock things.** Run out of shots, mirrors, time or heat packs and you can answer 4 questions for more (once per round). Power-ups and hints cost one right answer; a miss locks them until the next round. A **Practice quiz** link is open during the demo and between rounds.
 - **Facts cards** the first time something new happens (a new material, a change of state, a short circuit).
 - **A hacker layer.** Open the browser console: each game puts itself in `window.game`, prints things to try, and `game.help()` lists every value. Winning with hacked values earns a badge. (Console access depends on how the Chromebooks are managed.)
@@ -38,6 +39,7 @@ Before relying on it at the community center, open the Pages link on one of the 
 | Short Circuit | 2 % | 21 % |
 | Balance Duel | 0 % | 27 % |
 | Phase Runner | 2 % | 85 % |
+| Football Duel | 0 % | 39 % |
 
 Active-play numbers are mostly pixel drawing, which real Chromebooks hand to the graphics chip; the test browser draws in software, so these are worst-case.
 
@@ -79,8 +81,11 @@ The games are honest about where they bend reality, and the how-to sections say 
 - Laser Bounce's beams turn exactly 90° and frosted glass halves the light.
 - Short Circuit models bulbs as identical 1-ohm resistors on a 1-volt battery.
 - Phase Runner's temperature changes much faster than real water would.
+- Football Duel ignores air resistance (so 45° throws farthest; real footballs do best a bit lower) and players run slower than real ones.
 
 ## Known limits
+
+- Football Duel: in a game for two people at one keyboard, both see the question during a jump ball; Orange answers with 1–4 and Blue with 7–0, so whoever is faster wins it fairly.
 
 - Balance Duel: with careful play, the player who goes second wins about 70 % of decided rounds. Who goes first alternates every round, so a match evens out over pairs of rounds.
 - Determinism has been checked in Chrome only (Firefox and Safari weren't available to test).
