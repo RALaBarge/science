@@ -21,7 +21,10 @@
   const SHOT_MASS = 160;
   const PLANET_DRAG = 0.99;
   const SETTLE_MAX = 2000;
-  const SHOTS_PER_ROUND = 10;
+  const SHOTS_PER_ROUND = 2;   // duel: every player starts a round with 2 shots...
+  const WARMUP_LEN = 5;        // ...and answers 5 questions first; each right answer is one more shot
+  const GOLF_STROKES = 10;     // Orbit Golf keeps 10 strokes a hole (and the out-of-strokes quiz)
+  const baseShots = () => (solo() ? GOLF_STROKES : SHOTS_PER_ROUND);
   let MOON_G = 0.5;          // Moon mode gravity, as a fraction of normal (tuned so maps stay winnable)
   let MAGNET_K = 3.5;         // magnet strength compared with gravity (tuned so maps stay winnable)
   const reduceMotion = A.reduceMotion;
@@ -312,6 +315,7 @@
     shooter: 0,
     bonus: [0, 0],
     quizzed: [false, false],
+    warm: [],            // players still to answer the pre-round questions
     held: [null, null],
     locked: [false, false],
     armed: { arc: false, pierce: false },
@@ -396,7 +400,7 @@
     const last = state.last[0];
     $('stats-0').innerHTML =
       '<span>Hole <b>' + hole + ' of ' + GOLF_HOLES + '</b> · par <b>' + par + '</b></span>' +
-      '<span>Strokes this hole <b>' + state.roundShots[0] + ' of ' + (SHOTS_PER_ROUND + state.bonus[0]) + '</b>' + (state.bonus[0] ? ' (+' + state.bonus[0] + ' bonus)' : '') + '</span>' +
+      '<span>Strokes this hole <b>' + state.roundShots[0] + ' of ' + (GOLF_STROKES + state.bonus[0]) + '</b>' + (state.bonus[0] ? ' (+' + state.bonus[0] + ' bonus)' : '') + '</span>' +
       '<span>Course strokes <b>' + t.strokes + '</b></span>' +
       '<span>Last shot <b>' + (last ? (last.angle + '°, power ' + last.power) : '–') + '</b></span>';
     $('wins-1').textContent = t.strokes;
@@ -435,7 +439,7 @@
       const acc = state.totalShots[i] ? Math.round(100 * state.wins[i] / state.totalShots[i]) : 0;
       $('stats-' + i).innerHTML =
         '<span>Shots this round <b>' + state.roundShots[i] + ' of ' + (SHOTS_PER_ROUND + state.bonus[i]) + '</b>' +
-          (state.bonus[i] ? ' (+' + state.bonus[i] + ' bonus)' : '') + '</span>' +
+          (state.bonus[i] ? ' (+' + state.bonus[i] + ' from questions)' : '') + '</span>' +
         '<span>Total shots <b>' + state.totalShots[i] + '</b> · hit rate <b>' + acc + '%</b></span>' +
         '<span>Slingshots <b>' + state.slingshots[i] + '</b></span>' +
         '<span>Last shot <b>' + (last ? (last.angle + '°, power ' + last.power) : '–') + '</b></span>';
@@ -446,7 +450,7 @@
       : state.settling ? 'Planets moving…'
       : state.flying ? (nameOf(state.turn) + '’s shot in flight')
       : (nameOf(state.turn) + ' to fire');
-    fireBtn.disabled = (!!state.flying && state.ffwd) || state.settling || A.quiz.isOpen || state.roundOver || !state.map;
+    fireBtn.disabled = (!!state.flying && state.ffwd) || state.settling || A.quiz.isOpen || state.roundOver || !state.map || state.warm.length > 0;
     fireBtn.textContent = state.flying ? 'Fast-forward' : 'Fire';
     $('round-num').textContent = state.round;
     $('draws').textContent = state.draws;
@@ -514,7 +518,7 @@
   const magnets = () => state.mode.key === 'magnet';
   const modeG = () => DEFAULT_G * state.mode.g;
   const shotPol = (i) => (magnets() ? state.aim[i].pol : 0);
-  const idle = () => !!state.map && !state.flying && !state.settling && !A.modalOpen() && !state.roundOver;
+  const idle = () => !!state.map && !state.flying && !state.settling && !A.modalOpen() && !state.roundOver && !state.warm.length;
 
   // ---------- space facts pop-up (shared facts card from the core) ----------
   function showFacts(t) {
@@ -659,6 +663,11 @@
     state.settling = false;
     state.bonus = [0, 0];
     state.quizzed = [false, false];
+    state.turn = solo() ? 0 : (state.round - 1) % 2;
+    // Duels: both players answer 5 questions before the first shot (the player who shoots first goes first).
+    // The demo skips the questions and gives each CPU a few extra shots.
+    state.warm = solo() || A.demo.active ? [] : [state.turn, 1 - state.turn];
+    if (A.demo.active && !solo()) state.bonus = [3, 3];
     A.quiz.close();
     A.facts.close();
     state.armed = { arc: false, pierce: false };
@@ -672,7 +681,6 @@
     state.roundShots = [0, 0];
     state.particles = [];
     state.message = '';
-    state.turn = solo() ? 0 : (state.round - 1) % 2;
     $('banner').hidden = true;
     $('busy').hidden = false;
     state.map = null;
@@ -686,6 +694,7 @@
       $('busy').hidden = true;
       syncAimInputs();
       renderHud();
+      nextWarmup();
     }, () => token !== genToken);
   }
 
@@ -738,7 +747,7 @@
 
   function fire() {
     if (state.flying) { state.ffwd = true; renderHud(); return; }
-    if (state.settling || A.quiz.isOpen || A.facts.isOpen || state.roundOver || state.resizeMode || !state.map) return;
+    if (state.settling || A.quiz.isOpen || A.facts.isOpen || state.roundOver || state.resizeMode || !state.map || state.warm.length) return;
     const p = state.turn;
     state.shooter = p;
     state.ffwd = false;
@@ -861,7 +870,7 @@
     state.draws++;
     state.roundOver = true;
     const anyBonus = state.bonus[0] + state.bonus[1] > 0;
-    showBanner('Draw', '#e7e9f3', anyBonus ? 'Nobody hit, even with bonus shots.' : 'Nobody hit in ' + SHOTS_PER_ROUND + ' shots each.', []);
+    showBanner('Draw', '#e7e9f3', anyBonus ? 'Nobody hit with the shots they earned.' : 'Nobody hit in ' + SHOTS_PER_ROUND + ' shots each.', []);
     if (A.demo.active) scheduleDemoRound();
   }
 
@@ -949,13 +958,14 @@
     swing();
   }
 
-  const shotsLeft = (p) => SHOTS_PER_ROUND + state.bonus[p] - state.roundShots[p];
+  const shotsLeft = (p) => baseShots() + state.bonus[p] - state.roundShots[p];
 
   // Give the turn to `pref` if they have shots; if they're out, quiz them once per round; then try the other player.
   function goNext(pref) {
     for (const p of solo() ? [0] : [pref, 1 - pref]) {
       if (shotsLeft(p) > 0) { state.turn = p; syncAimInputs(); renderHud(); return; }
-      if (!state.quizzed[p]) { state.turn = p; startQuiz(p); return; }
+      // Orbit Golf: out of strokes, answer 4 for more (once a hole). Duels earn their extra shots before the round.
+      if (solo() && !state.quizzed[p]) { state.turn = p; startQuiz(p); return; }
     }
     drawRound();
   }
@@ -1001,6 +1011,28 @@
       }
     });
   }
+  // Pre-round questions. Waits for any open card (like a mode's facts card) to close first.
+  function nextWarmup() {
+    if (!state.warm.length || !state.map || A.modalOpen() || A.demo.active) return;
+    const p = state.warm[0];
+    A.quiz.open({
+      game: 'gravity-duel', player: nameOf(p), color: COLORS[p], count: WARMUP_LEN, topics: TOPICS,
+      title: nameOf(p) + ': earn your shots',
+      intro: 'You start this round with ' + SHOTS_PER_ROUND + ' shots. Every right answer adds one more.',
+      lastLabel: 'See your shots',
+      resultScore: (n) => (SHOTS_PER_ROUND + n) + ' shots',
+      resultText: (n) => (n === WARMUP_LEN ? 'Perfect! ' : '') + n + ' right: ' + SHOTS_PER_ROUND + ' + ' + n + ' = ' + (SHOTS_PER_ROUND + n) + ' shots this round.',
+      doneLabel: () => (state.warm.length > 1 ? nameOf(state.warm[1]) + '’s turn' : 'Start the round'),
+      onClose: (n) => {
+        state.bonus[p] = n;
+        if (n === WARMUP_LEN) award('Science ace');
+        state.warm.shift();
+        renderHud();
+        setTimeout(nextWarmup, 0);
+      }
+    });
+  }
+  A.onModal(() => { if (!A.modalOpen() && state.warm.length) setTimeout(nextWarmup, 0); });
   A.onModal(renderHud);
   $('practice-btn').addEventListener('click', () => {
     if ((A.demo.active || state.roundOver) && !A.modalOpen()) startQuiz(state.turn, 'practice');

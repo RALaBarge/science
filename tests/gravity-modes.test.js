@@ -3,7 +3,16 @@ const { open, answer, check } = require('./helpers');
   const { browser, page: p, errors } = await open('gravity-duel.html');
   await p.waitForTimeout(800);
   await p.mouse.click(500, 300); // leave demo
-  const ready = () => p.waitForFunction(() => document.getElementById('busy').hidden && __s.map, null, { timeout: 60000 });
+  // Duel rounds open with 5 shot questions per player; answer them (after any facts card) so the test can play.
+  const warm = async () => {
+    while (await p.evaluate(() => __s.warm.length > 0 && !Arcade.facts.isOpen)) {
+      await p.waitForFunction(() => Arcade.quiz.isOpen, null, { timeout: 5000 });
+      for (let i = 0; i < 5; i++) await answer(p, true);
+      await p.click('#quiz-next');
+      await p.waitForTimeout(50);
+    }
+  };
+  const ready = async () => { await p.waitForFunction(() => document.getElementById('busy').hidden && __s.map, null, { timeout: 60000 }); await p.waitForTimeout(50); await warm(); };
   await ready();
   await p.click('#daily-btn'); await ready();
   check('Daily button works', /^[A-Z]+-[A-Z]+-\d+$/.test(await p.inputValue('#seed-input')));
@@ -12,11 +21,11 @@ const { open, answer, check } = require('./helpers');
   check('Moon code prefix', (await p.inputValue('#seed-input')).startsWith('MOON-'));
   check('Moon gravity is half', await p.evaluate(() => Math.abs(game.G - 0.04) < 1e-9), String(await p.evaluate(() => game.G)));
   check('Moon facts card shows', await p.evaluate(() => Arcade.facts.isOpen));
-  await p.click('#facts-close');
+  await p.click('#facts-close'); await warm();
   // Magnet
   await p.selectOption('#mode-select', 'magnet'); await ready();
   check('Magnet facts card shows', await p.evaluate(() => Arcade.facts.isOpen));
-  await p.click('#facts-close');
+  await p.click('#facts-close'); await warm();
   const poles = await p.evaluate(() => __s.map.planets.map((x) => x.pole));
   check('magnets have both poles', poles.includes(1) && poles.includes(-1), poles.join(','));
   check('pole button visible', await p.isVisible('#pole-btn'));
