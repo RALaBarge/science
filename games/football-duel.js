@@ -349,7 +349,7 @@
     // route art: before the snap, and faintly until the throw so the quarterback can lead the receiver
     const pre = S.phase === 'call' || S.phase === 'clock' || S.phase === 'presnap' || S.phase === 'reveal';
     if (pre || (S.phase === 'live' && !sim.ball)) {
-      ctx.setLineDash([6, 6]); ctx.lineWidth = 2; ctx.strokeStyle = pre ? 'rgba(255,255,255,0.45)' : 'rgba(255,255,255,0.22)';
+      ctx.setLineDash([6, 6]); ctx.lineWidth = 2; ctx.strokeStyle = pre ? 'rgba(255,255,255,0.5)' : 'rgba(255,255,255,0.34)';
       for (const r of sim.recs) {
         ctx.beginPath(); ctx.moveTo(sx(r.x), sy(r.y));
         for (let i = r.wp; i < r.pts.length; i++) ctx.lineTo(sx(r.pts[i][0]), sy(r.pts[i][1]));
