@@ -135,3 +135,24 @@ window.SPACE_FACTS = {
     "The light doesn't come from inside the black hole. Nothing escapes from there. It comes from the hot gas around it."
   ]
 };
+
+// ===================== OTHER SCIENCE FACTS =====================
+// Fact cards for the other games and modes. Same idea: plain sentences, three shown at a time.
+window.SCIENCE_FACTS = window.SCIENCE_FACTS || {};
+window.SCIENCE_FACTS.magnets = [
+  "Every magnet has a north pole and a south pole. Cut a magnet in half and each half gets its own north and south pole.",
+  "Opposite poles pull together. Like poles push apart.",
+  "Real magnets never come as a single pole. The game pretends each planet is one end of a giant bar magnet.",
+  "Earth is a giant magnet. That's why a compass works.",
+  "The north end of a compass needle is pulled toward the Arctic, because the magnetic pole up there is actually a south pole.",
+  "Magnets pull on iron, nickel and cobalt, and on steel because steel contains iron.",
+  "Aluminum, copper, gold, wood and plastic are not pulled by magnets.",
+  "Magnetic force gets weaker quickly as you move away from the magnet.",
+  "Electricity flowing through a coil of wire makes an electromagnet, which you can switch on and off.",
+  "Junkyard cranes use giant electromagnets to lift whole cars, then switch off to drop them.",
+  "MRI machines in hospitals use very strong magnets to take pictures of the inside of your body.",
+  "Heat a magnet enough and it loses its magnetism.",
+  "Sea turtles and some birds can sense Earth's magnetic field and use it to find their way.",
+  "Magnetism and gravity both work without touching, but magnetism can push as well as pull. Gravity only pulls.",
+  "Earth's magnetic poles slowly wander, and they have flipped places many times in Earth's history."
+];

@@ -22,9 +22,28 @@
   const PLANET_DRAG = 0.99;
   const SETTLE_MAX = 2000;
   const SHOTS_PER_ROUND = 10;
+  let MOON_G = 0.5;          // Moon mode gravity, as a fraction of normal (tuned so maps stay winnable)
+  let MAGNET_K = 3.5;         // magnet strength compared with gravity (tuned so maps stay winnable)
   const reduceMotion = A.reduceMotion;
 
   const COLORS = ['#ff8a5c', '#5cc8ff'];
+
+  // ---------- modes ----------
+  // The mode is part of the map code (MOON-COMET-FROG-42), so sharing a code shares the mode.
+  const MODES = {
+    classic: { key: 'classic', prefix: '', name: 'Classic', g: 1 },
+    moon: { key: 'moon', prefix: 'MOON-', name: 'Moon', g: MOON_G },
+    magnet: { key: 'magnet', prefix: 'MAGNET-', name: 'Magnet', g: 1 },
+    golf: { key: 'golf', prefix: 'GOLF-', name: 'Orbit Golf', g: 1 }
+  };
+  const MODE_LIST = [MODES.classic, MODES.moon, MODES.magnet, MODES.golf];
+  function modeOf(code) {
+    for (const m of MODE_LIST) if (m.prefix && code.startsWith(m.prefix)) return m;
+    return MODES.classic;
+  }
+  const baseCode = (code) => code.slice(modeOf(code).prefix.length);
+  const POLES = { N: 1, S: -1 };
+  const GOLF_HOLES = 9;
   const PLANET_TONES = ['#c9784f', '#7f9c6b', '#b58bd1', '#d4b06a', '#6f9fb8', '#c96a7a', '#8aa38f', '#a98c6e'];
 
   // ---------- physics ----------
@@ -32,7 +51,9 @@
   // so a flying shot creates no garbage for the browser to clean up.
   let AX = 0, AY = 0, QX = 0, QY = 0;
 
-  function accel(x, y, planets, G) {
+  // pol = 0: gravity, always pulls. pol = ±1 (Magnet mode): each planet is a magnetic pole; opposite
+  // poles pull and like poles push, with the same distance rule as gravity.
+  function accel(x, y, planets, G, pol) {
     let ax = 0, ay = 0;
     for (let i = 0; i < planets.length; i++) {
       const p = planets[i];
@@ -41,7 +62,8 @@
       const d = Math.sqrt(d2);
       // Outside a planet: G·M/r². Inside (only a piercing shot gets there): the pull shrinks
       // steadily to zero at the center, as it would inside a real solid planet.
-      const k = d < p.r ? G * p.m / (p.r * p.r * p.r) : G * p.m / (d2 * d);
+      let k = d < p.r ? G * p.m / (p.r * p.r * p.r) : G * p.m / (d2 * d);
+      if (pol) k *= -MAGNET_K * p.pole * pol;
       ax += dx * k; ay += dy * k;
     }
     AX = ax; AY = ay;
@@ -54,14 +76,15 @@
     QX = w.x1 + vx * t; QY = w.y1 + vy * t;
   }
 
-  function makeShot(map, shooter, angle, power, G) {
+  function makeShot(map, shooter, angle, power, G, pol) {
+    pol = pol || 0;
     const s = map.ships[shooter];
     sincos(angle * DEG);
     const ux = sc.cos * (shooter === 0 ? 1 : -1), uy = -sc.sin;
     const sp = MIN_SPEED + ((power - 1) / (POWER_MAX - 1)) * (MAX_SPEED - MIN_SPEED);
     const x = s.x + ux * (SHIP_R + 6), y = s.y + uy * (SHIP_R + 6);
-    accel(x, y, map.planets, G);
-    return { x, y, vx: ux * sp, vy: uy * sp, ax: AX, ay: AY, steps: 0, shooter, near: -1, closest: Infinity, pierce: 0, ghost: -2, pierced: false, path: null };
+    accel(x, y, map.planets, G, pol);
+    return { x, y, vx: ux * sp, vy: uy * sp, ax: AX, ay: AY, steps: 0, shooter, pol, near: -1, closest: Infinity, pierce: 0, ghost: -2, pierced: false, path: null };
   }
 
   // Result codes from stepShot (0 = still flying). Planet hits return PLANET + index.
@@ -72,7 +95,7 @@
   function stepShot(sh, map, G, maxSteps) {
     sh.x += sh.vx + 0.5 * sh.ax;
     sh.y += sh.vy + 0.5 * sh.ay;
-    accel(sh.x, sh.y, map.planets, G);
+    accel(sh.x, sh.y, map.planets, G, sh.pol);
     sh.vx += 0.5 * (sh.ax + AX);
     sh.vy += 0.5 * (sh.ay + AY);
     sh.ax = AX; sh.ay = AY;
@@ -103,15 +126,15 @@
     const t = map.ships[1 - sh.shooter], tx = sh.x - t.x, ty = sh.y - t.y;
     if (tx * tx + ty * ty < hr) return HIT;
     const o = map.ships[sh.shooter], ox = sh.x - o.x, oy = sh.y - o.y;
-    if (sh.steps > 20 && ox * ox + oy * oy < hr) return SELF;
+    if (!map.solo && sh.steps > 20 && ox * ox + oy * oy < hr) return SELF;
     if (sh.x < -250 || sh.x > W + 250 || sh.y < -250 || sh.y > H + 250) return OUT;
     if (sh.steps >= maxSteps) return LOST;
     return 0;
   }
 
   // Run a test shot to the end and report how it ended.
-  function simulate(map, shooter, angle, power, G, maxSteps) {
-    const sh = makeShot(map, shooter, angle, power, G);
+  function simulate(map, shooter, angle, power, G, maxSteps, pol) {
+    const sh = makeShot(map, shooter, angle, power, G, pol);
     let res = 0;
     while (!res) res = stepShot(sh, map, G, maxSteps);
     return res;
@@ -176,10 +199,12 @@
   }
 
   // ---------- map generation ----------
-  function buildMap(rng) {
+  function buildMap(rng, mode) {
+    const solo = mode.key === 'golf';
+    // In Orbit Golf the second "ship" is the hole: a target anywhere on the right side.
     const ships = [
       { x: 50, y: 80 + rng() * 440 },
-      { x: 950, y: 80 + rng() * 440 }
+      solo ? { x: 720 + rng() * 230, y: 60 + rng() * 480 } : { x: 950, y: 80 + rng() * 440 }
     ];
     // A wall across the straight line between the ships, so every hit has to bend.
     const cx = 500 + (rng() - 0.5) * 120;
@@ -202,44 +227,62 @@
       const y = r + 16 + rng() * (H - 2 * r - 32);
       const tone = PLANET_TONES[Math.floor(rng() * PLANET_TONES.length)];
       let ok = true;
-      for (const s of ships) if (dist(s.x - x, s.y - y) < r + 110) ok = false;
+      for (const s of ships) if (dist(s.x - x, s.y - y) < r + (solo ? 70 : 110)) ok = false;
       for (const p of planets) if (dist(p.x - x, p.y - y) < p.r + r + 34) ok = false;
       closestOnSeg(x, y, wall);
       if (dist(x - QX, y - QY) < r + WALL_W / 2 + 26) ok = false;
       if (!ok) continue;
-      planets.push({ x, y, r, dense, m: r * r * (dense ? 3.2 : 1), tone, vx: 0, vy: 0 });
+      planets.push({ x, y, r, dense, m: r * r * (dense ? 3.2 : 1), tone, vx: 0, vy: 0, pole: 0 });
+    }
+    if (mode.key === 'magnet') {
+      // random poles, but always at least one of each
+      planets.forEach((p, i) => { p.pole = i === 0 ? 1 : i === 1 ? -1 : (rng() < 0.5 ? 1 : -1); });
     }
     const stars = [];
     for (let i = 0; i < 150; i++) stars.push({ x: rng() * W, y: rng() * H, s: rng() < 0.12 ? 1.6 : 0.9, a: 0.25 + rng() * 0.6 });
-    return { ships, planets, stars, wall };
+    return { ships, planets, stars, wall, solo, mode: mode.key };
   }
 
   // Map generation is a generator: it yields after every test shot, so runSliced can spread the
   // work across frames and the page never freezes, even on a slow Chromebook.
-  function* genMapSteps(levelKey) {
+  // Fairness: every angle (4° steps) and power is test-fired from each side; both players need at
+  // least 4 winning shots and neither may have more than about 3× the other's. In Magnet mode both
+  // shot poles are tested (6° steps). Orbit Golf only tests the one player and sets par from the count.
+  function* genMapSteps(levelKey, mode) {
+    mode = mode || MODES.classic;
+    const G = DEFAULT_G * mode.g;
+    const pols = mode.key === 'magnet' ? [1, -1] : [0];
+    const step = mode.key === 'magnet' ? 6 : 4;
+    const sides = mode.key === 'golf' ? 1 : 2;
     let best = null;
-    for (let attempt = 0; attempt < 30; attempt++) {
-      const map = buildMap(rngFor(levelKey + '|' + attempt));
+    for (let attempt = 0; attempt < 40; attempt++) {
+      const map = buildMap(rngFor(levelKey + '|' + attempt), mode);
       const hits = [0, 0];
-      for (let side = 0; side < 2; side++) {
-        for (let angle = -180; angle < 180; angle += 4) {
-          for (let power = 1; power <= POWER_MAX; power++) {
-            if (simulate(map, side, angle, power, DEFAULT_G, CHECK_STEPS) === HIT) hits[side]++;
-            yield;
+      let tested = 0;
+      for (let side = 0; side < sides; side++) {
+        for (const pol of pols) {
+          for (let angle = -180; angle < 180; angle += step) {
+            for (let power = 1; power <= POWER_MAX; power++) {
+              if (simulate(map, side, angle, power, G, CHECK_STEPS, pol) === HIT) hits[side]++;
+              if (side === 0) tested++;
+              yield;
+            }
           }
         }
         if (hits[side] < 4) break; // this map can't pass, so skip testing the other side
       }
-      const lo = Math.min(hits[0], hits[1]), hi = Math.max(hits[0], hits[1]);
+      const lo = sides === 1 ? hits[0] : Math.min(hits[0], hits[1]);
+      const hi = sides === 1 ? hits[0] : Math.max(hits[0], hits[1]);
       map.hits = hits;
-      map.rate = (hits[0] + hits[1]) / 3600;
+      map.rate = (hits[0] + hits[1]) / (tested * sides);
+      map.par = hits[0] >= 16 ? 3 : hits[0] >= 8 ? 4 : 5;
       if (lo >= 4 && lo / hi >= 0.35) return map;
-      if (!best || lo > Math.min(best.hits[0], best.hits[1])) best = map;
+      if (!best || lo > (best.solo ? best.hits[0] : Math.min(best.hits[0], best.hits[1]))) best = map;
     }
     return best;
   }
-  function genMap(levelKey) { // all at once (used by tests)
-    const g = genMapSteps(levelKey);
+  function genMap(levelKey, mode) { // all at once (used by tests)
+    const g = genMapSteps(levelKey, mode);
     let r;
     while (!(r = g.next()).done);
     return r.value;
@@ -254,6 +297,8 @@
   // ---------- state ----------
   const state = {
     code: '',
+    mode: MODES.classic,
+    golf: { strokes: [], pars: [] },
     round: 1,
     turn: 0,
     wins: [0, 0],
@@ -261,7 +306,7 @@
     totalShots: [0, 0],
     roundShots: [0, 0],
     slingshots: [0, 0],
-    aim: [{ angle: 20, power: 5 }, { angle: 20, power: 5 }],
+    aim: [{ angle: 20, power: 5, pol: 1 }, { angle: 20, power: 5, pol: 1 }],
     settling: false,
     settleSteps: 0,
     shooter: 0,
@@ -317,7 +362,10 @@
   }
   window.addEventListener('resize', resize);
 
-  if (/[?&]test\b/.test(location.search)) window.__s = state; // test hook only
+  if (/[?&]test\b/.test(location.search)) { // test hooks only
+    window.__s = state;
+    window.__phys = { genMap: (k, m) => genMap(k, MODES[m]), MODES, tune(moon, mag) { MOON_G = moon; MODES.moon.g = moon; MAGNET_K = mag; } };
+  }
   const badges = A.makeBadges($('badges'));
   const award = badges.award;
 
@@ -327,9 +375,55 @@
     powerRange.value = a.power; powerNum.value = a.power;
   }
 
+  function golfTotal() {
+    let strokes = 0, par = 0;
+    state.golf.strokes.forEach((n, i) => { strokes += n; par += state.golf.pars[i]; });
+    return { strokes, diff: strokes - par };
+  }
+  const vsPar = (d) => (d === 0 ? 'E' : d > 0 ? '+' + d : String(d));
+
+  function renderGolfHud() {
+    const hole = state.round, map = state.map, t = golfTotal();
+    const par = map ? map.par : '–';
+    $('wins-0').textContent = vsPar(t.diff);
+    $('wins-label-0').textContent = 'vs par';
+    $('card-0').classList.toggle('active', !state.roundOver);
+    const last = state.last[0];
+    $('stats-0').innerHTML =
+      '<span>Hole <b>' + hole + ' of ' + GOLF_HOLES + '</b> · par <b>' + par + '</b></span>' +
+      '<span>Strokes this hole <b>' + state.roundShots[0] + ' of ' + (SHOTS_PER_ROUND + state.bonus[0]) + '</b>' + (state.bonus[0] ? ' (+' + state.bonus[0] + ' bonus)' : '') + '</span>' +
+      '<span>Course strokes <b>' + t.strokes + '</b></span>' +
+      '<span>Last shot <b>' + (last ? (last.angle + '°, power ' + last.power) : '–') + '</b></span>';
+    $('wins-1').textContent = t.strokes;
+    $('wins-label-1').textContent = 'strokes';
+    $('card-1').classList.remove('active');
+    let card = '';
+    for (let h = 0; h < GOLF_HOLES; h++) {
+      const n = state.golf.strokes[h];
+      card += '<span>Hole ' + (h + 1) + ' <b>' + (n === undefined ? '–' : n + ' (' + vsPar(n - state.golf.pars[h]) + ')') + '</b></span>';
+    }
+    $('stats-1').innerHTML = card;
+    $('stats-1').classList.add('scorecard');
+  }
+
   function renderHud() {
     document.documentElement.style.setProperty('--turn', COLORS[state.turn]);
-    for (let i = 0; i < 2; i++) {
+    const golf = solo();
+    names[1].hidden = golf;
+    $('card-title-1').hidden = !golf;
+    $('round-word').textContent = golf ? 'Hole' : 'Round';
+    $('draws-wrap').hidden = golf;
+    $('pole-btn').hidden = !magnets();
+    if (magnets()) {
+      const pol = state.aim[state.turn].pol;
+      $('pole-btn').textContent = 'Shot pole: ' + (pol > 0 ? 'N' : 'S');
+      $('pole-btn').dataset.pole = pol > 0 ? 'N' : 'S';
+    }
+    $('mode-select').value = state.mode.key;
+    if (golf) renderGolfHud();
+    for (let i = 0; i < 2 && !golf; i++) {
+      $('wins-label-' + i).textContent = 'rounds';
+      $('stats-' + i).classList.remove('scorecard');
       $('wins-' + i).textContent = state.wins[i];
       $('card-' + i).classList.toggle('active', state.turn === i && !state.roundOver);
       const last = state.last[i];
@@ -341,7 +435,8 @@
         '<span>Slingshots <b>' + state.slingshots[i] + '</b></span>' +
         '<span>Last shot <b>' + (last ? (last.angle + '°, power ' + last.power) : '–') + '</b></span>';
     }
-    $('turn-label').textContent = state.roundOver ? 'Round over'
+    $('turn-label').textContent = state.roundOver ? (golf ? 'Hole over' : 'Round over')
+      : golf && !state.flying && !state.settling && !A.quiz.isOpen ? 'Hole ' + state.round + ' · stroke ' + (state.roundShots[0] + 1)
       : A.quiz.isOpen ? (nameOf(state.turn) + ' answering questions')
       : state.settling ? 'Planets moving…'
       : state.flying ? (nameOf(state.turn) + '’s shot in flight')
@@ -351,10 +446,10 @@
     $('round-num').textContent = state.round;
     $('draws').textContent = state.draws;
     if (state.map) {
-      $('difficulty').textContent = difficultyLabel(state.map.rate);
+      $('difficulty').textContent = golf ? 'Par ' + state.map.par : difficultyLabel(state.map.rate);
       $('planet-count').textContent = state.map.planets.length;
     }
-    $('stage-label').textContent = (A.demo.active ? 'Demo' : state.code) + ' · round ' + state.round + (state.message ? ' · ' + state.message : '');
+    $('stage-label').textContent = (A.demo.active ? 'Demo' : state.code) + ' · ' + (golf ? 'hole ' : 'round ') + state.round + (state.message ? ' · ' + state.message : '');
     renderItems();
     $('practice-btn').disabled = !(A.demo.active || state.roundOver) || A.modalOpen();
     wake();
@@ -364,7 +459,8 @@
   const POWERUPS = {
     arc: { name: 'Arc Scope', label: 'arc', help: 'shows where your next shot will curve' },
     pierce: { name: 'Pierce', label: 'pierce', help: 'your next shot passes through one planet or the wall' },
-    resize: { name: 'Resize', label: 'resize', help: 'turn one planet into a different space object' }
+    resize: { name: 'Resize', label: 'resize', help: 'turn one planet into a different space object' },
+    flip: { name: 'Flip', label: 'flip', help: 'switch one magnet between north and south' }
   };
   // Game-scale stand-ins. Real masses differ by millions of times (the sun is about 333,000 Earths),
   // so these keep the order right while staying playable.
@@ -391,7 +487,7 @@
   const PREVIEW_STEPS = 700;
 
   function makePickups(map, rng) {
-    const types = Object.keys(POWERUPS);
+    const types = map.mode === 'magnet' ? ['arc', 'pierce', 'flip'] : ['arc', 'pierce', 'resize'];
     const out = [];
     let tries = 0;
     while (out.length < 3 && tries < 400) {
@@ -409,6 +505,10 @@
     return out;
   }
 
+  const solo = () => state.mode.key === 'golf';
+  const magnets = () => state.mode.key === 'magnet';
+  const modeG = () => DEFAULT_G * state.mode.g;
+  const shotPol = (i) => (magnets() ? state.aim[i].pol : 0);
   const idle = () => !!state.map && !state.flying && !state.settling && !A.modalOpen() && !state.roundOver;
 
   // ---------- space facts pop-up (shared facts card from the core) ----------
@@ -435,7 +535,7 @@
         continue;
       }
       const mine = state.turn === i && idle();
-      const active = mine && (state.armed[key] || (key === 'resize' && state.resizeMode));
+      const active = mine && (state.armed[key] || ((key === 'resize' || key === 'flip') && state.resizeMode));
       const b = document.createElement('button');
       b.type = 'button';
       b.className = 'item' + (active ? ' armed' : '');
@@ -452,7 +552,10 @@
       b.disabled = state.resizeSel < 0 || t.r > room;
       b.title = state.resizeSel >= 0 && t.r > room ? 'No room for this one here' : t.name + ': ' + t.blurb;
     });
-    $('resize-msg').textContent = state.resizeSel < 0 ? 'Click a planet to change it.' : 'What should it become? Grayed-out ones won’t fit there.';
+    const flipping = state.held[state.turn] === 'flip';
+    $('body-types').hidden = flipping;
+    $('resize-msg').textContent = flipping ? 'Click a magnet to flip it.'
+      : state.resizeSel < 0 ? 'Click a planet to change it.' : 'What should it become? Grayed-out ones won’t fit there.';
   }
 
   function useItem(p) {
@@ -464,7 +567,7 @@
   function activateHeld(p) {
     const key = state.held[p];
     if (!key) return;
-    if (key === 'resize') { state.resizeMode = true; state.resizeSel = -1; }
+    if (key === 'resize' || key === 'flip') { state.resizeMode = true; state.resizeSel = -1; }
     else state.armed[key] = true;
     toast(POWERUPS[key].name + ' ready: ' + POWERUPS[key].help + '.');
     renderHud();
@@ -479,6 +582,16 @@
     m = Math.min(m, dist(p.x - QX, p.y - QY) - WALL_W / 2 - 6);
     m = Math.min(m, p.x, W - p.x, p.y, H - p.y);
     return m;
+  }
+
+  function flipMagnet(i) {
+    const p = state.map.planets[i];
+    p.pole = -p.pole;
+    state.held[state.turn] = null;
+    state.resizeMode = false;
+    state.resizeSel = -1;
+    toast('Flipped to ' + (p.pole > 0 ? 'north' : 'south') + '. Now it ' + (p.pole === state.aim[state.turn].pol ? 'pushes' : 'pulls') + ' your current shot.');
+    renderHud();
   }
 
   function setBodyType(t) {
@@ -520,9 +633,9 @@
   let previewKey = '', previewPts = [];
   function previewPath() {
     const i = state.turn, a = state.aim[i];
-    const key = i + '|' + a.angle + '|' + a.power + '|' + state.armed.pierce + '|' + bgKey();
+    const key = i + '|' + a.angle + '|' + a.power + '|' + a.pol + '|' + state.armed.pierce + '|' + bgKey();
     if (key === previewKey) return previewPts;
-    const sh = makeShot(state.map, i, a.angle, a.power, game.G);
+    const sh = makeShot(state.map, i, a.angle, a.power, game.G, shotPol(i));
     sh.pierce = state.armed.pierce ? 1 : 0;
     const pts = [];
     for (let k = 0; k < PREVIEW_STEPS; k++) {
@@ -554,14 +667,14 @@
     state.roundShots = [0, 0];
     state.particles = [];
     state.message = '';
-    state.turn = (state.round - 1) % 2;
+    state.turn = solo() ? 0 : (state.round - 1) % 2;
     $('banner').hidden = true;
     $('busy').hidden = false;
     state.map = null;
     renderHud();
     const token = ++genToken;
     const key = state.code + '-R' + state.round;
-    runSliced(genMapSteps(key), (map) => {
+    runSliced(genMapSteps(key, state.mode), (map) => {
       map.id = token;
       map.pickups = makePickups(map, rngFor(key + '|pickups'));
       state.map = map;
@@ -573,13 +686,16 @@
 
   function resetAims() {
     const angle = 20 + Math.floor(Math.random() * 41);
-    state.aim = [{ angle, power: 5 }, { angle, power: 5 }];
+    state.aim = [{ angle, power: 5, pol: 1 }, { angle, power: 5, pol: 1 }];
   }
 
   function setCode(code, resetScores) {
     if (A.demo.active) stopDemo();
     code = cleanCode(code) || randomCode();
+    const prevMode = state.mode;
     state.code = code;
+    state.mode = modeOf(code);
+    game.G = modeG();
     seedInput.value = code;
     try { history.replaceState(null, '', '#' + code); } catch (e) { /* ignore */ }
     if (resetScores) {
@@ -590,8 +706,29 @@
       state.held = [null, null];
       state.totalShots = [0, 0];
       state.slingshots = [0, 0];
+      state.golf = { strokes: [], pars: [] };
     }
     loadRound();
+    if (state.mode !== prevMode) modeIntro();
+  }
+
+  // A facts card the first time a player switches into Moon or Magnet mode.
+  function modeIntro() {
+    if (state.mode.key === 'moon') {
+      A.facts.show({
+        kicker: 'Moon mode', title: 'Gravity is weaker here',
+        sub: 'Planets pull at half their usual strength, so shots curve less. On the real Moon, gravity is about one sixth of Earth’s.',
+        facts: (window.SPACE_FACTS && window.SPACE_FACTS.moon) || []
+      });
+    } else if (state.mode.key === 'magnet') {
+      A.facts.show({
+        kicker: 'Magnet mode', title: 'Opposites attract',
+        sub: 'Red planets are north poles, blue are south. Pick your shot’s pole: opposite poles pull it in, matching poles push it away.',
+        facts: (window.SCIENCE_FACTS && window.SCIENCE_FACTS.magnets) || []
+      });
+    } else if (state.mode.key === 'golf') {
+      A.toast('Orbit Golf: sink your shot in the gold ring. ' + GOLF_HOLES + ' holes, fewest strokes wins.');
+    }
   }
 
   function fire() {
@@ -601,7 +738,7 @@
     state.shooter = p;
     state.ffwd = false;
     const a = state.aim[p];
-    state.flying = makeShot(state.map, p, a.angle, a.power, game.G);
+    state.flying = makeShot(state.map, p, a.angle, a.power, game.G, shotPol(p));
     if (state.armed.pierce) { state.flying.pierce = 1; state.held[p] = null; }
     if (state.armed.arc) state.held[p] = null;
     state.armed = { arc: false, pierce: false };
@@ -629,7 +766,13 @@
     state.trailVer++;
     state.last[p] = sh.aim;
     state.flying = null;
-    if (res === HIT) {
+    if (res === HIT && solo()) {
+      burst(state.map.ships[1].x, state.map.ships[1].y, '#ffd166', 60);
+      const chips = [];
+      if (sh.closest < 1.8) { state.slingshots[0]++; chips.push('Slingshot'); award('Slingshot'); }
+      if (state.roundShots[0] === 1) { chips.push('Hole in one'); award('Hole in one'); }
+      finishHole(state.roundShots[0], chips);
+    } else if (res === HIT) {
       const target = state.map.ships[1 - p];
       burst(target.x, target.y, COLORS[1 - p], 60);
       const chips = [];
@@ -670,6 +813,7 @@
     bc.innerHTML = '';
     chips.forEach((c) => { const s = document.createElement('span'); s.className = 'chip gold'; s.textContent = c; bc.appendChild(s); });
     $('banner').hidden = false;
+    $('next-btn').textContent = solo() ? 'Next hole' : 'Next round';
     $('next-btn').focus({ preventScroll: true });
     renderHud();
   }
@@ -679,12 +823,34 @@
     state.settling = false;
     state.wins[p]++;
     state.roundOver = true;
-    if (game.G !== DEFAULT_G) { chips.push('Hacked gravity'); award('Gravity hacker'); }
+    if (game.G !== modeG()) { chips.push('Hacked gravity'); award('Gravity hacker'); }
     showBanner(nameOf(p) + ' wins', COLORS[p], text, chips);
     if (A.demo.active) scheduleDemoRound();
   }
 
+  const GOLF_NAMES = { '-3': 'Albatross', '-2': 'Eagle', '-1': 'Birdie', '0': 'Par', '1': 'Bogey', '2': 'Double bogey' };
+  // Record a finished hole. Missing all strokes counts as strokes taken + 2.
+  function finishHole(strokes, chips, failed) {
+    state.flying = null;
+    state.settling = false;
+    state.roundOver = true;
+    const par = state.map.par;
+    state.golf.strokes[state.round - 1] = strokes;
+    state.golf.pars[state.round - 1] = par;
+    const d = strokes - par;
+    const t = golfTotal();
+    const last = state.round >= GOLF_HOLES;
+    const title = failed ? 'Missed the hole' : strokes === 1 ? 'Hole in one!' : (GOLF_NAMES[String(d)] || (d < 0 ? 'Amazing' : vsPar(d))) + '!';
+    const text = (failed ? 'Out of strokes, so it counts as ' + strokes + '. ' : 'Hole ' + state.round + ' in ' + strokes + (strokes === 1 ? ' stroke' : ' strokes') + ', par ' + par + '. ') +
+      (last ? 'Course finished: ' + t.strokes + ' strokes, ' + vsPar(t.diff) + ' vs par.' : 'Course so far: ' + vsPar(t.diff) + '.');
+    if (last && t.diff <= 0) award('Under par');
+    if (game.G !== modeG()) { chips.push('Hacked gravity'); award('Gravity hacker'); }
+    showBanner(title, '#ffd166', text, chips);
+    if (last) $('next-btn').textContent = 'New course';
+  }
+
   function drawRound() {
+    if (solo()) { finishHole(state.roundShots[0] + 2, [], true); return; }
     state.flying = null;
     state.settling = false;
     state.draws++;
@@ -706,6 +872,8 @@
     names[0].dataset.real = names[0].value; names[1].dataset.real = names[1].value;
     names[0].value = 'CPU Orange'; names[1].value = 'CPU Blue';
     state.code = 'DEMO-' + randomCode();
+    state.mode = MODES.classic;
+    game.G = DEFAULT_G;
     state.round = 1;
     state.wins = [0, 0]; state.draws = 0; state.totalShots = [0, 0]; state.slingshots = [0, 0];
     state.held = [null, null];
@@ -780,7 +948,7 @@
 
   // Give the turn to `pref` if they have shots; if they're out, quiz them once per round; then try the other player.
   function goNext(pref) {
-    for (const p of [pref, 1 - pref]) {
+    for (const p of solo() ? [0] : [pref, 1 - pref]) {
       if (shotsLeft(p) > 0) { state.turn = p; syncAimInputs(); renderHud(); return; }
       if (!state.quizzed[p]) { state.turn = p; startQuiz(p); return; }
     }
@@ -834,6 +1002,19 @@
   });
 
   function crush(victim) {
+    if (solo()) {
+      if (state.flying) { state.trails[0] = state.flying.path; state.trailVer++; state.last[0] = state.flying.aim; }
+      if (victim === 1) { burst(state.map.ships[1].x, state.map.ships[1].y, '#ffd166', 60); award('Planet bowler'); finishHole(state.roundShots[0], ['Planet putt']); return; }
+      // knocked a planet into your own ship: one penalty stroke, the planets stop, keep playing
+      for (const pl of state.map.planets) { pl.vx = 0; pl.vy = 0; }
+      state.flying = null;
+      state.roundShots[0]++;
+      state.message = 'a planet hit your ship: +1 penalty stroke';
+      burst(state.map.ships[0].x, state.map.ships[0].y, COLORS[0], 30);
+      state.settling = false;
+      goNext(0);
+      return;
+    }
     const winner = 1 - victim;
     const s = state.map.ships[victim];
     burst(s.x, s.y, COLORS[victim], 70);
@@ -852,7 +1033,7 @@
   }
 
   // ---------- drawing ----------
-  function drawField(G) {
+  function drawField(G, pol) {
     ctx.save();
     ctx.lineWidth = 1.2;
     for (let gx = 20; gx < W; gx += 40) {
@@ -860,7 +1041,7 @@
         let inside = false;
         for (const p of state.map.planets) if (dist(gx - p.x, gy - p.y) < p.r + 4) inside = true;
         if (inside) continue;
-        accel(gx, gy, state.map.planets, G);
+        accel(gx, gy, state.map.planets, G, pol);
         const mag = dist(AX, AY);
         if (mag < 1e-6) continue;
         const len = Math.min(16, 4 + Math.log10(1 + mag * 4000) * 4);
@@ -949,7 +1130,15 @@
       ctx.fillStyle = g;
       ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill();
     }
-    const label = 'M' + Math.round(p.m / 100);
+    if (p.pole) {
+      // Magnet mode: red ring for north, blue for south
+      ctx.save();
+      ctx.strokeStyle = p.pole > 0 ? '#ff5d5d' : '#4f9bff';
+      ctx.lineWidth = 4;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r + 4, 0, Math.PI * 2); ctx.stroke();
+      ctx.restore();
+    }
+    const label = (p.pole ? (p.pole > 0 ? 'N' : 'S') : 'M') + Math.round(p.m / 100);
     ctx.font = '600 ' + (p.r > 26 ? 13 : 11) + 'px "IBM Plex Mono", monospace';
     ctx.textBaseline = 'middle';
     if (p.r < 16) {
@@ -1007,8 +1196,23 @@
     return 'rgb(' + f(r) + ',' + f(g) + ',' + f(b) + ')';
   }
 
+  function drawHole(s) {
+    // Orbit Golf target: a gold ring with a little flag
+    ctx.save();
+    ctx.strokeStyle = '#ffd166'; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.arc(s.x, s.y, SHIP_R + 2, 0, Math.PI * 2); ctx.stroke();
+    ctx.fillStyle = 'rgba(255,209,102,0.25)';
+    ctx.beginPath(); ctx.arc(s.x, s.y, SHIP_R - 2, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = '#e7e9f3'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(s.x, s.y - SHIP_R - 2); ctx.lineTo(s.x, s.y - SHIP_R - 26); ctx.stroke();
+    ctx.fillStyle = '#ff8a5c';
+    ctx.beginPath(); ctx.moveTo(s.x, s.y - SHIP_R - 26); ctx.lineTo(s.x + 14, s.y - SHIP_R - 21); ctx.lineTo(s.x, s.y - SHIP_R - 16); ctx.closePath(); ctx.fill();
+    ctx.restore();
+  }
+
   function drawShip(i) {
     const s = state.map.ships[i];
+    if (i === 1 && state.map.solo) { drawHole(s); return; }
     const col = COLORS[i];
     ctx.save();
     ctx.translate(s.x, s.y);
@@ -1075,8 +1279,8 @@
   function bgKey() {
     const m = state.map;
     if (!m) return 'none|' + cv.width;
-    let k = m.id + '|' + cv.width + 'x' + cv.height + '|' + game.G + '|' + game.showField + '|' + state.trailVer;
-    for (const p of m.planets) k += '|' + p.x + ',' + p.y + ',' + p.r + ',' + p.m + ',' + p.kind;
+    let k = m.id + '|' + cv.width + 'x' + cv.height + '|' + game.G + '|' + game.showField + '|' + state.trailVer + '|' + shotPol(state.turn);
+    for (const p of m.planets) k += '|' + p.x + ',' + p.y + ',' + p.r + ',' + p.m + ',' + p.kind + ',' + p.pole;
     return k;
   }
 
@@ -1093,7 +1297,7 @@
         ctx.fillStyle = 'rgba(220,226,255,' + st.a + ')';
         ctx.fillRect(st.x, st.y, st.s, st.s);
       }
-      if (game.showField) drawField(game.G);
+      if (game.showField) drawField(game.G, shotPol(state.turn));
       drawTrail(state.trails[0], COLORS[0], 0.4);
       drawTrail(state.trails[1], COLORS[1], 0.4);
       drawWall(m.wall);
@@ -1214,11 +1418,27 @@
   powerRange.addEventListener('input', () => setAim(undefined, +powerRange.value));
   powerNum.addEventListener('input', () => { if (powerNum.value !== '' && !isNaN(+powerNum.value)) setAim(undefined, +powerNum.value); });
   fireBtn.addEventListener('click', fire);
-  $('next-btn').addEventListener('click', () => { state.round++; loadRound(); });
+  function nextRound() {
+    if (solo() && state.round >= GOLF_HOLES) { setCode(MODES.golf.prefix + randomCode(), true); return; }
+    state.round++;
+    loadRound();
+  }
+  $('next-btn').addEventListener('click', nextRound);
   $('load-btn').addEventListener('click', () => setCode(seedInput.value, true));
   seedInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') setCode(seedInput.value, true); });
-  $('new-btn').addEventListener('click', () => setCode(randomCode(), true));
-  $('daily-btn').addEventListener('click', () => { setCode(dailyCode(), true); toast('Daily map for ' + todayKey()); });
+  $('new-btn').addEventListener('click', () => setCode(state.mode.prefix + randomCode(), true));
+  $('daily-btn').addEventListener('click', () => { setCode(state.mode.prefix + dailyCode(), true); toast('Daily map for ' + A.todayKey()); });
+  $('mode-select').addEventListener('change', (e) => {
+    const m = MODES[e.target.value] || MODES.classic;
+    setCode(m.prefix + baseCode(state.code.startsWith('DEMO-') ? dailyCode() : state.code), true);
+  });
+  function togglePole() {
+    if (!magnets() || !idle()) return;
+    const a = state.aim[state.turn];
+    a.pol = -a.pol;
+    renderHud();
+  }
+  $('pole-btn').addEventListener('click', togglePole);
   $('field-toggle').addEventListener('change', (e) => { game.showField = e.target.checked; wake(); });
   names.forEach((n) => n.addEventListener('input', renderHud));
 
@@ -1243,6 +1463,7 @@
       let best = -1, bd = Infinity;
       state.map.planets.forEach((p, i) => { const d = dist(p.x - wx, p.y - wy) - p.r; if (d < 14 && d < bd) { bd = d; best = i; } });
       state.resizeSel = best;
+      if (best >= 0 && state.held[state.turn] === 'flip') { flipMagnet(best); return; }
       renderHud();
       return;
     }
@@ -1257,13 +1478,14 @@
     if (tag === 'INPUT' && e.target.type !== 'range') return;
     const step = e.shiftKey ? 5 : 1;
     const a = state.aim[state.turn];
+    if (e.key === 'p' || e.key === 'P') { togglePole(); e.preventDefault(); return; }
     if (e.key === 'ArrowUp') { setAim(a.angle + step); e.preventDefault(); }
     else if (e.key === 'ArrowDown') { setAim(a.angle - step); e.preventDefault(); }
     else if (e.key === 'ArrowRight') { setAim(undefined, a.power + step); e.preventDefault(); }
     else if (e.key === 'ArrowLeft') { setAim(undefined, a.power - step); e.preventDefault(); }
     else if (e.key === ' ' || e.key === 'Enter') {
       if (tag === 'BUTTON') return;
-      if (state.roundOver) { state.round++; loadRound(); } else fire();
+      if (state.roundOver) nextRound(); else fire();
       e.preventDefault();
     }
   });

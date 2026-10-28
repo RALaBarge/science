@@ -43,7 +43,7 @@ h1 span { color: var(--muted); font-weight: 500; font-size: 0.5em; letter-spacin
 #seed-input {
   font-family: var(--mono); font-size: 16px; font-weight: 600; letter-spacing: 0.06em;
   color: var(--code); background: var(--panel); border: 1px solid var(--line); border-radius: 6px;
-  padding: 7px 10px; width: 19ch; max-width: 100%; text-transform: uppercase;
+  padding: 7px 10px; width: 25ch; max-width: 100%; text-transform: uppercase;
 }
 button {
   font-family: var(--display); font-weight: 700; font-size: 15px; letter-spacing: 0.04em;
@@ -219,3 +219,16 @@ kbd { font-family: var(--mono); font-size: 12px; border: 1px solid var(--line); 
   .wins { font-size: 32px; }
   .knob { grid-template-columns: 4em 1fr 3.8em; gap: 8px; }
 }
+
+/* ---- Gravity Duel modes ---- */
+#mode-select {
+  font-family: var(--display); font-weight: 700; font-size: 15px; color: var(--text);
+  background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 7px 8px;
+}
+.card-title { font-size: 18px; color: var(--code); letter-spacing: 0.04em; text-transform: uppercase; }
+.pole-btn { font-family: var(--mono); font-size: 14px; }
+.pole-btn[data-pole="N"] { border-color: #ff5d5d; color: #ff8f8f; }
+.pole-btn[data-pole="S"] { border-color: #4f9bff; color: #8fbcff; }
+
+.controls { align-content: start; }
+.stats.scorecard { grid-template-columns: 1fr 1fr; column-gap: 12px; }

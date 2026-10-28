@@ -16,6 +16,12 @@
     <h1>Gravity Duel <span>planet artillery</span></h1>
     <div class="seed">
       <label for="seed-input">Map code</label>
+      <select id="mode-select" aria-label="Game mode">
+        <option value="classic">Classic</option>
+        <option value="moon">Moon</option>
+        <option value="magnet">Magnet</option>
+        <option value="golf">Orbit Golf</option>
+      </select>
       <input id="seed-input" spellcheck="false" autocomplete="off" aria-label="Map code">
       <button id="load-btn" type="button">Load</button>
       <button id="new-btn" type="button">New code</button>
@@ -40,7 +46,7 @@
   <section class="hud">
     <div class="player" data-p="0" id="card-0">
       <div class="name-row"><span class="dot"></span><input id="name-0" value="Player 1" maxlength="16" aria-label="Player 1 name"></div>
-      <div class="wins"><span id="wins-0">0</span><small>rounds</small></div>
+      <div class="wins"><span id="wins-0">0</span><small id="wins-label-0">rounds</small></div>
       <div class="stats" id="stats-0"></div>
       <div class="items" id="items-0"></div>
     </div>
@@ -62,20 +68,21 @@
         <div class="body-types" id="body-types"></div>
         <button id="resize-cancel" type="button">Cancel</button>
       </div>
+      <button id="pole-btn" class="pole-btn" type="button" hidden>Shot pole: N</button>
       <button id="fire" type="button">Fire</button>
     </div>
 
     <div class="player" data-p="1" id="card-1">
-      <div class="name-row"><span class="dot"></span><input id="name-1" value="Player 2" maxlength="16" aria-label="Player 2 name"></div>
-      <div class="wins"><span id="wins-1">0</span><small>rounds</small></div>
+      <div class="name-row"><span class="dot"></span><input id="name-1" value="Player 2" maxlength="16" aria-label="Player 2 name"><strong class="card-title" id="card-title-1" hidden>Scorecard</strong></div>
+      <div class="wins"><span id="wins-1">0</span><small id="wins-label-1">rounds</small></div>
       <div class="stats" id="stats-1"></div>
       <div class="items" id="items-1"></div>
     </div>
   </section>
 
   <div class="meta">
-    <span>Round <b id="round-num">1</b></span>
-    <span>Draws <b id="draws">0</b></span>
+    <span><span id="round-word">Round</span> <b id="round-num">1</b></span>
+    <span id="draws-wrap">Draws <b id="draws">0</b></span>
     <span>Difficulty <b id="difficulty">–</b></span>
     <span>Planets <b id="planet-count">–</b></span>
     <label><input type="checkbox" id="field-toggle" checked> Show gravity field</label>
@@ -97,6 +104,7 @@
       <p>Hitting a planet pushes it. The push is your shot's momentum (mass × speed) divided by the planet's mass, so small planets fly and big or dense ones barely budge. Moving planets bounce off the edges, the wall and each other, and they change the gravity for the next shot. Knock a planet into the other ship and you win the round. Real planets would keep drifting forever with nothing to slow them; the game slows them down so the map stays playable.</p>
       <p><b>Power-ups.</b> Each round has gold tokens floating on the map. Fly a shot through one to grab it (the shot keeps going). You can hold one power-up at a time. To use it on your turn, click it under your name and answer one science question. Get it right and it activates. Miss, and it stays locked until the next round. Each power-up works once.</p>
       <p><b>Arc Scope</b> shows the first part of your next shot's path as gold dots, so you can see how the planets will bend it before you fire. <b>Pierce</b> lets your next shot pass through one planet or the wall. Inside a planet the pull gets weaker the deeper you go, and it is zero at the very center, because the planet's mass is pulling from every side. <b>Resize</b> turns one planet into a different kind of space object: Moon-like, Earth-like, Jupiter-like, a Sun-like star, a neutron star or a quasar, and shows you some facts about what you made. Look at the mass of each one. A neutron star is tiny but heavier than the Sun, and a quasar, powered by a giant black hole, is heaviest of all. Size doesn't decide the pull; mass does. (Real masses differ by millions of times. The sun is about 333,000 Earths, so the game shrinks the differences to keep things playable.)</p>
+      <p><b>Modes.</b> Pick one from the menu next to the map code. <b>Classic</b> is the normal duel. <b>Moon</b> halves gravity, so shots curve less and you need to get closer to planets to bend around the wall. <b>Magnet</b> turns every planet into a magnetic pole: red is north, blue is south. Choose your shot's pole with the pole button (or press <kbd>P</kbd>). Opposite poles pull your shot in and matching poles push it away. In Magnet mode the Resize power-up becomes Flip, which switches a magnet's pole. <b>Orbit Golf</b> is for one player: sink your shot in the gold ring in as few strokes as you can, over 9 holes. Each hole's par comes from how many winning shots the game found when it tested the hole.</p>
       <p>Share a map code with a friend and you both get exactly the same planets, round after round. Before any map is used, the game test-fires 1,800 shots from each side to make sure both players can win.</p>
     </div>
   </details>
