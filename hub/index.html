@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Science Arcade</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@500;700;800&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../shared/core.css">
+<style>
+  .hub-intro { margin: 0; max-width: 62ch; color: var(--muted); font-family: system-ui, sans-serif; font-size: 16px; line-height: 1.5; }
+  .games { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 14px; }
+  .game-card {
+    display: grid; grid-template-rows: auto auto 1fr auto; gap: 8px; padding: 16px; text-decoration: none; color: var(--text);
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+  }
+  .game-card:hover, .game-card:focus-visible { border-color: var(--gc); outline: none; }
+  .game-card svg { width: 100%; height: auto; border-radius: 8px; background: var(--space); display: block; }
+  .game-card h2 { margin: 0; font-size: 24px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.02em; color: var(--gc); }
+  .game-card p { margin: 0; font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.45; color: var(--text); }
+  .topics { display: flex; flex-wrap: wrap; gap: 6px; }
+  .topics span { font-family: var(--mono); font-size: 11.5px; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
+  .players { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="bar">
+    <h1>Science Arcade <span>play · learn · repeat</span></h1>
+  </header>
+  <p class="hub-intro">Five science games for grades 3–6. Every game runs in a Chromebook browser with no sign-in, plays a demo until you click, and lets you answer science questions to earn bonuses.</p>
+
+  <section class="games">
+    <a class="game-card" href="gravity-duel.html" style="--gc: #ff8a5c">
+      <svg viewBox="0 0 300 120" aria-hidden="true"><circle cx="30" cy="80" r="8" fill="#ff8a5c"/><circle cx="270" cy="45" r="8" fill="#5cc8ff"/><circle cx="120" cy="50" r="22" fill="#b58bd1"/><circle cx="190" cy="85" r="14" fill="#7f9c6b"/><path d="M38 76 Q110 10 160 60 T262 47" stroke="#ff8a5c" stroke-width="2" fill="none" stroke-dasharray="3 5"/><rect x="152" y="15" width="8" height="70" rx="4" fill="#3b3266"/></svg>
+      <h2>Gravity Duel</h2>
+      <p>Two-player artillery around planets. Bend your shot with gravity, knock planets around, try Moon, Magnet and Orbit Golf modes.</p>
+      <div class="topics"><span>Gravity</span><span>Forces</span><span>Momentum</span><span>Magnets</span><span>Space</span></div>
+      <span class="players">2 players · or 1 in Orbit Golf</span>
+    </a>
+    <a class="game-card" href="laser-bounce.html" style="--gc: #ffd166">
+      <svg viewBox="0 0 300 120" aria-hidden="true"><rect x="12" y="50" width="22" height="22" fill="#2b3556" stroke="#ffd166"/><path d="M34 61 H150 V25 H260" stroke="#fff4d6" stroke-width="3" fill="none"/><path d="M140 71 L160 51" stroke="#f2f6ff" stroke-width="5"/><path d="M140 35 L160 15" stroke="#f2f6ff" stroke-width="5"/><rect x="200" y="15" width="20" height="20" fill="rgba(255,90,90,0.4)" stroke="#ff5a5a"/><circle cx="270" cy="25" r="10" fill="none" stroke="#ffd166" stroke-width="3"/><rect x="90" y="80" width="22" height="22" fill="#6b4a2f"/></svg>
+      <h2>Laser Bounce</h2>
+      <p>Place mirrors to steer a laser into every target, past glass, frosted panes, color filters and beam splitters.</p>
+      <div class="topics"><span>Light</span><span>Reflection</span><span>Transparent / opaque</span><span>Color</span></div>
+      <span class="players">1 player · puzzles</span>
+    </a>
+    <a class="game-card" href="short-circuit.html" style="--gc: #7ee0a1">
+      <svg viewBox="0 0 300 120" aria-hidden="true"><path d="M60 30 H240 V90 H60 Z" stroke="#d9893f" stroke-width="6" fill="none"/><rect x="40" y="45" width="40" height="30" fill="#2b3556" stroke="#ffd166"/><circle cx="240" cy="60" r="14" fill="#ffe178"/><circle cx="150" cy="30" r="12" fill="#ffe178"/><path d="M180 90 l12 -10" stroke="#7d8796" stroke-width="10"/></svg>
+      <h2>Short Circuit</h2>
+      <p>Turn wire tiles to connect the battery through every bulb before time runs out. Real circuit math: series bulbs dim, shorts skip them.</p>
+      <div class="topics"><span>Electricity</span><span>Circuits</span><span>Conductors</span><span>Insulators</span></div>
+      <span class="players">1 player · timed puzzles</span>
+    </a>
+    <a class="game-card" href="balance-duel.html" style="--gc: #5cc8ff">
+      <svg viewBox="0 0 300 120" aria-hidden="true"><path d="M150 70 L130 105 H170 Z" fill="#ffd166"/><rect x="40" y="62" width="220" height="10" fill="#8a6a48" transform="rotate(-4 150 67)"/><rect x="55" y="38" width="30" height="24" fill="#5cc8ff" transform="rotate(-4 150 67)"/><rect x="205" y="45" width="40" height="30" fill="#ff8a5c" transform="rotate(-4 150 67)"/></svg>
+      <h2>Balance Duel</h2>
+      <p>Take turns placing weights on a seesaw. Turning force is weight × distance. Whoever tips it loses. Play a friend or the CPU.</p>
+      <div class="topics"><span>Levers</span><span>Balanced forces</span><span>Torque</span></div>
+      <span class="players">2 players · or vs CPU</span>
+    </a>
+    <a class="game-card" href="phase-runner.html" style="--gc: #3d8bff">
+      <svg viewBox="0 0 300 120" aria-hidden="true"><rect x="0" y="100" width="300" height="20" fill="#28324f"/><rect x="60" y="96" width="60" height="6" fill="#ff7a3d"/><path d="M85 60 q12 14 0 26 q-12 -12 0 -26z" fill="#3d8bff"/><rect x="150" y="70" width="26" height="26" fill="#bfe8ff"/><circle cx="235" cy="40" r="11" fill="#ebf0fa"/><circle cx="248" cy="44" r="9" fill="#ebf0fa"/><circle cx="224" cy="45" r="9" fill="#ebf0fa"/><rect x="200" y="100" width="70" height="20" fill="#1f5fa8"/></svg>
+      <h2>Phase Runner</h2>
+      <p>You are a blob of water. Heat into steam to float, freeze into ice to cross pools and smash walls, and reach the exit.</p>
+      <div class="topics"><span>States of matter</span><span>Heat</span><span>Water cycle</span></div>
+      <span class="players">1 player · platformer</span>
+    </a>
+  </section>
+
+  <div class="meta">
+    <span>165 science questions · 6 fact decks</span>
+    <span class="sep" aria-hidden="true">|</span>
+    <button type="button" class="linkish" id="practice-btn">Practice quiz</button>
+  </div>
+</div>
+<script src="../shared/questions.js"></script>
+<script src="../shared/facts.js"></script>
+<script src="../shared/core.js"></script>
+<script>
+  Arcade.$('practice-btn').addEventListener('click', () => Arcade.quiz.practice({ game: 'hub' }));
+</script>
+</body>
+</html>

@@ -1400,6 +1400,7 @@ window.SCIENCE_FACTS.matter = [
     }
     if (input.heat) usePack(w, 'heat');
     if (input.cold) usePack(w, 'cold');
+    const T0 = p.T;
     p.T = A.clamp(p.T + rate / 60, MIN_T, MAX_T);
     const nf = formOf(p.T);
     if (nf !== p.form) changeForm(w, nf);
@@ -1452,6 +1453,8 @@ window.SCIENCE_FACTS.matter = [
     });
     if (won) { w.won = true; w.events.push({ type: 'won' }); return; }
     if (dead) { w.deaths++; w.events.push({ type: 'died', why: p.form === 'water' ? 'pool' : 'fell', x: p.x, y: p.y }); respawn(w); }
+    // nothing moving and temperature steady: the page can stop drawing until a key is pressed
+    w.resting = !dead && p.ground && p.vx === 0 && p.vy === 0 && p.T === T0 && !dir && !input.jump;
   }
 
   function usePack(w, kind) {
@@ -1515,7 +1518,7 @@ window.SCIENCE_FACTS.matter = [
   const state = {
     world: null, level: 0, mirrored: false, bot: null, botMem: {},
     keys: { left: false, right: false, jump: false }, pending: { heat: false, cold: false },
-    acc: 0, last: 0, quizzed: false, seen: new Set(), stars: 0, hacked: false, particles: []
+    acc: 0, last: 0, quizzed: false, runStart: 0, pausedAt: 0, pausedTotal: 0, finalMs: 0, seen: new Set(), stars: 0, hacked: false, particles: []
   };
   if (/[?&]test\b/.test(location.search)) {
     window.__s = state;
@@ -1549,7 +1552,9 @@ window.SCIENCE_FACTS.matter = [
   const stage = $('stage');
   let fit = { k: 1 }, bgKey = '';
   const playing = () => !!state.world && !state.world.won && !A.modalOpen();
-  const loop = A.loop(frame, () => playing() || state.particles.length > 0);
+  const anyKey = () => state.keys.left || state.keys.right || state.keys.jump || state.pending.heat || state.pending.cold;
+  // Keep drawing while something moves. A blob at rest with steady temperature lets the page sleep.
+  const loop = A.loop(frame, () => (playing() && (!state.world.resting || anyKey() || !!state.bot)) || state.particles.length > 0);
   const wake = loop.wake;
   function resize() { fit = A.fitCanvas(cv, W, H); bgKey = ''; wake(); }
   window.addEventListener('resize', resize);
@@ -1718,7 +1723,16 @@ window.SCIENCE_FACTS.matter = [
   }
 
   // ---------- HUD ----------
-  const fmt = (frames) => (frames / 60).toFixed(1) + 's';
+  const fmtMs = (ms) => (ms / 1000).toFixed(1) + 's';
+  const fmt = (frames) => fmtMs(frames * 1000 / 60);
+  // The run clock is real time (minus time spent on quiz and facts cards), so standing still
+  // doesn't stop it even though the page stops drawing.
+  function runMs() {
+    if (!state.runStart) return 0;
+    if (state.world && state.world.won) return state.finalMs;
+    const now = state.pausedAt || performance.now();
+    return now - state.runStart - state.pausedTotal;
+  }
   let lastThermo = '';
   function updateThermo() {
     const w = state.world; if (!w) return;
@@ -1729,8 +1743,9 @@ window.SCIENCE_FACTS.matter = [
     $('thermo-fill').style.width = ((T - MIN_T) / (MAX_T - MIN_T) * 100) + '%';
     $('thermo-fill').dataset.form = w.p.form;
     $('thermo-text').textContent = f.name + ' (' + f.state + ') · ' + Math.round(T) + '°C';
-    $('time').textContent = fmt(w.frame);
+    $('time').textContent = fmtMs(runMs());
   }
+  setInterval(() => { if (state.world && !state.world.won && !A.modalOpen()) $('time').textContent = fmtMs(runMs()); }, 500);
   function renderHud() {
     const w = state.world;
     if (!w) return;
@@ -1746,12 +1761,17 @@ window.SCIENCE_FACTS.matter = [
     $('stage-label').textContent = (A.demo.active ? 'Demo · ' : '') + 'Level ' + (state.level + 1) + (state.mirrored ? ' mirrored' : '');
     $('practice-btn').disabled = !(A.demo.active || w.won) || A.modalOpen();
     const best = A.store.get('phase-best-' + state.level + (state.mirrored ? 'm' : ''), null);
-    $('best').textContent = best ? fmt(best) : '–';
+    $('best').textContent = best ? fmtMs(best) : '–';
     lastThermo = '';
     updateThermo();
     wake();
   }
-  A.onModal(() => { state.last = 0; renderHud(); });
+  A.onModal(() => {
+    // pause the run clock while a card is open
+    if (A.modalOpen() && !state.pausedAt) state.pausedAt = performance.now();
+    else if (!A.modalOpen() && state.pausedAt) { state.pausedTotal += performance.now() - state.pausedAt; state.pausedAt = 0; }
+    state.last = 0; renderHud();
+  });
 
   // ---------- levels ----------
   function loadLevel(i, mirrored) {
@@ -1760,18 +1780,21 @@ window.SCIENCE_FACTS.matter = [
     state.world = makeWorld(state.level, state.mirrored);
     state.quizzed = false; state.hacked = false; state.particles = []; state.botMem = {};
     state.acc = 0; state.last = 0;
+    state.runStart = performance.now(); state.pausedTotal = 0; state.pausedAt = A.modalOpen() ? performance.now() : 0; state.finalMs = 0;
     $('banner').hidden = true;
     if (!A.demo.active) { try { history.replaceState(null, '', '#LEVEL-' + (state.level + 1) + (state.mirrored ? '-MIRROR' : '')); } catch (e) { /* ignore */ } }
     renderHud();
   }
   function starsFor(w) {
-    const par = LEVELS[state.level].par * 60;
-    if (w.deaths === 0 && w.frame <= par) return 3;
-    if (w.deaths <= 1 && w.frame <= par * 1.6) return 2;
+    const par = LEVELS[state.level].par * 1000, t = state.finalMs;
+    if (w.deaths === 0 && t <= par) return 3;
+    if (w.deaths <= 1 && t <= par * 1.6) return 2;
     return 1;
   }
   function levelDone() {
     const w = state.world;
+    // demo bots run on game time; real players on the clock
+    state.finalMs = A.demo.active ? w.frame * 1000 / 60 : performance.now() - state.runStart - state.pausedTotal;
     const s = starsFor(w);
     puff(w.p.x + 14, w.p.y + 10, '#7ee0a1', 30);
     const chips = [];
@@ -1779,14 +1802,14 @@ window.SCIENCE_FACTS.matter = [
       state.stars += s;
       const k = 'phase-best-' + state.level + (state.mirrored ? 'm' : '');
       const best = A.store.get(k, null);
-      if (!best || w.frame < best) { A.store.set(k, w.frame); if (best) chips.push('New best time'); }
+      if (!best || state.finalMs < best) { A.store.set(k, state.finalMs); if (best) chips.push('New best time'); }
       if (s === 3) badges.award('Three stars');
       if (w.deaths === 0) chips.push('No splashes');
       if (state.hacked) { chips.push('Hacked physics'); badges.award('Phase hacker'); }
       if (state.level === LEVELS.length - 1) badges.award('Grand tour');
     }
     $('banner-title').textContent = '★'.repeat(s) + '☆'.repeat(3 - s);
-    $('banner-text').textContent = LEVELS[state.level].name + ' in ' + fmt(w.frame) + ' (par ' + LEVELS[state.level].par + 's), ' + w.deaths + (w.deaths === 1 ? ' restart.' : ' restarts.');
+    $('banner-text').textContent = LEVELS[state.level].name + ' in ' + fmtMs(state.finalMs) + ' (par ' + LEVELS[state.level].par + 's), ' + w.deaths + (w.deaths === 1 ? ' restart.' : ' restarts.');
     const bc = $('banner-chips'); bc.innerHTML = '';
     chips.forEach((c) => { const sp = document.createElement('span'); sp.className = 'chip gold'; sp.textContent = c; bc.appendChild(sp); });
     $('next-btn').textContent = state.level < LEVELS.length - 1 ? 'Next level' : 'Back to level 1';
