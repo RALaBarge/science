@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gravity Duel</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@500;700;800&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../shared/core.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="bar">
+    <h1>Gravity Duel <span>planet artillery</span></h1>
+    <div class="seed">
+      <label for="seed-input">Map code</label>
+      <input id="seed-input" spellcheck="false" autocomplete="off" aria-label="Map code">
+      <button id="load-btn" type="button">Load</button>
+      <button id="new-btn" type="button">New code</button>
+      <button id="daily-btn" type="button">Daily</button>
+    </div>
+  </header>
+
+  <section class="stage" id="stage">
+    <canvas id="cv" width="1000" height="600" aria-label="Game field: two ships on opposite sides with planets between them"></canvas>
+    <div class="stage-label" id="stage-label"></div>
+    <div class="overlay" id="banner" hidden>
+      <div class="card">
+        <h2 id="banner-title"></h2>
+        <p id="banner-text"></p>
+        <div class="chips" id="banner-chips"></div>
+        <button id="next-btn" type="button">Next round</button>
+      </div>
+    </div>
+    <div class="overlay" id="busy" hidden><div class="card">Charting the system and checking both players can hit…</div></div>
+  </section>
+
+  <section class="hud">
+    <div class="player" data-p="0" id="card-0">
+      <div class="name-row"><span class="dot"></span><input id="name-0" value="Player 1" maxlength="16" aria-label="Player 1 name"></div>
+      <div class="wins"><span id="wins-0">0</span><small>rounds</small></div>
+      <div class="stats" id="stats-0"></div>
+      <div class="items" id="items-0"></div>
+    </div>
+
+    <div class="controls">
+      <div class="turn"><strong id="turn-label">Player 1 to fire</strong><span>drag on the field to aim</span></div>
+      <div class="knob">
+        <label for="angle-range">Angle</label>
+        <input type="range" id="angle-range" min="-180" max="180" step="1" value="20">
+        <input type="number" id="angle-num" min="-180" max="180" step="1" value="20" aria-label="Angle in degrees">
+      </div>
+      <div class="knob">
+        <label for="power-range">Power</label>
+        <input type="range" id="power-range" min="1" max="20" step="1" value="5">
+        <input type="number" id="power-num" min="1" max="20" step="1" value="5" aria-label="Power from 1 to 20">
+      </div>
+      <div class="resize-bar" id="resize-bar" hidden>
+        <span id="resize-msg">Click a planet to change it.</span>
+        <div class="body-types" id="body-types"></div>
+        <button id="resize-cancel" type="button">Cancel</button>
+      </div>
+      <button id="fire" type="button">Fire</button>
+    </div>
+
+    <div class="player" data-p="1" id="card-1">
+      <div class="name-row"><span class="dot"></span><input id="name-1" value="Player 2" maxlength="16" aria-label="Player 2 name"></div>
+      <div class="wins"><span id="wins-1">0</span><small>rounds</small></div>
+      <div class="stats" id="stats-1"></div>
+      <div class="items" id="items-1"></div>
+    </div>
+  </section>
+
+  <div class="meta">
+    <span>Round <b id="round-num">1</b></span>
+    <span>Draws <b id="draws">0</b></span>
+    <span>Difficulty <b id="difficulty">–</b></span>
+    <span>Planets <b id="planet-count">–</b></span>
+    <label><input type="checkbox" id="field-toggle" checked> Show gravity field</label>
+    <span class="sep" aria-hidden="true">|</span>
+    <button type="button" class="linkish" id="practice-btn" data-demo-keep title="Open during the demo or after a round ends">Practice quiz</button>
+    <span class="chips" id="badges"></span>
+  </div>
+
+  <details class="howto" id="howto">
+    <summary>How to play and the physics</summary>
+    <div class="howto-body">
+      <p>Take turns firing at the other ship. Set the <b>angle</b> (0° points straight at your opponent, positive aims up) and the <b>power</b> from 1 to 20, then fire. Your last shot stays on screen as a faint trail so you can adjust. Each player gets 10 shots per round. When you run out, you answer 4 science questions, and each right answer earns one more shot (once per round). First hit wins; if nobody hits after all their shots, the round is a draw. Keys: <kbd>↑</kbd><kbd>↓</kbd> angle, <kbd>←</kbd><kbd>→</kbd> power, hold <kbd>Shift</kbd> for steps of 5, <kbd>Space</kbd> to fire, and <kbd>Space</kbd> again to fast-forward a slow shot.</p>
+      <p>A wall stands across the straight line between the two ships, so a straight shot never works. You have to aim past a planet and let its gravity curve your shot around the wall.</p>
+      <p>Every planet pulls your shot toward its center. The pull from each planet is</p>
+      <p class="formula">a = G × M ÷ r²</p>
+      <p>M is the planet's mass (the number printed on it) and r is how far the shot is from the planet's center. Twice as far away means a quarter of the pull. The shot feels every planet at once, and the pulls add up. Dark planets with a glowing ring are dense: small but heavy, so they pull harder than their size suggests.</p>
+      <p>There is no air in space, so nothing slows the shot down. It keeps going until gravity bends it, which is inertia. Curving a shot close around a planet to hit the target is a slingshot, and it earns a badge.</p>
+      <p>Your shot sweeps up space dust as it flies, so its mass grows, up to 4 times its starting mass (the number beside it). That extra mass does not change its path: gravity speeds up heavy and light things the same amount, which is why a hammer and a feather fall together on the moon. It only changes how hard the shot hits.</p>
+      <p>Hitting a planet pushes it. The push is your shot's momentum (mass × speed) divided by the planet's mass, so small planets fly and big or dense ones barely budge. Moving planets bounce off the edges, the wall and each other, and they change the gravity for the next shot. Knock a planet into the other ship and you win the round. Real planets would keep drifting forever with nothing to slow them; the game slows them down so the map stays playable.</p>
+      <p><b>Power-ups.</b> Each round has gold tokens floating on the map. Fly a shot through one to grab it (the shot keeps going). You can hold one power-up at a time. To use it on your turn, click it under your name and answer one science question. Get it right and it activates. Miss, and it stays locked until the next round. Each power-up works once.</p>
+      <p><b>Arc Scope</b> shows the first part of your next shot's path as gold dots, so you can see how the planets will bend it before you fire. <b>Pierce</b> lets your next shot pass through one planet or the wall. Inside a planet the pull gets weaker the deeper you go, and it is zero at the very center, because the planet's mass is pulling from every side. <b>Resize</b> turns one planet into a different kind of space object: Moon-like, Earth-like, Jupiter-like, a Sun-like star, a neutron star or a quasar, and shows you some facts about what you made. Look at the mass of each one. A neutron star is tiny but heavier than the Sun, and a quasar, powered by a giant black hole, is heaviest of all. Size doesn't decide the pull; mass does. (Real masses differ by millions of times. The sun is about 333,000 Earths, so the game shrinks the differences to keep things playable.)</p>
+      <p>Share a map code with a friend and you both get exactly the same planets, round after round. Before any map is used, the game test-fires 1,800 shots from each side to make sure both players can win.</p>
+    </div>
+  </details>
+</div>
+<script src="../shared/questions.js"></script>
+<script src="../shared/facts.js"></script>
+<script src="../shared/core.js"></script>
+<script src="gravity-duel.js"></script>
+</body>
+</html>
