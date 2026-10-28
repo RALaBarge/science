@@ -234,3 +234,6 @@ kbd { font-family: var(--mono); font-size: 12px; border: 1px solid var(--line); 
 .stats.scorecard { grid-template-columns: 1fr 1fr; column-gap: 12px; }
 .legend span { line-height: 1.35; }
 .controls > button:not(#fire) { width: 100%; }
+.time-track { position: absolute; left: 0; right: 0; bottom: 0; height: 6px; background: rgba(255,255,255,0.06); pointer-events: none; }
+.time-bar { height: 100%; width: 100%; background: var(--code); }
+.card #retry-btn { margin-bottom: 4px; }

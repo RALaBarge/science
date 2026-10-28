@@ -178,3 +178,23 @@ window.SCIENCE_FACTS.light = [
   "Fiber-optic cables carry internet data as flashes of light bouncing along inside thin strands of glass.",
   "Plants look green because they reflect green light and use the red and blue light to make food."
 ];
+window.SCIENCE_FACTS.electricity = [
+  "Electricity is a flow of tiny particles called electrons.",
+  "Electricity needs a complete loop, called a circuit, to flow.",
+  "Metals like copper are good conductors. That's why wires are made of copper.",
+  "Rubber and plastic are insulators. They coat wires to keep the electricity inside.",
+  "A switch works by opening a gap in the circuit, which stops the flow.",
+  "In a series circuit everything is on one loop, so if one bulb breaks they all go out.",
+  "In a parallel circuit each bulb has its own path, so one can go out while the others stay on. Homes are wired this way.",
+  "Adding more bulbs in series makes each one dimmer, because they share the battery's push.",
+  "A short circuit happens when electricity finds an easy path that skips what it should power. Lots of current flows and wires can get dangerously hot.",
+  "Fuses and circuit breakers protect homes by cutting the power when too much current flows.",
+  "Lightning is a giant spark of electricity, hotter than the surface of the Sun.",
+  "Benjamin Franklin is said to have flown a kite in a storm in 1752 to show that lightning is electricity.",
+  "Your nerves send messages to and from your brain as tiny electrical signals.",
+  "Electric eels can make a shock of up to about 800 volts to stun their prey.",
+  "Batteries store energy in chemicals and turn it into electricity when the circuit is complete.",
+  "Static electricity is what makes a balloon stick to the wall after you rub it on your hair.",
+  "Thomas Edison's lab made one of the first long-lasting light bulbs in 1879.",
+  "LED bulbs use much less electricity than old bulbs, which wasted most of their energy as heat."
+];

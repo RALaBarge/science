@@ -96,6 +96,16 @@ window.QUESTION_BANK = [
   ["Electricity", "How does a switch turn a light off?", ["It opens a gap in the circuit", "It uses up the electricity", "It cools the battery", "It blocks the light"], "With a gap, the loop is broken and electricity stops flowing."],
   ["Electricity", "You add more bulbs in one single loop with the same battery. Each bulb gets...", ["Dimmer", "Brighter", "Exactly the same", "A different color"], "In a series circuit, the bulbs share the battery's energy."],
   ["Electricity", "A battery stores energy as...", ["Chemical energy", "Sound energy", "Light energy", "Motion energy"], "Chemicals inside react to push electricity through the circuit."],
+  ["Electricity", "What do you call a complete loop that electricity can flow around?", ["A circuit", "A switch", "An insulator", "A magnet"], "Electricity only flows when there's an unbroken loop from the battery and back."],
+  ["Electricity", "Two bulbs are on one single loop with a battery. You unscrew one. What happens to the other?", ["It goes out too", "It gets brighter", "It stays exactly the same", "It changes color"], "In a series circuit there's only one path. Break it anywhere and everything stops."],
+  ["Electricity", "Two bulbs each have their own path to the battery. You unscrew one. What happens to the other?", ["It stays lit", "It goes out too", "It explodes", "It turns into a switch"], "This is a parallel circuit. Each bulb has its own path, the way homes are wired."],
+  ["Electricity", "What is a short circuit?", ["Electricity taking an easy path that skips the bulb or device", "A circuit made with short wires", "A very small battery", "A bulb that is burned out"], "Current rushes through the easy path, so the bulb gets nothing and the wires can get hot."],
+  ["Electricity", "Why can a short circuit be dangerous?", ["Too much current flows and the wires get very hot", "It makes the battery bigger", "It makes lights too bright", "It turns wires into magnets forever"], "That's why homes have fuses and circuit breakers to cut the power."],
+  ["Electricity", "Which of these is an insulator?", ["A rubber glove", "A copper wire", "A steel nail", "Salt water"], "Rubber blocks electricity. Metals and salt water let it through."],
+  ["Electricity", "What does a battery do in a circuit?", ["It gives the push that makes electricity flow", "It makes the light", "It blocks electricity", "It turns the circuit on and off"], "The battery's chemicals push electricity around the loop."],
+  ["Electricity", "Electricity in a wire is a flow of tiny particles called...", ["Electrons", "Photons", "Bubbles", "Cells"], "Electrons are tiny particles found in every atom."],
+  ["Electricity", "You add a third bulb to a single loop that already has two bulbs. What happens?", ["All three bulbs get dimmer", "All three get brighter", "Only the new bulb lights", "Nothing changes"], "Bulbs in series share the battery's push, so each one gets less."],
+  ["Electricity", "Which device turns electricity into motion?", ["A motor", "A light bulb", "A switch", "A wire"], "Motors in fans, cars and toys use electricity and magnets to spin."],
 
   // ---- Magnets ----
   ["Magnets", "Which will a magnet pick up?", ["A steel paper clip", "An aluminum can", "A plastic spoon", "A wooden pencil"], "Magnets attract iron and steel, but not aluminum, plastic or wood."],

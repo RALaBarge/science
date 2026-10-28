@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Short Circuit</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@500;700;800&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../shared/core.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="bar">
+    <h1>Short Circuit <span>wire it up</span></h1>
+    <div class="seed">
+      <label for="seed-input">Circuit code</label>
+      <input id="seed-input" spellcheck="false" autocomplete="off" aria-label="Circuit code">
+      <button id="load-btn" type="button">Load</button>
+      <button id="new-btn" type="button">New code</button>
+      <button id="daily-btn" type="button">Daily</button>
+    </div>
+  </header>
+
+  <section class="stage" id="stage">
+    <canvas id="cv" width="800" height="560" aria-label="Circuit board: a battery, bulbs, switches and wire tiles to turn"></canvas>
+    <div class="stage-label" id="stage-label"></div>
+    <div class="time-track" aria-hidden="true"><div class="time-bar" id="time-bar"></div></div>
+    <div class="overlay" id="banner" hidden>
+      <div class="card">
+        <h2 id="banner-title" style="color: var(--code)"></h2>
+        <p id="banner-text"></p>
+        <div class="chips" id="banner-chips"></div>
+        <button id="retry-btn" type="button" hidden>Try again</button>
+        <button id="next-btn" type="button">Next level</button>
+      </div>
+    </div>
+    <div class="overlay" id="busy" hidden><div class="card">Building a circuit and testing it…</div></div>
+  </section>
+
+  <section class="hud">
+    <div class="player active" style="--pc: var(--code)">
+      <div class="name-row"><span class="dot"></span><strong class="card-title">Level</strong></div>
+      <div class="wins"><span id="level-num">1</span><small>level</small></div>
+      <div class="stats" id="stats"></div>
+    </div>
+    <div class="controls" style="--turn: var(--code)">
+      <div class="turn"><strong id="turn-label">Light every bulb</strong><span>click a tile to turn it</span></div>
+      <button id="hint-btn" type="button">Fix one tile (answer 1 question)</button>
+    </div>
+    <div class="player" style="--pc: var(--p2)">
+      <div class="name-row"><span class="dot"></span><strong class="card-title" style="color: var(--p2)">Parts</strong></div>
+      <div class="stats legend">
+        <span><b>Battery</b>: pushes electricity out of + and back into −</span>
+        <span><b>Copper wire</b> (orange): a conductor; electricity flows through it</span>
+        <span><b>Plastic</b> (gray): an insulator; electricity can’t pass</span>
+        <span><b>Bulb</b>: lights when current flows through it</span>
+        <span><b>Switch</b>: click for ON (closed) or OFF (open gap)</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="meta">
+    <span>Level <b id="level-meta">1</b></span>
+    <span>Stars <b id="stars-total">0</b></span>
+    <span class="sep" aria-hidden="true">|</span>
+    <button type="button" class="linkish" id="practice-btn" data-demo-keep title="Open during the demo or after a level ends">Practice quiz</button>
+    <span class="chips" id="badges"></span>
+  </div>
+
+  <details class="howto">
+    <summary>How to play and the science</summary>
+    <div class="howto-body">
+      <p>Click a tile to turn it a quarter turn clockwise (right-click or Shift-click turns it back). Connect the battery’s <b>+</b> side, through every bulb, back to its <b>−</b> side before the clock runs out. Click switches to turn them ON. Keys: arrow keys move a cursor, <kbd>Space</kbd> turns the tile.</p>
+      <p>Electricity only flows around a complete loop, called a circuit. Copper conducts; plastic is an insulator, so a plastic piece is a dead end. An OFF switch is a gap.</p>
+      <p>This game really works out the electricity. Bulbs on one loop are in <b>series</b>: they share the battery’s push, so two bulbs each glow at half brightness, and three is the most that still light. If you join + to − with plain wire, the current takes that easy path and skips the bulbs: a <b>short circuit</b>. It costs 5 seconds here, and in real wiring it makes wires dangerously hot.</p>
+      <p>Stars come from how few clicks you used compared with par, the fewest clicks needed. Out of time? Answer 4 questions for 10 seconds each (once per level). Stuck? Answer one question and the game fixes one tile, for one star.</p>
+    </div>
+  </details>
+</div>
+<script src="../shared/questions.js"></script>
+<script src="../shared/facts.js"></script>
+<script src="../shared/core.js"></script>
+<script src="short-circuit.js"></script>
+</body>
+</html>
