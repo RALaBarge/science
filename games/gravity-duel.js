@@ -351,6 +351,11 @@
 
   let scale = 1, dpr = 1;
   function resize() {
+    // Fit the play field into the space left on screen under the controls, so nothing
+    // important sits below the fold (a 1366×768 Chromebook shows the whole game).
+    const top = stage.getBoundingClientRect().top + window.scrollY;
+    const room = window.innerHeight - top - 64; // leave space for the info row under the field
+    stage.style.maxWidth = Math.max(420, Math.floor(room * W / H)) + 'px';
     const cssW = stage.clientWidth;
     const cssH = cssW * (H / W);
     dpr = Math.min(window.devicePixelRatio || 1, 2);

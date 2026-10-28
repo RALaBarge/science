@@ -275,6 +275,20 @@ kbd { font-family: var(--mono); font-size: 12px; border: 1px solid var(--line); 
 .touch-pad { position: absolute; left: 10px; bottom: 10px; display: none; gap: 8px; }
 .touch-pad button { width: 56px; height: 56px; font-size: 22px; opacity: 0.8; touch-action: none; }
 @media (pointer: coarse) { .touch-pad { display: flex; } }
+
+/* Gravity Duel: controls on top, play field sized to the rest of the screen */
+.wrap > .stage { justify-self: center; width: 100%; }
+/* compact panels when they sit above the play field */
+.hud.compact { gap: 10px; }
+.hud.compact .player, .hud.compact .controls { padding: 8px 12px; gap: 4px; }
+.hud.compact .player { grid-template-columns: auto 1fr; column-gap: 12px; align-items: start; }
+.hud.compact .player > .name-row, .hud.compact .player > .items { grid-column: 1 / -1; }
+.hud.compact .wins { font-size: 30px; display: grid; justify-items: start; }
+.hud.compact .wins small { margin-left: 0; font-size: 11px; }
+.hud.compact .stats { font-size: 11.5px; gap: 0; }
+.hud.compact .controls { gap: 6px; }
+.hud.compact #fire { font-size: 17px; padding: 6px; }
+.hud.compact .items .none { font-size: 11px; }
 </style>
 </head>
 <body>
@@ -296,21 +310,7 @@ kbd { font-family: var(--mono); font-size: 12px; border: 1px solid var(--line); 
     </div>
   </header>
 
-  <section class="stage" id="stage">
-    <canvas id="cv" width="1000" height="600" aria-label="Game field: two ships on opposite sides with planets between them"></canvas>
-    <div class="stage-label" id="stage-label"></div>
-    <div class="overlay" id="banner" hidden>
-      <div class="card">
-        <h2 id="banner-title"></h2>
-        <p id="banner-text"></p>
-        <div class="chips" id="banner-chips"></div>
-        <button id="next-btn" type="button">Next round</button>
-      </div>
-    </div>
-    <div class="overlay" id="busy" hidden><div class="card">Charting the system and checking both players can hit…</div></div>
-  </section>
-
-  <section class="hud">
+  <section class="hud compact">
     <div class="player" data-p="0" id="card-0">
       <div class="name-row"><span class="dot"></span><input id="name-0" value="Player 1" maxlength="16" aria-label="Player 1 name"></div>
       <div class="wins"><span id="wins-0">0</span><small id="wins-label-0">rounds</small></div>
@@ -346,6 +346,21 @@ kbd { font-family: var(--mono); font-size: 12px; border: 1px solid var(--line); 
       <div class="items" id="items-1"></div>
     </div>
   </section>
+
+  <section class="stage" id="stage">
+    <canvas id="cv" width="1000" height="600" aria-label="Game field: two ships on opposite sides with planets between them"></canvas>
+    <div class="stage-label" id="stage-label"></div>
+    <div class="overlay" id="banner" hidden>
+      <div class="card">
+        <h2 id="banner-title"></h2>
+        <p id="banner-text"></p>
+        <div class="chips" id="banner-chips"></div>
+        <button id="next-btn" type="button">Next round</button>
+      </div>
+    </div>
+    <div class="overlay" id="busy" hidden><div class="card">Charting the system and checking both players can hit…</div></div>
+  </section>
+
 
   <div class="meta">
     <span><span id="round-word">Round</span> <b id="round-num">1</b></span>
@@ -1597,6 +1612,11 @@ window.SCIENCE_FACTS.matter = [
 
   let scale = 1, dpr = 1;
   function resize() {
+    // Fit the play field into the space left on screen under the controls, so nothing
+    // important sits below the fold (a 1366×768 Chromebook shows the whole game).
+    const top = stage.getBoundingClientRect().top + window.scrollY;
+    const room = window.innerHeight - top - 64; // leave space for the info row under the field
+    stage.style.maxWidth = Math.max(420, Math.floor(room * W / H)) + 'px';
     const cssW = stage.clientWidth;
     const cssH = cssW * (H / W);
     dpr = Math.min(window.devicePixelRatio || 1, 2);

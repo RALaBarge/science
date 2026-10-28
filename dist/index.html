@@ -275,6 +275,20 @@ kbd { font-family: var(--mono); font-size: 12px; border: 1px solid var(--line); 
 .touch-pad { position: absolute; left: 10px; bottom: 10px; display: none; gap: 8px; }
 .touch-pad button { width: 56px; height: 56px; font-size: 22px; opacity: 0.8; touch-action: none; }
 @media (pointer: coarse) { .touch-pad { display: flex; } }
+
+/* Gravity Duel: controls on top, play field sized to the rest of the screen */
+.wrap > .stage { justify-self: center; width: 100%; }
+/* compact panels when they sit above the play field */
+.hud.compact { gap: 10px; }
+.hud.compact .player, .hud.compact .controls { padding: 8px 12px; gap: 4px; }
+.hud.compact .player { grid-template-columns: auto 1fr; column-gap: 12px; align-items: start; }
+.hud.compact .player > .name-row, .hud.compact .player > .items { grid-column: 1 / -1; }
+.hud.compact .wins { font-size: 30px; display: grid; justify-items: start; }
+.hud.compact .wins small { margin-left: 0; font-size: 11px; }
+.hud.compact .stats { font-size: 11.5px; gap: 0; }
+.hud.compact .controls { gap: 6px; }
+.hud.compact #fire { font-size: 17px; padding: 6px; }
+.hud.compact .items .none { font-size: 11px; }
 </style>
 <style>
   .hub-intro { margin: 0; max-width: 62ch; color: var(--muted); font-family: system-ui, sans-serif; font-size: 16px; line-height: 1.5; }

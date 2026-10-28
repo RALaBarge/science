@@ -29,21 +29,7 @@
     </div>
   </header>
 
-  <section class="stage" id="stage">
-    <canvas id="cv" width="1000" height="600" aria-label="Game field: two ships on opposite sides with planets between them"></canvas>
-    <div class="stage-label" id="stage-label"></div>
-    <div class="overlay" id="banner" hidden>
-      <div class="card">
-        <h2 id="banner-title"></h2>
-        <p id="banner-text"></p>
-        <div class="chips" id="banner-chips"></div>
-        <button id="next-btn" type="button">Next round</button>
-      </div>
-    </div>
-    <div class="overlay" id="busy" hidden><div class="card">Charting the system and checking both players can hit…</div></div>
-  </section>
-
-  <section class="hud">
+  <section class="hud compact">
     <div class="player" data-p="0" id="card-0">
       <div class="name-row"><span class="dot"></span><input id="name-0" value="Player 1" maxlength="16" aria-label="Player 1 name"></div>
       <div class="wins"><span id="wins-0">0</span><small id="wins-label-0">rounds</small></div>
@@ -79,6 +65,21 @@
       <div class="items" id="items-1"></div>
     </div>
   </section>
+
+  <section class="stage" id="stage">
+    <canvas id="cv" width="1000" height="600" aria-label="Game field: two ships on opposite sides with planets between them"></canvas>
+    <div class="stage-label" id="stage-label"></div>
+    <div class="overlay" id="banner" hidden>
+      <div class="card">
+        <h2 id="banner-title"></h2>
+        <p id="banner-text"></p>
+        <div class="chips" id="banner-chips"></div>
+        <button id="next-btn" type="button">Next round</button>
+      </div>
+    </div>
+    <div class="overlay" id="busy" hidden><div class="card">Charting the system and checking both players can hit…</div></div>
+  </section>
+
 
   <div class="meta">
     <span><span id="round-word">Round</span> <b id="round-num">1</b></span>
