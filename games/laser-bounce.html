@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Laser Bounce</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@500;700;800&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../shared/core.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="bar">
+    <h1>Laser Bounce <span>light puzzles</span></h1>
+    <div class="seed">
+      <label for="seed-input">Puzzle code</label>
+      <input id="seed-input" spellcheck="false" autocomplete="off" aria-label="Puzzle code">
+      <button id="load-btn" type="button">Load</button>
+      <button id="new-btn" type="button">New code</button>
+      <button id="daily-btn" type="button">Daily</button>
+    </div>
+  </header>
+
+  <section class="stage" id="stage">
+    <canvas id="cv" width="960" height="640" aria-label="Puzzle board: a laser, targets, and blocks of different materials"></canvas>
+    <div class="stage-label" id="stage-label"></div>
+    <div class="overlay" id="banner" hidden>
+      <div class="card">
+        <h2 id="banner-title" style="color: var(--code)"></h2>
+        <p id="banner-text"></p>
+        <div class="chips" id="banner-chips"></div>
+        <button id="next-btn" type="button">Next level</button>
+      </div>
+    </div>
+    <div class="overlay" id="busy" hidden><div class="card">Building a puzzle and checking it can be solved…</div></div>
+  </section>
+
+  <section class="hud">
+    <div class="player active" data-p="0" style="--pc: var(--code)">
+      <div class="name-row"><span class="dot"></span><strong class="card-title">Level</strong></div>
+      <div class="wins"><span id="level-num">1</span><small>level</small></div>
+      <div class="stats" id="stats"></div>
+    </div>
+
+    <div class="controls" style="--turn: var(--code)">
+      <div class="turn"><strong id="turn-label">Light every target</strong><span>click squares to place mirrors</span></div>
+      <button id="clear-btn" type="button">Clear my mirrors</button>
+      <button id="hint-btn" type="button">Hint (answer 1 question)</button>
+      <button id="more-btn" type="button">More mirrors (answer 4)</button>
+    </div>
+
+    <div class="player" data-p="1" style="--pc: var(--p2)">
+      <div class="name-row"><span class="dot"></span><strong class="card-title" style="color: var(--p2)">What things do</strong></div>
+      <div class="stats legend" id="legend"></div>
+    </div>
+  </section>
+
+  <div class="meta">
+    <span>Level <b id="level-meta">1</b></span>
+    <span>Stars <b id="stars-total">0</b></span>
+    <span class="sep" aria-hidden="true">|</span>
+    <button type="button" class="linkish" id="practice-btn" data-demo-keep title="Open during the demo or after you solve a level">Practice quiz</button>
+    <span class="chips" id="badges"></span>
+  </div>
+
+  <details class="howto">
+    <summary>How to play and the science</summary>
+    <div class="howto-body">
+      <p>The laser shoots a beam in a straight line. Click an empty square to put a mirror there, click again to turn it the other way, and a third time to take it back. Steer the beam into every target. Keys: arrow keys move a cursor, <kbd>Space</kbd> places or turns a mirror.</p>
+      <p>A mirror turns the beam 90°. Light leaves a mirror at the same angle it came in, so a mirror tilted like / sends a beam heading right up the board, and one tilted like \ sends it down.</p>
+      <p>Materials behave like real ones. <b>Wood</b> is opaque: it blocks light. <b>Clear glass</b> is transparent: light goes straight through. <b>Frosted glass</b> is translucent: light gets through, but at half strength, and a target needs at least half strength to light up. <b>Color filters</b> only let their own color through, so white light comes out red from a red filter, and red light can't get through a blue one. <b>Beam splitters</b> are half mirrors: half the light bounces off and half goes straight through. Some targets are colored and need light of that color.</p>
+      <p>Each puzzle has a par: the fewest mirrors the game's solver needed. Match par for 3 stars. You have one spare mirror. Out of mirrors? Answer 4 questions for up to 4 more (once per level). Stuck? Answer one question to see where one mirror goes, but it costs a star.</p>
+      <p>Share a puzzle code and your friends get the same levels. Every level is built by the game and checked by its solver before you see it.</p>
+    </div>
+  </details>
+</div>
+<script src="../shared/questions.js"></script>
+<script src="../shared/facts.js"></script>
+<script src="../shared/core.js"></script>
+<script src="laser-bounce.js"></script>
+</body>
+</html>

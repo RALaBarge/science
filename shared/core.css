@@ -232,3 +232,5 @@ kbd { font-family: var(--mono); font-size: 12px; border: 1px solid var(--line); 
 
 .controls { align-content: start; }
 .stats.scorecard { grid-template-columns: 1fr 1fr; column-gap: 12px; }
+.legend span { line-height: 1.35; }
+.controls > button:not(#fire) { width: 100%; }

@@ -1,0 +1,62 @@
+const { open, answer, check } = require('./helpers');
+(async () => {
+  const { browser, page: p, errors } = await open('laser-bounce.html', '#COMET-FROG-42');
+  const ready = () => p.waitForFunction(() => document.getElementById('busy').hidden && __s.lv, null, { timeout: 60000 });
+  await ready();
+  check('demo starts', await p.evaluate(() => Arcade.demo.active));
+  await p.waitForFunction(() => !document.getElementById('banner').hidden, null, { timeout: 30000 });
+  check('demo solves a level by itself', /★/.test(await p.textContent('#banner-title')));
+  await p.screenshot({ path: 'tests/shots/laser-demo.png' });
+  await p.click('#practice-btn');
+  check('practice quiz opens during demo', await p.evaluate(() => Arcade.quiz.isOpen && Arcade.demo.active));
+  for (let i = 0; i < 4; i++) await answer(p, true);
+  await p.click('#quiz-next');
+  await p.mouse.click(500, 300);
+  await ready();
+  check('click starts real game at level 1', (await p.evaluate(() => !Arcade.demo.active && __s.level === 1)) && (await p.inputValue('#seed-input')) === 'COMET-FROG-42');
+  if (await p.evaluate(() => Arcade.facts.isOpen)) await p.click('#facts-close');
+  const clickCell = async (c) => {
+    const pt = await p.evaluate((c) => { const r = document.getElementById('cv').getBoundingClientRect(); return { x: r.left + ((c % 12) * 80 + 40) / 960 * r.width, y: r.top + (Math.floor(c / 12) * 80 + 40) / 640 * r.height }; }, c);
+    await p.mouse.click(pt.x, pt.y);
+  };
+  const solveByClicks = async () => {
+    const sol = await p.evaluate(() => __s.lv.solution);
+    for (const [c, m] of sol) { await clickCell(c); if (m === 2) await clickCell(c); }
+  };
+  await solveByClicks();
+  await p.waitForFunction(() => !document.getElementById('banner').hidden, null, { timeout: 5000 });
+  check('clicking the solution wins with 3 stars', (await p.textContent('#banner-title')) === '★★★');
+  check('practice enabled after solving', await p.isEnabled('#practice-btn'));
+  await p.click('#next-btn'); await ready();
+  if (await p.evaluate(() => Arcade.facts.isOpen)) await p.click('#facts-close');
+  check('level 2 loads', (await p.evaluate(() => __s.level)) === 2);
+  // use up the mirrors on useless squares, then the bonus quiz unlocks
+  const budget = await p.evaluate(() => __s.lv.budget);
+  const empties = await p.evaluate(() => { const out = []; const sol = new Set(__s.lv.solution.map((x) => x[0])); for (let c = 0; c < 96; c++) if (__s.lv.cells[c] === 0 && !sol.has(c)) out.push(c); return out; });
+  for (let i = 0; i < budget; i++) await clickCell(empties[empties.length - 1 - i]);
+  check('more-mirrors button unlocks when out', await p.isEnabled('#more-btn'));
+  await p.click('#more-btn');
+  for (let i = 0; i < 4; i++) await answer(p, i < 3);
+  await p.click('#quiz-next');
+  check('3 right = 3 bonus mirrors', (await p.evaluate(() => __s.bonus)) === 3);
+  await p.click('#clear-btn');
+  await p.click('#hint-btn'); await answer(p, true);
+  check('hint shows a cell', await p.evaluate(() => Array.isArray(__s.hint)));
+  await solveByClicks();
+  await p.waitForFunction(() => !document.getElementById('banner').hidden, null, { timeout: 5000 });
+  check('hint costs a star', (await p.textContent('#banner-title')) === '★★☆', await p.textContent('#banner-title'));
+  await p.click('#next-btn'); await ready();
+  if (await p.evaluate(() => Arcade.facts.isOpen)) await p.click('#facts-close');
+  await p.click('#hint-btn'); await answer(p, false);
+  check('wrong hint answer locks hints', await p.evaluate(() => __s.hintLocked) && !(await p.isEnabled('#hint-btn')));
+  await p.evaluate(() => { game.budget = 20; });
+  await solveByClicks();
+  await p.waitForFunction(() => !document.getElementById('banner').hidden, null, { timeout: 5000 });
+  check('console budget hack earns badge', /Light hacker/.test(await p.textContent('#badges')));
+  check('grid readable from console', await p.evaluate(() => game.grid.length === 8));
+  await p.click('#daily-btn'); await ready();
+  check('daily works', /^[A-Z]+-[A-Z]+-\d+$/.test(await p.inputValue('#seed-input')));
+  await p.screenshot({ path: 'tests/shots/laser.png' });
+  check('no page errors', errors.length === 0, errors.join(' | '));
+  await browser.close();
+})();

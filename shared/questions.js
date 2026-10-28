@@ -70,6 +70,17 @@ window.QUESTION_BANK = [
   ["Light", "Which material is transparent?", ["Clear glass", "Wood", "Wax paper", "Metal"], "Transparent means light passes straight through so you can see clearly."],
   ["Light", "Wax paper lets some light through, but you can't see clearly through it. It is...", ["Translucent", "Transparent", "Opaque", "Magnetic"], "Translucent things let some light through but scatter it."],
   ["Light", "How does a mirror work?", ["It reflects light", "It absorbs light", "It makes its own light", "It bends sound"], "A smooth, shiny surface bounces light back in an orderly way."],
+  ["Light", "Light hits a flat mirror at a slant. How does it bounce off?", ["At the same angle it came in", "Straight back the way it came, every time", "At a random angle", "It doesn't bounce; it goes through"], "Light leaves a mirror at the same angle it arrived. That's how you can aim a laser with mirrors."],
+  ["Light", "What is white light made of?", ["All the colors mixed together", "No colors at all", "Only white", "Only yellow and blue"], "A prism or a rainbow spreads white light out into all its colors."],
+  ["Light", "White light shines through a red filter. What color comes out?", ["Red", "White", "Blue", "No light at all"], "A red filter lets red light through and soaks up the other colors."],
+  ["Light", "Red light shines on a blue filter. What happens?", ["Most of the light is blocked", "It turns blue", "It gets brighter", "It turns white"], "A blue filter only lets blue light through. Red light has no blue in it, so it is stopped."],
+  ["Light", "Which tool uses two mirrors to let you see over a wall?", ["A periscope", "A microscope", "A thermometer", "A magnifying glass"], "Each mirror turns the light, so it goes up, across and back down to your eye."],
+  ["Light", "Why does a straw look bent in a glass of water?", ["Light changes direction when it passes between water and air", "The water bends the straw", "The straw is actually bent", "Water makes part of the light disappear"], "This bending of light is called refraction."],
+  ["Light", "Which of these travels fastest?", ["Light", "Sound", "A jet plane", "A race car"], "Light could circle Earth more than 7 times in one second."],
+  ["Light", "Why does an apple look red?", ["It reflects red light and absorbs the other colors", "It makes its own red light", "It absorbs all the red light", "It reflects every color equally"], "The color you see is the light an object bounces back to your eyes."],
+  ["Light", "Which of these makes the darkest shadow?", ["A wooden block", "A sheet of clear plastic", "Wax paper", "Thin tissue paper"], "Opaque things like wood block all the light. Translucent things let some through."],
+  ["Light", "Why does a prism split white light into a rainbow?", ["Each color bends a different amount", "The prism paints the light", "The prism adds new colors", "Light turns into sound inside it"], "Violet bends the most and red the least, so the colors spread apart."],
+  ["Light", "Scientists bounce lasers off mirrors that astronauts left on the Moon. What does that measure?", ["How far away the Moon is", "The Moon's temperature", "How heavy the Moon is", "What the Moon is made of"], "They time how long the light takes to go there and back."],
 
   // ---- Sound ----
   ["Sound", "Every sound is made by...", ["Vibrations", "Light", "Heat", "Magnets"], "Something moves back and forth quickly and pushes on the air."],

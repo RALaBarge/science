@@ -156,3 +156,25 @@ window.SCIENCE_FACTS.magnets = [
   "Magnetism and gravity both work without touching, but magnetism can push as well as pull. Gravity only pulls.",
   "Earth's magnetic poles slowly wander, and they have flipped places many times in Earth's history."
 ];
+window.SCIENCE_FACTS.light = [
+  "Light travels about 300,000 km (186,000 miles) every second. That's fast enough to circle Earth more than 7 times in one second.",
+  "Light travels in straight lines until something reflects it, bends it or blocks it.",
+  "When light hits a mirror, it bounces off at the same angle it came in.",
+  "Words look backward in a mirror because the mirror flips things front to back.",
+  "Transparent materials, like clear glass, let almost all light straight through.",
+  "Translucent materials, like frosted glass and wax paper, let some light through but scatter it, so you can't see clearly.",
+  "Opaque materials, like wood and metal, block light completely. That's what makes shadows.",
+  "White light is a mix of all the colors of the rainbow.",
+  "A prism splits white light into a rainbow because each color bends a different amount.",
+  "A red filter lets red light through and soaks up the other colors.",
+  "Red light can't get through a blue filter, because a blue filter only lets blue through.",
+  "An apple looks red because it reflects red light and absorbs the other colors.",
+  "Your eyes have cones, which see color, and rods, which help you see in dim light.",
+  "Sunlight takes about 8 minutes to reach Earth.",
+  "A laser makes light of one color with its waves lined up, so the beam stays narrow over long distances.",
+  "Astronauts left mirrors on the Moon. Scientists still bounce lasers off them to measure how far away the Moon is.",
+  "Light slows down when it goes into glass or water. That's why a straw in water looks bent.",
+  "A periscope uses two mirrors so you can see over a wall.",
+  "Fiber-optic cables carry internet data as flashes of light bouncing along inside thin strands of glass.",
+  "Plants look green because they reflect green light and use the red and blue light to make food."
+];

@@ -243,6 +243,8 @@ kbd { font-family: var(--mono); font-size: 12px; border: 1px solid var(--line); 
 
 .controls { align-content: start; }
 .stats.scorecard { grid-template-columns: 1fr 1fr; column-gap: 12px; }
+.legend span { line-height: 1.35; }
+.controls > button:not(#fire) { width: 100%; }
 </style>
 </head>
 <body>
@@ -417,6 +419,17 @@ window.QUESTION_BANK = [
   ["Light", "Which material is transparent?", ["Clear glass", "Wood", "Wax paper", "Metal"], "Transparent means light passes straight through so you can see clearly."],
   ["Light", "Wax paper lets some light through, but you can't see clearly through it. It is...", ["Translucent", "Transparent", "Opaque", "Magnetic"], "Translucent things let some light through but scatter it."],
   ["Light", "How does a mirror work?", ["It reflects light", "It absorbs light", "It makes its own light", "It bends sound"], "A smooth, shiny surface bounces light back in an orderly way."],
+  ["Light", "Light hits a flat mirror at a slant. How does it bounce off?", ["At the same angle it came in", "Straight back the way it came, every time", "At a random angle", "It doesn't bounce; it goes through"], "Light leaves a mirror at the same angle it arrived. That's how you can aim a laser with mirrors."],
+  ["Light", "What is white light made of?", ["All the colors mixed together", "No colors at all", "Only white", "Only yellow and blue"], "A prism or a rainbow spreads white light out into all its colors."],
+  ["Light", "White light shines through a red filter. What color comes out?", ["Red", "White", "Blue", "No light at all"], "A red filter lets red light through and soaks up the other colors."],
+  ["Light", "Red light shines on a blue filter. What happens?", ["Most of the light is blocked", "It turns blue", "It gets brighter", "It turns white"], "A blue filter only lets blue light through. Red light has no blue in it, so it is stopped."],
+  ["Light", "Which tool uses two mirrors to let you see over a wall?", ["A periscope", "A microscope", "A thermometer", "A magnifying glass"], "Each mirror turns the light, so it goes up, across and back down to your eye."],
+  ["Light", "Why does a straw look bent in a glass of water?", ["Light changes direction when it passes between water and air", "The water bends the straw", "The straw is actually bent", "Water makes part of the light disappear"], "This bending of light is called refraction."],
+  ["Light", "Which of these travels fastest?", ["Light", "Sound", "A jet plane", "A race car"], "Light could circle Earth more than 7 times in one second."],
+  ["Light", "Why does an apple look red?", ["It reflects red light and absorbs the other colors", "It makes its own red light", "It absorbs all the red light", "It reflects every color equally"], "The color you see is the light an object bounces back to your eyes."],
+  ["Light", "Which of these makes the darkest shadow?", ["A wooden block", "A sheet of clear plastic", "Wax paper", "Thin tissue paper"], "Opaque things like wood block all the light. Translucent things let some through."],
+  ["Light", "Why does a prism split white light into a rainbow?", ["Each color bends a different amount", "The prism paints the light", "The prism adds new colors", "Light turns into sound inside it"], "Violet bends the most and red the least, so the colors spread apart."],
+  ["Light", "Scientists bounce lasers off mirrors that astronauts left on the Moon. What does that measure?", ["How far away the Moon is", "The Moon's temperature", "How heavy the Moon is", "What the Moon is made of"], "They time how long the light takes to go there and back."],
 
   // ---- Sound ----
   ["Sound", "Every sound is made by...", ["Vibrations", "Light", "Heat", "Magnets"], "Something moves back and forth quickly and pushes on the air."],
@@ -673,6 +686,28 @@ window.SCIENCE_FACTS.magnets = [
   "Sea turtles and some birds can sense Earth's magnetic field and use it to find their way.",
   "Magnetism and gravity both work without touching, but magnetism can push as well as pull. Gravity only pulls.",
   "Earth's magnetic poles slowly wander, and they have flipped places many times in Earth's history."
+];
+window.SCIENCE_FACTS.light = [
+  "Light travels about 300,000 km (186,000 miles) every second. That's fast enough to circle Earth more than 7 times in one second.",
+  "Light travels in straight lines until something reflects it, bends it or blocks it.",
+  "When light hits a mirror, it bounces off at the same angle it came in.",
+  "Words look backward in a mirror because the mirror flips things front to back.",
+  "Transparent materials, like clear glass, let almost all light straight through.",
+  "Translucent materials, like frosted glass and wax paper, let some light through but scatter it, so you can't see clearly.",
+  "Opaque materials, like wood and metal, block light completely. That's what makes shadows.",
+  "White light is a mix of all the colors of the rainbow.",
+  "A prism splits white light into a rainbow because each color bends a different amount.",
+  "A red filter lets red light through and soaks up the other colors.",
+  "Red light can't get through a blue filter, because a blue filter only lets blue through.",
+  "An apple looks red because it reflects red light and absorbs the other colors.",
+  "Your eyes have cones, which see color, and rods, which help you see in dim light.",
+  "Sunlight takes about 8 minutes to reach Earth.",
+  "A laser makes light of one color with its waves lined up, so the beam stays narrow over long distances.",
+  "Astronauts left mirrors on the Moon. Scientists still bounce lasers off them to measure how far away the Moon is.",
+  "Light slows down when it goes into glass or water. That's why a straw in water looks bent.",
+  "A periscope uses two mirrors so you can see over a wall.",
+  "Fiber-optic cables carry internet data as flashes of light bouncing along inside thin strands of glass.",
+  "Plants look green because they reflect green light and use the red and blue light to make food."
 ];
 </script>
 <script>
