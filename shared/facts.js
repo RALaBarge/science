@@ -214,3 +214,25 @@ window.SCIENCE_FACTS.levers = [
   "A bottle opener is a lever: it pivots on the edge of the cap.",
   "On a seesaw, the heavier side goes down unless its weight sits closer to the middle."
 ];
+window.SCIENCE_FACTS.matter = [
+  "Everything is made of tiny particles that are always moving, even in a solid.",
+  "In ice (a solid), water particles are locked in place and only jiggle.",
+  "In liquid water, the particles slide past each other, so water flows and takes the shape of its container.",
+  "In steam (a gas), the particles zoom around far apart and spread out to fill any space.",
+  "Pure water freezes at 0°C (32°F) and boils at 100°C (212°F) at sea level.",
+  "On a tall mountain, water boils below 100°C because there's less air pushing down on it.",
+  "Water expands when it freezes. That's why ice floats and why frozen pipes can burst.",
+  "Melting and freezing don't change the mass. A melted ice cube weighs exactly what the ice did.",
+  "Evaporation is liquid turning into gas. Puddles evaporate even without boiling, just more slowly.",
+  "Condensation is gas turning back into liquid. It's why a cold glass gets wet on the outside.",
+  "Clouds are made of tiny water drops or ice crystals that condensed from water vapor.",
+  "The water cycle moves water around Earth: evaporation, condensation, precipitation, and collection.",
+  "The steam you can see from a kettle is actually tiny drops of condensed water. Real steam is invisible.",
+  "Heating makes particles move faster. Cooling makes them slow down.",
+  "Some solids skip the liquid stage. Dry ice turns straight from a solid into a gas.",
+  "Salt lowers the temperature water freezes at. That's why trucks spread salt on icy roads.",
+  "Most of Earth's fresh water is frozen in glaciers and ice caps.",
+  "The water you drink is billions of years old. It has cycled through oceans, clouds and rivers many times.",
+  "Ice is slippery partly because a very thin layer on its surface acts almost like a liquid.",
+  "Hot air rises because it's less dense than the cooler air around it."
+];

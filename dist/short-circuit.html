@@ -259,6 +259,22 @@ kbd { font-family: var(--mono); font-size: 12px; border: 1px solid var(--line); 
 .pivot-row { display: flex; gap: 8px; }
 .pivot-row button { flex: 1; }
 #p2-select { font-family: var(--display); font-weight: 700; font-size: 14px; color: var(--text); background: var(--panel-2); border: 1px solid var(--line); border-radius: 5px; padding: 3px 4px; }
+/* ---- Phase Runner ---- */
+.select { font-family: var(--display); font-weight: 700; font-size: 15px; color: var(--text); background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 7px 8px; }
+.check { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; letter-spacing: 0; text-transform: none; color: var(--text); cursor: pointer; }
+.thermo { display: grid; gap: 6px; }
+.thermo-track { position: relative; height: 16px; border-radius: 999px; background: linear-gradient(90deg, #6fb6e0 0%, #6fb6e0 27%, #3d8bff 27%, #3d8bff 73%, #ff7a3d 73%); opacity: 0.35; }
+.thermo-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 36%; border-radius: 999px; background: #3d8bff; }
+.thermo-fill[data-form="ice"] { background: #bfe8ff; }
+.thermo-fill[data-form="steam"] { background: #ffffff; }
+.thermo-track:has(.thermo-fill) { opacity: 1; background: linear-gradient(90deg, rgba(111,182,224,0.25) 0%, rgba(111,182,224,0.25) 27.3%, rgba(61,139,255,0.25) 27.3%, rgba(61,139,255,0.25) 72.7%, rgba(255,122,61,0.25) 72.7%); }
+.thermo .mark { position: absolute; top: -3px; bottom: -3px; width: 2px; background: var(--text); }
+.thermo .m0 { left: 27.3%; } .thermo .m100 { left: 72.7%; }
+.thermo-scale { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.thermo-text { font-family: var(--mono); font-size: 14px; font-weight: 600; color: var(--text); }
+.touch-pad { position: absolute; left: 10px; bottom: 10px; display: none; gap: 8px; }
+.touch-pad button { width: 56px; height: 56px; font-size: 22px; opacity: 0.8; touch-action: none; }
+@media (pointer: coarse) { .touch-pad { display: flex; } }
 </style>
 </head>
 <body>
@@ -459,6 +475,12 @@ window.QUESTION_BANK = [
   ["Heat", "Heat always moves from...", ["Warmer things to cooler things", "Cooler things to warmer things", "Big things to small things", "Only upward"], "That's why ice melts in your hand and your hand gets cold."],
   ["Heat", "A metal spoon in hot soup gets hot quickly because metal is a good...", ["Conductor of heat", "Insulator", "Magnet", "Mirror"], "Conductors let heat move through them easily."],
   ["Heat", "Why does a black shirt feel hotter in the sun than a white one?", ["Dark colors absorb more sunlight", "Black shirts make their own heat", "Black shirts are always thicker", "White shirts block air"], "Dark colors soak up light energy; light colors reflect more of it."],
+  ["Heat", "At what temperature does pure water boil at sea level?", ["100°C (212°F)", "0°C (32°F)", "50°C (122°F)", "37°C (98.6°F)"], "Above 100°C, liquid water turns into steam (a gas)."],
+  ["Heat", "At what temperature does pure water freeze?", ["0°C (32°F)", "100°C (212°F)", "−100°C (−148°F)", "20°C (68°F)"], "Below 0°C, liquid water turns into ice (a solid)."],
+  ["Matter", "Ice cubes float in a glass of water. Why?", ["Ice is less dense than liquid water", "Ice is heavier than water", "Ice is full of air bubbles from the freezer", "Cold things always float"], "Water expands when it freezes, so ice takes up more space for the same mass."],
+  ["Matter", "In which state do water particles move the fastest?", ["Steam (gas)", "Ice (solid)", "Liquid water", "They all move the same"], "Heating gives particles more energy, so gas particles zoom around."],
+  ["Matter", "Steam touches a cold window and turns into drops. What is this called?", ["Condensation", "Evaporation", "Melting", "Freezing"], "Cooling a gas turns it back into a liquid."],
+  ["Matter", "What happens to water particles when water freezes?", ["They slow down and lock into place", "They speed up and spread out", "They disappear", "They turn into air"], "In a solid, particles only jiggle in place."],
 
   // ---- Plants ----
   ["Plants", "Where does most of a tree's wood mass come from?", ["Carbon dioxide from the air, plus water", "The soil", "Fertilizer", "Sunlight itself"], "Plants build themselves mostly from air and water, using sunlight's energy. The soil barely shrinks."],
@@ -746,6 +768,28 @@ window.SCIENCE_FACTS.levers = [
   "Tightrope walkers carry long poles to help them keep their balance.",
   "A bottle opener is a lever: it pivots on the edge of the cap.",
   "On a seesaw, the heavier side goes down unless its weight sits closer to the middle."
+];
+window.SCIENCE_FACTS.matter = [
+  "Everything is made of tiny particles that are always moving, even in a solid.",
+  "In ice (a solid), water particles are locked in place and only jiggle.",
+  "In liquid water, the particles slide past each other, so water flows and takes the shape of its container.",
+  "In steam (a gas), the particles zoom around far apart and spread out to fill any space.",
+  "Pure water freezes at 0°C (32°F) and boils at 100°C (212°F) at sea level.",
+  "On a tall mountain, water boils below 100°C because there's less air pushing down on it.",
+  "Water expands when it freezes. That's why ice floats and why frozen pipes can burst.",
+  "Melting and freezing don't change the mass. A melted ice cube weighs exactly what the ice did.",
+  "Evaporation is liquid turning into gas. Puddles evaporate even without boiling, just more slowly.",
+  "Condensation is gas turning back into liquid. It's why a cold glass gets wet on the outside.",
+  "Clouds are made of tiny water drops or ice crystals that condensed from water vapor.",
+  "The water cycle moves water around Earth: evaporation, condensation, precipitation, and collection.",
+  "The steam you can see from a kettle is actually tiny drops of condensed water. Real steam is invisible.",
+  "Heating makes particles move faster. Cooling makes them slow down.",
+  "Some solids skip the liquid stage. Dry ice turns straight from a solid into a gas.",
+  "Salt lowers the temperature water freezes at. That's why trucks spread salt on icy roads.",
+  "Most of Earth's fresh water is frozen in glaciers and ice caps.",
+  "The water you drink is billions of years old. It has cycled through oceans, clouds and rivers many times.",
+  "Ice is slippery partly because a very thin layer on its surface acts almost like a liquid.",
+  "Hot air rises because it's less dense than the cooler air around it."
 ];
 </script>
 <script>

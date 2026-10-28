@@ -126,6 +126,12 @@ window.QUESTION_BANK = [
   ["Heat", "Heat always moves from...", ["Warmer things to cooler things", "Cooler things to warmer things", "Big things to small things", "Only upward"], "That's why ice melts in your hand and your hand gets cold."],
   ["Heat", "A metal spoon in hot soup gets hot quickly because metal is a good...", ["Conductor of heat", "Insulator", "Magnet", "Mirror"], "Conductors let heat move through them easily."],
   ["Heat", "Why does a black shirt feel hotter in the sun than a white one?", ["Dark colors absorb more sunlight", "Black shirts make their own heat", "Black shirts are always thicker", "White shirts block air"], "Dark colors soak up light energy; light colors reflect more of it."],
+  ["Heat", "At what temperature does pure water boil at sea level?", ["100°C (212°F)", "0°C (32°F)", "50°C (122°F)", "37°C (98.6°F)"], "Above 100°C, liquid water turns into steam (a gas)."],
+  ["Heat", "At what temperature does pure water freeze?", ["0°C (32°F)", "100°C (212°F)", "−100°C (−148°F)", "20°C (68°F)"], "Below 0°C, liquid water turns into ice (a solid)."],
+  ["Matter", "Ice cubes float in a glass of water. Why?", ["Ice is less dense than liquid water", "Ice is heavier than water", "Ice is full of air bubbles from the freezer", "Cold things always float"], "Water expands when it freezes, so ice takes up more space for the same mass."],
+  ["Matter", "In which state do water particles move the fastest?", ["Steam (gas)", "Ice (solid)", "Liquid water", "They all move the same"], "Heating gives particles more energy, so gas particles zoom around."],
+  ["Matter", "Steam touches a cold window and turns into drops. What is this called?", ["Condensation", "Evaporation", "Melting", "Freezing"], "Cooling a gas turns it back into a liquid."],
+  ["Matter", "What happens to water particles when water freezes?", ["They slow down and lock into place", "They speed up and spread out", "They disappear", "They turn into air"], "In a solid, particles only jiggle in place."],
 
   // ---- Plants ----
   ["Plants", "Where does most of a tree's wood mass come from?", ["Carbon dioxide from the air, plus water", "The soil", "Fertilizer", "Sunlight itself"], "Plants build themselves mostly from air and water, using sunlight's energy. The soil barely shrinks."],

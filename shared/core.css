@@ -248,3 +248,19 @@ kbd { font-family: var(--mono); font-size: 12px; border: 1px solid var(--line); 
 .pivot-row { display: flex; gap: 8px; }
 .pivot-row button { flex: 1; }
 #p2-select { font-family: var(--display); font-weight: 700; font-size: 14px; color: var(--text); background: var(--panel-2); border: 1px solid var(--line); border-radius: 5px; padding: 3px 4px; }
+/* ---- Phase Runner ---- */
+.select { font-family: var(--display); font-weight: 700; font-size: 15px; color: var(--text); background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 7px 8px; }
+.check { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; letter-spacing: 0; text-transform: none; color: var(--text); cursor: pointer; }
+.thermo { display: grid; gap: 6px; }
+.thermo-track { position: relative; height: 16px; border-radius: 999px; background: linear-gradient(90deg, #6fb6e0 0%, #6fb6e0 27%, #3d8bff 27%, #3d8bff 73%, #ff7a3d 73%); opacity: 0.35; }
+.thermo-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 36%; border-radius: 999px; background: #3d8bff; }
+.thermo-fill[data-form="ice"] { background: #bfe8ff; }
+.thermo-fill[data-form="steam"] { background: #ffffff; }
+.thermo-track:has(.thermo-fill) { opacity: 1; background: linear-gradient(90deg, rgba(111,182,224,0.25) 0%, rgba(111,182,224,0.25) 27.3%, rgba(61,139,255,0.25) 27.3%, rgba(61,139,255,0.25) 72.7%, rgba(255,122,61,0.25) 72.7%); }
+.thermo .mark { position: absolute; top: -3px; bottom: -3px; width: 2px; background: var(--text); }
+.thermo .m0 { left: 27.3%; } .thermo .m100 { left: 72.7%; }
+.thermo-scale { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.thermo-text { font-family: var(--mono); font-size: 14px; font-weight: 600; color: var(--text); }
+.touch-pad { position: absolute; left: 10px; bottom: 10px; display: none; gap: 8px; }
+.touch-pad button { width: 56px; height: 56px; font-size: 22px; opacity: 0.8; touch-action: none; }
+@media (pointer: coarse) { .touch-pad { display: flex; } }

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Phase Runner</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@500;700;800&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../shared/core.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="bar">
+    <h1>Phase Runner <span>ice · water · steam</span></h1>
+    <div class="seed">
+      <label for="level-select">Level</label>
+      <select id="level-select" class="select" aria-label="Level"></select>
+      <label class="check"><input type="checkbox" id="mirror-check"> Mirrored</label>
+      <button id="daily-btn" type="button">Daily</button>
+    </div>
+  </header>
+
+  <section class="stage" id="stage">
+    <canvas id="cv" width="960" height="560" aria-label="Side view of a lab level with pads, pools, grates and vents"></canvas>
+    <div class="stage-label" id="stage-label"></div>
+    <div class="touch-pad" aria-hidden="true">
+      <button type="button" data-key="left">◀</button><button type="button" data-key="right">▶</button><button type="button" data-key="jump">⤒</button>
+    </div>
+    <div class="overlay" id="banner" hidden>
+      <div class="card">
+        <h2 id="banner-title" style="color: var(--code)"></h2>
+        <p id="banner-text"></p>
+        <div class="chips" id="banner-chips"></div>
+        <button id="next-btn" type="button">Next level</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="hud">
+    <div class="player active" style="--pc: var(--p2)">
+      <div class="name-row"><span class="dot"></span><strong class="card-title" id="level-name" style="color: var(--p2)">Level</strong></div>
+      <div class="thermo" aria-label="Temperature">
+        <div class="thermo-track"><div class="thermo-fill" id="thermo-fill"></div><span class="mark m0"></span><span class="mark m100"></span></div>
+        <div class="thermo-scale"><span>−60°C</span><span>0° freezes</span><span>100° boils</span><span>160°C</span></div>
+        <div class="thermo-text" id="thermo-text">Water (liquid) · 20°C</div>
+      </div>
+    </div>
+    <div class="controls" style="--turn: var(--code)">
+      <div class="turn"><strong>Reach the exit</strong><span>← → move · ↑ jump · R restart</span></div>
+      <button id="heat-btn" type="button">Heat pack (H) × 0</button>
+      <button id="cold-btn" type="button">Cold pack (C) × 0</button>
+      <button id="restart-btn" type="button">Restart level (R)</button>
+    </div>
+    <div class="player" style="--pc: var(--code)">
+      <div class="name-row"><span class="dot"></span><strong class="card-title">Run</strong></div>
+      <div class="stats">
+        <span>Time <b id="time">0.0s</b> · par <b id="par">–</b></span>
+        <span>Best <b id="best">–</b></span>
+        <span>Restarts <b id="deaths">0</b></span>
+        <span>Stars <b id="stars-total">0</b></span>
+      </div>
+    </div>
+  </section>
+
+  <div class="meta">
+    <span>Ice is a <b>solid</b> · water is a <b>liquid</b> · steam is a <b>gas</b></span>
+    <span class="sep" aria-hidden="true">|</span>
+    <button type="button" class="linkish" id="practice-btn" data-demo-keep title="Open during the demo or after you finish a level">Practice quiz</button>
+    <span class="chips" id="badges"></span>
+  </div>
+
+  <details class="howto">
+    <summary>How to play and the science</summary>
+    <div class="howto-body">
+      <p>You are a blob of water. Move with <kbd>←</kbd><kbd>→</kbd> (or <kbd>A</kbd><kbd>D</kbd>), jump with <kbd>↑</kbd> or <kbd>Space</kbd>, restart with <kbd>R</kbd>. Your temperature decides your state, just like real water: at <b>0°C or colder you are ice</b>, and at <b>100°C or hotter you are steam</b>.</p>
+      <p><b>Orange pads</b> heat you and <b>blue pads</b> cool you. The wavy red air above a heater is hot air that keeps heating you as you rise. The snowy blue air is cold. With nothing around, steam slowly cools until it condenses back to water, and ice slowly warms until it melts.</p>
+      <p>Each state has powers. <b>Water</b> walks, jumps, and drips through grates, but falls into pools. <b>Ice</b> is slippery and heavy, floats on pools (ice is less dense than water), and smashes cracked blocks if it hits them fast. <b>Steam</b> floats up through grates and gets pushed by vents.</p>
+      <p>Heat and cold packs (<kbd>H</kbd> and <kbd>C</kbd>) change your temperature by 110°C in one go. Grab them in levels, or answer 4 questions for more when you run out (once per level). Beat par time with no restarts for 3 stars. The Daily button picks a level of the day, sometimes mirrored.</p>
+    </div>
+  </details>
+</div>
+<script src="../shared/questions.js"></script>
+<script src="../shared/facts.js"></script>
+<script src="../shared/core.js"></script>
+<script src="phase-runner.js"></script>
+</body>
+</html>
