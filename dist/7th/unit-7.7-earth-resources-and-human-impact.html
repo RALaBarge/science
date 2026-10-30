@@ -1,0 +1,467 @@
+<title>Earth Resources and Human Impact</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout concept: one long lesson column. Each concept opens with a one-sentence big idea, then a grid of labelled visual aids
+   (Analogy, Diagram, Try it, Data, Real world) that collapses to one column on phones.
+   Color roles are fixed for the whole page: amber = incoming light, blue = reflected, teal = transmitted, orange = absorbed. */
+:root{
+  --bg:#F2F5FA; --surface:#FFFFFF; --surface-2:#E8EDF6; --ink:#12172B; --muted:#47506E; --line:#D0D8E8;
+  --beam:#F2A900; --beam-ink:#1A1400; --reflect:#2B66E8; --absorb:#D6450B; --transmit:#0B7F70; --on-color:#FFFFFF;
+  --red:#D93036; --green:#25904F; --blue:#3558D6; --shade:#222A4A;
+  --font-display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --font-body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+  --font-mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C1022; --surface:#151A33; --surface-2:#1D2444; --ink:#EDF0FB; --muted:#A8B1CE; --line:#2B3459;
+    --beam:#FFC93C; --beam-ink:#1A1400; --reflect:#7BA2FF; --absorb:#FF8F5C; --transmit:#46D6C0; --on-color:#0B1020;
+    --red:#FF6A70; --green:#4FCB85; --blue:#7C97FF; --shade:#02040B; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C1022; --surface:#151A33; --surface-2:#1D2444; --ink:#EDF0FB; --muted:#A8B1CE; --line:#2B3459;
+  --beam:#FFC93C; --beam-ink:#1A1400; --reflect:#7BA2FF; --absorb:#FF8F5C; --transmit:#46D6C0; --on-color:#0B1020;
+  --red:#FF6A70; --green:#4FCB85; --blue:#7C97FF; --shade:#02040B; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--font-body); font-size:17px; line-height:1.55;
+  padding-block:0 72px;
+  padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+main,.hero{max-width:920px;margin:0 auto}
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance;margin:0;line-height:1.1}
+p{margin:0}
+a{color:inherit}
+svg{display:block;width:100%;height:auto}
+svg text{font-family:var(--font-body);fill:var(--ink)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--reflect);outline-offset:2px}
+
+/* hero */
+.hero{padding-block:28px 8px;display:grid;gap:18px}
+.kicker{font-family:var(--font-mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
+.lede{font-size:clamp(1.1rem,3.4vw,1.35rem);max-width:34em;text-wrap:pretty}
+.hero-art{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:10px 12px}
+.howto{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:.92rem;color:var(--muted)}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);margin-top:18px;border-bottom:1px solid var(--line);
+  margin-inline:auto;max-width:920px}
+.nav ul{list-style:none;margin:0;padding:8px 0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin}
+.nav a{display:block;white-space:nowrap;text-decoration:none;font-size:.9rem;padding:7px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface)}
+.nav a:hover{border-color:var(--ink)}
+
+/* sections */
+.sec{padding-block:52px 6px;scroll-margin-top:68px;display:grid;gap:20px}
+.sec h2{font-size:clamp(1.9rem,6vw,2.7rem);font-weight:800;letter-spacing:-.02em}
+.idea{font-family:var(--font-display);font-size:clamp(1.25rem,4.4vw,1.75rem);line-height:1.25;font-weight:700;text-wrap:balance;max-width:28em}
+.idea mark{background:linear-gradient(transparent 58%,color-mix(in srgb,var(--beam) 50%,transparent) 58%);color:inherit}
+.aids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.aid{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.aid.wide{grid-column:1/-1}
+.aid h3{font-size:1.2rem;font-weight:700}
+.aid p.cap{font-size:.95rem;color:var(--muted)}
+.aid p.cap b{color:var(--ink)}
+.tag{align-self:flex-start;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;padding:3px 9px;border-radius:999px;
+  background:color-mix(in srgb,var(--tint) 24%,var(--surface));border:1px solid color-mix(in srgb,var(--tint) 55%,var(--line))}
+.tag.analogy{--tint:var(--beam)} .tag.diagram{--tint:var(--reflect)} .tag.try{--tint:var(--transmit)} .tag.data{--tint:var(--absorb)} .tag.real{--tint:var(--muted)}
+.stage{background:var(--surface-2);border-radius:10px;padding:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:.92rem;padding:7px 13px;min-height:40px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.ctl{display:grid;gap:6px}
+.ctl label{font-size:.92rem;font-weight:700}
+input[type=range]{width:100%;accent-color:var(--beam);height:32px}
+.readout{font-size:1rem}
+.readout b{font-family:var(--font-mono);font-weight:500}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{display:inline-flex;gap:6px;align-items:baseline;padding:5px 11px;border-radius:999px;font-family:var(--font-mono);font-size:.84rem;font-weight:500;background:var(--c);color:var(--on-color)}
+.pill.r{--c:var(--reflect)} .pill.a{--c:var(--absorb)} .pill.t{--c:var(--transmit)}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.trio>div{display:grid;gap:6px;align-content:start;min-width:0}
+.trio h4{margin:0;font-family:var(--font-display);font-size:1.05rem}
+.trio p{font-size:.93rem;color:var(--muted)}
+.trio svg{background:var(--surface-2);border-radius:10px}
+.swatch-r{color:var(--reflect);font-weight:700}.swatch-t{color:var(--transmit);font-weight:700}.swatch-a{color:var(--absorb);font-weight:700}
+
+/* stacked bars */
+.bars{display:grid;gap:9px}
+.brow{display:grid;grid-template-columns:104px minmax(0,1fr);gap:10px;align-items:center;font-size:.9rem}
+.brow.on .lab{font-weight:700}
+.stack{display:flex;height:28px;border-radius:7px;overflow:hidden;background:var(--surface-2);outline:2px solid transparent;outline-offset:2px}
+.brow.on .stack{outline-color:var(--ink)}
+.seg{display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:.72rem;color:var(--on-color);min-width:0;overflow:hidden}
+.seg.r{background:var(--reflect)}.seg.t{background:var(--transmit)}.seg.a{background:var(--absorb)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.88rem}
+.legend span::before{content:"";display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--c)}
+.legend .r{--c:var(--reflect)}.legend .t{--c:var(--transmit)}.legend .a{--c:var(--absorb)}
+
+/* sort game, quiz */
+.items{display:grid;gap:10px}
+.item{display:grid;gap:6px;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.item .nm{font-weight:700}
+.item .opts{display:flex;flex-wrap:wrap;gap:6px}
+.opt{font-size:.85rem;padding:6px 10px;border-radius:8px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;min-height:36px;text-align:left}
+.opt:hover:not([disabled]){border-color:var(--ink)}
+.opt.good{background:var(--transmit);color:var(--on-color);border-color:var(--transmit)}
+.opt.bad{background:var(--absorb);color:var(--on-color);border-color:var(--absorb)}
+.fb{font-size:.88rem;color:var(--muted)}
+.score{font-family:var(--font-mono);font-size:.9rem}
+.q{display:grid;gap:10px;padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.q h4{margin:0;font-size:1.05rem;font-family:var(--font-body);font-weight:700}
+.q .opts{display:grid;gap:8px}
+
+/* tables */
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:.92rem;min-width:420px}
+.tbl th,.tbl td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+.tbl th{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+/* see-through demo */
+.seebox{position:relative;border-radius:10px;overflow:hidden;background:var(--surface-2);padding:22px 16px;min-height:130px;display:grid;place-items:center}
+.seetext{font-family:var(--font-display);font-weight:800;font-size:clamp(1.2rem,5vw,1.7rem);text-align:center;letter-spacing:.02em;transition:filter .2s,opacity .2s}
+.seesheets{position:absolute;inset:0;pointer-events:none;background:var(--surface);transition:opacity .2s}
+.meter{height:12px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--transmit);transition:width .2s}
+
+/* canvas */
+canvas{width:100%;aspect-ratio:640/260;display:block;border-radius:10px;background:var(--surface-2)}
+.tally{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;font-size:.85rem}
+.tally div{padding:8px;border-radius:8px;background:var(--bg);border:1px solid var(--line)}
+.tally b{display:block;font-family:var(--font-mono);font-weight:500;font-size:1.05rem}
+
+/* color mixer + channel columns */
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.colx{display:grid;gap:6px;justify-items:center;font-size:.85rem;text-align:center}
+.tube{position:relative;width:100%;max-width:90px;height:150px;border:2px solid var(--line);border-radius:8px;display:flex;flex-direction:column-reverse;overflow:hidden;background:var(--bg)}
+.tube.empty{border-style:dashed}
+.tube .rf{background:var(--cc)}
+.tube .ab{background:repeating-linear-gradient(45deg,var(--surface-2) 0 6px,var(--line) 6px 9px)}
+.colx .nm{font-weight:700}
+.colx.r{--cc:var(--red)}.colx.g{--cc:var(--green)}.colx.b{--cc:var(--blue)}
+
+/* waffle */
+.waffle{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:3px;max-width:300px;width:100%}
+.cell{aspect-ratio:1;border-radius:3px}
+.cell.r{background:var(--reflect)}.cell.t{background:var(--transmit)}.cell.a{background:var(--absorb)}
+
+/* ice race */
+.race{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pad{position:relative;height:170px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden}
+.pad.w{background:#F4F4F1}.pad.b{background:#14161C}
+.pad .lbl{position:absolute;left:8px;top:6px;font-size:.78rem;font-family:var(--font-mono)}
+.pad.w .lbl{color:#333}.pad.b .lbl{color:#ddd}
+.puddle{position:absolute;width:110px;height:46px;border-radius:50%;background:#7CC4F2;opacity:.65;transform:scale(0);bottom:22px}
+.ice{position:relative;width:76px;height:76px;border-radius:12px;background:linear-gradient(135deg,#E4F6FF,#9ED7F5);border:2px solid #fff;transform-origin:50% 100%;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.sunbar{height:10px;border-radius:99px;background:linear-gradient(90deg,var(--beam),color-mix(in srgb,var(--beam) 30%,transparent));opacity:.25;transition:opacity .3s}
+.sunbar.on{opacity:1}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap}
+.btn{font-size:.95rem;font-weight:700;padding:9px 16px;min-height:42px;border-radius:10px;border:0;background:var(--beam);color:var(--beam-ink);cursor:pointer}
+.btn.ghost{background:var(--surface);color:var(--ink);border:1.5px solid var(--line)}
+.btn:hover{filter:brightness(1.06)}
+
+/* misc */
+.glossary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px;margin:0}
+.glossary div{padding:10px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--line)}
+.glossary dt{font-weight:700}
+.glossary dd{margin:2px 0 0;font-size:.93rem;color:var(--muted)}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+details+details{margin-top:10px}
+summary{cursor:pointer;font-weight:700}
+details .in{display:grid;gap:10px;padding-top:10px;font-size:.95rem}
+details ul{margin:0;padding-left:1.2em;display:grid;gap:4px}
+footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;border-top:1px solid var(--line);padding-top:16px}
+.flow{stroke-dasharray:10 8;animation:flow 1s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-18}}
+@media (prefers-reduced-motion: reduce){.flow{animation:none}html{scroll-behavior:auto}.seetext,.seesheets,.meter i{transition:none}}
+@media (max-width:760px){
+  .aids{grid-template-columns:minmax(0,1fr)}
+  .trio{grid-template-columns:minmax(0,1fr)}
+  .glossary{grid-template-columns:minmax(0,1fr)}
+  .tally{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:420px){.brow{grid-template-columns:84px minmax(0,1fr)}.race{grid-template-columns:minmax(0,1fr)}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="mBeam" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--beam)"/></marker>
+    <marker id="mReflect" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--reflect)"/></marker>
+    <marker id="mTransmit" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--transmit)"/></marker>
+    <marker id="mAbsorb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--absorb)"/></marker>
+    <marker id="mInk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--ink)"/></marker>
+    <marker id="mRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#D93036"/></marker>
+  </defs>
+</svg>
+
+<style>.bridge{margin:14px 0 0;padding:12px 14px;border-left:4px solid var(--beam);background:var(--surface-2);border-radius:0 10px 10px 0;font-size:.95rem;line-height:1.5}.related ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}.related li{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}.related a{font-weight:700}.related .why{display:block;color:var(--muted);font-size:.9rem}</style>
+<style>
+canvas.sim{width:100%;height:240px;display:block;border-radius:12px;background:var(--surface-2);border:1px solid var(--line)}
+.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:.8rem;color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:4px;vertical-align:-1px;border:1px solid var(--ink)}
+.card2{padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg)}
+.apl{display:grid;gap:6px}.tip{font-size:.86rem;color:var(--muted)}
+.sel{display:grid;gap:4px;font-size:.9rem}.sel select{padding:8px;border-radius:8px;border:2px solid var(--line);background:var(--surface);color:var(--ink);font:inherit}
+.sentence{padding:12px 14px;border-radius:12px;background:color-mix(in srgb,var(--beam) 25%,var(--surface));border:2px solid var(--ink);font-weight:700;line-height:1.5}
+</style>
+
+<header class="hero">
+  <p class="kicker">Seventh grade science · Unit 7.7</p>
+  <h1>Earth's Resources &amp; Human Impact</h1>
+  <p class="lede">Gold, oil, copper, and water are not spread evenly across the planet. They are where they are because of Earth's deep history. You met plates and rocks in <b>Unit 5</b> and energy sources in <b>Unit 13</b>; here we connect them to ask where resources come from, how much is left, and how people can use them wisely. Use the <b>Unit 0: How Science Works</b> habit of weighing evidence when you judge a solution.</p>
+  <p class="bridge"><b>Where we left off:</b> Unit 5 explained plates and rocks, Unit 13 introduced energy resources, and Unit 7.6 showed human effects on ecosystems. You may already have learned that mantle convection moves plates. This unit connects Earth's interior and history to where resources are, and asks how people can use them wisely.</p>
+  <div class="hero-art"><svg viewBox="0 0 640 190" role="img" aria-label="Earth's layers with a note about resources"><g style="stroke:var(--ink);stroke-width:3"><circle cx="150" cy="95" r="80" style="fill:var(--absorb);fill-opacity:.25"/><circle cx="150" cy="95" r="58" style="fill:var(--beam);fill-opacity:.3"/><circle cx="150" cy="95" r="30" style="fill:var(--reflect);fill-opacity:.4"/></g>
+<g font-size="14" style="font-weight:700"><text x="260" y="70">Earth's heat and moving plates</text><text x="260" y="95">built the resources we use,</text><text x="260" y="120">and we are using them fast.</text></g></svg></div>
+  <p class="howto">Look for the tags <span class="tag analogy">Analogy</span><span class="tag diagram">Diagram</span><span class="tag try">Try it</span><span class="tag data">Data</span><span class="tag real">Real world</span></p>
+</header>
+
+<nav class="nav" aria-label="Lesson sections"><ul><li><a href="#s1">1 Inside Earth</a></li><li><a href="#s2">2 Where resources are</a></li><li><a href="#s3">3 Renewable or not</a></li><li><a href="#s4">4 Human impact</a></li><li><a href="#s5">5 Solutions</a></li><li><a href="#s6">6 Check yourself</a></li><li><a href="#game">7 Game</a></li></ul></nav>
+
+<main>
+<section class="sec" id="s1"><div><p class="kicker">Concept 1 · Layers and heat</p><h2>Earth is a heat engine</h2></div><p class="idea">Earth has a <mark>crust, mantle, outer core, and inner core</mark>. Heat from the core and from radioactive decay makes the mantle slowly <mark>convect</mark>, which moves the plates above.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>A pot of thick oatmeal</h3><p class="cap">Heated from below, the oatmeal rises in the middle, spreads out, cools, and sinks at the edges. The mantle does this over millions of years, carrying plates along.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Dive into Earth</h3><div class="chips" id="elChips" role="group" aria-label="Layer"></div><div class="card2" id="elCard" aria-live="polite"></div><div class="bars" id="elBars"></div></article><article class="aid wide"><span class="tag data">Data</span><h3>Temperature with depth</h3><div class="stage"><svg id="tdSvg" viewBox="0 0 480 210" role="img" aria-label="Temperature climbs from about 15 degrees at the surface to over 5000 degrees at the center."></svg></div><p class="cap">Roughly 25 °C more for every kilometer down near the surface.</p></article></div></section>
+<section class="sec" id="s2"><div><p class="kicker">Concept 2 · Tectonics and ore</p><h2>Plates and time decide where resources are</h2></div><p class="idea">Many <mark>mineral resources</mark> form at <mark>plate boundaries</mark> (volcanoes bring metals up); <mark>fossil fuels</mark> formed in ancient seas and swamps; <mark>fresh water</mark> depends on climate and rock layers.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Treasure maps</h3><p class="cap">Geologists read maps of ancient seas, volcanoes, and rivers to predict where to look. Resources are clues left by Earth's past.</p></article><article class="aid"><span class="tag try">Try it</span><h3>Where would you dig?</h3><div class="items" id="wrS"></div><p class="score" id="wrSS">0 of 6 correct</p></article><article class="aid wide"><span class="tag data">Data</span><h3>How resources form</h3><div class="tw"><table class="tbl" style="min-width:520px"><thead><tr><th>Resource</th><th>How it formed</th><th>Where</th></tr></thead><tbody><tr><td>Copper, gold</td><td>Hot fluids near magma deposit metals</td><td>Mountain belts, volcanic arcs</td></tr><tr><td>Coal</td><td>Ancient swamp plants buried and pressed</td><td>Appalachia, Midwest</td></tr><tr><td>Oil and gas</td><td>Tiny sea life buried in sediments</td><td>Texas, Middle East</td></tr><tr><td>Salt</td><td>Seas that evaporated</td><td>Michigan basin (Detroit salt mine)</td></tr><tr><td>Sand and gravel</td><td>Glaciers and rivers</td><td>Michigan glacial deposits</td></tr></tbody></table></div></article></div></section>
+<section class="sec" id="s3"><div><p class="kicker">Concept 3 · How fast it forms</p><h2>Renewable and nonrenewable resources</h2></div><p class="idea">A <mark>renewable</mark> resource is replaced as fast as (or faster than) we use it. A <mark>nonrenewable</mark> resource takes so long to form that it is effectively gone once used.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>A bank account</h3><p class="cap">Renewable: income that arrives every month. Nonrenewable: savings from your grandparents: spend it and it is gone.</p></article><article class="aid"><span class="tag try">Try it</span><h3>Sort the resources</h3><div class="items" id="rnS"></div><p class="score" id="rnSS">0 of 8 correct</p></article><article class="aid wide"><span class="tag data">Data</span><h3>Years to form vs. years to use</h3><div class="bars" id="rtB"></div><p class="cap">Log scale: coal formed over ~300 million years; we use it in centuries.</p></article></div></section>
+<section class="sec" id="s4"><div><p class="kicker">Concept 4 · Using Earth</p><h2>People change Earth's systems</h2></div><p class="idea">As the human population and our resource use have grown, we have changed <mark>land, water, air, and living things</mark>: mining scars, polluted water, and rising CO₂. Good decisions weigh benefits and costs.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>A shared fridge</h3><p class="cap">If every roommate takes without refilling, the fridge empties. Earth is a shared fridge with a very slow refill.</p></article><article class="aid wide"><span class="tag data">Data</span><h3>Population and energy use</h3><div class="stage"><svg id="ppSvg" viewBox="0 0 480 220" role="img" aria-label="World population from 1 billion in 1800 to over 8 billion today."></svg></div><p class="cap">Billions of people. More people and more energy per person both increase the total impact.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Impacts and causes</h3><div class="chips" id="hiChips" role="group" aria-label="Activity"></div><div class="card2" id="hiCard" aria-live="polite"></div></article></div></section>
+<section class="sec" id="s5"><div><p class="kicker">Concept 5 · Design and decide</p><h2>Evaluate solutions with criteria</h2></div><p class="idea">Engineers and citizens <mark>compare solutions</mark> using criteria (cost, effect, safety, fairness) and <mark>trade-offs</mark>. No solution is perfect, so we weigh the evidence (Unit 0).</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Choosing a school lunch</h3><p class="cap">Pizza is cheap but not healthy; salad is healthy but not filling. You pick by what matters most today.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Decision matrix</h3><div class="chips" id="dmChips" role="group" aria-label="Priority"></div><div class="bars" id="dmBars"></div><p class="readout" id="dmR" aria-live="polite"></p></article><article class="aid wide"><span class="tag real">Real world</span><h3>Real solutions in use</h3><div class="tw"><table class="tbl"><thead><tr><th>Problem</th><th>Solution</th><th>Trade-off</th></tr></thead><tbody><tr><td>Landfills filling up</td><td>Recycle, compost</td><td>Needs sorting and effort</td></tr><tr><td>Coal pollution</td><td>Wind and solar</td><td>Needs storage; land use</td></tr><tr><td>Lake Erie algae blooms</td><td>Reduce fertilizer runoff</td><td>Costs farmers</td></tr><tr><td>Water use</td><td>Low-flow fixtures, rain barrels</td><td>Upfront cost</td></tr></tbody></table></div></article></div></section>
+
+<section class="sec" id="s6">
+  <div><p class="kicker">Check yourself</p><h2>Can you explain it?</h2></div>
+  <p class="idea">A town wants to replace a coal power plant. Name two criteria, two possible solutions, and one trade-off for each. Which would you recommend and what evidence would you want first?</p>
+  <details><summary>Show a model answer</summary><div class="in"><p>Criteria: cost and emissions (also reliability). Solutions: wind plus batteries; natural gas. Wind: low emissions, higher upfront cost and needs storage. Gas: reliable and cheaper to start, but still emits CO₂ and is nonrenewable. A recommendation must cite data like cost per kWh and emissions per kWh, and the town's conditions.</p></div></details>
+  <div class="items" id="quiz"></div>
+  <p class="score" id="quizScore">0 of 6 correct</p>
+  <h3 style="margin-top:8px">Words to know</h3>
+  <dl class="glossary"><div><dt>crust</dt><dd>Thin, rocky outer layer of Earth.</dd></div><div><dt>mantle</dt><dd>Thick, hot, slowly flowing layer.</dd></div><div><dt>convection</dt><dd>Heated material rises, cools and sinks.</dd></div><div><dt>renewable</dt><dd>Replaced naturally within a human lifetime.</dd></div><div><dt>nonrenewable</dt><dd>Takes millions of years to form.</dd></div><div><dt>mineral</dt><dd>A natural solid with a definite chemical makeup.</dd></div><div><dt>ore</dt><dd>Rock with enough metal to mine.</dd></div><div><dt>fossil fuel</dt><dd>Fuel formed from ancient organisms.</dd></div><div><dt>trade-off</dt><dd>What you give up to gain something else.</dd></div><div><dt>sustainable</dt><dd>Meeting needs without using up future resources.</dd></div></dl>
+  <details><summary>Tutor notes: hands-on kit, misconceptions, pacing</summary><div class="in"><p><b>Kit (about $8):</b> a pot with oatmeal or oil + food coloring (convection), a hard-boiled egg (layers model), rocks and ore samples, graph paper, a world map with plate boundaries, a recycling bin audit sheet.</p><ul><li><b>Concept 1:</b> Slice a hard-boiled egg and label crust, mantle, core.</li><li><b>Concept 2:</b> Heat colored water in a clear dish to see convection.</li><li><b>Concept 3:</b> Mark ore and oil locations on a plate map and find patterns.</li><li><b>Concept 4:</b> Audit a week of home trash and sort into recyclable, compostable, and landfill.</li><li><b>Concept 5:</b> Run a class debate with the decision matrix.</li></ul><p><b>Common misconceptions:</b></p><ul><li>"Earth's core is liquid so we can dig to it." We have only drilled about 12 km.</li><li>"Renewable means unlimited." Even wind or water has limits.</li><li>"Recycling solves everything." Reducing use matters more.</li></ul><p><b>Pacing:</b> about five 30-minute sessions. <b>Method link:</b> when judging a solution, ask students to write the claim, the data, and the reasoning (Unit 0), and to name what they would still want to test.</p></div></details>
+</section>
+
+<section class="sec lesson-game-sec" id="game"><div><p class="kicker">After the lesson · Game</p><h2>Play: Mine & Reclaim</h2></div><p class="idea">Run a mine for ten years. Every tonne of ore earns money, but it costs land and water. Decide how much to extract and how much to put back.</p><div class="lesson-game" id="lesson-game"></div></section>
+<section class="sec related" id="more"><div><p class="kicker">Keep exploring</p><h2>Related lessons</h2></div><p class="idea"> Up next: <a href="unit-7.8-light-and-the-electromagnetic-spectrum.html">Unit 7.8: Light &amp; the Electromagnetic Spectrum</a>. Overlap alert: ideas you have already met are marked above as "you may already have learned".</p><ul><li><a href="../6th/unit-05-plate-tectonics-and-rocks.html">Unit 5: Plate Tectonics &amp; Rocks</a><span class="why">Plates and rocks.</span></li><li><a href="../6th/unit-06-natural-hazards.html">Unit 6: Natural Hazards</a><span class="why">Natural hazards.</span></li><li><a href="../6th/unit-13-energy-resources-and-human-impact.html">Unit 13: Energy Resources &amp; Human Impact</a><span class="why">Energy resources.</span></li><li><a href="unit-7.9-adaptation-and-earth-s-history.html">Unit 7.9: Adaptation &amp; Earth's History</a><span class="why">Earth's history.</span></li><li><a href="../8th/unit-8.2-energy-transformation-and-conservation.html">Unit 8.2: Energy Transformation &amp; Conservation</a><span class="why">Energy efficiency.</span></li></ul></section>
+</main>
+
+<footer>Built for seventh-grade tutoring. Based on OpenSciEd grade 7 Unit 7.6 (Earth's resources and human impact) and Michigan Virtual 7th-grade Earth science modules; aligned with NGSS MS-ESS3-1, MS-ESS3-3, MS-ESS3-4 and MS-ESS2-3. Values are approximate.</footer>
+
+<script>
+(function(){
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const safe=fn=>{try{fn()}catch(e){console.error(e)}};
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const setPressed=(g,b)=>$$('button',g).forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));
+function mkChips(g,labels,sel=0){ g.innerHTML=labels.map((l,i)=>`<button class="chip" type="button" data-i="${i}" aria-pressed="${i===sel}">${l}</button>`).join(''); }
+function chipsOn(g,fn){ g.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; setPressed(g,b); fn(+b.dataset.i,b); }); }
+function quizBox(box,scoreEl,items,labels){
+  let right=0;
+  box.innerHTML=items.map((it,i)=>`<div class="item" data-i="${i}"><span class="nm">${it.n}</span><div class="opts">${labels.map((l,j)=>`<button class="opt" type="button" data-j="${j}">${l}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
+  box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.disabled)return; const row=b.closest('.item'), it=items[+row.dataset.i], ok=+b.dataset.j===it.a;
+    $$('.opt',row).forEach(o=>{ o.disabled=true; if(+o.dataset.j===it.a)o.classList.add('good'); }); if(!ok)b.classList.add('bad'); else right++;
+    $('.fb',row).textContent=(ok?'Yes. ':'Not quite. ')+it.e; scoreEl.textContent=`${right} of ${items.length} correct`; });
+}
+function finalQuiz(Q){
+  const box=$('#quiz'), sc=$('#quizScore'); let right=0;
+  box.innerHTML=Q.map((x,i)=>`<div class="q item" data-i="${i}" style="display:grid"><h4>${i+1}. ${x.q}</h4><div class="opts">${x.o.map((t,j)=>`<button class="opt" type="button" data-j="${j}">${t}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
+  box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.disabled)return; const row=b.closest('.q'), x=Q[+row.dataset.i], ok=+b.dataset.j===x.a;
+    $$('.opt',row).forEach(o=>{ o.disabled=true; if(+o.dataset.j===x.a)o.classList.add('good'); }); if(!ok)b.classList.add('bad'); else right++;
+    $('.fb',row).textContent=(ok?'Correct. ':'Not quite. ')+x.e; sc.textContent=`${right} of ${Q.length} correct`; });
+}
+/* bars: rows [label, value, text, cls('r'|'t'|'a')]; opt {log:true, labW:140, max} */
+function bars(el,rows,opt={}){
+  const log=opt.log, vals=rows.map(r=>r[1]), mx=opt.max||Math.max(...vals), mn=log?Math.log10(Math.min(...vals))-.3:0, top=log?Math.log10(mx)+.3:mx;
+  el.innerHTML=rows.map(([n,v,t,c])=>`<div class="brow" style="grid-template-columns:${opt.labW||140}px minmax(0,1fr)"><span class="lab">${n}</span><div class="stack" role="img" aria-label="${n}: ${t}"><div class="seg ${c||'t'}" style="width:${Math.max(4,((log?Math.log10(v):v)-mn)/(top-mn)*100)}%;min-width:48px">${t}</div></div></div>`).join('')+(log?'<p class="cap" style="margin-top:2px">Log scale.</p>':'');
+}
+/* line: generic SVG chart. o:{x0,x1,y0,y1,xt,yt,xl,yl,series:[{pts,color,w,dash}],dots,hl:[[y,label,color]],mark,bands:[[y0,y1,label]],W,H,L,B,T,R} */
+function line(svg,o){
+  const W=o.W||640,H=o.H||260,L=o.L||56,B=o.B||40,T=o.T||16,R=o.R||16;
+  const X=x=>L+(x-o.x0)/(o.x1-o.x0)*(W-L-R), Y=y=>H-B-(y-o.y0)/(o.y1-o.y0)*(H-B-T);
+  let s='';
+  (o.bands||[]).forEach(b=>{ s+=`<rect x="${L}" y="${Y(b[1])}" width="${W-L-R}" height="${Y(b[0])-Y(b[1])}" style="fill:var(--transmit);fill-opacity:.14"/><text x="${L+6}" y="${Y(b[1])+13}" font-size="11">${b[2]}</text>`; });
+  o.yt.forEach(v=>{ s+=`<line x1="${L}" y1="${Y(v)}" x2="${W-R}" y2="${Y(v)}" style="stroke:var(--line)"/><text x="${L-6}" y="${Y(v)+4}" font-size="12" text-anchor="end">${v}</text>`; });
+  o.xt.forEach(v=>{ const a=Array.isArray(v)?v:[v,v]; s+=`<text x="${X(a[0])}" y="${H-B+16}" font-size="12" text-anchor="middle">${a[1]}</text>`; });
+  (o.hl||[]).forEach(v=>{ s+=`<line x1="${L}" y1="${Y(v[0])}" x2="${W-R}" y2="${Y(v[0])}" style="stroke:${v[2]};stroke-width:2;stroke-dasharray:6 5"/><text x="${W-R-4}" y="${Y(v[0])-5}" font-size="11" text-anchor="end">${v[1]}</text>`; });
+  s+=`<line x1="${L}" y1="${H-B}" x2="${W-R}" y2="${H-B}" style="stroke:var(--ink);stroke-width:2"/><line x1="${L}" y1="${T}" x2="${L}" y2="${H-B}" style="stroke:var(--ink);stroke-width:2"/>`;
+  (o.series||[]).forEach(se=>{ if(se.pts.length) s+=`<path d="${se.pts.map((p,i)=>`${i?'L':'M'}${X(p[0]).toFixed(1)} ${Y(p[1]).toFixed(1)}`).join('')}" style="fill:none;stroke:${se.color};stroke-width:${se.w||4};stroke-linejoin:round${se.dash?';stroke-dasharray:'+se.dash:''}"/>`; });
+  (o.dots||[]).forEach(d=>{ s+=`<circle cx="${X(d[0])}" cy="${Y(d[1])}" r="5" style="fill:var(--reflect);fill-opacity:.7;stroke:var(--ink);stroke-width:1.5"/>`; });
+  if(o.mark) s+=`<circle cx="${X(o.mark[0])}" cy="${Y(o.mark[1])}" r="8" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/>`;
+  s+=`<text x="${(L+W-R)/2}" y="${H-4}" font-size="13" text-anchor="middle">${o.xl}</text><text transform="rotate(-90 14 ${(T+H-B)/2})" x="14" y="${(T+H-B)/2}" font-size="13" text-anchor="middle">${o.yl}</text>`;
+  svg.innerHTML=s;
+}
+
+
+safe(()=>{
+  const L=[['Crust','5–70 km thick, solid rock. All of life lives on top. Hardest to drill.',35,15],['Mantle','About 2,900 km thick, hot and slow-flowing solid rock. Drives plate motion.',2900,2000],['Outer core','Liquid iron and nickel. Its motion makes Earth\'s magnetic field.',2200,4500],['Inner core','Solid iron, hot as the Sun\'s surface, held solid by pressure.',1220,5500]];
+  const ch=$('#elChips'); mkChips(ch,L.map(l=>l[0]),0); const d=i=>{ $('#elCard').innerHTML='<b>'+L[i][0]+':</b> '+L[i][1]; bars($('#elBars'),[['Thickness (km)',L[i][2],L[i][2]+' km','t'],['Temperature (°C)',L[i][3],'~'+L[i][3]+' °C','a']],{labW:130,log:true}); }; chipsOn(ch,d); d(0);
+  line($('#tdSvg'),{W:480,H:210,L:55,x0:0,x1:6400,y0:0,y1:6000,yt:[0,2000,4000,6000],xt:[0,2900,5100,6400],xl:'depth (km): surface, mantle base, core boundary, center',yl:'temperature (°C)',series:[{pts:[[0,15],[100,1300],[2900,3500],[5100,5000],[6400,5500]],color:'var(--absorb)'}]});
+});
+safe(()=>{
+  quizBox($('#wrS'),$('#wrSS'),[{n:'Copper and gold',a:0,e:'Metals concentrate near plate boundaries and volcanoes.'},{n:'Oil and natural gas',a:1,e:'Ancient seas buried sea life.'},{n:'Coal',a:2,e:'Ancient swamps.'},{n:'Rock salt',a:1,e:'Evaporated seas (Michigan basin).'},{n:'Iron ore',a:0,e:'Old volcanic and sedimentary processes (Upper Peninsula iron range).'},{n:'Sand and gravel',a:2,e:'Glaciers and rivers laid them down.'}],['Mountain/volcanic belt','Ancient sea basin','Swamp/river/glacial']);
+  quizBox($('#rnS'),$('#rnSS'),[{n:'Sunlight',a:0,e:'Renewable.'},{n:'Oil',a:1,e:'Nonrenewable.'},{n:'Wind',a:0,e:'Renewable.'},{n:'Coal',a:1,e:'Nonrenewable.'},{n:'Copper ore',a:1,e:'Nonrenewable, but recyclable.'},{n:'Trees (managed)',a:0,e:'Renewable if replanted.'},{n:'Natural gas',a:1,e:'Nonrenewable.'},{n:'Geothermal heat',a:0,e:'Renewable.'}],['Renewable','Nonrenewable']);
+  bars($('#rtB'),[['Time to form: coal',3e8,'~300 million yr','a'],['Time to use: coal',300,'~300 yr','r'],['Time to form: topsoil 1 cm',100,'~100 yr','a'],['Time to regrow: forest',50,'~50 yr','t'],['Time to renew: sunlight',.01,'daily','t']],{labW:150,log:true});
+});
+safe(()=>{
+  line($('#ppSvg'),{W:480,H:220,L:55,x0:1800,x1:2030,y0:0,y1:9,yt:[0,2,4,6,8],xt:[1800,1900,2000],xl:'year',yl:'billion people',series:[{pts:[[1800,1],[1900,1.6],[1950,2.5],[1975,4],[2000,6.1],[2024,8.1]],color:'var(--absorb)'}]});
+  const H=[['Mining','Gets metals and minerals but can leave scarred land, acidic runoff, and habitat loss.'],['Farming','Feeds people but uses water, fertilizer runoff can bloom algae in Lake Erie, and soil can erode.'],['Burning fossil fuels','Gives power but adds CO₂ to the air (Unit 13), warming climate.'],['Building and roads','Provides homes but replaces habitat and increases runoff.'],['Plastic use','Cheap and useful but persists in the environment for centuries.']];
+  const ch=$('#hiChips'); mkChips(ch,H.map(h=>h[0]),0); const d=i=>$('#hiCard').innerHTML='<b>'+H[i][0]+':</b> '+H[i][1]; chipsOn(ch,d); d(0);
+});
+safe(()=>{
+  const O=[['Wind farm',[8,3,9]],['Natural gas plant',[6,7,4]],['Solar + battery',[7,3,8]]]; const P=[['Lowest cost',[1,0,0]],['Least pollution',[0,0,1]],['Most reliable',[0,1,0]],['Balanced',[1,1,1]]];
+  const ch=$('#dmChips'); mkChips(ch,P.map(p=>p[0]),3); const d=i=>{ const w=P[i][1]; const sc=O.map(o=>[o[0],(o[1][0]*w[0]+o[1][1]*w[1]+o[1][2]*w[2])/w.reduce((a,b)=>a+b,0)]); const best=sc.reduce((a,b)=>b[1]>a[1]?b:a);
+    bars($('#dmBars'),sc.map(s=>[s[0],s[1]+.1,s[1].toFixed(1)+' / 10',s===best?'t':'a']),{labW:130,max:10}); $('#dmR').innerHTML='For "'+P[i][0]+'" the best choice is <b>'+best[0]+'</b>. Different priorities give different winners (scores are teaching estimates).'; }; chipsOn(ch,d); d(3);
+});
+
+finalQuiz([{"q": "What drives plate motion?", "o": ["Mantle convection", "The moon", "Earthquakes"], "a": 0, "e": "Heat moves the mantle."}, {"q": "Coal is...", "o": ["Nonrenewable", "Renewable", "Both"], "a": 0, "e": "Formed over millions of years."}, {"q": "Many metal ores form near...", "o": ["Plate boundaries and volcanoes", "Deserts only", "The ocean floor only"], "a": 0, "e": "Hot fluids deposit metals."}, {"q": "A trade-off is...", "o": ["What you give up to gain something", "A free benefit", "A law"], "a": 0, "e": "Every solution has costs."}, {"q": "Which is renewable?", "o": ["Sunlight", "Oil", "Natural gas"], "a": 0, "e": "Constantly arriving."}, {"q": "Good solutions are chosen by...", "o": ["Criteria and evidence", "Opinion only", "Cost only"], "a": 0, "e": "Use data."}]);
+})();
+</script>
+
+
+
+
+
+<!-- LESSON GAME:mine-and-reclaim START -->
+<script>(function(){
+function __mountLessonGame(host, css, html, init){
+  if(!host || host.shadowRoot) return;
+  const root = host.attachShadow({mode:"open"});
+  root.innerHTML = "<style>"+css+"</style>"+html;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let visible = true;
+  try{ new IntersectionObserver(es=>{ visible = es[es.length-1].isIntersecting; }).observe(host); }catch(e){}
+  const loops = [];
+  let last = performance.now();
+  function frame(t){
+    const dt = Math.min(0.05, (t-last)/1000); last = t;
+    if(visible && !document.hidden) for(const f of loops){ try{ f(t, dt); }catch(e){ console.error(e); } }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+  const env = {
+    root, reduce,
+    $: id => root.getElementById(id),
+    $$: sel => [...root.querySelectorAll(sel)],
+    loop: f => loops.push(f),
+    esc: s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])),
+    // A canvas drawn in fixed logical units (W x H) that scales to its container.
+    stage(canvas, W, H){
+      const ctx = canvas.getContext("2d");
+      const st = {ctx, W, H, dpr:1};
+      function fit(){
+        st.dpr = Math.min(2.5, window.devicePixelRatio || 1);
+        const cw = canvas.clientWidth || W;
+        const scale = cw / W;
+        canvas.width = Math.round(W*scale*st.dpr); canvas.height = Math.round(H*scale*st.dpr);
+        st.k = scale*st.dpr;
+        ctx.setTransform(st.k,0,0,st.k,0,0);
+        if(st.onfit) st.onfit();
+      }
+      canvas.style.aspectRatio = W+"/"+H;
+      st.begin = () => ctx.setTransform(st.k,0,0,st.k,0,0);
+      st.pt = ev => { const r = canvas.getBoundingClientRect(); return {x:(ev.clientX-r.left)*W/r.width, y:(ev.clientY-r.top)*H/r.height}; };
+      try{ new ResizeObserver(fit).observe(canvas); }catch(e){ addEventListener("resize", fit); }
+      fit();
+      return st;
+    },
+    // Level buttons in the header.
+    levelBar(box, names, onPick){
+      const solved = new Set(); let cur = 0;
+      function render(){
+        box.innerHTML = '<span class="label">Level</span>';
+        names.forEach((n,i)=>{ const b = document.createElement("button"); b.type="button";
+          b.className = "lv"+(solved.has(i)?" done":""); b.textContent = i+1; b.title = n;
+          b.setAttribute("aria-label", "Level "+(i+1)+": "+n+(solved.has(i)?" (solved)":""));
+          if(i===cur) b.setAttribute("aria-current","true");
+          b.onclick = () => { cur = i; render(); onPick(i); }; box.appendChild(b); });
+      }
+      render();
+      return { set(i){ cur=i; render(); }, solve(i){ solved.add(i); render(); }, get cur(){ return cur; }, solved };
+    },
+    // Result card over a stage. buttons: [{label, primary, onClick}]
+    card(stageEl, o){
+      let ov = stageEl.querySelector(":scope > .over");
+      if(!ov){ ov = document.createElement("div"); ov.className = "over"; stageEl.appendChild(ov); }
+      ov.hidden = false;
+      ov.innerHTML = '<div class="card'+(o.fail?' fail':'')+'" role="dialog" aria-live="polite"><h4></h4>'+(o.why?'<span class="why"></span>':'')+'<p class="cb"></p><div class="btns"></div></div>';
+      ov.querySelector("h4").textContent = o.title;
+      if(o.why) ov.querySelector(".why").textContent = o.why;
+      ov.querySelector(".cb").textContent = o.body || "";
+      if(o.list && o.list.length){ const ul = document.createElement("ul"); ul.className = "clist";
+        o.list.forEach(t => { const li = document.createElement("li"); li.textContent = t; ul.appendChild(li); });
+        ov.querySelector(".cb").after(ul); }
+      const bb = ov.querySelector(".btns");
+      (o.buttons||[]).forEach((b,i)=>{ const e = document.createElement("button"); e.type="button"; e.className = "btn"+(b.primary?" primary":""); e.textContent = b.label;
+        e.onclick = () => { ov.hidden = true; b.onClick && b.onClick(); }; bb.appendChild(e); if(i===0) setTimeout(()=>e.focus({preventScroll:true}),30); });
+      setTimeout(()=>{ const b=ov.getBoundingClientRect(); if(b.top<8 || b.bottom>innerHeight-8) ov.scrollIntoView({block:"center", behavior: reduce?"auto":"smooth"}); }, 40);
+      return ov;
+    },
+    hideCard(stageEl){ const ov = stageEl.querySelector(":scope > .over"); if(ov) ov.hidden = true; }
+  };
+  try{ init(root, env); }catch(e){ console.error(e); root.innerHTML += '<p style="color:#fff;padding:12px">This game could not start.</p>'; }
+}
+
+__mountLessonGame(document.getElementById("lesson-game"), ":host{\n  display:block; color-scheme:dark;\n  --bg:#0B0F15; --panel:#141A23; --panel-2:#1B2330; --line:#2B3544; --ink:#E9EEF5; --muted:#93A0B2;\n  --good:#3FD3BB; --bad:#FF6B5E; --warn:#FFB547; --acc:#FFD84A; --acc-ink:#1A1400;\n  --f-display:\"Bahnschrift\",\"DIN Alternate\",\"Roboto Condensed\",\"Arial Narrow\",system-ui,sans-serif;\n  --f-body:\"Roboto\",\"Segoe UI\",system-ui,-apple-system,sans-serif;\n  --f-mono:ui-monospace,\"Roboto Mono\",\"Cascadia Mono\",Menlo,Consolas,monospace;\n}\n*{box-sizing:border-box}\n[hidden]{display:none!important}\n.g{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;border-radius:16px;\n  border:1px solid var(--line);padding:16px;display:grid;gap:14px;text-align:left;box-shadow:0 10px 36px rgba(0,0,0,.35)}\n.g button{font:inherit;color:inherit}\n.g :focus-visible{outline:3px solid var(--acc);outline-offset:2px}\n.g h2,.g h3,.g h4{margin:0;font-family:var(--f-display);letter-spacing:.02em;line-height:1.15}\n.g p{margin:0}\n.bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 18px}\n.brand{display:grid;gap:2px}\n.label{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}\n.gtitle{font-family:var(--f-display);font-weight:700;font-size:1.45rem;text-transform:uppercase;letter-spacing:.04em}\n.gtitle b{color:var(--acc)}\n.goalrow{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 12px}\n.goalrow h4{font-size:1.22rem}\n.goalrow .goal{color:var(--muted);font-size:.94rem}\n.levels{display:flex;flex-wrap:wrap;gap:6px;align-items:center}\n.lv{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--line);background:var(--panel);font-family:var(--f-mono);font-size:.85rem;cursor:pointer;font-variant-numeric:tabular-nums;padding:0}\n.lv:hover{border-color:var(--muted)}\n.lv.done{border-color:var(--good);color:var(--good)}\n.lv[aria-current=\"true\"]{background:var(--acc);border-color:var(--acc);color:var(--acc-ink);font-weight:700}\n.cols{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:14px;align-items:start}\n.cols>*{min-width:0}\n.boardcol{display:grid;gap:10px;min-width:0}\n.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:10px;min-width:0}\n.panel>.label{margin-bottom:-2px}\n.stage{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px;min-width:0}\n.stage canvas,.stage svg{display:block;width:100%;max-width:100%;height:auto;border-radius:8px;touch-action:none}\n.btns{display:flex;flex-wrap:wrap;gap:8px}\n.btn{padding:8px 14px;min-height:40px;border-radius:10px;border:1.5px solid var(--line);background:var(--panel-2);cursor:pointer;font-weight:700;font-size:.92rem;line-height:1.2}\n.btn:hover:not([disabled]){border-color:var(--muted)}\n.btn[disabled]{opacity:.45;cursor:default}\n.btn.primary{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}\n.btn.ghost{background:transparent}\n.btn[aria-pressed=\"true\"]{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset}\n.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:999px;font-size:.82rem;border:1px solid var(--line);background:var(--panel-2);cursor:pointer}\n.chip[aria-pressed=\"true\"]{border-color:var(--acc);background:var(--acc);color:var(--acc-ink);font-weight:700}\n.msg{font-size:.93rem;padding:9px 12px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line)}\n.msg.good{border-color:color-mix(in srgb,var(--good) 60%,var(--line))}\n.msg.bad{border-color:color-mix(in srgb,var(--bad) 60%,var(--line))}\n.msg.warn{border-color:color-mix(in srgb,var(--warn) 60%,var(--line))}\n.help{font-size:.86rem;color:var(--muted)}\n.readout{font-size:.92rem;color:var(--ink);padding:8px 11px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line);min-height:38px}\n.meter{height:12px;border-radius:99px;background:var(--panel-2);overflow:hidden;border:1px solid var(--line)}\n.meter>i{display:block;height:100%;background:var(--acc);transition:width .15s}\n.ctl{display:grid;gap:4px}\n.ctl label{font-size:.9rem;font-weight:700;display:flex;justify-content:space-between;gap:8px}\n.ctl input[type=range]{width:100%;accent-color:var(--acc);height:30px;margin:0}\n.over{position:absolute;inset:6px;border-radius:8px;display:grid;place-items:start center;padding:14px;background:color-mix(in srgb,var(--bg) 74%,transparent);backdrop-filter:blur(2px);z-index:5;overflow:visible}\n.card{max-width:460px;display:grid;gap:10px;padding:18px;border-radius:14px;background:var(--panel-2);border:1px solid var(--acc);box-shadow:0 0 36px color-mix(in srgb,var(--acc) 22%,transparent);position:sticky;top:0;margin-top:0;max-height:none;overflow:visible}\n.card h4{font-size:1.45rem;color:var(--acc)}\n.card.fail{border-color:var(--bad)}\n.card.fail h4{color:var(--bad)}\n.clist{margin:0;padding-left:1.15em;display:grid;gap:5px;font-size:.9rem}\n.why{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}\n.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}\n.bars{display:grid;gap:7px}\n.brow{display:grid;grid-template-columns:9.5em minmax(0,1fr) 4.2em;gap:8px;align-items:center;font-size:.86rem}\n.brow .track{height:12px;border-radius:99px;background:var(--panel-2);border:1px solid var(--line);overflow:hidden}\n.brow .fill{display:block;height:100%;background:var(--acc)}\n.brow .val{font-family:var(--f-mono);text-align:right;font-size:.8rem;color:var(--muted)}\n.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}\n.tile{border:1.5px solid var(--line);background:var(--panel-2);border-radius:10px;padding:9px;text-align:left;cursor:pointer;font-size:.88rem;line-height:1.25}\n.tile:hover:not([disabled]){border-color:var(--muted)}\n.tile[aria-pressed=\"true\"]{border-color:var(--acc)}\n.tile.good{border-color:var(--good);background:color-mix(in srgb,var(--good) 14%,var(--panel-2))}\n.tile.bad{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,var(--panel-2))}\n.tile[disabled]{cursor:default}\n.tbl{width:100%;border-collapse:collapse;font-size:.88rem}\n.tbl th{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:left;padding:4px 7px;border-bottom:1px solid var(--line);font-weight:500}\n.tbl td{padding:5px 7px;border-bottom:1px solid var(--line)}\n.scroll{overflow-x:auto}\n.kv{display:grid;grid-template-columns:1fr auto;gap:6px 10px;font-size:.9rem}\n.kv dt{color:var(--muted)}.kv dd{margin:0;font-family:var(--f-mono);text-align:right}\n.score{font-family:var(--f-mono);font-size:.82rem;color:var(--muted)}\n@media (max-width:860px){.cols{grid-template-columns:minmax(0,1fr)}.over{position:static;inset:auto;background:none;backdrop-filter:none;padding:8px 0 2px}.card{max-width:none;position:static;margin-top:0;max-height:none;overflow:visible}}\n@media (prefers-reduced-motion:reduce){.meter>i{transition:none}}\n", "\n<div class=\"g\">\n  <div class=\"bar\">\n    <div class=\"goalrow\"><h4 id=\"lvName\">Balance the ledger</h4><span class=\"goal\" id=\"lvGoal\"></span></div>\n    <nav class=\"levels\" id=\"lvBar\" aria-label=\"Levels\"></nav>\n  </div>\n  <div class=\"cols\">\n    <section class=\"boardcol\">\n      <div class=\"stage\" id=\"stage\" style=\"padding:16px;display:grid;gap:12px\">\n        <div class=\"kv\" style=\"grid-template-columns:1fr auto 1fr auto\">\n          <dt>Year</dt><dd id=\"year\">1 / 10</dd><dt>Cash</dt><dd id=\"cash\">$50k</dd>\n          <dt>Land health</dt><dd id=\"land\">100</dd><dt>Water health</dt><dd id=\"water\">100</dd>\n        </div>\n        <div class=\"bars\" id=\"bars\"></div>\n        <div id=\"log\" class=\"help\" style=\"min-height:3.2em;border-top:1px solid var(--line);padding-top:8px\">No years mined yet.</div>\n      </div>\n      <p class=\"help\">Reclamation costs money now and pays back in land and water health. The mine keeps producing for ten years.</p>\n    </section>\n    <aside class=\"panel\">\n      <div class=\"ctl\"><label for=\"rate\">Extraction rate: <span id=\"rateV\">3</span> units</label><input id=\"rate\" type=\"range\" min=\"1\" max=\"5\" step=\"1\" value=\"3\"></div>\n      <div class=\"ctl\"><label for=\"frac\">Profit reinvested in reclamation: <span id=\"fracV\">75%</span></label><input id=\"frac\" type=\"range\" min=\"0\" max=\"100\" step=\"5\" value=\"75\"></div>\n      <div class=\"btns\"><button class=\"btn primary\" id=\"mine\" type=\"button\">Mine this year</button><button class=\"btn ghost\" id=\"reset\" type=\"button\">Start over</button></div>\n      <p class=\"readout\" id=\"read\" aria-live=\"polite\"></p>\n    </aside>\n  </div>\n</div>", (function (root, env) {
+    const { $, levelBar, card } = env;
+    const LEVELS = [
+      { n: "Balance the ledger", goal: "After 10 years: $150k cash, land ≥ 60, water ≥ 60", cash: 150, land: 60, water: 60 },
+      { n: "Protect the river", goal: "After 10 years: water ≥ 75 and cash ≥ $120k", cash: 120, land: 0, water: 75 },
+      { n: "Big operation", goal: "After 10 years: cash ≥ $220k and land ≥ 40", cash: 220, land: 40, water: 0 },
+    ];
+    let li = 0, year = 1, cash = 50, land = 100, water = 100, done = false;
+    const bar = levelBar($("lvBar"), LEVELS.map((x) => x.n), (i) => { li = i; reset(); });
+    function render() {
+      $("year").textContent = Math.min(year, 10) + " / 10";
+      $("cash").textContent = "$" + Math.round(cash) + "k";
+      $("land").textContent = Math.round(land); $("water").textContent = Math.round(water);
+      $("rateV").textContent = $("rate").value; $("fracV").textContent = $("frac").value + "%";
+      $("lvName").textContent = LEVELS[li].n; $("lvGoal").textContent = LEVELS[li].goal;
+      $("bars").innerHTML = [["Land", land, "#4FCB85"], ["Water", water, "#46D6C0"], ["Cash", Math.min(100, cash / 3), "#FFD84A"]]
+        .map(([n, v, c]) => `<div class="brow"><span>${n}</span><span class="track"><i class="fill" style="width:${Math.max(0, Math.min(100, v))}%;background:${c}"></i></span><span class="val">${Math.round(v)}</span></div>`).join("");
+      $("mine").disabled = done || year > 10;
+    }
+    function reset() {
+      year = 1; cash = 50; land = 100; water = 100; done = false;
+      $("log").textContent = "No years mined yet."; $("read").textContent = "Choose a rate and a reclamation share, then mine one year.";
+      render();
+    }
+    $("rate").oninput = render; $("frac").oninput = render;
+    $("mine").onclick = () => {
+      if (done || year > 10) return;
+      const rate = +$("rate").value, frac = +$("frac").value / 100;
+      const profit = rate * 20;
+      const cost = profit * frac;
+      cash += profit - cost;
+      land = Math.max(0, Math.min(100, land - rate * 6 + frac * 20));
+      water = Math.max(0, Math.min(100, water - rate * 4 + frac * 15));
+      $("log").textContent = `Year ${year}: mined ${rate} units for $${profit}k, spent $${cost.toFixed(0)}k on reclamation. Land ${land.toFixed(0)}, water ${water.toFixed(0)}.`;
+      year++;
+      if (year > 10) {
+        done = true;
+        const L = LEVELS[li];
+        const pass = cash >= L.cash && land >= L.land && water >= L.water;
+        render();
+        if (pass) {
+          bar.solve(li);
+          card($("stage"), {
+            title: "Mine closed cleanly",
+            why: "The science",
+            body: `After 10 years: $${cash.toFixed(0)}k cash, land ${land.toFixed(0)}, water ${water.toFixed(0)}. You met the targets and left the site in usable shape.`,
+            buttons: [{ label: li < LEVELS.length - 1 ? "Next brief" : "Play again", primary: true, onClick: () => { li = (li + 1) % LEVELS.length; reset(); } }],
+          });
+        } else {
+          $("read").textContent = `Targets missed: $${cash.toFixed(0)}k cash, land ${land.toFixed(0)}, water ${water.toFixed(0)}. ${cash < L.cash ? "Extract more or reclaim less." : "Spend more on reclamation."} Start over to try another plan.`;
+        }
+      } else {
+        $("read").textContent = `Year ${year - 1} recorded. ${land < 40 ? "Land health is getting low." : water < 40 ? "Water health is getting low." : "Keep an eye on both."}`;
+        render();
+      }
+    };
+    $("reset").onclick = reset;
+    reset();
+  }));
+})();</script>
+<!-- LESSON GAME:mine-and-reclaim END -->

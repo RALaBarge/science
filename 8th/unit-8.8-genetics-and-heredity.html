@@ -1,0 +1,795 @@
+<title>Genetics and Heredity</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout concept: one long lesson column. Each concept opens with a one-sentence big idea, then a grid of labelled visual aids
+   (Analogy, Diagram, Try it, Data, Real world) that collapses to one column on phones.
+   Color roles are fixed for the whole page: amber = incoming light, blue = reflected, teal = transmitted, orange = absorbed. */
+:root{
+  --bg:#F2F5FA; --surface:#FFFFFF; --surface-2:#E8EDF6; --ink:#12172B; --muted:#47506E; --line:#D0D8E8;
+  --beam:#F2A900; --beam-ink:#1A1400; --reflect:#2B66E8; --absorb:#D6450B; --transmit:#0B7F70; --on-color:#FFFFFF;
+  --red:#D93036; --green:#25904F; --blue:#3558D6; --shade:#222A4A;
+  --font-display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --font-body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+  --font-mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C1022; --surface:#151A33; --surface-2:#1D2444; --ink:#EDF0FB; --muted:#A8B1CE; --line:#2B3459;
+    --beam:#FFC93C; --beam-ink:#1A1400; --reflect:#7BA2FF; --absorb:#FF8F5C; --transmit:#46D6C0; --on-color:#0B1020;
+    --red:#FF6A70; --green:#4FCB85; --blue:#7C97FF; --shade:#02040B; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C1022; --surface:#151A33; --surface-2:#1D2444; --ink:#EDF0FB; --muted:#A8B1CE; --line:#2B3459;
+  --beam:#FFC93C; --beam-ink:#1A1400; --reflect:#7BA2FF; --absorb:#FF8F5C; --transmit:#46D6C0; --on-color:#0B1020;
+  --red:#FF6A70; --green:#4FCB85; --blue:#7C97FF; --shade:#02040B; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--font-body); font-size:17px; line-height:1.55;
+  padding-block:0 72px;
+  padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+main,.hero{max-width:920px;margin:0 auto}
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance;margin:0;line-height:1.1}
+p{margin:0}
+a{color:inherit}
+svg{display:block;width:100%;height:auto}
+svg text{font-family:var(--font-body);fill:var(--ink)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--reflect);outline-offset:2px}
+
+/* hero */
+.hero{padding-block:28px 8px;display:grid;gap:18px}
+.kicker{font-family:var(--font-mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
+.lede{font-size:clamp(1.1rem,3.4vw,1.35rem);max-width:34em;text-wrap:pretty}
+.hero-art{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:10px 12px}
+.howto{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:.92rem;color:var(--muted)}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);margin-top:18px;border-bottom:1px solid var(--line);
+  margin-inline:auto;max-width:920px}
+.nav ul{list-style:none;margin:0;padding:8px 0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin}
+.nav a{display:block;white-space:nowrap;text-decoration:none;font-size:.9rem;padding:7px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface)}
+.nav a:hover{border-color:var(--ink)}
+
+/* sections */
+.sec{padding-block:52px 6px;scroll-margin-top:68px;display:grid;gap:20px}
+.sec h2{font-size:clamp(1.9rem,6vw,2.7rem);font-weight:800;letter-spacing:-.02em}
+.idea{font-family:var(--font-display);font-size:clamp(1.25rem,4.4vw,1.75rem);line-height:1.25;font-weight:700;text-wrap:balance;max-width:28em}
+.idea mark{background:linear-gradient(transparent 58%,color-mix(in srgb,var(--beam) 50%,transparent) 58%);color:inherit}
+.aids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.aid{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.aid.wide{grid-column:1/-1}
+.aid h3{font-size:1.2rem;font-weight:700}
+.aid p.cap{font-size:.95rem;color:var(--muted)}
+.aid p.cap b{color:var(--ink)}
+.tag{align-self:flex-start;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;padding:3px 9px;border-radius:999px;
+  background:color-mix(in srgb,var(--tint) 24%,var(--surface));border:1px solid color-mix(in srgb,var(--tint) 55%,var(--line))}
+.tag.analogy{--tint:var(--beam)} .tag.diagram{--tint:var(--reflect)} .tag.try{--tint:var(--transmit)} .tag.data{--tint:var(--absorb)} .tag.real{--tint:var(--muted)}
+.stage{background:var(--surface-2);border-radius:10px;padding:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:.92rem;padding:7px 13px;min-height:40px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.ctl{display:grid;gap:6px}
+.ctl label{font-size:.92rem;font-weight:700}
+input[type=range]{width:100%;accent-color:var(--beam);height:32px}
+.readout{font-size:1rem}
+.readout b{font-family:var(--font-mono);font-weight:500}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{display:inline-flex;gap:6px;align-items:baseline;padding:5px 11px;border-radius:999px;font-family:var(--font-mono);font-size:.84rem;font-weight:500;background:var(--c);color:var(--on-color)}
+.pill.r{--c:var(--reflect)} .pill.a{--c:var(--absorb)} .pill.t{--c:var(--transmit)}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.trio>div{display:grid;gap:6px;align-content:start;min-width:0}
+.trio h4{margin:0;font-family:var(--font-display);font-size:1.05rem}
+.trio p{font-size:.93rem;color:var(--muted)}
+.trio svg{background:var(--surface-2);border-radius:10px}
+.swatch-r{color:var(--reflect);font-weight:700}.swatch-t{color:var(--transmit);font-weight:700}.swatch-a{color:var(--absorb);font-weight:700}
+
+/* stacked bars */
+.bars{display:grid;gap:9px}
+.brow{display:grid;grid-template-columns:104px minmax(0,1fr);gap:10px;align-items:center;font-size:.9rem}
+.brow.on .lab{font-weight:700}
+.stack{display:flex;height:28px;border-radius:7px;overflow:hidden;background:var(--surface-2);outline:2px solid transparent;outline-offset:2px}
+.brow.on .stack{outline-color:var(--ink)}
+.seg{display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:.72rem;color:var(--on-color);min-width:0;overflow:hidden}
+.seg.r{background:var(--reflect)}.seg.t{background:var(--transmit)}.seg.a{background:var(--absorb)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.88rem}
+.legend span::before{content:"";display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--c)}
+.legend .r{--c:var(--reflect)}.legend .t{--c:var(--transmit)}.legend .a{--c:var(--absorb)}
+
+/* sort game, quiz */
+.items{display:grid;gap:10px}
+.item{display:grid;gap:6px;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.item .nm{font-weight:700}
+.item .opts{display:flex;flex-wrap:wrap;gap:6px}
+.opt{font-size:.85rem;padding:6px 10px;border-radius:8px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;min-height:36px;text-align:left}
+.opt:hover:not([disabled]){border-color:var(--ink)}
+.opt.good{background:var(--transmit);color:var(--on-color);border-color:var(--transmit)}
+.opt.bad{background:var(--absorb);color:var(--on-color);border-color:var(--absorb)}
+.fb{font-size:.88rem;color:var(--muted)}
+.score{font-family:var(--font-mono);font-size:.9rem}
+.q{display:grid;gap:10px;padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.q h4{margin:0;font-size:1.05rem;font-family:var(--font-body);font-weight:700}
+.q .opts{display:grid;gap:8px}
+
+/* tables */
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:.92rem;min-width:420px}
+.tbl th,.tbl td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+.tbl th{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+/* see-through demo */
+.seebox{position:relative;border-radius:10px;overflow:hidden;background:var(--surface-2);padding:22px 16px;min-height:130px;display:grid;place-items:center}
+.seetext{font-family:var(--font-display);font-weight:800;font-size:clamp(1.2rem,5vw,1.7rem);text-align:center;letter-spacing:.02em;transition:filter .2s,opacity .2s}
+.seesheets{position:absolute;inset:0;pointer-events:none;background:var(--surface);transition:opacity .2s}
+.meter{height:12px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--transmit);transition:width .2s}
+
+/* canvas */
+canvas{width:100%;aspect-ratio:640/260;display:block;border-radius:10px;background:var(--surface-2)}
+.tally{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;font-size:.85rem}
+.tally div{padding:8px;border-radius:8px;background:var(--bg);border:1px solid var(--line)}
+.tally b{display:block;font-family:var(--font-mono);font-weight:500;font-size:1.05rem}
+
+/* color mixer + channel columns */
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.colx{display:grid;gap:6px;justify-items:center;font-size:.85rem;text-align:center}
+.tube{position:relative;width:100%;max-width:90px;height:150px;border:2px solid var(--line);border-radius:8px;display:flex;flex-direction:column-reverse;overflow:hidden;background:var(--bg)}
+.tube.empty{border-style:dashed}
+.tube .rf{background:var(--cc)}
+.tube .ab{background:repeating-linear-gradient(45deg,var(--surface-2) 0 6px,var(--line) 6px 9px)}
+.colx .nm{font-weight:700}
+.colx.r{--cc:var(--red)}.colx.g{--cc:var(--green)}.colx.b{--cc:var(--blue)}
+
+/* waffle */
+.waffle{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:3px;max-width:300px;width:100%}
+.cell{aspect-ratio:1;border-radius:3px}
+.cell.r{background:var(--reflect)}.cell.t{background:var(--transmit)}.cell.a{background:var(--absorb)}
+
+/* ice race */
+.race{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pad{position:relative;height:170px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden}
+.pad.w{background:#F4F4F1}.pad.b{background:#14161C}
+.pad .lbl{position:absolute;left:8px;top:6px;font-size:.78rem;font-family:var(--font-mono)}
+.pad.w .lbl{color:#333}.pad.b .lbl{color:#ddd}
+.puddle{position:absolute;width:110px;height:46px;border-radius:50%;background:#7CC4F2;opacity:.65;transform:scale(0);bottom:22px}
+.ice{position:relative;width:76px;height:76px;border-radius:12px;background:linear-gradient(135deg,#E4F6FF,#9ED7F5);border:2px solid #fff;transform-origin:50% 100%;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.sunbar{height:10px;border-radius:99px;background:linear-gradient(90deg,var(--beam),color-mix(in srgb,var(--beam) 30%,transparent));opacity:.25;transition:opacity .3s}
+.sunbar.on{opacity:1}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap}
+.btn{font-size:.95rem;font-weight:700;padding:9px 16px;min-height:42px;border-radius:10px;border:0;background:var(--beam);color:var(--beam-ink);cursor:pointer}
+.btn.ghost{background:var(--surface);color:var(--ink);border:1.5px solid var(--line)}
+.btn:hover{filter:brightness(1.06)}
+
+/* misc */
+.glossary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px;margin:0}
+.glossary div{padding:10px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--line)}
+.glossary dt{font-weight:700}
+.glossary dd{margin:2px 0 0;font-size:.93rem;color:var(--muted)}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+details+details{margin-top:10px}
+summary{cursor:pointer;font-weight:700}
+details .in{display:grid;gap:10px;padding-top:10px;font-size:.95rem}
+details ul{margin:0;padding-left:1.2em;display:grid;gap:4px}
+footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;border-top:1px solid var(--line);padding-top:16px}
+.flow{stroke-dasharray:10 8;animation:flow 1s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-18}}
+@media (prefers-reduced-motion: reduce){.flow{animation:none}html{scroll-behavior:auto}.seetext,.seesheets,.meter i{transition:none}}
+@media (max-width:760px){
+  .aids{grid-template-columns:minmax(0,1fr)}
+  .trio{grid-template-columns:minmax(0,1fr)}
+  .glossary{grid-template-columns:minmax(0,1fr)}
+  .tally{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:420px){.brow{grid-template-columns:84px minmax(0,1fr)}.race{grid-template-columns:minmax(0,1fr)}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="mBeam" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--beam)"/></marker>
+    <marker id="mReflect" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--reflect)"/></marker>
+    <marker id="mTransmit" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--transmit)"/></marker>
+    <marker id="mAbsorb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--absorb)"/></marker>
+    <marker id="mInk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--ink)"/></marker>
+    <marker id="mRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#D93036"/></marker>
+  </defs>
+</svg>
+
+<style>.bridge{margin:14px 0 0;padding:12px 14px;border-left:4px solid var(--beam);background:var(--surface-2);border-radius:0 10px 10px 0;font-size:.95rem;line-height:1.5}.related ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}.related li{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}.related a{font-weight:700}.related .why{display:block;color:var(--muted);font-size:.9rem}</style>
+<style>
+canvas.sim{width:100%;height:240px;display:block;border-radius:12px;background:var(--surface-2);border:1px solid var(--line)}
+.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:.8rem;color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:4px;vertical-align:-1px;border:1px solid var(--ink)}
+.card2{padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg)}
+.apl{display:grid;gap:6px}.tip{font-size:.86rem;color:var(--muted)}
+.sel{display:grid;gap:4px;font-size:.9rem}.sel select{padding:8px;border-radius:8px;border:2px solid var(--line);background:var(--surface);color:var(--ink);font:inherit}
+.sentence{padding:12px 14px;border-radius:12px;background:color-mix(in srgb,var(--beam) 25%,var(--surface));border:2px solid var(--ink);font-weight:700;line-height:1.5}
+</style>
+
+<header class="hero">
+  <p class="kicker">Eighth grade science · Unit 8.8</p>
+  <h1>Genetics &amp; Heredity</h1>
+  <p class="lede">Why do you look like your parents but not exactly like them? In <b>Unit 7: Cells</b> you met the nucleus; in <b>Unit 8: Classifying Life</b> you grouped organisms by shared traits; in <b>Unit 7.9</b> you saw that traits can be passed on. Now we open the instruction manual: DNA, genes, and the math of inheritance. Use <b>Unit 0: How Science Works</b>: Mendel did it with peas, patience, and counting.</p>
+  <p class="bridge"><b>Where we left off:</b> Unit 7 introduced cells and their nuclei, Unit 8 sorted living things by traits, and Unit 7.9 showed that traits matter for survival. You may already have learned that offspring resemble their parents. This unit explains how: DNA, genes, and the math of inheritance.</p>
+  <div class="hero-art"><svg viewBox="0 0 640 190" role="img" aria-label="A DNA double helix"><g style="fill:none;stroke-width:5"><path d="M210 20 C260 60 340 60 390 100 C340 140 260 140 210 180" style="stroke:var(--absorb)"/><path d="M390 20 C340 60 260 60 210 100 C260 140 340 140 390 180" style="stroke:var(--reflect)"/></g>
+<g style="stroke:var(--ink);stroke-width:3"><path d="M255 48 H345 M230 80 H370 M240 120 H360 M265 152 H335" /></g>
+<g font-size="14" style="font-weight:700"><text x="40" y="95">A code of four letters:</text><text x="430" y="85" style="fill:var(--ink)">A · T · C · G</text></g></svg></div>
+  <p class="howto">Look for the tags <span class="tag analogy">Analogy</span><span class="tag diagram">Diagram</span><span class="tag try">Try it</span><span class="tag data">Data</span><span class="tag real">Real world</span></p>
+</header>
+
+<nav class="nav" aria-label="Lesson sections"><ul><li><a href="#s1">1 DNA and genes</a></li><li><a href="#s2">2 Alleles</a></li><li><a href="#s3">3 Punnett squares</a></li><li><a href="#s4">4 Genes to traits</a></li><li><a href="#s5">5 Cell division</a></li><li><a href="#s6">6 Check yourself</a></li><li><a href="#game">7 Game</a></li></ul></nav>
+
+<main>
+<section class="sec" id="s1"><div><p class="kicker">Concept 1 · The instruction manual</p><h2>DNA stores instructions in a 4-letter code</h2></div><p class="idea"><mark>DNA</mark> is a long double-helix molecule made of four bases: <mark>A, T, C, G</mark>. <mark>A pairs with T and C pairs with G</mark>. A <mark>gene</mark> is a stretch of DNA that holds the instructions for one protein. Genes are packed into <mark>chromosomes</mark> in the nucleus.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>A library</h3><p class="cap">The nucleus is a library. Each chromosome is a volume, each gene a recipe, and the four letters A, T, C, G are the alphabet.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Zoom into DNA</h3><div class="chips" id="znChips" role="group" aria-label="Level"></div><div class="card2" id="znCard" aria-live="polite"></div></article><article class="aid"><span class="tag data">Data</span><h3>Pair the bases</h3><div class="items" id="bpS"></div><p class="score" id="bpSS">0 of 6 correct</p></article><article class="aid wide"><span class="tag real">Real world</span><h3>Human genome by the numbers</h3><div class="tw"><table class="tbl"><thead><tr><th>Fact</th><th>Number</th></tr></thead><tbody><tr><td>Chromosomes</td><td>46 (23 pairs)</td></tr><tr><td>Base pairs</td><td>About 3 billion</td></tr><tr><td>Genes</td><td>About 20,000</td></tr><tr><td>DNA similarity between any two people</td><td>99.9%</td></tr><tr><td>DNA shared with a chimpanzee</td><td>~98.8%</td></tr></tbody></table></div></article></div></section>
+<section class="sec" id="s2"><div><p class="kicker">Concept 2 · Dominant and recessive</p><h2>Two copies of each gene, in different versions</h2></div><p class="idea">You inherit <mark>one copy of each gene from each parent</mark>. Different versions are <mark>alleles</mark>. A <mark>dominant</mark> allele shows when present; a <mark>recessive</mark> allele shows only with two copies. <mark>Genotype</mark> is the alleles; <mark>phenotype</mark> is the trait.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Two light switches</h3><p class="cap">Think of two switches wired to one bulb. A <b>dominant</b> allele turns the bulb on by itself. A <b>recessive</b> allele only shows when both switches are recessive; one dominant switch overrides it. <b>Where it breaks:</b> real alleles rarely act like simple on/off switches. Many traits are built by several genes plus the environment.</p></article><article class="aid"><span class="tag try">Try it</span><h3>Sort genotype and phenotype</h3><div class="items" id="gpS"></div><p class="score" id="gpSS">0 of 6 correct</p></article><article class="aid wide"><span class="tag data">Data</span><h3>Mendel's pea results</h3><div class="tw"><table class="tbl" style="min-width:460px"><thead><tr><th>Cross</th><th>F2 plants</th><th>Ratio</th></tr></thead><tbody><tr><td>Purple × white flowers</td><td>705 purple : 224 white</td><td>3.1 : 1</td></tr><tr><td>Round × wrinkled seeds</td><td>5,474 : 1,850</td><td>2.96 : 1</td></tr><tr><td>Tall × short</td><td>787 : 277</td><td>2.84 : 1</td></tr></tbody></table></div><p class="cap">Mendel counted over 28,000 pea plants. The repeated 3 : 1 ratio led him to the idea of dominant and recessive factors.</p></article></div></section>
+<section class="sec" id="s3"><div><p class="kicker">Concept 3 · Predicting offspring</p><h2>A grid of probabilities</h2></div><p class="idea">A <mark>Punnett square</mark> shows every way parental alleles can combine. It gives <mark>probabilities</mark>, not guarantees, like flipping coins.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Flipping two coins</h3><p class="cap">Each parent hands over one allele like a coin flip. The grid lists all four coin combinations.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Cross two parents</h3><div class="chips" id="p1Chips" role="group" aria-label="Parent 1 (B = brown eyes, b = blue)"></div><div class="chips" id="p2Chips" role="group" aria-label="Parent 2"></div><div id="pnGrid"></div><div id="pnBars" class="bars"></div><p class="readout" id="pnR" aria-live="polite"></p></article><article class="aid wide"><span class="tag data">Data</span><h3>Common crosses</h3><div class="tw"><table class="tbl" style="min-width:440px"><thead><tr><th>Cross</th><th>Offspring</th></tr></thead><tbody><tr><td>Bb × Bb</td><td>25% BB, 50% Bb, 25% bb → 75% dominant</td></tr><tr><td>Bb × bb</td><td>50% Bb, 50% bb</td></tr><tr><td>BB × bb</td><td>100% Bb (all dominant)</td></tr><tr><td>BB × Bb</td><td>50% BB, 50% Bb (all dominant)</td></tr></tbody></table></div></article></div></section>
+<section class="sec" id="s4"><div><p class="kicker">Concept 4 · From code to protein</p><h2>Genes tell cells which proteins to build</h2></div><p class="idea">A cell <mark>copies a gene</mark> into messenger RNA and <mark>reads it three letters at a time</mark> (<mark>codons</mark>). Each codon calls for an amino acid; chains of amino acids fold into proteins, which build and run your body.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Reading a recipe</h3><p class="cap">Three-letter words like "CAT", "HAT" are codons: change a letter and you may change the whole meaning.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Mutation lab</h3><div class="chips" id="mtChips" role="group" aria-label="Change"></div><div id="mtOut" class="card2" aria-live="polite"></div></article><article class="aid wide"><span class="tag data">Data</span><h3>Real examples</h3><div class="tw"><table class="tbl" style="min-width:520px"><thead><tr><th>Condition</th><th>Gene change</th><th>Effect</th></tr></thead><tbody><tr><td>Sickle cell</td><td>One letter (A→T) in hemoglobin gene</td><td>Red blood cells bend into a sickle shape</td></tr><tr><td>Lactase persistence</td><td>Switch stays on in adulthood</td><td>Can digest milk as an adult</td></tr><tr><td>Cystic fibrosis</td><td>Missing 3 letters in CFTR</td><td>A protein folds wrongly; thick mucus</td></tr></tbody></table></div></article></div></section>
+<section class="sec" id="s5"><div><p class="kicker">Concept 5 · Copies and sex cells</p><h2>Mitosis copies; meiosis shuffles</h2></div><p class="idea"><mark>Mitosis</mark> makes two identical body cells for growth and repair. <mark>Meiosis</mark> makes <mark>four different sex cells</mark> with half the chromosomes, so offspring get a unique mix from both parents. Today we also <mark>edit and copy genes</mark> (biotechnology).</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Photocopy vs. shuffled deck</h3><p class="cap">Mitosis is a photocopier. Meiosis is shuffling a deck and dealing half to each player: every hand is different.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Compare</h3><div class="chips" id="dvChips" role="group" aria-label="Process"></div><div class="bars" id="dvBars"></div><p class="readout" id="dvR" aria-live="polite"></p></article><article class="aid wide"><span class="tag real">Real world</span><h3>Biotechnology</h3><div class="tw"><table class="tbl" style="min-width:520px"><thead><tr><th>Tool</th><th>What it does</th><th>Question to ask</th></tr></thead><tbody><tr><td>Selective breeding</td><td>Pick parents with desired traits</td><td>Does it reduce variety?</td></tr><tr><td>GMO crops</td><td>Add a gene (insect resistance)</td><td>Safety and labeling</td></tr><tr><td>CRISPR</td><td>Cut and edit DNA precisely</td><td>Who decides what to edit?</td></tr><tr><td>DNA fingerprints</td><td>Identify people from DNA</td><td>Privacy and use</td></tr></tbody></table></div></article></div></section>
+
+<section class="sec" id="s6">
+  <div><p class="kicker">Check yourself</p><h2>Can you explain it?</h2></div>
+  <p class="idea">Two brown-eyed parents (both Bb) have a blue-eyed child (bb). Use a Punnett square to explain how this is possible and give the probability for each new child.</p>
+  <details><summary>Show a model answer</summary><div class="in"><p>Each parent can pass B or b, so the Punnett square is BB, Bb, Bb, bb. Blue eyes need bb, which is 1 of 4 outcomes, a 25% chance for each child. The parents carry the recessive allele without showing it.</p></div></details>
+  <div class="items" id="quiz"></div>
+  <p class="score" id="quizScore">0 of 6 correct</p>
+  <h3 style="margin-top:8px">Words to know</h3>
+  <dl class="glossary"><div><dt>DNA</dt><dd>Molecule storing genetic instructions.</dd></div><div><dt>gene</dt><dd>A segment of DNA coding for a protein.</dd></div><div><dt>chromosome</dt><dd>A packaged strand of DNA.</dd></div><div><dt>allele</dt><dd>A version of a gene.</dd></div><div><dt>dominant</dt><dd>An allele that shows with one copy.</dd></div><div><dt>recessive</dt><dd>An allele that shows only with two copies.</dd></div><div><dt>genotype</dt><dd>The alleles an organism has.</dd></div><div><dt>phenotype</dt><dd>The observable trait.</dd></div><div><dt>mutation</dt><dd>A change in DNA.</dd></div><div><dt>meiosis</dt><dd>Division that makes sex cells.</dd></div></dl>
+  <details><summary>Tutor notes: hands-on kit, misconceptions, pacing</summary><div class="in"><p><b>Kit (about $8):</b> two colors of beads or coins, paper bags, colored pencils, strawberry DNA extraction kit (dish soap, salt, rubbing alcohol, coffee filter), pipe cleaners, a deck of cards, pictures of family traits (tongue rolling, attached earlobes).</p><ul><li><b>Concept 1:</b> Extract DNA from strawberries and look at the stringy clump.</li><li><b>Concept 2:</b> Flip two coins 100 times and compare to a 1:2:1 pattern.</li><li><b>Concept 3:</b> Build paper "chromosomes" and do meiosis by dealing half to each gamete.</li><li><b>Concept 4:</b> Survey the class on trait frequencies and graph them (many are not simple dominant/recessive!).</li><li><b>Concept 5:</b> Decode a message written in codons.</li></ul><p><b>Common misconceptions:</b></p><ul><li>"Dominant means more common." Not necessarily (polydactyly is dominant and rare).</li><li>"Traits are controlled by only one gene." Most are polygenic.</li><li>"Mutations are always bad." Most are neutral; some help.</li><li>"You get the same DNA as your siblings." Meiosis mixes uniquely (unless identical twins).</li></ul><p><b>Pacing:</b> about five 30-minute sessions. <b>Method link:</b> Mendel's peas model the full cycle of Unit 0: observe, hypothesize, design a controlled cross, count, and look for a pattern. Have students count a class sample too.</p></div></details>
+</section>
+
+<section class="sec lesson-game-sec" id="game"><div><p class="kicker">After the lesson · Game</p><h2>Play: Genetics Breeder</h2></div><p class="idea">Choose parent genotypes, read the Punnett square, and breed offspring. Then use a test cross and a dihybrid cross to see how probability predicts inheritance.</p><div class="lesson-game" id="lesson-game"></div></section>
+<section class="sec related" id="more"><div><p class="kicker">Keep exploring</p><h2>Related lessons</h2></div><p class="idea"> Up next: <a href="unit-8.9-natural-selection-and-common-ancestry.html">Unit 8.9: Natural Selection &amp; Common Ancestry</a>. Overlap alert: ideas you have already met are marked above as "you may already have learned".</p><ul><li><a href="../6th/unit-07-cells.html">Unit 7: Cells</a><span class="why">Cells.</span></li><li><a href="../6th/unit-08-classifying-life.html">Unit 8: Classifying Life</a><span class="why">Classifying life.</span></li><li><a href="../7th/unit-7.4-metabolic-reactions-and-the-body.html">Unit 7.4: Metabolic Reactions &amp; the Body</a><span class="why">Proteins in the body.</span></li><li><a href="../7th/unit-7.9-adaptation-and-earth-s-history.html">Unit 7.9: Adaptation &amp; Earth's History</a><span class="why">Adaptation.</span></li><li><a href="unit-8.9-natural-selection-and-common-ancestry.html">Unit 8.9: Natural Selection &amp; Common Ancestry</a><span class="why">Next: natural selection.</span></li></ul></section>
+</main>
+
+<footer>Built for eighth-grade tutoring. Based on OpenSciEd grade 8 Unit 8.8 (Genetics) and Michigan Virtual 8th-grade Science B genetics modules; aligned with NGSS MS-LS3-1, MS-LS3-2, MS-LS1-4 and MS-LS4-5. Values approximate.</footer>
+
+<script>
+(function(){
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const safe=fn=>{try{fn()}catch(e){console.error(e)}};
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const setPressed=(g,b)=>$$('button',g).forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));
+function mkChips(g,labels,sel=0){ g.innerHTML=labels.map((l,i)=>`<button class="chip" type="button" data-i="${i}" aria-pressed="${i===sel}">${l}</button>`).join(''); }
+function chipsOn(g,fn){ g.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; setPressed(g,b); fn(+b.dataset.i,b); }); }
+function quizBox(box,scoreEl,items,labels){
+  let right=0;
+  box.innerHTML=items.map((it,i)=>`<div class="item" data-i="${i}"><span class="nm">${it.n}</span><div class="opts">${labels.map((l,j)=>`<button class="opt" type="button" data-j="${j}">${l}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
+  box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.disabled)return; const row=b.closest('.item'), it=items[+row.dataset.i], ok=+b.dataset.j===it.a;
+    $$('.opt',row).forEach(o=>{ o.disabled=true; if(+o.dataset.j===it.a)o.classList.add('good'); }); if(!ok)b.classList.add('bad'); else right++;
+    $('.fb',row).textContent=(ok?'Yes. ':'Not quite. ')+it.e; scoreEl.textContent=`${right} of ${items.length} correct`; });
+}
+function finalQuiz(Q){
+  const box=$('#quiz'), sc=$('#quizScore'); let right=0;
+  box.innerHTML=Q.map((x,i)=>`<div class="q item" data-i="${i}" style="display:grid"><h4>${i+1}. ${x.q}</h4><div class="opts">${x.o.map((t,j)=>`<button class="opt" type="button" data-j="${j}">${t}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
+  box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.disabled)return; const row=b.closest('.q'), x=Q[+row.dataset.i], ok=+b.dataset.j===x.a;
+    $$('.opt',row).forEach(o=>{ o.disabled=true; if(+o.dataset.j===x.a)o.classList.add('good'); }); if(!ok)b.classList.add('bad'); else right++;
+    $('.fb',row).textContent=(ok?'Correct. ':'Not quite. ')+x.e; sc.textContent=`${right} of ${Q.length} correct`; });
+}
+/* bars: rows [label, value, text, cls('r'|'t'|'a')]; opt {log:true, labW:140, max} */
+function bars(el,rows,opt={}){
+  const log=opt.log, vals=rows.map(r=>r[1]), mx=opt.max||Math.max(...vals), mn=log?Math.log10(Math.min(...vals))-.3:0, top=log?Math.log10(mx)+.3:mx;
+  el.innerHTML=rows.map(([n,v,t,c])=>`<div class="brow" style="grid-template-columns:${opt.labW||140}px minmax(0,1fr)"><span class="lab">${n}</span><div class="stack" role="img" aria-label="${n}: ${t}"><div class="seg ${c||'t'}" style="width:${Math.max(4,((log?Math.log10(v):v)-mn)/(top-mn)*100)}%;min-width:48px">${t}</div></div></div>`).join('')+(log?'<p class="cap" style="margin-top:2px">Log scale.</p>':'');
+}
+/* line: generic SVG chart. o:{x0,x1,y0,y1,xt,yt,xl,yl,series:[{pts,color,w,dash}],dots,hl:[[y,label,color]],mark,bands:[[y0,y1,label]],W,H,L,B,T,R} */
+function line(svg,o){
+  const W=o.W||640,H=o.H||260,L=o.L||56,B=o.B||40,T=o.T||16,R=o.R||16;
+  const X=x=>L+(x-o.x0)/(o.x1-o.x0)*(W-L-R), Y=y=>H-B-(y-o.y0)/(o.y1-o.y0)*(H-B-T);
+  let s='';
+  (o.bands||[]).forEach(b=>{ s+=`<rect x="${L}" y="${Y(b[1])}" width="${W-L-R}" height="${Y(b[0])-Y(b[1])}" style="fill:var(--transmit);fill-opacity:.14"/><text x="${L+6}" y="${Y(b[1])+13}" font-size="11">${b[2]}</text>`; });
+  o.yt.forEach(v=>{ s+=`<line x1="${L}" y1="${Y(v)}" x2="${W-R}" y2="${Y(v)}" style="stroke:var(--line)"/><text x="${L-6}" y="${Y(v)+4}" font-size="12" text-anchor="end">${v}</text>`; });
+  o.xt.forEach(v=>{ const a=Array.isArray(v)?v:[v,v]; s+=`<text x="${X(a[0])}" y="${H-B+16}" font-size="12" text-anchor="middle">${a[1]}</text>`; });
+  (o.hl||[]).forEach(v=>{ s+=`<line x1="${L}" y1="${Y(v[0])}" x2="${W-R}" y2="${Y(v[0])}" style="stroke:${v[2]};stroke-width:2;stroke-dasharray:6 5"/><text x="${W-R-4}" y="${Y(v[0])-5}" font-size="11" text-anchor="end">${v[1]}</text>`; });
+  s+=`<line x1="${L}" y1="${H-B}" x2="${W-R}" y2="${H-B}" style="stroke:var(--ink);stroke-width:2"/><line x1="${L}" y1="${T}" x2="${L}" y2="${H-B}" style="stroke:var(--ink);stroke-width:2"/>`;
+  (o.series||[]).forEach(se=>{ if(se.pts.length) s+=`<path d="${se.pts.map((p,i)=>`${i?'L':'M'}${X(p[0]).toFixed(1)} ${Y(p[1]).toFixed(1)}`).join('')}" style="fill:none;stroke:${se.color};stroke-width:${se.w||4};stroke-linejoin:round${se.dash?';stroke-dasharray:'+se.dash:''}"/>`; });
+  (o.dots||[]).forEach(d=>{ s+=`<circle cx="${X(d[0])}" cy="${Y(d[1])}" r="5" style="fill:var(--reflect);fill-opacity:.7;stroke:var(--ink);stroke-width:1.5"/>`; });
+  if(o.mark) s+=`<circle cx="${X(o.mark[0])}" cy="${Y(o.mark[1])}" r="8" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/>`;
+  s+=`<text x="${(L+W-R)/2}" y="${H-4}" font-size="13" text-anchor="middle">${o.xl}</text><text transform="rotate(-90 14 ${(T+H-B)/2})" x="14" y="${(T+H-B)/2}" font-size="13" text-anchor="middle">${o.yl}</text>`;
+  svg.innerHTML=s;
+}
+
+
+safe(()=>{
+  const Z=[['Organism','You: about 37 trillion cells.'],['Cell','Each body cell has a nucleus (red blood cells lose theirs).'],['Nucleus','Holds the chromosomes: 46 in humans.'],['Chromosome','A tightly coiled strand of DNA and proteins.'],['Gene','A stretch of DNA coding for one protein. About 20,000 per person.'],['Base pairs','The A, T, C, G letters: 3 billion pairs if you counted them all.']];
+  const ch=$('#znChips'); mkChips(ch,Z.map(z=>z[0]),0); const d=i=>$('#znCard').innerHTML='<b>'+Z[i][0]+':</b> '+Z[i][1]; chipsOn(ch,d); d(0);
+  quizBox($('#bpS'),$('#bpSS'),[{n:'A pairs with…',a:0,e:'A–T.'},{n:'C pairs with…',a:1,e:'C–G.'},{n:'G pairs with…',a:1,e:'G–C.'},{n:'T pairs with…',a:0,e:'T–A.'},{n:'Complement of ATCG is…',a:2,e:'TAGC.'},{n:'Complement of GGA is…',a:3,e:'CCT.'}],['A / T pair','C / G pair','TAGC','CCT']);
+});
+safe(()=>{
+  quizBox($('#gpS'),$('#gpSS'),[{n:'BB (B dominant, brown eyes)',a:0,e:'At least one B: brown.'},{n:'Bb',a:0,e:'Dominant shows: brown.'},{n:'bb',a:1,e:'Two recessive: blue.'},{n:'Tt (T = tall)',a:0,e:'Tall.'},{n:'tt',a:1,e:'Short.'},{n:'PP vs Pp',a:2,e:'Different genotypes, same phenotype.'}],['Dominant trait shows','Recessive trait shows','Same trait, different genotype']);
+});
+safe(()=>{
+  const G=['BB','Bb','bb']; let a='Bb', b='Bb'; const c1=$('#p1Chips'), c2=$('#p2Chips'); mkChips(c1,G,1); mkChips(c2,G,1);
+  const d=()=>{ const A=[a[0],a[1]], B=[b[0],b[1]]; let h='<div class="tw"><table class="tbl" style="min-width:240px;text-align:center"><tbody><tr><td></td><td><b>'+B[0]+'</b></td><td><b>'+B[1]+'</b></td></tr>'; const cnt={};
+    A.forEach(x=>{ h+='<tr><td><b>'+x+'</b></td>'; B.forEach(y=>{ const g=[x,y].sort().join(''); const gg=g==='bB'?'Bb':g; cnt[gg]=(cnt[gg]||0)+1; h+='<td><b>'+gg+'</b></td>'; }); h+='</tr>'; }); h+='</tbody></table></div>'; $('#pnGrid').innerHTML=h;
+    const dom=(cnt.BB||0)+(cnt.Bb||0), rec=cnt.bb||0; bars($('#pnBars'),[['Brown eyes (dominant)',dom*25+.1,dom*25+'%','a'],['Blue eyes (recessive)',rec*25+.1,rec*25+'%','t']],{labW:160,max:100});
+    $('#pnR').innerHTML='Each child has a <b>'+dom*25+'%</b> chance of brown eyes and <b>'+rec*25+'%</b> chance of blue. Probabilities apply to <i>each</i> child separately.'; };
+  chipsOn(c1,i=>{a=G[i];d();}); chipsOn(c2,i=>{b=G[i];d();}); d();
+});
+safe(()=>{
+  const bases='TCAG', aa='FFLLSSSSYY**CC*WLLLLPPPPHHQQRRRRIIIMTTTTNNKKSSRRVVVVAAAADDEEGGGG';
+  const dna=s=>{ let o=[]; for(let i=0;i+3<=s.length;i+=3){ const c=s.slice(i,i+3).replace(/T/g,'U'); const t=c.replace(/U/g,'T'); const idx=bases.indexOf(t[0])*16+bases.indexOf(t[1])*4+bases.indexOf(t[2]); o.push([t,aa[idx]]); } return o; };
+  const names={F:'Phe',L:'Leu',S:'Ser',Y:'Tyr','*':'STOP',C:'Cys',W:'Trp',P:'Pro',H:'His',Q:'Gln',R:'Arg',I:'Ile',M:'Met',T:'Thr',N:'Asn',K:'Lys',V:'Val',A:'Ala',D:'Asp',E:'Glu',G:'Gly'};
+  const ORIG='ATGGAGCCTGGAAAGTGA'; const M=[['No change',ORIG,'The original protein: Met-Glu-Pro-Gly-Lys, then stop.'],['Silent mutation','ATGGAACCTGGAAAGTGA','GAG → GAA both code for Glu: same protein, no effect.'],['Substitution (change one letter)','ATGGTGCCTGGAAAGTGA','GAG → GTG changes Glu to Val: one amino acid differs (like sickle cell).'],['Deletion (lose one letter)','ATGGGCCTGGAAAGTGA','Missing a letter shifts every codon after it (a frameshift): the whole protein changes.']];
+  const ch=$('#mtChips'); mkChips(ch,M.map(m=>m[0]),0);
+  const d=i=>{ const m=M[i]; const a=dna(m[1]); $('#mtOut').innerHTML='<div style="font-family:var(--font-mono);line-height:2">'+a.map(c=>'<span style="display:inline-block;margin-right:10px">'+c[0]+'<br><b>'+names[c[1]]+'</b></span>').join('')+'</div><p>'+m[2]+'</p>'; }; chipsOn(ch,d); d(0);
+});
+safe(()=>{
+  const P=[{n:'Mitosis',t:'Mitosis: one cell makes 2 identical cells, each with 46 chromosomes. Used for growth and repair.',v:[[ 'Cells made',2],['Chromosomes per cell',46],['Genetically identical?',1]]},{n:'Meiosis',t:'Meiosis: one cell makes 4 different sex cells, each with 23 chromosomes. Fertilization restores 46.',v:[['Cells made',4],['Chromosomes per cell',23],['Genetically identical?',0.1]]}];
+  const ch=$('#dvChips'); mkChips(ch,P.map(p=>p.n),0); const d=i=>{ bars($('#dvBars'),P[i].v.map(v=>[v[0],v[1],v[0]==='Genetically identical?'?(v[1]>.5?'yes':'no'):String(v[1]),i?'t':'a']),{labW:170,max:50}); $('#dvR').textContent=P[i].t; }; chipsOn(ch,d); d(0);
+});
+
+finalQuiz([{"q": "A pairs with...", "o": ["T", "C", "G"], "a": 0, "e": "A\u2013T and C\u2013G."}, {"q": "Phenotype is...", "o": ["The visible trait", "The alleles", "The chromosome number"], "a": 0, "e": "Observable."}, {"q": "Bb \u00d7 Bb gives bb offspring...", "o": ["25% of the time", "50%", "0%"], "a": 0, "e": "1 of 4."}, {"q": "Meiosis makes...", "o": ["Four different sex cells", "Two identical body cells", "A protein"], "a": 0, "e": "Half the chromosomes."}, {"q": "A mutation is...", "o": ["A change in DNA", "Always harmful", "A new gene"], "a": 0, "e": "Any change."}, {"q": "Humans have how many chromosomes?", "o": ["46", "23", "92"], "a": 0, "e": "23 pairs."}]);
+})();
+</script>
+
+
+
+
+<!-- LESSON GAME:genetics-breeder START -->
+<script>(function(){
+function __mountLessonGame(host, css, html, init){
+  if(!host || host.shadowRoot) return;
+  const root = host.attachShadow({mode:"open"});
+  root.innerHTML = "<style>"+css+"</style>"+html;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let visible = true;
+  try{ new IntersectionObserver(es=>{ visible = es[es.length-1].isIntersecting; }).observe(host); }catch(e){}
+  const loops = [];
+  let last = performance.now();
+  function frame(t){
+    const dt = Math.min(0.05, (t-last)/1000); last = t;
+    if(visible && !document.hidden) for(const f of loops){ try{ f(t, dt); }catch(e){ console.error(e); } }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+  const env = {
+    root, reduce,
+    $: id => root.getElementById(id),
+    $$: sel => [...root.querySelectorAll(sel)],
+    loop: f => loops.push(f),
+    esc: s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])),
+    // A canvas drawn in fixed logical units (W x H) that scales to its container.
+    stage(canvas, W, H){
+      const ctx = canvas.getContext("2d");
+      const st = {ctx, W, H, dpr:1};
+      function fit(){
+        st.dpr = Math.min(2.5, window.devicePixelRatio || 1);
+        const cw = canvas.clientWidth || W;
+        const scale = cw / W;
+        canvas.width = Math.round(W*scale*st.dpr); canvas.height = Math.round(H*scale*st.dpr);
+        st.k = scale*st.dpr;
+        ctx.setTransform(st.k,0,0,st.k,0,0);
+        if(st.onfit) st.onfit();
+      }
+      canvas.style.aspectRatio = W+"/"+H;
+      st.begin = () => ctx.setTransform(st.k,0,0,st.k,0,0);
+      st.pt = ev => { const r = canvas.getBoundingClientRect(); return {x:(ev.clientX-r.left)*W/r.width, y:(ev.clientY-r.top)*H/r.height}; };
+      try{ new ResizeObserver(fit).observe(canvas); }catch(e){ addEventListener("resize", fit); }
+      fit();
+      return st;
+    },
+    // Level buttons in the header.
+    levelBar(box, names, onPick){
+      const solved = new Set(); let cur = 0;
+      function render(){
+        box.innerHTML = '<span class="label">Level</span>';
+        names.forEach((n,i)=>{ const b = document.createElement("button"); b.type="button";
+          b.className = "lv"+(solved.has(i)?" done":""); b.textContent = i+1; b.title = n;
+          b.setAttribute("aria-label", "Level "+(i+1)+": "+n+(solved.has(i)?" (solved)":""));
+          if(i===cur) b.setAttribute("aria-current","true");
+          b.onclick = () => { cur = i; render(); onPick(i); }; box.appendChild(b); });
+      }
+      render();
+      return { set(i){ cur=i; render(); }, solve(i){ solved.add(i); render(); }, get cur(){ return cur; }, solved };
+    },
+    // Result card over a stage. buttons: [{label, primary, onClick}]
+    card(stageEl, o){
+      let ov = stageEl.querySelector(":scope > .over");
+      if(!ov){ ov = document.createElement("div"); ov.className = "over"; stageEl.appendChild(ov); }
+      ov.hidden = false;
+      ov.innerHTML = '<div class="card'+(o.fail?' fail':'')+'" role="dialog" aria-live="polite"><h4></h4>'+(o.why?'<span class="why"></span>':'')+'<p class="cb"></p><div class="btns"></div></div>';
+      ov.querySelector("h4").textContent = o.title;
+      if(o.why) ov.querySelector(".why").textContent = o.why;
+      ov.querySelector(".cb").textContent = o.body || "";
+      if(o.list && o.list.length){ const ul = document.createElement("ul"); ul.className = "clist";
+        o.list.forEach(t => { const li = document.createElement("li"); li.textContent = t; ul.appendChild(li); });
+        ov.querySelector(".cb").after(ul); }
+      const bb = ov.querySelector(".btns");
+      (o.buttons||[]).forEach((b,i)=>{ const e = document.createElement("button"); e.type="button"; e.className = "btn"+(b.primary?" primary":""); e.textContent = b.label;
+        e.onclick = () => { ov.hidden = true; b.onClick && b.onClick(); }; bb.appendChild(e); if(i===0) setTimeout(()=>e.focus({preventScroll:true}),30); });
+      setTimeout(()=>{ const b=ov.getBoundingClientRect(); if(b.top<8 || b.bottom>innerHeight-8) ov.scrollIntoView({block:"center", behavior: reduce?"auto":"smooth"}); }, 40);
+      return ov;
+    },
+    hideCard(stageEl){ const ov = stageEl.querySelector(":scope > .over"); if(ov) ov.hidden = true; }
+  };
+  try{ init(root, env); }catch(e){ console.error(e); root.innerHTML += '<p style="color:#fff;padding:12px">This game could not start.</p>'; }
+}
+
+__mountLessonGame(document.getElementById("lesson-game"), ":host{\n  display:block; color-scheme:dark;\n  --bg:#0B0F15; --panel:#141A23; --panel-2:#1B2330; --line:#2B3544; --ink:#E9EEF5; --muted:#93A0B2;\n  --good:#3FD3BB; --bad:#FF6B5E; --warn:#FFB547; --acc:#FFD84A; --acc-ink:#1A1400;\n  --f-display:\"Bahnschrift\",\"DIN Alternate\",\"Roboto Condensed\",\"Arial Narrow\",system-ui,sans-serif;\n  --f-body:\"Roboto\",\"Segoe UI\",system-ui,-apple-system,sans-serif;\n  --f-mono:ui-monospace,\"Roboto Mono\",\"Cascadia Mono\",Menlo,Consolas,monospace;\n}\n*{box-sizing:border-box}\n[hidden]{display:none!important}\n.g{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;border-radius:16px;\n  border:1px solid var(--line);padding:16px;display:grid;gap:14px;text-align:left;box-shadow:0 10px 36px rgba(0,0,0,.35)}\n.g button{font:inherit;color:inherit}\n.g :focus-visible{outline:3px solid var(--acc);outline-offset:2px}\n.g h2,.g h3,.g h4{margin:0;font-family:var(--f-display);letter-spacing:.02em;line-height:1.15}\n.g p{margin:0}\n.bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 18px}\n.brand{display:grid;gap:2px}\n.label{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}\n.gtitle{font-family:var(--f-display);font-weight:700;font-size:1.45rem;text-transform:uppercase;letter-spacing:.04em}\n.gtitle b{color:var(--acc)}\n.goalrow{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 12px}\n.goalrow h4{font-size:1.22rem}\n.goalrow .goal{color:var(--muted);font-size:.94rem}\n.levels{display:flex;flex-wrap:wrap;gap:6px;align-items:center}\n.lv{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--line);background:var(--panel);font-family:var(--f-mono);font-size:.85rem;cursor:pointer;font-variant-numeric:tabular-nums;padding:0}\n.lv:hover{border-color:var(--muted)}\n.lv.done{border-color:var(--good);color:var(--good)}\n.lv[aria-current=\"true\"]{background:var(--acc);border-color:var(--acc);color:var(--acc-ink);font-weight:700}\n.cols{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:14px;align-items:start}\n.cols>*{min-width:0}\n.boardcol{display:grid;gap:10px;min-width:0}\n.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:10px;min-width:0}\n.panel>.label{margin-bottom:-2px}\n.stage{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px;min-width:0}\n.stage canvas,.stage svg{display:block;width:100%;max-width:100%;height:auto;border-radius:8px;touch-action:none}\n.btns{display:flex;flex-wrap:wrap;gap:8px}\n.btn{padding:8px 14px;min-height:40px;border-radius:10px;border:1.5px solid var(--line);background:var(--panel-2);cursor:pointer;font-weight:700;font-size:.92rem;line-height:1.2}\n.btn:hover:not([disabled]){border-color:var(--muted)}\n.btn[disabled]{opacity:.45;cursor:default}\n.btn.primary{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}\n.btn.ghost{background:transparent}\n.btn[aria-pressed=\"true\"]{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset}\n.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:999px;font-size:.82rem;border:1px solid var(--line);background:var(--panel-2);cursor:pointer}\n.chip[aria-pressed=\"true\"]{border-color:var(--acc);background:var(--acc);color:var(--acc-ink);font-weight:700}\n.msg{font-size:.93rem;padding:9px 12px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line)}\n.msg.good{border-color:color-mix(in srgb,var(--good) 60%,var(--line))}\n.msg.bad{border-color:color-mix(in srgb,var(--bad) 60%,var(--line))}\n.msg.warn{border-color:color-mix(in srgb,var(--warn) 60%,var(--line))}\n.help{font-size:.86rem;color:var(--muted)}\n.readout{font-size:.92rem;color:var(--ink);padding:8px 11px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line);min-height:38px}\n.meter{height:12px;border-radius:99px;background:var(--panel-2);overflow:hidden;border:1px solid var(--line)}\n.meter>i{display:block;height:100%;background:var(--acc);transition:width .15s}\n.ctl{display:grid;gap:4px}\n.ctl label{font-size:.9rem;font-weight:700;display:flex;justify-content:space-between;gap:8px}\n.ctl input[type=range]{width:100%;accent-color:var(--acc);height:30px;margin:0}\n.over{position:absolute;inset:6px;border-radius:8px;display:grid;place-items:start center;padding:14px;background:color-mix(in srgb,var(--bg) 74%,transparent);backdrop-filter:blur(2px);z-index:5;overflow:visible}\n.card{max-width:460px;display:grid;gap:10px;padding:18px;border-radius:14px;background:var(--panel-2);border:1px solid var(--acc);box-shadow:0 0 36px color-mix(in srgb,var(--acc) 22%,transparent);position:sticky;top:0;margin-top:0;max-height:none;overflow:visible}\n.card h4{font-size:1.45rem;color:var(--acc)}\n.card.fail{border-color:var(--bad)}\n.card.fail h4{color:var(--bad)}\n.clist{margin:0;padding-left:1.15em;display:grid;gap:5px;font-size:.9rem}\n.why{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}\n.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}\n.bars{display:grid;gap:7px}\n.brow{display:grid;grid-template-columns:9.5em minmax(0,1fr) 4.2em;gap:8px;align-items:center;font-size:.86rem}\n.brow .track{height:12px;border-radius:99px;background:var(--panel-2);border:1px solid var(--line);overflow:hidden}\n.brow .fill{display:block;height:100%;background:var(--acc)}\n.brow .val{font-family:var(--f-mono);text-align:right;font-size:.8rem;color:var(--muted)}\n.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}\n.tile{border:1.5px solid var(--line);background:var(--panel-2);border-radius:10px;padding:9px;text-align:left;cursor:pointer;font-size:.88rem;line-height:1.25}\n.tile:hover:not([disabled]){border-color:var(--muted)}\n.tile[aria-pressed=\"true\"]{border-color:var(--acc)}\n.tile.good{border-color:var(--good);background:color-mix(in srgb,var(--good) 14%,var(--panel-2))}\n.tile.bad{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,var(--panel-2))}\n.tile[disabled]{cursor:default}\n.tbl{width:100%;border-collapse:collapse;font-size:.88rem}\n.tbl th{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:left;padding:4px 7px;border-bottom:1px solid var(--line);font-weight:500}\n.tbl td{padding:5px 7px;border-bottom:1px solid var(--line)}\n.scroll{overflow-x:auto}\n.kv{display:grid;grid-template-columns:1fr auto;gap:6px 10px;font-size:.9rem}\n.kv dt{color:var(--muted)}.kv dd{margin:0;font-family:var(--f-mono);text-align:right}\n.score{font-family:var(--f-mono);font-size:.82rem;color:var(--muted)}\n@media (max-width:860px){.cols{grid-template-columns:minmax(0,1fr)}.over{position:static;inset:auto;background:none;backdrop-filter:none;padding:8px 0 2px}.card{max-width:none;position:static;margin-top:0;max-height:none;overflow:visible}}\n@media (prefers-reduced-motion:reduce){.meter>i{transition:none}}\n", "\n<div class=\"g\">\n  <div class=\"bar\">\n    <div class=\"goalrow\"><h4 id=\"lvName\">Monohybrid cross</h4><span class=\"goal\" id=\"lvGoal\"></span></div>\n    <nav class=\"levels\" id=\"lvBar\" aria-label=\"Levels\"></nav>\n  </div>\n  <div class=\"cols\">\n    <section class=\"boardcol\" aria-label=\"Punnett square breeding board\">\n      <div class=\"stage\" id=\"stage\" style=\"padding:12px;display:grid;gap:10px\">\n        <div id=\"board\"></div>\n        <div class=\"btns\">\n          <button class=\"btn primary\" id=\"breed\" type=\"button\">Breed one offspring</button>\n          <button class=\"btn ghost\" id=\"reset\" type=\"button\">Start this level over</button>\n        </div>\n        <p class=\"readout\" id=\"read\" aria-live=\"polite\"></p>\n      </div>\n      <p class=\"help\" id=\"help\"></p>\n    </section>\n    <aside class=\"panel\">\n      <div id=\"parentPick\"></div>\n      <div id=\"answerWrap\" hidden>\n        <span class=\"label\">Call the mystery genotype</span>\n        <div class=\"btns\">\n          <button class=\"btn\" type=\"button\" data-answer=\"AA\">It is AA</button>\n          <button class=\"btn\" type=\"button\" data-answer=\"Aa\">It is Aa</button>\n        </div>\n      </div>\n      <span class=\"label\">Family log</span>\n      <ul class=\"clist\" id=\"log\" style=\"max-height:240px;overflow:auto\"></ul>\n      <p class=\"score\" id=\"score\"></p>\n    </aside>\n  </div>\n</div>", (function (root, env) {
+    const { $, levelBar, card, hideCard } = env;
+
+    const LEVELS = [
+      {
+        n: "Monohybrid cross",
+        goal: "Grow a white-flowered offspring (aa) from Aa × Aa",
+        start: "Aa × Aa gives a 25% chance of a white (aa) offspring on every single breed.",
+        help: "A Punnett square lists every equally likely way two alleles can combine. Probabilities describe each new offspring, not a promise for a small family.",
+      },
+      {
+        n: "Test cross",
+        goal: "Decide whether the purple parent is AA or Aa",
+        start: "Breed the mystery purple plant with a white aa plant, then read the evidence.",
+        help: "A test cross uses the recessive phenotype (aa) so a hidden recessive allele has nowhere to hide.",
+      },
+      {
+        n: "Dihybrid cross",
+        goal: "Grow a tall white plant (aaB_) from AaBb × AaBb",
+        start: "AaBb × AaBb. A tall white plant is aaB_: 3 of the 16 equally likely outcomes.",
+        help: "Each 4×4 cell is one of 16 equally likely gamete combinations. The 9:3:3:1 phenotype ratio comes from independent assortment.",
+      },
+    ];
+
+    let li = 0;
+    let done = false;
+    const bar = levelBar($("lvBar"), LEVELS.map((x) => x.n), (i) => { li = i; load(); });
+    let state = null;
+
+    function say(msg) { $("read").textContent = msg; }
+    function combine(a, b) {
+      const upper = a === a.toUpperCase() ? a : b;
+      const lower = a === a.toUpperCase() ? b : a;
+      return upper + lower;
+    }
+    function monoPheno(gt) {
+      const purple = gt.indexOf("A") >= 0;
+      return { flower: purple ? "purple" : "white", color: purple ? "#B18CFF" : "#E9EEF5" };
+    }
+    function diPheno(gt) {
+      const flower = gt.slice(0, 2).indexOf("A") >= 0 ? "purple" : "white";
+      const height = gt.slice(2, 4).indexOf("B") >= 0 ? "tall" : "short";
+      return { flower, height, color: flower === "purple" ? "#B18CFF" : "#E9EEF5" };
+    }
+    function gamete(gt) { return gt[Math.floor(Math.random() * 2)]; }
+    function gameteDi(gt) {
+      return gt[Math.floor(Math.random() * 2)] + gt[2 + Math.floor(Math.random() * 2)];
+    }
+    function combineDi(g1, g2) { return combine(g1[0], g2[0]) + combine(g1[1], g2[1]); }
+
+    function monoCounts(p1, p2) {
+      const cells = [];
+      p1.split("").forEach((a) => p2.split("").forEach((b) => cells.push(combine(a, b))));
+      const counts = {};
+      cells.forEach((g) => { counts[g] = (counts[g] || 0) + 1; });
+      return counts;
+    }
+    function diCounts() {
+      const gs = ["AB", "Ab", "aB", "ab"];
+      const counts = {};
+      gs.forEach((g1) => gs.forEach((g2) => {
+        const gt = combineDi(g1, g2);
+        counts[gt] = (counts[gt] || 0) + 1;
+      }));
+      return counts;
+    }
+    function ratioText(counts, order) {
+      return order.filter((g) => counts[g]).map((g) => counts[g] + " " + g).join(" : ");
+    }
+    function pct(part, total) { return Math.round((part / total) * 100); }
+
+    function monoTableHTML(p1, p2) {
+      const a1 = p1.split(""), a2 = p2.split("");
+      const head = a2.map((a) => `<th scope="col" style="text-align:center;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--ink)">${a}</th>`).join("");
+      const rows = a1.map((a) => {
+        const cells = a2.map((b) => {
+          const g = combine(a, b), ph = monoPheno(g);
+          const bg = ph.flower === "purple" ? "rgba(177,140,255,.16)" : "rgba(233,238,245,.09)";
+          return `<td style="text-align:center;background:${bg}"><b>${g}</b><span style="display:block;font-size:11px;color:var(--muted)">${ph.flower}</span></td>`;
+        }).join("");
+        return `<tr><th scope="row" style="text-align:center;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--ink)">${a}</th>${cells}</tr>`;
+      }).join("");
+      return `<div class="scroll"><table class="tbl" style="table-layout:fixed"><thead><tr><th style="text-align:center;text-transform:none">×</th>${head}</tr></thead><tbody>${rows}</tbody></table></div>`;
+    }
+
+    function diTableHTML() {
+      const gs = ["AB", "Ab", "aB", "ab"];
+      const head = gs.map((g) => `<th scope="col" style="text-align:center;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--ink)">${g}</th>`).join("");
+      const rows = gs.map((g1) => {
+        const cells = gs.map((g2) => {
+          const gt = combineDi(g1, g2), ph = diPheno(gt);
+          const bg = ph.flower === "purple" ? "rgba(177,140,255,.16)" : "rgba(233,238,245,.09)";
+          const code = (ph.flower === "purple" ? "P" : "W") + "·" + (ph.height === "tall" ? "T" : "S");
+          return `<td style="text-align:center;background:${bg}"><b>${gt}</b><span style="display:block;font-size:11px;color:var(--muted)">${code}</span></td>`;
+        }).join("");
+        return `<tr><th scope="row" style="text-align:center;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--ink)">${g1}</th>${cells}</tr>`;
+      }).join("");
+      return `<div class="scroll"><table class="tbl" style="table-layout:fixed"><thead><tr><th style="text-align:center;text-transform:none">×</th>${head}</tr></thead><tbody>${rows}</tbody></table></div>`;
+    }
+
+    function barsHTML(items) {
+      return `<div class="bars">${items.map((x) => `<div class="brow" style="grid-template-columns:8.4em minmax(0,1fr) 3.6em">
+        <span>${x.label}</span><span class="track"><i class="fill" style="width:${x.p}%;background:${x.color}"></i></span><span class="val">${x.p}%</span>
+      </div>`).join("")}</div>`;
+    }
+
+    function renderParents() {
+      if (li === 0) {
+        $("parentPick").innerHTML = `<span class="label">Parent 1 (pollen)</span><div class="btns" id="p1Btns"></div>
+          <span class="label">Parent 2 (ovule)</span><div class="btns" id="p2Btns"></div>
+          <p class="help">A = purple allele (dominant) · a = white allele (recessive)</p>`;
+        ["p1", "p2"].forEach((key) => {
+          const box = $(key + "Btns");
+          box.innerHTML = ["AA", "Aa", "aa"].map((g) =>
+            `<button class="chip" type="button" data-g="${g}" aria-pressed="${state[key] === g}" ${done ? "disabled" : ""}>${g}</button>`
+          ).join("");
+          [...box.querySelectorAll("button")].forEach((b) => {
+            b.onclick = () => {
+              if (done) return;
+              state[key] = b.dataset.g;
+              state.total = 0; state.white = 0; state.tallWhite = 0;
+              $("log").innerHTML = `<li class="placeholder help">No offspring yet.</li>`;
+              renderParents(); render();
+              say(`Cross set to ${state.p1} × ${state.p2}. Read the square, then breed.`);
+            };
+          });
+        });
+      } else if (li === 1) {
+        $("parentPick").innerHTML = `<span class="label">The test cross</span>
+          <div class="kv"><dt>Mystery purple parent</dt><dd>? (AA or Aa)</dd><dt>Test parent (white)</dt><dd>aa</dd></div>
+          <p class="help">The white parent can only donate a. A white offspring therefore proves the mystery parent carries a.</p>`;
+      } else {
+        $("parentPick").innerHTML = `<span class="label">The dihybrid cross</span>
+          <div class="kv"><dt>Parent 1</dt><dd>AaBb</dd><dt>Parent 2</dt><dd>AaBb</dd></div>
+          <p class="help">A = purple, a = white; B = tall, b = short. The two genes assort independently.</p>`;
+      }
+    }
+
+    function renderMono() {
+      const c = monoCounts(state.p1, state.p2);
+      const total = 4, purple = (c.AA || 0) + (c.Aa || 0), white = c.aa || 0;
+      const geno = ratioText(c, ["AA", "Aa", "aa"]);
+      $("board").innerHTML = `
+        <div class="goalrow"><h4 style="font-size:1.1rem">${state.p1} × ${state.p2}</h4><span class="goal">${monoPheno(state.p1).flower} × ${monoPheno(state.p2).flower}</span></div>
+        ${monoTableHTML(state.p1, state.p2)}
+        <p class="help"><b>Genotypes:</b> ${geno} &nbsp;·&nbsp; <b>Phenotypes:</b> ${pct(purple, total)}% purple, ${pct(white, total)}% white.</p>
+        ${barsHTML([
+          { label: "purple", p: pct(purple, total), color: "#B18CFF" },
+          { label: "white", p: pct(white, total), color: "#E9EEF5" },
+        ])}
+        <p class="help">A is dominant, so AA and Aa are purple. White flowers need two recessive alleles: aa.</p>
+        ${white === 0 ? '<p class="msg bad">This cross can never make aa. Each parent must be able to donate a recessive a.</p>' : ""}`;
+    }
+
+    function renderTest() {
+      if (!state.revealed) {
+        $("board").innerHTML = `
+          <div class="goalrow"><h4 style="font-size:1.1rem">Test cross: ? × aa</h4><span class="goal">Breed, then call the purple parent's genotype</span></div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px">
+            <div class="panel" style="padding:10px">
+              <span class="label" style="text-transform:none">If the mystery is AA</span>
+              ${monoTableHTML("AA", "aa")}
+              <p class="help">100% Aa — every offspring purple</p>
+            </div>
+            <div class="panel" style="padding:10px">
+              <span class="label" style="text-transform:none">If the mystery is Aa</span>
+              ${monoTableHTML("Aa", "aa")}
+              <p class="help">50% Aa purple · 50% aa white</p>
+            </div>
+          </div>
+          <p class="help">The two hypotheses give different predictions. Data from real offspring tells you which one fits.</p>
+          <p class="score">Offspring so far: <b>${state.total}</b> · white: <b>${state.white}</b> · ${state.white ? "Aa is proven!" : state.total >= 4 ? "no white yet — AA is the better explanation." : "breed at least 4 before deciding."}</p>`;
+      } else {
+        const c = monoCounts(state.mystery, "aa");
+        const purple = (c.Aa || 0), white = c.aa || 0;
+        $("board").innerHTML = `
+          <div class="goalrow"><h4 style="font-size:1.1rem">Mystery solved: ${state.mystery} × aa</h4><span class="goal">the hidden genotype was ${state.mystery}</span></div>
+          ${monoTableHTML(state.mystery, "aa")}
+          <p class="help"><b>Genotypes:</b> ${ratioText(c, ["AA", "Aa", "aa"])} &nbsp;·&nbsp; <b>Phenotypes:</b> ${pct(purple, 4)}% purple, ${pct(white, 4)}% white.</p>
+          ${barsHTML([
+            { label: "purple", p: pct(purple, 4), color: "#B18CFF" },
+            { label: "white", p: pct(white, 4), color: "#E9EEF5" },
+          ])}`;
+      }
+      const canAnswer = state.total >= 4 || state.white > 0;
+      [...$("answerWrap").querySelectorAll("button")].forEach((b) => { b.disabled = !canAnswer || done; });
+    }
+
+    function renderDi() {
+      const c = diCounts();
+      let purpleTall = 0, purpleShort = 0, whiteTall = 0, whiteShort = 0;
+      Object.keys(c).forEach((g) => {
+        const ph = diPheno(g), n = c[g];
+        if (ph.flower === "purple" && ph.height === "tall") purpleTall += n;
+        else if (ph.flower === "purple") purpleShort += n;
+        else if (ph.height === "tall") whiteTall += n;
+        else whiteShort += n;
+      });
+      const ordered = ["AABB", "AABb", "AAbb", "AaBB", "AaBb", "Aabb", "aaBB", "aaBb", "aabb"];
+      $("board").innerHTML = `
+        <div class="goalrow"><h4 style="font-size:1.1rem">AaBb × AaBb</h4><span class="goal">purple tall × purple tall</span></div>
+        ${diTableHTML()}
+        <p class="help"><b>Genotypes:</b> ${ratioText(c, ordered)}</p>
+        <p class="help"><b>Phenotypes:</b> 9 purple tall : 3 purple short : 3 white tall : 1 white short. Tall white is aaB_: 3/16 ≈ 19% per breed.</p>
+        ${barsHTML([
+          { label: "purple tall", p: pct(purpleTall, 16), color: "#B18CFF" },
+          { label: "purple short", p: pct(purpleShort, 16), color: "#8E6FD6" },
+          { label: "white tall", p: pct(whiteTall, 16), color: "#E9EEF5" },
+          { label: "white short", p: pct(whiteShort, 16), color: "#93A0B2" },
+        ])}
+        <p class="help">Each 4×4 cell is equally likely. P = purple, W = white; T = tall, S = short.</p>`;
+    }
+
+    function render() {
+      $("lvName").textContent = LEVELS[li].n;
+      $("lvGoal").textContent = LEVELS[li].goal;
+      $("help").textContent = LEVELS[li].help;
+      $("breed").disabled = done;
+      $("breed").textContent = li === 1 ? "Breed with aa" : "Breed one offspring";
+      if (li === 0) renderMono();
+      else if (li === 1) renderTest();
+      else renderDi();
+      $("answerWrap").hidden = li !== 1;
+      $("score").textContent = `Offspring: ${state.total} · white: ${state.white}` + (li === 2 ? ` · tall white: ${state.tallWhite}` : "");
+    }
+
+    function addLog(gt, pheno, color) {
+      const ph = $("log").querySelector(".placeholder");
+      if (ph) ph.remove();
+      const item = document.createElement("li");
+      item.innerHTML = `<span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${color};margin-right:6px"></span><b>${gt}</b> — ${pheno}`;
+      $("log").prepend(item);
+      while ($("log").children.length > 12) $("log").lastElementChild.remove();
+    }
+
+    function winMono() {
+      done = true;
+      bar.solve(0);
+      render();
+      $("stage").style.minHeight = "500px";
+      card($("stage"), {
+        title: "White flower grown",
+        why: "The science",
+        body: `The Aa × Aa square has four equally likely outcomes: AA, Aa, Aa, and aa. Only aa is white, so each offspring has a 1 in 4 (25%) chance. You found one on breed ${state.total}; the next breed is still 25%, because each offspring is independent.`,
+        list: [
+          "Genotype = the alleles an organism carries (AA, Aa, or aa). Phenotype = the observable trait (purple or white).",
+          "A is dominant, so AA and Aa look purple. aa is the only white genotype.",
+          "Probability predicts each offspring, not a guarantee for a small family.",
+        ],
+        buttons: [{ label: "Next level: test cross", primary: true, onClick: () => { li = 1; load(); } }],
+      });
+    }
+
+    function winTest() {
+      done = true;
+      bar.solve(1);
+      render();
+      $("stage").style.minHeight = "500px";
+      let body;
+      if (state.mystery === "AA") {
+        body = `The mystery purple parent was AA. Every gamete from AA carries A, so every cross with aa produced Aa — purple, with no white offspring among ${state.total}. That is the signature of AA. An Aa parent would have produced about half white offspring, though a small sample can occasionally mislead.`;
+      } else if (state.white > 0) {
+        body = `The mystery purple parent was Aa. You saw ${state.white} white offspring out of ${state.total}. A white offspring (aa) must receive an a from each parent, so the mystery parent had to carry a. One white offspring is enough to prove Aa.`;
+      } else {
+        body = `The mystery purple parent was Aa, even though no white offspring appeared in ${state.total}. That can happen by chance: each offspring from Aa × aa has a 50% chance of white. A larger sample would usually reveal a white offspring and prove the hidden a.`;
+      }
+      card($("stage"), {
+        title: "Test cross solved",
+        why: "The science",
+        body,
+        list: [
+          "A test cross uses the recessive phenotype (aa) to reveal a hidden allele.",
+          "Genotype AA and Aa both look purple; only the offspring can tell them apart reliably.",
+          "If any white offspring appear, the purple parent must be Aa; many all-purple offspring point to AA.",
+        ],
+        buttons: [{ label: "Next level: dihybrid", primary: true, onClick: () => { li = 2; load(); } }],
+      });
+    }
+
+    function winDi(gt) {
+      done = true;
+      bar.solve(2);
+      render();
+      $("stage").style.minHeight = "500px";
+      card($("stage"), {
+        title: "Tall white plant grown",
+        why: "The science",
+        body: `AaBb × AaBb gives 16 equally likely gamete combinations. The phenotype ratio is 9 purple tall : 3 purple short : 3 white tall : 1 white short, so a tall white plant (aaB_) has a 3 in 16 chance, about 19%, on each breed. Your plant was ${gt}.`,
+        list: [
+          "Genotype AaBb means one dominant and one recessive allele for each gene.",
+          "Phenotype combines both visible traits: flower color and height.",
+          "Independent assortment of A/a and B/b produces the 9:3:3:1 ratio.",
+          "A tall white plant can be aaBB or aaBb; both show the same phenotype.",
+        ],
+        buttons: [{ label: "Play again", primary: true, onClick: () => { li = 0; load(); } }],
+      });
+    }
+
+    function callGenotype(choice) {
+      if (li !== 1 || done) return;
+      if (state.total < 4 && state.white === 0) {
+        say("Breed at least 4 offspring before calling the genotype. Evidence matters.");
+        return;
+      }
+      if (choice === state.mystery) {
+        state.revealed = true;
+        winTest();
+      } else if (state.mystery === "AA") {
+        say("Not yet. If the parent were Aa, about half the offspring would be white. Keep breeding: a white offspring would prove Aa, but if none ever appears, AA is the better explanation.");
+      } else {
+        say("Not yet. A heterozygous purple parent can give several purple offspring by chance. Keep breeding; a white offspring is proof that the mystery parent carries a.");
+      }
+    }
+
+    function breed() {
+      if (done) return;
+      if (li === 0) {
+        const gt = combine(gamete(state.p1), gamete(state.p2));
+        const ph = monoPheno(gt);
+        state.total++;
+        if (gt === "aa") state.white++;
+        addLog(gt, ph.flower + " flowers", ph.color);
+        if (gt === "aa") { winMono(); return; }
+        const aaChance = monoCounts(state.p1, state.p2).aa || 0;
+        say(aaChance === 0
+          ? `Offspring ${state.total}: ${ph.flower} (${gt}). This cross cannot make aa; change a parent to Aa so both can donate a.`
+          : `Offspring ${state.total}: ${ph.flower} (${gt}). The square still predicts a 25% chance of aa on the next breed.`);
+        render();
+      } else if (li === 1) {
+        const gt = combine(gamete(state.mystery), gamete("aa"));
+        const ph = monoPheno(gt);
+        state.total++;
+        if (gt === "aa") state.white++;
+        addLog(gt, ph.flower + " flowers", ph.color);
+        if (gt === "aa") {
+          say(`White offspring (aa)! Proof: the mystery parent must carry a, so its genotype is Aa. Call it when you are ready.`);
+        } else if (state.total >= 4) {
+          say(`Offspring ${state.total}: purple (${gt}). No white yet. If the mystery were Aa, each offspring would have a 50% chance of white; keep breeding or call AA.`);
+        } else {
+          say(`Offspring ${state.total}: purple (${gt}). Keep breeding — a white offspring would be proof of Aa.`);
+        }
+        render();
+      } else {
+        const gt = combineDi(gameteDi("AaBb"), gameteDi("AaBb"));
+        const ph = diPheno(gt);
+        state.total++;
+        if (ph.flower === "white") state.white++;
+        if (ph.flower === "white" && ph.height === "tall") state.tallWhite++;
+        addLog(gt, ph.flower + ", " + ph.height, ph.color);
+        if (ph.flower === "white" && ph.height === "tall") { winDi(gt); return; }
+        say(`Offspring ${state.total}: ${ph.flower}, ${ph.height} (${gt}). Tall white is aaB_: 3 of 16 outcomes, about 19%, on the next breed.`);
+        render();
+      }
+    }
+
+    function load() {
+      done = false;
+      state = {
+        p1: "Aa", p2: "Aa",
+        mystery: Math.random() < 0.5 ? "AA" : "Aa",
+        total: 0, white: 0, tallWhite: 0,
+        revealed: false,
+      };
+      if (hideCard) hideCard($("stage"));
+      $("stage").style.minHeight = "";
+      bar.set(li);
+      $("log").innerHTML = `<li class="placeholder help">No offspring yet.</li>`;
+      renderParents();
+      render();
+      say(LEVELS[li].start);
+    }
+
+    [...$("answerWrap").querySelectorAll("button")].forEach((b) => {
+      b.onclick = () => callGenotype(b.dataset.answer);
+    });
+    $("breed").onclick = breed;
+    $("reset").onclick = () => load();
+    load();
+  }));
+})();</script>
+<!-- LESSON GAME:genetics-breeder END -->

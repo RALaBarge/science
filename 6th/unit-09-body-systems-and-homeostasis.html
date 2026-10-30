@@ -1,0 +1,886 @@
+<title>Body Systems &amp; Homeostasis</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout concept: one long lesson column. Each concept opens with a one-sentence big idea, then a grid of labelled visual aids
+   (Analogy, Diagram, Try it, Data, Real world) that collapses to one column on phones.
+   Color roles are fixed for the whole page: amber = incoming light, blue = reflected, teal = transmitted, orange = absorbed. */
+:root{
+  --bg:#F2F5FA; --surface:#FFFFFF; --surface-2:#E8EDF6; --ink:#12172B; --muted:#47506E; --line:#D0D8E8;
+  --beam:#F2A900; --beam-ink:#1A1400; --reflect:#2B66E8; --absorb:#D6450B; --transmit:#0B7F70; --on-color:#FFFFFF;
+  --red:#D93036; --green:#25904F; --blue:#3558D6; --shade:#222A4A;
+  --font-display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --font-body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+  --font-mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C1022; --surface:#151A33; --surface-2:#1D2444; --ink:#EDF0FB; --muted:#A8B1CE; --line:#2B3459;
+    --beam:#FFC93C; --beam-ink:#1A1400; --reflect:#7BA2FF; --absorb:#FF8F5C; --transmit:#46D6C0; --on-color:#0B1020;
+    --red:#FF6A70; --green:#4FCB85; --blue:#7C97FF; --shade:#02040B; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C1022; --surface:#151A33; --surface-2:#1D2444; --ink:#EDF0FB; --muted:#A8B1CE; --line:#2B3459;
+  --beam:#FFC93C; --beam-ink:#1A1400; --reflect:#7BA2FF; --absorb:#FF8F5C; --transmit:#46D6C0; --on-color:#0B1020;
+  --red:#FF6A70; --green:#4FCB85; --blue:#7C97FF; --shade:#02040B; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--font-body); font-size:17px; line-height:1.55;
+  padding-block:0 72px;
+  padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+main,.hero{max-width:920px;margin:0 auto}
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance;margin:0;line-height:1.1}
+p{margin:0}
+a{color:inherit}
+svg{display:block;width:100%;height:auto}
+svg text{font-family:var(--font-body);fill:var(--ink)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--reflect);outline-offset:2px}
+
+/* hero */
+.hero{padding-block:28px 8px;display:grid;gap:18px}
+.kicker{font-family:var(--font-mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
+.lede{font-size:clamp(1.1rem,3.4vw,1.35rem);max-width:34em;text-wrap:pretty}
+.hero-art{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:10px 12px}
+.howto{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:.92rem;color:var(--muted)}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);margin-top:18px;border-bottom:1px solid var(--line);
+  margin-inline:auto;max-width:920px}
+.nav ul{list-style:none;margin:0;padding:8px 0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin}
+.nav a{display:block;white-space:nowrap;text-decoration:none;font-size:.9rem;padding:7px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface)}
+.nav a:hover{border-color:var(--ink)}
+
+/* sections */
+.sec{padding-block:52px 6px;scroll-margin-top:68px;display:grid;gap:20px}
+.sec h2{font-size:clamp(1.9rem,6vw,2.7rem);font-weight:800;letter-spacing:-.02em}
+.idea{font-family:var(--font-display);font-size:clamp(1.25rem,4.4vw,1.75rem);line-height:1.25;font-weight:700;text-wrap:balance;max-width:28em}
+.idea mark{background:linear-gradient(transparent 58%,color-mix(in srgb,var(--beam) 50%,transparent) 58%);color:inherit}
+.aids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.aid{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.aid.wide{grid-column:1/-1}
+.aid h3{font-size:1.2rem;font-weight:700}
+.aid p.cap{font-size:.95rem;color:var(--muted)}
+.aid p.cap b{color:var(--ink)}
+.tag{align-self:flex-start;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;padding:3px 9px;border-radius:999px;
+  background:color-mix(in srgb,var(--tint) 24%,var(--surface));border:1px solid color-mix(in srgb,var(--tint) 55%,var(--line))}
+.tag.analogy{--tint:var(--beam)} .tag.diagram{--tint:var(--reflect)} .tag.try{--tint:var(--transmit)} .tag.data{--tint:var(--absorb)} .tag.real{--tint:var(--muted)}
+.stage{background:var(--surface-2);border-radius:10px;padding:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:.92rem;padding:7px 13px;min-height:40px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.ctl{display:grid;gap:6px}
+.ctl label{font-size:.92rem;font-weight:700}
+input[type=range]{width:100%;accent-color:var(--beam);height:32px}
+.readout{font-size:1rem}
+.readout b{font-family:var(--font-mono);font-weight:500}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{display:inline-flex;gap:6px;align-items:baseline;padding:5px 11px;border-radius:999px;font-family:var(--font-mono);font-size:.84rem;font-weight:500;background:var(--c);color:var(--on-color)}
+.pill.r{--c:var(--reflect)} .pill.a{--c:var(--absorb)} .pill.t{--c:var(--transmit)}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.trio>div{display:grid;gap:6px;align-content:start;min-width:0}
+.trio h4{margin:0;font-family:var(--font-display);font-size:1.05rem}
+.trio p{font-size:.93rem;color:var(--muted)}
+.trio svg{background:var(--surface-2);border-radius:10px}
+.swatch-r{color:var(--reflect);font-weight:700}.swatch-t{color:var(--transmit);font-weight:700}.swatch-a{color:var(--absorb);font-weight:700}
+
+/* stacked bars */
+.bars{display:grid;gap:9px}
+.brow{display:grid;grid-template-columns:104px minmax(0,1fr);gap:10px;align-items:center;font-size:.9rem}
+.brow.on .lab{font-weight:700}
+.stack{display:flex;height:28px;border-radius:7px;overflow:hidden;background:var(--surface-2);outline:2px solid transparent;outline-offset:2px}
+.brow.on .stack{outline-color:var(--ink)}
+.seg{display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:.72rem;color:var(--on-color);min-width:0;overflow:hidden}
+.seg.r{background:var(--reflect)}.seg.t{background:var(--transmit)}.seg.a{background:var(--absorb)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.88rem}
+.legend span::before{content:"";display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--c)}
+.legend .r{--c:var(--reflect)}.legend .t{--c:var(--transmit)}.legend .a{--c:var(--absorb)}
+
+/* sort game, quiz */
+.items{display:grid;gap:10px}
+.item{display:grid;gap:6px;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.item .nm{font-weight:700}
+.item .opts{display:flex;flex-wrap:wrap;gap:6px}
+.opt{font-size:.85rem;padding:6px 10px;border-radius:8px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;min-height:36px;text-align:left}
+.opt:hover:not([disabled]){border-color:var(--ink)}
+.opt.good{background:var(--transmit);color:var(--on-color);border-color:var(--transmit)}
+.opt.bad{background:var(--absorb);color:var(--on-color);border-color:var(--absorb)}
+.fb{font-size:.88rem;color:var(--muted)}
+.score{font-family:var(--font-mono);font-size:.9rem}
+.q{display:grid;gap:10px;padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.q h4{margin:0;font-size:1.05rem;font-family:var(--font-body);font-weight:700}
+.q .opts{display:grid;gap:8px}
+
+/* tables */
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:.92rem;min-width:420px}
+.tbl th,.tbl td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+.tbl th{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+/* see-through demo */
+.seebox{position:relative;border-radius:10px;overflow:hidden;background:var(--surface-2);padding:22px 16px;min-height:130px;display:grid;place-items:center}
+.seetext{font-family:var(--font-display);font-weight:800;font-size:clamp(1.2rem,5vw,1.7rem);text-align:center;letter-spacing:.02em;transition:filter .2s,opacity .2s}
+.seesheets{position:absolute;inset:0;pointer-events:none;background:var(--surface);transition:opacity .2s}
+.meter{height:12px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--transmit);transition:width .2s}
+
+/* canvas */
+canvas{width:100%;aspect-ratio:640/260;display:block;border-radius:10px;background:var(--surface-2)}
+.tally{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;font-size:.85rem}
+.tally div{padding:8px;border-radius:8px;background:var(--bg);border:1px solid var(--line)}
+.tally b{display:block;font-family:var(--font-mono);font-weight:500;font-size:1.05rem}
+
+/* color mixer + channel columns */
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.colx{display:grid;gap:6px;justify-items:center;font-size:.85rem;text-align:center}
+.tube{position:relative;width:100%;max-width:90px;height:150px;border:2px solid var(--line);border-radius:8px;display:flex;flex-direction:column-reverse;overflow:hidden;background:var(--bg)}
+.tube.empty{border-style:dashed}
+.tube .rf{background:var(--cc)}
+.tube .ab{background:repeating-linear-gradient(45deg,var(--surface-2) 0 6px,var(--line) 6px 9px)}
+.colx .nm{font-weight:700}
+.colx.r{--cc:var(--red)}.colx.g{--cc:var(--green)}.colx.b{--cc:var(--blue)}
+
+/* waffle */
+.waffle{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:3px;max-width:300px;width:100%}
+.cell{aspect-ratio:1;border-radius:3px}
+.cell.r{background:var(--reflect)}.cell.t{background:var(--transmit)}.cell.a{background:var(--absorb)}
+
+/* ice race */
+.race{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pad{position:relative;height:170px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden}
+.pad.w{background:#F4F4F1}.pad.b{background:#14161C}
+.pad .lbl{position:absolute;left:8px;top:6px;font-size:.78rem;font-family:var(--font-mono)}
+.pad.w .lbl{color:#333}.pad.b .lbl{color:#ddd}
+.puddle{position:absolute;width:110px;height:46px;border-radius:50%;background:#7CC4F2;opacity:.65;transform:scale(0);bottom:22px}
+.ice{position:relative;width:76px;height:76px;border-radius:12px;background:linear-gradient(135deg,#E4F6FF,#9ED7F5);border:2px solid #fff;transform-origin:50% 100%;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.sunbar{height:10px;border-radius:99px;background:linear-gradient(90deg,var(--beam),color-mix(in srgb,var(--beam) 30%,transparent));opacity:.25;transition:opacity .3s}
+.sunbar.on{opacity:1}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap}
+.btn{font-size:.95rem;font-weight:700;padding:9px 16px;min-height:42px;border-radius:10px;border:0;background:var(--beam);color:var(--beam-ink);cursor:pointer}
+.btn.ghost{background:var(--surface);color:var(--ink);border:1.5px solid var(--line)}
+.btn:hover{filter:brightness(1.06)}
+
+/* misc */
+.glossary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px;margin:0}
+.glossary div{padding:10px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--line)}
+.glossary dt{font-weight:700}
+.glossary dd{margin:2px 0 0;font-size:.93rem;color:var(--muted)}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+details+details{margin-top:10px}
+summary{cursor:pointer;font-weight:700}
+details .in{display:grid;gap:10px;padding-top:10px;font-size:.95rem}
+details ul{margin:0;padding-left:1.2em;display:grid;gap:4px}
+footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;border-top:1px solid var(--line);padding-top:16px}
+.flow{stroke-dasharray:10 8;animation:flow 1s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-18}}
+@media (prefers-reduced-motion: reduce){.flow{animation:none}html{scroll-behavior:auto}.seetext,.seesheets,.meter i{transition:none}}
+@media (max-width:760px){
+  .aids{grid-template-columns:minmax(0,1fr)}
+  .trio{grid-template-columns:minmax(0,1fr)}
+  .glossary{grid-template-columns:minmax(0,1fr)}
+  .tally{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:420px){.brow{grid-template-columns:84px minmax(0,1fr)}.race{grid-template-columns:minmax(0,1fr)}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="mBeam" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--beam)"/></marker>
+    <marker id="mReflect" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--reflect)"/></marker>
+    <marker id="mTransmit" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--transmit)"/></marker>
+    <marker id="mAbsorb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--absorb)"/></marker>
+    <marker id="mInk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--ink)"/></marker>
+    <marker id="mRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#D93036"/></marker>
+  </defs>
+</svg>
+
+<style>.bridge{margin:14px 0 0;padding:12px 14px;border-left:4px solid var(--beam);background:var(--surface-2);border-radius:0 10px 10px 0;font-size:.95rem;line-height:1.5}.related ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}.related li{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}.related a{font-weight:700}.related .why{display:block;color:var(--muted);font-size:.9rem}</style>
+<style>
+.tip{font-size:.86rem;color:var(--muted)}
+.big{font-family:var(--font-mono);font-size:2rem;font-weight:700}
+.rt{display:grid;place-items:center;min-height:150px;border-radius:14px;border:3px solid var(--ink);font-weight:700;font-size:1.2rem;text-align:center;padding:12px;cursor:pointer;user-select:none;background:var(--absorb);color:#fff;transition:background .1s}
+.rt.go{background:var(--transmit)}.rt.idle{background:var(--reflect)}
+.rt:focus-visible{outline:3px solid var(--beam);outline-offset:3px}
+</style>
+
+<header class="hero">
+  <p class="kicker">Sixth grade science · Unit 9</p>
+  <h1>Body Systems &amp; Homeostasis</h1>
+  <p class="lede">Your body is about 30 trillion cells working as teams. Organ systems pass oxygen, food, and messages between them, and constantly adjust to keep your inside conditions steady, whether you are sleeping or sprinting.</p>
+  <p class="bridge"><b>Where we left off:</b> Unit 7 showed how cells get energy and materials, and Unit 8 showed how many different kinds of living things there are. You may already have learned that many-celled organisms have specialized cells. This unit follows those cells into tissues, organs, and systems that work together, and that keep your body in balance using the same heat ideas from Unit 2 and the same senses that detect light from Unit 1.</p>
+      <div class="hero-art">
+    <svg viewBox="0 0 640 190" role="img" aria-label="A heartbeat line running across a body outline with arrows for oxygen and food.">
+      <path d="M0 110 H150 L170 110 L185 50 L205 160 L220 110 H330 L350 110 L365 60 L385 150 L400 110 H640" style="fill:none;stroke:var(--absorb);stroke-width:5;stroke-linejoin:round"/>
+      <g style="fill:var(--reflect);fill-opacity:.2;stroke:var(--ink);stroke-width:3"><circle cx="320" cy="34" r="20"/><path d="M290 62 h60 v40 h-60z M296 102 v66 M344 102 v66" /></g>
+      <text x="320" y="182" font-size="12" text-anchor="middle">steady, but never still</text>
+    </svg>
+  </div>
+  <p class="howto">Look for the tags <span class="tag analogy">Analogy</span><span class="tag diagram">Diagram</span><span class="tag try">Try it</span><span class="tag data">Data</span><span class="tag real">Real world</span></p>
+</header>
+
+<nav class="nav" aria-label="Lesson sections"><ul>
+  <li><a href="#s1">1 Teams</a></li><li><a href="#s2">2 Heart &amp; lungs</a></li><li><a href="#s3">3 Digestion</a></li><li><a href="#s4">4 Nerves</a></li><li><a href="#s5">5 Homeostasis</a></li><li><a href="#s6">6 Check yourself</a></li>
+  <li><a href="#game">7 Game</a></li>
+  </ul></nav>
+
+<main>
+
+<section class="sec" id="s1">
+  <div><p class="kicker">Concept 1 · Working together</p><h2>Cells, tissues, organs, systems</h2></div>
+  <p class="idea">Similar cells form a <mark>tissue</mark>, tissues form an <mark>organ</mark>, and organs that share a job form an <mark>organ system</mark>. No system works alone: each one depends on the others.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>The body is a city</h3>
+      <div class="tw"><table class="tbl" style="min-width:420px">
+        <thead><tr><th>City</th><th>Body system</th></tr></thead>
+        <tbody>
+          <tr><td><b>Roads and delivery trucks</b></td><td>Circulatory: blood vessels and blood</td></tr>
+          <tr><td><b>Power plant</b></td><td>Digestive + respiratory: fuel and oxygen</td></tr>
+          <tr><td><b>Phone and internet</b></td><td>Nervous: fast electrical messages</td></tr>
+          <tr><td><b>Steel frame and cranes</b></td><td>Skeletal and muscular: support and movement</td></tr>
+          <tr><td><b>Trash and sewage</b></td><td>Excretory: kidneys and skin remove waste</td></tr>
+          <tr><td><b>Police and fire</b></td><td>Immune: defend against invaders</td></tr>
+        </tbody></table></div>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Zoom out</h3>
+      <div class="chips" id="lvChips" role="group" aria-label="Level"></div>
+      <div class="stage"><svg id="lvSvg" viewBox="0 0 480 190" role="img" aria-label="Diagram of the selected level of body organization."></svg></div>
+      <p class="readout" id="lvR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>Match the system to the job</h3>
+      <div class="items" id="sysSort"></div>
+      <p class="score" id="sysS">0 of 6 correct</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>Body by the numbers</h3>
+      <div class="bars" id="numBars"></div>
+      <p class="cap">Approximate for a middle-schooler. Each bar is its own scale (percent of its maximum shown).</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s2">
+  <div><p class="kicker">Concept 2 · Delivery</p><h2>Heart, blood, and lungs</h2></div>
+  <p class="idea">The <mark>lungs</mark> add oxygen to blood and remove carbon dioxide. The <mark>heart</mark> pumps that blood to every cell. Muscles working harder need more oxygen, so heart rate and breathing rise together.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>A delivery loop</h3>
+      <div class="stage"><svg viewBox="0 0 480 240" role="img" aria-label="A loop: lungs load oxygen onto blood, the heart pumps it to body cells, which return carbon dioxide to the lungs.">
+        <rect x="170" y="90" width="140" height="60" rx="14" style="fill:var(--absorb);fill-opacity:.25;stroke:var(--absorb);stroke-width:3"/><text x="240" y="126" font-size="15" text-anchor="middle" style="font-weight:700">Heart (pump)</text>
+        <rect x="20" y="20" width="130" height="50" rx="12" style="fill:var(--reflect);fill-opacity:.2;stroke:var(--reflect);stroke-width:3"/><text x="85" y="50" font-size="14" text-anchor="middle" style="font-weight:700">Lungs: load O₂</text>
+        <rect x="330" y="170" width="130" height="50" rx="12" style="fill:var(--transmit);fill-opacity:.2;stroke:var(--transmit);stroke-width:3"/><text x="395" y="200" font-size="14" text-anchor="middle" style="font-weight:700">Cells: use O₂</text>
+        <path d="M150 50 C200 50 220 70 225 88" style="fill:none;stroke:var(--reflect);stroke-width:4" marker-end="url(#mReflect)"/>
+        <path d="M290 150 C330 160 380 150 395 168" style="fill:none;stroke:var(--absorb);stroke-width:4" marker-end="url(#mBeam)"/>
+        <path d="M330 200 C200 235 60 200 70 74" style="fill:none;stroke:var(--ink);stroke-width:3;stroke-dasharray:6 5" marker-end="url(#mInk)"/>
+        <text x="150" y="226" font-size="12">CO₂ back to the lungs</text>
+      </svg></div>
+      <p class="cap">One full loop takes about a minute. Your heart makes roughly 100,000 beats a day.</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Exercise and your heart</h3>
+      <div class="chips" id="exChips" role="group" aria-label="Activity"></div>
+      <div class="stage"><svg id="ecg" viewBox="0 0 480 130" role="img" aria-label="Heartbeat trace for the chosen activity."></svg></div>
+      <p class="readout" id="exR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>A jog, minute by minute</h3>
+      <div class="stage"><svg id="hrSvg" viewBox="0 0 640 270" role="img" aria-label="Heart rate over time: resting, rising during a jog, then recovering."></svg></div>
+      <div class="ctl"><label for="fit">Fitness level: <span id="fitV"></span></label><input id="fit" type="range" min="0" max="2" step="1" value="1"></div>
+      <p class="cap">Teaching model. A fitter heart pumps more blood per beat, so it beats less often for the same job and recovers faster.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>Why you pant after sprinting</h3>
+      <div class="tw"><table class="tbl">
+        <thead><tr><th>At rest</th><th>Sprinting</th></tr></thead>
+        <tbody>
+          <tr><td>About 12–20 breaths per minute</td><td>40 or more</td></tr>
+          <tr><td>Heart about 70–90 beats per minute</td><td>180–200</td></tr>
+          <tr><td>Muscles get about 20% of blood</td><td>About 80%, drawn away from digestion</td></tr>
+        </tbody></table></div>
+      <p class="cap">Take your own pulse: two fingers on your neck or wrist, count for 15 seconds, multiply by 4.</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s3">
+  <div><p class="kicker">Concept 3 · Fuel</p><h2>Digestion and nutrients</h2></div>
+  <p class="idea">Digestion breaks food into pieces small enough to pass into the blood. <mark>Mechanical</mark> digestion (chewing, churning) tears food apart; <mark>chemical</mark> digestion (acids, enzymes) breaks it down into nutrients.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>A disassembly line</h3>
+      <div class="stage"><svg viewBox="0 0 480 160" role="img" aria-label="A conveyor with stations: mouth chews, stomach churns with acid, small intestine absorbs, large intestine takes water.">
+        <rect x="10" y="70" width="460" height="14" rx="7" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:2"/>
+        <g font-size="12" text-anchor="middle" style="font-weight:700">
+          <rect x="20" y="30" width="90" height="34" rx="8" style="fill:var(--beam);fill-opacity:.5;stroke:var(--ink);stroke-width:2"/><text x="65" y="52">Mouth</text>
+          <rect x="130" y="30" width="90" height="34" rx="8" style="fill:var(--absorb);fill-opacity:.4;stroke:var(--ink);stroke-width:2"/><text x="175" y="52">Stomach</text>
+          <rect x="240" y="30" width="110" height="34" rx="8" style="fill:var(--transmit);fill-opacity:.4;stroke:var(--ink);stroke-width:2"/><text x="295" y="52">Small intestine</text>
+          <rect x="370" y="30" width="100" height="34" rx="8" style="fill:var(--reflect);fill-opacity:.35;stroke:var(--ink);stroke-width:2"/><text x="420" y="52">Large intestine</text>
+        </g>
+        <g font-size="11" text-anchor="middle"><text x="65" y="112">chew + saliva</text><text x="175" y="112">churn + acid</text><text x="295" y="112">absorb nutrients</text><text x="420" y="112">absorb water</text></g>
+      </svg></div>
+      <p class="cap">Food spends about 6 hours in the stomach and small intestine and up to a day in the large intestine.</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Follow a bite</h3>
+      <div class="ctl"><label for="bite">Time since you swallowed: <span id="biteV"></span></label><input id="bite" type="range" min="0" max="24" step="1" value="0"></div>
+      <div class="stage"><svg id="biteSvg" viewBox="0 0 480 70" role="img" aria-label="A bite of food moving along the digestive tract over 24 hours."></svg></div>
+      <p class="readout" id="biteR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>Length matters: the surface for absorbing</h3>
+      <div class="bars" id="gutBars"></div>
+      <p class="cap">The small intestine is about 6 meters long, but its folds and tiny finger-like villi give it a surface area of roughly 30 m², about the size of a studio apartment. More surface means faster absorption, like a sponge versus a plate.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>What's in your food?</h3>
+      <div class="chips" id="foodChips" role="group" aria-label="Food"></div>
+      <div class="stack" id="foodStack" role="img"></div>
+      <p class="readout" id="foodR" aria-live="polite"></p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s4">
+  <div><p class="kicker">Concept 4 · Messages</p><h2>Nerves, senses, and reaction time</h2></div>
+  <p class="idea">Your <mark>nervous system</mark> collects information from <mark>senses</mark>, your brain interprets it, and nerves tell muscles what to do. Messages are electrical signals and travel faster than a cheetah.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>Hot-stove relay</h3>
+      <div class="stage"><svg viewBox="0 0 480 200" role="img" aria-label="Touch a hot stove: a sensor sends a signal up the spinal cord, which sends a command back to the muscle before the brain even registers pain.">
+        <circle cx="240" cy="36" r="24" style="fill:var(--reflect);fill-opacity:.3;stroke:var(--ink);stroke-width:3"/><text x="240" y="40" font-size="12" text-anchor="middle" style="font-weight:700">Brain</text>
+        <rect x="224" y="62" width="32" height="76" rx="10" style="fill:var(--beam);fill-opacity:.4;stroke:var(--ink);stroke-width:3"/><text x="240" y="104" font-size="10" text-anchor="middle">spinal</text><text x="240" y="116" font-size="10" text-anchor="middle">cord</text>
+        <path d="M60 170 L200 130 L226 112" style="fill:none;stroke:var(--absorb);stroke-width:5" marker-end="url(#mBeam)"/>
+        <path d="M254 124 L350 140 L420 170" style="fill:none;stroke:var(--transmit);stroke-width:5" marker-end="url(#mTransmit)"/>
+        <text x="40" y="190" font-size="12" style="font-weight:700">Hot! (sensor)</text><text x="350" y="190" font-size="12" style="font-weight:700">Pull away (muscle)</text>
+      </svg></div>
+      <p class="cap">A reflex skips the brain's full "thinking" step. The spinal cord reacts first and the brain finds out a moment later.</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Reaction time test</h3>
+      <div class="rt idle" id="rt" role="button" tabindex="0" aria-live="polite">Click to start. Wait for green, then click fast!</div>
+      <div class="stage"><svg id="rtSvg" viewBox="0 0 480 140" role="img" aria-label="Chart of your reaction times."></svg></div>
+      <p class="readout" id="rtR"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>Signal speeds</h3>
+      <div class="bars" id="speedBars"></div>
+      <p class="cap">Fast nerve signals: up to ~120 m/s (270 mph). Slow pain signals: about 1 m/s. Sound: 343 m/s. Typical human reaction time to a visual signal is about 0.25 s, mostly brain processing time.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>Senses and what they detect</h3>
+      <div class="tw"><table class="tbl">
+        <thead><tr><th>Sense</th><th>Sensor</th><th>Detects</th></tr></thead>
+        <tbody>
+          <tr><td><b>Sight</b></td><td>Retina</td><td>Light (ties to Unit 1!)</td></tr>
+          <tr><td><b>Hearing</b></td><td>Inner ear hair cells</td><td>Vibrations in air</td></tr>
+          <tr><td><b>Touch</b></td><td>Skin</td><td>Pressure, heat, pain</td></tr>
+          <tr><td><b>Smell and taste</b></td><td>Nose and tongue</td><td>Chemicals</td></tr>
+          <tr><td><b>Balance</b></td><td>Inner ear</td><td>Head position</td></tr>
+        </tbody></table></div>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s5">
+  <div><p class="kicker">Concept 5 · Keeping balance</p><h2>Homeostasis: the body's thermostat</h2></div>
+  <p class="idea"><mark>Homeostasis</mark> is keeping conditions inside your body in a narrow, healthy range. It works by <mark>negative feedback</mark>: when something drifts too far one way, the body pushes it back the other way.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>A house thermostat</h3>
+      <div class="stage"><svg viewBox="0 0 480 200" role="img" aria-label="Feedback loop: sensor detects change, control center compares to set point, effector corrects, which reverses the change.">
+        <g font-size="13" text-anchor="middle" style="font-weight:700">
+          <rect x="20" y="70" width="120" height="50" rx="12" style="fill:var(--reflect);fill-opacity:.25;stroke:var(--reflect);stroke-width:3"/><text x="80" y="94">Sensor</text><text x="80" y="110" font-size="11" style="font-weight:400">thermometer / skin</text>
+          <rect x="180" y="20" width="120" height="50" rx="12" style="fill:var(--beam);fill-opacity:.35;stroke:var(--beam);stroke-width:3"/><text x="240" y="44">Control center</text><text x="240" y="60" font-size="11" style="font-weight:400">thermostat / brain</text>
+          <rect x="340" y="70" width="120" height="50" rx="12" style="fill:var(--absorb);fill-opacity:.25;stroke:var(--absorb);stroke-width:3"/><text x="400" y="94">Effector</text><text x="400" y="110" font-size="11" style="font-weight:400">furnace / sweat glands</text>
+        </g>
+        <path d="M110 68 L190 52 M290 52 L370 68" style="fill:none;stroke:var(--ink);stroke-width:3" marker-end="url(#mInk)"/>
+        <path d="M400 124 C380 180 100 180 80 124" style="fill:none;stroke:var(--ink);stroke-width:3;stroke-dasharray:6 5" marker-end="url(#mInk)"/>
+        <text x="240" y="192" font-size="12" text-anchor="middle">Effector changes the temperature, which the sensor then detects again</text>
+      </svg></div>
+      <p>A thermostat does not "know" the right temperature. It compares the sensor to a set point and switches the furnace or AC on until the gap closes. Your body does the same: sensors report, the brain compares, and sweat glands or shivering muscles correct. <b>Negative feedback means the response cancels the change.</b></p>
+      <p class="cap"><b>Where it breaks:</b> a house thermostat runs one loop. Your body runs hundreds at once, for temperature, water, sugar, and more.</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Body temperature controller</h3>
+      <div class="chips" id="tpChips" role="group" aria-label="Environment"></div>
+      <div class="stage"><svg id="tpSvg" viewBox="0 0 480 240" role="img" aria-label="Simulated body temperature over time with and without feedback."></svg></div>
+      <div class="btnrow"><button class="btn" type="button" id="tpFb">Feedback: on</button></div>
+      <p class="readout" id="tpR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>Blood sugar after a meal</h3>
+      <div class="stage"><svg id="bgSvg" viewBox="0 0 640 260" role="img" aria-label="Blood sugar rises after eating then returns to range as insulin acts."></svg></div>
+      <div class="chips" id="bgChips" role="group" aria-label="Case"><button class="chip" type="button" data-c="ok" aria-pressed="true">Healthy regulation</button><button class="chip" type="button" data-c="diab" aria-pressed="false">Without enough insulin</button></div>
+      <p class="readout" id="bgR" aria-live="polite"></p>
+      <p class="cap">Illustrative. Insulin tells cells to take up sugar. Type 1 diabetes occurs when the body doesn't make enough insulin, so people replace it by injection or pump.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>Everyday feedback loops</h3>
+      <div class="tw"><table class="tbl">
+        <thead><tr><th>You notice</th><th>What the body is doing</th></tr></thead>
+        <tbody>
+          <tr><td><b>Sweating on a hot day</b></td><td>Evaporation cools you, lowering temperature back toward 37 °C (98.6 °F).</td></tr>
+          <tr><td><b>Shivering in the cold</b></td><td>Muscles contract rapidly to release heat.</td></tr>
+          <tr><td><b>Feeling thirsty</b></td><td>Water level is low, so you are driven to drink.</td></tr>
+          <tr><td><b>Breathing faster after running</b></td><td>Removing CO₂ and bringing in more O₂.</td></tr>
+          <tr><td><b>Fever when sick</b></td><td>Set point raised on purpose to slow some germs.</td></tr>
+        </tbody></table></div>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s6">
+  <div><p class="kicker">Check yourself</p><h2>Can you explain it?</h2></div>
+  <p class="idea">You run hard on a hot day. Describe at least three body systems that respond and how each helps keep your body in balance.</p>
+  <details><summary>Show a model answer</summary><div class="in">
+    <p>Muscles burn more fuel, so the respiratory system speeds up breathing to bring in oxygen and remove CO₂, and the circulatory system raises heart rate to deliver it. Heat builds up, so the nervous system detects it and tells sweat glands (in the skin) to release sweat, which cools you as it evaporates. Each response is negative feedback that pushes conditions back toward normal.</p></div></details>
+  <div class="items" id="quiz"></div>
+  <p class="score" id="quizScore">0 of 6 correct</p>
+  <h3 style="margin-top:8px">Words to know</h3>
+  <dl class="glossary">
+    <div><dt>tissue</dt><dd>A group of similar cells working together.</dd></div>
+    <div><dt>organ</dt><dd>A body part made of tissues doing a specific job.</dd></div>
+    <div><dt>organ system</dt><dd>Organs working together on a larger job.</dd></div>
+    <div><dt>circulatory system</dt><dd>Heart, vessels, and blood that transport materials.</dd></div>
+    <div><dt>enzyme</dt><dd>A protein that speeds up a chemical reaction, such as digestion.</dd></div>
+    <div><dt>neuron</dt><dd>A nerve cell that carries electrical signals.</dd></div>
+    <div><dt>reflex</dt><dd>A fast automatic response.</dd></div>
+    <div><dt>stimulus</dt><dd>A change that your body detects.</dd></div>
+    <div><dt>homeostasis</dt><dd>Keeping internal conditions steady.</dd></div>
+    <div><dt>feedback</dt><dd>When the result of a process changes the process itself.</dd></div>
+  </dl>
+  <details><summary>Tutor notes: hands-on kit, misconceptions, pacing</summary><div class="in">
+    <p><b>Kit (about $10):</b> stopwatch or phone timer, a 30 cm ruler, a zip bag with a sponge and water (digestion), a funnel and tubing or a balloon in a bottle (lung model), a pair of pantyhose with bread and soda (stomach squeezing), a thermometer.</p>
+    <ul>
+      <li><b>Concept 1:</b> trace around a student on butcher paper and place system "cards" on the outline.</li>
+      <li><b>Concept 2:</b> measure resting pulse, then pulse after 1 minute of jumping jacks, and graph it. Build a balloon-and-bottle lung.</li>
+      <li><b>Concept 3:</b> squeeze bread, a little water, and crackers in a zip bag to model mechanical and chemical digestion.</li>
+      <li><b>Concept 4:</b> ruler-drop test: one partner drops, the other catches. Record the distance and convert to time.</li>
+      <li><b>Concept 5:</b> record a cup of warm water's cooling versus one in an insulated sleeve. Discuss how the body adds a "furnace" and "air conditioner".</li>
+    </ul>
+    <p><b>Common misconceptions:</b></p>
+    <ul>
+      <li>"Food goes into the blood right away." It must be broken down first and absorbed in the small intestine.</li>
+      <li>"Blood is blue in veins." It is always red; veins just look blue through skin.</li>
+      <li>"The lungs are like balloons that push air." The diaphragm muscle pulls air in by expanding the chest.</li>
+      <li>"Homeostasis means nothing changes." Values wobble around a set point constantly.</li>
+    </ul>
+    <p><b>Pacing:</b> about five 30-minute sessions.</p></div></details>
+</section>
+
+<section class="sec lesson-game-sec" id="game"><div><p class="kicker">After the lesson · Game</p><h2>Play: Body Thermostat</h2></div><p class="idea">You are your body's control center. Sweat, shiver, release insulin or glucagon to keep temperature and blood sugar in the healthy range through a busy day.</p><div class="lesson-game" id="lesson-game"></div>
+<script>(function(){
+/* Mounts one game into a shadow root so the lesson page's CSS and the game's CSS never collide. */
+function __mountLessonGame(host, css, html, init){
+  if(!host || host.shadowRoot) return;
+  const root = host.attachShadow({mode:"open"});
+  root.innerHTML = "<style>"+css+"</style>"+html;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let visible = true;
+  try{ new IntersectionObserver(es=>{ visible = es[es.length-1].isIntersecting; }).observe(host); }catch(e){}
+  const loops = [];
+  let last = performance.now();
+  function frame(t){
+    const dt = Math.min(0.05, (t-last)/1000); last = t;
+    if(visible && !document.hidden) for(const f of loops){ try{ f(t, dt); }catch(e){ console.error(e); } }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+  const env = {
+    root, reduce,
+    $: id => root.getElementById(id),
+    $$: sel => [...root.querySelectorAll(sel)],
+    loop: f => loops.push(f),
+    esc: s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])),
+    // A canvas drawn in fixed logical units (W x H) that scales to its container.
+    stage(canvas, W, H){
+      const ctx = canvas.getContext("2d");
+      const st = {ctx, W, H, dpr:1};
+      function fit(){
+        st.dpr = Math.min(2.5, window.devicePixelRatio || 1);
+        const cw = canvas.clientWidth || W;
+        const scale = cw / W;
+        canvas.width = Math.round(W*scale*st.dpr); canvas.height = Math.round(H*scale*st.dpr);
+        st.k = scale*st.dpr;
+        ctx.setTransform(st.k,0,0,st.k,0,0);
+        if(st.onfit) st.onfit();
+      }
+      canvas.style.aspectRatio = W+"/"+H;
+      st.begin = () => ctx.setTransform(st.k,0,0,st.k,0,0);
+      st.pt = ev => { const r = canvas.getBoundingClientRect(); return {x:(ev.clientX-r.left)*W/r.width, y:(ev.clientY-r.top)*H/r.height}; };
+      try{ new ResizeObserver(fit).observe(canvas); }catch(e){ addEventListener("resize", fit); }
+      fit();
+      return st;
+    },
+    // Level buttons in the header.
+    levelBar(box, names, onPick){
+      const solved = new Set(); let cur = 0;
+      function render(){
+        box.innerHTML = '<span class="label">Level</span>';
+        names.forEach((n,i)=>{ const b = document.createElement("button"); b.type="button";
+          b.className = "lv"+(solved.has(i)?" done":""); b.textContent = i+1; b.title = n;
+          b.setAttribute("aria-label", "Level "+(i+1)+": "+n+(solved.has(i)?" (solved)":""));
+          if(i===cur) b.setAttribute("aria-current","true");
+          b.onclick = () => { cur = i; render(); onPick(i); }; box.appendChild(b); });
+      }
+      render();
+      return { set(i){ cur=i; render(); }, solve(i){ solved.add(i); render(); }, get cur(){ return cur; }, solved };
+    },
+    // Result card over a stage. buttons: [{label, primary, onClick}]
+    card(stageEl, o){
+      let ov = stageEl.querySelector(":scope > .over");
+      if(!ov){ ov = document.createElement("div"); ov.className = "over"; stageEl.appendChild(ov); }
+      ov.hidden = false;
+      ov.innerHTML = '<div class="card'+(o.fail?' fail':'')+'" role="dialog" aria-live="polite"><h4></h4>'+(o.why?'<span class="why"></span>':'')+'<p class="cb"></p><div class="btns"></div></div>';
+      ov.querySelector("h4").textContent = o.title;
+      if(o.why) ov.querySelector(".why").textContent = o.why;
+      ov.querySelector(".cb").textContent = o.body || "";
+      if(o.list && o.list.length){ const ul = document.createElement("ul"); ul.className = "clist";
+        o.list.forEach(t => { const li = document.createElement("li"); li.textContent = t; ul.appendChild(li); });
+        ov.querySelector(".cb").after(ul); }
+      const bb = ov.querySelector(".btns");
+      (o.buttons||[]).forEach((b,i)=>{ const e = document.createElement("button"); e.type="button"; e.className = "btn"+(b.primary?" primary":""); e.textContent = b.label;
+        e.onclick = () => { ov.hidden = true; b.onClick && b.onClick(); }; bb.appendChild(e); if(i===0) setTimeout(()=>e.focus({preventScroll:true}),30); });
+      if(getComputedStyle(ov).position === "static") setTimeout(()=>ov.scrollIntoView({block:"nearest", behavior: reduce?"auto":"smooth"}), 40);
+      return ov;
+    },
+    hideCard(stageEl){ const ov = stageEl.querySelector(":scope > .over"); if(ov) ov.hidden = true; }
+  };
+  try{ init(root, env); }catch(e){ console.error(e); root.innerHTML += '<p style="color:#fff;padding:12px">This game could not start.</p>'; }
+}
+
+__mountLessonGame(document.getElementById("lesson-game"), "/* Shared frame for every lesson game. Lives inside a shadow root, so nothing here touches the lesson page.\n   Deliberately one dark \"lab console\" look in both page themes; each game sets its own --acc accent. */\n:host{\n  display:block; color-scheme:dark;\n  --bg:#0B0F15; --panel:#141A23; --panel-2:#1B2330; --line:#2B3544; --ink:#E9EEF5; --muted:#93A0B2;\n  --good:#3FD3BB; --bad:#FF6B5E; --warn:#FFB547; --acc:#FFD84A; --acc-ink:#1A1400;\n  --reflect:#78A2FF; --heat:#FF7A2E;\n  --f-display:\"Bahnschrift\",\"DIN Alternate\",\"Roboto Condensed\",\"Arial Narrow\",system-ui,sans-serif;\n  --f-body:\"Roboto\",\"Segoe UI\",system-ui,-apple-system,sans-serif;\n  --f-mono:ui-monospace,\"Roboto Mono\",\"Cascadia Mono\",Menlo,Consolas,monospace;\n}\n*{box-sizing:border-box}\n[hidden]{display:none!important}\n.g{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;border-radius:16px;\n  border:1px solid var(--line);padding:16px;display:grid;gap:14px;text-align:left;box-shadow:0 10px 36px rgba(0,0,0,.35)}\n.g button{font:inherit;color:inherit}\n.g :focus-visible{outline:3px solid var(--acc);outline-offset:2px}\n.g h3,.g h4{margin:0;font-family:var(--f-display);letter-spacing:.02em;line-height:1.15}\n.g p{margin:0}\n.bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 18px}\n.brand{display:grid;gap:2px}\n.label{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}\n.gtitle{font-family:var(--f-display);font-weight:700;font-size:1.45rem;text-transform:uppercase;letter-spacing:.04em}\n.gtitle b{color:var(--acc);font-weight:700}\n.levels{display:flex;flex-wrap:wrap;gap:6px;align-items:center}\n.lv{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--line);background:var(--panel);font-family:var(--f-mono);font-size:.85rem;cursor:pointer;font-variant-numeric:tabular-nums;padding:0}\n.lv:hover{border-color:var(--muted)}\n.lv.done{border-color:var(--good);color:var(--good)}\n.lv[aria-current=\"true\"]{background:var(--acc);border-color:var(--acc);color:var(--acc-ink);font-weight:700}\n.goalrow{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 12px}\n.goalrow h4{font-size:1.25rem}\n.goalrow .goal{color:var(--muted)}\n.cols{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:14px;align-items:start}\n.cols>*{min-width:0}\n.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:10px;min-width:0}\n.panel>.label{margin-bottom:-2px}\n.stage{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px;min-width:0}\n.stage canvas{display:block;width:100%;max-width:100%;height:auto;border-radius:8px;touch-action:none}\n.btns{display:flex;flex-wrap:wrap;gap:8px}\n.btn{padding:8px 14px;min-height:40px;border-radius:10px;border:1.5px solid var(--line);background:var(--panel-2);cursor:pointer;font-weight:700;font-size:.92rem;line-height:1.2}\n.btn:hover:not([disabled]){border-color:var(--muted)}\n.btn[disabled]{opacity:.45;cursor:default}\n.btn.primary{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}\n.btn[aria-pressed=\"true\"]{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset}\n.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;font-size:.82rem;border:1px solid var(--line);background:var(--panel-2)}\n.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}\n.msg{font-size:.93rem;padding:9px 12px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line)}\n.msg.good{border-color:color-mix(in srgb,var(--good) 60%,var(--line));color:var(--ink)}\n.msg.bad{border-color:color-mix(in srgb,var(--bad) 60%,var(--line))}\n.msg.warn{border-color:color-mix(in srgb,var(--warn) 60%,var(--line))}\n.help{font-size:.86rem;color:var(--muted)}\n.meter{height:12px;border-radius:99px;background:var(--panel-2);overflow:hidden;border:1px solid var(--line)}\n.meter>i{display:block;height:100%;background:var(--acc);transition:width .15s}\n.ctl{display:grid;gap:4px}\n.ctl label{font-size:.9rem;font-weight:700;display:flex;justify-content:space-between;gap:8px}\n.ctl input[type=range]{width:100%;accent-color:var(--acc);height:30px;margin:0}\n.over{position:absolute;inset:6px;border-radius:8px;display:grid;place-items:center;padding:14px;background:color-mix(in srgb,var(--bg) 74%,transparent);backdrop-filter:blur(2px);z-index:5}\n.card{max-width:440px;display:grid;gap:10px;padding:18px;border-radius:14px;background:var(--panel-2);border:1px solid var(--acc);box-shadow:0 0 36px color-mix(in srgb,var(--acc) 22%,transparent)}\n.card h4{font-size:1.5rem;color:var(--acc)}\n.card.fail{border-color:var(--bad);box-shadow:0 0 36px color-mix(in srgb,var(--bad) 18%,transparent)}\n.card.fail h4{color:var(--bad)}\n.clist{margin:0;padding-left:1.15em;display:grid;gap:5px;font-size:.9rem}\n.over{align-items:start}\n.card{position:sticky;top:16px;margin-top:clamp(8px,8%,60px)}\n.why{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}\ntable.data{width:100%;border-collapse:collapse;font-size:.85rem}\ntable.data th,table.data td{padding:5px 7px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}\ntable.data th{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}\ntable.data td.num{text-align:right}\n.scroll{overflow-x:auto}\n@media (max-width:820px){.cols{grid-template-columns:minmax(0,1fr)}\n  .over{position:static;inset:auto;background:none;backdrop-filter:none;padding:8px 0 2px}\n  .card{max-width:none;position:static;margin-top:0}}\n@media (prefers-reduced-motion:reduce){.meter>i{transition:none}}\n\n:host{--acc:#FF7A45;--acc-ink:#1A0800}\n:host{--hot:#FF7A45;--cold:#5AB1FF;--sug:#FFD84A}\n.left,.aside{display:grid;gap:12px;min-width:0}\n.resp{display:grid;grid-template-columns:1fr 1fr;gap:8px}\n.resp .btn{text-align:left;display:grid;gap:2px;font-size:.9rem;position:relative;overflow:hidden}\n.resp .btn small{font-weight:400;color:var(--muted);font-size:.75rem}\n.resp .btn .kbd{position:absolute;right:8px;top:6px;font-family:var(--f-mono);font-size:.7rem;color:var(--muted)}\n.resp .btn .cd{position:absolute;left:0;bottom:0;height:3px;background:var(--acc)}\n.sched{margin:0;padding-left:1.3em;display:grid;gap:5px;font-size:.88rem}\n.sched li.past{color:var(--muted);text-decoration:line-through}\n.sched li.now{color:var(--acc);font-weight:700}\n@media (max-width:420px){.resp{grid-template-columns:1fr}}\n", "<div class=\"g\">\n  <div class=\"bar\">\n    <div class=\"goalrow\"><h4 id=\"lvName\">Thermostat</h4><span class=\"goal\" id=\"lvGoal\"></span></div>\n    <nav class=\"levels\" id=\"levels\" aria-label=\"Levels\"></nav>\n  </div>\n  <div class=\"cols\">\n    <div class=\"left\">\n      <div class=\"stage\" id=\"stage\"><canvas id=\"cv\" aria-label=\"Your body's temperature and blood sugar over the day, with the healthy range shaded green.\"></canvas></div>\n      <p class=\"help\">Each response takes a moment to kick in and keeps working for a few seconds. Push back too hard and you'll overshoot the other way.</p>\n    </div>\n    <div class=\"aside\">\n      <div class=\"panel\">\n        <div class=\"bar\"><span class=\"label\">Your body's responses</span><span class=\"chip\">In range <b class=\"num\" id=\"score\">0%</b></span></div>\n        <div class=\"resp\" id=\"resp\"></div>\n        <div class=\"btns\"><button class=\"btn primary\" id=\"start\" type=\"button\">Start the day</button><button class=\"btn\" id=\"pause\" type=\"button\">Pause</button></div>\n        <p class=\"msg\" id=\"msg\"></p>\n      </div>\n      <div class=\"panel\">\n        <span class=\"label\">Coming up today</span>\n        <ol class=\"sched\" id=\"sched\"></ol>\n      </div>\n    </div>\n  </div>\n</div>\n", function(root, env){
+const DAY = 90; // seconds of play for 7 a.m. to 9 p.m.
+const at = h => (h-7)/14*DAY;
+const EVENTS = [
+  {name:"Breakfast", short:"Breakfast", h:8, dur:8, dS:7.5},
+  {name:"Soccer in the sun", short:"Soccer", h:10, dur:12, dT:.085, dS:-3.5, hot:true},
+  {name:"Lunch", short:"Lunch", h:12.5, dur:8, dS:8.5},
+  {name:"Walk home in cold rain", short:"Cold rain", h:13.75, dur:10, dT:-.08},
+  {name:"Long run", short:"Long run", h:16, dur:12, dT:.1, dS:-4, hot:true},
+  {name:"Dinner and dessert", short:"Dinner", h:18.5, dur:8, dS:10},
+  {name:"Evening swim in a cold lake", short:"Cold swim", h:19.75, dur:10, dT:-.1},
+];
+const RESP = {
+  sweat:{name:"Sweat", sub:"Cools you down", key:"s", dT:-.11, dur:5, delay:1, use:"T"},
+  shiver:{name:"Shiver", sub:"Warms you up", key:"h", dT:.11, dS:-1.5, dur:5, delay:1, use:"T"},
+  insulin:{name:"Release insulin", sub:"Lowers blood sugar", key:"i", dS:-11, dur:5, delay:1.5, use:"S"},
+  glucagon:{name:"Release glucagon", sub:"Raises blood sugar", key:"g", dS:11, dur:5, delay:1.5, use:"S"},
+  drink:{name:"Drink water", sub:"Refills your water", key:"w", use:"W"},
+};
+const LEVELS = [
+  {name:"Thermostat", T:true, S:false, W:false, goal:"Keep your body temperature between 36.5 and 37.5 °C all day.",
+   learn:"Your brain's thermostat uses negative feedback: when you get too hot it makes you sweat, and when you get too cold it makes you shiver. Each response pushes back the other way."},
+  {name:"Sugar Control", T:false, S:true, W:false, goal:"Keep blood sugar between 70 and 140 through meals and exercise.",
+   learn:"After a meal, your pancreas releases insulin so cells take in sugar. During exercise it releases glucagon so your liver lets stored sugar out. Two opposite signals keep the level steady."},
+  {name:"Whole Body", T:true, S:true, W:true, goal:"Both at once. Sweating uses water, so drink when you get low.",
+   learn:"Body systems depend on each other. Sweating needs water, shivering burns sugar, and your nervous and endocrine systems coordinate it all to keep you in balance."},
+];
+const RANGE = {T:[36.5,37.5], S:[70,140]};
+const $ = env.$;
+const cv = $("cv"), st = env.stage(cv, 640, 340), ctx = st.ctx;
+const bar = env.levelBar($("levels"), LEVELS.map(l=>l.name), i => load(i));
+let li = 0, t = 0, T = 37, S = 100, Wt = 80, active = [], cool = {}, hist = [], inRange = 0, tracked = 0, running = false, over = false;
+const L = () => LEVELS[li];
+
+function load(i){
+  li = i; t = 0; T = 37; S = 100; Wt = 80; active = []; cool = {}; hist = []; inRange = 0; tracked = 0; running = false; over = false;
+  env.hideCard($("stage"));
+  $("lvName").textContent = L().name; $("lvGoal").textContent = L().goal;
+  const box = $("resp"); box.innerHTML = "";
+  for(const k in RESP){ const r = RESP[k]; if(!L()[r.use]) continue;
+    const b = document.createElement("button"); b.type = "button"; b.className = "btn"; b.id = "r-"+k;
+    b.innerHTML = `${r.name}<small>${r.sub}</small><span class="kbd">${r.key.toUpperCase()}</span><span class="cd"></span>`;
+    b.onclick = () => respond(k); box.appendChild(b); }
+  renderSched(); say("Press Start the day. Watch the green band."); ui();
+}
+function say(s, kind){ const m = $("msg"); m.textContent = s; m.className = "msg"+(kind?" "+kind:""); }
+function relevant(e){ return (L().T && e.dT) || (L().S && e.dS); }
+function clock(h){ const hh = Math.floor(h), mm = Math.round((h-hh)*60); const ap = hh<12?"a.m.":"p.m."; return `${hh%12||12}:${String(mm).padStart(2,"0")} ${ap}`; }
+function renderSched(){
+  $("sched").innerHTML = EVENTS.filter(relevant).map(e => { const s = at(e.h), cls = t > s+e.dur ? "past" : t >= s ? "now" : "";
+    return `<li class="${cls}">${clock(e.h)}: ${e.name}</li>`; }).join("");
+}
+function respond(k){
+  if(!running) return; const r = RESP[k];
+  if(cool[k] > 0) return;
+  if(k==="drink"){ Wt = Math.min(100, Wt+30); cool[k] = 2; return; }
+  if(k==="sweat" && L().W && Wt < 15){ say("You're too low on water to sweat. Drink first.", "warn"); return; }
+  if(k==="sweat" && L().W) Wt = Math.max(0, Wt-10);
+  active.push({k, t0:t+r.delay, t1:t+r.delay+r.dur}); cool[k] = 1.5;
+}
+root.querySelector(".g").addEventListener("keydown", e => { if(e.ctrlKey||e.metaKey||e.altKey) return; for(const k in RESP) if(e.key.toLowerCase()===RESP[k].key && L()[RESP[k].use] && running){ respond(k); e.preventDefault(); } });
+$("start").onclick = () => { if(over || t>=DAY) load(li); running = true; say("The day has started. Keep an eye on what's coming up."); };
+$("pause").onclick = () => { if(!over && t>0){ running = !running; $("pause").textContent = running ? "Pause" : "Resume"; } };
+
+let sampleT = 0;
+function step(now, dt){
+  if(running && !over){
+    t += dt;
+    let dT = (37-T)*0.004 + Math.sin(t*1.7)*0.004, dS = -0.3;
+    for(const e of EVENTS){ const s = at(e.h); if(t>=s && t<s+e.dur){ if(L().T && e.dT) dT += e.dT; if(L().S && e.dS) dS += e.dS; if(L().W && e.hot) Wt = Math.max(0, Wt-dt*.6); } }
+    for(const a of active){ if(t>=a.t0 && t<a.t1){ const r = RESP[a.k]; if(r.dT) dT += r.dT; if(r.dS && L().S) dS += r.dS; } }
+    active = active.filter(a => t < a.t1);
+    for(const k in cool) cool[k] -= dt;
+    if(L().T) T += dT*dt; if(L().S) S += dS*dt;
+    tracked += dt; const ok = (!L().T || (T>=RANGE.T[0] && T<=RANGE.T[1])) && (!L().S || (S>=RANGE.S[0] && S<=RANGE.S[1]));
+    if(ok) inRange += dt;
+    sampleT += dt; if(sampleT > .2){ sampleT = 0; hist.push({t, T, S}); }
+    if(T > 39.5 || T < 34.5) end(false, T > 39.5 ? "Your temperature reached a dangerous level. Start sweating as soon as something hot begins, since it takes a moment to work." : "You got dangerously cold. Shiver early when you head into the cold.");
+    else if(S < 45 || S > 260) end(false, S < 45 ? "Blood sugar fell too low. During exercise, release glucagon to let stored sugar out." : "Blood sugar climbed too high. After meals, release insulin so cells take sugar in.");
+    else if(t >= DAY) end(inRange/tracked >= .7);
+    renderSched();
+  }
+  ui(); draw(now);
+}
+function end(ok, why){
+  over = true; running = false; const pct = Math.round(inRange/Math.max(.01,tracked)*100);
+  if(ok){ bar.solve(li); env.card($("stage"), {title:`${pct}% in balance!`, why:"The science", body:L().learn, buttons:[{label: li<LEVELS.length-1?"Next level":"Play level 1 again", primary:true, onClick:()=>{ const n=li<LEVELS.length-1?li+1:0; bar.set(n); load(n); }}, {label:"Play this day again", onClick:()=>load(li)}]}); say("Day complete!", "good"); }
+  else env.card($("stage"), {fail:true, title: why ? "Emergency!" : `Only ${pct}% in balance`, why:"What happened", body: why || "You need to stay in the green band at least 70% of the day. Respond as soon as an event starts, and don't stack up too many responses at once.", buttons:[{label:"Try the day again", primary:true, onClick:()=>load(li)}]});
+}
+let lastUi = 0;
+function ui(){
+  const n = performance.now(); if(n-lastUi < 100) return; lastUi = n;
+  $("score").textContent = Math.round(inRange/Math.max(.01,tracked)*100)+"%";
+  for(const k in RESP){ const b = $("r-"+k); if(!b) continue; b.disabled = !running; const c = b.querySelector(".cd"); c.style.width = cool[k] > 0 ? (cool[k]/(k==="drink"?2:1.5)*100)+"%" : "0"; }
+  $("start").disabled = running;
+}
+function draw(){
+  st.begin();
+  const W = 640, H = 340, x0 = 52, x1 = 624, X = s => x0 + s/DAY*(x1-x0);
+  ctx.fillStyle = "#10151D"; ctx.fillRect(0,0,W,H);
+  const panels = [];
+  if(L().T) panels.push({k:"T", lo:35, hi:39.5, r:RANGE.T, col:"#FF7A45", lab:"Body temperature °C", fmt:v=>v.toFixed(1), ticks:[35,36,37,38,39]});
+  if(L().S) panels.push({k:"S", lo:40, hi:260, r:RANGE.S, col:"#FFD84A", lab:"Blood sugar mg/dL", fmt:v=>Math.round(v), ticks:[50,100,150,200,250]});
+  const top = 40, avail = H - top - (L().W ? 34 : 14), ph = avail/panels.length;
+  // events strip
+  let ei = 0;
+  for(const e of EVENTS){ if(!relevant(e)) continue; const a = X(at(e.h)), b = X(at(e.h)+e.dur), row = (ei++)%2;
+    ctx.fillStyle = e.dT>0 ? "rgba(255,122,69,.18)" : e.dT<0 ? "rgba(90,177,255,.18)" : "rgba(255,216,74,.15)"; ctx.fillRect(a, top-6, b-a, H-top-8);
+    ctx.fillStyle = "#C9D2DE"; ctx.font = "10px ui-monospace,monospace"; ctx.textAlign = "left"; ctx.fillText(e.short, a+2, 12 + row*13); }
+  panels.forEach((p, i) => {
+    const y0 = top + i*ph + 6, y1 = top + (i+1)*ph - 6, Y = v => y1 - (Math.max(p.lo, Math.min(p.hi, v))-p.lo)/(p.hi-p.lo)*(y1-y0);
+    ctx.fillStyle = "rgba(63,211,187,.14)"; ctx.fillRect(x0, Y(p.r[1]), x1-x0, Y(p.r[0])-Y(p.r[1]));
+    ctx.strokeStyle = "rgba(63,211,187,.5)"; ctx.lineWidth = 1; ctx.strokeRect(x0, Y(p.r[1]), x1-x0, Y(p.r[0])-Y(p.r[1]));
+    ctx.fillStyle = "#93A0B2"; ctx.font = "11px ui-monospace,monospace"; ctx.textAlign = "right"; ctx.textBaseline = "middle";
+    for(const v of p.ticks){ ctx.fillText(v, x0-6, Y(v)); ctx.strokeStyle = "rgba(147,160,178,.1)"; ctx.beginPath(); ctx.moveTo(x0, Y(v)); ctx.lineTo(x1, Y(v)); ctx.stroke(); }
+    ctx.textAlign = "left"; ctx.fillStyle = p.col; ctx.fillText(p.lab, x0+6, y0+8);
+    // trace
+    ctx.strokeStyle = p.col; ctx.lineWidth = 2.5; ctx.beginPath();
+    hist.forEach((h, j) => { const x = X(h.t), y = Y(h[p.k]); j ? ctx.lineTo(x, y) : ctx.moveTo(x, y); });
+    const cur = p.k==="T" ? T : S; if(hist.length) ctx.lineTo(X(t), Y(cur)); ctx.stroke();
+    ctx.fillStyle = p.col; ctx.beginPath(); ctx.arc(X(t), Y(cur), 5, 0, 7); ctx.fill();
+    ctx.fillStyle = "#E9EEF5"; ctx.font = "700 13px ui-monospace,monospace"; ctx.textAlign = X(t) > x1-80 ? "right" : "left"; ctx.fillText(p.fmt(cur), X(t) + (X(t) > x1-80 ? -10 : 10), Y(cur)-12);
+    // pending responses
+    for(const a of active){ const r = RESP[a.k]; if(r.use!==p.k) continue; ctx.fillStyle = (r.dT||0)+(r.dS||0) < 0 ? "rgba(90,177,255,.7)" : "rgba(255,122,69,.7)"; ctx.fillRect(X(a.t0), y1-4, X(a.t1)-X(a.t0), 4); }
+  });
+  // now line
+  ctx.strokeStyle = "rgba(233,238,245,.5)"; ctx.setLineDash([4,4]); ctx.beginPath(); ctx.moveTo(X(t), top-6); ctx.lineTo(X(t), H-10); ctx.stroke(); ctx.setLineDash([]);
+  if(L().W){ const y = H-22; ctx.fillStyle = "#93A0B2"; ctx.font = "11px ui-monospace,monospace"; ctx.textAlign = "right"; ctx.fillText("Water", x0-6, y+5);
+    ctx.fillStyle = "#1B2330"; ctx.fillRect(x0, y, 200, 10); ctx.fillStyle = Wt < 15 ? "#FF6B5E" : "#5AB1FF"; ctx.fillRect(x0, y, 2*Wt, 10); }
+  ctx.fillStyle = "#E9EEF5"; ctx.font = "700 12px ui-monospace,monospace"; ctx.textAlign = "right"; ctx.fillText(clock(7 + t/DAY*14), x1, H-14);
+  if(!running && !over){ ctx.fillStyle = "rgba(11,15,21,.5)"; ctx.fillRect(0,0,W,H); ctx.fillStyle = "#E9EEF5"; ctx.font = "700 18px ui-monospace,monospace"; ctx.textAlign = "center"; ctx.fillText(t>0 ? "Paused" : "Press Start the day", W/2, H/2); }
+}
+env.loop(step);
+load(0);
+try{ root.host.__debug = { get T(){ return T; }, get S(){ return S; }, get t(){ return t; }, get active(){ return active.map(a=>a.k); } }; }catch(e){}
+
+});
+})();</script></section>
+
+<section class="sec related" id="more"><div><p class="kicker">Keep exploring</p><h2>Related lessons</h2></div><p class="idea"> Up next: <a href="../7th/unit-7.1-structure-and-properties-of-matter.html">Unit 7.1: Structure &amp; Properties of Matter</a>. Overlap alert: ideas you have already met are marked above as "you may already have learned".</p><ul><li><a href="unit-01-light-and-matter.html">Unit 1: Light &amp; Matter</a><span class="why">Light and your sense of sight.</span></li><li><a href="unit-02-thermal-energy.html">Unit 2: Thermal Energy</a><span class="why">Body temperature and heat transfer.</span></li><li><a href="unit-03-forces-motion-and-energy.html">Unit 3: Forces, Motion &amp; Energy</a><span class="why">Force and motion in muscles and bones.</span></li><li><a href="unit-07-cells.html">Unit 7: Cells</a><span class="why">Cells, respiration, and diffusion.</span></li><li><a href="unit-08-classifying-life.html">Unit 8: Classifying Life</a><span class="why">How body plans differ.</span></li><li><a href="../7th/unit-7.4-metabolic-reactions-and-the-body.html">Unit 7.4: Metabolic Reactions &amp; the Body</a><span class="why">Grade 7: digestion and cellular respiration.</span></li><li><a href="../8th/unit-8.8-genetics-and-heredity.html">Unit 8.8: Genetics &amp; Heredity</a><span class="why">Grade 8: genetics.</span></li><li><a href="unit-12-ecosystems-and-food-webs.html">Unit 12: Ecosystems &amp; Food Webs</a><span class="why">Ecosystems and food webs.</span></li></ul></section>
+</main>
+
+<footer>Built for sixth-grade tutoring. Based on the body-systems and homeostasis strands in OpenSciEd Grade 6/7 life science and Michigan Virtual's body-systems module; aligned with NGSS MS-LS1-3 and MS-LS1-8. Numbers are approximate teaching values.</footer>
+
+<script>
+(function(){
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const safe=fn=>{try{fn()}catch(e){console.error(e)}};
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const setPressed=(g,b)=>$$('button',g).forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));
+function mkChips(g,labels,sel=0){ g.innerHTML=labels.map((l,i)=>`<button class="chip" type="button" data-i="${i}" aria-pressed="${i===sel}">${l}</button>`).join(''); }
+function quizBox(box,scoreEl,items,labels){
+  let right=0;
+  box.innerHTML=items.map((it,i)=>`<div class="item" data-i="${i}"><span class="nm">${it.n}</span><div class="opts">${labels.map((l,j)=>`<button class="opt" type="button" data-j="${j}">${l}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
+  box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.disabled)return; const row=b.closest('.item'), it=items[+row.dataset.i], ok=+b.dataset.j===it.a;
+    $$('.opt',row).forEach(o=>{ o.disabled=true; if(+o.dataset.j===it.a)o.classList.add('good'); }); if(!ok)b.classList.add('bad'); else right++;
+    $('.fb',row).textContent=(ok?'Yes. ':'Not quite. ')+it.e; scoreEl.textContent=`${right} of ${items.length} correct`; });
+}
+function line(svg,o){ // o: x0,x1,y0,y1,series[{pts,color}],xt,yt,xl,yl,W,H,L,B,T,R
+  const W=o.W||640,H=o.H||260,L=o.L||56,B=o.B||40,T=o.T||16,R=o.R||16;
+  const X=x=>L+(x-o.x0)/(o.x1-o.x0)*(W-L-R), Y=y=>H-B-(y-o.y0)/(o.y1-o.y0)*(H-B-T);
+  let s='';
+  o.yt.forEach(v=>{ s+=`<line x1="${L}" y1="${Y(v)}" x2="${W-R}" y2="${Y(v)}" style="stroke:var(--line)"/><text x="${L-6}" y="${Y(v)+4}" font-size="12" text-anchor="end">${v}</text>`; });
+  o.xt.forEach(v=>{ s+=`<text x="${X(v)}" y="${H-B+16}" font-size="12" text-anchor="middle">${v}</text>`; });
+  (o.bands||[]).forEach(b=>{ s+=`<rect x="${L}" y="${Y(b[1])}" width="${W-L-R}" height="${Y(b[0])-Y(b[1])}" style="fill:var(--transmit);fill-opacity:.14"/><text x="${L+6}" y="${Y(b[1])+13}" font-size="11">${b[2]}</text>`; });
+  s+=`<line x1="${L}" y1="${H-B}" x2="${W-R}" y2="${H-B}" style="stroke:var(--ink);stroke-width:2"/><line x1="${L}" y1="${T}" x2="${L}" y2="${H-B}" style="stroke:var(--ink);stroke-width:2"/>`;
+  o.series.forEach(se=>{ s+=`<path d="${se.pts.map((p,i)=>`${i?'L':'M'}${X(p[0]).toFixed(1)} ${Y(p[1]).toFixed(1)}`).join('')}" style="fill:none;stroke:${se.color};stroke-width:4;stroke-linejoin:round"/>`; });
+  if(o.mark) s+=`<circle cx="${X(o.mark[0])}" cy="${Y(o.mark[1])}" r="8" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/>`;
+  s+=`<text x="${(L+W-R)/2}" y="${H-4}" font-size="13" text-anchor="middle">${o.xl}</text><text transform="rotate(-90 14 ${(T+H-B)/2})" x="14" y="${(T+H-B)/2}" font-size="13" text-anchor="middle">${o.yl}</text>`;
+  svg.innerHTML=s;
+}
+
+/* ===== 1 ===== */
+safe(()=>{
+  const LV=[
+    {n:'Cell',t:'A single muscle cell. It contracts when signaled.',d:'<ellipse cx="240" cy="95" rx="150" ry="36" style="fill:var(--absorb);fill-opacity:.4;stroke:var(--ink);stroke-width:3"/><circle cx="210" cy="95" r="12" style="fill:var(--reflect);stroke:var(--ink);stroke-width:2"/><circle cx="270" cy="95" r="12" style="fill:var(--reflect);stroke:var(--ink);stroke-width:2"/>'},
+    {n:'Tissue',t:'Muscle tissue: many muscle cells bundled together, all contracting in the same direction.',d:'<g style="fill:var(--absorb);fill-opacity:.4;stroke:var(--ink);stroke-width:2.5">'+[40,70,100,130,160].map(y=>`<ellipse cx="240" cy="${y}" rx="170" ry="13"/>`).join('')+'</g>'},
+    {n:'Organ',t:'The heart: muscle tissue plus nerve tissue, blood vessels, and a lining. Each tissue helps the pumping job.',d:'<path d="M240 160 C110 90 150 20 240 70 C330 20 370 90 240 160Z" style="fill:var(--absorb);fill-opacity:.5;stroke:var(--ink);stroke-width:3"/>'},
+    {n:'Organ system',t:'The circulatory system: heart, blood vessels, and blood together move materials around the body.',d:'<path d="M80 100 C140 20 200 20 240 100 S340 180 400 100" style="fill:none;stroke:var(--absorb);stroke-width:8"/><path d="M80 100 C140 180 200 180 240 100 S340 20 400 100" style="fill:none;stroke:var(--reflect);stroke-width:8"/><circle cx="240" cy="100" r="24" style="fill:var(--absorb);stroke:var(--ink);stroke-width:3"/>'},
+    {n:'Organism',t:'You! All systems working together, each depending on the others.',d:'<circle cx="240" cy="34" r="22" style="fill:var(--reflect);fill-opacity:.3;stroke:var(--ink);stroke-width:3"/><path d="M200 62 h80 v60 h-80z M208 122 v50 M272 122 v50 M200 72 l-30 40 M280 72 l30 40" style="fill:var(--reflect);fill-opacity:.2;stroke:var(--ink);stroke-width:3;stroke-linecap:round"/>'}
+  ];
+  const chips=$('#lvChips'), svg=$('#lvSvg'), rd=$('#lvR');
+  mkChips(chips,LV.map(x=>x.n),0);
+  const draw=i=>{ svg.innerHTML=LV[i].d; rd.innerHTML=`<b>${LV[i].n}:</b> ${LV[i].t}`; };
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; setPressed(chips,b); draw(+b.dataset.i); }); draw(0);
+  quizBox($('#sysSort'),$('#sysS'),[
+    {n:'Absorbs nutrients from food',a:0,e:'The small intestine in the digestive system absorbs nutrients.'},
+    {n:'Carries oxygen to cells',a:1,e:'Blood carries oxygen; the circulatory system moves it.'},
+    {n:'Brings oxygen into the body',a:2,e:'The respiratory system (lungs) takes in oxygen.'},
+    {n:'Sends fast electrical messages',a:3,e:'Nerves belong to the nervous system.'},
+    {n:'Filters waste from blood',a:4,e:'Kidneys are part of the excretory system.'},
+    {n:'Gives structure and protects organs',a:5,e:'Bones form the skeletal system.'}
+  ],['Digestive','Circulatory','Respiratory','Nervous','Excretory','Skeletal']);
+  const N=[['Heartbeats/day',100000,100000,'~100,000'],['Breaths/day',22000,25000,'~22,000'],['Blood vessel length (km)',100000,100000,'~100,000 km'],['Liters of blood',4.5,10,'~4.5 L'],['Bones',206,300,'206'],['Muscles (named)',650,700,'~650']];
+  $('#numBars').innerHTML=N.map(([n,v,m,t])=>`<div class="brow" style="grid-template-columns:150px minmax(0,1fr)"><span class="lab">${n}</span><div class="stack"><div class="seg t" style="width:${v/m*100}%;min-width:70px">${t}</div></div></div>`).join('');
+});
+
+/* ===== 2 ===== */
+safe(()=>{
+  const A=[['Sleeping',60,'Sleeping'],['Sitting',75,'Sitting'],['Walking',100,'Walking'],['Jogging',150,'Jogging'],['Sprinting',190,'Sprinting']];
+  const chips=$('#exChips'), svg=$('#ecg'), rd=$('#exR'); mkChips(chips,A.map(a=>a[0]),1); let bpm=75, off=0;
+  const draw=()=>{ const period=60/bpm*60, pts=[]; // px per beat (60px/s)
+    let d=''; for(let x=0;x<=480;x+=2){ const p=((x+off)%period)/period; let y=65; if(p>.12&&p<.2)y=65-6*Math.sin((p-.12)/.08*Math.PI); if(p>.3&&p<.34)y=65+8*Math.sin((p-.3)/.04*Math.PI); if(p>.34&&p<.4)y=65-50*Math.sin((p-.34)/.06*Math.PI); if(p>.4&&p<.44)y=65+14*Math.sin((p-.4)/.04*Math.PI); if(p>.55&&p<.7)y=65-10*Math.sin((p-.55)/.15*Math.PI); d+=`${x?'L':'M'}${x} ${y.toFixed(1)}`; }
+    svg.innerHTML=`<path d="${d}" style="fill:none;stroke:var(--absorb);stroke-width:3;stroke-linejoin:round"/><text x="470" y="120" font-size="12" text-anchor="end">${bpm} beats per minute</text>`; };
+  let raf, vis=true; const loop=t=>{ off+=1.2; draw(); raf=requestAnimationFrame(loop); };
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const info=()=>{ const a=A[+$('button[aria-pressed="true"]',chips).dataset.i]; bpm=a[1]; rd.innerHTML=`<b>${a[0]}:</b> about <b>${bpm}</b> beats per minute. That is ${(bpm/60).toFixed(1)} beats every second.`; draw(); };
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; setPressed(chips,b); info(); });
+  info();
+  if(!reduce){ const io=new IntersectionObserver(es=>{ es.forEach(en=>{ if(en.isIntersecting){ if(!raf) raf=requestAnimationFrame(loop);} else { cancelAnimationFrame(raf); raf=0; } }); }); io.observe(svg); }
+});
+safe(()=>{
+  const F=[{n:'Less fit',rest:85,peak:185,rec:6},{n:'Average',rest:72,peak:165,rec:4},{n:'Very fit',rest:55,peak:145,rec:2.5}];
+  const sl=$('#fit'), svg=$('#hrSvg');
+  const draw=()=>{ const f=F[+sl.value]; $('#fitV').textContent=f.n;
+    const pts=[]; for(let t=0;t<=20;t+=.25){ let h; if(t<4)h=f.rest; else if(t<12)h=f.rest+(f.peak-f.rest)*(1-Math.exp(-(t-4)/1.5)); else { const pk=f.rest+(f.peak-f.rest)*(1-Math.exp(-8/1.5)); h=f.rest+(pk-f.rest)*Math.exp(-(t-12)/f.rec); } pts.push([t,h]); }
+    line(svg,{x0:0,x1:20,y0:40,y1:200,yt:[60,100,140,180],xt:[0,4,8,12,16,20],xl:'minutes (jog from minute 4 to 12)',yl:'heart rate (beats/min)',series:[{pts,color:'var(--absorb)'}],bands:[[60,100,'normal resting range']]});
+    const mx=pts.reduce((a,b)=>b[1]>a[1]?b:a); }; sl.addEventListener('input',draw); draw();
+});
+
+/* ===== 3 ===== */
+safe(()=>{
+  const S=[[0,'Mouth',0,'Teeth and saliva break the bite apart. Salivary amylase starts breaking down starch.'],[1,'Esophagus',0.0003,'A muscular tube squeezes food down in seconds (peristalsis).'],[2,'Stomach',2,'Acid and churning turn the food into a thick liquid. Stomach acid has a pH around 2.'],[6,'Small intestine',3,'Enzymes finish digestion and nutrients pass through villi into blood.'],[10,'Large intestine',4,'Water is absorbed, leaving solid waste.'],[24,'Exits',5,'Undigested material (fiber) leaves the body.']];
+  const sl=$('#bite'), svg=$('#biteSvg'), rd=$('#biteR');
+  const zones=[[0,2,'Mouth + esophagus','var(--beam)'],[2,6,'Stomach','var(--absorb)'],[6,10,'Small intestine','var(--transmit)'],[10,24,'Large intestine','var(--reflect)']];
+  const draw=()=>{ const h=+sl.value; $('#biteV').textContent=h+' h';
+    const X=t=>20+t/24*440; let s='';
+    zones.forEach(([a,b,n,c])=>{ s+=`<rect x="${X(a)}" y="26" width="${X(b)-X(a)}" height="22" style="fill:${c};fill-opacity:.4;stroke:var(--ink);stroke-width:2"/>`; });
+    s+=`<circle cx="${X(h)}" cy="37" r="9" style="fill:var(--ink)"/><g font-size="10" text-anchor="middle"><text x="${X(1)}" y="18">mouth</text><text x="${X(4)}" y="18">stomach</text><text x="${X(8)}" y="18">small int.</text><text x="${X(17)}" y="18">large intestine</text></g><text x="20" y="66" font-size="10">0 h</text><text x="460" y="66" font-size="10" text-anchor="end">24 h</text>`;
+    svg.innerHTML=s;
+    const z=h<2?S[1]:h<6?S[2]:h<10?S[3]:S[4]; rd.innerHTML=`<b>${z[1]}:</b> ${h===0?S[0][3]:z[3]}`; };
+  sl.addEventListener('input',draw); draw();
+  const G=[['Esophagus',25],['Stomach (stretched)',0.1],['Small intestine (folds + villi)',30],['Large intestine',2],['Tennis court (for scale)',260]];
+  const mx=Math.log10(260)+1.2;
+  $('#gutBars').innerHTML=G.map(([n,v])=>`<div class="brow" style="grid-template-columns:150px minmax(0,1fr)"><span class="lab">${n}</span><div class="stack"><div class="seg ${n.startsWith('Small')?'t':n.startsWith('Tennis')?'a':'r'}" style="width:${(Math.log10(v)+1.2)/mx*100}%;min-width:70px">${v>=1?v+' m²':'~0.1 m²'}</div></div></div>`).join('')+'<p class="cap" style="margin-top:2px">Surface area, log scale. Esophagus and stomach values are rough.</p>';
+  const FD=[{n:'Apple',v:[0,95,3,1]},{n:'Peanut butter',v:[22,6,50,1]},{n:'White rice',v:[8,80,1,0]},{n:'Chicken breast',v:[93,0,7,0]},{n:'Candy',v:[0,95,5,0]}];
+  // v = % of calories? use grams per 100g approx: protein, carbs, fat, fiber... simplified as percent shares
+  const chips=$('#foodChips'), stack=$('#foodStack'), rdF=$('#foodR'); mkChips(chips,FD.map(f=>f.n),0);
+  const draw2=i=>{ const f=FD[i], tot=f.v[0]+f.v[1]+f.v[2]+f.v[3], cols=['var(--absorb)','var(--beam)','var(--reflect)','var(--transmit)'], nm=['Protein','Carbs','Fat','Fiber'];
+    stack.innerHTML=f.v.map((v,j)=>v?`<div class="seg" style="width:${v/tot*100}%;background:${cols[j]};color:#111;min-width:30px">${nm[j]} ${Math.round(v/tot*100)}%</div>`:'').join('');
+    stack.setAttribute('aria-label',f.n+' nutrient shares');
+    rdF.innerHTML=`<b>${f.n}:</b> share of nutrients by type (approximate teaching values). Protein builds and repairs, carbs give quick energy, fat stores energy, fiber keeps digestion moving.`; };
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; setPressed(chips,b); draw2(+b.dataset.i); }); draw2(0);
+});
+
+/* ===== 4 ===== */
+safe(()=>{
+  const el=$('#rt'), svg=$('#rtSvg'), rd=$('#rtR'); let state='idle', t0=0, timer=null; const hist=[];
+  const chart=()=>{ if(!hist.length){ svg.innerHTML='<text x="240" y="70" font-size="13" text-anchor="middle" style="opacity:.6">Your results will appear here</text>'; return; }
+    const mx=Math.max(500,...hist), n=Math.max(5,hist.length); let s='';
+    [0,250,500].forEach(v=>{ const y=120-v/mx*100; s+=`<line x1="40" y1="${y}" x2="470" y2="${y}" style="stroke:var(--line)"/><text x="34" y="${y+4}" font-size="11" text-anchor="end">${v}</text>`; });
+    hist.forEach((v,i)=>{ const x=50+i*(420/n), w=420/n-8, h=v/mx*100; s+=`<rect x="${x}" y="${120-h}" width="${w}" height="${h}" rx="4" style="fill:var(--transmit)"/><text x="${x+w/2}" y="${120-h-4}" font-size="11" text-anchor="middle">${v}</text>`; });
+    s+=`<text x="255" y="136" font-size="11" text-anchor="middle">milliseconds per try</text>`; svg.innerHTML=s; };
+  chart();
+  const act=()=>{
+    if(state==='idle'){ state='wait'; el.className='rt'; el.textContent='Wait for green…'; timer=setTimeout(()=>{ state='go'; el.className='rt go'; el.textContent='NOW! Click!'; t0=performance.now(); },1200+Math.random()*2500); }
+    else if(state==='wait'){ clearTimeout(timer); state='idle'; el.className='rt idle'; el.textContent='Too early! Click to try again.'; }
+    else if(state==='go'){ const ms=Math.round(performance.now()-t0); hist.push(ms); if(hist.length>8)hist.shift(); state='idle'; el.className='rt idle'; el.textContent=ms+' ms. Click to go again.';
+      const avg=Math.round(hist.reduce((a,b)=>a+b,0)/hist.length); rd.innerHTML=`Latest: <b>${ms} ms</b> · average of ${hist.length}: <b>${avg} ms</b>. Typical is about 200–300 ms. Most of that is your brain deciding, not the nerve signal traveling.`; chart(); }
+  };
+  el.addEventListener('click',act); el.addEventListener('keydown',e=>{ if(e.key===' '||e.key==='Enter'){ e.preventDefault(); act(); } });
+  const V=[['Slow pain nerve',1],['Fast touch nerve',70],['Fast motor nerve',120],['Sprinting cheetah',29],['Sound in air',343]];
+  const mx=Math.log10(343)+.3;
+  $('#speedBars').innerHTML=V.map(([n,v])=>`<div class="brow" style="grid-template-columns:140px minmax(0,1fr)"><span class="lab">${n}</span><div class="stack"><div class="seg ${n.includes('nerve')?'t':'a'}" style="width:${(Math.log10(v)+.3)/mx*100}%;min-width:60px">${v} m/s</div></div></div>`).join('')+'<p class="cap" style="margin-top:2px">Log scale.</p>';
+});
+
+/* ===== 5 ===== */
+safe(()=>{
+  const E=[['Cool room (15 °C)',-1],['Comfortable (22 °C)',0],['Hot day (38 °C)',1]];
+  const chips=$('#tpChips'), svg=$('#tpSvg'), rd=$('#tpR'), fb=$('#tpFb'); mkChips(chips,E.map(e=>e[0]),2); let fbOn=true;
+  const draw=()=>{ const env=E[+$('button[aria-pressed="true"]',chips).dataset.i][1], pts=[]; let T=37, tp=[];
+    // env pushes temp by +-0.1/min; feedback adds correction proportional to deviation (sweat/shiver), delayed
+    for(let t=0;t<=60;t++){ pts.push([t,T]); const push=env*0.12, dev=T-37, corr=fbOn?-0.55*dev:0; T+=push+corr*0.5+ (fbOn?0:0); if(!fbOn&&env===0)T+=0; }
+    line(svg,{W:480,H:240,L:46,x0:0,x1:60,y0:34,y1:42,yt:[34,36,37,38,40,42],xt:[0,15,30,45,60],xl:'minutes',yl:'body temp (°C)',series:[{pts,color:fbOn?'var(--transmit)':'var(--absorb)'}],bands:[[36.5,37.5,'healthy range']]});
+    const last=pts[60][1]; rd.innerHTML=fbOn?`With feedback (${env>0?'sweating':env<0?'shivering':'steady'}): temperature settles near <b>${last.toFixed(1)} °C</b>.`:`No feedback: temperature drifts to <b>${last.toFixed(1)} °C</b> after an hour. ${Math.abs(last-37)>3?'That is dangerous.':''}`; };
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; setPressed(chips,b); draw(); });
+  fb.addEventListener('click',()=>{ fbOn=!fbOn; fb.textContent='Feedback: '+(fbOn?'on':'off'); draw(); }); draw();
+});
+safe(()=>{
+  const svg=$('#bgSvg'), rd=$('#bgR'), chips=$('#bgChips');
+  const draw=c=>{ const pts=[]; for(let t=0;t<=240;t+=4){ let g=90; const dt=t-30; if(dt>0){ const rise=(c==='ok'?95:110)*Math.exp(-dt/(c==='ok'?45:200))*(1-Math.exp(-dt/12)); g=90+rise*(c==='ok'?1:1.6); } pts.push([t,g]); }
+    line(svg,{x0:0,x1:240,y0:60,y1:260,yt:[70,100,140,180,220],xt:[0,60,120,180,240],xl:'minutes (meal at minute 30)',yl:'blood sugar (mg/dL)',series:[{pts,color:c==='ok'?'var(--transmit)':'var(--absorb)'}],bands:[[70,140,'target range']]});
+    rd.innerHTML=c==='ok'?'<b>Healthy:</b> sugar rises after eating, the pancreas releases insulin, cells absorb sugar, and levels return to range within two to three hours.':'<b>Not enough insulin:</b> cells cannot take up sugar, so it stays high. This is why people with diabetes monitor and treat blood sugar.'; };
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; setPressed(chips,b); draw(b.dataset.c); }); draw('ok');
+});
+
+/* ===== quiz ===== */
+safe(()=>{
+  const Q=[
+    {q:'Which is the correct order from smallest to largest?',o:['Organ, tissue, cell, system','Cell, tissue, organ, organ system','Tissue, cell, system, organ'],a:1,e:'Cells form tissues, tissues form organs, organs form systems.'},
+    {q:'What does the respiratory system exchange with the blood?',o:['Water for sugar','Oxygen in, carbon dioxide out','Vitamins for protein'],a:1,e:'Gas exchange happens in tiny air sacs in the lungs.'},
+    {q:'Why does your heart beat faster during exercise?',o:['To cool the muscles','To deliver more oxygen to working muscles','Because blood gets thicker'],a:1,e:'Working muscles need more oxygen and fuel, and must clear CO₂.'},
+    {q:'Where do most nutrients enter the blood?',o:['Stomach','Esophagus','Small intestine'],a:2,e:'Villi in the small intestine give a huge absorbing surface.'},
+    {q:'Pulling your hand from a hot pan before you feel pain is an example of...',o:['A reflex','Digestion','Homeostasis failing'],a:0,e:'The spinal cord triggers a fast reflex before the brain registers pain.'},
+    {q:'Sweating when you are too hot is an example of...',o:['Positive feedback','Negative feedback that restores balance','A random change'],a:1,e:'The response reduces the change, bringing temperature back down.'}
+  ];
+  const box=$('#quiz'), sc=$('#quizScore'); let right=0;
+  box.innerHTML=Q.map((x,i)=>`<div class="q item" data-i="${i}" style="display:grid"><h4>${i+1}. ${x.q}</h4><div class="opts">${x.o.map((t,j)=>`<button class="opt" type="button" data-j="${j}">${t}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
+  box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.disabled)return; const row=b.closest('.q'), x=Q[+row.dataset.i], ok=+b.dataset.j===x.a;
+    $$('.opt',row).forEach(o=>{ o.disabled=true; if(+o.dataset.j===x.a)o.classList.add('good'); }); if(!ok)b.classList.add('bad'); else right++;
+    $('.fb',row).textContent=(ok?'Correct. ':'Not quite. ')+x.e; sc.textContent=`${right} of ${Q.length} correct`; });
+});
+})();
+</script>

@@ -1,0 +1,1137 @@
+<title>Forces, Motion &amp; Energy</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout concept: one long lesson column. Each concept opens with a one-sentence big idea, then a grid of labelled visual aids
+   (Analogy, Diagram, Try it, Data, Real world) that collapses to one column on phones.
+   Color roles are fixed for the whole page: amber = incoming light, blue = reflected, teal = transmitted, orange = absorbed. */
+:root{
+  --bg:#F2F5FA; --surface:#FFFFFF; --surface-2:#E8EDF6; --ink:#12172B; --muted:#47506E; --line:#D0D8E8;
+  --beam:#F2A900; --beam-ink:#1A1400; --reflect:#2B66E8; --absorb:#D6450B; --transmit:#0B7F70; --on-color:#FFFFFF;
+  --red:#D93036; --green:#25904F; --blue:#3558D6; --shade:#222A4A;
+  --font-display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --font-body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+  --font-mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C1022; --surface:#151A33; --surface-2:#1D2444; --ink:#EDF0FB; --muted:#A8B1CE; --line:#2B3459;
+    --beam:#FFC93C; --beam-ink:#1A1400; --reflect:#7BA2FF; --absorb:#FF8F5C; --transmit:#46D6C0; --on-color:#0B1020;
+    --red:#FF6A70; --green:#4FCB85; --blue:#7C97FF; --shade:#02040B; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C1022; --surface:#151A33; --surface-2:#1D2444; --ink:#EDF0FB; --muted:#A8B1CE; --line:#2B3459;
+  --beam:#FFC93C; --beam-ink:#1A1400; --reflect:#7BA2FF; --absorb:#FF8F5C; --transmit:#46D6C0; --on-color:#0B1020;
+  --red:#FF6A70; --green:#4FCB85; --blue:#7C97FF; --shade:#02040B; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--font-body); font-size:17px; line-height:1.55;
+  padding-block:0 72px;
+  padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+main,.hero{max-width:920px;margin:0 auto}
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance;margin:0;line-height:1.1}
+p{margin:0}
+a{color:inherit}
+svg{display:block;width:100%;height:auto}
+svg text{font-family:var(--font-body);fill:var(--ink)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--reflect);outline-offset:2px}
+
+/* hero */
+.hero{padding-block:28px 8px;display:grid;gap:18px}
+.kicker{font-family:var(--font-mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
+.lede{font-size:clamp(1.1rem,3.4vw,1.35rem);max-width:34em;text-wrap:pretty}
+.hero-art{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:10px 12px}
+.howto{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:.92rem;color:var(--muted)}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);margin-top:18px;border-bottom:1px solid var(--line);
+  margin-inline:auto;max-width:920px}
+.nav ul{list-style:none;margin:0;padding:8px 0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin}
+.nav a{display:block;white-space:nowrap;text-decoration:none;font-size:.9rem;padding:7px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface)}
+.nav a:hover{border-color:var(--ink)}
+
+/* sections */
+.sec{padding-block:52px 6px;scroll-margin-top:68px;display:grid;gap:20px}
+.sec h2{font-size:clamp(1.9rem,6vw,2.7rem);font-weight:800;letter-spacing:-.02em}
+.idea{font-family:var(--font-display);font-size:clamp(1.25rem,4.4vw,1.75rem);line-height:1.25;font-weight:700;text-wrap:balance;max-width:28em}
+.idea mark{background:linear-gradient(transparent 58%,color-mix(in srgb,var(--beam) 50%,transparent) 58%);color:inherit}
+.aids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.aid{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.aid.wide{grid-column:1/-1}
+.aid h3{font-size:1.2rem;font-weight:700}
+.aid p.cap{font-size:.95rem;color:var(--muted)}
+.aid p.cap b{color:var(--ink)}
+.tag{align-self:flex-start;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;padding:3px 9px;border-radius:999px;
+  background:color-mix(in srgb,var(--tint) 24%,var(--surface));border:1px solid color-mix(in srgb,var(--tint) 55%,var(--line))}
+.tag.analogy{--tint:var(--beam)} .tag.diagram{--tint:var(--reflect)} .tag.try{--tint:var(--transmit)} .tag.data{--tint:var(--absorb)} .tag.real{--tint:var(--muted)} .tag.build{--tint:#8A63D2}
+ol.steps{margin:4px 0 0;padding-left:1.3em;display:grid;gap:6px}
+.stage{background:var(--surface-2);border-radius:10px;padding:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:.92rem;padding:7px 13px;min-height:40px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.ctl{display:grid;gap:6px}
+.ctl label{font-size:.92rem;font-weight:700}
+input[type=range]{width:100%;accent-color:var(--beam);height:32px}
+.readout{font-size:1rem}
+.readout b{font-family:var(--font-mono);font-weight:500}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{display:inline-flex;gap:6px;align-items:baseline;padding:5px 11px;border-radius:999px;font-family:var(--font-mono);font-size:.84rem;font-weight:500;background:var(--c);color:var(--on-color)}
+.pill.r{--c:var(--reflect)} .pill.a{--c:var(--absorb)} .pill.t{--c:var(--transmit)}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.trio>div{display:grid;gap:6px;align-content:start;min-width:0}
+.trio h4{margin:0;font-family:var(--font-display);font-size:1.05rem}
+.trio p{font-size:.93rem;color:var(--muted)}
+.trio svg{background:var(--surface-2);border-radius:10px}
+.swatch-r{color:var(--reflect);font-weight:700}.swatch-t{color:var(--transmit);font-weight:700}.swatch-a{color:var(--absorb);font-weight:700}
+
+/* stacked bars */
+.bars{display:grid;gap:9px}
+.brow{display:grid;grid-template-columns:104px minmax(0,1fr);gap:10px;align-items:center;font-size:.9rem}
+.brow.on .lab{font-weight:700}
+.stack{display:flex;height:28px;border-radius:7px;overflow:hidden;background:var(--surface-2);outline:2px solid transparent;outline-offset:2px}
+.brow.on .stack{outline-color:var(--ink)}
+.seg{display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:.72rem;color:var(--on-color);min-width:0;overflow:hidden}
+.seg.r{background:var(--reflect)}.seg.t{background:var(--transmit)}.seg.a{background:var(--absorb)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.88rem}
+.legend span::before{content:"";display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--c)}
+.legend .r{--c:var(--reflect)}.legend .t{--c:var(--transmit)}.legend .a{--c:var(--absorb)}
+
+/* sort game, quiz */
+.items{display:grid;gap:10px}
+.item{display:grid;gap:6px;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.item .nm{font-weight:700}
+.item .opts{display:flex;flex-wrap:wrap;gap:6px}
+.opt{font-size:.85rem;padding:6px 10px;border-radius:8px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;min-height:36px;text-align:left}
+.opt:hover:not([disabled]){border-color:var(--ink)}
+.opt.good{background:var(--transmit);color:var(--on-color);border-color:var(--transmit)}
+.opt.bad{background:var(--absorb);color:var(--on-color);border-color:var(--absorb)}
+.fb{font-size:.88rem;color:var(--muted)}
+.score{font-family:var(--font-mono);font-size:.9rem}
+.q{display:grid;gap:10px;padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.q h4{margin:0;font-size:1.05rem;font-family:var(--font-body);font-weight:700}
+.q .opts{display:grid;gap:8px}
+
+/* tables */
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:.92rem;min-width:420px}
+.tbl th,.tbl td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+.tbl th{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+/* see-through demo */
+.seebox{position:relative;border-radius:10px;overflow:hidden;background:var(--surface-2);padding:22px 16px;min-height:130px;display:grid;place-items:center}
+.seetext{font-family:var(--font-display);font-weight:800;font-size:clamp(1.2rem,5vw,1.7rem);text-align:center;letter-spacing:.02em;transition:filter .2s,opacity .2s}
+.seesheets{position:absolute;inset:0;pointer-events:none;background:var(--surface);transition:opacity .2s}
+.meter{height:12px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--transmit);transition:width .2s}
+
+/* canvas */
+canvas{width:100%;aspect-ratio:640/260;display:block;border-radius:10px;background:var(--surface-2)}
+.tally{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;font-size:.85rem}
+.tally div{padding:8px;border-radius:8px;background:var(--bg);border:1px solid var(--line)}
+.tally b{display:block;font-family:var(--font-mono);font-weight:500;font-size:1.05rem}
+
+/* color mixer + channel columns */
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.colx{display:grid;gap:6px;justify-items:center;font-size:.85rem;text-align:center}
+.tube{position:relative;width:100%;max-width:90px;height:150px;border:2px solid var(--line);border-radius:8px;display:flex;flex-direction:column-reverse;overflow:hidden;background:var(--bg)}
+.tube.empty{border-style:dashed}
+.tube .rf{background:var(--cc)}
+.tube .ab{background:repeating-linear-gradient(45deg,var(--surface-2) 0 6px,var(--line) 6px 9px)}
+.colx .nm{font-weight:700}
+.colx.r{--cc:var(--red)}.colx.g{--cc:var(--green)}.colx.b{--cc:var(--blue)}
+
+/* waffle */
+.waffle{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:3px;max-width:300px;width:100%}
+.cell{aspect-ratio:1;border-radius:3px}
+.cell.r{background:var(--reflect)}.cell.t{background:var(--transmit)}.cell.a{background:var(--absorb)}
+
+/* ice race */
+.race{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pad{position:relative;height:170px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden}
+.pad.w{background:#F4F4F1}.pad.b{background:#14161C}
+.pad .lbl{position:absolute;left:8px;top:6px;font-size:.78rem;font-family:var(--font-mono)}
+.pad.w .lbl{color:#333}.pad.b .lbl{color:#ddd}
+.puddle{position:absolute;width:110px;height:46px;border-radius:50%;background:#7CC4F2;opacity:.65;transform:scale(0);bottom:22px}
+.ice{position:relative;width:76px;height:76px;border-radius:12px;background:linear-gradient(135deg,#E4F6FF,#9ED7F5);border:2px solid #fff;transform-origin:50% 100%;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.sunbar{height:10px;border-radius:99px;background:linear-gradient(90deg,var(--beam),color-mix(in srgb,var(--beam) 30%,transparent));opacity:.25;transition:opacity .3s}
+.sunbar.on{opacity:1}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap}
+.btn{font-size:.95rem;font-weight:700;padding:9px 16px;min-height:42px;border-radius:10px;border:0;background:var(--beam);color:var(--beam-ink);cursor:pointer}
+.btn.ghost{background:var(--surface);color:var(--ink);border:1.5px solid var(--line)}
+.btn:hover{filter:brightness(1.06)}
+
+/* misc */
+.glossary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px;margin:0}
+.glossary div{padding:10px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--line)}
+.glossary dt{font-weight:700}
+.glossary dd{margin:2px 0 0;font-size:.93rem;color:var(--muted)}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+details+details{margin-top:10px}
+summary{cursor:pointer;font-weight:700}
+details .in{display:grid;gap:10px;padding-top:10px;font-size:.95rem}
+details ul{margin:0;padding-left:1.2em;display:grid;gap:4px}
+footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;border-top:1px solid var(--line);padding-top:16px}
+.flow{stroke-dasharray:10 8;animation:flow 1s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-18}}
+@media (prefers-reduced-motion: reduce){.flow{animation:none}html{scroll-behavior:auto}.seetext,.seesheets,.meter i{transition:none}}
+@media (max-width:760px){
+  .aids{grid-template-columns:minmax(0,1fr)}
+  .trio{grid-template-columns:minmax(0,1fr)}
+  .glossary{grid-template-columns:minmax(0,1fr)}
+  .tally{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:420px){.brow{grid-template-columns:84px minmax(0,1fr)}.race{grid-template-columns:minmax(0,1fr)}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="mBeam" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--beam)"/></marker>
+    <marker id="mReflect" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--reflect)"/></marker>
+    <marker id="mTransmit" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--transmit)"/></marker>
+    <marker id="mAbsorb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--absorb)"/></marker>
+    <marker id="mInk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--ink)"/></marker>
+    <marker id="mRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#D93036"/></marker>
+  </defs>
+</svg>
+
+<style>.bridge{margin:14px 0 0;padding:12px 14px;border-left:4px solid var(--beam);background:var(--surface-2);border-radius:0 10px 10px 0;font-size:.95rem;line-height:1.5}.related ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}.related li{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}.related a{font-weight:700}.related .why{display:block;color:var(--muted);font-size:.9rem}</style>
+<style>
+.race{display:grid;gap:10px}
+.nums{display:flex;flex-wrap:wrap;gap:8px 16px;font-family:var(--font-mono);font-size:.88rem}
+</style>
+
+<header class="hero">
+  <p class="kicker">Sixth grade science · Unit 3</p>
+  <h1>Forces, Motion &amp; Energy</h1>
+  <p class="lede">Why does a roller coaster go fastest at the bottom of a hill? Why is a full shopping cart so hard to stop? Why does an egg survive a fall onto a pillow but not onto the floor? Every motion you see comes from forces and energy, and both follow rules you can calculate.</p>
+  <p class="bridge"><b>Where we left off:</b> Unit 2 showed that thermal energy is particles jiggling, and that energy moves from hot to cold. You may already have learned that energy changes form rather than disappearing. Here we use the same energy ideas for moving objects, and we will see that friction is one way motion turns into heat.</p>
+      <div class="hero-art">
+    <svg viewBox="0 0 640 190" role="img" aria-label="A cart on a hill with force arrows: gravity down, push forward, friction backward.">
+      <path d="M0 150 Q160 150 280 90 T640 170 V190 H0z" style="fill:var(--surface-2)"/>
+      <path d="M0 150 Q160 150 280 90 T640 170" style="fill:none;stroke:var(--ink);stroke-width:3"/>
+      <g transform="translate(250 56) rotate(-27)"><rect x="-40" y="-18" width="80" height="30" rx="6" style="fill:var(--beam);stroke:var(--ink);stroke-width:3"/><circle cx="-22" cy="16" r="9" style="fill:var(--ink)"/><circle cx="22" cy="16" r="9" style="fill:var(--ink)"/></g>
+      <line x1="250" y1="62" x2="250" y2="140" style="stroke:var(--absorb);stroke-width:5" marker-end="url(#mAbsorb)"/>
+      <line x1="262" y1="50" x2="332" y2="18" style="stroke:var(--transmit);stroke-width:5" marker-end="url(#mTransmit)"/>
+      <line x1="236" y1="62" x2="186" y2="84" style="stroke:var(--reflect);stroke-width:5" marker-end="url(#mReflect)"/>
+      <text x="258" y="150" font-size="15" style="fill:var(--absorb);font-weight:700">gravity</text>
+      <text x="338" y="20" font-size="15" style="fill:var(--transmit);font-weight:700">push</text>
+      <text x="120" y="110" font-size="15" style="fill:var(--reflect);font-weight:700">friction</text>
+    </svg>
+  </div>
+  <p class="howto">Look for the tags <span class="tag analogy">Analogy</span><span class="tag diagram">Diagram</span><span class="tag try">Try it</span><span class="tag data">Data</span><span class="tag real">Real world</span></p>
+</header>
+
+<nav class="nav" aria-label="Lesson sections"><ul>
+  <li><a href="#s1">1 Speed</a></li><li><a href="#s2">2 Forces</a></li><li><a href="#s3">3 Friction</a></li><li><a href="#s4">4 Energy</a></li><li><a href="#s5">5 Energy never vanishes</a></li><li><a href="#s6c">6 Collisions</a></li><li><a href="#s6">7 Check yourself</a></li>
+  <li><a href="#game">8 Game</a></li>
+  </ul></nav>
+
+<main>
+
+<section class="sec" id="s1">
+  <div><p class="kicker">Concept 1 · Describing motion</p><h2>Speed is distance per time</h2></div>
+  <p class="idea">Speed tells you how far something goes <mark>in each second</mark>: speed = distance ÷ time. On a distance–time graph, a <mark>steeper line means faster</mark>.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>Two delivery drivers</h3>
+      <div class="stage"><svg viewBox="0 0 480 205" role="img" aria-label="Two drivers cover the same 10 miles. Driver A arrives in 10 minutes; Driver B is only halfway at 10 minutes and arrives at 20. Driver A is faster.">
+        <text x="80" y="24" font-size="14" style="font-weight:700">Same route: 10 miles</text>
+        <line x1="62" y1="34" x2="62" y2="176" style="stroke:var(--ink);stroke-width:3"/>
+        <line x1="420" y1="34" x2="420" y2="176" style="stroke:var(--ink);stroke-width:3"/>
+        <text x="62" y="196" font-size="12" text-anchor="middle">START</text>
+        <text x="420" y="196" font-size="12" text-anchor="middle">FINISH</text>
+        <rect x="74" y="52" width="342" height="42" rx="10" style="fill:var(--surface-2);stroke:var(--line);stroke-width:2"/>
+        <text x="86" y="44" font-size="14" style="font-weight:700">Driver A — 10 minutes</text>
+        <line x1="84" y1="73" x2="408" y2="73" style="stroke:var(--beam);stroke-width:5" marker-end="url(#mBeam)"/>
+        <g transform="translate(382 62)"><rect width="26" height="14" rx="4" style="fill:var(--beam);stroke:var(--ink);stroke-width:2"/><circle cx="7" cy="16" r="4" style="fill:var(--ink)"/><circle cx="19" cy="16" r="4" style="fill:var(--ink)"/></g>
+        <rect x="74" y="112" width="342" height="42" rx="10" style="fill:var(--surface-2);stroke:var(--line);stroke-width:2"/>
+        <text x="86" y="104" font-size="14" style="font-weight:700">Driver B — 20 minutes</text>
+        <line x1="84" y1="133" x2="236" y2="133" style="stroke:var(--reflect);stroke-width:5" marker-end="url(#mReflect)"/>
+        <line x1="244" y1="133" x2="408" y2="133" style="stroke:var(--reflect);stroke-width:3;stroke-dasharray:7 5" marker-end="url(#mReflect)"/>
+        <g transform="translate(212 122)"><rect width="26" height="14" rx="4" style="fill:var(--reflect);stroke:var(--ink);stroke-width:2"/><circle cx="7" cy="16" r="4" style="fill:var(--ink)"/><circle cx="19" cy="16" r="4" style="fill:var(--ink)"/></g>
+        <text x="244" y="158" font-size="12" text-anchor="middle" style="fill:var(--muted)">still driving</text>
+        <text x="246" y="188" font-size="13" text-anchor="middle" style="font-weight:700;fill:var(--absorb)">same distance, less time = more speed</text>
+      </svg></div>
+      <p>Both drivers cover the same 10 miles. Driver A arrives in 10 minutes; Driver B takes 20. Same distance, less time means a higher speed. <b>Speed = distance ÷ time</b>, so A averages 1 mile per minute (60 mph) and B averages 0.5 (30 mph).</p>
+      <p class="cap"><b>Where it breaks:</b> a real car speeds up, stops at lights, and slows in traffic. Average speed hides all of that; a distance–time graph shows it.</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Race on a 150 m track</h3>
+      <div class="stage"><svg id="raceSvg" viewBox="0 0 480 220" role="img" aria-label="Four lanes: walker, runner, cyclist, car with positions after the chosen time."></svg></div>
+      <div class="ctl"><label for="raceT">Time: <span id="raceTv"></span> seconds</label><input id="raceT" type="range" min="0" max="10" step="0.5" value="4"></div>
+      <div class="btnrow"><button class="btn" id="racePlay" type="button">Play the race</button></div>
+      <p class="readout" id="raceR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>Distance–time graph</h3>
+      <div class="stage"><svg id="dtSvg" viewBox="0 0 640 280" role="img" aria-label="Four straight lines from the origin. Car is steepest, then bike, runner, walker."></svg></div>
+      <p class="cap">Slope = rise ÷ run = distance ÷ time = <b>speed</b>. A flat line means standing still. Move the time slider above and watch the dots slide along each line.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>Speeds you know</h3>
+      <div class="tw"><table class="tbl">
+        <thead><tr><th>Thing</th><th>Speed (m/s)</th><th>Speed (mph)</th><th>Time to cover 100 m</th></tr></thead>
+        <tbody>
+          <tr><td><b>Walking</b></td><td>1.5</td><td>3.4</td><td>67 s</td></tr>
+          <tr><td><b>Running</b></td><td>5</td><td>11</td><td>20 s</td></tr>
+          <tr><td><b>Bicycle</b></td><td>8</td><td>18</td><td>12.5 s</td></tr>
+          <tr><td><b>City car</b></td><td>14</td><td>31</td><td>7 s</td></tr>
+          <tr><td><b>Highway car</b></td><td>30</td><td>67</td><td>3.3 s</td></tr>
+          <tr><td><b>Airliner</b></td><td>250</td><td>560</td><td>0.4 s</td></tr>
+        </tbody></table></div>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s2">
+  <div><p class="kicker">Concept 2 · What changes motion</p><h2>Balanced and unbalanced forces</h2></div>
+  <p class="idea">A <mark>force</mark> is a push or a pull. If forces are balanced, motion doesn't change. If they're unbalanced, the object <mark>speeds up, slows down, or turns</mark>. A bigger net force or a smaller mass means more acceleration. Mass also measures <mark>inertia</mark>: how hard something is to start moving or to stop. A full cart is harder to get going <i>and</i> harder to stop.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>Tug of war</h3>
+      <div class="stage"><svg viewBox="0 0 480 220" role="img" aria-label="Two teams pull a rope. Equal teams, nobody moves. A stronger team wins.">
+        <line x1="60" y1="90" x2="420" y2="90" style="stroke:var(--ink);stroke-width:6"/><rect x="226" y="80" width="28" height="20" style="fill:var(--beam);stroke:var(--ink);stroke-width:2"/>
+        <g style="fill:var(--reflect)"><circle cx="60" cy="70" r="12"/><circle cx="100" cy="70" r="12"/><circle cx="140" cy="70" r="12"/></g>
+        <g style="fill:var(--absorb)"><circle cx="340" cy="70" r="12"/><circle cx="380" cy="70" r="12"/><circle cx="420" cy="70" r="12"/></g>
+        <line x1="170" y1="130" x2="100" y2="130" style="stroke:var(--reflect);stroke-width:8" marker-end="url(#mReflect)"/>
+        <line x1="310" y1="130" x2="380" y2="130" style="stroke:var(--absorb);stroke-width:8" marker-end="url(#mAbsorb)"/>
+        <text x="240" y="170" font-size="16" text-anchor="middle" style="font-weight:700">equal pulls = balanced = no change</text>
+        <text x="240" y="196" font-size="14" text-anchor="middle">Add one more kid to the red team and the flag starts to move.</text>
+      </svg></div>
+      <p class="cap">Net force = left pull minus right pull. When it isn't zero, the winner's direction is where the motion changes.</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Pull the cart</h3>
+      <div class="stage"><svg id="tugSvg" viewBox="0 0 480 190" role="img" aria-label="A cart with a left pull arrow and a right pull arrow."></svg></div>
+      <div class="ctl"><label for="fL">Left pull: <span id="fLv"></span> N</label><input id="fL" type="range" min="0" max="200" step="10" value="100"></div>
+      <div class="ctl"><label for="fR">Right pull: <span id="fRv"></span> N</label><input id="fR" type="range" min="0" max="200" step="10" value="160"></div>
+      <div class="ctl"><label for="mM">Cart mass: <span id="mMv"></span> kg</label><input id="mM" type="range" min="10" max="60" step="5" value="20"></div>
+      <div class="btnrow"><button class="btn" id="tugGo" type="button">Run 3 seconds</button><button class="btn ghost" id="tugReset" type="button">Reset</button></div>
+      <p class="readout" id="tugR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>Same push, different masses: acceleration</h3>
+      <div class="stage"><svg id="faSvg" viewBox="0 0 640 260" role="img" aria-label="Lines of acceleration versus net force for 10, 20, and 40 kilogram carts. The lighter the cart, the steeper the line."></svg></div>
+      <p class="cap">a = F ÷ m. Doubling the force doubles the acceleration. Doubling the mass halves it. The dots show your current cart and net force from the sliders above.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>Why a full cart is harder to push</h3>
+      <div class="tw"><table class="tbl">
+        <thead><tr><th>Situation</th><th>Mass</th><th>Same 40 N push gives</th></tr></thead>
+        <tbody>
+          <tr><td><b>Empty shopping cart</b></td><td>10 kg</td><td>4.0 m/s² (quickly up to walking speed)</td></tr>
+          <tr><td><b>Half-full cart</b></td><td>25 kg</td><td>1.6 m/s²</td></tr>
+          <tr><td><b>Overloaded cart</b></td><td>50 kg</td><td>0.8 m/s² (slow to start, slow to stop)</td></tr>
+          <tr><td><b>Car, out of gas</b></td><td>1,500 kg</td><td>0.03 m/s² (you need friends)</td></tr>
+        </tbody></table></div>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s3">
+  <div><p class="kicker">Concept 3 · Two forces you always meet</p><h2>Friction and gravity</h2></div>
+  <p class="idea"><mark>Friction</mark> pushes against motion between touching surfaces. <mark>Gravity</mark> pulls everything toward the center of Earth. Together they explain why things stop and why things fall.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>Microscopic Velcro</h3>
+      <div class="stage"><svg viewBox="0 0 480 220" role="img" aria-label="A zoomed-in view of a rough surface with interlocking bumps, which catch on each other.">
+        <path d="M20 90 l20 -22 l20 22 l20 -22 l20 22 l20 -22 l20 22 l20 -22 l20 22 l20 -22 l20 22 l20 -22 l20 22 l20 -22 l20 22 l20 -22 l20 22" style="fill:var(--surface);stroke:var(--ink);stroke-width:3"/>
+        <path d="M20 96 l20 22 l20 -22 l20 22 l20 -22 l20 22 l20 -22 l20 22 l20 -22 l20 22 l20 -22 l20 22 l20 -22 l20 22 l20 -22 l20 22" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:3"/>
+        <line x1="60" y1="150" x2="170" y2="150" style="stroke:var(--transmit);stroke-width:7" marker-end="url(#mTransmit)"/><text x="60" y="176" font-size="15" style="fill:var(--transmit);font-weight:700">top surface slides this way</text>
+        <line x1="320" y1="150" x2="220" y2="150" style="stroke:var(--reflect);stroke-width:7" marker-end="url(#mReflect)"/><text x="230" y="176" font-size="15" style="fill:var(--reflect);font-weight:700">friction: bumps catch</text>
+        <text x="240" y="30" font-size="15" text-anchor="middle">Even smooth surfaces are bumpy up close.</text>
+      </svg></div>
+      <p>Zoom in on glass, ice, or a basketball court and you find tiny hills and valleys. Press two surfaces together and the bumps catch like the hooks and loops of Velcro. Sliding makes them snag, and the snagging pushes <b>against</b> the motion. That is friction, and it is also why rubbing makes heat.</p>
+      <p class="cap"><b>Where it breaks:</b> Velcro is built to stick, and it wears out. Friction is not a choice: it happens between every pair of surfaces that touch and slide.</p>
+    </article>
+    <article class="aid">
+      <span class="tag diagram">Diagram</span>
+      <h3>All the forces on a sliding book</h3>
+      <div class="stage"><svg viewBox="0 0 480 240" role="img" aria-label="A book on a table sliding right. Arrows: gravity down, table push up (equal), friction left.">
+        <rect x="40" y="170" width="400" height="20" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:2"/>
+        <rect x="190" y="116" width="100" height="54" rx="4" style="fill:var(--beam);stroke:var(--ink);stroke-width:3"/>
+        <line x1="240" y1="116" x2="240" y2="40" style="stroke:var(--transmit);stroke-width:5" marker-end="url(#mTransmit)"/><text x="248" y="52" font-size="14" style="fill:var(--transmit);font-weight:700">table pushes up</text>
+        <line x1="240" y1="170" x2="240" y2="226" style="stroke:var(--absorb);stroke-width:5" marker-end="url(#mAbsorb)"/><text x="248" y="222" font-size="14" style="fill:var(--absorb);font-weight:700">gravity pulls down</text>
+        <line x1="190" y1="150" x2="110" y2="150" style="stroke:var(--reflect);stroke-width:5" marker-end="url(#mReflect)"/><text x="40" y="136" font-size="14" style="fill:var(--reflect);font-weight:700">friction</text>
+        <line x1="296" y1="140" x2="380" y2="140" style="stroke:var(--ink);stroke-width:3;stroke-dasharray:6 5" marker-end="url(#mInk)"/><text x="304" y="128" font-size="14">motion</text>
+      </svg></div>
+      <p class="cap">Up and down cancel, so the book doesn't sink or float. Friction has no partner, so the book slows down.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>Slide a sled across different surfaces</h3>
+      <div class="chips" id="surfChips" role="group" aria-label="Surface"></div>
+      <div class="stage"><svg id="slSvg" viewBox="0 0 640 140" role="img" aria-label="A sled starts at 6 meters per second on the chosen surface and slides until friction stops it."></svg></div>
+      <div class="btnrow"><button class="btn" id="slGo" type="button">Push the sled</button></div>
+      <p class="readout" id="slR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>How far does it slide?</h3>
+      <div class="bars" id="surfBars"></div>
+      <p class="cap">Sliding distance = speed² ÷ (2 × friction coefficient × 9.8). Starting speed 6 m/s. Less friction means a much longer slide. Rounded textbook coefficients.</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s4">
+  <div><p class="kicker">Concept 4 · Two kinds of energy</p><h2>Stored and moving</h2></div>
+  <p class="idea"><mark>Potential energy</mark> is stored energy (height makes gravitational potential energy). <mark>Kinetic energy</mark> is energy of motion. A roller coaster trades one for the other all ride long.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>Savings account and spending money</h3>
+      <div class="stage"><svg viewBox="0 0 480 220" role="img" aria-label="At the top of the hill the savings jar is full and the spending jar is empty. At the bottom it is reversed.">
+        <path d="M20 40 Q200 40 240 190 T460 190" style="fill:none;stroke:var(--ink);stroke-width:4"/>
+        <circle cx="46" cy="30" r="14" style="fill:var(--beam);stroke:var(--ink);stroke-width:3"/>
+        <circle cx="260" cy="176" r="14" style="fill:var(--beam);stroke:var(--ink);stroke-width:3"/>
+        <text x="60" y="76" font-size="14" style="fill:var(--reflect);font-weight:700">top: full savings (PE)</text>
+        <text x="270" y="150" font-size="14" style="fill:var(--absorb);font-weight:700">bottom: full spending (KE)</text>
+      </svg></div>
+      <p class="cap">Total money stays the same. You just move it between "saved" and "spent". Energy works the same way.</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Ride the coaster</h3>
+      <div class="stage"><svg id="rcSvg" viewBox="0 0 480 240" role="img" aria-label="A roller coaster track with a car. Move the slider to place the car along the track."></svg></div>
+      <div class="ctl"><label for="rcX">Car position along the track</label><input id="rcX" type="range" min="0" max="100" value="0"></div>
+      <div class="btnrow"><button class="btn" id="rcPlay" type="button">Ride it</button></div>
+      <p class="readout" id="rcR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>The energy bars at this spot</h3>
+      <div class="bars" id="rcBars"></div>
+      <div class="legend"><span class="r">potential (stored)</span><span class="a">kinetic (moving)</span></div>
+      <div class="stage"><svg id="rcChart" viewBox="0 0 640 220" role="img" aria-label="Stacked area chart of potential and kinetic energy along the track. Total stays flat."></svg></div>
+      <p class="cap">500 kg car, no friction, starting at a 40 m hill. The total never changes; only the split does.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>Where you've seen stored and moving energy</h3>
+      <div class="tw"><table class="tbl">
+        <thead><tr><th>Moment</th><th>Mostly potential</th><th>Mostly kinetic</th></tr></thead>
+        <tbody>
+          <tr><td><b>Swing</b></td><td>At the top of each arc</td><td>At the bottom of the arc</td></tr>
+          <tr><td><b>Skateboard half-pipe</b></td><td>At the lip</td><td>At the flat bottom</td></tr>
+          <tr><td><b>Slingshot</b></td><td>Stretched band (elastic PE)</td><td>Flying rock</td></tr>
+          <tr><td><b>Dam</b></td><td>Water high behind it</td><td>Water rushing through turbines</td></tr>
+        </tbody></table></div>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s5">
+  <div><p class="kicker">Concept 5 · Conservation</p><h2>Energy changes form, never disappears</h2></div>
+  <p class="idea">Energy can't be created or destroyed. It <mark>changes form</mark>, and in real life some always ends up as <mark>thermal energy</mark> (heat) and sound.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>A leaky bucket</h3>
+      <div class="stage"><svg viewBox="0 0 480 240" role="img" aria-label="A bucket with holes. Water poured in is the starting energy; some leaks out as heat and sound; less and less is left for the useful job.">
+        <path d="M150 50 L170 200 H310 L330 50" style="fill:var(--reflect);fill-opacity:.3;stroke:var(--ink);stroke-width:4"/>
+        <line x1="240" y1="8" x2="240" y2="70" style="stroke:var(--reflect);stroke-width:12"/>
+        <g style="stroke:var(--absorb);stroke-width:4;fill:none"><path d="M163 130 q-22 12 -34 40" marker-end="url(#mAbsorb)"/><path d="M319 130 q22 12 34 40" marker-end="url(#mAbsorb)"/><path d="M240 200 v28" marker-end="url(#mAbsorb)"/></g>
+        <text x="90" y="190" font-size="14" style="fill:var(--absorb);font-weight:700">heat</text><text x="360" y="190" font-size="14" style="fill:var(--absorb);font-weight:700">sound</text>
+        <text x="240" y="238" font-size="14" text-anchor="middle">friction leaks</text>
+      </svg></div>
+      <p class="cap">The water that leaked didn't vanish, it just went somewhere you didn't want. Wasted energy is still energy, usually heat.</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Drop different balls</h3>
+      <div class="chips" id="ballChips" role="group" aria-label="Ball type"></div>
+      <div class="stage"><svg id="ballSvg" viewBox="0 0 480 240" role="img" aria-label="A ball dropped from 1 meter bouncing lower each time."></svg></div>
+      <div class="btnrow"><button class="btn" id="ballGo" type="button">Drop from 1 m</button></div>
+      <p class="readout" id="ballR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>Bounce heights shrink</h3>
+      <div class="stage"><svg id="ballChart" viewBox="0 0 640 240" role="img" aria-label="Bar chart of bounce heights after each of five bounces for the chosen ball."></svg></div>
+      <p class="cap">Each bounce keeps a fixed fraction of the energy. The missing energy went to heat (the ball and floor warm up a tiny bit) and sound (the thud).</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag diagram">Diagram</span>
+      <h3>Where does the electricity go?</h3>
+      <div class="chips" id="bulbChips" role="group" aria-label="Bulb type"><button class="chip" type="button" data-b="old" aria-pressed="true">Old incandescent bulb</button><button class="chip" type="button" data-b="led" aria-pressed="false">LED bulb</button></div>
+      <div class="stage"><svg id="bulbSvg" viewBox="0 0 640 220" role="img" aria-label="Energy flow diagram: 100 joules of electrical energy split into light and heat."></svg></div>
+      <p class="readout" id="bulbR"></p>
+      <p class="cap">Rounded teaching values. LED bulbs turn a much bigger share into light, which is why they run cooler and cost less to power.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>Energy chains</h3>
+      <div class="tw"><table class="tbl">
+        <thead><tr><th>Device</th><th>Energy chain</th></tr></thead>
+        <tbody>
+          <tr><td><b>Phone flashlight</b></td><td>chemical (battery) → electrical → light + heat</td></tr>
+          <tr><td><b>Car</b></td><td>chemical (gasoline) → thermal → motion + lots of waste heat + sound</td></tr>
+          <tr><td><b>Hydro dam</b></td><td>gravitational potential → kinetic → electrical</td></tr>
+          <tr><td><b>Eating lunch then running</b></td><td>chemical (food) → motion + heat</td></tr>
+          <tr><td><b>Solar panel</b></td><td>light → electrical</td></tr>
+        </tbody></table></div>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s6c">
+  <div><p class="kicker">Concept 6 · When things collide</p><h2>Equal pushes, softer stops</h2></div>
+  <p class="idea">When two things collide, they push on each other with <mark>equal and opposite forces</mark>. That's Newton's third law. You can't make the force go away, but you can make it smaller by <mark>stretching the stop over more time</mark>.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>Catching a water balloon</h3>
+      <div class="stage"><svg viewBox="0 0 480 230" role="img" aria-label="Stiff hands stop a water balloon in 1 centimeter and it pops. Hands that move back with it stop it over 40 centimeters and it survives.">
+        <text x="120" y="22" font-size="15" text-anchor="middle" style="font-weight:700">stiff hands</text><text x="360" y="22" font-size="15" text-anchor="middle" style="font-weight:700">hands that give</text>
+        <line x1="240" y1="34" x2="240" y2="214" style="stroke:var(--line);stroke-width:2"/>
+        <ellipse cx="120" cy="96" rx="34" ry="22" style="fill:var(--reflect);fill-opacity:.55;stroke:var(--ink);stroke-width:3"/>
+        <path d="M86 96 l-10 -12 M86 96 l-14 2 M154 96 l10 -12 M154 96 l14 2 M120 72 l0 -14" style="stroke:var(--reflect);stroke-width:3"/>
+        <rect x="104" y="122" width="32" height="16" rx="4" style="fill:var(--beam);stroke:var(--ink);stroke-width:2"/>
+        <text x="120" y="164" font-size="14" text-anchor="middle">stops in 1 cm</text><text x="120" y="186" font-size="16" text-anchor="middle" style="font-weight:700;fill:var(--absorb)">big force: pop!</text>
+        <ellipse cx="360" cy="70" rx="30" ry="24" style="fill:var(--reflect);fill-opacity:.55;stroke:var(--ink);stroke-width:3"/>
+        <line x1="400" y1="62" x2="400" y2="132" style="stroke:var(--ink);stroke-width:2;stroke-dasharray:4 3" marker-end="url(#mInk)"/><text x="408" y="102" font-size="13">40 cm</text>
+        <rect x="344" y="96" width="32" height="16" rx="4" style="fill:var(--beam);stroke:var(--ink);stroke-width:2;opacity:.45"/><rect x="344" y="128" width="32" height="16" rx="4" style="fill:var(--beam);stroke:var(--ink);stroke-width:2"/>
+        <text x="360" y="164" font-size="14" text-anchor="middle">stops over 40 cm</text><text x="360" y="186" font-size="16" text-anchor="middle" style="font-weight:700;fill:var(--transmit)">small force: safe</text>
+        <text x="240" y="222" font-size="13" text-anchor="middle">Same balloon, same speed. Only the stopping distance changed.</text>
+      </svg></div>
+      <p class="cap">The balloon has to lose all its speed either way. Losing it slowly takes a gentle push; losing it all at once takes a huge one.</p>
+    </article>
+    <article class="aid">
+      <span class="tag diagram">Diagram</span>
+      <h3>Car meets truck</h3>
+      <div class="stage"><svg viewBox="0 0 480 230" role="img" aria-label="A car and a truck collide. Each pushes on the other with 9,000 newtons. The car's speed changes 9 times more because it has 9 times less mass.">
+        <line x1="10" y1="150" x2="470" y2="150" style="stroke:var(--ink);stroke-width:3"/>
+        <rect x="90" y="104" width="118" height="38" rx="8" style="fill:var(--reflect);stroke:var(--ink);stroke-width:3"/><circle cx="116" cy="146" r="10" style="fill:var(--ink)"/><circle cx="182" cy="146" r="10" style="fill:var(--ink)"/>
+        <text x="149" y="128" font-size="14" text-anchor="middle" style="font-weight:700">car 1,000 kg</text>
+        <rect x="210" y="66" width="220" height="76" rx="8" style="fill:var(--absorb);fill-opacity:.75;stroke:var(--ink);stroke-width:3"/><circle cx="246" cy="146" r="11" style="fill:var(--ink)"/><circle cx="396" cy="146" r="11" style="fill:var(--ink)"/>
+        <text x="320" y="110" font-size="14" text-anchor="middle" style="font-weight:700">truck 9,000 kg</text>
+        <line x1="200" y1="40" x2="110" y2="40" style="stroke:var(--reflect);stroke-width:7" marker-end="url(#mReflect)"/><text x="150" y="28" font-size="13" text-anchor="middle" style="font-weight:700">9,000 N on car</text>
+        <line x1="220" y1="40" x2="310" y2="40" style="stroke:var(--absorb);stroke-width:7" marker-end="url(#mAbsorb)"/><text x="268" y="28" font-size="13" text-anchor="middle" style="font-weight:700">9,000 N on truck</text>
+        <text x="149" y="184" font-size="14" text-anchor="middle">a = 9,000 ÷ 1,000</text><text x="149" y="204" font-size="15" text-anchor="middle" style="font-weight:700">9 m/s²</text>
+        <text x="320" y="184" font-size="14" text-anchor="middle">a = 9,000 ÷ 9,000</text><text x="320" y="204" font-size="15" text-anchor="middle" style="font-weight:700">1 m/s²</text>
+      </svg></div>
+      <p class="cap">The pushes are exactly equal. The car's motion changes nine times more because it has less mass, so less inertia. That's why the people in the small car get jolted hardest.</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Drop an egg from 1 meter</h3>
+      <div class="chips" id="padChips" role="group" aria-label="What the egg lands on"></div>
+      <div class="stage"><svg id="eggSvg" viewBox="0 0 480 240" role="img" aria-label="An egg falls 1 meter onto the chosen surface."></svg></div>
+      <div class="btnrow"><button class="btn" id="eggGo" type="button">Drop the egg</button></div>
+      <p class="readout" id="eggR" aria-live="polite"></p>
+    </article>
+    <article class="aid">
+      <span class="tag data">Data</span>
+      <h3>Longer stop, smaller force</h3>
+      <div class="stage"><svg id="eggChart" viewBox="0 0 480 240" role="img" aria-label="Bar chart of the average force on the egg for each surface, with a line where an egg cracks."></svg></div>
+      <p class="cap">Every egg hits at the same speed, about 4.4 m/s. Softer surfaces stretch the stop out, so the push is smaller. Rounded teaching values; a real egg cracks somewhere around 25 N.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>Safety gear stretches the stop</h3>
+      <div class="tw"><table class="tbl">
+        <thead><tr><th>Gear</th><th>What it does</th><th>Stop without it</th><th>Stop with it</th></tr></thead>
+        <tbody>
+          <tr><td><b>Airbag</b></td><td>Your head sinks into a soft bag instead of hitting the dashboard</td><td>about 1 cm</td><td>about 20 cm</td></tr>
+          <tr><td><b>Bike helmet</b></td><td>The foam crushes, slowing your head as it squishes</td><td>a few mm</td><td>about 2 cm</td></tr>
+          <tr><td><b>Car crumple zone</b></td><td>The front of the car folds up on purpose</td><td>a few cm</td><td>about 60 cm</td></tr>
+          <tr><td><b>Bending your knees</b></td><td>Your legs fold when you land from a jump</td><td>about 2 cm</td><td>about 30 cm</td></tr>
+          <tr><td><b>Gym mat</b></td><td>Soft foam under a gymnast's landing</td><td>about 1 cm</td><td>about 10 cm</td></tr>
+        </tbody></table></div>
+    </article>
+    <article class="aid wide">
+      <span class="tag build">Build it</span>
+      <h3>Engineering challenge: the egg lander</h3>
+      <p><b>The problem:</b> design something that lets a raw egg survive a drop from 2 meters (about the height of a top bunk).</p>
+      <p><b>Your materials:</b> up to 10 sheets of paper, 1 meter of masking tape, and 10 straws. Nothing else. The egg must come out so you can check it.</p>
+      <ol class="steps">
+        <li><b>Plan.</b> Sketch two different ideas. For each one, write one sentence on how it makes the egg's stop take longer.</li>
+        <li><b>Build</b> the idea you think is better.</li>
+        <li><b>Test</b> from 1 meter first, then 2 meters. Write down what happened each time.</li>
+        <li><b>Improve.</b> Change one thing, test again, and record it. Real engineers repeat this loop many times.</li>
+      </ol>
+      <p class="cap">Tie-breaker: if two landers both work, the lighter one wins. Drop over a trash bag. Print a <a href="../design-log.html#egg">design log</a> for each team.</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s6">
+  <div><p class="kicker">Check yourself</p><h2>Can you explain it?</h2></div>
+  <p class="idea">Why is a roller coaster fastest at the bottom of the first hill, and why can't the second hill be taller than the first?</p>
+  <details><summary>Show a model answer</summary><div class="in">
+    <p>At the top of the first hill the car has lots of stored (potential) energy. Rolling down turns it into moving (kinetic) energy, so speed is highest at the bottom.</p>
+    <p>Energy can't be created. Friction and air resistance even take some away as heat. So the car can never climb higher than where it started.</p></div></details>
+  <div class="items" id="quiz"></div>
+  <p class="score" id="quizScore">0 of 9 correct</p>
+  <h3 style="margin-top:8px">Words to know</h3>
+  <dl class="glossary">
+    <div><dt>speed</dt><dd>Distance traveled per unit time.</dd></div>
+    <div><dt>force</dt><dd>A push or a pull, measured in newtons.</dd></div>
+    <div><dt>net force</dt><dd>All forces on an object added together.</dd></div>
+    <div><dt>balanced</dt><dd>Forces cancel; motion doesn't change.</dd></div>
+    <div><dt>acceleration</dt><dd>How quickly speed or direction changes.</dd></div>
+    <div><dt>inertia</dt><dd>How much an object resists a change in its motion. More mass means more inertia.</dd></div>
+    <div><dt>friction</dt><dd>Force between touching surfaces that opposes sliding.</dd></div>
+    <div><dt>gravity</dt><dd>Pull between objects with mass; on Earth, it pulls things down.</dd></div>
+    <div><dt>potential energy</dt><dd>Stored energy, such as from height or stretch.</dd></div>
+    <div><dt>kinetic energy</dt><dd>Energy of motion.</dd></div>
+    <div><dt>conservation of energy</dt><dd>Energy changes form but the total stays the same.</dd></div>
+    <div><dt>Newton's third law</dt><dd>When two objects push on each other, the forces are equal in size and opposite in direction.</dd></div>
+  </dl>
+  <details><summary>Tutor notes: hands-on kit, misconceptions, pacing</summary><div class="in">
+    <p><b>Kit (about $10):</b> a toy car or marble, a ramp (board and books), tape measure, stopwatch (phone), spring scale or rubber band, sandpaper, wax paper, a few balls, a skateboard-like toy, raw eggs, paper, masking tape, and straws for the egg lander.</p>
+    <ul>
+      <li><b>Concept 1:</b> mark a 5 m line, time a classmate's walk, jog, and hop, then compute speeds.</li>
+      <li><b>Concept 2:</b> stretch a rubber band tied to a loaded vs empty cart and compare stretch to acceleration.</li>
+      <li><b>Concept 3:</b> slide the same block down a ramp lined with sandpaper, plain board, and wax paper.</li>
+      <li><b>Concept 4:</b> release a marble from different ramp heights and measure how far it launches a cup.</li>
+      <li><b>Concept 5:</b> drop different balls from 1 m and photograph the bounce height next to a meter stick.</li>
+      <li><b>Concept 6:</b> the egg lander challenge (one longer session). Push two rolling carts or skateboards together to feel equal and opposite pushes.</li>
+    </ul>
+    <p><b>Common misconceptions:</b></p>
+    <ul>
+      <li>"Moving things need a continuing force." Without friction, motion would continue by itself.</li>
+      <li>"Heavier things fall faster." In air without much drag, they fall at the same rate.</li>
+      <li>"Energy gets used up." It changes form; some becomes heat.</li>
+      <li>"No motion means no forces." Balanced forces can be present.</li>
+      <li>"In a crash, the bigger object pushes harder." The forces are equal; the smaller object's motion changes more.</li>
+      <li>"Padding makes the force go away." It makes the force smaller by making the stop take longer.</li>
+    </ul>
+    <p><b>Pacing:</b> about six 30-minute sessions, plus one longer session for the egg lander.</p></div></details>
+</section>
+
+<section class="sec lesson-game-sec" id="game"><div><p class="kicker">After the lesson · Game</p><h2>Play: Coaster Builder</h2></div><p class="idea">Shape the hills of a roller coaster and ride it. The car only has the energy it started with, and friction turns some of it into heat on every meter.</p><div class="lesson-game" id="lesson-game"></div>
+<script>(function(){
+/* Mounts one game into a shadow root so the lesson page's CSS and the game's CSS never collide. */
+function __mountLessonGame(host, css, html, init){
+  if(!host || host.shadowRoot) return;
+  const root = host.attachShadow({mode:"open"});
+  root.innerHTML = "<style>"+css+"</style>"+html;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let visible = true;
+  try{ new IntersectionObserver(es=>{ visible = es[es.length-1].isIntersecting; }).observe(host); }catch(e){}
+  const loops = [];
+  let last = performance.now();
+  function frame(t){
+    const dt = Math.min(0.05, (t-last)/1000); last = t;
+    if(visible && !document.hidden) for(const f of loops){ try{ f(t, dt); }catch(e){ console.error(e); } }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+  const env = {
+    root, reduce,
+    $: id => root.getElementById(id),
+    $$: sel => [...root.querySelectorAll(sel)],
+    loop: f => loops.push(f),
+    esc: s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])),
+    // A canvas drawn in fixed logical units (W x H) that scales to its container.
+    stage(canvas, W, H){
+      const ctx = canvas.getContext("2d");
+      const st = {ctx, W, H, dpr:1};
+      function fit(){
+        st.dpr = Math.min(2.5, window.devicePixelRatio || 1);
+        const cw = canvas.clientWidth || W;
+        const scale = cw / W;
+        canvas.width = Math.round(W*scale*st.dpr); canvas.height = Math.round(H*scale*st.dpr);
+        st.k = scale*st.dpr;
+        ctx.setTransform(st.k,0,0,st.k,0,0);
+        if(st.onfit) st.onfit();
+      }
+      canvas.style.aspectRatio = W+"/"+H;
+      st.begin = () => ctx.setTransform(st.k,0,0,st.k,0,0);
+      st.pt = ev => { const r = canvas.getBoundingClientRect(); return {x:(ev.clientX-r.left)*W/r.width, y:(ev.clientY-r.top)*H/r.height}; };
+      try{ new ResizeObserver(fit).observe(canvas); }catch(e){ addEventListener("resize", fit); }
+      fit();
+      return st;
+    },
+    // Level buttons in the header.
+    levelBar(box, names, onPick){
+      const solved = new Set(); let cur = 0;
+      function render(){
+        box.innerHTML = '<span class="label">Level</span>';
+        names.forEach((n,i)=>{ const b = document.createElement("button"); b.type="button";
+          b.className = "lv"+(solved.has(i)?" done":""); b.textContent = i+1; b.title = n;
+          b.setAttribute("aria-label", "Level "+(i+1)+": "+n+(solved.has(i)?" (solved)":""));
+          if(i===cur) b.setAttribute("aria-current","true");
+          b.onclick = () => { cur = i; render(); onPick(i); }; box.appendChild(b); });
+      }
+      render();
+      return { set(i){ cur=i; render(); }, solve(i){ solved.add(i); render(); }, get cur(){ return cur; }, solved };
+    },
+    // Result card over a stage. buttons: [{label, primary, onClick}]
+    card(stageEl, o){
+      let ov = stageEl.querySelector(":scope > .over");
+      if(!ov){ ov = document.createElement("div"); ov.className = "over"; stageEl.appendChild(ov); }
+      ov.hidden = false;
+      ov.innerHTML = '<div class="card'+(o.fail?' fail':'')+'" role="dialog" aria-live="polite"><h4></h4>'+(o.why?'<span class="why"></span>':'')+'<p class="cb"></p><div class="btns"></div></div>';
+      ov.querySelector("h4").textContent = o.title;
+      if(o.why) ov.querySelector(".why").textContent = o.why;
+      ov.querySelector(".cb").textContent = o.body || "";
+      if(o.list && o.list.length){ const ul = document.createElement("ul"); ul.className = "clist";
+        o.list.forEach(t => { const li = document.createElement("li"); li.textContent = t; ul.appendChild(li); });
+        ov.querySelector(".cb").after(ul); }
+      const bb = ov.querySelector(".btns");
+      (o.buttons||[]).forEach((b,i)=>{ const e = document.createElement("button"); e.type="button"; e.className = "btn"+(b.primary?" primary":""); e.textContent = b.label;
+        e.onclick = () => { ov.hidden = true; b.onClick && b.onClick(); }; bb.appendChild(e); if(i===0) setTimeout(()=>e.focus({preventScroll:true}),30); });
+      if(getComputedStyle(ov).position === "static") setTimeout(()=>ov.scrollIntoView({block:"nearest", behavior: reduce?"auto":"smooth"}), 40);
+      return ov;
+    },
+    hideCard(stageEl){ const ov = stageEl.querySelector(":scope > .over"); if(ov) ov.hidden = true; }
+  };
+  try{ init(root, env); }catch(e){ console.error(e); root.innerHTML += '<p style="color:#fff;padding:12px">This game could not start.</p>'; }
+}
+
+__mountLessonGame(document.getElementById("lesson-game"), "/* Shared frame for every lesson game. Lives inside a shadow root, so nothing here touches the lesson page.\n   Deliberately one dark \"lab console\" look in both page themes; each game sets its own --acc accent. */\n:host{\n  display:block; color-scheme:dark;\n  --bg:#0B0F15; --panel:#141A23; --panel-2:#1B2330; --line:#2B3544; --ink:#E9EEF5; --muted:#93A0B2;\n  --good:#3FD3BB; --bad:#FF6B5E; --warn:#FFB547; --acc:#FFD84A; --acc-ink:#1A1400;\n  --reflect:#78A2FF; --heat:#FF7A2E;\n  --f-display:\"Bahnschrift\",\"DIN Alternate\",\"Roboto Condensed\",\"Arial Narrow\",system-ui,sans-serif;\n  --f-body:\"Roboto\",\"Segoe UI\",system-ui,-apple-system,sans-serif;\n  --f-mono:ui-monospace,\"Roboto Mono\",\"Cascadia Mono\",Menlo,Consolas,monospace;\n}\n*{box-sizing:border-box}\n[hidden]{display:none!important}\n.g{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;border-radius:16px;\n  border:1px solid var(--line);padding:16px;display:grid;gap:14px;text-align:left;box-shadow:0 10px 36px rgba(0,0,0,.35)}\n.g button{font:inherit;color:inherit}\n.g :focus-visible{outline:3px solid var(--acc);outline-offset:2px}\n.g h3,.g h4{margin:0;font-family:var(--f-display);letter-spacing:.02em;line-height:1.15}\n.g p{margin:0}\n.bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 18px}\n.brand{display:grid;gap:2px}\n.label{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}\n.gtitle{font-family:var(--f-display);font-weight:700;font-size:1.45rem;text-transform:uppercase;letter-spacing:.04em}\n.gtitle b{color:var(--acc);font-weight:700}\n.levels{display:flex;flex-wrap:wrap;gap:6px;align-items:center}\n.lv{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--line);background:var(--panel);font-family:var(--f-mono);font-size:.85rem;cursor:pointer;font-variant-numeric:tabular-nums;padding:0}\n.lv:hover{border-color:var(--muted)}\n.lv.done{border-color:var(--good);color:var(--good)}\n.lv[aria-current=\"true\"]{background:var(--acc);border-color:var(--acc);color:var(--acc-ink);font-weight:700}\n.goalrow{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 12px}\n.goalrow h4{font-size:1.25rem}\n.goalrow .goal{color:var(--muted)}\n.cols{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:14px;align-items:start}\n.cols>*{min-width:0}\n.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:10px;min-width:0}\n.panel>.label{margin-bottom:-2px}\n.stage{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px;min-width:0}\n.stage canvas{display:block;width:100%;max-width:100%;height:auto;border-radius:8px;touch-action:none}\n.btns{display:flex;flex-wrap:wrap;gap:8px}\n.btn{padding:8px 14px;min-height:40px;border-radius:10px;border:1.5px solid var(--line);background:var(--panel-2);cursor:pointer;font-weight:700;font-size:.92rem;line-height:1.2}\n.btn:hover:not([disabled]){border-color:var(--muted)}\n.btn[disabled]{opacity:.45;cursor:default}\n.btn.primary{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}\n.btn[aria-pressed=\"true\"]{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset}\n.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;font-size:.82rem;border:1px solid var(--line);background:var(--panel-2)}\n.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}\n.msg{font-size:.93rem;padding:9px 12px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line)}\n.msg.good{border-color:color-mix(in srgb,var(--good) 60%,var(--line));color:var(--ink)}\n.msg.bad{border-color:color-mix(in srgb,var(--bad) 60%,var(--line))}\n.msg.warn{border-color:color-mix(in srgb,var(--warn) 60%,var(--line))}\n.help{font-size:.86rem;color:var(--muted)}\n.meter{height:12px;border-radius:99px;background:var(--panel-2);overflow:hidden;border:1px solid var(--line)}\n.meter>i{display:block;height:100%;background:var(--acc);transition:width .15s}\n.ctl{display:grid;gap:4px}\n.ctl label{font-size:.9rem;font-weight:700;display:flex;justify-content:space-between;gap:8px}\n.ctl input[type=range]{width:100%;accent-color:var(--acc);height:30px;margin:0}\n.over{position:absolute;inset:6px;border-radius:8px;display:grid;place-items:center;padding:14px;background:color-mix(in srgb,var(--bg) 74%,transparent);backdrop-filter:blur(2px);z-index:5}\n.card{max-width:440px;display:grid;gap:10px;padding:18px;border-radius:14px;background:var(--panel-2);border:1px solid var(--acc);box-shadow:0 0 36px color-mix(in srgb,var(--acc) 22%,transparent)}\n.card h4{font-size:1.5rem;color:var(--acc)}\n.card.fail{border-color:var(--bad);box-shadow:0 0 36px color-mix(in srgb,var(--bad) 18%,transparent)}\n.card.fail h4{color:var(--bad)}\n.clist{margin:0;padding-left:1.15em;display:grid;gap:5px;font-size:.9rem}\n.over{align-items:start}\n.card{position:sticky;top:16px;margin-top:clamp(8px,8%,60px)}\n.why{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}\ntable.data{width:100%;border-collapse:collapse;font-size:.85rem}\ntable.data th,table.data td{padding:5px 7px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}\ntable.data th{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}\ntable.data td.num{text-align:right}\n.scroll{overflow-x:auto}\n@media (max-width:820px){.cols{grid-template-columns:minmax(0,1fr)}\n  .over{position:static;inset:auto;background:none;backdrop-filter:none;padding:8px 0 2px}\n  .card{max-width:none;position:static;margin-top:0}}\n@media (prefers-reduced-motion:reduce){.meter>i{transition:none}}\n\n:host{--acc:#FFD84A;--acc-ink:#1A1400}\n:host{--pe:#78A2FF;--ke:#3FD3BB;--th:#FF7A2E}\n.left,.aside{display:grid;gap:12px;min-width:0}\n.stage canvas{cursor:grab}\n.ebars{display:grid;gap:8px}\n.erow{display:grid;grid-template-columns:96px minmax(0,1fr) 64px;gap:8px;align-items:center;font-size:.86rem}\n.erow .meter>i{background:var(--c)}\n.erow .num{text-align:right}\n.erow.total{font-weight:700;border-top:1px solid var(--line);padding-top:6px}\n.readout{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.92rem}\n.sliders{display:grid;gap:6px}\n.sliders .ctl label .num{font-weight:500;color:var(--muted)}\n", "<div class=\"g\">\n  <div class=\"bar\">\n    <div class=\"goalrow\"><h4 id=\"lvName\">First Ride</h4><span class=\"goal\" id=\"lvGoal\"></span></div>\n    <nav class=\"levels\" id=\"levels\" aria-label=\"Levels\"></nav>\n  </div>\n  <div class=\"cols\">\n    <div class=\"left\">\n      <div class=\"stage\" id=\"stage\"><canvas id=\"cv\" aria-label=\"Roller coaster track. Drag the yellow handles up and down to reshape the hills.\"></canvas></div>\n      <p class=\"help\">Drag the yellow handles to reshape the track, or use the sliders. Then press Ride.</p>\n    </div>\n    <div class=\"aside\">\n      <div class=\"panel\">\n        <div class=\"bar\"><span class=\"label\">Energy of the 500 kg car</span><span class=\"chip\" id=\"fric\">No friction</span></div>\n        <div class=\"ebars\" id=\"ebars\"></div>\n        <div class=\"readout\"><span>Height <b class=\"num\" id=\"rh\">40 m</b></span><span>Speed <b class=\"num\" id=\"rv\">0 m/s</b></span></div>\n        <div class=\"btns\"><button class=\"btn primary\" id=\"ride\" type=\"button\">Ride</button><button class=\"btn\" id=\"resetTrack\" type=\"button\">Reset track</button></div>\n        <p class=\"msg\" id=\"msg\"></p>\n      </div>\n      <div class=\"panel\">\n        <span class=\"label\">Track heights</span>\n        <div class=\"sliders\" id=\"sliders\"></div>\n      </div>\n    </div>\n  </div>\n</div>\n", function(root, env){
+const U = [0,.18,.34,.5,.66,.82,1];
+const KNOT_NAMES = ["Start hill","First dip","Hill 2","Dip 2","Hill 3","Dip 3","Station"];
+const LEVELS = [
+  {name:"First Ride", mu:0, track:[40,2,44,8,26,6,10], lock:[0,6], min:{}, flag:null,
+   goal:"Get the car all the way to the station. No friction yet.",
+   learn:"Without friction, the car's total energy stays the same. It can climb any hill lower than the 40 m start, but never one taller."},
+  {name:"Friction Is On", mu:.06, track:[40,2,34,4,30,4,20], lock:[0,6], min:{}, flag:null,
+   goal:"Now friction turns some motion into heat on every meter. Reach the 20 m station.",
+   learn:"Friction takes energy on every meter of track, so a long, deep, wiggly track wastes more. Lower hills and shallower dips leave more energy for the end."},
+  {name:"Speed Trap", mu:.02, track:[40,12,24,8,20,8,8], lock:[0,6], min:{}, flag:{knot:1, v:26},
+   goal:"Be going at least 26 m/s at the flag in the first dip, then finish the ride.",
+   learn:"Speed at the bottom comes from how far the car has dropped. A deeper first dip turns more potential energy into kinetic energy."},
+  {name:"Two Big Hills", mu:.06, track:[40,4,26,4,30,4,15], lock:[0,6], min:{2:26,4:30}, flag:null,
+   goal:"The park wants Hill 2 at least 26 m and Hill 3 at least 30 m tall. Make it to the station.",
+   learn:"Every hill you climb has to be paid for with energy you already have. Keeping the dips shallow shortens the track and wastes less to friction."},
+];
+const G = 9.8, M = 500, V0 = 1, LENGTH = 200;
+const $ = env.$;
+const cv = $("cv"), st = env.stage(cv, 640, 300), ctx = st.ctx;
+const bar = env.levelBar($("levels"), LEVELS.map(l=>l.name), i => load(i));
+let li = 0, H = [], samples = [], ride = null, drag = -1, result = null;
+const X = u => 40 + u*560, Y = h => 270 - h*5.2, Hof = y => (270 - y)/5.2;
+
+function Lv(){ return LEVELS[li]; }
+function hAt(u){ for(let i=0;i<U.length-1;i++){ if(u<=U[i+1]){ const f=(u-U[i])/(U[i+1]-U[i]), s=(1-Math.cos(f*Math.PI))/2; return H[i]+(H[i+1]-H[i])*s; } } return H[H.length-1]; }
+function build(){
+  samples = []; let s = 0, px = 0, ph = H[0];
+  for(let i=0;i<=1200;i++){ const u = i/1200, x = u*LENGTH, h = hAt(u); s += Math.hypot(x-px, h-ph); px = x; ph = h; samples.push({u, h, s}); }
+}
+function at(s){ // interpolate sample at arc length s
+  let lo = 0, hi = samples.length-1; while(hi-lo>1){ const m = (lo+hi)>>1; if(samples[m].s < s) lo = m; else hi = m; }
+  const a = samples[lo], b = samples[hi], f = b.s>a.s ? (s-a.s)/(b.s-a.s) : 0;
+  return {u:a.u+(b.u-a.u)*f, h:a.h+(b.h-a.h)*f};
+}
+function energy(h, s){ const v2 = V0*V0 + 2*G*(40-h) - 2*Lv().mu*G*s; return v2; }
+function load(i){ li = i; H = Lv().track.slice(); ride = null; result = null; env.hideCard($("stage"));
+  $("lvName").textContent = Lv().name; $("lvGoal").textContent = Lv().goal;
+  $("fric").textContent = Lv().mu ? "Friction on" : "No friction";
+  build(); renderSliders(); show(0, H[0], V0, 0); say("Shape the track, then press Ride."); }
+function say(t, kind){ const m = $("msg"); m.textContent = t; m.className = "msg"+(kind?" "+kind:""); }
+function renderSliders(){
+  const box = $("sliders"); box.innerHTML = "";
+  H.forEach((h,k)=>{ if(Lv().lock.includes(k)) return;
+    const min = Lv().min[k] || 0;
+    const d = document.createElement("div"); d.className = "ctl";
+    d.innerHTML = `<label for="k${k}">${KNOT_NAMES[k]} <span class="num" id="kv${k}">${Math.round(h)} m</span></label><input type="range" id="k${k}" min="${min}" max="46" step="1" value="${Math.round(h)}">`;
+    box.appendChild(d);
+    d.querySelector("input").oninput = e => { setKnot(k, +e.target.value); }; });
+}
+function setKnot(k, v){ if(ride) return; const min = Lv().min[k]||0; H[k] = Math.max(min, Math.min(46, v)); build(); result = null; env.hideCard($("stage"));
+  const sl = $("k"+k); if(sl){ sl.value = Math.round(H[k]); $("kv"+k).textContent = Math.round(H[k])+" m"; } }
+function show(s, h, v, heat){
+  const tot = M*G*40/1000 + .5*M*V0*V0/1000;
+  const pe = M*G*h/1000, ke = .5*M*v*v/1000, th = Math.max(0, tot-pe-ke);
+  const row = (n,c,val) => `<div class="erow" style="--c:var(--${c})"><span>${n}</span><div class="meter"><i style="width:${Math.max(0,Math.min(100,val/tot*100))}%"></i></div><span class="num">${Math.round(val)} kJ</span></div>`;
+  $("ebars").innerHTML = row("Potential","pe",pe) + row("Kinetic","ke",ke) + row("Heat","th",th) + `<div class="erow total"><span>Total</span><span></span><span class="num">${Math.round(pe+ke+th)} kJ</span></div>`;
+  $("rh").textContent = Math.round(h)+" m"; $("rv").textContent = v.toFixed(1)+" m/s";
+}
+function startRide(){
+  if(ride) return; env.hideCard($("stage")); result = null;
+  ride = {s:0, v:V0, back:0, flagV:null, done:false};
+  say("Riding…");
+}
+function endRide(ok, why){
+  const L = Lv();
+  if(ok && L.flag && (ride.flagV||0) < L.flag.v){ ok = false; why = `You reached the station, but you were only going ${ride.flagV.toFixed(1)} m/s at the flag. You need ${L.flag.v} m/s. Make the first dip deeper.`; }
+  result = ok;
+  if(ok) bar.solve(li);
+  env.card($("stage"), ok
+    ? {title:"Made it!", why:"The science", body:L.learn, buttons:[{label: li<LEVELS.length-1?"Next level":"Play level 1 again", primary:true, onClick:()=>{ const n=li<LEVELS.length-1?li+1:0; bar.set(n); load(n); }}, {label:"Ride again", onClick:()=>{ ride=null; startRide(); }}]}
+    : {fail:true, title:"The car didn't make it", why:"Where the energy went", body:why, buttons:[{label:"Change the track", primary:true, onClick:()=>{ ride=null; show(0,H[0],V0,0); }}]});
+  say(ok ? "Made it to the station." : "Not this time. Reshape the track and ride again.", ok?"good":"bad");
+}
+$("ride").onclick = startRide;
+$("resetTrack").onclick = () => load(li);
+
+// dragging handles
+cv.addEventListener("pointerdown", e => { if(ride) return; const p = st.pt(e);
+  let best = -1, bd = 22; H.forEach((h,k)=>{ if(Lv().lock.includes(k)) return; const d = Math.hypot(p.x-X(U[k]), p.y-Y(h)); if(d<bd){ bd=d; best=k; } });
+  if(best>=0){ drag = best; cv.setPointerCapture(e.pointerId); cv.style.cursor = "grabbing"; } });
+cv.addEventListener("pointermove", e => { if(drag<0) return; setKnot(drag, Math.round(Hof(st.pt(e).y))); });
+const up = () => { drag = -1; cv.style.cursor = ""; };
+cv.addEventListener("pointerup", up); cv.addEventListener("pointercancel", up);
+
+function step(t, dt){
+  if(ride && !ride.done){
+    const L = Lv(), total = samples[samples.length-1].s;
+    if(ride.back > 0){ // stalled: slide back for a moment, then report
+      ride.back -= dt; ride.s = Math.max(0, ride.s - dt*6);
+      const p = at(ride.s); show(ride.s, p.h, 0, 0);
+      if(ride.back <= 0){ ride.done = true; endRide(false, ride.why); }
+    } else {
+      const speedUp = env.reduce ? 6 : 1.8;
+      let left = dt*speedUp;
+      while(left > 0 && !ride.done && ride.back<=0){
+        const h1 = Math.min(left, 0.02); left -= h1;
+        const p = at(ride.s); const v2 = energy(p.h, ride.s);
+        if(v2 <= 0){
+          const need = Math.round(Math.max(...H.slice(1)));
+          ride.why = `The car ran out of energy on the way up at about ${Math.round(p.h)} m. It started with enough energy for a 40 m climb${L.mu?", and friction turned some into heat along the way":""}. Lower that hill or ${L.mu?"shorten the dips before it":"make it shorter than 40 m"}.`;
+          ride.back = 1.0; break; }
+        ride.v = Math.sqrt(v2);
+        ride.s += ride.v*h1;
+        if(L.flag){ const fu = U[L.flag.knot]; if(ride.flagV==null && p.u >= fu) ride.flagV = ride.v; }
+        if(ride.s >= total){ ride.s = total; ride.done = true; const pe = at(total); show(total, pe.h, ride.v, 0); endRide(true); }
+      }
+      if(!ride.done && ride.back<=0){ const p = at(ride.s); show(ride.s, p.h, ride.v, 0); }
+    }
+  }
+  draw(t);
+}
+function draw(t){
+  st.begin();
+  const W = 640, Ht = 300;
+  const sky = ctx.createLinearGradient(0,0,0,Ht); sky.addColorStop(0,"#132036"); sky.addColorStop(1,"#0F141C"); ctx.fillStyle = sky; ctx.fillRect(0,0,W,Ht);
+  // grid
+  ctx.font = "11px ui-monospace,monospace"; ctx.textAlign = "right"; ctx.textBaseline = "middle";
+  for(let h=0; h<=50; h+=10){ ctx.strokeStyle = "rgba(147,160,178,.12)"; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(40,Y(h)); ctx.lineTo(610,Y(h)); ctx.stroke(); ctx.fillStyle = "#6B7889"; ctx.fillText(h+" m", 34, Y(h)); }
+  // start-height line
+  ctx.strokeStyle = "rgba(255,216,74,.45)"; ctx.setLineDash([6,5]); ctx.beginPath(); ctx.moveTo(40,Y(40)); ctx.lineTo(610,Y(40)); ctx.stroke(); ctx.setLineDash([]);
+  ctx.fillStyle = "rgba(255,216,74,.8)"; ctx.textAlign = "left"; ctx.fillText("start height", 470, Y(40)-9);
+  // supports + track
+  ctx.strokeStyle = "#2B3544"; ctx.lineWidth = 2;
+  for(let i=0;i<=40;i++){ const u = i/40, h = hAt(u); ctx.beginPath(); ctx.moveTo(X(u), Y(h)+3); ctx.lineTo(X(u), 280); ctx.stroke(); }
+  ctx.fillStyle = "#1E2733"; ctx.fillRect(0, 280, W, 20);
+  ctx.strokeStyle = "#C3CDD9"; ctx.lineWidth = 5; ctx.lineJoin = "round"; ctx.beginPath();
+  samples.forEach((p,i) => i ? ctx.lineTo(X(p.u), Y(p.h)) : ctx.moveTo(X(p.u), Y(p.h))); ctx.stroke();
+  ctx.strokeStyle = "#5E6B7D"; ctx.lineWidth = 1.5; ctx.beginPath(); samples.forEach((p,i) => i ? ctx.lineTo(X(p.u), Y(p.h)+5) : ctx.moveTo(X(p.u), Y(p.h)+5)); ctx.stroke();
+  // flag
+  const L = Lv();
+  if(L.flag){ const fu = U[L.flag.knot], fh = hAt(fu); ctx.strokeStyle = "#E9EEF5"; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(X(fu), Y(fh)-6); ctx.lineTo(X(fu), Y(fh)-44); ctx.stroke();
+    ctx.fillStyle = "#FF5E7A"; ctx.beginPath(); ctx.moveTo(X(fu), Y(fh)-44); ctx.lineTo(X(fu)+28, Y(fh)-37); ctx.lineTo(X(fu), Y(fh)-30); ctx.fill();
+    ctx.fillStyle = "#E9EEF5"; ctx.textAlign = "left"; ctx.fillText(L.flag.v+" m/s", X(fu)+6, Y(fh)-52); }
+  // station
+  ctx.fillStyle = "#2F3846"; ctx.fillRect(X(1)-34, Y(H[6])+6, 40, 280-Y(H[6])-6); ctx.fillStyle = "#93A0B2"; ctx.textAlign = "center"; ctx.fillText("STATION", X(1)-14, Y(H[6])+20);
+  // handles
+  H.forEach((h,k)=>{ if(L.lock.includes(k)) return; const x = X(U[k]), y = Y(h);
+    ctx.fillStyle = drag===k ? "#FFFFFF" : "#FFD84A"; ctx.beginPath(); ctx.arc(x, y, 9, 0, 7); ctx.fill();
+    ctx.strokeStyle = "#0B0F15"; ctx.lineWidth = 2; ctx.stroke();
+    ctx.fillStyle = "#E9EEF5"; ctx.textAlign = "center"; ctx.fillText(Math.round(h)+" m", x, y + (k%2 ? 22 : -20));
+    if(L.min[k]){ ctx.strokeStyle = "rgba(255,94,122,.6)"; ctx.setLineDash([3,3]); ctx.beginPath(); ctx.moveTo(x-22, Y(L.min[k])); ctx.lineTo(x+22, Y(L.min[k])); ctx.stroke(); ctx.setLineDash([]); } });
+  // car
+  const s = ride ? ride.s : 0; const p = at(s);
+  const p2 = at(Math.min(samples[samples.length-1].s, s+1)), ang = Math.atan2(Y(p2.h)-Y(p.h), X(p2.u)-X(p.u));
+  ctx.save(); ctx.translate(X(p.u), Y(p.h)); ctx.rotate(ang);
+  ctx.fillStyle = "#FF5E7A"; ctx.beginPath(); ctx.roundRect ? ctx.roundRect(-16,-20,32,14,4) : ctx.rect(-16,-20,32,14); ctx.fill();
+  ctx.fillStyle = "#0B0F15"; ctx.beginPath(); ctx.arc(-9,-5,4,0,7); ctx.arc(9,-5,4,0,7); ctx.fill();
+  ctx.restore();
+}
+env.loop(step);
+load(0);
+
+});
+})();</script></section>
+
+<section class="sec related" id="more"><div><p class="kicker">Keep exploring</p><h2>Related lessons</h2></div><p class="idea"> Up next: <a href="unit-04-weather-and-the-water-cycle.html">Unit 4: Weather &amp; the Water Cycle</a>. Overlap alert: ideas you have already met are marked above as "you may already have learned".</p><ul><li><a href="unit-02-thermal-energy.html">Unit 2: Thermal Energy</a><span class="why">Thermal energy and where friction heat goes.</span></li><li><a href="unit-05-plate-tectonics-and-rocks.html">Unit 5: Plate Tectonics &amp; Rocks</a><span class="why">Forces on rock.</span></li><li><a href="unit-06-natural-hazards.html">Unit 6: Natural Hazards</a><span class="why">Force and energy in earthquakes and landslides.</span></li><li><a href="unit-09-body-systems-and-homeostasis.html">Unit 9: Body Systems &amp; Homeostasis</a><span class="why">Muscles and the heart apply forces.</span></li><li><a href="unit-11-earth-in-space.html">Unit 11: Earth in Space</a><span class="why">Gravity and orbits.</span></li><li><a href="../8th/unit-8.1-contact-forces-and-collisions.html">Unit 8.1: Contact Forces &amp; Collisions</a><span class="why">Grade 8: contact forces and collisions.</span></li><li><a href="../8th/unit-8.2-energy-transformation-and-conservation.html">Unit 8.2: Energy Transformation &amp; Conservation</a><span class="why">Grade 8: energy transformation.</span></li><li><a href="../8th/unit-8.3-forces-at-a-distance.html">Unit 8.3: Forces at a Distance</a><span class="why">Grade 8: forces at a distance.</span></li></ul></section>
+</main>
+
+<footer>Built for sixth-grade tutoring. Covers ideas from Michigan Virtual's force-and-motion modules and NGSS MS-PS2-1, MS-PS2-2, MS-PS3-1, and MS-PS3-5, plus MS-ETS1-1 to 1-4 through the egg lander challenge (note: OpenSciEd grades 6-8 cover forces mostly in grade 8, so this unit is drawn from Michigan Virtual's grade 6 list). All numbers are rounded teaching values.</footer>
+
+<script>
+(function(){
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const safe=fn=>{try{fn()}catch(e){console.error(e)}};
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const setPressed=(g,b)=>$$('button',g).forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));
+const raf=requestAnimationFrame;
+
+/* ===== 1 race ===== */
+const RUN=[{n:'Walker',v:1.5,c:'var(--muted)'},{n:'Runner',v:5,c:'var(--transmit)'},{n:'Cyclist',v:8,c:'var(--reflect)'},{n:'Car',v:14,c:'var(--absorb)'}];
+let raceT=4, redrawRace=()=>{}, redrawDT=()=>{};
+safe(()=>{
+  const svg=$('#raceSvg'), sl=$('#raceT'), tv=$('#raceTv'), rd=$('#raceR'), btn=$('#racePlay'); let anim=null;
+  function draw(){
+    const t=raceT; tv.textContent=t.toFixed(1);
+    let s='';
+    RUN.forEach((r,i)=>{ const y=30+i*48, d=Math.min(150,r.v*t), x=70+d/150*390;
+      s+=`<rect x="70" y="${y-14}" width="390" height="28" rx="4" style="fill:var(--surface);stroke:var(--line);stroke-width:2"/><text x="6" y="${y+5}" font-size="14" style="font-weight:700">${r.n}</text>
+      <line x1="460" y1="${y-14}" x2="460" y2="${y+14}" style="stroke:var(--ink);stroke-width:3"/>
+      <circle cx="${x}" cy="${y}" r="11" style="fill:${r.c};stroke:var(--ink);stroke-width:2"/>`; });
+    s+=`<text x="70" y="212" font-size="13">0 m</text><text x="460" y="212" font-size="13" text-anchor="end">150 m finish</text>`;
+    svg.innerHTML=s;
+    rd.innerHTML=RUN.map(r=>`${r.n} <b>${Math.min(150,r.v*t).toFixed(0)} m</b>`).join(' · ')+`. Speed = distance ÷ time, so the car's ${(14*t).toFixed(0)} m ÷ ${t.toFixed(1)} s = <b>14 m/s</b>.`;
+    redrawDT();
+  }
+  redrawRace=draw;
+  sl.addEventListener('input',()=>{ raceT=+sl.value; draw(); });
+  btn.addEventListener('click',()=>{
+    if(anim){ cancelAnimationFrame(anim); anim=null; }
+    if(reduce){ raceT=10; sl.value=10; draw(); return; }
+    raceT=0; const t0=performance.now();
+    (function f(now){ raceT=Math.min(10,(now-t0)/800); sl.value=raceT; draw(); if(raceT<10) anim=raf(f); })(t0);
+  });
+  draw();
+});
+safe(()=>{
+  const svg=$('#dtSvg'), X=t=>60+t/10*540, Y=d=>230-d/150*210;
+  function draw(){
+    let g='',ln='',mk='';
+    [0,50,100,150].forEach(v=>{ g+=`<line x1="60" y1="${Y(v)}" x2="600" y2="${Y(v)}" style="stroke:var(--line)"/><text x="52" y="${Y(v)+5}" font-size="14" text-anchor="end">${v}</text>`; });
+    [0,2,4,6,8,10].forEach(v=>{ g+=`<text x="${X(v)}" y="250" font-size="14" text-anchor="middle">${v}</text>`; });
+    RUN.forEach((r,i)=>{ const tEnd=Math.min(10,150/r.v); ln+=`<line x1="${X(0)}" y1="${Y(0)}" x2="${X(tEnd)}" y2="${Y(r.v*tEnd)}" style="stroke:${r.c};stroke-width:4;stroke-linecap:round"/>`;
+      ln+=`<text x="${X(tEnd)+6}" y="${Y(r.v*tEnd)+(i===2?10:i===3?-2:4)}" font-size="13" style="font-weight:700">${r.n} ${r.v} m/s</text>`;
+      mk+=`<circle cx="${X(raceT)}" cy="${Y(Math.min(150,r.v*raceT))}" r="6" style="fill:${r.c};stroke:var(--bg);stroke-width:2"/>`; });
+    svg.innerHTML=`${g}<line x1="60" y1="230" x2="600" y2="230" style="stroke:var(--ink);stroke-width:2"/><line x1="60" y1="20" x2="60" y2="230" style="stroke:var(--ink);stroke-width:2"/>${ln}<line x1="${X(raceT)}" y1="20" x2="${X(raceT)}" y2="230" style="stroke:var(--muted);stroke-dasharray:4 4"/>${mk}
+      <text x="330" y="274" font-size="15" text-anchor="middle">time (seconds)</text><text transform="rotate(-90 14 125)" x="14" y="125" font-size="15" text-anchor="middle">distance (meters)</text>`;
+  }
+  redrawDT=draw; draw();
+});
+
+/* ===== 2 tug ===== */
+let tugNet=60,tugM=20,redrawFA=()=>{};
+safe(()=>{
+  const svg=$('#tugSvg'), el={L:$('#fL'),R:$('#fR'),M:$('#mM')}, rd=$('#tugR'), go=$('#tugGo'), rs=$('#tugReset');
+  let pos=0, vel=0, anim=null;
+  function arrow(x1,x2,y,c,m,t){ return x1===x2?'':`<line x1="${x1}" y1="${y}" x2="${x2}" y2="${y}" style="stroke:${c};stroke-width:8" marker-end="url(#${m})"/><text x="${(x1+x2)/2}" y="${y-12}" font-size="14" text-anchor="middle" style="font-weight:700">${t}</text>`; }
+  function draw(){
+    const L=+el.L.value, R=+el.R.value, M=+el.M.value, net=R-L;
+    $('#fLv').textContent=L; $('#fRv').textContent=R; $('#mMv').textContent=M; tugNet=net; tugM=M;
+    const cx=240+pos, w=60+M*.8;
+    svg.innerHTML=`<line x1="0" y1="150" x2="480" y2="150" style="stroke:var(--ink);stroke-width:3"/>
+      <rect x="${cx-w/2}" y="${100-M*.4+10}" width="${w}" height="${50}" rx="6" style="fill:var(--beam);stroke:var(--ink);stroke-width:3"/>
+      <circle cx="${cx-w/2+16}" cy="152" r="9" style="fill:var(--ink)"/><circle cx="${cx+w/2-16}" cy="152" r="9" style="fill:var(--ink)"/>
+      <text x="${cx}" y="134" font-size="14" text-anchor="middle" style="font-weight:700;fill:var(--beam-ink)">${M} kg</text>
+      ${arrow(cx-w/2-4,cx-w/2-4-L*.9,90,'var(--reflect)','mReflect',L+' N')}${arrow(cx+w/2+4,cx+w/2+4+R*.9,90,'var(--absorb)','mAbsorb',R+' N')}`;
+    const a=net/M;
+    rd.innerHTML=net===0?'Pulls are <b>balanced</b>: net force 0 N, so no acceleration.':`Net force = ${Math.abs(net)} N to the ${net>0?'right':'left'}. Acceleration = ${Math.abs(net)} ÷ ${M} = <b>${Math.abs(a).toFixed(1)} m/s²</b>. After 3 s it would be moving <b>${Math.abs(a*3).toFixed(1)} m/s</b>.`;
+    redrawFA();
+  }
+  Object.values(el).forEach(e=>e.addEventListener('input',()=>{ stop(); pos=0; vel=0; draw(); }));
+  function stop(){ if(anim){cancelAnimationFrame(anim);anim=null;} }
+  go.addEventListener('click',()=>{
+    stop(); pos=0; vel=0; draw();
+    const a=(+el.R.value-+el.L.value)/+el.M.value;
+    if(reduce){ pos=clamp(.5*a*9*8,-200,200); draw(); return; }
+    const t0=performance.now();
+    (function f(now){ const t=Math.min(3,(now-t0)/1000); pos=clamp(.5*a*t*t*8,-200,200); draw(); if(t<3) anim=raf(f); })(t0);
+  });
+  rs.addEventListener('click',()=>{ stop(); pos=0; draw(); });
+  draw();
+});
+safe(()=>{
+  const svg=$('#faSvg'), X=f=>60+f/200*540, Y=a=>220-a/20*190, M=[{m:10,c:'var(--absorb)'},{m:20,c:'var(--transmit)'},{m:40,c:'var(--reflect)'}];
+  function draw(){
+    let g='',ln='';
+    [0,5,10,15,20].forEach(v=>{ g+=`<line x1="60" y1="${Y(v)}" x2="600" y2="${Y(v)}" style="stroke:var(--line)"/><text x="52" y="${Y(v)+5}" font-size="14" text-anchor="end">${v}</text>`; });
+    [0,50,100,150,200].forEach(v=>{ g+=`<text x="${X(v)}" y="240" font-size="14" text-anchor="middle">${v}</text>`; });
+    M.forEach(o=>{ ln+=`<line x1="${X(0)}" y1="${Y(0)}" x2="${X(200)}" y2="${Y(200/o.m)}" style="stroke:${o.c};stroke-width:4"/><text x="${X(200)-6}" y="${Y(200/o.m)-8}" font-size="13" text-anchor="end" style="font-weight:700">${o.m} kg</text>`; });
+    const f=Math.abs(tugNet), a=f/tugM;
+    svg.innerHTML=`${g}<line x1="60" y1="220" x2="600" y2="220" style="stroke:var(--ink);stroke-width:2"/><line x1="60" y1="20" x2="60" y2="220" style="stroke:var(--ink);stroke-width:2"/>${ln}
+      <circle cx="${X(f)}" cy="${Y(Math.min(20,a))}" r="8" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/>
+      <text x="330" y="258" font-size="15" text-anchor="middle">net force (N)</text><text transform="rotate(-90 14 125)" x="14" y="125" font-size="15" text-anchor="middle">acceleration (m/s²)</text>`;
+  }
+  redrawFA=draw; draw();
+});
+
+/* ===== 3 friction ===== */
+const SURF=[{n:'Ice',mu:.05,fill:'#CFE9F7'},{n:'Wet snow',mu:.15,fill:'#E6EEF5'},{n:'Wood floor',mu:.3,fill:'#C9A27A'},{n:'Grass',mu:.5,fill:'#7DBB6C'},{n:'Sandpaper',mu:.8,fill:'#C7B27C'}];
+const slide=s=>36/(2*s.mu*9.8);
+safe(()=>{
+  const chips=$('#surfChips'), svg=$('#slSvg'), rd=$('#slR'), go=$('#slGo'); let sel=0, x=0, anim=null;
+  SURF.forEach((s,i)=>{ const b=document.createElement('button'); b.type='button'; b.className='chip'; b.textContent=s.n; b.dataset.i=i; b.setAttribute('aria-pressed',i===sel); chips.appendChild(b); });
+  function bars(){
+    const mx=Math.max(...SURF.map(slide));
+    $('#surfBars').innerHTML=SURF.map((s,i)=>`<div class="brow ${i===sel?'on':''}" style="grid-template-columns:100px minmax(0,1fr)"><span class="lab">${s.n}</span><div class="stack" role="img" aria-label="${s.n}: ${slide(s).toFixed(1)} meters"><div class="seg a" style="width:${Math.max(3,slide(s)/mx*100)}%">${slide(s)/mx>.14?slide(s).toFixed(1)+' m':''}</div></div></div>`).join('');
+  }
+  function draw(){
+    const s=SURF[sel], d=slide(s), scale=520/38;
+    svg.innerHTML=`<rect x="20" y="86" width="600" height="34" style="fill:${s.fill};stroke:var(--ink);stroke-width:2"/>
+      <rect x="${24+x*scale}" y="58" width="44" height="26" rx="5" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/>
+      <line x1="${24+d*scale}" y1="86" x2="${24+d*scale}" y2="126" style="stroke:var(--ink);stroke-width:2;stroke-dasharray:4 3"/>
+      <text x="${Math.min(600,24+d*scale)}" y="140" font-size="13" text-anchor="middle">stops at ${d.toFixed(1)} m</text>
+      <text x="30" y="40" font-size="14">start: 6 m/s</text><text x="620" y="76" font-size="13" text-anchor="end">${s.n}: μ = ${s.mu}</text>`;
+    rd.innerHTML=`On <b>${s.n.toLowerCase()}</b> the sled slides <b>${d.toFixed(1)} m</b> before friction stops it.`;
+    bars();
+  }
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; sel=+b.dataset.i; setPressed(chips,b); if(anim)cancelAnimationFrame(anim); x=0; draw(); });
+  go.addEventListener('click',()=>{
+    if(anim)cancelAnimationFrame(anim); const s=SURF[sel], d=slide(s); x=0;
+    if(reduce){ x=d; draw(); return; }
+    const t0=performance.now(), T=6/(s.mu*9.8);
+    (function f(now){ const t=Math.min(T,(now-t0)/1000*1.2); x=6*t-.5*s.mu*9.8*t*t; draw(); if(t<T) anim=raf(f); })(t0);
+  });
+  draw();
+});
+
+/* ===== 4 coaster ===== */
+const KN=[[0,40],[.14,40],[.34,2],[.52,26],[.68,8],[.84,20],[1,6]];
+function hAt(u){ for(let i=0;i<KN.length-1;i++){ const a=KN[i], b=KN[i+1]; if(u<=b[0]){ const f=(u-a[0])/(b[0]-a[0]), s=(1-Math.cos(f*Math.PI))/2; return a[1]+(b[1]-a[1])*s; } } return KN[KN.length-1][1]; }
+safe(()=>{
+  const svg=$('#rcSvg'), sl=$('#rcX'), rd=$('#rcR'), bars=$('#rcBars'), ch=$('#rcChart'), btn=$('#rcPlay');
+  const X=u=>20+u*440, Y=h=>210-h*4.6, TOT=500*9.8*40/1000; let anim=null;
+  let path=''; for(let i=0;i<=100;i++){ const u=i/100; path+=`${i?'L':'M'}${X(u).toFixed(1)} ${Y(hAt(u)).toFixed(1)}`; }
+  let area=''; for(let i=0;i<=100;i++){ const u=i/100, pe=500*9.8*hAt(u)/1000; area+=`${i?'L':'M'}${60+u*540} ${190-pe/TOT*160}`; }
+  function draw(){
+    const u=+sl.value/100, h=hAt(u), pe=500*9.8*h/1000, ke=TOT-pe, v=Math.sqrt(2*9.8*(40-h));
+    svg.innerHTML=`<path d="${path}" style="fill:none;stroke:var(--ink);stroke-width:5"/><line x1="20" y1="${Y(40)}" x2="460" y2="${Y(40)}" style="stroke:var(--muted);stroke-dasharray:5 5"/><text x="464" y="${Y(40)+4}" font-size="12" style="fill:var(--muted)">start</text>
+      <line x1="${X(u)}" y1="${Y(h)}" x2="${X(u)}" y2="214" style="stroke:var(--muted);stroke-dasharray:4 4"/>
+      <circle cx="${X(u)}" cy="${Y(h)-12}" r="12" style="fill:var(--beam);stroke:var(--ink);stroke-width:3"/>
+      <text x="${X(u)}" y="232" font-size="13" text-anchor="middle">${h.toFixed(0)} m high</text>`;
+    rd.innerHTML=`Height <b>${h.toFixed(0)} m</b> · speed <b>${v.toFixed(0)} m/s</b> (${(v*2.237).toFixed(0)} mph).`;
+    bars.innerHTML=`<div class="brow" style="grid-template-columns:110px minmax(0,1fr)"><span class="lab">Potential</span><div class="stack"><div class="seg r" style="width:${pe/TOT*100}%">${pe/TOT>.14?Math.round(pe)+' kJ':''}</div></div></div>
+      <div class="brow" style="grid-template-columns:110px minmax(0,1fr)"><span class="lab">Kinetic</span><div class="stack"><div class="seg a" style="width:${ke/TOT*100}%">${ke/TOT>.14?Math.round(ke)+' kJ':''}</div></div></div>
+      <div class="brow" style="grid-template-columns:110px minmax(0,1fr)"><span class="lab"><b>Total</b></span><div class="stack"><div class="seg t" style="width:100%">${Math.round(TOT)} kJ</div></div></div>`;
+    ch.innerHTML=`<path d="${area} L600 190 L60 190Z" style="fill:var(--reflect);fill-opacity:.55"/><path d="${area} L600 30 L60 30Z" style="fill:var(--absorb);fill-opacity:.55"/>
+      <line x1="60" y1="30" x2="600" y2="30" style="stroke:var(--ink);stroke-width:2"/><line x1="60" y1="190" x2="600" y2="190" style="stroke:var(--ink);stroke-width:2"/>
+      <line x1="${60+u*540}" y1="30" x2="${60+u*540}" y2="190" style="stroke:var(--ink);stroke-width:2;stroke-dasharray:4 4"/>
+      <text x="70" y="120" font-size="14" style="font-weight:700">potential</text><text x="70" y="52" font-size="14" style="font-weight:700">kinetic</text>
+      <text x="330" y="212" font-size="14" text-anchor="middle">position along the track</text><text x="330" y="22" font-size="13" text-anchor="middle">total energy (flat line)</text>`;
+  }
+  sl.addEventListener('input',()=>{ if(anim){cancelAnimationFrame(anim);anim=null;} draw(); });
+  btn.addEventListener('click',()=>{
+    if(anim)cancelAnimationFrame(anim);
+    if(reduce){ sl.value=100; draw(); return; }
+    sl.value=0; const t0=performance.now();
+    (function f(now){ const u=Math.min(1,(now-t0)/9000); sl.value=u*100; draw(); if(u<1) anim=raf(f); else anim=null; })(t0);
+  });
+  draw();
+});
+
+/* ===== 5 balls ===== */
+const BALLS=[{n:'Bouncy ball',r:.8},{n:'Basketball',r:.6},{n:'Tennis ball',r:.5},{n:'Clay lump',r:.03}];
+safe(()=>{
+  const chips=$('#ballChips'), svg=$('#ballSvg'), rd=$('#ballR'), go=$('#ballGo'), ch=$('#ballChart'); let sel=0, anim=null;
+  BALLS.forEach((b,i)=>{ const x=document.createElement('button'); x.type='button'; x.className='chip'; x.textContent=b.n; x.dataset.i=i; x.setAttribute('aria-pressed',i===sel); chips.appendChild(x); });
+  const hs=b=>{ const a=[1]; for(let i=1;i<=5;i++) a.push(a[i-1]*b.r); return a; };
+  function chart(){
+    const b=BALLS[sel], a=hs(b);
+    let s=`<line x1="40" y1="200" x2="620" y2="200" style="stroke:var(--ink);stroke-width:2"/>`;
+    a.forEach((h,i)=>{ const x=70+i*96, bh=h*170; s+=`<rect x="${x}" y="${200-bh}" width="64" height="${bh}" rx="4" style="fill:var(--reflect)"/><text x="${x+32}" y="${194-bh}" font-size="13" text-anchor="middle" style="font-weight:700">${(h*100).toFixed(h<.1?1:0)} cm</text><text x="${x+32}" y="220" font-size="13" text-anchor="middle">${i?'bounce '+i:'drop'}</text>`; });
+    ch.innerHTML=s;
+    rd.innerHTML=`<b>${b.n}</b> rebounds to ${(b.r*100).toFixed(b.r<.1?0:0)}% of its drop height each time, so it keeps about <b>${Math.round(b.r*100)}%</b> of its stored energy per bounce. The rest becomes heat and sound.`;
+  }
+  function drawBall(y){ const b=BALLS[sel];
+    svg.innerHTML=`<line x1="20" y1="214" x2="460" y2="214" style="stroke:var(--ink);stroke-width:4"/><rect x="460" y="14" width="4" height="200" style="fill:var(--ink)"/>
+      <line x1="440" y1="14" x2="460" y2="14" style="stroke:var(--ink)"/><text x="436" y="18" font-size="12" text-anchor="end">1 m</text>
+      <circle cx="240" cy="${y}" r="12" style="fill:var(--beam);stroke:var(--ink);stroke-width:3"/>`; }
+  function setY(h){ drawBall(214-12-h*200); }
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; sel=+b.dataset.i; setPressed(chips,b); if(anim)cancelAnimationFrame(anim); setY(1); chart(); });
+  go.addEventListener('click',()=>{
+    if(anim)cancelAnimationFrame(anim); const b=BALLS[sel];
+    if(reduce){ setY(0); return; }
+    let h=1,v=0,last=performance.now(),n=0;
+    (function f(now){ const dt=Math.min(.03,(now-last)/1000); last=now;
+      v-=9.8*dt; h+=v*dt;
+      if(h<=0){ h=0; v=Math.abs(v)*Math.sqrt(b.r); n++; if(v<.25||n>12){ setY(0); anim=null; return; } }
+      setY(h); anim=raf(f); })(last);
+  });
+  setY(1); chart();
+});
+safe(()=>{
+  const svg=$('#bulbSvg'), rd=$('#bulbR'), chips=$('#bulbChips');
+  const D={old:{light:5,name:'Incandescent'},led:{light:40,name:'LED'}};
+  function draw(k){
+    const d=D[k], heat=100-d.light, hy=(h)=>h;
+    svg.innerHTML=`<rect x="30" y="50" width="120" height="120" rx="8" style="fill:var(--beam);stroke:var(--ink);stroke-width:3"/><text x="90" y="104" font-size="16" text-anchor="middle" style="fill:var(--beam-ink);font-weight:700">100 J</text><text x="90" y="124" font-size="13" text-anchor="middle" style="fill:var(--beam-ink)">electrical</text>
+      <path d="M150 ${50} C 300 50 330 ${50} 470 50 L470 ${50+d.light*1.2} C330 ${50+d.light*1.2} 300 ${50+d.light*1.2} 150 ${50+d.light*1.2}Z" style="fill:var(--beam);opacity:.55"/>
+      <path d="M150 ${50+d.light*1.2} C 300 ${50+d.light*1.2} 330 ${70+d.light*1.2} 470 ${90+d.light*1.2} L470 170 C330 170 300 170 150 170Z" style="fill:var(--absorb);opacity:.55"/>
+      <rect x="470" y="40" width="130" height="${Math.max(24,d.light*1.2+10)}" rx="6" style="fill:var(--surface);stroke:var(--ink);stroke-width:2.5"/><text x="535" y="${40+Math.max(24,d.light*1.2+10)/2+5}" font-size="14" text-anchor="middle" style="font-weight:700">light ${d.light} J</text>
+      <rect x="470" y="${90+d.light*1.2}" width="130" height="${80-d.light*1.2+2}" rx="6" style="fill:var(--surface);stroke:var(--ink);stroke-width:2.5"/><text x="535" y="${90+d.light*1.2+(80-d.light*1.2)/2+5}" font-size="14" text-anchor="middle" style="font-weight:700;fill:var(--absorb)">heat ${heat} J</text>`;
+    rd.innerHTML=`<b>${d.name}:</b> ${d.light} J of every 100 J becomes light, ${heat} J becomes heat. Total: still 100 J. Energy changed form; none disappeared.`;
+  }
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; setPressed(chips,b); draw(b.dataset.b); }); draw('old');
+});
+
+/* ===== 6 collisions ===== */
+safe(()=>{
+  const PADS=[{n:'Concrete',d:1,fill:'#AEB5BF',h:10},{n:'Wood floor',d:3,fill:'#C9A27A',h:12},{n:'Carpet',d:10,fill:'#9C7FB8',h:16},{n:'Foam pad',d:40,fill:'#F2D16B',h:30},{n:'Pillow',d:100,fill:'#DCE3EC',h:44}];
+  const M=.06, V=Math.sqrt(2*9.8*1), CRACK=25;
+  const F=p=>M*V*V/(2*p.d/1000), T=p=>2*(p.d/1000)/V*1000;
+  const chips=$('#padChips'), svg=$('#eggSvg'), rd=$('#eggR'), go=$('#eggGo'), chart=$('#eggChart'); let sel=0, anim=null;
+  PADS.forEach((p,i)=>{ const b=document.createElement('button'); b.type='button'; b.className='chip'; b.textContent=p.n; b.dataset.i=i; b.setAttribute('aria-pressed',i===sel); chips.appendChild(b); });
+  function scene(y,state){
+    const p=PADS[sel], top=214-p.h, f=F(p), cracked=f>CRACK;
+    let egg;
+    if(state==='hit'&&cracked){ egg=`<ellipse cx="240" cy="${top-6}" rx="34" ry="7" style="fill:#F6E7B0;stroke:var(--ink);stroke-width:2"/><circle cx="244" cy="${top-7}" r="7" style="fill:#F2A81D"/>
+        <path d="M216 ${top-16} l8 -10 l6 8 l8 -12 M254 ${top-16} l6 -12 l6 9" style="fill:none;stroke:var(--ink);stroke-width:2"/>`; }
+    else { const sq=state==='hit'?.82:1; egg=`<ellipse cx="240" cy="${y}" rx="${17/sq*.95}" ry="${22*sq}" style="fill:#FBF4E6;stroke:var(--ink);stroke-width:2.5"/>`; }
+    let arrows='';
+    if(state==='hit'){ const L=Math.min(80,12+Math.log10(f)*26);
+      arrows=`<line x1="290" y1="${top-6}" x2="290" y2="${top-6-L}" style="stroke:var(--transmit);stroke-width:6" marker-end="url(#mTransmit)"/><text x="300" y="${top-10-L/2}" font-size="13" style="font-weight:700">floor on egg: ${Math.round(f)} N</text>
+        <line x1="190" y1="${top-6-L}" x2="190" y2="${top-6}" style="stroke:var(--absorb);stroke-width:6" marker-end="url(#mAbsorb)"/><text x="180" y="${top-10-L/2}" font-size="13" text-anchor="end" style="font-weight:700">egg on floor: ${Math.round(f)} N</text>`; }
+    svg.innerHTML=`<rect x="460" y="14" width="4" height="200" style="fill:var(--ink)"/><line x1="440" y1="14" x2="460" y2="14" style="stroke:var(--ink)"/><text x="436" y="18" font-size="12" text-anchor="end">1 m</text>
+      <rect x="40" y="${top}" width="400" height="${p.h}" rx="4" style="fill:${p.fill};stroke:var(--ink);stroke-width:2"/><line x1="20" y1="214" x2="460" y2="214" style="stroke:var(--ink);stroke-width:4"/>
+      <text x="48" y="${top+p.h/2+5}" font-size="13" style="font-weight:700;fill:#1A1F27">${p.n}</text>${arrows}${egg}`;
+  }
+  function readout(){ const p=PADS[sel], f=F(p), ok=f<=CRACK;
+    rd.innerHTML=`On <b>${p.n.toLowerCase()}</b> the egg stops in about <b>${p.d} mm</b>, taking ${T(p).toFixed(T(p)<2?1:0)} thousandths of a second. Average force: <b>${Math.round(f)} N</b>. ${ok?'<b>It survives.</b>':'<b>It cracks.</b>'} The floor and the egg push on each other equally.`; }
+  function bars(){
+    const X=v=>110+Math.min(v,200)/200*290, rows=PADS.map((p,i)=>{ const y=24+i*40, f=F(p), over=f>200;
+      return `<text x="102" y="${y+19}" font-size="13" text-anchor="end" style="font-weight:${i===sel?700:400}">${p.n}</text>
+        <rect x="110" y="${y+4}" width="${X(f)-110}" height="22" rx="3" style="fill:${f>CRACK?'var(--absorb)':'var(--transmit)'};opacity:${i===sel?1:.55};stroke:${i===sel?'var(--ink)':'none'};stroke-width:2"/>
+        <text x="${X(f)+6}" y="${y+19}" font-size="13" style="font-weight:700">${Math.round(f)} N${over?' ▶':''}</text>`; }).join('');
+    chart.innerHTML=`${rows}<line x1="${X(CRACK)}" y1="16" x2="${X(CRACK)}" y2="222" style="stroke:var(--ink);stroke-width:2;stroke-dasharray:5 4"/>
+      <text x="${X(CRACK)+4}" y="234" font-size="12">egg cracks above about ${CRACK} N</text><text x="${X(200)}" y="234" font-size="12" text-anchor="middle">200 N</text>`;
+  }
+  function settle(){ scene(0,'hit'); readout(); bars(); }
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; sel=+b.dataset.i; setPressed(chips,b); if(anim){cancelAnimationFrame(anim);anim=null;} scene(40,'up'); rd.textContent='Press Drop the egg.'; bars(); });
+  go.addEventListener('click',()=>{
+    if(anim){cancelAnimationFrame(anim);anim=null;}
+    const top=214-PADS[sel].h-22; if(reduce){ settle(); return; }
+    const t0=performance.now();
+    (function f(now){ const t=(now-t0)/1000, y=40+.5*9.8*t*t*170; if(y>=top){ anim=null; settle(); return; } scene(y,'up'); anim=raf(f); })(t0);
+  });
+  scene(40,'up'); rd.textContent='Pick a surface, then press Drop the egg.'; bars();
+});
+
+/* ===== quiz ===== */
+safe(()=>{
+  const Q=[
+    {q:'A runner goes 100 m in 20 s. What is her speed?',o:['2 m/s','5 m/s','20 m/s'],a:1,e:'100 ÷ 20 = 5 m/s.'},
+    {q:'On a distance–time graph, which line is the fastest object?',o:['The flattest','The steepest','The one that starts highest'],a:1,e:'Slope equals speed, so steeper is faster.'},
+    {q:'Two teams pull a rope with 150 N each. What happens?',o:['The rope moves toward one side','Nothing, the forces are balanced','The rope speeds up'],a:1,e:'Equal opposite forces sum to zero net force.'},
+    {q:'Same push on an empty cart and a full cart. Which accelerates more?',o:['The empty cart','The full cart','They are the same'],a:0,e:'a = F ÷ m, so less mass means more acceleration.'},
+    {q:'At the top of a roller coaster hill, the car mostly has...',o:['Kinetic energy','Potential energy','No energy'],a:1,e:'Height means stored (potential) energy; speed is low.'},
+    {q:'A bouncing ball bounces a little lower each time. Where did the missing energy go?',o:['It vanished','It became heat and sound','It went back to the ball as height'],a:1,e:'Energy is conserved; the missing part became thermal energy and sound.'},
+    {q:'Which is harder to stop once it is rolling?',o:['An empty cart','A full cart','They are the same'],a:1,e:'More mass means more inertia, so the full cart resists stopping more.'},
+    {q:'A small car and a big truck crash. Which one feels the bigger force?',o:['The car','The truck','Both feel the same force'],a:2,e:'Newton\'s third law: the pushes are equal and opposite. The car\'s motion changes more because it has less mass.'},
+    {q:'Why does an airbag protect you?',o:['It makes the stop take longer, so the force is smaller','It makes you lighter','It removes the force completely'],a:0,e:'Stretching the stop over more time and distance makes the push gentler.'}
+  ];
+  const box=$('#quiz'), sc=$('#quizScore'); let right=0;
+  box.innerHTML=Q.map((x,i)=>`<div class="q" data-i="${i}"><h4>${i+1}. ${x.q}</h4><div class="opts">${x.o.map((t,j)=>`<button class="opt" type="button" data-j="${j}">${t}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
+  box.addEventListener('click',e=>{
+    const b=e.target.closest('.opt'); if(!b||b.disabled)return;
+    const row=b.closest('.q'), x=Q[+row.dataset.i], ok=+b.dataset.j===x.a;
+    $$('.opt',row).forEach(o=>{ o.disabled=true; if(+o.dataset.j===x.a) o.classList.add('good'); });
+    if(!ok) b.classList.add('bad'); else right++;
+    $('.fb',row).textContent=(ok?'Correct. ':'Not quite. ')+x.e; sc.textContent=`${right} of ${Q.length} correct`;
+  });
+});
+})();
+</script>

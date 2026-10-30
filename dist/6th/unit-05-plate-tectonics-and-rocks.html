@@ -1,0 +1,1058 @@
+<title>Plate Tectonics and Rocks</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout concept: one long lesson column. Each concept opens with a one-sentence big idea, then a grid of labelled visual aids
+   (Analogy, Diagram, Try it, Data, Real world) that collapses to one column on phones.
+   Color roles are fixed for the whole page: amber = incoming light, blue = reflected, teal = transmitted, orange = absorbed. */
+:root{
+  --bg:#F2F5FA; --surface:#FFFFFF; --surface-2:#E8EDF6; --ink:#12172B; --muted:#47506E; --line:#D0D8E8;
+  --beam:#F2A900; --beam-ink:#1A1400; --reflect:#2B66E8; --absorb:#D6450B; --transmit:#0B7F70; --on-color:#FFFFFF;
+  --red:#D93036; --green:#25904F; --blue:#3558D6; --shade:#222A4A;
+  --font-display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --font-body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+  --font-mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C1022; --surface:#151A33; --surface-2:#1D2444; --ink:#EDF0FB; --muted:#A8B1CE; --line:#2B3459;
+    --beam:#FFC93C; --beam-ink:#1A1400; --reflect:#7BA2FF; --absorb:#FF8F5C; --transmit:#46D6C0; --on-color:#0B1020;
+    --red:#FF6A70; --green:#4FCB85; --blue:#7C97FF; --shade:#02040B; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C1022; --surface:#151A33; --surface-2:#1D2444; --ink:#EDF0FB; --muted:#A8B1CE; --line:#2B3459;
+  --beam:#FFC93C; --beam-ink:#1A1400; --reflect:#7BA2FF; --absorb:#FF8F5C; --transmit:#46D6C0; --on-color:#0B1020;
+  --red:#FF6A70; --green:#4FCB85; --blue:#7C97FF; --shade:#02040B; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--font-body); font-size:17px; line-height:1.55;
+  padding-block:0 72px;
+  padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+main,.hero{max-width:920px;margin:0 auto}
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance;margin:0;line-height:1.1}
+p{margin:0}
+a{color:inherit}
+svg{display:block;width:100%;height:auto}
+svg text{font-family:var(--font-body);fill:var(--ink)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--reflect);outline-offset:2px}
+
+/* hero */
+.hero{padding-block:28px 8px;display:grid;gap:18px}
+.kicker{font-family:var(--font-mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
+.lede{font-size:clamp(1.1rem,3.4vw,1.35rem);max-width:34em;text-wrap:pretty}
+.hero-art{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:10px 12px}
+.howto{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:.92rem;color:var(--muted)}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);margin-top:18px;border-bottom:1px solid var(--line);
+  margin-inline:auto;max-width:920px}
+.nav ul{list-style:none;margin:0;padding:8px 0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin}
+.nav a{display:block;white-space:nowrap;text-decoration:none;font-size:.9rem;padding:7px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface)}
+.nav a:hover{border-color:var(--ink)}
+
+/* sections */
+.sec{padding-block:52px 6px;scroll-margin-top:68px;display:grid;gap:20px}
+.sec h2{font-size:clamp(1.9rem,6vw,2.7rem);font-weight:800;letter-spacing:-.02em}
+.idea{font-family:var(--font-display);font-size:clamp(1.25rem,4.4vw,1.75rem);line-height:1.25;font-weight:700;text-wrap:balance;max-width:28em}
+.idea mark{background:linear-gradient(transparent 58%,color-mix(in srgb,var(--beam) 50%,transparent) 58%);color:inherit}
+.aids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.aid{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.aid.wide{grid-column:1/-1}
+.aid h3{font-size:1.2rem;font-weight:700}
+.aid p.cap{font-size:.95rem;color:var(--muted)}
+.aid p.cap b{color:var(--ink)}
+.tag{align-self:flex-start;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;padding:3px 9px;border-radius:999px;
+  background:color-mix(in srgb,var(--tint) 24%,var(--surface));border:1px solid color-mix(in srgb,var(--tint) 55%,var(--line))}
+.tag.analogy{--tint:var(--beam)} .tag.diagram{--tint:var(--reflect)} .tag.try{--tint:var(--transmit)} .tag.data{--tint:var(--absorb)} .tag.real{--tint:var(--muted)} .tag.build{--tint:#8A63D2}
+ol.steps{margin:4px 0 0;padding-left:1.3em;display:grid;gap:6px}
+.stage{background:var(--surface-2);border-radius:10px;padding:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:.92rem;padding:7px 13px;min-height:40px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.ctl{display:grid;gap:6px}
+.ctl label{font-size:.92rem;font-weight:700}
+input[type=range]{width:100%;accent-color:var(--beam);height:32px}
+.readout{font-size:1rem}
+.readout b{font-family:var(--font-mono);font-weight:500}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{display:inline-flex;gap:6px;align-items:baseline;padding:5px 11px;border-radius:999px;font-family:var(--font-mono);font-size:.84rem;font-weight:500;background:var(--c);color:var(--on-color)}
+.pill.r{--c:var(--reflect)} .pill.a{--c:var(--absorb)} .pill.t{--c:var(--transmit)}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.trio>div{display:grid;gap:6px;align-content:start;min-width:0}
+.trio h4{margin:0;font-family:var(--font-display);font-size:1.05rem}
+.trio p{font-size:.93rem;color:var(--muted)}
+.trio svg{background:var(--surface-2);border-radius:10px}
+.swatch-r{color:var(--reflect);font-weight:700}.swatch-t{color:var(--transmit);font-weight:700}.swatch-a{color:var(--absorb);font-weight:700}
+
+/* stacked bars */
+.bars{display:grid;gap:9px}
+.brow{display:grid;grid-template-columns:104px minmax(0,1fr);gap:10px;align-items:center;font-size:.9rem}
+.brow.on .lab{font-weight:700}
+.stack{display:flex;height:28px;border-radius:7px;overflow:hidden;background:var(--surface-2);outline:2px solid transparent;outline-offset:2px}
+.brow.on .stack{outline-color:var(--ink)}
+.seg{display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:.72rem;color:var(--on-color);min-width:0;overflow:hidden}
+.seg.r{background:var(--reflect)}.seg.t{background:var(--transmit)}.seg.a{background:var(--absorb)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.88rem}
+.legend span::before{content:"";display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--c)}
+.legend .r{--c:var(--reflect)}.legend .t{--c:var(--transmit)}.legend .a{--c:var(--absorb)}
+
+/* sort game, quiz */
+.items{display:grid;gap:10px}
+.item{display:grid;gap:6px;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.item .nm{font-weight:700}
+.item .opts{display:flex;flex-wrap:wrap;gap:6px}
+.opt{font-size:.85rem;padding:6px 10px;border-radius:8px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;min-height:36px;text-align:left}
+.opt:hover:not([disabled]){border-color:var(--ink)}
+.opt.good{background:var(--transmit);color:var(--on-color);border-color:var(--transmit)}
+.opt.bad{background:var(--absorb);color:var(--on-color);border-color:var(--absorb)}
+.fb{font-size:.88rem;color:var(--muted)}
+.score{font-family:var(--font-mono);font-size:.9rem}
+.q{display:grid;gap:10px;padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.q h4{margin:0;font-size:1.05rem;font-family:var(--font-body);font-weight:700}
+.q .opts{display:grid;gap:8px}
+
+/* tables */
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:.92rem;min-width:420px}
+.tbl th,.tbl td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+.tbl th{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+/* see-through demo */
+.seebox{position:relative;border-radius:10px;overflow:hidden;background:var(--surface-2);padding:22px 16px;min-height:130px;display:grid;place-items:center}
+.seetext{font-family:var(--font-display);font-weight:800;font-size:clamp(1.2rem,5vw,1.7rem);text-align:center;letter-spacing:.02em;transition:filter .2s,opacity .2s}
+.seesheets{position:absolute;inset:0;pointer-events:none;background:var(--surface);transition:opacity .2s}
+.meter{height:12px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--transmit);transition:width .2s}
+
+/* canvas */
+canvas{width:100%;aspect-ratio:640/260;display:block;border-radius:10px;background:var(--surface-2)}
+.tally{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;font-size:.85rem}
+.tally div{padding:8px;border-radius:8px;background:var(--bg);border:1px solid var(--line)}
+.tally b{display:block;font-family:var(--font-mono);font-weight:500;font-size:1.05rem}
+
+/* color mixer + channel columns */
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.colx{display:grid;gap:6px;justify-items:center;font-size:.85rem;text-align:center}
+.tube{position:relative;width:100%;max-width:90px;height:150px;border:2px solid var(--line);border-radius:8px;display:flex;flex-direction:column-reverse;overflow:hidden;background:var(--bg)}
+.tube.empty{border-style:dashed}
+.tube .rf{background:var(--cc)}
+.tube .ab{background:repeating-linear-gradient(45deg,var(--surface-2) 0 6px,var(--line) 6px 9px)}
+.colx .nm{font-weight:700}
+.colx.r{--cc:var(--red)}.colx.g{--cc:var(--green)}.colx.b{--cc:var(--blue)}
+
+/* waffle */
+.waffle{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:3px;max-width:300px;width:100%}
+.cell{aspect-ratio:1;border-radius:3px}
+.cell.r{background:var(--reflect)}.cell.t{background:var(--transmit)}.cell.a{background:var(--absorb)}
+
+/* ice race */
+.race{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pad{position:relative;height:170px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden}
+.pad.w{background:#F4F4F1}.pad.b{background:#14161C}
+.pad .lbl{position:absolute;left:8px;top:6px;font-size:.78rem;font-family:var(--font-mono)}
+.pad.w .lbl{color:#333}.pad.b .lbl{color:#ddd}
+.puddle{position:absolute;width:110px;height:46px;border-radius:50%;background:#7CC4F2;opacity:.65;transform:scale(0);bottom:22px}
+.ice{position:relative;width:76px;height:76px;border-radius:12px;background:linear-gradient(135deg,#E4F6FF,#9ED7F5);border:2px solid #fff;transform-origin:50% 100%;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.sunbar{height:10px;border-radius:99px;background:linear-gradient(90deg,var(--beam),color-mix(in srgb,var(--beam) 30%,transparent));opacity:.25;transition:opacity .3s}
+.sunbar.on{opacity:1}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap}
+.btn{font-size:.95rem;font-weight:700;padding:9px 16px;min-height:42px;border-radius:10px;border:0;background:var(--beam);color:var(--beam-ink);cursor:pointer}
+.btn.ghost{background:var(--surface);color:var(--ink);border:1.5px solid var(--line)}
+.btn:hover{filter:brightness(1.06)}
+
+/* misc */
+.glossary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px;margin:0}
+.glossary div{padding:10px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--line)}
+.glossary dt{font-weight:700}
+.glossary dd{margin:2px 0 0;font-size:.93rem;color:var(--muted)}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+details+details{margin-top:10px}
+summary{cursor:pointer;font-weight:700}
+details .in{display:grid;gap:10px;padding-top:10px;font-size:.95rem}
+details ul{margin:0;padding-left:1.2em;display:grid;gap:4px}
+footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;border-top:1px solid var(--line);padding-top:16px}
+.flow{stroke-dasharray:10 8;animation:flow 1s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-18}}
+@media (prefers-reduced-motion: reduce){.flow{animation:none}html{scroll-behavior:auto}.seetext,.seesheets,.meter i{transition:none}}
+@media (max-width:760px){
+  .aids{grid-template-columns:minmax(0,1fr)}
+  .trio{grid-template-columns:minmax(0,1fr)}
+  .glossary{grid-template-columns:minmax(0,1fr)}
+  .tally{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:420px){.brow{grid-template-columns:84px minmax(0,1fr)}.race{grid-template-columns:minmax(0,1fr)}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="mBeam" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--beam)"/></marker>
+    <marker id="mReflect" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--reflect)"/></marker>
+    <marker id="mTransmit" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--transmit)"/></marker>
+    <marker id="mAbsorb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--absorb)"/></marker>
+    <marker id="mInk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--ink)"/></marker>
+    <marker id="mRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#D93036"/></marker>
+  </defs>
+</svg>
+
+<style>.bridge{margin:14px 0 0;padding:12px 14px;border-left:4px solid var(--beam);background:var(--surface-2);border-radius:0 10px 10px 0;font-size:.95rem;line-height:1.5}.related ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}.related li{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}.related a{font-weight:700}.related .why{display:block;color:var(--muted);font-size:.9rem}</style>
+<style>
+.shake{animation:shk .5s linear 1}
+@keyframes shk{0%,100%{transform:translateX(0)}15%{transform:translateX(-5px)}30%{transform:translateX(5px)}45%{transform:translateX(-4px)}60%{transform:translateX(4px)}75%{transform:translateX(-2px)}}
+@media (prefers-reduced-motion: reduce){.shake{animation:none}}
+.log{font-family:var(--font-mono);font-size:.82rem;color:var(--muted);max-height:120px;overflow:auto;display:grid;gap:2px}
+.crys{display:grid;border-radius:8px;overflow:hidden;border:2px solid var(--ink)}
+</style>
+
+<header class="hero">
+  <p class="kicker">Sixth grade science · Unit 5</p>
+  <h1>Plate Tectonics &amp; Rocks</h1>
+  <p class="lede">The ground under your feet is a moving puzzle floating on slow-flowing rock. It built the Himalayas, shakes California, and made the stones in your driveway. Michigan's Great Lakes are the work of a one-mile-thick wall of ice. Let's see how it all fits together.</p>
+  <p class="bridge"><b>Where we left off:</b> Unit 4 followed the Sun's energy through air and water. Earth has a second energy source: heat from deep inside. You may already have learned about convection, rising warm material and sinking cool material. The same idea, in very slow motion, moves the plates, and the forces from Unit 3 are what push, pull, and bend rock.</p>
+      <div class="hero-art">
+    <svg viewBox="0 0 640 190" role="img" aria-label="Cross-section of Earth's crust: two plates moving apart at a ridge with magma rising, and an oceanic plate sinking under a continent with a volcano.">
+      <rect x="0" y="100" width="640" height="90" style="fill:var(--absorb);fill-opacity:.35"/>
+      <path d="M0 100 H150 L190 84 L230 100 H400 L440 100 L520 70 L560 40 L600 70 L640 90 V100z" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:3"/>
+      <path d="M0 100 H640" style="stroke:var(--ink);stroke-width:2;opacity:0"/>
+      <path d="M190 84 L180 40 L200 40z" style="fill:var(--absorb)"/>
+      <path d="M440 100 Q500 130 560 180" style="fill:none;stroke:var(--ink);stroke-width:5"/>
+      <line x1="170" y1="76" x2="90" y2="76" style="stroke:var(--reflect);stroke-width:5" marker-end="url(#mReflect)"/><line x1="210" y1="76" x2="290" y2="76" style="stroke:var(--reflect);stroke-width:5" marker-end="url(#mReflect)"/>
+      <line x1="340" y1="90" x2="420" y2="90" style="stroke:var(--reflect);stroke-width:5" marker-end="url(#mReflect)"/>
+      <text x="190" y="30" font-size="15" text-anchor="middle" style="font-weight:700">plates pull apart</text><text x="480" y="26" font-size="15" text-anchor="middle" style="font-weight:700">plate sinks, volcano above</text>
+    </svg>
+  </div>
+  <p class="howto">Look for the tags <span class="tag analogy">Analogy</span><span class="tag diagram">Diagram</span><span class="tag try">Try it</span><span class="tag data">Data</span><span class="tag real">Real world</span></p>
+</header>
+
+<nav class="nav" aria-label="Lesson sections"><ul>
+  <li><a href="#s1">1 Layers</a></li><li><a href="#s2">2 Moving plates</a></li><li><a href="#s3">3 Quakes &amp; volcanoes</a></li><li><a href="#s4">4 Rock cycle</a></li><li><a href="#s5">5 Shaping land</a></li><li><a href="#s6">6 Check yourself</a></li>
+  <li><a href="#game">7 Game</a></li>
+  </ul></nav>
+
+<main>
+
+<section class="sec" id="s1">
+  <div><p class="kicker">Concept 1 · Inside Earth</p><h2>Earth has layers</h2></div>
+  <p class="idea">Earth is built in layers: a thin <mark>crust</mark>, a thick flowing <mark>mantle</mark>, a liquid <mark>outer core</mark>, and a solid <mark>inner core</mark>. It gets hotter and more squeezed the deeper you go.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>A peach</h3>
+      <div class="stage"><svg viewBox="0 0 480 240" role="img" aria-label="A cut peach with thin skin, thick flesh, and a hard pit, next to Earth's crust, mantle, and core.">
+        <circle cx="130" cy="120" r="90" style="fill:var(--absorb);fill-opacity:.35;stroke:var(--absorb);stroke-width:5"/><circle cx="130" cy="120" r="26" style="fill:#8B5E3C"/>
+        <text x="130" y="228" font-size="14" text-anchor="middle" style="font-weight:700">peach</text>
+        <text x="236" y="70" font-size="14">skin = crust</text><text x="236" y="122" font-size="14">juicy flesh = mantle</text><text x="236" y="174" font-size="14">hard pit = core</text>
+        <path d="M232 66 L196 66 M232 118 L180 118 M232 170 L152 130" style="stroke:var(--ink);stroke-width:1.5;fill:none"/>
+      </svg></div>
+      <p>Earth's crust is only about 0.5% of the way to the center: thinner relative to the planet than a peach skin is to the peach. Under it the mantle is a thick layer of hot rock that moves very slowly.</p>
+      <p class="cap"><b>Where it breaks:</b> a peach is solid all the way through. Earth's mantle flows like extremely thick syrup, and the core is mostly iron, not fruit.</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Drill down</h3>
+      <div class="stage"><svg id="earthSvg" viewBox="0 0 320 320" role="img" aria-label="Cross-section of Earth with a marker at the chosen depth."></svg></div>
+      <div class="ctl"><label for="dep">Depth: <span id="depV"></span></label><input id="dep" type="range" min="0" max="6371" step="10" value="0"></div>
+      <p class="readout" id="depR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>Temperature climbs with depth</h3>
+      <div class="stage"><svg id="tempSvg" viewBox="0 0 640 260" role="img" aria-label="Line graph of temperature versus depth from the surface to Earth's center, rising to about 5,400 degrees Celsius. Layer bands are shaded."></svg></div>
+      <p class="cap">Approximate values. The deepest hole ever drilled (Kola, Russia) reached only 12 km, about 0.2% of the way to the center and already 180 °C.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag diagram">Diagram</span>
+      <h3>How thick is each layer?</h3>
+      <div class="bars" id="layBars"></div>
+      <div class="tw"><table class="tbl" style="margin-top:6px">
+        <thead><tr><th>Layer</th><th>State</th><th>Made of</th></tr></thead>
+        <tbody>
+          <tr><td><b>Crust</b></td><td>Solid, cool, brittle</td><td>Rock (granite and basalt)</td></tr>
+          <tr><td><b>Mantle</b></td><td>Solid but flows slowly like thick putty</td><td>Hot rock rich in iron and magnesium</td></tr>
+          <tr><td><b>Outer core</b></td><td>Liquid</td><td>Molten iron and nickel</td></tr>
+          <tr><td><b>Inner core</b></td><td>Solid (squeezed by pressure)</td><td>Iron and nickel</td></tr>
+        </tbody></table></div>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s2">
+  <div><p class="kicker">Concept 2 · Moving plates</p><h2>The ground is a slow puzzle</h2></div>
+  <p class="idea">Earth's crust and top of the mantle break into <mark>plates</mark> that creep a few centimeters a year, about as fast as <mark>fingernails grow</mark>. They meet at <mark>three kinds of boundaries</mark>.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>Crackers on simmering oatmeal</h3>
+      <div class="stage"><svg viewBox="0 0 480 240" role="img" aria-label="Crackers float on thick oatmeal in a pot. Heat from below makes the oatmeal circulate and drag the crackers.">
+        <path d="M60 80 Q60 220 240 220 T420 80 V70 H60z" style="fill:var(--beam);fill-opacity:.35;stroke:var(--ink);stroke-width:3"/>
+        <rect x="90" y="56" width="130" height="16" rx="3" style="fill:#C9A27A;stroke:var(--ink);stroke-width:2"/><rect x="250" y="56" width="130" height="16" rx="3" style="fill:#C9A27A;stroke:var(--ink);stroke-width:2"/>
+        <path d="M150 190 Q110 140 160 100" style="fill:none;stroke:var(--absorb);stroke-width:4" marker-end="url(#mAbsorb)"/><path d="M330 190 Q370 140 320 100" style="fill:none;stroke:var(--absorb);stroke-width:4" marker-end="url(#mAbsorb)"/>
+        <text x="240" y="30" font-size="15" text-anchor="middle" style="font-weight:700">crackers = plates, oatmeal = mantle</text>
+        <text x="240" y="238" font-size="13" text-anchor="middle">heat from below makes the oatmeal circulate, dragging the crackers</text>
+      </svg></div>
+      <p>Heat from below makes the oatmeal circulate in slow loops, and the crackers ride on top, jostle, and split. The mantle does the same thing to the plates, just far more slowly: convection, as in Unit 2.</p>
+      <p class="cap"><b>Where it breaks:</b> oatmeal is a pot of fluid; the mantle is solid rock that flows only over millions of years.</p>
+    </article>
+    <article class="aid">
+      <span class="tag diagram">Diagram</span>
+      <h3>Three kinds of boundaries</h3>
+      <div class="chips" id="bdChips" role="group" aria-label="Boundary"><button class="chip" type="button" data-b="div" aria-pressed="true">Divergent</button><button class="chip" type="button" data-b="con" aria-pressed="false">Convergent</button><button class="chip" type="button" data-b="tra" aria-pressed="false">Transform</button></div>
+      <div class="stage"><svg id="bdSvg" viewBox="0 0 480 240" role="img" aria-label="Diagram of the chosen plate boundary."></svg></div>
+      <p class="readout" id="bdR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>Watch the Atlantic open</h3>
+      <div class="stage"><svg id="atlSvg" viewBox="0 0 640 170" role="img" aria-label="Two plates moving apart at a mid-ocean ridge. The gap grows with the number of million years."></svg></div>
+      <div class="ctl"><label for="myr">Time: <span id="myrV"></span> million years</label><input id="myr" type="range" min="0" max="200" step="5" value="0"></div>
+      <p class="readout" id="myrR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag diagram">Diagram</span>
+      <h3>Evidence the continents fit together</h3>
+      <div class="stage"><svg id="pangSvg" viewBox="0 0 480 320" role="img" aria-label="Simplified shapes of South America and Africa. Sliding the control back in time closes the Atlantic so the edges fit and matching fossils line up."></svg></div>
+      <div class="ctl"><label for="mya">Millions of years ago: <span id="myaV"></span></label><input id="mya" type="range" min="0" max="180" step="5" value="0"></div>
+      <p class="readout" id="myaR" aria-live="polite"></p>
+      <p class="cap">Simplified shapes, not to scale. Real evidence: coastlines fit, the same fossils (the freshwater reptile Mesosaurus, the fern Glossopteris) appear on both sides of the ocean, matching rock types and mountain ranges, and glacier scratches that line up.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>How fast do plates move?</h3>
+      <div class="bars" id="spdBars"></div>
+      <p class="cap">Typical speeds in centimeters per year. Your fingernails grow about 4 cm a year, as fast as many plates move. Over a million years that adds up to tens of kilometers.</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s3">
+  <div><p class="kicker">Concept 3 · Earthquakes and volcanoes</p><h2>What happens at the edges</h2></div>
+  <p class="idea">Plates snag on each other, stress builds, then they suddenly slip: an <mark>earthquake</mark>. Where one plate sinks, rock melts and rises: a <mark>volcano</mark>. Most of both happen along plate boundaries.</p>
+  <div class="aids">
+    <article class="aid wide">
+      <span class="tag analogy">Analogy</span>
+      <h3>A stuck book, and a shaken soda</h3>
+      <div class="trio">
+        <div>
+          <svg viewBox="0 0 200 150" role="img" aria-label="A book being dragged by a stretched rubber band: it sticks, the band stretches, then it jerks forward."><rect x="20" y="104" width="160" height="12" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:2"/><rect x="40" y="70" width="52" height="34" rx="3" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/><path d="M92 86 q12 -18 24 0 t24 0 t24 0" style="fill:none;stroke:var(--absorb);stroke-width:3.5"/><line x1="164" y1="86" x2="186" y2="86" style="stroke:var(--ink);stroke-width:3" marker-end="url(#mInk)"/></svg>
+          <h4>Stick and slip</h4><p>Pull a book with a rubber band. It sticks, the band stretches, then it <b>jerks</b>. That jerk is an earthquake.</p>
+        </div>
+        <div>
+          <svg viewBox="0 0 200 150" role="img" aria-label="A shaken soda bottle with bubbles and spray bursting from the top."><rect x="72" y="50" width="56" height="86" rx="12" style="fill:var(--absorb);fill-opacity:.35;stroke:var(--ink);stroke-width:2.5"/><rect x="88" y="30" width="24" height="24" style="fill:var(--surface);stroke:var(--ink);stroke-width:2.5"/><g style="stroke:var(--absorb);stroke-width:3.5;stroke-linecap:round"><path d="M100 26 v-18 M90 28 l-12 -14 M110 28 l12 -14"/></g><g style="fill:var(--surface);stroke:var(--ink);stroke-width:1.5"><circle cx="90" cy="100" r="4"/><circle cx="108" cy="84" r="3"/><circle cx="100" cy="116" r="3"/></g></svg>
+          <h4>Shaken soda</h4><p>Gas dissolved in magma expands as it rises and <b>blasts out</b> like opening a shaken soda.</p>
+        </div>
+        <div>
+          <svg viewBox="0 0 200 150" role="img" aria-label="A hand dragging a heavy rug that bunches up into a hill."><path d="M20 120 H180" style="stroke:var(--ink);stroke-width:3"/><path d="M30 118 q30 0 50 -2 q16 -40 40 -2 q30 4 50 0" style="fill:var(--beam);fill-opacity:.7;stroke:var(--ink);stroke-width:2.5"/><line x1="26" y1="90" x2="70" y2="90" style="stroke:var(--ink);stroke-width:3" marker-end="url(#mInk)"/><line x1="174" y1="90" x2="140" y2="90" style="stroke:var(--ink);stroke-width:3" marker-end="url(#mInk)"/></svg>
+          <h4>Pushed rug</h4><p>Push two edges of a rug together and it <b>bunches into a ridge</b>. Colliding plates do this to make mountains.</p>
+        </div>
+      </div>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Build up stress, trigger a quake</h3>
+      <div class="stage" id="faultBox"><svg id="faultSvg" viewBox="0 0 480 220" role="img" aria-label="Two plates side by side. Pushing builds stress shown as a stretched spring until they suddenly slip."></svg></div>
+      <div class="btnrow"><button class="btn" id="pushBtn" type="button">Push the plates</button><button class="btn ghost" id="faultReset" type="button">Reset</button></div>
+      <p class="readout" id="faultR" aria-live="polite">Push again and again. Nobody knows exactly when it will slip.</p>
+      <div class="log" id="faultLog" aria-hidden="true"></div>
+    </article>
+    <article class="aid">
+      <span class="tag diagram">Diagram</span>
+      <h3>A subduction zone</h3>
+      <div class="stage"><svg viewBox="0 0 480 280" role="img" aria-label="An ocean plate sinks under a continental plate. Earthquake dots get deeper inland. Water released from the sinking plate melts rock, which rises to feed a volcano.">
+        <rect x="0" y="120" width="480" height="160" style="fill:var(--absorb);fill-opacity:.3"/>
+        <path d="M0 110 H190 L210 118 L240 100 L330 100 L380 50 L420 100 L480 100 V120 H260 L230 120 H0z" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:3"/>
+        <path d="M0 120 H190 L300 220 L360 276" style="fill:none;stroke:var(--ink);stroke-width:7"/>
+        <path d="M0 96 H190 V110 H0z" style="fill:var(--reflect);fill-opacity:.4"/>
+        <g style="fill:var(--ink)"><circle cx="210" cy="136" r="4"/><circle cx="240" cy="166" r="4"/><circle cx="270" cy="190" r="4"/><circle cx="310" cy="228" r="4"/></g>
+        <path d="M340 190 V100" class="flow" style="stroke:var(--absorb);stroke-width:6;fill:none"/><path d="M340 96 l-9 16 h18z" style="fill:var(--absorb)"/>
+        <path d="M380 50 l-12 -22 M380 50 l12 -22" style="stroke:var(--absorb);stroke-width:4"/>
+        <text x="100" y="82" font-size="13" text-anchor="middle" style="font-weight:700">ocean</text><text x="400" y="20" font-size="13" text-anchor="middle" style="font-weight:700">volcano</text>
+        <text x="130" y="152" font-size="13" text-anchor="middle" style="font-weight:700">oceanic plate sinks</text><text x="344" y="256" font-size="13" text-anchor="middle">quake dots get deeper inland</text>
+        <text x="250" y="76" font-size="13" text-anchor="middle">trench</text>
+      </svg></div>
+      <p class="cap">The sinking plate drags water down. Water lowers the melting point of the hot rock above it, magma forms, and it rises. This is how the Pacific Ring of Fire gets its volcanoes.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>Big quakes are rare. Small ones are everywhere.</h3>
+      <div class="bars" id="eqBars"></div>
+      <div class="ctl"><label for="mag">Magnitude: <span id="magV"></span></label><input id="mag" type="range" min="2" max="9" step="0.5" value="5"></div>
+      <p class="readout" id="magR" aria-live="polite"></p>
+      <p class="cap">Approximate yearly worldwide counts (USGS-style rounded). Each whole step up in magnitude is about 10 times fewer quakes but about 32 times more energy released.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>Where in the world</h3>
+      <div class="tw"><table class="tbl">
+        <thead><tr><th>Place</th><th>Boundary type</th><th>What it does</th></tr></thead>
+        <tbody>
+          <tr><td><b>Himalayas</b></td><td>Convergent (India meets Asia)</td><td>Mountains still rising a few mm a year</td></tr>
+          <tr><td><b>Pacific Ring of Fire</b></td><td>Convergent (subduction)</td><td>About 3 of every 4 volcanoes, most big quakes</td></tr>
+          <tr><td><b>San Andreas Fault, California</b></td><td>Transform</td><td>Plates slide past: earthquakes, no volcanoes</td></tr>
+          <tr><td><b>Iceland</b></td><td>Divergent (mid-Atlantic ridge)</td><td>Rift valleys and volcanoes; new crust forming</td></tr>
+          <tr><td><b>Hawaii</b></td><td>Hot spot, mid-plate</td><td>Plate moves over a stationary plume of hot rock</td></tr>
+          <tr><td><b>Michigan</b></td><td>Middle of the North American plate</td><td>Few and small quakes; no volcanoes</td></tr>
+        </tbody></table></div>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s4">
+  <div><p class="kicker">Concept 4 · The rock cycle</p><h2>Rocks recycle</h2></div>
+  <p class="idea">Rocks slowly change from one type to another: <mark>igneous</mark> (cooled magma), <mark>sedimentary</mark> (squeezed pieces), <mark>metamorphic</mark> (changed by heat and pressure). No rock is permanent.</p>
+  <div class="aids">
+    <article class="aid wide">
+      <span class="tag analogy">Analogy</span>
+      <h3>Crayons</h3>
+      <div class="trio">
+        <div>
+          <svg viewBox="0 0 200 150" role="img" aria-label="Melted crayon wax cooling and hardening."><path d="M40 110 H160 V90 Q100 70 40 90z" style="fill:var(--absorb);fill-opacity:.7;stroke:var(--ink);stroke-width:2.5"/><path d="M30 130 H170" style="stroke:var(--ink);stroke-width:3"/><path d="M90 60 q-6 -10 0 -20 M110 60 q-6 -10 0 -20" style="fill:none;stroke:var(--absorb);stroke-width:3;stroke-linecap:round"/></svg>
+          <h4>Melt and cool = igneous</h4><p>Melt a crayon and let it harden. Same idea as lava or magma cooling.</p>
+        </div>
+        <div>
+          <svg viewBox="0 0 200 150" role="img" aria-label="Crayon shavings pressed into layers."><rect x="50" y="60" width="100" height="14" style="fill:var(--absorb)"/><rect x="50" y="74" width="100" height="14" style="fill:var(--beam)"/><rect x="50" y="88" width="100" height="14" style="fill:var(--transmit)"/><rect x="50" y="102" width="100" height="14" style="fill:var(--reflect)"/><rect x="50" y="60" width="100" height="56" style="fill:none;stroke:var(--ink);stroke-width:2.5"/></svg>
+          <h4>Shavings pressed = sedimentary</h4><p>Pack crayon shavings in layers and press. Bits of old rock get squeezed into layers.</p>
+        </div>
+        <div>
+          <svg viewBox="0 0 200 150" role="img" aria-label="A warm squished crayon bent into swirls."><path d="M40 90 q30 -40 60 0 t60 0" style="fill:none;stroke:var(--absorb);stroke-width:12;stroke-linecap:round"/><path d="M40 90 q30 -40 60 0 t60 0" style="fill:none;stroke:var(--beam);stroke-width:5;stroke-linecap:round"/><line x1="100" y1="30" x2="100" y2="56" style="stroke:var(--ink);stroke-width:4" marker-end="url(#mInk)"/></svg>
+          <h4>Warm and squish = metamorphic</h4><p>Warm a crayon and squeeze it. It changes shape and swirl without melting. Pressure and heat change rocks without melting them.</p>
+        </div>
+      </div>
+      <p>Real rocks take thousands to millions of years; a crayon takes minutes.</p>
+      <p class="cap"><b>Where it breaks:</b> squeezed crayon shavings stick because wax is soft. Sedimentary rock is cemented by minerals over a long time, and metamorphic rock usually recrystallizes into new minerals instead of just bending.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>Take a rock on a journey</h3>
+      <div class="stage"><svg id="rcSvg" viewBox="0 0 640 300" role="img" aria-label="Rock cycle with four stages. The current stage of your rock is highlighted."></svg></div>
+      <div class="btnrow" id="rcBtns"></div>
+      <p class="readout" id="rcR" aria-live="polite"></p>
+      <div class="log" id="rcLog"></div>
+    </article>
+    <article class="aid">
+      <span class="tag data">Data</span>
+      <h3>Cool slowly = big crystals</h3>
+      <div class="ctl"><label for="cool">Cooling time: <span id="coolV"></span></label><input id="cool" type="range" min="0" max="100" value="50"></div>
+      <div class="crys" id="crys" role="img" aria-label="Crystal pattern for the chosen cooling time." style="height:150px"></div>
+      <p class="readout" id="coolR" aria-live="polite"></p>
+    </article>
+    <article class="aid">
+      <span class="tag real">Real world</span>
+      <h3>Rocks you can find</h3>
+      <div class="tw"><table class="tbl">
+        <thead><tr><th>Rock</th><th>Type</th><th>Where</th></tr></thead>
+        <tbody>
+          <tr><td><b>Granite</b></td><td>Igneous (cooled slowly)</td><td>Kitchen countertops</td></tr>
+          <tr><td><b>Basalt</b></td><td>Igneous (cooled fast)</td><td>Hawaii, ocean floors</td></tr>
+          <tr><td><b>Sandstone, limestone</b></td><td>Sedimentary</td><td>Pictured Rocks, Petoskey stones</td></tr>
+          <tr><td><b>Marble</b></td><td>Metamorphic (from limestone)</td><td>Statues, tile</td></tr>
+          <tr><td><b>Slate</b></td><td>Metamorphic (from shale)</td><td>Roofs, chalkboards</td></tr>
+        </tbody></table></div>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s5">
+  <div><p class="kicker">Concept 5 · Shaping the surface</p><h2>Break, carry, drop</h2></div>
+  <p class="idea"><mark>Weathering</mark> breaks rock into pieces, <mark>erosion</mark> carries the pieces away, and <mark>deposition</mark> drops them somewhere new. Water, wind, and ice do the work.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>A grater, a conveyor belt, and a dump truck</h3>
+      <div class="stage"><svg viewBox="0 0 480 220" role="img" aria-label="Three steps: grating breaks big pieces small, a conveyor belt carries them, a dump truck drops them in a pile.">
+        <path d="M20 160 L60 60 L100 160z" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:3"/><path d="M62 74 l10 18" style="stroke:var(--ink);stroke-width:2"/><g style="fill:var(--surface);stroke:var(--ink);stroke-width:1.5"><circle cx="55" cy="102" r="4"/><circle cx="67" cy="126" r="4"/><circle cx="61" cy="146" r="4"/></g>
+        <text x="60" y="190" font-size="14" text-anchor="middle" style="font-weight:700">weathering</text><text x="60" y="208" font-size="12" text-anchor="middle">grate it small</text>
+        <rect x="170" y="110" width="140" height="22" rx="11" style="fill:var(--muted);fill-opacity:.5;stroke:var(--ink);stroke-width:2.5"/><g style="fill:var(--beam)"><circle cx="194" cy="102" r="6"/><circle cx="228" cy="102" r="5"/><circle cx="262" cy="102" r="7"/></g>
+        <line x1="190" y1="152" x2="296" y2="152" style="stroke:var(--ink);stroke-width:3" marker-end="url(#mInk)"/>
+        <text x="240" y="190" font-size="14" text-anchor="middle" style="font-weight:700">erosion</text><text x="240" y="208" font-size="12" text-anchor="middle">carry it away</text>
+        <path d="M360 160 L380 100 L440 100 L460 160z" style="fill:none;stroke:var(--ink);stroke-width:3"/><path d="M360 160 Q410 120 460 160z" style="fill:var(--beam);fill-opacity:.7;stroke:var(--ink);stroke-width:2.5"/>
+        <text x="410" y="190" font-size="14" text-anchor="middle" style="font-weight:700">deposition</text><text x="410" y="208" font-size="12" text-anchor="middle">dump it in a pile</text>
+      </svg></div>
+      <p>Three different jobs, often happening at once. <b>Weathering</b> is the grater: it breaks big rock into small pieces. <b>Erosion</b> is the conveyor belt: water, wind, or ice carries the pieces away. <b>Deposition</b> is the dump truck: the load stops moving and piles up. A river can do all three in one bend: it grinds rock, carries sand, and drops it on the inside bank.</p>
+      <p class="cap"><b>Where it breaks:</b> real erosion has no separate machines. One storm can weather, carry, and dump in the same hour.</p>
+    </article>
+    <article class="aid">
+      <span class="tag diagram">Diagram</span>
+      <h3>A bending river</h3>
+      <div class="stage"><svg viewBox="0 0 480 260" role="img" aria-label="Top-down view of a river bend. Fast water on the outside of the bend erodes the bank; slow water on the inside drops sand.">
+        <rect width="480" height="260" style="fill:#7A9A5C;fill-opacity:.4"/>
+        <path d="M0 80 Q140 80 200 130 Q250 190 400 180 L480 180 V230 L400 230 Q200 240 130 170 Q90 130 0 130z" style="fill:var(--reflect);fill-opacity:.55;stroke:var(--reflect);stroke-width:3"/>
+        <path d="M30 105 Q150 105 215 160 Q260 210 440 205" class="flow" style="fill:none;stroke:var(--ink);stroke-width:3"/>
+        <text x="250" y="116" font-size="14" style="font-weight:700;fill:var(--absorb)">outside bend: fast water</text><text x="250" y="134" font-size="13" style="fill:var(--absorb)">erodes the bank</text>
+        <text x="30" y="212" font-size="14" style="font-weight:700">inside bend: slow water</text><text x="30" y="230" font-size="13">drops sand (deposition)</text>
+        <g style="fill:var(--beam)"><circle cx="150" cy="160" r="4"/><circle cx="165" cy="170" r="4"/><circle cx="140" cy="178" r="3"/></g>
+      </svg></div>
+      <p class="cap">The river slowly swings sideways as it carves one bank and builds the other.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>Fast water vs. slow water</h3>
+      <div class="ctl"><label for="spd">Water speed: <span id="spdV"></span></label><input id="spd" type="range" min="0" max="5" step="0.1" value="0.5"></div>
+      <div class="stage"><svg id="srSvg" viewBox="0 0 640 230" role="img" aria-label="Five sizes of sediment. Bars show the minimum water speed needed to move each; those below the chosen speed are highlighted as moving."></svg></div>
+      <p class="readout" id="srR" aria-live="polite"></p>
+      <p class="cap">Simplified minimum speeds. Fast floods move boulders; slow lakes only settle clay. That is why the sediment in a delta is sorted by size.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>Michigan was shaped by ice</h3>
+      <div class="tw"><table class="tbl">
+        <thead><tr><th>Time</th><th>What happened</th><th>What you can see now</th></tr></thead>
+        <tbody>
+          <tr><td><b>About 20,000 years ago</b></td><td>A glacier more than a mile thick covered Michigan and ground the rock beneath it.</td><td>Smooth, scratched rock; flat plains</td></tr>
+          <tr><td><b>About 14,000 years ago</b></td><td>The ice melted back, leaving piles of rock and clay and filling the giant basins carved by ice with meltwater.</td><td>The Great Lakes</td></tr>
+          <tr><td><b>Ever since</b></td><td>Wind, waves, and rain keep weathering and moving sediment.</td><td>Sleeping Bear Dunes, Pictured Rocks cliffs, beach sand</td></tr>
+          <tr><td><b>Glacial leftovers</b></td><td>Boulders dragged from far away and dropped as the ice melted.</td><td>Big rounded boulders (erratics) in Ann Arbor yards and parks</td></tr>
+        </tbody></table></div>
+      <p class="cap">Dates are approximate and rounded.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag build">Build it</span>
+      <h3>Engineering challenge: the riverbank guard</h3>
+      <p><b>The problem:</b> protect a sand riverbank from washing away when water is poured down the same slope that erodes an unprotected bank.</p>
+      <p><b>Criteria:</b> less sand collects at the bottom than from the unprotected bank, using the same amount of water both times.</p>
+      <p><b>Constraints:</b> rocks from the yard rock collection, sticks, or other small objects pressed into the sand. No glue or tape, and no reshaping the slope itself.</p>
+      <ol class="steps">
+        <li><b>Try it in the game first.</b> Play Rock Cycle Router at the bottom of this page. Notice which moves are weathering and which are erosion.</li>
+        <li><b>Plan.</b> Sketch two different ideas on your design log. Label how each one slows the water down or blocks it from carrying sand away.</li>
+        <li><b>Build and test.</b> Pour the same amount of water down the unprotected bank first and collect the sand that washes off. Then test your protected bank the same way, with a clean collection cup.</li>
+        <li><b>Improve.</b> Change one thing, test again, and record it.</li>
+      </ol>
+      <p class="cap">Print a <a href="../design-log.html#erosion">design log</a> for each team. This is the same problem as a real levee or breakwater: slow the water, and it drops its sediment instead of carrying it away.</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s6">
+  <div><p class="kicker">Check yourself</p><h2>Can you explain it?</h2></div>
+  <p class="idea">Explain why Michigan has no volcanoes but lots of sand dunes and boulders, and how a rock could end up as marble.</p>
+  <details><summary>Show a model answer</summary><div class="in">
+    <p>Michigan is in the middle of a plate, far from the boundaries where plates collide or pull apart, so there are no volcanoes and few earthquakes. Instead, its surface was reshaped by glaciers that ground up rock and carried boulders (weathering, erosion, deposition), and wind and waves still move sand into dunes.</p>
+    <p>Limestone is a sedimentary rock made of shells and mud pressed together. If heat and pressure from plate collisions change it without melting, it becomes marble, a metamorphic rock.</p></div></details>
+  <div class="items" id="quiz"></div>
+  <p class="score" id="quizScore">0 of 6 correct</p>
+  <h3 style="margin-top:8px">Words to know</h3>
+  <dl class="glossary">
+    <div><dt>crust</dt><dd>Earth's thin, rocky outer layer.</dd></div>
+    <div><dt>mantle</dt><dd>Thick layer of hot, slowly flowing rock under the crust.</dd></div>
+    <div><dt>core</dt><dd>Iron-nickel center: liquid outside, solid inside.</dd></div>
+    <div><dt>plate</dt><dd>A giant slab of crust and upper mantle.</dd></div>
+    <div><dt>boundary</dt><dd>Where two plates meet.</dd></div>
+    <div><dt>earthquake</dt><dd>Shaking when plates suddenly slip.</dd></div>
+    <div><dt>magma</dt><dd>Molten rock underground. It is called lava on the surface.</dd></div>
+    <div><dt>igneous rock</dt><dd>Formed from cooled magma or lava.</dd></div>
+    <div><dt>sedimentary rock</dt><dd>Formed from squeezed layers of sediment.</dd></div>
+    <div><dt>metamorphic rock</dt><dd>Changed by heat and pressure without melting.</dd></div>
+    <div><dt>weathering</dt><dd>Breaking rock into smaller pieces.</dd></div>
+    <div><dt>erosion</dt><dd>Moving broken pieces from place to place.</dd></div>
+    <div><dt>deposition</dt><dd>Dropping the carried pieces.</dd></div>
+  </dl>
+  <details><summary>Tutor notes: hands-on kit, misconceptions, pacing</summary><div class="in">
+    <p><b>Kit (about $10):</b> a hard-boiled egg, modeling clay in layers, crayons and a grater, a toaster or warm water bath (adult-supervised) for melting, graham crackers and frosting, sandpaper, a stream table made from a baking tray with sand, a rock collection from the yard.</p>
+    <ul>
+      <li><b>Concept 1:</b> crack a hard-boiled egg: shell = crust, white = mantle, yolk = core. Cut a layered clay ball in half.</li>
+      <li><b>Concept 2:</b> push graham crackers on frosting: apart (divergent), together (convergent), sideways (transform).</li>
+      <li><b>Concept 3:</b> pull a rubber-banded book across a table until it jerks. Shake and open a soda outdoors.</li>
+      <li><b>Concept 4:</b> grate crayon shavings, press and warm gently between wax paper; melt a crayon to compare.</li>
+      <li><b>Concept 5:</b> tilt a tray of sand and pour water at different speeds. Sort the deposits by size. Then run the riverbank guard challenge (about 30 to 40 minutes), reusing the stream table and rock collection already in the kit.</li>
+    </ul>
+    <p><b>Common misconceptions:</b></p>
+    <ul>
+      <li>"Earth's mantle is liquid." It's solid rock that flows very slowly.</li>
+      <li>"Continents float on water." They are parts of plates riding on hot, soft rock.</li>
+      <li>"Metamorphic rocks are melted." If melted, they'd become igneous.</li>
+      <li>"Earthquakes can be predicted exactly." We know where, not exactly when.</li>
+    </ul>
+    <p><b>Pacing:</b> about five 30-minute sessions.</p></div></details>
+</section>
+
+<section class="sec lesson-game-sec" id="game"><div><p class="kicker">After the lesson · Game</p><h2>Play: Rock Cycle Router</h2></div><p class="idea">Turn one rock into another using real processes: melting, cooling, weathering, burial, and heat and pressure. Each move only works in the right place. Find the shortest route.</p><div class="lesson-game" id="lesson-game"></div>
+<script>(function(){
+/* Mounts one game into a shadow root so the lesson page's CSS and the game's CSS never collide. */
+function __mountLessonGame(host, css, html, init){
+  if(!host || host.shadowRoot) return;
+  const root = host.attachShadow({mode:"open"});
+  root.innerHTML = "<style>"+css+"</style>"+html;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let visible = true;
+  try{ new IntersectionObserver(es=>{ visible = es[es.length-1].isIntersecting; }).observe(host); }catch(e){}
+  const loops = [];
+  let last = performance.now();
+  function frame(t){
+    const dt = Math.min(0.05, (t-last)/1000); last = t;
+    if(visible && !document.hidden) for(const f of loops){ try{ f(t, dt); }catch(e){ console.error(e); } }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+  const env = {
+    root, reduce,
+    $: id => root.getElementById(id),
+    $$: sel => [...root.querySelectorAll(sel)],
+    loop: f => loops.push(f),
+    esc: s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])),
+    // A canvas drawn in fixed logical units (W x H) that scales to its container.
+    stage(canvas, W, H){
+      const ctx = canvas.getContext("2d");
+      const st = {ctx, W, H, dpr:1};
+      function fit(){
+        st.dpr = Math.min(2.5, window.devicePixelRatio || 1);
+        const cw = canvas.clientWidth || W;
+        const scale = cw / W;
+        canvas.width = Math.round(W*scale*st.dpr); canvas.height = Math.round(H*scale*st.dpr);
+        st.k = scale*st.dpr;
+        ctx.setTransform(st.k,0,0,st.k,0,0);
+        if(st.onfit) st.onfit();
+      }
+      canvas.style.aspectRatio = W+"/"+H;
+      st.begin = () => ctx.setTransform(st.k,0,0,st.k,0,0);
+      st.pt = ev => { const r = canvas.getBoundingClientRect(); return {x:(ev.clientX-r.left)*W/r.width, y:(ev.clientY-r.top)*H/r.height}; };
+      try{ new ResizeObserver(fit).observe(canvas); }catch(e){ addEventListener("resize", fit); }
+      fit();
+      return st;
+    },
+    // Level buttons in the header.
+    levelBar(box, names, onPick){
+      const solved = new Set(); let cur = 0;
+      function render(){
+        box.innerHTML = '<span class="label">Level</span>';
+        names.forEach((n,i)=>{ const b = document.createElement("button"); b.type="button";
+          b.className = "lv"+(solved.has(i)?" done":""); b.textContent = i+1; b.title = n;
+          b.setAttribute("aria-label", "Level "+(i+1)+": "+n+(solved.has(i)?" (solved)":""));
+          if(i===cur) b.setAttribute("aria-current","true");
+          b.onclick = () => { cur = i; render(); onPick(i); }; box.appendChild(b); });
+      }
+      render();
+      return { set(i){ cur=i; render(); }, solve(i){ solved.add(i); render(); }, get cur(){ return cur; }, solved };
+    },
+    // Result card over a stage. buttons: [{label, primary, onClick}]
+    card(stageEl, o){
+      let ov = stageEl.querySelector(":scope > .over");
+      if(!ov){ ov = document.createElement("div"); ov.className = "over"; stageEl.appendChild(ov); }
+      ov.hidden = false;
+      ov.innerHTML = '<div class="card'+(o.fail?' fail':'')+'" role="dialog" aria-live="polite"><h4></h4>'+(o.why?'<span class="why"></span>':'')+'<p class="cb"></p><div class="btns"></div></div>';
+      ov.querySelector("h4").textContent = o.title;
+      if(o.why) ov.querySelector(".why").textContent = o.why;
+      ov.querySelector(".cb").textContent = o.body || "";
+      if(o.list && o.list.length){ const ul = document.createElement("ul"); ul.className = "clist";
+        o.list.forEach(t => { const li = document.createElement("li"); li.textContent = t; ul.appendChild(li); });
+        ov.querySelector(".cb").after(ul); }
+      const bb = ov.querySelector(".btns");
+      (o.buttons||[]).forEach((b,i)=>{ const e = document.createElement("button"); e.type="button"; e.className = "btn"+(b.primary?" primary":""); e.textContent = b.label;
+        e.onclick = () => { ov.hidden = true; b.onClick && b.onClick(); }; bb.appendChild(e); if(i===0) setTimeout(()=>e.focus({preventScroll:true}),30); });
+      if(getComputedStyle(ov).position === "static") setTimeout(()=>ov.scrollIntoView({block:"nearest", behavior: reduce?"auto":"smooth"}), 40);
+      return ov;
+    },
+    hideCard(stageEl){ const ov = stageEl.querySelector(":scope > .over"); if(ov) ov.hidden = true; }
+  };
+  try{ init(root, env); }catch(e){ console.error(e); root.innerHTML += '<p style="color:#fff;padding:12px">This game could not start.</p>'; }
+}
+
+__mountLessonGame(document.getElementById("lesson-game"), "/* Shared frame for every lesson game. Lives inside a shadow root, so nothing here touches the lesson page.\n   Deliberately one dark \"lab console\" look in both page themes; each game sets its own --acc accent. */\n:host{\n  display:block; color-scheme:dark;\n  --bg:#0B0F15; --panel:#141A23; --panel-2:#1B2330; --line:#2B3544; --ink:#E9EEF5; --muted:#93A0B2;\n  --good:#3FD3BB; --bad:#FF6B5E; --warn:#FFB547; --acc:#FFD84A; --acc-ink:#1A1400;\n  --reflect:#78A2FF; --heat:#FF7A2E;\n  --f-display:\"Bahnschrift\",\"DIN Alternate\",\"Roboto Condensed\",\"Arial Narrow\",system-ui,sans-serif;\n  --f-body:\"Roboto\",\"Segoe UI\",system-ui,-apple-system,sans-serif;\n  --f-mono:ui-monospace,\"Roboto Mono\",\"Cascadia Mono\",Menlo,Consolas,monospace;\n}\n*{box-sizing:border-box}\n[hidden]{display:none!important}\n.g{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;border-radius:16px;\n  border:1px solid var(--line);padding:16px;display:grid;gap:14px;text-align:left;box-shadow:0 10px 36px rgba(0,0,0,.35)}\n.g button{font:inherit;color:inherit}\n.g :focus-visible{outline:3px solid var(--acc);outline-offset:2px}\n.g h3,.g h4{margin:0;font-family:var(--f-display);letter-spacing:.02em;line-height:1.15}\n.g p{margin:0}\n.bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 18px}\n.brand{display:grid;gap:2px}\n.label{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}\n.gtitle{font-family:var(--f-display);font-weight:700;font-size:1.45rem;text-transform:uppercase;letter-spacing:.04em}\n.gtitle b{color:var(--acc);font-weight:700}\n.levels{display:flex;flex-wrap:wrap;gap:6px;align-items:center}\n.lv{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--line);background:var(--panel);font-family:var(--f-mono);font-size:.85rem;cursor:pointer;font-variant-numeric:tabular-nums;padding:0}\n.lv:hover{border-color:var(--muted)}\n.lv.done{border-color:var(--good);color:var(--good)}\n.lv[aria-current=\"true\"]{background:var(--acc);border-color:var(--acc);color:var(--acc-ink);font-weight:700}\n.goalrow{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 12px}\n.goalrow h4{font-size:1.25rem}\n.goalrow .goal{color:var(--muted)}\n.cols{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:14px;align-items:start}\n.cols>*{min-width:0}\n.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:10px;min-width:0}\n.panel>.label{margin-bottom:-2px}\n.stage{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px;min-width:0}\n.stage canvas{display:block;width:100%;max-width:100%;height:auto;border-radius:8px;touch-action:none}\n.btns{display:flex;flex-wrap:wrap;gap:8px}\n.btn{padding:8px 14px;min-height:40px;border-radius:10px;border:1.5px solid var(--line);background:var(--panel-2);cursor:pointer;font-weight:700;font-size:.92rem;line-height:1.2}\n.btn:hover:not([disabled]){border-color:var(--muted)}\n.btn[disabled]{opacity:.45;cursor:default}\n.btn.primary{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}\n.btn[aria-pressed=\"true\"]{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset}\n.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;font-size:.82rem;border:1px solid var(--line);background:var(--panel-2)}\n.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}\n.msg{font-size:.93rem;padding:9px 12px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line)}\n.msg.good{border-color:color-mix(in srgb,var(--good) 60%,var(--line));color:var(--ink)}\n.msg.bad{border-color:color-mix(in srgb,var(--bad) 60%,var(--line))}\n.msg.warn{border-color:color-mix(in srgb,var(--warn) 60%,var(--line))}\n.help{font-size:.86rem;color:var(--muted)}\n.meter{height:12px;border-radius:99px;background:var(--panel-2);overflow:hidden;border:1px solid var(--line)}\n.meter>i{display:block;height:100%;background:var(--acc);transition:width .15s}\n.ctl{display:grid;gap:4px}\n.ctl label{font-size:.9rem;font-weight:700;display:flex;justify-content:space-between;gap:8px}\n.ctl input[type=range]{width:100%;accent-color:var(--acc);height:30px;margin:0}\n.over{position:absolute;inset:6px;border-radius:8px;display:grid;place-items:center;padding:14px;background:color-mix(in srgb,var(--bg) 74%,transparent);backdrop-filter:blur(2px);z-index:5}\n.card{max-width:440px;display:grid;gap:10px;padding:18px;border-radius:14px;background:var(--panel-2);border:1px solid var(--acc);box-shadow:0 0 36px color-mix(in srgb,var(--acc) 22%,transparent)}\n.card h4{font-size:1.5rem;color:var(--acc)}\n.card.fail{border-color:var(--bad);box-shadow:0 0 36px color-mix(in srgb,var(--bad) 18%,transparent)}\n.card.fail h4{color:var(--bad)}\n.clist{margin:0;padding-left:1.15em;display:grid;gap:5px;font-size:.9rem}\n.over{align-items:start}\n.card{position:sticky;top:16px;margin-top:clamp(8px,8%,60px)}\n.why{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}\ntable.data{width:100%;border-collapse:collapse;font-size:.85rem}\ntable.data th,table.data td{padding:5px 7px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}\ntable.data th{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}\ntable.data td.num{text-align:right}\n.scroll{overflow-x:auto}\n@media (max-width:820px){.cols{grid-template-columns:minmax(0,1fr)}\n  .over{position:static;inset:auto;background:none;backdrop-filter:none;padding:8px 0 2px}\n  .card{max-width:none;position:static;margin-top:0}}\n@media (prefers-reduced-motion:reduce){.meter>i{transition:none}}\n\n:host{--acc:#E2B866;--acc-ink:#1A1203}\n:host{--ign:#FF7A45;--sed:#E2B866;--met:#B48CFF;--sdm:#C9C1AE;--mag:#FF4D3D}\n.left,.aside{display:grid;gap:14px;min-width:0}\n.stage svg{display:block;width:100%;height:auto;border-radius:8px;background:#10151D}\n.stage svg text{font-family:var(--f-body)}\n.now h4{font-size:1.5rem}\n.kind{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--acc)}\n.place{font-size:.9rem;font-weight:700}\n.procs{display:grid;grid-template-columns:1fr 1fr;gap:8px}\n.procs .btn{text-align:left;display:grid;gap:2px;font-size:.88rem}\n.procs .btn small{font-weight:400;color:var(--muted);font-size:.75rem}\n.route{margin:0;padding-left:1.4em;display:grid;gap:4px;font-size:.88rem}\n.route li.no{color:var(--warn)}\n@media (max-width:420px){.procs{grid-template-columns:1fr}}\n", "<div class=\"g\">\n  <div class=\"bar\">\n    <div class=\"goalrow\"><h4 id=\"lvName\">Big Crystals</h4><span class=\"goal\" id=\"lvGoal\"></span></div>\n    <nav class=\"levels\" id=\"levels\" aria-label=\"Levels\"></nav>\n  </div>\n  <div class=\"cols\">\n    <div class=\"left\">\n      <div class=\"stage\" id=\"stage\"><svg id=\"map\" viewBox=\"0 0 640 380\" role=\"img\" aria-label=\"Rock cycle map showing every rock and the route taken so far.\"></svg></div>\n      <div class=\"panel\">\n        <span class=\"label\">Your route</span>\n        <ol class=\"route\" id=\"route\"></ol>\n      </div>\n    </div>\n    <div class=\"aside\">\n      <div class=\"panel now\">\n        <div class=\"bar\"><span class=\"label\">Your rock</span><span class=\"chip\" id=\"steps\">0 steps · best 1</span></div>\n        <h4 id=\"rName\">Magma</h4>\n        <p class=\"kind\" id=\"rKind\"></p>\n        <p class=\"help\" id=\"rInfo\"></p>\n        <p class=\"place\" id=\"rPlace\"></p>\n      </div>\n      <div class=\"panel\">\n        <span class=\"label\">Choose a process</span>\n        <div class=\"procs\" id=\"procs\"></div>\n        <p class=\"msg\" id=\"msg\"></p>\n        <button class=\"btn\" id=\"restart\" type=\"button\">Start over</button>\n      </div>\n    </div>\n  </div>\n</div>\n", function(root, env){
+const ROCKS = {
+  magma:{name:"Magma", kind:"Melted rock", info:"Rock so hot it melted. It's a thick, glowing liquid deep underground."},
+  granite:{name:"Granite", kind:"Igneous", info:"Magma that cooled slowly underground, so it grew big crystals you can see."},
+  basalt:{name:"Basalt", kind:"Igneous", info:"Lava that cooled fast at the surface, so its crystals are tiny. Ocean floors are made of it."},
+  sand:{name:"Sand", kind:"Sediment", info:"Tiny grains of quartz broken off rocks like granite."},
+  mud:{name:"Mud", kind:"Sediment", info:"Very fine clay and silt from rocks like basalt and shale."},
+  shells:{name:"Shells", kind:"Sediment", info:"Shells and skeletons of sea creatures piling up on a sea floor."},
+  sandstone:{name:"Sandstone", kind:"Sedimentary", info:"Sand grains pressed and cemented together. Pictured Rocks is sandstone."},
+  shale:{name:"Shale", kind:"Sedimentary", info:"Mud squeezed into thin layers that split apart easily."},
+  limestone:{name:"Limestone", kind:"Sedimentary", info:"Old shells cemented together. Petoskey stones are fossils in limestone."},
+  quartzite:{name:"Quartzite", kind:"Metamorphic", info:"Sandstone baked and squeezed until its grains fused. Very hard."},
+  slate:{name:"Slate", kind:"Metamorphic", info:"Shale squeezed flat into smooth sheets. Used for roofs and chalkboards."},
+  marble:{name:"Marble", kind:"Metamorphic", info:"Limestone changed by heat and pressure. Used for statues and tile."},
+  gneiss:{name:"Gneiss", kind:"Metamorphic", info:"Granite squeezed so hard its minerals lined up in stripes."},
+};
+const PLACES = {surface:"At the surface", under:"Buried underground", deep:"Deep underground (very hot)"};
+const SEDIMENT = {granite:"sand", sandstone:"sand", quartzite:"sand", gneiss:"sand", basalt:"mud", shale:"mud", slate:"mud"};
+const LITHIFY = {sand:"sandstone", mud:"shale", shells:"limestone"};
+const META = {sandstone:"quartzite", shale:"slate", limestone:"marble", granite:"gneiss"};
+const PROCS = [
+  {id:"cool", name:"Cool slowly", sub:"Magma cools underground"},
+  {id:"erupt", name:"Erupt", sub:"Lava cools fast in the air"},
+  {id:"weather", name:"Weather & erode", sub:"Break into grains, wash away"},
+  {id:"deposit", name:"Deposit & compact", sub:"Settle in layers, get pressed"},
+  {id:"squeeze", name:"Heat & squeeze", sub:"Change without melting"},
+  {id:"uplift", name:"Uplift", sub:"Mountains push rock up"},
+  {id:"sink", name:"Sink at a plate edge", sub:"Get dragged down deep"},
+  {id:"melt", name:"Melt", sub:"Get hot enough to turn liquid"},
+];
+const RLEVELS = [
+  {name:"Big Crystals", start:"magma", place:"deep", target:"granite", goal:"Turn magma into granite with big crystals."},
+  {name:"Beach Day", start:"granite", place:"under", target:"sandstone", goal:"Buried granite needs to become sandstone."},
+  {name:"Statue Stone", start:"shells", place:"surface", target:"marble", goal:"Turn a pile of shells into marble for a statue."},
+  {name:"Slate Roof", start:"basalt", place:"surface", target:"slate", goal:"Turn basalt from a lava flow into slate."},
+  {name:"Back to Lava", start:"marble", place:"under", target:"basalt", goal:"Turn marble into basalt. Every rock can become every other rock."},
+  {name:"The Long Way", start:"basalt", place:"surface", target:"quartzite", goal:"Basalt has no quartz sand in it. Find the long road to quartzite."},
+];
+function apply(s, p){
+  const r = s.rock, kind = ROCKS[r].kind, solid = r!=="magma" && kind!=="Sediment";
+  const no = why => ({ok:false, why});
+  switch(p){
+    case "cool": if(r!=="magma") return no("Only magma can cool into igneous rock.");
+      return {ok:true, s:{rock:"granite", place:"under"}, why:"The magma cooled slowly underground, over thousands of years. Slow cooling grows big crystals: granite."};
+    case "erupt": if(r!=="magma") return no("Only magma can erupt from a volcano.");
+      return {ok:true, s:{rock:"basalt", place:"surface"}, why:"The magma erupted as lava and cooled in days. Fast cooling makes tiny crystals: basalt."};
+    case "weather": if(s.place!=="surface") return no("Weathering happens where rain, ice and wind can reach. Get the rock to the surface first.");
+      if(!solid) return no(kind==="Sediment" ? "This is already loose sediment." : "Only solid rock can be weathered.");
+      if(r==="limestone"||r==="marble") return no("Rainwater slowly dissolves "+ROCKS[r].name.toLowerCase()+" instead of breaking it into grains. Try another route.");
+      return {ok:true, s:{rock:SEDIMENT[r], place:"surface"}, why:`Rain, ice and wind broke the ${ROCKS[r].name.toLowerCase()} into ${SEDIMENT[r]}, and rivers carried it away.`};
+    case "deposit": if(kind!=="Sediment") return no("Only loose sediment (sand, mud or shells) can settle and be pressed into rock.");
+      return {ok:true, s:{rock:LITHIFY[r], place:"under"}, why:`Layer after layer piled on top until the ${r} was pressed and cemented into ${ROCKS[LITHIFY[r]].name.toLowerCase()}.`};
+    case "squeeze": if(s.place==="surface") return no("Not enough heat or pressure at the surface. The rock needs to be buried first.");
+      if(kind==="Metamorphic") return no("It's already metamorphic. Any more heat would melt it.");
+      if(!META[r]) return no(r==="magma" ? "Magma is liquid. It has to cool into rock first." : r==="basalt" ? "In this game, basalt can't be squeezed into anything you need. Find another route." : "Sediment has to become rock first.");
+      return {ok:true, s:{rock:META[r], place:s.place}, why:`Heat and pressure changed the ${ROCKS[r].name.toLowerCase()} into ${ROCKS[META[r]].name.toLowerCase()} without melting it.`};
+    case "uplift": if(s.place==="surface") return no("It's already at the surface.");
+      if(r==="magma") return no("Magma can't be lifted. It has to cool or erupt.");
+      return {ok:true, s:{rock:r, place:"surface"}, why:"Colliding plates pushed up mountains, and erosion wore away the rock on top. It's at the surface now."};
+    case "sink": if(s.place==="deep") return no("It's already deep.");
+      if(kind==="Sediment") return no("Loose sediment has to become rock first.");
+      return {ok:true, s:{rock:r, place:"deep"}, why:"At a plate boundary, one plate slid under another and dragged the rock deep into the hot mantle."};
+    case "melt": if(r==="magma") return no("It's already melted.");
+      if(s.place!=="deep") return no("Not hot enough here. Rock only melts deep underground.");
+      return {ok:true, s:{rock:"magma", place:"deep"}, why:"Deep down it got hot enough to melt into magma."};
+  }
+  return no("?");
+}
+
+
+const POS = {
+  sand:[230,62], mud:[320,62], shells:[410,62],
+  sandstone:[560,140], shale:[560,196], limestone:[560,252],
+  quartzite:[472,336], slate:[384,336], marble:[296,336], gneiss:[208,336],
+  basalt:[86,130], granite:[86,200], magma:[86,318],
+};
+const COLOR = {"Melted rock":"var(--mag)", Igneous:"var(--ign)", Sediment:"var(--sdm)", Sedimentary:"var(--sed)", Metamorphic:"var(--met)"};
+const $ = env.$;
+const bar = env.levelBar($("levels"), RLEVELS.map(l=>l.name), i => load(i));
+const BEST = [1,3,2,3,3,7];
+let li = 0, s = null, path = [], route = [];
+
+function L(){ return RLEVELS[li]; }
+function load(i){ li = i; s = {rock:L().start, place:L().place}; path = [s.rock]; route = []; env.hideCard($("stage"));
+  $("lvName").textContent = L().name; $("lvGoal").textContent = L().goal;
+  say(`Goal: ${ROCKS[L().target].name}. Pick a process to change your rock.`); render(); }
+function say(t, kind){ const m = $("msg"); m.textContent = t; m.className = "msg"+(kind?" "+kind:""); }
+function render(){
+  const r = ROCKS[s.rock];
+  $("rName").textContent = r.name; $("rKind").textContent = r.kind; $("rInfo").textContent = r.info;
+  $("rPlace").textContent = "Where: " + ({surface:"At the surface", under:"Buried underground", deep:"Deep underground, very hot"})[s.place];
+  $("steps").textContent = `${route.filter(x=>!x.no).length} steps · best ${BEST[li]}`;
+  const box = $("procs"); box.innerHTML = "";
+  const won = s.rock===L().target;
+  for(const p of PROCS){ const b = document.createElement("button"); b.type = "button"; b.className = "btn"; b.disabled = won;
+    b.innerHTML = `${p.name}<small>${p.sub}</small>`; b.onclick = () => go(p); box.appendChild(b); }
+  $("route").innerHTML = route.length ? route.map(x => `<li class="${x.no?'no':''}">${env.esc(x.t)}</li>`).join("") : '<li style="list-style:none;margin-left:-1.4em;color:var(--muted)">No steps yet.</li>';
+  drawMap();
+}
+function go(p){
+  const r = apply(s, p.id);
+  if(!r.ok){ say(r.why, "warn"); route.push({t:`${p.name}: didn't work. ${r.why}`, no:true}); render(); return; }
+  s = r.s; path.push(s.rock); route.push({t:`${p.name} → ${ROCKS[s.rock].name}. ${r.why}`});
+  say(r.why, ""); render();
+  if(s.rock===L().target){
+    bar.solve(li); const n = route.filter(x=>!x.no).length;
+    env.card($("stage"), {title:`You made ${ROCKS[s.rock].name.toLowerCase()}!`, why:"The science",
+      body:(n<=BEST[li] ? "That's the shortest possible route. " : `You took ${n} steps; the shortest route takes ${BEST[li]}. `) + "Rocks keep changing from one type to another over millions of years. No rock is permanent.",
+      buttons:[{label: li<RLEVELS.length-1?"Next level":"Play level 1 again", primary:true, onClick:()=>{ const k=li<RLEVELS.length-1?li+1:0; bar.set(k); load(k); }}, {label:"Try a shorter route", onClick:()=>load(li)}]});
+  }
+}
+$("restart").onclick = () => load(li);
+
+function drawMap(){
+  const svg = $("map");
+  const zone = (x,y,w,h,label,c) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="16" fill="${c}" fill-opacity=".07" stroke="${c}" stroke-opacity=".35"/><text x="${x+12}" y="${y+18}" font-size="11" fill="${c}" style="letter-spacing:.12em;font-family:ui-monospace,monospace">${label}</text>`;
+  const arrow = (d,label,lx,ly) => `<path d="${d}" fill="none" stroke="#93A0B2" stroke-opacity=".45" stroke-width="2" marker-end="url(#ah)"/><text x="${lx}" y="${ly}" font-size="11" fill="#93A0B2" text-anchor="middle">${label}</text>`;
+  let out = `<defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#93A0B2"/></marker>
+    <marker id="ahy" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#FFD84A"/></marker></defs>`;
+  out += zone(176,24,288,72,"SEDIMENT","#C9C1AE") + zone(498,96,126,190,"SEDIMENTARY","#E2B866") + zone(150,298,380,72,"METAMORPHIC","#B48CFF") + zone(16,92,140,140,"IGNEOUS","#FF7A45") + zone(16,280,120,80,"MAGMA","#FF4D3D");
+  out += arrow("M150 112 C 170 70, 175 60, 180 60","weather",150,52);
+  out += arrow("M466 62 C 520 62, 556 80, 558 100","deposit",528,74);
+  out += arrow("M590 288 C 590 320, 560 336, 534 336","squeeze",604,312);
+  out += arrow("M150 336 C 130 336, 128 330, 138 324","melt",146,362);
+  out += arrow("M86 278 L 86 238","cool / erupt",86,262);
+  // route
+  for(let i=1;i<path.length;i++){ const [x1,y1] = POS[path[i-1]], [x2,y2] = POS[path[i]]; if(path[i-1]===path[i]) continue;
+    const mx = (x1+x2)/2 + (y2-y1)*.12, my = (y1+y2)/2 - (x2-x1)*.12;
+    out += `<path d="M${x1} ${y1} Q ${mx} ${my} ${x2} ${y2}" fill="none" stroke="#FFD84A" stroke-width="3" stroke-opacity=".85" stroke-dasharray="6 4" marker-end="url(#ahy)"/>`;
+    out += `<circle cx="${mx}" cy="${my}" r="9" fill="#0B0F15" stroke="#FFD84A"/><text x="${mx}" y="${my+4}" font-size="11" text-anchor="middle" fill="#FFD84A" style="font-family:ui-monospace,monospace">${i}</text>`; }
+  // nodes
+  for(const id in POS){ const [x,y] = POS[id], r = ROCKS[id], c = COLOR[r.kind], cur = id===s.rock, goal = id===L().target;
+    const w = Math.max(64, r.name.length*8.2+20);
+    if(goal) out += `<rect x="${x-w/2-6}" y="${y-19}" width="${w+12}" height="38" rx="19" fill="none" stroke="#FFD84A" stroke-width="2" stroke-dasharray="5 4"/><text x="${x}" y="${y-24}" font-size="10" text-anchor="middle" fill="#FFD84A" style="letter-spacing:.14em;font-family:ui-monospace,monospace">GOAL</text>`;
+    out += `<rect x="${x-w/2}" y="${y-13}" width="${w}" height="26" rx="13" fill="${cur?c:"#1B2330"}" stroke="${c}" stroke-width="${cur?3:1.5}" ${cur?'style="filter:drop-shadow(0 0 8px '+c+')"':''}/>`;
+    out += `<text x="${x}" y="${y+4.5}" font-size="13" text-anchor="middle" fill="${cur?"#0B0F15":"#E9EEF5"}" font-weight="${cur?700:400}">${r.name}</text>`; }
+  // where marker
+  const where = {surface:"AT THE SURFACE", under:"BURIED", deep:"DEEP & HOT"}[s.place];
+  const [cx,cy] = POS[s.rock];
+  out += `<text x="${cx}" y="${cy+28}" font-size="10" text-anchor="middle" fill="#E9EEF5" style="letter-spacing:.1em;font-family:ui-monospace,monospace">${where}</text>`;
+  svg.innerHTML = out;
+}
+load(0);
+
+});
+})();</script></section>
+
+<section class="sec related" id="more"><div><p class="kicker">Keep exploring</p><h2>Related lessons</h2></div><p class="idea"> Up next: <a href="unit-06-natural-hazards.html">Unit 6: Natural Hazards</a>. Overlap alert: ideas you have already met are marked above as "you may already have learned".</p><ul><li><a href="unit-02-thermal-energy.html">Unit 2: Thermal Energy</a><span class="why">Convection currents in the mantle.</span></li><li><a href="unit-03-forces-motion-and-energy.html">Unit 3: Forces, Motion &amp; Energy</a><span class="why">Forces and stress on rock.</span></li><li><a href="unit-04-weather-and-the-water-cycle.html">Unit 4: Weather &amp; the Water Cycle</a><span class="why">Weathering and erosion.</span></li><li><a href="unit-06-natural-hazards.html">Unit 6: Natural Hazards</a><span class="why">Earthquakes, volcanoes, and tsunamis.</span></li><li><a href="unit-08-classifying-life.html">Unit 8: Classifying Life</a><span class="why">Fossils and the history of life.</span></li><li><a href="../7th/unit-7.7-earth-resources-and-human-impact.html">Unit 7.7: Earth Resources &amp; Human Impact</a><span class="why">Grade 7: Earth's interior and resources.</span></li><li><a href="../7th/unit-7.9-adaptation-and-earth-s-history.html">Unit 7.9: Adaptation &amp; Earth's History</a><span class="why">Grade 7: rock layers and fossils in time.</span></li></ul></section>
+</main>
+
+<footer>Built for sixth-grade tutoring. Aligned with NGSS MS-ESS2-1 (rock cycle), MS-ESS2-2 (processes that shape Earth's surface), MS-ESS2-3 (plate tectonics evidence), MS-ETS1-1 to 1-4 (the riverbank guard), and the OpenSciEd-style 6th grade plate tectonics and rock cycling strand. Numbers are rounded teaching values.</footer>
+
+<script>
+(function(){
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const safe=fn=>{try{fn()}catch(e){console.error(e)}};
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const setPressed=(g,b)=>$$('button',g).forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));
+const lerp=(a,b,t)=>a+(b-a)*t;
+
+/* ===== 1 layers ===== */
+const R0=6371;
+const LAY=[{n:'Inner core',a:5150,b:6371,c:'var(--beam)'},{n:'Outer core',a:2890,b:5150,c:'var(--absorb)'},{n:'Mantle',a:35,b:2890,c:'var(--reflect)'},{n:'Crust',a:0,b:35,c:'var(--transmit)'}];
+const layerAt=d=>LAY.find(l=>d>=l.a&&d<=l.b)||LAY[0];
+const TP=[[0,15],[35,600],[100,1300],[700,1900],[2890,3700],[5150,5000],[6371,5400]];
+const tempAt=d=>{ for(let i=0;i<TP.length-1;i++){ const a=TP[i], b=TP[i+1]; if(d<=b[0]) return lerp(a[1],b[1],(d-a[0])/(b[0]-a[0])); } return 5400; };
+const presAt=d=>d<35?d*0.03:d<2890?1.0+(d-35)*0.0011*2.9:d<5150?136+(d-2890)*.0087:329+(d-5150)*.0125; // approx GPa, display only (rounded)
+safe(()=>{
+  const sl=$('#dep'), svg=$('#earthSvg'), rd=$('#depR');
+  const cx=160, cy=160, k=140/R0;
+  function draw(){
+    const d=+sl.value; $('#depV').textContent=`${d.toLocaleString()} km (${Math.round(d*.621).toLocaleString()} mi)`;
+    const r=(R0-d)*k, ang=-1.1, mx=cx+Math.cos(ang)*r, my=cy+Math.sin(ang)*r;
+    svg.innerHTML=`<circle cx="${cx}" cy="${cy}" r="${140}" style="fill:var(--reflect);fill-opacity:.35;stroke:var(--ink);stroke-width:2"/>
+      <circle cx="${cx}" cy="${cy}" r="${3480*k}" style="fill:var(--absorb);fill-opacity:.7;stroke:var(--ink);stroke-width:2"/>
+      <circle cx="${cx}" cy="${cy}" r="${1220*k}" style="fill:var(--beam);stroke:var(--ink);stroke-width:2"/>
+      <circle cx="${cx}" cy="${cy}" r="140" style="fill:none;stroke:var(--transmit);stroke-width:5"/>
+      <line x1="${cx+Math.cos(ang)*140}" y1="${cy+Math.sin(ang)*140}" x2="${mx}" y2="${my}" style="stroke:var(--ink);stroke-width:3"/>
+      <circle cx="${mx}" cy="${my}" r="8" style="fill:var(--surface);stroke:var(--ink);stroke-width:3"/>
+      <text x="160" y="312" font-size="13" text-anchor="middle">crust ring exaggerated; real crust is under 1% of the radius</text>
+      <text x="${cx}" y="${cy-84}" font-size="14" text-anchor="middle" style="font-weight:700">mantle</text><text x="${cx}" y="${cy-30}" font-size="13" text-anchor="middle" style="font-weight:700">outer core</text><text x="${cx}" y="${cy+4}" font-size="12" text-anchor="middle" style="font-weight:700;fill:var(--beam-ink)">inner</text>`;
+    const l=layerAt(d);
+    rd.innerHTML=`At <b>${d.toLocaleString()} km</b> you're in the <b>${l.n.toLowerCase()}</b>. Temperature about <b>${(Math.round(tempAt(d)/10)*10).toLocaleString()} °C</b>.`;
+    tdraw(d);
+  }
+  const ts=$('#tempSvg'), X=d=>60+d/R0*540, Y=t=>220-t/6000*200;
+  function tdraw(d){
+    let bands=''; LAY.forEach(l=>{ bands+=`<rect x="${X(l.a)}" y="20" width="${Math.max(2,X(l.b)-X(l.a))}" height="200" style="fill:${l.c};fill-opacity:.15"/>`; });
+    let g=''; [0,2000,4000,6000].forEach(v=>{ g+=`<line x1="60" y1="${Y(v)}" x2="600" y2="${Y(v)}" style="stroke:var(--line)"/><text x="52" y="${Y(v)+5}" font-size="13" text-anchor="end">${v.toLocaleString()}</text>`; });
+    [0,1500,3000,4500,6000].forEach(v=>{ g+=`<text x="${X(v)}" y="240" font-size="13" text-anchor="middle">${v.toLocaleString()}</text>`; });
+    let ln=''; for(let i=0;i<=120;i++){ const dd=i/120*R0; ln+=`${i?'L':'M'}${X(dd).toFixed(1)} ${Y(tempAt(dd)).toFixed(1)}`; }
+    ts.innerHTML=`${bands}${g}<line x1="60" y1="220" x2="600" y2="220" style="stroke:var(--ink);stroke-width:2"/><line x1="60" y1="20" x2="60" y2="220" style="stroke:var(--ink);stroke-width:2"/>
+      <path d="${ln}" style="fill:none;stroke:var(--absorb);stroke-width:4"/>
+      <text x="${X(1400)}" y="${Y(1400)-14}" font-size="13">mantle</text><text x="${X(4000)}" y="${Y(4800)-10}" font-size="13">outer core</text><text x="${X(5750)}" y="${Y(5400)-10}" font-size="13" text-anchor="middle">inner core</text>
+      <circle cx="${X(d)}" cy="${Y(tempAt(d))}" r="8" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/>
+      <text x="330" y="258" font-size="14" text-anchor="middle">depth (km)</text><text transform="rotate(-90 14 120)" x="14" y="120" font-size="14" text-anchor="middle">temperature (°C)</text>`;
+  }
+  sl.addEventListener('input',draw); draw();
+  $('#layBars').innerHTML=LAY.slice().reverse().map(l=>{ const th=l.b-l.a; return `<div class="brow" style="grid-template-columns:100px minmax(0,1fr)"><span class="lab">${l.n}</span><div class="stack" role="img" aria-label="${l.n}: ${th.toLocaleString()} kilometers thick"><div class="seg" style="width:${Math.max(.8,th/2890*100)}%;background:${l.c};color:var(--ink)">${th/2890>.3?th.toLocaleString()+' km':''}</div><span style="margin-left:8px;font-size:.82rem;align-self:center;white-space:nowrap">${th/2890<=.3?th.toLocaleString()+' km':''}</span></div></div>`; }).join('');
+});
+
+/* ===== 2 ===== */
+safe(()=>{
+  const chips=$('#bdChips'), svg=$('#bdSvg'), rd=$('#bdR');
+  function draw(k){
+    let s='';
+    if(k==='div'){
+      s=`<rect x="0" y="130" width="480" height="110" style="fill:var(--absorb);fill-opacity:.35"/>
+        <path d="M0 130 V100 H190 L215 120 L240 140 L265 120 L290 100 H480 V130z" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:3"/>
+        <path d="M240 200 V140" class="flow" style="stroke:var(--absorb);stroke-width:7;fill:none"/><path d="M240 136 l-10 16 h20z" style="fill:var(--absorb)"/>
+        <line x1="180" y1="90" x2="60" y2="90" style="stroke:var(--reflect);stroke-width:6" marker-end="url(#mReflect)"/><line x1="300" y1="90" x2="420" y2="90" style="stroke:var(--reflect);stroke-width:6" marker-end="url(#mReflect)"/>
+        <text x="240" y="40" font-size="16" text-anchor="middle" style="font-weight:700">plates pull apart</text><text x="240" y="226" font-size="14" text-anchor="middle">magma rises and makes new crust</text>`;
+    } else if(k==='con'){
+      s=`<rect x="0" y="130" width="480" height="110" style="fill:var(--absorb);fill-opacity:.35"/>
+        <path d="M0 130 V100 H210 L260 120 L300 130 H480 V90 L440 70 L400 40 L360 70 L330 100 H260 L220 110z" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:3"/>
+        <path d="M0 126 H210 Q280 150 340 230" style="fill:none;stroke:var(--ink);stroke-width:7"/>
+        <line x1="40" y1="90" x2="150" y2="90" style="stroke:var(--reflect);stroke-width:6" marker-end="url(#mReflect)"/><line x1="450" y1="150" x2="380" y2="150" style="stroke:var(--reflect);stroke-width:6;opacity:.8" marker-end="url(#mReflect)"/>
+        <text x="240" y="30" font-size="16" text-anchor="middle" style="font-weight:700">plates collide, one sinks</text><text x="120" y="60" font-size="14" text-anchor="middle">ocean plate (denser)</text><text x="400" y="20" font-size="14" text-anchor="middle">mountains + volcanoes</text>`;
+    } else {
+      s=`<rect width="480" height="240" style="fill:#7A9A5C;fill-opacity:.35"/>
+        <rect x="20" y="30" width="200" height="85" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:3"/><rect x="260" y="125" width="200" height="85" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:3"/>
+        <path d="M20 120 H460" style="stroke:var(--absorb);stroke-width:4;stroke-dasharray:10 6"/>
+        <line x1="60" y1="75" x2="180" y2="75" style="stroke:var(--reflect);stroke-width:6" marker-end="url(#mReflect)"/><line x1="440" y1="170" x2="300" y2="170" style="stroke:var(--reflect);stroke-width:6" marker-end="url(#mReflect)"/>
+        <text x="240" y="24" font-size="16" text-anchor="middle" style="font-weight:700">plates slide past each other (top view)</text><text x="240" y="236" font-size="14" text-anchor="middle" style="fill:var(--absorb);font-weight:700">fault line</text>`;
+    }
+    svg.innerHTML=s;
+    rd.innerHTML={div:'<b>Divergent:</b> plates move apart. Magma wells up and cools into new crust. Examples: the Mid-Atlantic Ridge, Iceland, East Africa\'s rift valley.',con:'<b>Convergent:</b> plates push together. A dense ocean plate sinks under a lighter one (subduction), or two continents crumple into mountains. Examples: Andes, Himalayas, Japan.',tra:'<b>Transform:</b> plates grind sideways. No crust is made or destroyed, but the stuck plates cause strong earthquakes. Example: the San Andreas Fault.'}[k];
+  }
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; setPressed(chips,b); draw(b.dataset.b); }); draw('div');
+});
+safe(()=>{
+  const sl=$('#myr'), svg=$('#atlSvg'), rd=$('#myrR'), SP=2.5; // cm per year
+  function draw(){
+    const m=+sl.value, km=SP*10*m, gap=Math.min(360,km/100*1.2); $('#myrV').textContent=m;
+    const lx=320-gap/2, rx=320+gap/2;
+    svg.innerHTML=`<rect x="0" y="100" width="640" height="70" style="fill:var(--absorb);fill-opacity:.3"/>
+      <rect x="0" y="82" width="${lx}" height="30" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:2.5"/><rect x="${rx}" y="82" width="${640-rx}" height="30" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:2.5"/>
+      <rect x="${lx}" y="60" width="${Math.max(0,gap)}" height="52" style="fill:var(--reflect);fill-opacity:.45"/>
+      <line x1="${lx-8}" y1="140" x2="${Math.max(10,lx-60)}" y2="140" style="stroke:var(--reflect);stroke-width:5" marker-end="url(#mReflect)"/><line x1="${rx+8}" y1="140" x2="${Math.min(630,rx+60)}" y2="140" style="stroke:var(--reflect);stroke-width:5" marker-end="url(#mReflect)"/>
+      <text x="${lx/2}" y="50" font-size="14" text-anchor="middle" style="font-weight:700">South America</text><text x="${(rx+640)/2}" y="50" font-size="14" text-anchor="middle" style="font-weight:700">Africa</text>
+      <text x="320" y="24" font-size="14" text-anchor="middle">${m===0?'start':'ocean gap added'}</text>`;
+    rd.innerHTML=`At <b>2.5 cm per year</b> (about the speed your fingernails grow, a bit slower), the plates move <b>${km.toLocaleString()} km</b> apart in ${m} million years. The actual Atlantic is about 5,000+ km wide, the result of roughly 180 million years.`;
+  }
+  sl.addEventListener('input',draw); draw();
+});
+safe(()=>{
+  const sl=$('#mya'), svg=$('#pangSvg'), rd=$('#myaR');
+  const AF=[[10,30],[40,10],[100,0],[140,60],[120,140],[100,220],[60,240],[40,160],[20,120],[30,90],[0,70]];
+  const SA=[[-100,60],[-60,20],[-20,10],[10,30],[0,70],[30,90],[20,120],[40,160],[10,220],[-30,250],[-60,180],[-90,120]];
+  const OX=280, OY=20, MARK=[[0,70,'Mesosaurus fossils','var(--absorb)'],[30,90,'matching rocks','var(--transmit)'],[40,160,'Glossopteris fern','var(--reflect)']];
+  const pts=a=>a.map(p=>`${p[0]},${p[1]}`).join(' ');
+  function draw(){
+    const t=+sl.value; $('#myaV').textContent=t; const gap=150*(1-t/180);
+    let m='',links='';
+    MARK.forEach(([x,y,n,c])=>{ m+=`<circle cx="${x}" cy="${y}" r="7" style="fill:${c};stroke:var(--ink);stroke-width:2"/><circle cx="${x-gap}" cy="${y}" r="7" style="fill:${c};stroke:var(--ink);stroke-width:2"/>`;
+      if(gap>6) links+=`<line x1="${x-gap}" y1="${y}" x2="${x}" y2="${y}" style="stroke:${c};stroke-width:2;stroke-dasharray:5 4"/>`; });
+    svg.innerHTML=`<g transform="translate(${OX} ${OY})">
+        <polygon points="${pts(AF)}" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:3"/>
+        <g transform="translate(${-gap} 0)"><polygon points="${pts(SA)}" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:3"/></g>
+        ${links}${m}
+        <text x="70" y="140" font-size="16" text-anchor="middle" style="font-weight:700">Africa</text><text x="${-55-gap}" y="110" font-size="14" text-anchor="middle" style="font-weight:700">South America</text>
+      </g>
+      <g font-size="13"><circle cx="20" cy="300" r="6" style="fill:var(--absorb)"/><text x="32" y="305">same fossil reptile</text><circle cx="170" cy="300" r="6" style="fill:var(--transmit)"/><text x="182" y="305">matching rock type</text><circle cx="320" cy="300" r="6" style="fill:var(--reflect)"/><text x="332" y="305">same fossil fern</text></g>`;
+    rd.innerHTML=t>=170?'<b>Pangaea:</b> the edges fit like puzzle pieces and the fossil clues line up.':t===0?'Today the continents are far apart with an ocean in between. Slide the control back in time.':`${t} million years ago the two continents were closer together.`;
+  }
+  sl.addEventListener('input',draw); draw();
+});
+safe(()=>{
+  const D=[['Fastest plate boundary (East Pacific)',15],['Pacific plate',8],['India toward Asia',5],['Your fingernails',4],['San Andreas fault',3.5],['Atlantic widening',2.5]];
+  $('#spdBars').innerHTML=D.map(([n,v])=>`<div class="brow" style="grid-template-columns:150px minmax(0,1fr)"><span class="lab">${n}</span><div class="stack" role="img" aria-label="${n}: ${v} centimeters per year"><div class="seg ${n==='Your fingernails'?'t':'r'}" style="width:${v/15*100}%">${v} cm/yr</div></div></div>`).join('');
+});
+
+/* ===== 3 ===== */
+safe(()=>{
+  const svg=$('#faultSvg'), box=$('#faultBox'), rd=$('#faultR'), log=$('#faultLog'), push=$('#pushBtn'), rs=$('#faultReset');
+  let strain=0, thr=60+Math.random()*40, n=0, slip=0;
+  function draw(){
+    const s=strain/100, spring=Math.max(10,120+s*0), off=slip;
+    svg.innerHTML=`<rect x="20" y="70" width="200" height="80" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:3"/><rect x="${240+off}" y="70" width="200" height="80" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:3"/>
+      <line x1="230" y1="60" x2="230" y2="160" style="stroke:var(--absorb);stroke-width:4;stroke-dasharray:8 5"/>
+      <text x="120" y="116" font-size="15" text-anchor="middle" style="font-weight:700">plate A</text><text x="${340+off}" y="116" font-size="15" text-anchor="middle" style="font-weight:700">plate B</text>
+      <line x1="470" y1="110" x2="445" y2="110" style="stroke:var(--ink);stroke-width:4" marker-end="url(#mInk)" opacity="0"/>
+      <rect x="60" y="176" width="360" height="18" rx="9" style="fill:var(--surface);stroke:var(--ink);stroke-width:2"/><rect x="62" y="178" width="${356*s}" height="14" rx="7" style="fill:${s>.8?'var(--absorb)':'var(--beam)'}"/>
+      <text x="240" y="212" font-size="14" text-anchor="middle">stress on the fault: ${Math.round(strain)}%</text>
+      <line x1="270" y1="40" x2="200" y2="40" style="stroke:var(--reflect);stroke-width:5" marker-end="url(#mReflect)"/><text x="290" y="45" font-size="13">plates push past each other</text>`;
+  }
+  function quake(){
+    const mag=(3.5+thr/100*3.5).toFixed(1); n++;
+    log.insertAdjacentHTML('afterbegin',`<span>Quake #${n}: magnitude ${mag} (it slipped at ${Math.round(thr)}% stress)</span>`);
+    rd.innerHTML=`<b>SNAP!</b> The plates slipped and released the stored energy: a magnitude <b>${mag}</b> earthquake. Stress drops back to zero.`;
+    strain=0; thr=60+Math.random()*40;
+    if(!reduce){ box.classList.remove('shake'); void box.offsetWidth; box.classList.add('shake'); }
+    slip=14; draw(); setTimeout(()=>{ slip=0; draw(); },reduce?0:300);
+  }
+  push.addEventListener('click',()=>{ strain+=10+Math.random()*4; if(strain>=thr){ strain=thr; draw(); quake(); } else { rd.textContent=`Stress is building (${Math.round(strain)}%). The rock is stuck, bending a little. Keep pushing.`; draw(); } });
+  rs.addEventListener('click',()=>{ strain=0; n=0; slip=0; thr=60+Math.random()*40; log.innerHTML=''; rd.textContent='Push again and again. Nobody knows exactly when it will slip.'; draw(); });
+  draw();
+});
+safe(()=>{
+  const D=[[4,13000],[5,1300],[6,130],[7,15],[8,1]]; const mx=Math.log10(13000)+.3;
+  const bars=$('#eqBars'), sl=$('#mag'), rd=$('#magR');
+  function draw(){
+    const m=+sl.value; $('#magV').textContent=m.toFixed(1);
+    bars.innerHTML=D.map(([k,v])=>`<div class="brow ${Math.floor(m)===k?'on':''}" style="grid-template-columns:120px minmax(0,1fr)"><span class="lab">Magnitude ${k}–${k+1}</span><div class="stack" role="img" aria-label="Magnitude ${k}: about ${v.toLocaleString()} per year"><div class="seg a" style="width:${(Math.log10(v)+.3)/mx*100}%">${v.toLocaleString()}/yr</div></div></div>`).join('')+'<p class="cap" style="margin-top:2px">Bar lengths use a log scale so the rare big ones stay visible.</p>';
+    const eff=m<3?'Recorded only by instruments.':m<4?'Often unnoticed. Like a truck passing.':m<5?'Felt indoors; dishes rattle. Little damage.':m<6?'Felt by everyone nearby; small damage to weak buildings.':m<7?'Strong shaking; damage in populated areas.':m<8?'Major damage over a wide area.':'Great earthquake: destruction across regions.';
+    const rel=Math.pow(31.6,m-5);
+    rd.innerHTML=`Magnitude <b>${m.toFixed(1)}</b>: ${eff} It releases about <b>${rel>=1?Math.round(rel).toLocaleString()+' times':(1/rel>=1?'1/'+Math.round(1/rel).toLocaleString():'~0')+' of'}</b> the energy of a magnitude 5.`;
+  }
+  sl.addEventListener('input',draw); draw();
+});
+
+/* ===== 4 rock cycle ===== */
+safe(()=>{
+  const N={ign:{n:'Igneous rock',eg:'granite or basalt',x:110,y:70,c:'var(--absorb)'},sed:{n:'Sedimentary rock',eg:'sandstone or limestone',x:530,y:70,c:'var(--beam)'},met:{n:'Metamorphic rock',eg:'marble or slate',x:530,y:230,c:'var(--transmit)'},mag:{n:'Magma',eg:'molten rock',x:110,y:230,c:'var(--reflect)'}};
+  const T={
+    ign:[['Weather, erode, bury and squeeze','sed','Wind and rain break the rock into sediment; layers of it get buried and pressed into stone.'],['Heat and pressure (no melting)','met','Buried deep during mountain-building, the rock is squeezed and baked, changing its minerals.'],['Melt','mag','Pushed deep into the hot mantle, the rock melts.']],
+    sed:[['Heat and pressure (no melting)','met','Deep burial bakes and squeezes the layers into a new rock.'],['Melt','mag','The rock gets so hot it melts.'],['Weather, erode, bury and squeeze','sed','Broken down and rebuilt: still sedimentary, but new rock.']],
+    met:[['Melt','mag','Extreme heat melts the rock.'],['Weather, erode, bury and squeeze','sed','Uplifted, weathered, and rebuilt as layers.'],['More heat and pressure','met','Changed again into a different metamorphic rock.']],
+    mag:[['Cool and harden','ign','Magma cools slowly underground (big crystals) or fast at the surface (tiny crystals).']]
+  };
+  const svg=$('#rcSvg'), btns=$('#rcBtns'), rd=$('#rcR'), log=$('#rcLog'); let cur='ign', steps=0; const seen=new Set(['ign']);
+  const E=[['ign','sed',250,40,420,40],['sed','met',560,110,560,190],['met','mag',420,260,250,260],['mag','ign',80,190,80,110]];
+  function draw(){
+    let s='';
+    s+=`<g style="fill:none;stroke:var(--muted);stroke-width:3" opacity=".6"><path d="M200 70 H440" marker-end="url(#mInk)"/><path d="M530 110 V190" marker-end="url(#mInk)"/><path d="M440 230 H200" marker-end="url(#mInk)"/><path d="M110 190 V110" marker-end="url(#mInk)"/><path d="M220 100 L420 200" stroke-dasharray="6 5" marker-end="url(#mInk)"/><path d="M420 120 L220 220" stroke-dasharray="6 5" opacity="0"/></g>`;
+    Object.entries(N).forEach(([k,v])=>{ const on=k===cur; s+=`<rect x="${v.x-90}" y="${v.y-34}" width="180" height="68" rx="14" style="fill:${v.c};fill-opacity:${on?.95:.25};stroke:var(--ink);stroke-width:${on?5:2}"/><text x="${v.x}" y="${v.y-2}" font-size="16" text-anchor="middle" style="font-weight:700;fill:${on?'var(--on-color)':'var(--ink)'}">${v.n}</text><text x="${v.x}" y="${v.y+18}" font-size="12" text-anchor="middle" style="fill:${on?'var(--on-color)':'var(--muted)'}">${v.eg}</text>`; });
+    s+=`<text x="320" y="30" font-size="13" text-anchor="middle">weathering, pressing</text><text x="320" y="285" font-size="13" text-anchor="middle">melting</text><text x="618" y="150" font-size="12" text-anchor="middle" transform="rotate(90 618 150)">heat + pressure</text><text x="36" y="154" font-size="12" text-anchor="middle" transform="rotate(-90 40 150)">cooling</text>`;
+    svg.innerHTML=s;
+    btns.innerHTML=T[cur].map((t,i)=>`<button class="btn ghost" type="button" data-i="${i}">${t[0]}</button>`).join('')+`<button class="btn" type="button" id="rcAuto">Auto-run 8 steps</button><button class="btn ghost" type="button" id="rcReset">Restart</button>`;
+    rd.innerHTML=`Your rock is <b>${N[cur].n.toLowerCase()}</b> (like ${N[cur].eg}). Choose what happens to it next. Steps taken: ${steps}. Rock types visited: ${seen.size} of 4.`;
+  }
+  function go(i){ const t=T[cur][i]; log.insertAdjacentHTML('afterbegin',`<span>${steps+1}. ${N[cur].n} → ${t[0].toLowerCase()} → ${N[t[1]].n}. ${t[2]}</span>`); cur=t[1]; steps++; seen.add(cur); draw(); }
+  btns.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return;
+    if(b.id==='rcReset'){ cur='ign'; steps=0; seen.clear(); seen.add('ign'); log.innerHTML=''; draw(); }
+    else if(b.id==='rcAuto'){ for(let i=0;i<8;i++){ const o=T[cur]; go(Math.floor(Math.random()*o.length)); } }
+    else go(+b.dataset.i); });
+  draw();
+});
+safe(()=>{
+  const sl=$('#cool'), cr=$('#crys'), rd=$('#coolR');
+  const HRS=[1,1e9];
+  function draw(){
+    const v=+sl.value/100, logh=lerp(0,Math.log10(8.8e8),v), hours=Math.pow(10,logh);
+    const size=Math.max(0,(logh-3.3)*.9);
+    const t=hours<24?`${hours<1.5?'about an hour':Math.round(hours)+' hours'}`:hours<8760?`${Math.round(hours/24)} days`:`${hours/8760<1000?Math.round(hours/8760).toLocaleString():(hours/8760/1000).toFixed(0)+(hours/8760<1e6?',000':'')} years`;
+    $('#coolV').textContent=hours<24?`${Math.max(1,Math.round(hours))} hour(s)`:hours<8760?`${Math.round(hours/24)} days`:`${Math.round(hours/8760).toLocaleString()} years`;
+    const cell=Math.max(4,size*16), cols=Math.ceil(300/cell), rows=Math.ceil(150/cell);
+    cr.style.gridTemplateColumns=`repeat(${cols},1fr)`;
+    let h='';
+    if(size<.03){ cr.style.gridTemplateColumns='1fr'; h=`<div style="background:#1B1F2A;opacity:.95"></div>`; }
+    else { const pal=['#B9B2A6','#D9C9B8','#8D8579','#E5B7A0','#6F6A62']; for(let i=0;i<cols*rows;i++){ h+=`<div style="background:${pal[(i*7+Math.floor(i/cols)*3)%5]}"></div>`; } }
+    cr.innerHTML=h; cr.style.gridTemplateRows=size<.03?'1fr':`repeat(${rows},1fr)`;
+    const kind=size<.03?'glassy, no crystals (like obsidian)':size<1?'fine-grained, crystals too small to see (like basalt)':'coarse-grained, big visible crystals (like granite)';
+    rd.innerHTML=`Cooling for <b>${$('#coolV').textContent}</b> gives crystals about <b>${size<.03?'0':size.toFixed(1)} mm</b>: ${kind}. Slow cooling gives atoms time to find each other and grow big crystals.`;
+  }
+  sl.addEventListener('input',draw); draw();
+});
+
+/* ===== 5 ===== */
+safe(()=>{
+  const P=[{n:'Clay and silt',v:.1,s:3},{n:'Sand',v:.3,s:6},{n:'Gravel',v:1,s:10},{n:'Cobbles',v:2.5,s:15},{n:'Boulders',v:4.5,s:22}];
+  const sl=$('#spd'), svg=$('#srSvg'), rd=$('#srR'), X=v=>150+v/5*440;
+  function draw(){
+    const sp=+sl.value; $('#spdV').textContent=`${sp.toFixed(1)} m/s`;
+    let s='';
+    P.forEach((p,i)=>{ const y=30+i*40, mv=sp>=p.v;
+      s+=`<text x="10" y="${y+5}" font-size="14" style="font-weight:700">${p.n}</text><rect x="${X(0)}" y="${y-10}" width="${X(5)-X(0)}" height="22" rx="4" style="fill:var(--surface-2)"/>
+        <rect x="${X(p.v)}" y="${y-10}" width="${X(5)-X(p.v)}" height="22" rx="4" style="fill:var(--reflect);fill-opacity:${mv?.85:.25}"/>
+        <circle cx="${X(p.v)-14}" cy="${y+1}" r="${p.s/2}" style="fill:${mv?'var(--absorb)':'var(--muted)'};stroke:var(--ink);stroke-width:1.5"/>
+        <text x="${X(5)+6}" y="${y+5}" font-size="12">${mv?'moving':'stays put'}</text>`; });
+    s+=`<line x1="${X(sp)}" y1="10" x2="${X(sp)}" y2="214" style="stroke:var(--ink);stroke-width:3;stroke-dasharray:5 4"/>`;
+    [0,1,2,3,4,5].forEach(v=>{ s+=`<text x="${X(v)}" y="226" font-size="12" text-anchor="middle">${v}</text>`; });
+    svg.innerHTML=s;
+    const m=P.filter(p=>sp>=p.v).map(p=>p.n.toLowerCase());
+    rd.innerHTML=m.length?`At <b>${sp.toFixed(1)} m/s</b> the water can carry: <b>${m.join(', ')}</b>. Heavier pieces stay behind.`:'Too slow: even fine clay is settling out.';
+  }
+  sl.addEventListener('input',draw); draw();
+});
+
+/* ===== quiz ===== */
+safe(()=>{
+  const Q=[
+    {q:'Which layer of Earth is liquid?',o:['Mantle','Outer core','Inner core'],a:1,e:'The outer core is molten iron and nickel. The inner core is solid from pressure.'},
+    {q:'What drives plate movement?',o:['Slow circulation of hot rock in the mantle','The Moon\'s pull','Ocean waves'],a:0,e:'Mantle convection carries the plates, like crackers on simmering oatmeal.'},
+    {q:'Plates grinding sideways past each other form a...',o:['Divergent boundary','Convergent boundary','Transform boundary'],a:2,e:'Transform boundaries slide sideways, like the San Andreas Fault.'},
+    {q:'A magnitude 7 earthquake releases about how much more energy than a magnitude 6?',o:['About 2 times','About 10 times','About 32 times'],a:2,e:'Each magnitude step is about 32 times more energy.'},
+    {q:'A rock is squeezed and baked deep underground without melting. It becomes...',o:['Igneous','Sedimentary','Metamorphic'],a:2,e:'Heat and pressure without melting makes metamorphic rock.'},
+    {q:'Fast river water slows down at the inside of a bend. What happens?',o:['It erodes the bank','It deposits sand','It freezes'],a:1,e:'Slow water can\'t carry sediment, so it drops it (deposition).'}
+  ];
+  const box=$('#quiz'), sc=$('#quizScore'); let right=0;
+  box.innerHTML=Q.map((x,i)=>`<div class="q" data-i="${i}"><h4>${i+1}. ${x.q}</h4><div class="opts">${x.o.map((t,j)=>`<button class="opt" type="button" data-j="${j}">${t}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
+  box.addEventListener('click',e=>{
+    const b=e.target.closest('.opt'); if(!b||b.disabled)return;
+    const row=b.closest('.q'), x=Q[+row.dataset.i], ok=+b.dataset.j===x.a;
+    $$('.opt',row).forEach(o=>{ o.disabled=true; if(+o.dataset.j===x.a) o.classList.add('good'); });
+    if(!ok) b.classList.add('bad'); else right++;
+    $('.fb',row).textContent=(ok?'Correct. ':'Not quite. ')+x.e; sc.textContent=`${right} of ${Q.length} correct`;
+  });
+});
+})();
+</script>

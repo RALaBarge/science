@@ -1,0 +1,816 @@
+<title>Stars Galaxies and the Universe</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout concept: one long lesson column. Each concept opens with a one-sentence big idea, then a grid of labelled visual aids
+   (Analogy, Diagram, Try it, Data, Real world) that collapses to one column on phones.
+   Color roles are fixed for the whole page: amber = incoming light, blue = reflected, teal = transmitted, orange = absorbed. */
+:root{
+  --bg:#F2F5FA; --surface:#FFFFFF; --surface-2:#E8EDF6; --ink:#12172B; --muted:#47506E; --line:#D0D8E8;
+  --beam:#F2A900; --beam-ink:#1A1400; --reflect:#2B66E8; --absorb:#D6450B; --transmit:#0B7F70; --on-color:#FFFFFF;
+  --red:#D93036; --green:#25904F; --blue:#3558D6; --shade:#222A4A;
+  --font-display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --font-body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+  --font-mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C1022; --surface:#151A33; --surface-2:#1D2444; --ink:#EDF0FB; --muted:#A8B1CE; --line:#2B3459;
+    --beam:#FFC93C; --beam-ink:#1A1400; --reflect:#7BA2FF; --absorb:#FF8F5C; --transmit:#46D6C0; --on-color:#0B1020;
+    --red:#FF6A70; --green:#4FCB85; --blue:#7C97FF; --shade:#02040B; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C1022; --surface:#151A33; --surface-2:#1D2444; --ink:#EDF0FB; --muted:#A8B1CE; --line:#2B3459;
+  --beam:#FFC93C; --beam-ink:#1A1400; --reflect:#7BA2FF; --absorb:#FF8F5C; --transmit:#46D6C0; --on-color:#0B1020;
+  --red:#FF6A70; --green:#4FCB85; --blue:#7C97FF; --shade:#02040B; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--font-body); font-size:17px; line-height:1.55;
+  padding-block:0 72px;
+  padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+main,.hero{max-width:920px;margin:0 auto}
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance;margin:0;line-height:1.1}
+p{margin:0}
+a{color:inherit}
+svg{display:block;width:100%;height:auto}
+svg text{font-family:var(--font-body);fill:var(--ink)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--reflect);outline-offset:2px}
+
+/* hero */
+.hero{padding-block:28px 8px;display:grid;gap:18px}
+.kicker{font-family:var(--font-mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
+.lede{font-size:clamp(1.1rem,3.4vw,1.35rem);max-width:34em;text-wrap:pretty}
+.hero-art{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:10px 12px}
+.howto{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:.92rem;color:var(--muted)}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);margin-top:18px;border-bottom:1px solid var(--line);
+  margin-inline:auto;max-width:920px}
+.nav ul{list-style:none;margin:0;padding:8px 0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin}
+.nav a{display:block;white-space:nowrap;text-decoration:none;font-size:.9rem;padding:7px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface)}
+.nav a:hover{border-color:var(--ink)}
+
+/* sections */
+.sec{padding-block:52px 6px;scroll-margin-top:68px;display:grid;gap:20px}
+.sec h2{font-size:clamp(1.9rem,6vw,2.7rem);font-weight:800;letter-spacing:-.02em}
+.idea{font-family:var(--font-display);font-size:clamp(1.25rem,4.4vw,1.75rem);line-height:1.25;font-weight:700;text-wrap:balance;max-width:28em}
+.idea mark{background:linear-gradient(transparent 58%,color-mix(in srgb,var(--beam) 50%,transparent) 58%);color:inherit}
+.aids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.aid{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.aid.wide{grid-column:1/-1}
+.aid h3{font-size:1.2rem;font-weight:700}
+.aid p.cap{font-size:.95rem;color:var(--muted)}
+.aid p.cap b{color:var(--ink)}
+.tag{align-self:flex-start;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;padding:3px 9px;border-radius:999px;
+  background:color-mix(in srgb,var(--tint) 24%,var(--surface));border:1px solid color-mix(in srgb,var(--tint) 55%,var(--line))}
+.tag.analogy{--tint:var(--beam)} .tag.diagram{--tint:var(--reflect)} .tag.try{--tint:var(--transmit)} .tag.data{--tint:var(--absorb)} .tag.real{--tint:var(--muted)}
+.stage{background:var(--surface-2);border-radius:10px;padding:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:.92rem;padding:7px 13px;min-height:40px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.ctl{display:grid;gap:6px}
+.ctl label{font-size:.92rem;font-weight:700}
+input[type=range]{width:100%;accent-color:var(--beam);height:32px}
+.readout{font-size:1rem}
+.readout b{font-family:var(--font-mono);font-weight:500}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{display:inline-flex;gap:6px;align-items:baseline;padding:5px 11px;border-radius:999px;font-family:var(--font-mono);font-size:.84rem;font-weight:500;background:var(--c);color:var(--on-color)}
+.pill.r{--c:var(--reflect)} .pill.a{--c:var(--absorb)} .pill.t{--c:var(--transmit)}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.trio>div{display:grid;gap:6px;align-content:start;min-width:0}
+.trio h4{margin:0;font-family:var(--font-display);font-size:1.05rem}
+.trio p{font-size:.93rem;color:var(--muted)}
+.trio svg{background:var(--surface-2);border-radius:10px}
+.swatch-r{color:var(--reflect);font-weight:700}.swatch-t{color:var(--transmit);font-weight:700}.swatch-a{color:var(--absorb);font-weight:700}
+
+/* stacked bars */
+.bars{display:grid;gap:9px}
+.brow{display:grid;grid-template-columns:104px minmax(0,1fr);gap:10px;align-items:center;font-size:.9rem}
+.brow.on .lab{font-weight:700}
+.stack{display:flex;height:28px;border-radius:7px;overflow:hidden;background:var(--surface-2);outline:2px solid transparent;outline-offset:2px}
+.brow.on .stack{outline-color:var(--ink)}
+.seg{display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:.72rem;color:var(--on-color);min-width:0;overflow:hidden}
+.seg.r{background:var(--reflect)}.seg.t{background:var(--transmit)}.seg.a{background:var(--absorb)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.88rem}
+.legend span::before{content:"";display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--c)}
+.legend .r{--c:var(--reflect)}.legend .t{--c:var(--transmit)}.legend .a{--c:var(--absorb)}
+
+/* sort game, quiz */
+.items{display:grid;gap:10px}
+.item{display:grid;gap:6px;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.item .nm{font-weight:700}
+.item .opts{display:flex;flex-wrap:wrap;gap:6px}
+.opt{font-size:.85rem;padding:6px 10px;border-radius:8px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;min-height:36px;text-align:left}
+.opt:hover:not([disabled]){border-color:var(--ink)}
+.opt.good{background:var(--transmit);color:var(--on-color);border-color:var(--transmit)}
+.opt.bad{background:var(--absorb);color:var(--on-color);border-color:var(--absorb)}
+.fb{font-size:.88rem;color:var(--muted)}
+.score{font-family:var(--font-mono);font-size:.9rem}
+.q{display:grid;gap:10px;padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.q h4{margin:0;font-size:1.05rem;font-family:var(--font-body);font-weight:700}
+.q .opts{display:grid;gap:8px}
+
+/* tables */
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:.92rem;min-width:420px}
+.tbl th,.tbl td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+.tbl th{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+/* see-through demo */
+.seebox{position:relative;border-radius:10px;overflow:hidden;background:var(--surface-2);padding:22px 16px;min-height:130px;display:grid;place-items:center}
+.seetext{font-family:var(--font-display);font-weight:800;font-size:clamp(1.2rem,5vw,1.7rem);text-align:center;letter-spacing:.02em;transition:filter .2s,opacity .2s}
+.seesheets{position:absolute;inset:0;pointer-events:none;background:var(--surface);transition:opacity .2s}
+.meter{height:12px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--transmit);transition:width .2s}
+
+/* canvas */
+canvas{width:100%;aspect-ratio:640/260;display:block;border-radius:10px;background:var(--surface-2)}
+.tally{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;font-size:.85rem}
+.tally div{padding:8px;border-radius:8px;background:var(--bg);border:1px solid var(--line)}
+.tally b{display:block;font-family:var(--font-mono);font-weight:500;font-size:1.05rem}
+
+/* color mixer + channel columns */
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.colx{display:grid;gap:6px;justify-items:center;font-size:.85rem;text-align:center}
+.tube{position:relative;width:100%;max-width:90px;height:150px;border:2px solid var(--line);border-radius:8px;display:flex;flex-direction:column-reverse;overflow:hidden;background:var(--bg)}
+.tube.empty{border-style:dashed}
+.tube .rf{background:var(--cc)}
+.tube .ab{background:repeating-linear-gradient(45deg,var(--surface-2) 0 6px,var(--line) 6px 9px)}
+.colx .nm{font-weight:700}
+.colx.r{--cc:var(--red)}.colx.g{--cc:var(--green)}.colx.b{--cc:var(--blue)}
+
+/* waffle */
+.waffle{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:3px;max-width:300px;width:100%}
+.cell{aspect-ratio:1;border-radius:3px}
+.cell.r{background:var(--reflect)}.cell.t{background:var(--transmit)}.cell.a{background:var(--absorb)}
+
+/* ice race */
+.race{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pad{position:relative;height:170px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden}
+.pad.w{background:#F4F4F1}.pad.b{background:#14161C}
+.pad .lbl{position:absolute;left:8px;top:6px;font-size:.78rem;font-family:var(--font-mono)}
+.pad.w .lbl{color:#333}.pad.b .lbl{color:#ddd}
+.puddle{position:absolute;width:110px;height:46px;border-radius:50%;background:#7CC4F2;opacity:.65;transform:scale(0);bottom:22px}
+.ice{position:relative;width:76px;height:76px;border-radius:12px;background:linear-gradient(135deg,#E4F6FF,#9ED7F5);border:2px solid #fff;transform-origin:50% 100%;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.sunbar{height:10px;border-radius:99px;background:linear-gradient(90deg,var(--beam),color-mix(in srgb,var(--beam) 30%,transparent));opacity:.25;transition:opacity .3s}
+.sunbar.on{opacity:1}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap}
+.btn{font-size:.95rem;font-weight:700;padding:9px 16px;min-height:42px;border-radius:10px;border:0;background:var(--beam);color:var(--beam-ink);cursor:pointer}
+.btn.ghost{background:var(--surface);color:var(--ink);border:1.5px solid var(--line)}
+.btn:hover{filter:brightness(1.06)}
+
+/* misc */
+.glossary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px;margin:0}
+.glossary div{padding:10px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--line)}
+.glossary dt{font-weight:700}
+.glossary dd{margin:2px 0 0;font-size:.93rem;color:var(--muted)}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+details+details{margin-top:10px}
+summary{cursor:pointer;font-weight:700}
+details .in{display:grid;gap:10px;padding-top:10px;font-size:.95rem}
+details ul{margin:0;padding-left:1.2em;display:grid;gap:4px}
+footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;border-top:1px solid var(--line);padding-top:16px}
+.flow{stroke-dasharray:10 8;animation:flow 1s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-18}}
+@media (prefers-reduced-motion: reduce){.flow{animation:none}html{scroll-behavior:auto}.seetext,.seesheets,.meter i{transition:none}}
+@media (max-width:760px){
+  .aids{grid-template-columns:minmax(0,1fr)}
+  .trio{grid-template-columns:minmax(0,1fr)}
+  .glossary{grid-template-columns:minmax(0,1fr)}
+  .tally{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:420px){.brow{grid-template-columns:84px minmax(0,1fr)}.race{grid-template-columns:minmax(0,1fr)}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="mBeam" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--beam)"/></marker>
+    <marker id="mReflect" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--reflect)"/></marker>
+    <marker id="mTransmit" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--transmit)"/></marker>
+    <marker id="mAbsorb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--absorb)"/></marker>
+    <marker id="mInk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--ink)"/></marker>
+    <marker id="mRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#D93036"/></marker>
+  </defs>
+</svg>
+
+<style>.bridge{margin:14px 0 0;padding:12px 14px;border-left:4px solid var(--beam);background:var(--surface-2);border-radius:0 10px 10px 0;font-size:.95rem;line-height:1.5}.related ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}.related li{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}.related a{font-weight:700}.related .why{display:block;color:var(--muted);font-size:.9rem}</style>
+<style>
+canvas.sim{width:100%;height:240px;display:block;border-radius:12px;background:var(--surface-2);border:1px solid var(--line)}
+.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:.8rem;color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:4px;vertical-align:-1px;border:1px solid var(--ink)}
+.card2{padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg)}
+.apl{display:grid;gap:6px}.tip{font-size:.86rem;color:var(--muted)}
+.sel{display:grid;gap:4px;font-size:.9rem}.sel select{padding:8px;border-radius:8px;border:2px solid var(--line);background:var(--surface);color:var(--ink);font:inherit}
+.sentence{padding:12px 14px;border-radius:12px;background:color-mix(in srgb,var(--beam) 25%,var(--surface));border:2px solid var(--ink);font-weight:700;line-height:1.5}
+</style>
+
+<header class="hero">
+  <p class="kicker">Eighth grade science · Unit 8.7</p>
+  <h1>Stars, Galaxies &amp; the Universe</h1>
+  <p class="lede">The Sun is just one star among about 200 billion in our galaxy, and our galaxy is one among trillions. After <b>Unit 8.6: Gravity, Orbits and the Solar System</b> and <b>Unit 7.8: The Electromagnetic Spectrum</b> (starlight is how we learn about stars), we zoom out to the biggest scales. Astronomers cannot touch stars, so they rely on evidence and models, the heart of <b>Unit 0: How Science Works</b>.</p>
+  <p class="bridge"><b>Where we left off:</b> Unit 8.6 covered our Solar System, and Unit 7.8 showed that starlight carries information. You may already have learned that the Sun is a star. Now we zoom out: how stars shine and die, how galaxies are arranged, and how the universe began.</p>
+  <div class="hero-art"><svg viewBox="0 0 640 190" role="img" aria-label="Stars and a spiral galaxy"><rect x="0" y="0" width="640" height="190" fill="#0c1124" fill-opacity=".0"/>
+<g style="fill:var(--beam)"><circle cx="90" cy="50" r="3"/><circle cx="150" cy="130" r="2"/><circle cx="215" cy="60" r="4"/><circle cx="520" cy="40" r="3"/><circle cx="580" cy="150" r="2"/><circle cx="470" cy="160" r="3"/></g>
+<g style="fill:none;stroke:var(--absorb);stroke-width:3"><path d="M270 95 Q300 40 340 90 Q380 140 420 80"/><path d="M280 115 Q310 70 345 112 Q385 160 410 105" style="stroke:var(--reflect)"/></g>
+<text x="320" y="180" font-size="14" text-anchor="middle" style="font-weight:700">100 billion stars per galaxy, 2 trillion galaxies?</text></svg></div>
+  <p class="howto">Look for the tags <span class="tag analogy">Analogy</span><span class="tag diagram">Diagram</span><span class="tag try">Try it</span><span class="tag data">Data</span><span class="tag real">Real world</span></p>
+</header>
+
+<nav class="nav" aria-label="Lesson sections"><ul><li><a href="#s1">1 Stars</a></li><li><a href="#s2">2 Life cycle</a></li><li><a href="#s3">3 Sorting stars</a></li><li><a href="#s4">4 Galaxies</a></li><li><a href="#s5">5 Universe</a></li><li><a href="#s6">6 Check yourself</a></li><li><a href="#game">7 Game</a></li></ul></nav>
+
+<main>
+<section class="sec" id="s1"><div><p class="kicker">Concept 1 · Fusion factories</p><h2>Stars shine by fusing atoms</h2></div><p class="idea">A star is a giant ball of gas held together by gravity. In its core, <mark>nuclear fusion</mark> joins hydrogen into helium, releasing huge energy. Apparent brightness depends on <mark>true luminosity</mark> and <mark>distance</mark>.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Headlights in the dark</h3><p class="cap">A car's headlight looks bright up close and a faint dot far away, though it is the same lamp. A star's brightness works the same way.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Distance dimmer</h3><div class="ctl"><label for="sdD">Distance: <span id="sdDV"></span>× the original</label><input id="sdD" type="range" min="1" max="10" step="1" value="1"></div><div class="bars" id="sdBars"></div><p class="readout" id="sdR" aria-live="polite"></p></article><article class="aid wide"><span class="tag data">Data</span><h3>Our Sun in numbers</h3><div class="tw"><table class="tbl" style="min-width:420px"><thead><tr><th>Fact</th><th>Value</th></tr></thead><tbody><tr><td>Mass</td><td>333,000 Earths</td></tr><tr><td>Core temperature</td><td>15 million °C</td></tr><tr><td>Surface temperature</td><td>5,500 °C</td></tr><tr><td>Hydrogen burned per second</td><td>600 million tons</td></tr><tr><td>Age / expected lifetime</td><td>4.6 / ~10 billion years</td></tr></tbody></table></div></article></div></section>
+<section class="sec" id="s2"><div><p class="kicker">Concept 2 · Born, live, die</p><h2>A star's mass decides its life</h2></div><p class="idea">Stars form in <mark>nebulae</mark>, spend most of their lives fusing hydrogen (<mark>main sequence</mark>), then swell and die. <mark>Big stars live fast and die young</mark> in supernovas; <mark>small stars live long</mark>.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Cars and gas tanks</h3><p class="cap">A sports car burns its tank in hours; a small hybrid sips fuel for days. Massive stars burn fuel so fast they last only millions of years.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Follow a star</h3><div class="chips" id="lcChips" role="group" aria-label="Star mass"></div><div class="card2" id="lcCard" aria-live="polite"></div><div class="bars" id="lcBars"></div></article><article class="aid wide"><span class="tag real">Real world</span><h3>We are star stuff</h3><div class="tw"><table class="tbl"><thead><tr><th>Element</th><th>Where it was made</th></tr></thead><tbody><tr><td>Hydrogen, helium</td><td>Big Bang</td></tr><tr><td>Carbon, oxygen</td><td>Fusion inside stars</td></tr><tr><td>Iron</td><td>Massive stars</td></tr><tr><td>Gold, uranium</td><td>Supernovas and neutron-star collisions</td></tr></tbody></table></div></article></div></section>
+<section class="sec" id="s3"><div><p class="kicker">Concept 3 · The H-R diagram</p><h2>Plot temperature against brightness</h2></div><p class="idea">Plot <mark>luminosity</mark> against <mark>temperature</mark> and stars fall into <mark>groups</mark>: a diagonal <mark>main sequence</mark>, bright <mark>giants</mark> at the top, faint <mark>white dwarfs</mark> at the bottom. This is called the Hertzsprung–Russell (H-R) diagram.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>A class height-weight chart</h3><p class="cap">Plot height against weight for a class and you see a clear trend and a few outliers. Stars show the same kind of pattern.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Find the group</h3><div class="chips" id="hrChips" role="group" aria-label="Highlight"></div><div class="stage"><svg id="hrSvg" viewBox="0 0 480 300" role="img" aria-label="A scatter plot of stars by temperature and luminosity."></svg></div><p class="readout" id="hrR" aria-live="polite"></p></article><article class="aid wide"><span class="tag data">Data</span><h3>Star types</h3><div class="tw"><table class="tbl" style="min-width:460px"><thead><tr><th>Type</th><th>Example</th><th>Temperature (°C)</th></tr></thead><tbody><tr><td>Blue-white main sequence</td><td>Vega</td><td>9,600</td></tr><tr><td>Yellow main sequence</td><td>Sun</td><td>5,500</td></tr><tr><td>Red dwarf</td><td>Proxima Centauri</td><td>2,800</td></tr><tr><td>Red giant</td><td>Betelgeuse</td><td>3,300</td></tr><tr><td>White dwarf</td><td>Sirius B</td><td>25,000</td></tr></tbody></table></div></article></div></section>
+<section class="sec" id="s4"><div><p class="kicker">Concept 4 · Cities of stars</p><h2>Galaxies are huge star collections</h2></div><p class="idea">A <mark>galaxy</mark> is billions of stars, gas, and dust bound by gravity. Our <mark>Milky Way</mark> is a <mark>spiral</mark> about <mark>100,000 light-years</mark> across. A <mark>light-year</mark> is the distance light travels in a year.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Looking back in time</h3><p class="cap">Light takes time to arrive. When you see a star 100 light-years away, you see it as it was 100 years ago.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Light travel time</h3><div class="ctl"><label for="lyD">Distance (light-years): <span id="lyDV"></span></label><input id="lyD" type="range" min="0" max="10" step="0.5" value="4.2"></div><p class="readout" id="lyR" aria-live="polite"></p></article><article class="aid wide"><span class="tag data">Data</span><h3>Scale ladder</h3><div class="bars" id="slBars"></div><p class="cap">Log scale, in kilometers.</p></article></div></section>
+<section class="sec" id="s5"><div><p class="kicker">Concept 5 · Big Bang</p><h2>The universe is expanding</h2></div><p class="idea">Distant galaxies are <mark>moving away</mark> from us, and the <mark>farther they are, the faster</mark> they recede. Running the film backward points to a <mark>Big Bang</mark> about <mark>13.8 billion years ago</mark>. Leftover glow (<mark>CMB</mark>) is more evidence.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Raisin bread rising</h3><p class="cap">As dough rises, every raisin moves away from every other raisin, and farther raisins move away faster. No raisin is the center.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Stretch space</h3><div class="ctl"><label for="bbS">Stretch the universe: <span id="bbSV"></span>×</label><input id="bbS" type="range" min="1" max="5" step="0.5" value="1"></div><div class="stage"><svg id="bbSvg" viewBox="0 0 480 200" role="img" aria-label="Galaxies drawn on a stretching grid."></svg></div><p class="readout" id="bbR" aria-live="polite"></p></article><article class="aid wide"><span class="tag data">Data</span><h3>Hubble's law</h3><div class="stage"><svg id="hbSvg" viewBox="0 0 480 220" role="img" aria-label="Galaxies farther away recede faster."></svg></div><p class="cap">Speed away (km/s) vs. distance (million light-years): a straight line. Redshift in their light is the evidence.</p></article></div></section>
+
+<section class="sec" id="s6">
+  <div><p class="kicker">Check yourself</p><h2>Can you explain it?</h2></div>
+  <p class="idea">A friend says "if all galaxies are moving away from us, we must be at the center of the universe." Use the raisin bread analogy and the Hubble data to explain why that does not follow.</p>
+  <details><summary>Show a model answer</summary><div class="in"><p>In an expanding universe, every galaxy sees all the others moving away, with farther ones receding faster, just like every raisin in rising dough. Hubble's straight-line relation (speed proportional to distance) is what we expect from uniform expansion. No place is the center.</p></div></details>
+  <div class="items" id="quiz"></div>
+  <p class="score" id="quizScore">0 of 6 correct</p>
+  <h3 style="margin-top:8px">Words to know</h3>
+  <dl class="glossary"><div><dt>star</dt><dd>A ball of gas powered by fusion.</dd></div><div><dt>fusion</dt><dd>Nuclei joining and releasing energy.</dd></div><div><dt>luminosity</dt><dd>Total light output.</dd></div><div><dt>light-year</dt><dd>Distance light travels in a year (9.5 trillion km).</dd></div><div><dt>galaxy</dt><dd>A huge gravitationally bound system of stars.</dd></div><div><dt>nebula</dt><dd>Cloud of gas and dust.</dd></div><div><dt>supernova</dt><dd>Explosion of a massive star.</dd></div><div><dt>main sequence</dt><dd>Stage when a star fuses hydrogen.</dd></div><div><dt>redshift</dt><dd>Light stretched to longer wavelengths by motion away.</dd></div><div><dt>Big Bang</dt><dd>Beginning of the expanding universe.</dd></div></dl>
+  <details><summary>Tutor notes: hands-on kit, misconceptions, pacing</summary><div class="in"><p><b>Kit (about $10):</b> balloons and a marker (expanding universe), raisin bread dough or a stretchy rubber band with dots, a flashlight and a ruler (inverse square), graph paper, a toy spectroscope or diffraction glasses, a photo of the H-R diagram.</p><ul><li><b>Concept 1:</b> Draw dots on a balloon, inflate it, and measure distances before and after.</li><li><b>Concept 2:</b> Shine a flashlight on graph paper at 10, 20, and 40 cm and count squares lit.</li><li><b>Concept 3:</b> Plot 15 stars on an H-R diagram from a table.</li><li><b>Concept 4:</b> View lamps through diffraction glasses and compare spectra.</li><li><b>Concept 5:</b> Build a 1-meter-per-AU solar system, then find where the next star would be (about 270 km!).</li></ul><p><b>Common misconceptions:</b></p><ul><li>"The Big Bang was an explosion in space." It was an expansion of space.</li><li>"The Sun is a typical big star." It is average-sized.</li><li>"Stars live forever." They have lifecycles.</li><li>"We see stars as they are now." We see them as they were.</li></ul><p><b>Pacing:</b> about five 30-minute sessions. <b>Method link:</b> teach evidence ranking: expansion, redshift, CMB, element abundance (Unit 0), and why a scientific theory is a tested explanation, not a guess.</p></div></details>
+</section>
+
+<section class="sec lesson-game-sec" id="game"><div><p class="kicker">After the lesson · Game</p><h2>Play: Star Life Cycle</h2></div><p class="idea">Order the stages in a star's life, then place three stars on the H-R diagram. Mass decides how a star lives and how it dies.</p><div class="lesson-game" id="lesson-game"></div></section>
+<section class="sec related" id="more"><div><p class="kicker">Keep exploring</p><h2>Related lessons</h2></div><p class="idea"> Up next: <a href="unit-8.8-genetics-and-heredity.html">Unit 8.8: Genetics &amp; Heredity</a>. Overlap alert: ideas you have already met are marked above as "you may already have learned".</p><ul><li><a href="unit-8.6-gravity-orbits-and-the-solar-system.html">Unit 8.6: Gravity, Orbits &amp; the Solar System</a><span class="why">Gravity and the Solar System.</span></li><li><a href="../6th/unit-11-earth-in-space.html">Unit 11: Earth in Space</a><span class="why">Earth in space.</span></li><li><a href="../7th/unit-7.8-light-and-the-electromagnetic-spectrum.html">Unit 7.8: Light &amp; the Electromagnetic Spectrum</a><span class="why">Starlight and the spectrum.</span></li><li><a href="../6th/unit-01-light-and-matter.html">Unit 1: Light &amp; Matter</a><span class="why">Light and matter.</span></li><li><a href="unit-8.2-energy-transformation-and-conservation.html">Unit 8.2: Energy Transformation &amp; Conservation</a><span class="why">Energy.</span></li></ul></section>
+</main>
+
+<footer>Built for eighth-grade tutoring. Based on OpenSciEd grade 8 Unit 8.7 (Stars and the Universe) and Michigan Virtual 8th-grade Earth and space modules; aligned with NGSS MS-ESS1-1, MS-ESS1-2 and HS-ESS1-2 (introductory). Values approximate.</footer>
+
+<script>
+(function(){
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const safe=fn=>{try{fn()}catch(e){console.error(e)}};
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const setPressed=(g,b)=>$$('button',g).forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));
+function mkChips(g,labels,sel=0){ g.innerHTML=labels.map((l,i)=>`<button class="chip" type="button" data-i="${i}" aria-pressed="${i===sel}">${l}</button>`).join(''); }
+function chipsOn(g,fn){ g.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; setPressed(g,b); fn(+b.dataset.i,b); }); }
+function quizBox(box,scoreEl,items,labels){
+  let right=0;
+  box.innerHTML=items.map((it,i)=>`<div class="item" data-i="${i}"><span class="nm">${it.n}</span><div class="opts">${labels.map((l,j)=>`<button class="opt" type="button" data-j="${j}">${l}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
+  box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.disabled)return; const row=b.closest('.item'), it=items[+row.dataset.i], ok=+b.dataset.j===it.a;
+    $$('.opt',row).forEach(o=>{ o.disabled=true; if(+o.dataset.j===it.a)o.classList.add('good'); }); if(!ok)b.classList.add('bad'); else right++;
+    $('.fb',row).textContent=(ok?'Yes. ':'Not quite. ')+it.e; scoreEl.textContent=`${right} of ${items.length} correct`; });
+}
+function finalQuiz(Q){
+  const box=$('#quiz'), sc=$('#quizScore'); let right=0;
+  box.innerHTML=Q.map((x,i)=>`<div class="q item" data-i="${i}" style="display:grid"><h4>${i+1}. ${x.q}</h4><div class="opts">${x.o.map((t,j)=>`<button class="opt" type="button" data-j="${j}">${t}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
+  box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.disabled)return; const row=b.closest('.q'), x=Q[+row.dataset.i], ok=+b.dataset.j===x.a;
+    $$('.opt',row).forEach(o=>{ o.disabled=true; if(+o.dataset.j===x.a)o.classList.add('good'); }); if(!ok)b.classList.add('bad'); else right++;
+    $('.fb',row).textContent=(ok?'Correct. ':'Not quite. ')+x.e; sc.textContent=`${right} of ${Q.length} correct`; });
+}
+/* bars: rows [label, value, text, cls('r'|'t'|'a')]; opt {log:true, labW:140, max} */
+function bars(el,rows,opt={}){
+  const log=opt.log, vals=rows.map(r=>r[1]), mx=opt.max||Math.max(...vals), mn=log?Math.log10(Math.min(...vals))-.3:0, top=log?Math.log10(mx)+.3:mx;
+  el.innerHTML=rows.map(([n,v,t,c])=>`<div class="brow" style="grid-template-columns:${opt.labW||140}px minmax(0,1fr)"><span class="lab">${n}</span><div class="stack" role="img" aria-label="${n}: ${t}"><div class="seg ${c||'t'}" style="width:${Math.max(4,((log?Math.log10(v):v)-mn)/(top-mn)*100)}%;min-width:48px">${t}</div></div></div>`).join('')+(log?'<p class="cap" style="margin-top:2px">Log scale.</p>':'');
+}
+/* line: generic SVG chart. o:{x0,x1,y0,y1,xt,yt,xl,yl,series:[{pts,color,w,dash}],dots,hl:[[y,label,color]],mark,bands:[[y0,y1,label]],W,H,L,B,T,R} */
+function line(svg,o){
+  const W=o.W||640,H=o.H||260,L=o.L||56,B=o.B||40,T=o.T||16,R=o.R||16;
+  const X=x=>L+(x-o.x0)/(o.x1-o.x0)*(W-L-R), Y=y=>H-B-(y-o.y0)/(o.y1-o.y0)*(H-B-T);
+  let s='';
+  (o.bands||[]).forEach(b=>{ s+=`<rect x="${L}" y="${Y(b[1])}" width="${W-L-R}" height="${Y(b[0])-Y(b[1])}" style="fill:var(--transmit);fill-opacity:.14"/><text x="${L+6}" y="${Y(b[1])+13}" font-size="11">${b[2]}</text>`; });
+  o.yt.forEach(v=>{ s+=`<line x1="${L}" y1="${Y(v)}" x2="${W-R}" y2="${Y(v)}" style="stroke:var(--line)"/><text x="${L-6}" y="${Y(v)+4}" font-size="12" text-anchor="end">${v}</text>`; });
+  o.xt.forEach(v=>{ const a=Array.isArray(v)?v:[v,v]; s+=`<text x="${X(a[0])}" y="${H-B+16}" font-size="12" text-anchor="middle">${a[1]}</text>`; });
+  (o.hl||[]).forEach(v=>{ s+=`<line x1="${L}" y1="${Y(v[0])}" x2="${W-R}" y2="${Y(v[0])}" style="stroke:${v[2]};stroke-width:2;stroke-dasharray:6 5"/><text x="${W-R-4}" y="${Y(v[0])-5}" font-size="11" text-anchor="end">${v[1]}</text>`; });
+  s+=`<line x1="${L}" y1="${H-B}" x2="${W-R}" y2="${H-B}" style="stroke:var(--ink);stroke-width:2"/><line x1="${L}" y1="${T}" x2="${L}" y2="${H-B}" style="stroke:var(--ink);stroke-width:2"/>`;
+  (o.series||[]).forEach(se=>{ if(se.pts.length) s+=`<path d="${se.pts.map((p,i)=>`${i?'L':'M'}${X(p[0]).toFixed(1)} ${Y(p[1]).toFixed(1)}`).join('')}" style="fill:none;stroke:${se.color};stroke-width:${se.w||4};stroke-linejoin:round${se.dash?';stroke-dasharray:'+se.dash:''}"/>`; });
+  (o.dots||[]).forEach(d=>{ s+=`<circle cx="${X(d[0])}" cy="${Y(d[1])}" r="5" style="fill:var(--reflect);fill-opacity:.7;stroke:var(--ink);stroke-width:1.5"/>`; });
+  if(o.mark) s+=`<circle cx="${X(o.mark[0])}" cy="${Y(o.mark[1])}" r="8" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/>`;
+  s+=`<text x="${(L+W-R)/2}" y="${H-4}" font-size="13" text-anchor="middle">${o.xl}</text><text transform="rotate(-90 14 ${(T+H-B)/2})" x="14" y="${(T+H-B)/2}" font-size="13" text-anchor="middle">${o.yl}</text>`;
+  svg.innerHTML=s;
+}
+
+
+safe(()=>{
+  const s=$('#sdD'), d=()=>{ const r=+s.value; $('#sdDV').textContent=r; const b=100/(r*r); bars($('#sdBars'),[['Apparent brightness',b+.1,b.toFixed(1)+'%','a']],{labW:150,max:100}); $('#sdR').innerHTML='At '+r+'× the distance the star appears <b>'+(r*r)+'× dimmer</b> (inverse-square, like gravity).'; }; s.addEventListener('input',d); d();
+  const L=[['Red dwarf (0.2 Sun)','Forms slowly, burns hydrogen for ~1 trillion years, then fades to a white dwarf. None have died yet; the universe is too young.',1e12],['Sun-like (1 Sun)','About 10 billion years of fusion. Then it swells into a red giant, puffs off its outer layers (planetary nebula), and leaves a white dwarf.',1e10],['Massive (20 Suns)','Burns out in about 10 million years, explodes as a supernova, and leaves a neutron star or black hole.',1e7]];
+  const ch=$('#lcChips'); mkChips(ch,L.map(l=>l[0]),1); const dd=i=>{ $('#lcCard').textContent=L[i][1]; bars($('#lcBars'),L.map((l,k)=>[l[0].split(' (')[0],l[2],l[2]>=1e12?'1 trillion yr':l[2]>=1e9?(l[2]/1e9)+' billion yr':(l[2]/1e6)+' million yr',k===i?'a':'t']),{labW:100,log:true}); }; chipsOn(ch,dd); dd(1);
+});
+safe(()=>{
+  const S=[[3.5,-3.3,'main'],[3.6,-3.0,'main'],[3.7,-2.5,'main'],[3.75,-2,'main'],[3.9,-1,'main'],[4.1,-.2,'main'],[4.3,1,'main'],[4.5,2.4,'main'],[4.55,3.2,'main'],[3.55,3,'giant'],[3.6,3.4,'giant'],[3.7,2.6,'giant'],[3.65,3.9,'giant'],[4.4,-2,'dwarf'],[4.2,-2.4,'dwarf'],[4.0,-2.8,'dwarf'],[3.75,-.2,'sun']];
+  const ch=$('#hrChips'), svg=$('#hrSvg'), rd=$('#hrR'); const G=[['Main sequence','main','Most stars, including the Sun, fall on this diagonal: hotter means brighter.'],['Giants','giant','Cool but huge, so very bright: stars at the end of their lives.'],['White dwarfs','dwarf','Hot but tiny, so dim: the remains of Sun-like stars.'],['Our Sun','sun','A middle-of-the-road yellow star on the main sequence.']]; mkChips(ch,G.map(g=>g[0]),0);
+  const X=t=>440-(t-3.4)/1.3*400, Y=l=>260-(l+3.5)/7.8*240;
+  const d=i=>{ let h='<rect x="40" y="20" width="400" height="240" style="fill:none;stroke:var(--ink);stroke-width:2"/>'; S.forEach(p=>{ const on=p[2]===G[i][1]; h+=`<circle cx="${X(p[0])}" cy="${Y(p[1])}" r="${on?7:4.5}" style="fill:${p[0]>4.2?'var(--reflect)':p[0]>3.8?'var(--beam)':'var(--absorb)'};stroke:var(--ink);stroke-width:${on?3:1};opacity:${on?1:.45}"/>`; }); h+='<text x="240" y="285" font-size="13" text-anchor="middle">hotter ← temperature → cooler (log scale)</text><text x="14" y="140" font-size="13" transform="rotate(-90 14 140)" text-anchor="middle">dimmer ← luminosity → brighter</text>'; svg.innerHTML=h; rd.innerHTML='<b>'+G[i][0]+':</b> '+G[i][2]; }; chipsOn(ch,d); d(0);
+});
+safe(()=>{
+  const s=$('#lyD'), d=()=>{ const ly=+s.value; $('#lyDV').textContent=ly; $('#lyR').innerHTML='Light from <b>'+ly+' light-years</b> away left <b>'+ly+' years ago</b>. That is '+(ly*9.46).toFixed(1)+' trillion km. Proxima Centauri (the nearest star) is 4.2 light-years away; our galaxy is 100,000 across.'; }; s.addEventListener('input',d); d();
+  bars($('#slBars'),[['Earth',12800,'1.3 × 10⁴','t'],['Sun',1.4e6,'1.4 × 10⁶','t'],['Earth–Sun',1.5e8,'1.5 × 10⁸','t'],['Solar System',9e12,'9 × 10¹²','t'],['To nearest star',4e13,'4 × 10¹³','a'],['Milky Way',9.5e17,'10¹⁸','r'],['Observable universe',8.8e23,'10²⁴','r']],{labW:130,log:true});
+});
+safe(()=>{
+  const s=$('#bbS'), G=[[60,50],[160,40],[270,60],[380,45],[90,120],[200,130],[310,115],[420,135],[40,170],[330,175]];
+  const d=()=>{ const k=+s.value; $('#bbSV').textContent=k; let h=''; const cx=240, cy=100; const f=(1+(k-1)*.45); G.forEach(g=>{ const x=cx+(g[0]-cx)*f, y=cy+(g[1]-cy)*f; if(x>8&&x<472&&y>8&&y<192) h+=`<circle cx="${x}" cy="${y}" r="7" style="fill:var(--absorb);stroke:var(--ink);stroke-width:2"/>`; }); h+='<circle cx="240" cy="100" r="9" style="fill:var(--beam);stroke:var(--ink);stroke-width:3"/><text x="252" y="92" font-size="12">you (and every galaxy sees the same)</text>';
+    $('#bbSvg').innerHTML=h; $('#bbR').innerHTML='Space stretched by <b>'+k+'×</b>: every distance grows, and distant galaxies move the most (some drift off the picture). No galaxy is special.'; }; s.addEventListener('input',d); d();
+  const pts=[[10,230],[50,1200],[100,2300],[200,4900],[300,7200],[500,12000]];
+  line($('#hbSvg'),{W:480,H:220,L:60,x0:0,x1:520,y0:0,y1:13000,yt:[0,4000,8000,12000],xt:[0,100,200,300,400,500],xl:'distance (million light-years)',yl:'speed away (km/s)',series:[{pts:[[0,0],[520,12480]],color:'var(--ink)',dash:'6 5'}],dots:pts});
+});
+
+finalQuiz([{"q": "Stars shine because of...", "o": ["Nuclear fusion", "Burning like a fire", "Reflected light"], "a": 0, "e": "Fusion in the core."}, {"q": "Big stars live...", "o": ["Shorter lives", "Longer lives", "The same"], "a": 0, "e": "They burn fuel fast."}, {"q": "A light-year measures...", "o": ["Distance", "Time", "Brightness"], "a": 0, "e": "9.5 trillion km."}, {"q": "The Milky Way is a...", "o": ["Spiral galaxy", "Star", "Planet"], "a": 0, "e": "Galaxy."}, {"q": "Farther galaxies recede...", "o": ["Faster", "Slower", "At the same speed"], "a": 0, "e": "Hubble."}, {"q": "Elements heavier than iron mostly form in...", "o": ["Supernovas and collisions", "The Sun", "Earth"], "a": 0, "e": "Extreme events."}]);
+})();
+</script>
+
+
+
+
+
+<!-- LESSON GAME:star-life-cycle START -->
+<script>(function(){
+function __mountLessonGame(host, css, html, init){
+  if(!host || host.shadowRoot) return;
+  const root = host.attachShadow({mode:"open"});
+  root.innerHTML = "<style>"+css+"</style>"+html;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let visible = true;
+  try{ new IntersectionObserver(es=>{ visible = es[es.length-1].isIntersecting; }).observe(host); }catch(e){}
+  const loops = [];
+  let last = performance.now();
+  function frame(t){
+    const dt = Math.min(0.05, (t-last)/1000); last = t;
+    if(visible && !document.hidden) for(const f of loops){ try{ f(t, dt); }catch(e){ console.error(e); } }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+  const env = {
+    root, reduce,
+    $: id => root.getElementById(id),
+    $$: sel => [...root.querySelectorAll(sel)],
+    loop: f => loops.push(f),
+    esc: s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])),
+    // A canvas drawn in fixed logical units (W x H) that scales to its container.
+    stage(canvas, W, H){
+      const ctx = canvas.getContext("2d");
+      const st = {ctx, W, H, dpr:1};
+      function fit(){
+        st.dpr = Math.min(2.5, window.devicePixelRatio || 1);
+        const cw = canvas.clientWidth || W;
+        const scale = cw / W;
+        canvas.width = Math.round(W*scale*st.dpr); canvas.height = Math.round(H*scale*st.dpr);
+        st.k = scale*st.dpr;
+        ctx.setTransform(st.k,0,0,st.k,0,0);
+        if(st.onfit) st.onfit();
+      }
+      canvas.style.aspectRatio = W+"/"+H;
+      st.begin = () => ctx.setTransform(st.k,0,0,st.k,0,0);
+      st.pt = ev => { const r = canvas.getBoundingClientRect(); return {x:(ev.clientX-r.left)*W/r.width, y:(ev.clientY-r.top)*H/r.height}; };
+      try{ new ResizeObserver(fit).observe(canvas); }catch(e){ addEventListener("resize", fit); }
+      fit();
+      return st;
+    },
+    // Level buttons in the header.
+    levelBar(box, names, onPick){
+      const solved = new Set(); let cur = 0;
+      function render(){
+        box.innerHTML = '<span class="label">Level</span>';
+        names.forEach((n,i)=>{ const b = document.createElement("button"); b.type="button";
+          b.className = "lv"+(solved.has(i)?" done":""); b.textContent = i+1; b.title = n;
+          b.setAttribute("aria-label", "Level "+(i+1)+": "+n+(solved.has(i)?" (solved)":""));
+          if(i===cur) b.setAttribute("aria-current","true");
+          b.onclick = () => { cur = i; render(); onPick(i); }; box.appendChild(b); });
+      }
+      render();
+      return { set(i){ cur=i; render(); }, solve(i){ solved.add(i); render(); }, get cur(){ return cur; }, solved };
+    },
+    // Result card over a stage. buttons: [{label, primary, onClick}]
+    card(stageEl, o){
+      let ov = stageEl.querySelector(":scope > .over");
+      if(!ov){ ov = document.createElement("div"); ov.className = "over"; stageEl.appendChild(ov); }
+      ov.hidden = false;
+      ov.innerHTML = '<div class="card'+(o.fail?' fail':'')+'" role="dialog" aria-live="polite"><h4></h4>'+(o.why?'<span class="why"></span>':'')+'<p class="cb"></p><div class="btns"></div></div>';
+      ov.querySelector("h4").textContent = o.title;
+      if(o.why) ov.querySelector(".why").textContent = o.why;
+      ov.querySelector(".cb").textContent = o.body || "";
+      if(o.list && o.list.length){ const ul = document.createElement("ul"); ul.className = "clist";
+        o.list.forEach(t => { const li = document.createElement("li"); li.textContent = t; ul.appendChild(li); });
+        ov.querySelector(".cb").after(ul); }
+      const bb = ov.querySelector(".btns");
+      (o.buttons||[]).forEach((b,i)=>{ const e = document.createElement("button"); e.type="button"; e.className = "btn"+(b.primary?" primary":""); e.textContent = b.label;
+        e.onclick = () => { ov.hidden = true; b.onClick && b.onClick(); }; bb.appendChild(e); if(i===0) setTimeout(()=>e.focus({preventScroll:true}),30); });
+      setTimeout(()=>{ const b=ov.getBoundingClientRect(); if(b.top<8 || b.bottom>innerHeight-8) ov.scrollIntoView({block:"center", behavior: reduce?"auto":"smooth"}); }, 40);
+      return ov;
+    },
+    hideCard(stageEl){ const ov = stageEl.querySelector(":scope > .over"); if(ov) ov.hidden = true; }
+  };
+  try{ init(root, env); }catch(e){ console.error(e); root.innerHTML += '<p style="color:#fff;padding:12px">This game could not start.</p>'; }
+}
+
+__mountLessonGame(document.getElementById("lesson-game"), ":host{\n  display:block; color-scheme:dark;\n  --bg:#0B0F15; --panel:#141A23; --panel-2:#1B2330; --line:#2B3544; --ink:#E9EEF5; --muted:#93A0B2;\n  --good:#3FD3BB; --bad:#FF6B5E; --warn:#FFB547; --acc:#FFD84A; --acc-ink:#1A1400;\n  --f-display:\"Bahnschrift\",\"DIN Alternate\",\"Roboto Condensed\",\"Arial Narrow\",system-ui,sans-serif;\n  --f-body:\"Roboto\",\"Segoe UI\",system-ui,-apple-system,sans-serif;\n  --f-mono:ui-monospace,\"Roboto Mono\",\"Cascadia Mono\",Menlo,Consolas,monospace;\n}\n*{box-sizing:border-box}\n[hidden]{display:none!important}\n.g{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;border-radius:16px;\n  border:1px solid var(--line);padding:16px;display:grid;gap:14px;text-align:left;box-shadow:0 10px 36px rgba(0,0,0,.35)}\n.g button{font:inherit;color:inherit}\n.g :focus-visible{outline:3px solid var(--acc);outline-offset:2px}\n.g h2,.g h3,.g h4{margin:0;font-family:var(--f-display);letter-spacing:.02em;line-height:1.15}\n.g p{margin:0}\n.bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 18px}\n.brand{display:grid;gap:2px}\n.label{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}\n.gtitle{font-family:var(--f-display);font-weight:700;font-size:1.45rem;text-transform:uppercase;letter-spacing:.04em}\n.gtitle b{color:var(--acc)}\n.goalrow{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 12px}\n.goalrow h4{font-size:1.22rem}\n.goalrow .goal{color:var(--muted);font-size:.94rem}\n.levels{display:flex;flex-wrap:wrap;gap:6px;align-items:center}\n.lv{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--line);background:var(--panel);font-family:var(--f-mono);font-size:.85rem;cursor:pointer;font-variant-numeric:tabular-nums;padding:0}\n.lv:hover{border-color:var(--muted)}\n.lv.done{border-color:var(--good);color:var(--good)}\n.lv[aria-current=\"true\"]{background:var(--acc);border-color:var(--acc);color:var(--acc-ink);font-weight:700}\n.cols{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:14px;align-items:start}\n.cols>*{min-width:0}\n.boardcol{display:grid;gap:10px;min-width:0}\n.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:10px;min-width:0}\n.panel>.label{margin-bottom:-2px}\n.stage{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px;min-width:0}\n.stage canvas,.stage svg{display:block;width:100%;max-width:100%;height:auto;border-radius:8px;touch-action:none}\n.btns{display:flex;flex-wrap:wrap;gap:8px}\n.btn{padding:8px 14px;min-height:40px;border-radius:10px;border:1.5px solid var(--line);background:var(--panel-2);cursor:pointer;font-weight:700;font-size:.92rem;line-height:1.2}\n.btn:hover:not([disabled]){border-color:var(--muted)}\n.btn[disabled]{opacity:.45;cursor:default}\n.btn.primary{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}\n.btn.ghost{background:transparent}\n.btn[aria-pressed=\"true\"]{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset}\n.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:999px;font-size:.82rem;border:1px solid var(--line);background:var(--panel-2);cursor:pointer}\n.chip[aria-pressed=\"true\"]{border-color:var(--acc);background:var(--acc);color:var(--acc-ink);font-weight:700}\n.msg{font-size:.93rem;padding:9px 12px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line)}\n.msg.good{border-color:color-mix(in srgb,var(--good) 60%,var(--line))}\n.msg.bad{border-color:color-mix(in srgb,var(--bad) 60%,var(--line))}\n.msg.warn{border-color:color-mix(in srgb,var(--warn) 60%,var(--line))}\n.help{font-size:.86rem;color:var(--muted)}\n.readout{font-size:.92rem;color:var(--ink);padding:8px 11px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line);min-height:38px}\n.meter{height:12px;border-radius:99px;background:var(--panel-2);overflow:hidden;border:1px solid var(--line)}\n.meter>i{display:block;height:100%;background:var(--acc);transition:width .15s}\n.ctl{display:grid;gap:4px}\n.ctl label{font-size:.9rem;font-weight:700;display:flex;justify-content:space-between;gap:8px}\n.ctl input[type=range]{width:100%;accent-color:var(--acc);height:30px;margin:0}\n.over{position:absolute;inset:6px;border-radius:8px;display:grid;place-items:start center;padding:14px;background:color-mix(in srgb,var(--bg) 74%,transparent);backdrop-filter:blur(2px);z-index:5;overflow:visible}\n.card{max-width:460px;display:grid;gap:10px;padding:18px;border-radius:14px;background:var(--panel-2);border:1px solid var(--acc);box-shadow:0 0 36px color-mix(in srgb,var(--acc) 22%,transparent);position:sticky;top:0;margin-top:0;max-height:none;overflow:visible}\n.card h4{font-size:1.45rem;color:var(--acc)}\n.card.fail{border-color:var(--bad)}\n.card.fail h4{color:var(--bad)}\n.clist{margin:0;padding-left:1.15em;display:grid;gap:5px;font-size:.9rem}\n.why{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}\n.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}\n.bars{display:grid;gap:7px}\n.brow{display:grid;grid-template-columns:9.5em minmax(0,1fr) 4.2em;gap:8px;align-items:center;font-size:.86rem}\n.brow .track{height:12px;border-radius:99px;background:var(--panel-2);border:1px solid var(--line);overflow:hidden}\n.brow .fill{display:block;height:100%;background:var(--acc)}\n.brow .val{font-family:var(--f-mono);text-align:right;font-size:.8rem;color:var(--muted)}\n.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}\n.tile{border:1.5px solid var(--line);background:var(--panel-2);border-radius:10px;padding:9px;text-align:left;cursor:pointer;font-size:.88rem;line-height:1.25}\n.tile:hover:not([disabled]){border-color:var(--muted)}\n.tile[aria-pressed=\"true\"]{border-color:var(--acc)}\n.tile.good{border-color:var(--good);background:color-mix(in srgb,var(--good) 14%,var(--panel-2))}\n.tile.bad{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,var(--panel-2))}\n.tile[disabled]{cursor:default}\n.tbl{width:100%;border-collapse:collapse;font-size:.88rem}\n.tbl th{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:left;padding:4px 7px;border-bottom:1px solid var(--line);font-weight:500}\n.tbl td{padding:5px 7px;border-bottom:1px solid var(--line)}\n.scroll{overflow-x:auto}\n.kv{display:grid;grid-template-columns:1fr auto;gap:6px 10px;font-size:.9rem}\n.kv dt{color:var(--muted)}.kv dd{margin:0;font-family:var(--f-mono);text-align:right}\n.score{font-family:var(--f-mono);font-size:.82rem;color:var(--muted)}\n@media (max-width:860px){.cols{grid-template-columns:minmax(0,1fr)}.over{position:static;inset:auto;background:none;backdrop-filter:none;padding:8px 0 2px}.card{max-width:none;position:static;margin-top:0;max-height:none;overflow:visible}}\n@media (prefers-reduced-motion:reduce){.meter>i{transition:none}}\n", "\n<div class=\"g\">\n  <div class=\"bar\">\n    <div class=\"goalrow\"><h4 id=\"lvName\">Low-mass star</h4><span class=\"goal\" id=\"lvGoal\"></span></div>\n    <nav class=\"levels\" id=\"lvBar\" aria-label=\"Levels\"></nav>\n  </div>\n  <div class=\"cols\">\n    <section class=\"boardcol\" aria-label=\"Star life cycle board\">\n      <div class=\"stage\" id=\"stage\" style=\"padding:12px\">\n        <div id=\"seqPane\">\n          <div style=\"display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px\">\n            <span class=\"label\">Life track</span>\n            <span class=\"chip\" id=\"massTag\" style=\"cursor:default\">1 solar mass</span>\n          </div>\n          <div class=\"tiles\" id=\"seq\" aria-label=\"Life cycle stages in order\" style=\"grid-template-columns:repeat(auto-fit,minmax(96px,1fr))\"></div>\n          <p class=\"help\" id=\"seqHint\" style=\"margin-top:10px\"></p>\n        </div>\n        <div id=\"hrPane\" hidden>\n          <canvas id=\"cv\" tabindex=\"0\" aria-label=\"Hertzsprung-Russell diagram: surface temperature runs hot on the left to cool on the right, and luminosity runs dim at the bottom to bright at the top. Pick a star, then click its labeled region or use the region buttons.\"></canvas>\n        </div>\n      </div>\n      <p class=\"help\" id=\"help\"></p>\n    </section>\n    <aside class=\"panel\">\n      <div id=\"bankWrap\">\n        <span class=\"label\">Stage bank</span>\n        <div class=\"tiles\" id=\"bank\"></div>\n      </div>\n      <div id=\"hrPanel\" hidden>\n        <span class=\"label\">Stars to place</span>\n        <div class=\"tiles\" id=\"starTiles\"></div>\n        <span class=\"label\">Regions</span>\n        <div class=\"btns\" id=\"zoneBtns\"></div>\n      </div>\n      <div class=\"btns\"><button class=\"btn ghost\" id=\"reset\" type=\"button\">Start this level over</button></div>\n      <p class=\"readout\" id=\"read\" aria-live=\"polite\"></p>\n    </aside>\n  </div>\n</div>", (function (root, env) {
+    const { $, stage, levelBar, card, hideCard } = env;
+
+    const NOTES = {
+      nebula: "A cold cloud of gas and dust. Gravity pulls the cloud together.",
+      protostar: "Gravity compresses the clump until it heats up and glows, but fusion has not started yet.",
+      "main sequence": "Hydrogen fusion begins in the core. Energy pushing out balances gravity pulling in.",
+      "red giant": "Core hydrogen runs low, fusion moves outward, and the outer layers swell and cool.",
+      "planetary nebula": "The outer layers drift away into space, lit by the exposed hot core.",
+      "white dwarf": "The exposed core is hot but no longer fusing. Gravity packs it extremely tightly.",
+      "red supergiant": "A massive star fuses heavier elements and swells enormously.",
+      supernova: "The iron core collapses, rebounds, and the star explodes.",
+      "neutron star": "The crushed core is a city-sized ball of neutrons, held up by neutron pressure.",
+      "black hole": "Gravity wins completely and the core collapses past the neutron-star limit.",
+    };
+
+    const LEVELS = [
+      {
+        n: "Low-mass star",
+        goal: "Order the 6 stages of a Sun-like star",
+        mass: "1 solar mass",
+        seq: ["nebula", "protostar", "main sequence", "red giant", "planetary nebula", "white dwarf"],
+        bank: ["nebula", "protostar", "main sequence", "red giant", "planetary nebula", "white dwarf"],
+        hint: "A low-mass star fuses hydrogen slowly, so it lives for billions of years and dies quietly.",
+        win: {
+          title: "Low-mass life cycle complete",
+          body: "Gravity pulled the nebula into a protostar, and fusion of hydrogen made the main sequence. When the core hydrogen ran out, the star swelled into a red giant, shed a planetary nebula, and left a white dwarf. A star with about the Sun's mass dies without a supernova.",
+          list: [
+            "Gravity builds the star and later packs the white dwarf tightly.",
+            "Fusion of hydrogen into helium powers the main sequence.",
+            "Mass is the deciding factor: low-mass stars end as white dwarfs.",
+          ],
+        },
+      },
+      {
+        n: "High-mass star",
+        goal: "Order the 6 stages of a 25-solar-mass star",
+        mass: "25 solar masses",
+        seq: ["nebula", "protostar", "main sequence", "red supergiant", "supernova", "black hole"],
+        bank: ["nebula", "protostar", "main sequence", "red supergiant", "supernova", "neutron star", "black hole"],
+        hint: "A massive star burns fuel fast and dies young. Only one of the two collapsed cores belongs at the end of this star's life.",
+        win: {
+          title: "High-mass life cycle complete",
+          body: "A 25-solar-mass star fuses hydrogen quickly, swells into a red supergiant, and collapses in a supernova. Gravity crushes the leftover core past the neutron-star limit, so it becomes a black hole. Lower-mass high-mass stars leave a neutron star instead.",
+          list: [
+            "Fusion builds heavier elements in the core until iron forms.",
+            "Gravity drives both the collapse and the supernova rebound.",
+            "Mass decides the remnant: about 8-20 solar masses can leave a neutron star; heavier cores make black holes.",
+          ],
+        },
+      },
+      {
+        n: "H-R diagram",
+        goal: "Place all three stars by temperature and brightness",
+        mass: "H-R diagram",
+        hint: "Temperature runs hot on the left to cool on the right. Luminosity runs dim at the bottom to bright at the top.",
+        win: {
+          title: "H-R diagram solved",
+          body: "Proxima Centauri is cool and dim, the Sun is in the middle, and Rigel is hot and bright. These stars fall along the main sequence, a diagonal band where stars fuse hydrogen.",
+          list: [
+            "Temperature sets horizontal position: blue stars are hotter than red stars.",
+            "Luminosity sets height: giants sit high, white dwarfs sit low.",
+            "Mass is the deciding factor: it sets a star's temperature, luminosity, and lifetime.",
+          ],
+        },
+      },
+    ];
+
+    const cv = $("cv"), st = stage(cv, 640, 420);
+    let li = 0, step = 0, done = false, selStar = null;
+    const placed = { cool: false, sun: false, hot: false };
+    const bar = levelBar($("lvBar"), LEVELS.map((x) => x.n), (i) => { li = i; load(); });
+
+    const ZONES = [
+      { id: "hot", label: "Hot & bright", x: 195, y: 118, w: 130, h: 80, color: "#78A2FF" },
+      { id: "sun", label: "Sun-like", x: 386, y: 187, w: 126, h: 80, color: "#FFD84A" },
+      { id: "cool", label: "Cool & dim", x: 520, y: 292, w: 100, h: 72, color: "#FF6B5E" },
+      { id: "giants", label: "Giants", x: 448, y: 58, w: 156, h: 66, color: "#FFB547" },
+      { id: "dwarfs", label: "White dwarfs", x: 84, y: 292, w: 160, h: 72, color: "#93A0B2" },
+    ];
+
+    const STARS = [
+      { id: "cool", name: "Proxima Centauri", short: "Proxima", type: "cool & dim", temp: "2,800 °C", lum: "0.001 L (Sun = 1)", zone: "cool", x: 588, y: 330, note: "A red dwarf: cool surface, low luminosity, and a very long life." },
+      { id: "sun", name: "the Sun", short: "Sun", type: "Sun-like", temp: "5,500 °C", lum: "1 L (Sun = 1)", zone: "sun", x: 448, y: 227, note: "A yellow main-sequence star, in the middle of temperature and brightness." },
+      { id: "hot", name: "Regulus", short: "Regulus", type: "hot & bright", temp: "12,000 °C", lum: "150 L (Sun = 1)", zone: "hot", x: 257, y: 158, note: "A blue-white star: hot, bright, and short-lived compared with the Sun." },
+    ];
+
+    function shuffle(a) {
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const t = a[i]; a[i] = a[j]; a[j] = t;
+      }
+      return a;
+    }
+    function say(msg) { $("read").textContent = msg; }
+
+    function renderSeq() {
+      const L = LEVELS[li];
+      $("seq").innerHTML = L.seq.map((s, i) => {
+        const filled = i < step;
+        const next = i === step && !done;
+        const style = "cursor:default;min-height:72px" + (next ? ";border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset" : "");
+        return `<div class="tile${filled ? " good" : ""}" style="${style}" aria-label="Stage ${i + 1}: ${filled ? s : "empty"}">
+          <span class="label">Stage ${i + 1}</span>
+          <div style="font-weight:700;line-height:1.2;margin-top:2px">${filled ? s : (next ? "next" : "&mdash;")}</div>
+        </div>`;
+      }).join("");
+    }
+
+    function renderBank() {
+      const L = LEVELS[li];
+      $("bank").innerHTML = shuffle(L.bank.slice()).map((s) =>
+        `<button class="tile" type="button" data-stage="${s}">${s}</button>`
+      ).join("");
+      [...$("bank").querySelectorAll("button")].forEach((b) => {
+        b.onclick = () => pickStage(b.dataset.stage, b);
+      });
+    }
+
+    function wrongMessage(clicked, expected) {
+      if (li === 1 && clicked === "neutron star" && expected === "black hole") {
+        return "Not this star. A 25-solar-mass core is above the neutron-star limit, so gravity collapses it into a black hole. Neutron stars come from somewhat lower-mass high-mass stars.";
+      }
+      if (clicked === "black hole" && expected !== "black hole") {
+        return "A black hole is a dead remnant, not a stage in the middle of a star's life. It can only appear after the supernova.";
+      }
+      const ci = LEVELS[li].seq.indexOf(clicked);
+      if (ci < 0) {
+        return `Not this one. ${NOTES[clicked] || ""} The next stage for this star is ${expected}.`;
+      }
+      if (ci > step) {
+        return `Too far ahead: ${clicked} comes after ${expected}. ${NOTES[expected]}`;
+      }
+      return `Already passed: ${clicked} happened earlier. Next comes ${expected}. ${NOTES[expected]}`;
+    }
+
+    function pickStage(s, btn) {
+      if (done || li === 2) return;
+      const L = LEVELS[li];
+      const expected = L.seq[step];
+      if (s === expected) {
+        step++;
+        btn.disabled = true;
+        btn.classList.add("good");
+        renderSeq();
+        say(`Correct: ${s}. ${NOTES[s]}`);
+        if (step === L.seq.length) finishSequence();
+      } else {
+        btn.classList.add("bad");
+        setTimeout(() => btn.classList.remove("bad"), 550);
+        say(wrongMessage(s, expected));
+      }
+    }
+
+    function finishSequence() {
+      done = true;
+      const L = LEVELS[li];
+      bar.solve(li);
+      // The result card is taller than the sequence board; give the overlay room.
+      $("stage").style.minHeight = "580px";
+      card($("stage"), {
+        title: L.win.title,
+        why: "The science",
+        body: L.win.body,
+        list: L.win.list,
+        buttons: [{
+          label: li < LEVELS.length - 1 ? "Next level" : "Play again",
+          primary: true,
+          onClick: () => { li = (li + 1) % LEVELS.length; load(); },
+        }],
+      });
+    }
+
+    // ---- H-R diagram ----
+    const X0 = 76, X1 = 614, Y1 = 54, Y0 = 366;
+    function tempX(t) {
+      const a = Math.log10(2800), b = Math.log10(25000);
+      return X0 + (1 - (Math.log10(t) - a) / (b - a)) * (X1 - X0);
+    }
+    function lumY(l) {
+      return Y0 - ((Math.log10(l) + 4) / 9) * (Y0 - Y1);
+    }
+
+    function zoneAt(x, y) {
+      for (let i = ZONES.length - 1; i >= 0; i--) {
+        const z = ZONES[i];
+        if (x >= z.x && x <= z.x + z.w && y >= z.y && y <= z.y + z.h) return z;
+      }
+      return null;
+    }
+
+    function drawHR() {
+      const { ctx, W, H } = st;
+      ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = "#0F141C"; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = "#141A23"; ctx.fillRect(X0, Y1, X1 - X0, Y0 - Y1);
+
+      // grid
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = "rgba(147,160,178,.16)";
+      [0.0001, 0.01, 1, 100, 10000].forEach((l) => {
+        const y = lumY(l);
+        ctx.beginPath(); ctx.moveTo(X0, y); ctx.lineTo(X1, y); ctx.stroke();
+      });
+      [25000, 12000, 5500, 2800].forEach((t) => {
+        const x = tempX(t);
+        ctx.beginPath(); ctx.moveTo(x, Y1); ctx.lineTo(x, Y0); ctx.stroke();
+      });
+
+      // axes
+      ctx.strokeStyle = "#2B3544"; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(X0, Y1); ctx.lineTo(X0, Y0); ctx.lineTo(X1, Y0); ctx.stroke();
+
+      // main sequence band
+      ctx.save();
+      ctx.lineCap = "round"; ctx.lineJoin = "round";
+      ctx.strokeStyle = "rgba(120,162,255,.14)"; ctx.lineWidth = 56;
+      ctx.beginPath(); ctx.moveTo(190, 122); ctx.lineTo(448, 227); ctx.lineTo(614, 350); ctx.stroke();
+      ctx.strokeStyle = "rgba(120,162,255,.28)"; ctx.lineWidth = 2;
+      ctx.setLineDash([6, 7]);
+      ctx.beginPath(); ctx.moveTo(190, 122); ctx.lineTo(448, 227); ctx.lineTo(614, 350); ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.restore();
+
+      // group labels
+      ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+      ctx.save();
+      ctx.translate(360, 305); ctx.rotate(0.42);
+      ctx.fillStyle = "rgba(120,162,255,.85)"; ctx.font = "700 12px ui-monospace,monospace";
+      ctx.fillText("MAIN SEQUENCE", -48, 0);
+      ctx.restore();
+
+      // zones
+      ZONES.forEach((z) => {
+        const inset = collected(z.id);
+        ctx.save();
+        ctx.beginPath(); ctx.roundRect(z.x, z.y, z.w, z.h, 9);
+        ctx.fillStyle = inset ? "rgba(255,216,74,.10)" : "rgba(255,255,255,.025)";
+        ctx.fill();
+        ctx.strokeStyle = inset ? "rgba(255,216,74,.6)" : z.color;
+        ctx.globalAlpha = inset ? 1 : 0.5;
+        ctx.lineWidth = 1.4; ctx.setLineDash([5, 5]); ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = inset ? "#FFD84A" : "#C9D2DE";
+        ctx.font = "700 12px ui-monospace,monospace"; ctx.textAlign = "left";
+        ctx.fillText(z.label, z.x + 8, z.y + 18);
+        if (z.id === "giants") {
+          ctx.fillStyle = "#93A0B2"; ctx.font = "12px ui-monospace,monospace";
+          ctx.fillText("cool but bright", z.x + 8, z.y + 34);
+        } else if (z.id === "dwarfs") {
+          ctx.fillStyle = "#93A0B2"; ctx.font = "12px ui-monospace,monospace";
+          ctx.fillText("hot but dim", z.x + 8, z.y + 34);
+        }
+        ctx.restore();
+      });
+
+      // placed stars
+      STARS.forEach((s) => {
+        if (!placed[s.id]) return;
+        ctx.save();
+        ctx.translate(s.x, s.y);
+        ctx.beginPath();
+        for (let i = 0; i < 10; i++) {
+          const a = -Math.PI / 2 + i * Math.PI / 5;
+          const r = i % 2 ? 4.5 : 10;
+          const px = Math.cos(a) * r, py = Math.sin(a) * r;
+          if (i) ctx.lineTo(px, py); else ctx.moveTo(px, py);
+        }
+        ctx.closePath();
+        ctx.fillStyle = "#FFD84A"; ctx.fill();
+        ctx.strokeStyle = "#0F141C"; ctx.lineWidth = 2; ctx.stroke();
+        ctx.fillStyle = "#E9EEF5"; ctx.font = "700 12px ui-monospace,monospace";
+        ctx.textAlign = s.id === "cool" ? "right" : "center"; ctx.textBaseline = "top";
+        ctx.fillText(s.short, s.id === "cool" ? 10 : 0, 13);
+        ctx.restore();
+      });
+
+      // axis labels
+      ctx.textBaseline = "alphabetic";
+      ctx.fillStyle = "#93A0B2"; ctx.font = "12px ui-monospace,monospace"; ctx.textAlign = "center";
+      const temps = [[25000, "25,000"], [12000, "12,000"], [5500, "5,500"], [2800, "2,800"]];
+      temps.forEach(([t, lab]) => ctx.fillText(lab, tempX(t), Y0 + 18));
+      ctx.fillStyle = "#C9D2DE";
+      ctx.fillText("surface temperature (°C)  ·  hotter left  ·  cooler right", (X0 + X1) / 2, H - 10);
+
+      ctx.fillStyle = "#93A0B2"; ctx.font = "12px ui-monospace,monospace"; ctx.textAlign = "right";
+      [[0.0001, "0.0001"], [0.01, "0.01"], [1, "1"], [100, "100"], [10000, "10,000"]].forEach(([l, lab]) => {
+        ctx.fillText(lab, X0 - 8, lumY(l) + 4);
+      });
+      ctx.save();
+      ctx.translate(14, (Y0 + Y1) / 2); ctx.rotate(-Math.PI / 2);
+      ctx.fillStyle = "#C9D2DE"; ctx.textAlign = "center";
+      ctx.fillText("luminosity (Sun = 1)", 0, 0);
+      ctx.restore();
+    }
+
+    function collected(id) {
+      return STARS.some((s) => s.zone === id && placed[s.id]);
+    }
+
+    function renderHR() {
+      const left = STARS.filter((s) => !placed[s.id]).length;
+      $("starTiles").innerHTML = STARS.map((s) => {
+        const on = selStar === s.id, was = placed[s.id];
+        return `<button class="tile${was ? " good" : ""}" type="button" data-star="${s.id}" aria-pressed="${on}" ${was ? "disabled" : ""}>
+          <strong>${s.type}</strong>
+          <span class="help" style="display:block;margin-top:2px">${s.name} · ${s.temp} · ${s.lum}</span>
+          <span class="help" style="display:block;color:var(--good)">${was ? "placed" : on ? "selected" : ""}</span>
+        </button>`;
+      }).join("");
+      [...$("starTiles").querySelectorAll("button")].forEach((b) => {
+        b.onclick = () => {
+          if (done) return;
+          selStar = b.dataset.star;
+          renderHR();
+          say(`Selected ${STARS.find((s) => s.id === selStar).name}. Now click a labeled region on the diagram, or use a region button.`);
+        };
+      });
+      $("zoneBtns").innerHTML = ZONES.map((z) =>
+        `<button class="btn" type="button" data-zone="${z.id}">${z.label}</button>`
+      ).join("");
+      [...$("zoneBtns").querySelectorAll("button")].forEach((b) => {
+        b.onclick = () => tryPlace(b.dataset.zone);
+      });
+      if (!done) $("seqHint").textContent = left ? `${left} star${left === 1 ? "" : "s"} left to place.` : "All three stars placed.";
+    }
+
+    function tryPlace(zoneId) {
+      if (li !== 2 || done) return;
+      if (!selStar) { say("Pick a star first, then choose its region."); return; }
+      const s = STARS.find((x) => x.id === selStar);
+      const z = ZONES.find((x) => x.id === zoneId);
+      if (s.zone === zoneId) {
+        placed[s.id] = true;
+        selStar = null;
+        drawHR();
+        renderHR();
+        say(`Correct: ${s.name} is ${s.type}. ${s.note}`);
+        if (STARS.every((x) => placed[x.id])) finishHR();
+      } else if (zoneId === "giants") {
+        say(`${z.label} are cool but very bright. ${s.name} is ${s.temp} and ${s.lum}: that temperature and brightness do not match a giant.`);
+      } else if (zoneId === "dwarfs") {
+        say(`White dwarfs are hot but faint leftover cores. ${s.name} is ${s.temp} and ${s.lum}; compare both numbers with the region.`);
+      } else {
+        say(`That is the ${z.label} region. ${s.name} is ${s.temp} and ${s.lum}. Temperature places a star left or right; luminosity places it high or low.`);
+      }
+    }
+
+    function finishHR() {
+      done = true;
+      bar.solve(2);
+      card($("stage"), {
+        title: LEVELS[2].win.title,
+        why: "The science",
+        body: LEVELS[2].win.body,
+        list: LEVELS[2].win.list,
+        buttons: [{ label: "Play again", primary: true, onClick: () => { li = 0; load(); } }],
+      });
+    }
+
+    cv.addEventListener("click", (ev) => {
+      if (li !== 2 || done) return;
+      const p = st.pt(ev);
+      const z = zoneAt(p.x, p.y);
+      if (z) tryPlace(z.id);
+      else say("Click inside one of the labeled regions on the H-R diagram.");
+    });
+
+    function load() {
+      done = false; step = 0; selStar = null;
+      placed.cool = placed.sun = placed.hot = false;
+      if (hideCard) hideCard($("stage"));
+      $("stage").style.minHeight = "";
+      const L = LEVELS[li];
+      $("lvName").textContent = L.n;
+      $("lvGoal").textContent = L.goal;
+      $("massTag").textContent = L.mass;
+      $("help").textContent = li === 2
+        ? "Pick a star on the right, then click its region on the diagram. Blue stars are hot; stars high on the diagram are bright."
+        : "Click the stage that happens next. The bank is shuffled, so read the stages rather than relying on position.";
+      $("seqPane").hidden = li === 2;
+      $("hrPane").hidden = li !== 2;
+      $("bankWrap").hidden = li === 2;
+      $("hrPanel").hidden = li !== 2;
+      bar.set(li);
+      if (li === 2) {
+        $("seqHint").textContent = "";
+        renderHR();
+        drawHR();
+        requestAnimationFrame(() => drawHR());
+        say("Three stars, three regions. Start with the one that is cool and dim.");
+      } else {
+        $("seqHint").textContent = L.hint;
+        renderBank();
+        renderSeq();
+        say(`Order the life of a ${L.mass} star. Click the first stage in the bank.`);
+      }
+    }
+
+    $("reset").onclick = () => load();
+    st.onfit = () => drawHR();
+    load();
+  }));
+})();</script>
+<!-- LESSON GAME:star-life-cycle END -->

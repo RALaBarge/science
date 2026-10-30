@@ -1,0 +1,611 @@
+<title>Energy Transformation and Conservation</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout concept: one long lesson column. Each concept opens with a one-sentence big idea, then a grid of labelled visual aids
+   (Analogy, Diagram, Try it, Data, Real world) that collapses to one column on phones.
+   Color roles are fixed for the whole page: amber = incoming light, blue = reflected, teal = transmitted, orange = absorbed. */
+:root{
+  --bg:#F2F5FA; --surface:#FFFFFF; --surface-2:#E8EDF6; --ink:#12172B; --muted:#47506E; --line:#D0D8E8;
+  --beam:#F2A900; --beam-ink:#1A1400; --reflect:#2B66E8; --absorb:#D6450B; --transmit:#0B7F70; --on-color:#FFFFFF;
+  --red:#D93036; --green:#25904F; --blue:#3558D6; --shade:#222A4A;
+  --font-display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --font-body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+  --font-mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C1022; --surface:#151A33; --surface-2:#1D2444; --ink:#EDF0FB; --muted:#A8B1CE; --line:#2B3459;
+    --beam:#FFC93C; --beam-ink:#1A1400; --reflect:#7BA2FF; --absorb:#FF8F5C; --transmit:#46D6C0; --on-color:#0B1020;
+    --red:#FF6A70; --green:#4FCB85; --blue:#7C97FF; --shade:#02040B; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C1022; --surface:#151A33; --surface-2:#1D2444; --ink:#EDF0FB; --muted:#A8B1CE; --line:#2B3459;
+  --beam:#FFC93C; --beam-ink:#1A1400; --reflect:#7BA2FF; --absorb:#FF8F5C; --transmit:#46D6C0; --on-color:#0B1020;
+  --red:#FF6A70; --green:#4FCB85; --blue:#7C97FF; --shade:#02040B; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--font-body); font-size:17px; line-height:1.55;
+  padding-block:0 72px;
+  padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+main,.hero{max-width:920px;margin:0 auto}
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance;margin:0;line-height:1.1}
+p{margin:0}
+a{color:inherit}
+svg{display:block;width:100%;height:auto}
+svg text{font-family:var(--font-body);fill:var(--ink)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--reflect);outline-offset:2px}
+
+/* hero */
+.hero{padding-block:28px 8px;display:grid;gap:18px}
+.kicker{font-family:var(--font-mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
+.lede{font-size:clamp(1.1rem,3.4vw,1.35rem);max-width:34em;text-wrap:pretty}
+.hero-art{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:10px 12px}
+.howto{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:.92rem;color:var(--muted)}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);margin-top:18px;border-bottom:1px solid var(--line);
+  margin-inline:auto;max-width:920px}
+.nav ul{list-style:none;margin:0;padding:8px 0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin}
+.nav a{display:block;white-space:nowrap;text-decoration:none;font-size:.9rem;padding:7px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface)}
+.nav a:hover{border-color:var(--ink)}
+
+/* sections */
+.sec{padding-block:52px 6px;scroll-margin-top:68px;display:grid;gap:20px}
+.sec h2{font-size:clamp(1.9rem,6vw,2.7rem);font-weight:800;letter-spacing:-.02em}
+.idea{font-family:var(--font-display);font-size:clamp(1.25rem,4.4vw,1.75rem);line-height:1.25;font-weight:700;text-wrap:balance;max-width:28em}
+.idea mark{background:linear-gradient(transparent 58%,color-mix(in srgb,var(--beam) 50%,transparent) 58%);color:inherit}
+.aids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.aid{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.aid.wide{grid-column:1/-1}
+.aid h3{font-size:1.2rem;font-weight:700}
+.aid p.cap{font-size:.95rem;color:var(--muted)}
+.aid p.cap b{color:var(--ink)}
+.tag{align-self:flex-start;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;padding:3px 9px;border-radius:999px;
+  background:color-mix(in srgb,var(--tint) 24%,var(--surface));border:1px solid color-mix(in srgb,var(--tint) 55%,var(--line))}
+.tag.analogy{--tint:var(--beam)} .tag.diagram{--tint:var(--reflect)} .tag.try{--tint:var(--transmit)} .tag.data{--tint:var(--absorb)} .tag.real{--tint:var(--muted)}
+.stage{background:var(--surface-2);border-radius:10px;padding:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:.92rem;padding:7px 13px;min-height:40px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.ctl{display:grid;gap:6px}
+.ctl label{font-size:.92rem;font-weight:700}
+input[type=range]{width:100%;accent-color:var(--beam);height:32px}
+.readout{font-size:1rem}
+.readout b{font-family:var(--font-mono);font-weight:500}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{display:inline-flex;gap:6px;align-items:baseline;padding:5px 11px;border-radius:999px;font-family:var(--font-mono);font-size:.84rem;font-weight:500;background:var(--c);color:var(--on-color)}
+.pill.r{--c:var(--reflect)} .pill.a{--c:var(--absorb)} .pill.t{--c:var(--transmit)}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.trio>div{display:grid;gap:6px;align-content:start;min-width:0}
+.trio h4{margin:0;font-family:var(--font-display);font-size:1.05rem}
+.trio p{font-size:.93rem;color:var(--muted)}
+.trio svg{background:var(--surface-2);border-radius:10px}
+.swatch-r{color:var(--reflect);font-weight:700}.swatch-t{color:var(--transmit);font-weight:700}.swatch-a{color:var(--absorb);font-weight:700}
+
+/* stacked bars */
+.bars{display:grid;gap:9px}
+.brow{display:grid;grid-template-columns:104px minmax(0,1fr);gap:10px;align-items:center;font-size:.9rem}
+.brow.on .lab{font-weight:700}
+.stack{display:flex;height:28px;border-radius:7px;overflow:hidden;background:var(--surface-2);outline:2px solid transparent;outline-offset:2px}
+.brow.on .stack{outline-color:var(--ink)}
+.seg{display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:.72rem;color:var(--on-color);min-width:0;overflow:hidden}
+.seg.r{background:var(--reflect)}.seg.t{background:var(--transmit)}.seg.a{background:var(--absorb)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.88rem}
+.legend span::before{content:"";display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--c)}
+.legend .r{--c:var(--reflect)}.legend .t{--c:var(--transmit)}.legend .a{--c:var(--absorb)}
+
+/* sort game, quiz */
+.items{display:grid;gap:10px}
+.item{display:grid;gap:6px;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.item .nm{font-weight:700}
+.item .opts{display:flex;flex-wrap:wrap;gap:6px}
+.opt{font-size:.85rem;padding:6px 10px;border-radius:8px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;min-height:36px;text-align:left}
+.opt:hover:not([disabled]){border-color:var(--ink)}
+.opt.good{background:var(--transmit);color:var(--on-color);border-color:var(--transmit)}
+.opt.bad{background:var(--absorb);color:var(--on-color);border-color:var(--absorb)}
+.fb{font-size:.88rem;color:var(--muted)}
+.score{font-family:var(--font-mono);font-size:.9rem}
+.q{display:grid;gap:10px;padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.q h4{margin:0;font-size:1.05rem;font-family:var(--font-body);font-weight:700}
+.q .opts{display:grid;gap:8px}
+
+/* tables */
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:.92rem;min-width:420px}
+.tbl th,.tbl td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+.tbl th{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+/* see-through demo */
+.seebox{position:relative;border-radius:10px;overflow:hidden;background:var(--surface-2);padding:22px 16px;min-height:130px;display:grid;place-items:center}
+.seetext{font-family:var(--font-display);font-weight:800;font-size:clamp(1.2rem,5vw,1.7rem);text-align:center;letter-spacing:.02em;transition:filter .2s,opacity .2s}
+.seesheets{position:absolute;inset:0;pointer-events:none;background:var(--surface);transition:opacity .2s}
+.meter{height:12px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--transmit);transition:width .2s}
+
+/* canvas */
+canvas{width:100%;aspect-ratio:640/260;display:block;border-radius:10px;background:var(--surface-2)}
+.tally{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;font-size:.85rem}
+.tally div{padding:8px;border-radius:8px;background:var(--bg);border:1px solid var(--line)}
+.tally b{display:block;font-family:var(--font-mono);font-weight:500;font-size:1.05rem}
+
+/* color mixer + channel columns */
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.colx{display:grid;gap:6px;justify-items:center;font-size:.85rem;text-align:center}
+.tube{position:relative;width:100%;max-width:90px;height:150px;border:2px solid var(--line);border-radius:8px;display:flex;flex-direction:column-reverse;overflow:hidden;background:var(--bg)}
+.tube.empty{border-style:dashed}
+.tube .rf{background:var(--cc)}
+.tube .ab{background:repeating-linear-gradient(45deg,var(--surface-2) 0 6px,var(--line) 6px 9px)}
+.colx .nm{font-weight:700}
+.colx.r{--cc:var(--red)}.colx.g{--cc:var(--green)}.colx.b{--cc:var(--blue)}
+
+/* waffle */
+.waffle{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:3px;max-width:300px;width:100%}
+.cell{aspect-ratio:1;border-radius:3px}
+.cell.r{background:var(--reflect)}.cell.t{background:var(--transmit)}.cell.a{background:var(--absorb)}
+
+/* ice race */
+.race{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pad{position:relative;height:170px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden}
+.pad.w{background:#F4F4F1}.pad.b{background:#14161C}
+.pad .lbl{position:absolute;left:8px;top:6px;font-size:.78rem;font-family:var(--font-mono)}
+.pad.w .lbl{color:#333}.pad.b .lbl{color:#ddd}
+.puddle{position:absolute;width:110px;height:46px;border-radius:50%;background:#7CC4F2;opacity:.65;transform:scale(0);bottom:22px}
+.ice{position:relative;width:76px;height:76px;border-radius:12px;background:linear-gradient(135deg,#E4F6FF,#9ED7F5);border:2px solid #fff;transform-origin:50% 100%;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.sunbar{height:10px;border-radius:99px;background:linear-gradient(90deg,var(--beam),color-mix(in srgb,var(--beam) 30%,transparent));opacity:.25;transition:opacity .3s}
+.sunbar.on{opacity:1}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap}
+.btn{font-size:.95rem;font-weight:700;padding:9px 16px;min-height:42px;border-radius:10px;border:0;background:var(--beam);color:var(--beam-ink);cursor:pointer}
+.btn.ghost{background:var(--surface);color:var(--ink);border:1.5px solid var(--line)}
+.btn:hover{filter:brightness(1.06)}
+
+/* misc */
+.glossary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px;margin:0}
+.glossary div{padding:10px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--line)}
+.glossary dt{font-weight:700}
+.glossary dd{margin:2px 0 0;font-size:.93rem;color:var(--muted)}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+details+details{margin-top:10px}
+summary{cursor:pointer;font-weight:700}
+details .in{display:grid;gap:10px;padding-top:10px;font-size:.95rem}
+details ul{margin:0;padding-left:1.2em;display:grid;gap:4px}
+footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;border-top:1px solid var(--line);padding-top:16px}
+.flow{stroke-dasharray:10 8;animation:flow 1s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-18}}
+@media (prefers-reduced-motion: reduce){.flow{animation:none}html{scroll-behavior:auto}.seetext,.seesheets,.meter i{transition:none}}
+@media (max-width:760px){
+  .aids{grid-template-columns:minmax(0,1fr)}
+  .trio{grid-template-columns:minmax(0,1fr)}
+  .glossary{grid-template-columns:minmax(0,1fr)}
+  .tally{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:420px){.brow{grid-template-columns:84px minmax(0,1fr)}.race{grid-template-columns:minmax(0,1fr)}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="mBeam" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--beam)"/></marker>
+    <marker id="mReflect" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--reflect)"/></marker>
+    <marker id="mTransmit" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--transmit)"/></marker>
+    <marker id="mAbsorb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--absorb)"/></marker>
+    <marker id="mInk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--ink)"/></marker>
+    <marker id="mRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#D93036"/></marker>
+  </defs>
+</svg>
+
+<style>.bridge{margin:14px 0 0;padding:12px 14px;border-left:4px solid var(--beam);background:var(--surface-2);border-radius:0 10px 10px 0;font-size:.95rem;line-height:1.5}.related ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}.related li{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}.related a{font-weight:700}.related .why{display:block;color:var(--muted);font-size:.9rem}</style>
+<style>
+canvas.sim{width:100%;height:240px;display:block;border-radius:12px;background:var(--surface-2);border:1px solid var(--line)}
+.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:.8rem;color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:4px;vertical-align:-1px;border:1px solid var(--ink)}
+.card2{padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg)}
+.apl{display:grid;gap:6px}.tip{font-size:.86rem;color:var(--muted)}
+.sel{display:grid;gap:4px;font-size:.9rem}.sel select{padding:8px;border-radius:8px;border:2px solid var(--line);background:var(--surface);color:var(--ink);font:inherit}
+.sentence{padding:12px 14px;border-radius:12px;background:color-mix(in srgb,var(--beam) 25%,var(--surface));border:2px solid var(--ink);font-weight:700;line-height:1.5}
+</style>
+
+<header class="hero">
+  <p class="kicker">Eighth grade science · Unit 8.2</p>
+  <h1>Energy Transformation &amp; Conservation</h1>
+  <p class="lede"><b>Unit 2: Thermal Energy</b> and <b>Unit 3: Forces, Motion and Energy</b> introduced energy; <b>Unit 7.3</b> followed it through chemical reactions. Now we put numbers on it. Energy is never created or destroyed, only moved and changed. Use the claim-evidence-reasoning habit from <b>Unit 0: How Science Works</b> when your numbers do not seem to add up.</p>
+  <p class="bridge"><b>Where we left off:</b> Unit 8.1 covered forces and momentum in collisions. You may already have learned that energy changes form (Units 2, 3, and 7.3). Now we track the amounts: kinetic and potential energy, waste heat, and efficiency.</p>
+  <div class="hero-art"><svg viewBox="0 0 640 190" role="img" aria-label="A roller coaster showing energy changing form"><path d="M40 50 Q120 50 160 130 T300 150 Q380 150 420 70 T600 130" style="fill:none;stroke:var(--ink);stroke-width:5"/>
+<circle cx="70" cy="50" r="12" style="fill:var(--absorb);stroke:var(--ink);stroke-width:3"/>
+<g font-size="13" style="font-weight:700"><text x="40" y="30">high: stored (potential)</text><text x="220" y="185">fast: moving (kinetic)</text><text x="420" y="45">some becomes heat</text></g></svg></div>
+  <p class="howto">Look for the tags <span class="tag analogy">Analogy</span><span class="tag diagram">Diagram</span><span class="tag try">Try it</span><span class="tag data">Data</span><span class="tag real">Real world</span></p>
+</header>
+
+<nav class="nav" aria-label="Lesson sections"><ul><li><a href="#s1">1 Forms</a></li><li><a href="#s2">2 Kinetic and potential</a></li><li><a href="#s3">3 Speed and energy</a></li><li><a href="#s4">4 Losses</a></li><li><a href="#s5">5 Design</a></li><li><a href="#s6">6 Check yourself</a></li><li><a href="#game">7 Game</a></li></ul></nav>
+
+<main>
+<section class="sec" id="s1"><div><p class="kicker">Concept 1 · Energy transformations</p><h2>Energy changes form, never disappears</h2></div><p class="idea">Energy shows up as <mark>motion (kinetic)</mark>, <mark>position (potential)</mark>, <mark>thermal</mark>, <mark>chemical</mark>, <mark>electrical</mark>, <mark>light</mark>, and <mark>sound</mark>. Devices <mark>transform</mark> one form into others.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Money in different pockets</h3><p class="cap">Ten dollars can be cash, a gift card, or a bank balance. It is the same ten dollars in different forms; energy works the same way.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Chain of transformations</h3><div class="chips" id="tfChips" role="group" aria-label="Device"></div><div class="card2" id="tfCard" aria-live="polite"></div></article><article class="aid wide"><span class="tag data">Data</span><h3>Transformers around you</h3><div class="tw"><table class="tbl" style="min-width:520px"><thead><tr><th>Device</th><th>Energy in</th><th>Useful out</th><th>Also out</th></tr></thead><tbody><tr><td>Light bulb</td><td>Electrical</td><td>Light</td><td>Heat</td></tr><tr><td>Car engine</td><td>Chemical</td><td>Motion</td><td>Heat, sound</td></tr><tr><td>Solar panel</td><td>Light</td><td>Electrical</td><td>Heat</td></tr><tr><td>Speaker</td><td>Electrical</td><td>Sound</td><td>Heat</td></tr><tr><td>Your body</td><td>Chemical (food)</td><td>Motion</td><td>Heat</td></tr></tbody></table></div></article></div></section>
+<section class="sec" id="s2"><div><p class="kicker">Concept 2 · Roller coaster</p><h2>Trading height for speed</h2></div><p class="idea"><mark>Gravitational potential energy</mark> grows with height and mass; <mark>kinetic energy</mark> = ½ × mass × speed². On a frictionless track their sum stays the same, so they trade.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Savings and spending</h3><p class="cap">At the top of a hill you have lots saved (potential). Rolling down, you spend it as speed (kinetic). At the bottom you have spent it all, but no money vanished.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Ride the coaster</h3><div class="ctl"><label for="rcH">Position along the track: <span id="rcHV"></span>%</label><input id="rcH" type="range" min="0" max="100" step="5" value="0"></div><div class="stage"><svg id="rcSvg" viewBox="0 0 480 200" role="img" aria-label="A coaster track with a car."></svg></div><div id="rcBars" class="bars"></div><p class="readout" id="rcR" aria-live="polite"></p></article><article class="aid wide"><span class="tag data">Data</span><h3>Speed at the bottom</h3><div class="tw"><table class="tbl" style="min-width:420px"><thead><tr><th>Drop height</th><th>Speed at bottom (no friction)</th></tr></thead><tbody><tr><td>5 m</td><td>10 m/s (36 km/h)</td></tr><tr><td>20 m</td><td>20 m/s (72 km/h)</td></tr><tr><td>45 m</td><td>30 m/s (108 km/h)</td></tr><tr><td>80 m</td><td>40 m/s (144 km/h)</td></tr></tbody></table></div><p class="cap">Speed = √(2 g h), so doubling speed needs four times the height.</p></article></div></section>
+<section class="sec" id="s3"><div><p class="kicker">Concept 3 · Why speed matters most</p><h2>Doubling speed quadruples kinetic energy</h2></div><p class="idea">Kinetic energy depends on <mark>speed squared</mark>. That is why highway crashes are far worse than parking-lot bumps, and why speed limits matter.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Doubling speed, quadruple energy</h3><p class="cap">Running at twice the speed does not cost double the energy: it costs four times as much, because kinetic energy depends on speed squared. Each extra bit of speed gets expensive. <b>Where it breaks:</b> this is the energy of motion only; a real runner also spends energy on muscles, heat, and air resistance.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Speed squared</h3><div class="ctl"><label for="keS">Speed: <span id="keSV"></span> m/s</label><input id="keS" type="range" min="0" max="40" step="5" value="20"></div><div class="bars" id="keBars"></div><p class="readout" id="keR" aria-live="polite"></p></article><article class="aid wide"><span class="tag data">Data</span><h3>Kinetic energy of a 1,000 kg car</h3><div class="stage"><svg id="keSvg" viewBox="0 0 480 210" role="img" aria-label="Kinetic energy rises as the square of speed."></svg></div></article></div></section>
+<section class="sec" id="s4"><div><p class="kicker">Concept 4 · Conservation and waste heat</p><h2>Where does the energy go?</h2></div><p class="idea">Total energy is <mark>conserved</mark>, but some always turns into <mark>thermal energy</mark> by friction and drag, spreading out where we cannot use it. <mark>Efficiency</mark> = useful energy out ÷ total energy in.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>A leaky bucket</h3><p class="cap">Pour 10 liters in and only 6 reach the end: 4 leaked out. The water was not destroyed, but it was not useful there. Waste heat is the leak.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Bouncing ball</h3><div class="stage"><svg id="bbSvg" viewBox="0 0 480 200" role="img" aria-label="Bounce height shrinks after each bounce."></svg></div><div class="ctl"><label for="bbE">Bounciness (percent of height kept): <span id="bbEV"></span>%</label><input id="bbE" type="range" min="30" max="90" step="5" value="70"></div><p class="readout" id="bbR" aria-live="polite"></p></article><article class="aid wide"><span class="tag data">Data</span><h3>Efficiency</h3><div class="chips" id="efChips" role="group" aria-label="Device"></div><div class="stack" id="efStack" role="img" aria-label="Useful versus wasted energy"></div><p class="readout" id="efR" aria-live="polite"></p></article></div></section>
+<section class="sec" id="s5"><div><p class="kicker">Concept 5 · Using energy wisely</p><h2>Efficient design saves money and resources</h2></div><p class="idea">Engineers raise efficiency by cutting friction, adding insulation, or choosing better devices. Savings are measured in <mark>energy and dollars</mark>.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Plug the leaks</h3><p class="cap">An old house loses heat like a bucket full of holes. Insulation plugs them.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Light bulb cost</h3><div class="chips" id="lbChips" role="group" aria-label="Bulb"></div><div class="bars" id="lbBars"></div><p class="readout" id="lbR" aria-live="polite"></p></article><article class="aid wide"><span class="tag real">Real world</span><h3>Real-world improvements</h3><div class="tw"><table class="tbl"><thead><tr><th>Change</th><th>How it saves energy</th></tr></thead><tbody><tr><td>LED bulbs</td><td>Light with ~85% less electricity</td></tr><tr><td>Regenerative braking</td><td>Stores braking energy in the battery</td></tr><tr><td>Triple-pane windows</td><td>Less heat loss</td></tr><tr><td>Roller bearings</td><td>Cut friction</td></tr></tbody></table></div></article></div></section>
+
+<section class="sec" id="s6">
+  <div><p class="kicker">Check yourself</p><h2>Can you explain it?</h2></div>
+  <p class="idea">A ball dropped from 2 m only bounces back to 1.4 m. Where did the missing energy go, and how does that fit the law of conservation of energy?</p>
+  <details><summary>Show a model answer</summary><div class="in"><p>Some energy turned into thermal energy and sound when the ball hit the floor (the ball and floor warmed slightly) and into internal deformation. The total energy is the same, but less of it is kinetic/potential in the ball, so the bounce is lower.</p></div></details>
+  <div class="items" id="quiz"></div>
+  <p class="score" id="quizScore">0 of 6 correct</p>
+  <h3 style="margin-top:8px">Words to know</h3>
+  <dl class="glossary"><div><dt>kinetic energy</dt><dd>Energy of motion.</dd></div><div><dt>potential energy</dt><dd>Stored energy because of position.</dd></div><div><dt>conservation of energy</dt><dd>Energy cannot be created or destroyed.</dd></div><div><dt>transformation</dt><dd>Change from one form to another.</dd></div><div><dt>efficiency</dt><dd>Useful energy out divided by energy in.</dd></div><div><dt>joule</dt><dd>Unit of energy.</dd></div><div><dt>watt</dt><dd>Joules per second; unit of power.</dd></div><div><dt>thermal energy</dt><dd>Energy of particle motion.</dd></div><div><dt>friction</dt><dd>Force that turns motion into heat.</dd></div><div><dt>system</dt><dd>The objects you decide to track.</dd></div></dl>
+  <details><summary>Tutor notes: hands-on kit, misconceptions, pacing</summary><div class="in"><p><b>Kit (about $8):</b> a ramp and a marble/toy car, a meter stick, bouncy balls, a stopwatch, a thermometer, a kilowatt meter ($20, optional), LED and incandescent bulbs.</p><ul><li><b>Concept 1:</b> Roll a marble from different heights and measure speed (distance/time).</li><li><b>Concept 2:</b> Drop balls from 1 m and record bounce heights, graph results.</li><li><b>Concept 3:</b> Rub hands and feel the heat: motion to thermal.</li><li><b>Concept 4:</b> Measure phone-charger watts with a meter if available.</li><li><b>Concept 5:</b> Do a home energy hunt: list five devices and their energy forms.</li></ul><p><b>Common misconceptions:</b></p><ul><li>"Energy gets used up." It changes form.</li><li>"Potential energy only exists on high things." Springs, batteries and food hold it too.</li><li>"Heavier objects fall faster." Heavier means more energy, not more speed.</li><li>"Efficiency of 100% is possible." Some heat always escapes.</li></ul><p><b>Pacing:</b> about five 30-minute sessions. <b>Method link:</b> ask students to define the system, write the prediction, and use a data table with several trials (Unit 0).</p></div></details>
+</section>
+
+<section class="sec lesson-game-sec" id="game"><div><p class="kicker">After the lesson · Game</p><h2>Play: Energy Chain</h2></div><p class="idea">Build a three-stage energy chain from a 1,000 J source. Each device has an efficiency, so every stage shrinks the useful energy and adds waste heat. Match the energy forms and hit the target.</p><div class="lesson-game" id="lesson-game"></div></section>
+<section class="sec related" id="more"><div><p class="kicker">Keep exploring</p><h2>Related lessons</h2></div><p class="idea"> Up next: <a href="unit-8.3-forces-at-a-distance.html">Unit 8.3: Forces at a Distance</a>. Overlap alert: ideas you have already met are marked above as "you may already have learned".</p><ul><li><a href="../6th/unit-02-thermal-energy.html">Unit 2: Thermal Energy</a><span class="why">Thermal energy.</span></li><li><a href="../6th/unit-03-forces-motion-and-energy.html">Unit 3: Forces, Motion &amp; Energy</a><span class="why">Forces, motion, and energy.</span></li><li><a href="../7th/unit-7.3-chemical-reactions-and-energy.html">Unit 7.3: Chemical Reactions &amp; Energy</a><span class="why">Energy in reactions.</span></li><li><a href="../6th/unit-13-energy-resources-and-human-impact.html">Unit 13: Energy Resources &amp; Human Impact</a><span class="why">Energy resources.</span></li><li><a href="unit-8.1-contact-forces-and-collisions.html">Unit 8.1: Contact Forces &amp; Collisions</a><span class="why">Contact forces and collisions.</span></li></ul></section>
+</main>
+
+<footer>Built for eighth-grade tutoring. Based on OpenSciEd grade 8 Unit 8.2 (Energy Conversions) and Michigan Virtual 8th-grade Science A energy modules; aligned with NGSS MS-PS3-1, MS-PS3-2, MS-PS3-3 and MS-PS3-5. Values approximate.</footer>
+
+<script>
+(function(){
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const safe=fn=>{try{fn()}catch(e){console.error(e)}};
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const setPressed=(g,b)=>$$('button',g).forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));
+function mkChips(g,labels,sel=0){ g.innerHTML=labels.map((l,i)=>`<button class="chip" type="button" data-i="${i}" aria-pressed="${i===sel}">${l}</button>`).join(''); }
+function chipsOn(g,fn){ g.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; setPressed(g,b); fn(+b.dataset.i,b); }); }
+function quizBox(box,scoreEl,items,labels){
+  let right=0;
+  box.innerHTML=items.map((it,i)=>`<div class="item" data-i="${i}"><span class="nm">${it.n}</span><div class="opts">${labels.map((l,j)=>`<button class="opt" type="button" data-j="${j}">${l}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
+  box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.disabled)return; const row=b.closest('.item'), it=items[+row.dataset.i], ok=+b.dataset.j===it.a;
+    $$('.opt',row).forEach(o=>{ o.disabled=true; if(+o.dataset.j===it.a)o.classList.add('good'); }); if(!ok)b.classList.add('bad'); else right++;
+    $('.fb',row).textContent=(ok?'Yes. ':'Not quite. ')+it.e; scoreEl.textContent=`${right} of ${items.length} correct`; });
+}
+function finalQuiz(Q){
+  const box=$('#quiz'), sc=$('#quizScore'); let right=0;
+  box.innerHTML=Q.map((x,i)=>`<div class="q item" data-i="${i}" style="display:grid"><h4>${i+1}. ${x.q}</h4><div class="opts">${x.o.map((t,j)=>`<button class="opt" type="button" data-j="${j}">${t}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
+  box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.disabled)return; const row=b.closest('.q'), x=Q[+row.dataset.i], ok=+b.dataset.j===x.a;
+    $$('.opt',row).forEach(o=>{ o.disabled=true; if(+o.dataset.j===x.a)o.classList.add('good'); }); if(!ok)b.classList.add('bad'); else right++;
+    $('.fb',row).textContent=(ok?'Correct. ':'Not quite. ')+x.e; sc.textContent=`${right} of ${Q.length} correct`; });
+}
+/* bars: rows [label, value, text, cls('r'|'t'|'a')]; opt {log:true, labW:140, max} */
+function bars(el,rows,opt={}){
+  const log=opt.log, vals=rows.map(r=>r[1]), mx=opt.max||Math.max(...vals), mn=log?Math.log10(Math.min(...vals))-.3:0, top=log?Math.log10(mx)+.3:mx;
+  el.innerHTML=rows.map(([n,v,t,c])=>`<div class="brow" style="grid-template-columns:${opt.labW||140}px minmax(0,1fr)"><span class="lab">${n}</span><div class="stack" role="img" aria-label="${n}: ${t}"><div class="seg ${c||'t'}" style="width:${Math.max(4,((log?Math.log10(v):v)-mn)/(top-mn)*100)}%;min-width:48px">${t}</div></div></div>`).join('')+(log?'<p class="cap" style="margin-top:2px">Log scale.</p>':'');
+}
+/* line: generic SVG chart. o:{x0,x1,y0,y1,xt,yt,xl,yl,series:[{pts,color,w,dash}],dots,hl:[[y,label,color]],mark,bands:[[y0,y1,label]],W,H,L,B,T,R} */
+function line(svg,o){
+  const W=o.W||640,H=o.H||260,L=o.L||56,B=o.B||40,T=o.T||16,R=o.R||16;
+  const X=x=>L+(x-o.x0)/(o.x1-o.x0)*(W-L-R), Y=y=>H-B-(y-o.y0)/(o.y1-o.y0)*(H-B-T);
+  let s='';
+  (o.bands||[]).forEach(b=>{ s+=`<rect x="${L}" y="${Y(b[1])}" width="${W-L-R}" height="${Y(b[0])-Y(b[1])}" style="fill:var(--transmit);fill-opacity:.14"/><text x="${L+6}" y="${Y(b[1])+13}" font-size="11">${b[2]}</text>`; });
+  o.yt.forEach(v=>{ s+=`<line x1="${L}" y1="${Y(v)}" x2="${W-R}" y2="${Y(v)}" style="stroke:var(--line)"/><text x="${L-6}" y="${Y(v)+4}" font-size="12" text-anchor="end">${v}</text>`; });
+  o.xt.forEach(v=>{ const a=Array.isArray(v)?v:[v,v]; s+=`<text x="${X(a[0])}" y="${H-B+16}" font-size="12" text-anchor="middle">${a[1]}</text>`; });
+  (o.hl||[]).forEach(v=>{ s+=`<line x1="${L}" y1="${Y(v[0])}" x2="${W-R}" y2="${Y(v[0])}" style="stroke:${v[2]};stroke-width:2;stroke-dasharray:6 5"/><text x="${W-R-4}" y="${Y(v[0])-5}" font-size="11" text-anchor="end">${v[1]}</text>`; });
+  s+=`<line x1="${L}" y1="${H-B}" x2="${W-R}" y2="${H-B}" style="stroke:var(--ink);stroke-width:2"/><line x1="${L}" y1="${T}" x2="${L}" y2="${H-B}" style="stroke:var(--ink);stroke-width:2"/>`;
+  (o.series||[]).forEach(se=>{ if(se.pts.length) s+=`<path d="${se.pts.map((p,i)=>`${i?'L':'M'}${X(p[0]).toFixed(1)} ${Y(p[1]).toFixed(1)}`).join('')}" style="fill:none;stroke:${se.color};stroke-width:${se.w||4};stroke-linejoin:round${se.dash?';stroke-dasharray:'+se.dash:''}"/>`; });
+  (o.dots||[]).forEach(d=>{ s+=`<circle cx="${X(d[0])}" cy="${Y(d[1])}" r="5" style="fill:var(--reflect);fill-opacity:.7;stroke:var(--ink);stroke-width:1.5"/>`; });
+  if(o.mark) s+=`<circle cx="${X(o.mark[0])}" cy="${Y(o.mark[1])}" r="8" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/>`;
+  s+=`<text x="${(L+W-R)/2}" y="${H-4}" font-size="13" text-anchor="middle">${o.xl}</text><text transform="rotate(-90 14 ${(T+H-B)/2})" x="14" y="${(T+H-B)/2}" font-size="13" text-anchor="middle">${o.yl}</text>`;
+  svg.innerHTML=s;
+}
+
+
+safe(()=>{
+  const T=[['Roller coaster','Motor does work (electrical to potential) → coaster falls (potential to kinetic) → brakes (kinetic to thermal).'],['Toaster','Electrical → thermal and light.'],['Flashlight','Chemical (battery) → electrical → light + heat.'],['Hydroelectric dam','Gravitational potential (water) → kinetic → electrical.'],['A runner','Chemical (food) → kinetic + thermal.']];
+  const ch=$('#tfChips'); mkChips(ch,T.map(t=>t[0]),0); const d=i=>$('#tfCard').innerHTML='<b>'+T[i][0]+':</b> '+T[i][1]; chipsOn(ch,d); d(0);
+});
+safe(()=>{
+  const s=$('#rcH');   const CP=[[0,105],[35,5],[70,60],[100,20]]; const H=x=>{ for(let i=0;i<3;i++){ const p=CP[i],q=CP[i+1]; if(x<=q[0]){ const t=(x-p[0])/(q[0]-p[0]); return p[1]+(q[1]-p[1])*(1-Math.cos(t*Math.PI))/2; } } return 20; };
+  const d=()=>{ const x=+s.value; const h=H(x), pe=h/100; const total=1; const ke=Math.max(0,1-pe*(1)); const hh=H(0); const peF=h/hh, keF=1-peF;
+    let p=''; for(let k=0;k<=100;k+=2) p+=(k?'L':'M')+(40+k*4)+' '+(190-H(k)*1.6)+' '; const cx=40+x*4, cy=190-h*1.6;
+    $('#rcSvg').innerHTML=`<path d="${p}" style="fill:none;stroke:var(--ink);stroke-width:4"/><circle cx="${cx}" cy="${cy-9}" r="9" style="fill:var(--absorb);stroke:var(--ink);stroke-width:3"/>`;
+    bars($('#rcBars'),[['Potential (height)',Math.max(peF*100,.1),(peF*100).toFixed(0)+'%','a'],['Kinetic (speed)',Math.max(keF*100,.1),(Math.max(keF,0)*100).toFixed(0)+'%','t']],{labW:140,max:100});
+    $('#rcR').innerHTML='The two bars always add to <b>100%</b> (no friction). The second hill is lower than the first, so the car can always make it over: it never has more energy than it started with.'; };
+  s.addEventListener('input',d); d();
+});
+safe(()=>{
+  const s=$('#keS'), d=()=>{ const v=+s.value; $('#keSV').textContent=v; const ke=.5*1000*v*v/1000; bars($('#keBars'),[['Kinetic energy (kJ)',ke+.1,ke.toFixed(0)+' kJ','a']],{labW:150,max:800}); $('#keR').innerHTML='A 1,000 kg car at <b>'+v+' m/s</b> ('+(v*3.6).toFixed(0)+' km/h) has <b>'+ke.toFixed(0)+' kJ</b>. Compare with half the speed: <b>'+(ke/4).toFixed(0)+' kJ</b>.'; };
+  s.addEventListener('input',d); d();
+  const pts=[]; for(let v=0;v<=40;v+=2) pts.push([v,.5*v*v]); line($('#keSvg'),{W:480,H:210,L:55,x0:0,x1:40,y0:0,y1:800,yt:[0,200,400,600,800],xt:[0,10,20,30,40],xl:'speed (m/s)',yl:'kinetic energy (kJ)',series:[{pts,color:'var(--absorb)'}]});
+});
+safe(()=>{
+  const s=$('#bbE'), d=()=>{ const e=+s.value/100; $('#bbEV').textContent=Math.round(e*100); let h=1, x=40, s2='', ptsA=[]; let p=`M${x} ${180-h*150} `; for(let b=0;b<7;b++){ const w=60; for(let k=1;k<=10;k++){ const f=k/10; p+=`L${x+f*w} ${180-h*150*(1-Math.pow(2*f-1,2))} `; } x+=w; h*=e; }
+    $('#bbSvg').innerHTML=`<line x1="30" y1="180" x2="470" y2="180" style="stroke:var(--ink);stroke-width:3"/><path d="${p}" style="fill:none;stroke:var(--absorb);stroke-width:4"/>`;
+    $('#bbR').innerHTML='Each bounce keeps '+Math.round(e*100)+'% of the height, so '+Math.round((1-e)*100)+'% of the energy becomes thermal energy and sound each time. After 3 bounces the ball reaches only <b>'+(Math.pow(e,3)*100).toFixed(0)+'%</b> of the start height.'; };
+  s.addEventListener('input',d); d();
+  const E=[['Incandescent bulb',5,'Wasted as heat: 95%'],['LED bulb',40,'Wasted as heat: 60%'],['Gas car engine',25,'Wasted: 75% (mostly heat)'],['Electric motor',90,'Wasted: 10%'],['Solar panel',20,'Wasted: 80%']];
+  const ch=$('#efChips'); mkChips(ch,E.map(e=>e[0]),0); const dd=i=>{ const e=E[i]; $('#efStack').innerHTML=`<div class="seg t" style="width:${Math.max(e[1],8)}%">${e[1]}% useful</div><div class="seg a" style="width:${Math.max(100-e[1],8)}%">${100-e[1]}% wasted</div>`; $('#efR').textContent=e[0]+': '+e[2]+'.'; }; chipsOn(ch,dd); dd(0);
+});
+safe(()=>{
+  const B=[['Incandescent (60 W)',60,.8,1.2],['CFL (14 W)',14,8,.2],['LED (9 W)',9,10,.15]]; const ch=$('#lbChips'); mkChips(ch,B.map(b=>b[0]),0);
+  const d=i=>{ const cost=B.map(b=>b[3]*0+b[1]*1000*0.16/1000+b[2]*0); const yearly=B.map(b=>b[1]*1000/1000*0.16); bars($('#lbBars'),B.map((b,k)=>['',0,'','']).slice(0,0),{}); bars($('#lbBars'),B.map((b,k)=>[b[0],yearly[k]*1+.1,'$'+yearly[k].toFixed(2)+' per 1,000 h',k===i?'a':'t']),{labW:150,max:12}); $('#lbR').innerHTML=B[i][0]+' costs about <b>$'+yearly[i].toFixed(2)+'</b> to run for 1,000 hours at 16 cents per kWh. The LED bulb saves about <b>$'+(yearly[0]-yearly[2]).toFixed(2)+'</b> compared with the incandescent.'; }; chipsOn(ch,d); d(0);
+});
+
+finalQuiz([{"q": "At the top of a coaster hill, energy is mostly...", "o": ["Potential", "Kinetic", "Thermal"], "a": 0, "e": "Height means stored energy."}, {"q": "If speed doubles, kinetic energy...", "o": ["Quadruples", "Doubles", "Stays"], "a": 0, "e": "KE \u221d v\u00b2."}, {"q": "A bulb that makes 10 J light from 100 J electricity is...", "o": ["10% efficient", "90% efficient", "100%"], "a": 0, "e": "10/100."}, {"q": "Friction mostly changes motion into...", "o": ["Thermal energy", "Chemical energy", "Light"], "a": 0, "e": "Heat."}, {"q": "Conservation of energy means...", "o": ["Total energy is constant", "Objects stop", "Heat is bad"], "a": 0, "e": "Energy changes form, total same."}, {"q": "Energy in a battery is...", "o": ["Chemical", "Kinetic", "Light"], "a": 0, "e": "Stored in chemicals."}]);
+})();
+</script>
+
+
+
+
+<!-- LESSON GAME:energy-chain START -->
+<script>(function(){
+function __mountLessonGame(host, css, html, init){
+  if(!host || host.shadowRoot) return;
+  const root = host.attachShadow({mode:"open"});
+  root.innerHTML = "<style>"+css+"</style>"+html;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let visible = true;
+  try{ new IntersectionObserver(es=>{ visible = es[es.length-1].isIntersecting; }).observe(host); }catch(e){}
+  const loops = [];
+  let last = performance.now();
+  function frame(t){
+    const dt = Math.min(0.05, (t-last)/1000); last = t;
+    if(visible && !document.hidden) for(const f of loops){ try{ f(t, dt); }catch(e){ console.error(e); } }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+  const env = {
+    root, reduce,
+    $: id => root.getElementById(id),
+    $$: sel => [...root.querySelectorAll(sel)],
+    loop: f => loops.push(f),
+    esc: s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])),
+    // A canvas drawn in fixed logical units (W x H) that scales to its container.
+    stage(canvas, W, H){
+      const ctx = canvas.getContext("2d");
+      const st = {ctx, W, H, dpr:1};
+      function fit(){
+        st.dpr = Math.min(2.5, window.devicePixelRatio || 1);
+        const cw = canvas.clientWidth || W;
+        const scale = cw / W;
+        canvas.width = Math.round(W*scale*st.dpr); canvas.height = Math.round(H*scale*st.dpr);
+        st.k = scale*st.dpr;
+        ctx.setTransform(st.k,0,0,st.k,0,0);
+        if(st.onfit) st.onfit();
+      }
+      canvas.style.aspectRatio = W+"/"+H;
+      st.begin = () => ctx.setTransform(st.k,0,0,st.k,0,0);
+      st.pt = ev => { const r = canvas.getBoundingClientRect(); return {x:(ev.clientX-r.left)*W/r.width, y:(ev.clientY-r.top)*H/r.height}; };
+      try{ new ResizeObserver(fit).observe(canvas); }catch(e){ addEventListener("resize", fit); }
+      fit();
+      return st;
+    },
+    // Level buttons in the header.
+    levelBar(box, names, onPick){
+      const solved = new Set(); let cur = 0;
+      function render(){
+        box.innerHTML = '<span class="label">Level</span>';
+        names.forEach((n,i)=>{ const b = document.createElement("button"); b.type="button";
+          b.className = "lv"+(solved.has(i)?" done":""); b.textContent = i+1; b.title = n;
+          b.setAttribute("aria-label", "Level "+(i+1)+": "+n+(solved.has(i)?" (solved)":""));
+          if(i===cur) b.setAttribute("aria-current","true");
+          b.onclick = () => { cur = i; render(); onPick(i); }; box.appendChild(b); });
+      }
+      render();
+      return { set(i){ cur=i; render(); }, solve(i){ solved.add(i); render(); }, get cur(){ return cur; }, solved };
+    },
+    // Result card over a stage. buttons: [{label, primary, onClick}]
+    card(stageEl, o){
+      let ov = stageEl.querySelector(":scope > .over");
+      if(!ov){ ov = document.createElement("div"); ov.className = "over"; stageEl.appendChild(ov); }
+      ov.hidden = false;
+      ov.innerHTML = '<div class="card'+(o.fail?' fail':'')+'" role="dialog" aria-live="polite"><h4></h4>'+(o.why?'<span class="why"></span>':'')+'<p class="cb"></p><div class="btns"></div></div>';
+      ov.querySelector("h4").textContent = o.title;
+      if(o.why) ov.querySelector(".why").textContent = o.why;
+      ov.querySelector(".cb").textContent = o.body || "";
+      if(o.list && o.list.length){ const ul = document.createElement("ul"); ul.className = "clist";
+        o.list.forEach(t => { const li = document.createElement("li"); li.textContent = t; ul.appendChild(li); });
+        ov.querySelector(".cb").after(ul); }
+      const bb = ov.querySelector(".btns");
+      (o.buttons||[]).forEach((b,i)=>{ const e = document.createElement("button"); e.type="button"; e.className = "btn"+(b.primary?" primary":""); e.textContent = b.label;
+        e.onclick = () => { ov.hidden = true; b.onClick && b.onClick(); }; bb.appendChild(e); if(i===0) setTimeout(()=>e.focus({preventScroll:true}),30); });
+      setTimeout(()=>{ const b=ov.getBoundingClientRect(); if(b.top<8 || b.bottom>innerHeight-8) ov.scrollIntoView({block:"center", behavior: reduce?"auto":"smooth"}); }, 40);
+      return ov;
+    },
+    hideCard(stageEl){ const ov = stageEl.querySelector(":scope > .over"); if(ov) ov.hidden = true; }
+  };
+  try{ init(root, env); }catch(e){ console.error(e); root.innerHTML += '<p style="color:#fff;padding:12px">This game could not start.</p>'; }
+}
+
+__mountLessonGame(document.getElementById("lesson-game"), ":host{\n  display:block; color-scheme:dark;\n  --bg:#0B0F15; --panel:#141A23; --panel-2:#1B2330; --line:#2B3544; --ink:#E9EEF5; --muted:#93A0B2;\n  --good:#3FD3BB; --bad:#FF6B5E; --warn:#FFB547; --acc:#FFD84A; --acc-ink:#1A1400;\n  --f-display:\"Bahnschrift\",\"DIN Alternate\",\"Roboto Condensed\",\"Arial Narrow\",system-ui,sans-serif;\n  --f-body:\"Roboto\",\"Segoe UI\",system-ui,-apple-system,sans-serif;\n  --f-mono:ui-monospace,\"Roboto Mono\",\"Cascadia Mono\",Menlo,Consolas,monospace;\n}\n*{box-sizing:border-box}\n[hidden]{display:none!important}\n.g{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;border-radius:16px;\n  border:1px solid var(--line);padding:16px;display:grid;gap:14px;text-align:left;box-shadow:0 10px 36px rgba(0,0,0,.35)}\n.g button{font:inherit;color:inherit}\n.g :focus-visible{outline:3px solid var(--acc);outline-offset:2px}\n.g h2,.g h3,.g h4{margin:0;font-family:var(--f-display);letter-spacing:.02em;line-height:1.15}\n.g p{margin:0}\n.bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 18px}\n.brand{display:grid;gap:2px}\n.label{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}\n.gtitle{font-family:var(--f-display);font-weight:700;font-size:1.45rem;text-transform:uppercase;letter-spacing:.04em}\n.gtitle b{color:var(--acc)}\n.goalrow{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 12px}\n.goalrow h4{font-size:1.22rem}\n.goalrow .goal{color:var(--muted);font-size:.94rem}\n.levels{display:flex;flex-wrap:wrap;gap:6px;align-items:center}\n.lv{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--line);background:var(--panel);font-family:var(--f-mono);font-size:.85rem;cursor:pointer;font-variant-numeric:tabular-nums;padding:0}\n.lv:hover{border-color:var(--muted)}\n.lv.done{border-color:var(--good);color:var(--good)}\n.lv[aria-current=\"true\"]{background:var(--acc);border-color:var(--acc);color:var(--acc-ink);font-weight:700}\n.cols{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:14px;align-items:start}\n.cols>*{min-width:0}\n.boardcol{display:grid;gap:10px;min-width:0}\n.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:10px;min-width:0}\n.panel>.label{margin-bottom:-2px}\n.stage{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px;min-width:0}\n.stage canvas,.stage svg{display:block;width:100%;max-width:100%;height:auto;border-radius:8px;touch-action:none}\n.btns{display:flex;flex-wrap:wrap;gap:8px}\n.btn{padding:8px 14px;min-height:40px;border-radius:10px;border:1.5px solid var(--line);background:var(--panel-2);cursor:pointer;font-weight:700;font-size:.92rem;line-height:1.2}\n.btn:hover:not([disabled]){border-color:var(--muted)}\n.btn[disabled]{opacity:.45;cursor:default}\n.btn.primary{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}\n.btn.ghost{background:transparent}\n.btn[aria-pressed=\"true\"]{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset}\n.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:999px;font-size:.82rem;border:1px solid var(--line);background:var(--panel-2);cursor:pointer}\n.chip[aria-pressed=\"true\"]{border-color:var(--acc);background:var(--acc);color:var(--acc-ink);font-weight:700}\n.msg{font-size:.93rem;padding:9px 12px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line)}\n.msg.good{border-color:color-mix(in srgb,var(--good) 60%,var(--line))}\n.msg.bad{border-color:color-mix(in srgb,var(--bad) 60%,var(--line))}\n.msg.warn{border-color:color-mix(in srgb,var(--warn) 60%,var(--line))}\n.help{font-size:.86rem;color:var(--muted)}\n.readout{font-size:.92rem;color:var(--ink);padding:8px 11px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line);min-height:38px}\n.meter{height:12px;border-radius:99px;background:var(--panel-2);overflow:hidden;border:1px solid var(--line)}\n.meter>i{display:block;height:100%;background:var(--acc);transition:width .15s}\n.ctl{display:grid;gap:4px}\n.ctl label{font-size:.9rem;font-weight:700;display:flex;justify-content:space-between;gap:8px}\n.ctl input[type=range]{width:100%;accent-color:var(--acc);height:30px;margin:0}\n.over{position:absolute;inset:6px;border-radius:8px;display:grid;place-items:start center;padding:14px;background:color-mix(in srgb,var(--bg) 74%,transparent);backdrop-filter:blur(2px);z-index:5;overflow:visible}\n.card{max-width:460px;display:grid;gap:10px;padding:18px;border-radius:14px;background:var(--panel-2);border:1px solid var(--acc);box-shadow:0 0 36px color-mix(in srgb,var(--acc) 22%,transparent);position:sticky;top:0;margin-top:0;max-height:none;overflow:visible}\n.card h4{font-size:1.45rem;color:var(--acc)}\n.card.fail{border-color:var(--bad)}\n.card.fail h4{color:var(--bad)}\n.clist{margin:0;padding-left:1.15em;display:grid;gap:5px;font-size:.9rem}\n.why{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}\n.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}\n.bars{display:grid;gap:7px}\n.brow{display:grid;grid-template-columns:9.5em minmax(0,1fr) 4.2em;gap:8px;align-items:center;font-size:.86rem}\n.brow .track{height:12px;border-radius:99px;background:var(--panel-2);border:1px solid var(--line);overflow:hidden}\n.brow .fill{display:block;height:100%;background:var(--acc)}\n.brow .val{font-family:var(--f-mono);text-align:right;font-size:.8rem;color:var(--muted)}\n.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}\n.tile{border:1.5px solid var(--line);background:var(--panel-2);border-radius:10px;padding:9px;text-align:left;cursor:pointer;font-size:.88rem;line-height:1.25}\n.tile:hover:not([disabled]){border-color:var(--muted)}\n.tile[aria-pressed=\"true\"]{border-color:var(--acc)}\n.tile.good{border-color:var(--good);background:color-mix(in srgb,var(--good) 14%,var(--panel-2))}\n.tile.bad{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,var(--panel-2))}\n.tile[disabled]{cursor:default}\n.tbl{width:100%;border-collapse:collapse;font-size:.88rem}\n.tbl th{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:left;padding:4px 7px;border-bottom:1px solid var(--line);font-weight:500}\n.tbl td{padding:5px 7px;border-bottom:1px solid var(--line)}\n.scroll{overflow-x:auto}\n.kv{display:grid;grid-template-columns:1fr auto;gap:6px 10px;font-size:.9rem}\n.kv dt{color:var(--muted)}.kv dd{margin:0;font-family:var(--f-mono);text-align:right}\n.score{font-family:var(--f-mono);font-size:.82rem;color:var(--muted)}\n@media (max-width:860px){.cols{grid-template-columns:minmax(0,1fr)}.over{position:static;inset:auto;background:none;backdrop-filter:none;padding:8px 0 2px}.card{max-width:none;position:static;margin-top:0;max-height:none;overflow:visible}}\n@media (prefers-reduced-motion:reduce){.meter>i{transition:none}}\n", "\n<div class=\"g\">\n  <div class=\"bar\">\n    <div class=\"goalrow\"><h4 id=\"lvName\">Light the bulb</h4><span class=\"goal\" id=\"lvGoal\"></span></div>\n    <nav class=\"levels\" id=\"lvBar\" aria-label=\"Levels\"></nav>\n  </div>\n  <div class=\"cols\">\n    <section class=\"boardcol\">\n      <div class=\"stage\" id=\"stage\" style=\"padding:14px;display:grid;gap:10px\">\n        <div id=\"chain\" style=\"display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px\"></div>\n        <div id=\"budget\" style=\"display:flex;height:20px;border-radius:99px;overflow:hidden;border:1px solid var(--line);background:var(--panel-2)\"></div>\n        <div class=\"bars\" id=\"bars\"></div>\n        <p class=\"score\" id=\"waste\"></p>\n      </div>\n      <p class=\"help\">Each stage multiplies the efficiency. Watch the energy bar shrink and the waste heat grow.</p>\n    </section>\n    <aside class=\"panel\">\n      <span class=\"label\">1 · Source</span>\n      <div class=\"tiles\" id=\"srcTiles\"></div>\n      <span class=\"label\">2 · Converter</span>\n      <div class=\"tiles\" id=\"convTiles\"></div>\n      <span class=\"label\">3 · Output</span>\n      <div class=\"tiles\" id=\"outTiles\"></div>\n      <div class=\"btns\"><button class=\"btn primary\" id=\"check\" type=\"button\">Check chain</button><button class=\"btn ghost\" id=\"clear\" type=\"button\">Start over</button></div>\n      <p class=\"msg\" id=\"note\" aria-live=\"polite\"></p>\n      <p class=\"readout\" id=\"read\" aria-live=\"polite\"></p>\n    </aside>\n  </div>\n</div>", (function (root, env) {
+    const { $, levelBar, card } = env;
+    const START = 1000;
+    const SOURCES = [
+      { n: "Sunlight", form: "light", eff: 100, note: "1,000 J of light arrives" },
+      { n: "Food", form: "chemical", eff: 100, note: "chemical energy in food" },
+      { n: "Wound spring", form: "elastic", eff: 100, note: "elastic potential energy" },
+      { n: "Raised mass", form: "gravitational", eff: 100, note: "gravitational potential energy" },
+    ];
+    const CONVERTERS = [
+      { id: "panel", n: "Solar panel", from: ["light"], to: "electrical", eff: 45 },
+      { id: "motor", n: "Electric motor", from: ["electrical"], to: "kinetic", eff: 80 },
+      { id: "gen", n: "Generator", from: ["elastic", "gravitational", "kinetic"], to: "electrical", eff: 85 },
+      { id: "muscle", n: "Muscles", from: ["chemical"], to: "kinetic", eff: 25 },
+    ];
+    const OUTPUTS = [
+      { id: "bulb", n: "Light a bulb", noun: "the bulb", from: ["electrical"], to: "light", eff: 60 },
+      { id: "heat", n: "Heat water", noun: "the water", from: ["electrical", "kinetic"], to: "thermal", eff: { electrical: 95, kinetic: 70 } },
+      { id: "lift", n: "Lift a mass", noun: "the lift", from: ["kinetic", "electrical"], to: "gravitational", eff: { kinetic: 90, electrical: 80 } },
+      { id: "car", n: "Move a car", noun: "the car", from: ["kinetic", "electrical"], to: "kinetic", eff: { kinetic: 85, electrical: 88 } },
+    ];
+    const LEVELS = [
+      {
+        n: "Light the bulb",
+        goal: "Light the bulb with at least 250 J of useful light",
+        def: [0, 0, 2],
+        help: "The bulb needs electrical energy. Find a source and a converter that deliver it, then check the chain.",
+      },
+      {
+        n: "Lift the mass",
+        goal: "Lift 10 kg by at least 2 m (196 J) with overall efficiency ≥ 40% (≥ 400 J at the lift)",
+        def: [0, 0, 2],
+        help: "Lifting 10 kg by 2 m stores 196 J. Higher efficiency means less of the 1,000 J leaks away as heat before it reaches the lift.",
+      },
+      {
+        n: "Efficient motion",
+        goal: "Produce motion (lift a mass or move a car) with overall efficiency ≥ 35%",
+        def: [1, 3, 3],
+        help: "Every stage multiplies: 45% then 80% is 36% overall, not 125%. Fewer lossy stages and a well-matched converter keep the efficiency up.",
+      },
+    ];
+    let li = 0, si = 0, ci = 0, oi = 0, msg = "";
+    const bar = levelBar($("lvBar"), LEVELS.map((x) => x.n), (i) => loadLevel(i));
+
+    function calc() {
+      const s = SOURCES[si], c = CONVERTERS[ci], o = OUTPUTS[oi];
+      const convOk = c.from.indexOf(s.form) >= 0;
+      const e2 = convOk ? START * (s.eff / 100) * (c.eff / 100) : 0;
+      const outOk = convOk && o.from.indexOf(c.to) >= 0;
+      const oe = typeof o.eff === "number" ? o.eff : (o.eff[c.to] || 0);
+      const e3 = outOk ? e2 * (oe / 100) : 0;
+      return { s: s, c: c, o: o, convOk: convOk, outOk: outOk, e2: e2, e3: e3, oe: oe, eff: e3 / START * 100 };
+    }
+    function tileHTML(name, sub, i, on) {
+      return '<button class="tile" type="button" data-i="' + i + '" aria-pressed="' + (on ? "true" : "false") + '"><b>' + name + '</b><br><span class="help">' + sub + '</span></button>';
+    }
+    function chainCard(k, name, sub, val, col, pressed) {
+      return '<div style="border:1.5px solid var(--line);border-radius:10px;padding:8px;background:var(--panel-2);min-width:0;display:grid;gap:2px">' +
+        '<span class="label" style="font-size:.62rem">' + k + '</span>' +
+        '<b style="font-size:.92rem;line-height:1.2;overflow-wrap:anywhere">' + name + '</b>' +
+        '<span class="help" style="font-size:.76rem;overflow-wrap:anywhere">' + sub + '</span>' +
+        '<span class="num" style="color:' + col + ';font-size:.92rem">' + val + '</span></div>';
+    }
+    function convNote(c, s) {
+      if (c.id === "panel") return "A solar panel only uses light. " + s.n + " carries " + s.form + " energy, so the panel makes no electricity and nothing reaches the output.";
+      if (c.id === "motor") return "An electric motor needs electricity. None of these four sources is electrical, so a motor cannot be the second stage by itself — you would need a generator first.";
+      if (c.id === "gen") return "A generator needs something to spin it: motion, a falling mass, or a spring unwinding. " + s.n + " is " + s.form + " energy, so it cannot turn the generator.";
+      return "Muscles run on chemical energy from food. " + s.n + " is " + s.form + " energy, so the muscles have no fuel to burn and no useful energy comes out.";
+    }
+    function outNote(o, c) {
+      return o.n + " needs " + o.from.join(" or ") + " energy, but the " + c.n.toLowerCase() + " delivers " + c.to + ". The energy arrives in the wrong form, so there is no useful " + o.to + " output — the input can only warm the device as heat.";
+    }
+    function render() {
+      const r = calc();
+      const L = LEVELS[li];
+      $("lvName").textContent = L.n;
+      $("lvGoal").textContent = L.goal;
+      $("srcTiles").innerHTML = SOURCES.map((x, i) => tileHTML(x.n, x.form + " · " + x.eff + "%", i, i === si)).join("");
+      $("convTiles").innerHTML = CONVERTERS.map((x, i) => tileHTML(x.n, (x.id === "gen" ? "motion, spring or fall" : x.from.join(" or ")) + " → " + x.to + " · " + x.eff + "%", i, i === ci)).join("");
+      $("outTiles").innerHTML = OUTPUTS.map((x, i) => tileHTML(x.n, x.from.join(" or ") + " → " + x.to + " · " + (typeof x.eff === "number" ? x.eff : Math.max.apply(null, Object.keys(x.eff).map((k) => x.eff[k]))) + "%", i, i === oi)).join("");
+      $("chain").innerHTML =
+        chainCard("1 · source", r.s.n, r.s.form, START.toLocaleString() + " J", "#93A0B2") +
+        chainCard("2 · converter", r.c.n, r.s.form + " → " + r.c.to, r.convOk ? Math.round(r.e2) + " J · " + r.c.eff + "%" : "0 J", r.convOk ? "#78A2FF" : "#FF6B5E") +
+        chainCard("3 · output", r.o.n, (r.convOk ? r.c.to : "—") + " → " + r.o.to, r.outOk ? Math.round(r.e3) + " J · " + r.oe + "%" : "0 J", r.outOk ? "#FFD84A" : "#FF6B5E");
+      const rows = [
+        ["Energy in", START, "#93A0B2"],
+        ["Converter out", r.e2, "#78A2FF"],
+        ["Useful output", r.e3, "#FFD84A"],
+        ["Waste heat", START - r.e3, "#FF6B5E"],
+      ];
+      $("bars").innerHTML = rows.map(([lab, val, col]) => {
+        const pct = Math.min(100, val / START * 100);
+        return '<div class="brow"><span>' + lab + '</span><span class="track"><i class="fill" style="width:' + pct.toFixed(1) + '%;background:' + col + '"></i></span><span class="val">' + Math.round(val).toLocaleString() + ' J</span></div>';
+      }).join("");
+      $("budget").innerHTML = '<i style="display:block;height:100%;width:' + (r.e3 / START * 100).toFixed(1) + '%;background:#FFD84A"></i>' +
+        '<i style="display:block;height:100%;width:' + ((START - r.e3) / START * 100).toFixed(1) + '%;background:#FF6B5E"></i>';
+      $("waste").textContent = "Overall efficiency " + r.eff.toFixed(1) + "% · " + Math.round(START - r.e3).toLocaleString() + " J leaves as waste heat";
+      let note, cls = "msg";
+      if (!r.convOk) { note = convNote(r.c, r.s); cls = "msg bad"; }
+      else if (!r.outOk) { note = outNote(r.o, r.c); cls = "msg bad"; }
+      else if (r.e3 === 0) { note = "That stage delivers no useful energy."; cls = "msg bad"; }
+      else { note = Math.round(r.e3) + " J of useful " + r.o.to + " energy reaches the output."; cls = "msg good"; }
+      $("note").className = cls;
+      $("note").textContent = note;
+      $("read").textContent = msg || "Pick one option in each column, then check the chain against the goal.";
+      bar.set(li);
+    }
+
+    function loadLevel(i) {
+      li = i;
+      const d = LEVELS[i].def;
+      si = d[0]; ci = d[1]; oi = d[2];
+      msg = "";
+      env.hideCard($("stage"));
+      render();
+    }
+
+    function check() {
+      const r = calc();
+      const L = LEVELS[li];
+      const mismatch = !r.convOk || !r.outOk;
+      let ok = false;
+      if (li === 0) ok = !mismatch && r.o.id === "bulb" && r.e3 >= 250;
+      else if (li === 1) ok = !mismatch && r.o.id === "lift" && r.e3 >= 400;
+      else ok = !mismatch && (r.o.id === "lift" || r.o.id === "car") && r.eff >= 35;
+      if (ok) {
+        bar.solve(li);
+        if (li === 0) {
+          msg = "The bulb gets " + Math.round(r.e3) + " J of light.";
+          card($("stage"), {
+            title: "Bulb lit",
+            why: "Efficiency multiplies",
+            body: "1,000 J from " + r.s.n.toLowerCase() + " × " + r.c.eff + "% (" + r.c.n.toLowerCase() + ") = " + Math.round(r.e2) + " J of " + r.c.to + " energy. × " + r.oe + "% (" + r.o.noun + ") = " + Math.round(r.e3) + " J of useful light. The other " + Math.round(START - r.e3) + " J became heat — the energy was not destroyed, just spread out.",
+            list: ["Energy in: 1,000 J", r.c.n + ": " + r.c.eff + "% efficient → " + Math.round(r.e2) + " J", r.o.n + ": " + r.oe + "% efficient → " + Math.round(r.e3) + " J light", "Waste heat: " + Math.round(START - r.e3) + " J"],
+            buttons: [{ label: "Next: lift the mass", primary: true, onClick: () => loadLevel(1) }],
+          });
+        } else if (li === 1) {
+          msg = "The lift gets " + Math.round(r.e3) + " J — enough to raise 10 kg by " + (r.e3 / 98).toFixed(1) + " m.";
+          card($("stage"), {
+            title: "Mass lifted",
+            why: "Conservation and efficiency",
+            body: "Your chain delivers " + Math.round(r.e3) + " J to the lift, so 10 kg rises " + (r.e3 / 98).toFixed(1) + " m (196 J would raise it exactly 2.0 m). Overall efficiency is " + r.eff.toFixed(1) + "%: the remaining " + Math.round(START - r.e3) + " J went to heat and sound along the way.",
+            list: [r.c.n + ": " + r.c.eff + "% efficient → " + Math.round(r.e2) + " J of " + r.c.to, r.o.n + ": " + r.oe + "% efficient → " + Math.round(r.e3) + " J stored", r.c.eff + "% × " + r.oe + "% = " + (r.c.eff * r.oe / 100).toFixed(1) + "% overall"],
+            buttons: [{ label: "Next: efficient motion", primary: true, onClick: () => loadLevel(2) }],
+          });
+        } else {
+          msg = "Motion at " + r.eff.toFixed(1) + "% overall efficiency.";
+          card($("stage"), {
+            title: "Efficient motion",
+            why: "Efficiency chain",
+            body: "You produced motion with " + r.eff.toFixed(1) + "% overall efficiency, so " + Math.round(r.e3) + " J did useful work and " + Math.round(START - r.e3) + " J became heat. Multiplying the stage efficiencies gives the overall efficiency — that is why a lossy stage such as muscles (25%) hurts so much.",
+            list: ["Stages multiply: overall eff = eff₁ × eff₂.", r.c.n + " " + r.c.eff + "% × " + r.o.n + " " + r.oe + "% = " + (r.c.eff * r.oe / 100).toFixed(1) + "% overall.", "Muscles (25%) would make the same car chain 21.3% overall."],
+            buttons: [{ label: li < LEVELS.length - 1 ? "Next level" : "Play again", primary: true, onClick: () => loadLevel((li + 1) % LEVELS.length) }],
+          });
+        }
+        render();
+        return;
+      }
+      if (mismatch) {
+        msg = "This chain delivers 0 J. " + (!r.convOk ? convNote(r.c, r.s) : outNote(r.o, r.c));
+      } else if (li === 0) {
+        if (r.o.id !== "bulb") msg = "That chain works, but it produces " + r.o.to + " energy instead of light. The goal is a lit bulb.";
+        else msg = "Only " + Math.round(r.e3) + " J of light; the target is 250 J. " + r.c.eff + "% × " + r.oe + "% = " + (r.c.eff * r.oe / 100).toFixed(1) + "% overall, so " + Math.round(START - r.e3) + " J escapes as heat before it can light anything.";
+      } else if (li === 1) {
+        if (r.o.id !== "lift") msg = "That chain produces " + r.o.to + " energy, not lift. Choose the lift as the output.";
+        else if (r.e3 < 196) msg = "Only " + Math.round(r.e3) + " J reaches the lift — not even the 196 J needed for 2 m. " + Math.round(START - r.e3) + " J was lost as heat in earlier stages.";
+        else msg = r.e3.toFixed(0) + " J reaches the lift (" + r.eff.toFixed(1) + "%). That is enough height, but the goal needs at least 40% efficiency, so keep more energy from leaking away as heat.";
+      } else {
+        if (r.o.id !== "lift" && r.o.id !== "car") msg = "That chain produces " + r.o.to + " energy, not motion. Pick lift or car as the output.";
+        else msg = "Overall efficiency " + r.eff.toFixed(1) + "% is below the 35% target. Each stage multiplies, so replace a lossy converter (muscles waste 75%) with a better-matched one.";
+      }
+      render();
+    }
+
+    $("srcTiles").onclick = (e) => {
+      const b = e.target.closest("button");
+      if (!b) return;
+      si = +b.dataset.i; msg = ""; env.hideCard($("stage")); render();
+    };
+    $("convTiles").onclick = (e) => {
+      const b = e.target.closest("button");
+      if (!b) return;
+      ci = +b.dataset.i; msg = ""; env.hideCard($("stage")); render();
+    };
+    $("outTiles").onclick = (e) => {
+      const b = e.target.closest("button");
+      if (!b) return;
+      oi = +b.dataset.i; msg = ""; env.hideCard($("stage")); render();
+    };
+    $("check").onclick = check;
+    $("clear").onclick = () => loadLevel(li);
+    loadLevel(0);
+  }));
+})();</script>
+<!-- LESSON GAME:energy-chain END -->

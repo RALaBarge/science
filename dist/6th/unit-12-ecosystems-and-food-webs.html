@@ -1,0 +1,849 @@
+<title>Ecosystems and Food Webs</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout concept: one long lesson column. Each concept opens with a one-sentence big idea, then a grid of labelled visual aids
+   (Analogy, Diagram, Try it, Data, Real world) that collapses to one column on phones.
+   Color roles are fixed for the whole page: amber = incoming light, blue = reflected, teal = transmitted, orange = absorbed. */
+:root{
+  --bg:#F2F5FA; --surface:#FFFFFF; --surface-2:#E8EDF6; --ink:#12172B; --muted:#47506E; --line:#D0D8E8;
+  --beam:#F2A900; --beam-ink:#1A1400; --reflect:#2B66E8; --absorb:#D6450B; --transmit:#0B7F70; --on-color:#FFFFFF;
+  --red:#D93036; --green:#25904F; --blue:#3558D6; --shade:#222A4A;
+  --font-display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --font-body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+  --font-mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C1022; --surface:#151A33; --surface-2:#1D2444; --ink:#EDF0FB; --muted:#A8B1CE; --line:#2B3459;
+    --beam:#FFC93C; --beam-ink:#1A1400; --reflect:#7BA2FF; --absorb:#FF8F5C; --transmit:#46D6C0; --on-color:#0B1020;
+    --red:#FF6A70; --green:#4FCB85; --blue:#7C97FF; --shade:#02040B; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C1022; --surface:#151A33; --surface-2:#1D2444; --ink:#EDF0FB; --muted:#A8B1CE; --line:#2B3459;
+  --beam:#FFC93C; --beam-ink:#1A1400; --reflect:#7BA2FF; --absorb:#FF8F5C; --transmit:#46D6C0; --on-color:#0B1020;
+  --red:#FF6A70; --green:#4FCB85; --blue:#7C97FF; --shade:#02040B; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--font-body); font-size:17px; line-height:1.55;
+  padding-block:0 72px;
+  padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+main,.hero{max-width:920px;margin:0 auto}
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance;margin:0;line-height:1.1}
+p{margin:0}
+a{color:inherit}
+svg{display:block;width:100%;height:auto}
+svg text{font-family:var(--font-body);fill:var(--ink)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--reflect);outline-offset:2px}
+
+/* hero */
+.hero{padding-block:28px 8px;display:grid;gap:18px}
+.kicker{font-family:var(--font-mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
+.lede{font-size:clamp(1.1rem,3.4vw,1.35rem);max-width:34em;text-wrap:pretty}
+.hero-art{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:10px 12px}
+.howto{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:.92rem;color:var(--muted)}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);margin-top:18px;border-bottom:1px solid var(--line);
+  margin-inline:auto;max-width:920px}
+.nav ul{list-style:none;margin:0;padding:8px 0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin}
+.nav a{display:block;white-space:nowrap;text-decoration:none;font-size:.9rem;padding:7px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface)}
+.nav a:hover{border-color:var(--ink)}
+
+/* sections */
+.sec{padding-block:52px 6px;scroll-margin-top:68px;display:grid;gap:20px}
+.sec h2{font-size:clamp(1.9rem,6vw,2.7rem);font-weight:800;letter-spacing:-.02em}
+.idea{font-family:var(--font-display);font-size:clamp(1.25rem,4.4vw,1.75rem);line-height:1.25;font-weight:700;text-wrap:balance;max-width:28em}
+.idea mark{background:linear-gradient(transparent 58%,color-mix(in srgb,var(--beam) 50%,transparent) 58%);color:inherit}
+.aids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.aid{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.aid.wide{grid-column:1/-1}
+.aid h3{font-size:1.2rem;font-weight:700}
+.aid p.cap{font-size:.95rem;color:var(--muted)}
+.aid p.cap b{color:var(--ink)}
+.tag{align-self:flex-start;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;padding:3px 9px;border-radius:999px;
+  background:color-mix(in srgb,var(--tint) 24%,var(--surface));border:1px solid color-mix(in srgb,var(--tint) 55%,var(--line))}
+.tag.analogy{--tint:var(--beam)} .tag.diagram{--tint:var(--reflect)} .tag.try{--tint:var(--transmit)} .tag.data{--tint:var(--absorb)} .tag.real{--tint:var(--muted)}
+.stage{background:var(--surface-2);border-radius:10px;padding:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:.92rem;padding:7px 13px;min-height:40px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.ctl{display:grid;gap:6px}
+.ctl label{font-size:.92rem;font-weight:700}
+input[type=range]{width:100%;accent-color:var(--beam);height:32px}
+.readout{font-size:1rem}
+.readout b{font-family:var(--font-mono);font-weight:500}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{display:inline-flex;gap:6px;align-items:baseline;padding:5px 11px;border-radius:999px;font-family:var(--font-mono);font-size:.84rem;font-weight:500;background:var(--c);color:var(--on-color)}
+.pill.r{--c:var(--reflect)} .pill.a{--c:var(--absorb)} .pill.t{--c:var(--transmit)}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.trio>div{display:grid;gap:6px;align-content:start;min-width:0}
+.trio h4{margin:0;font-family:var(--font-display);font-size:1.05rem}
+.trio p{font-size:.93rem;color:var(--muted)}
+.trio svg{background:var(--surface-2);border-radius:10px}
+.swatch-r{color:var(--reflect);font-weight:700}.swatch-t{color:var(--transmit);font-weight:700}.swatch-a{color:var(--absorb);font-weight:700}
+
+/* stacked bars */
+.bars{display:grid;gap:9px}
+.brow{display:grid;grid-template-columns:104px minmax(0,1fr);gap:10px;align-items:center;font-size:.9rem}
+.brow.on .lab{font-weight:700}
+.stack{display:flex;height:28px;border-radius:7px;overflow:hidden;background:var(--surface-2);outline:2px solid transparent;outline-offset:2px}
+.brow.on .stack{outline-color:var(--ink)}
+.seg{display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:.72rem;color:var(--on-color);min-width:0;overflow:hidden}
+.seg.r{background:var(--reflect)}.seg.t{background:var(--transmit)}.seg.a{background:var(--absorb)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.88rem}
+.legend span::before{content:"";display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--c)}
+.legend .r{--c:var(--reflect)}.legend .t{--c:var(--transmit)}.legend .a{--c:var(--absorb)}
+
+/* sort game, quiz */
+.items{display:grid;gap:10px}
+.item{display:grid;gap:6px;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.item .nm{font-weight:700}
+.item .opts{display:flex;flex-wrap:wrap;gap:6px}
+.opt{font-size:.85rem;padding:6px 10px;border-radius:8px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;min-height:36px;text-align:left}
+.opt:hover:not([disabled]){border-color:var(--ink)}
+.opt.good{background:var(--transmit);color:var(--on-color);border-color:var(--transmit)}
+.opt.bad{background:var(--absorb);color:var(--on-color);border-color:var(--absorb)}
+.fb{font-size:.88rem;color:var(--muted)}
+.score{font-family:var(--font-mono);font-size:.9rem}
+.q{display:grid;gap:10px;padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.q h4{margin:0;font-size:1.05rem;font-family:var(--font-body);font-weight:700}
+.q .opts{display:grid;gap:8px}
+
+/* tables */
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:.92rem;min-width:420px}
+.tbl th,.tbl td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+.tbl th{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+/* see-through demo */
+.seebox{position:relative;border-radius:10px;overflow:hidden;background:var(--surface-2);padding:22px 16px;min-height:130px;display:grid;place-items:center}
+.seetext{font-family:var(--font-display);font-weight:800;font-size:clamp(1.2rem,5vw,1.7rem);text-align:center;letter-spacing:.02em;transition:filter .2s,opacity .2s}
+.seesheets{position:absolute;inset:0;pointer-events:none;background:var(--surface);transition:opacity .2s}
+.meter{height:12px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--transmit);transition:width .2s}
+
+/* canvas */
+canvas{width:100%;aspect-ratio:640/260;display:block;border-radius:10px;background:var(--surface-2)}
+.tally{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;font-size:.85rem}
+.tally div{padding:8px;border-radius:8px;background:var(--bg);border:1px solid var(--line)}
+.tally b{display:block;font-family:var(--font-mono);font-weight:500;font-size:1.05rem}
+
+/* color mixer + channel columns */
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.colx{display:grid;gap:6px;justify-items:center;font-size:.85rem;text-align:center}
+.tube{position:relative;width:100%;max-width:90px;height:150px;border:2px solid var(--line);border-radius:8px;display:flex;flex-direction:column-reverse;overflow:hidden;background:var(--bg)}
+.tube.empty{border-style:dashed}
+.tube .rf{background:var(--cc)}
+.tube .ab{background:repeating-linear-gradient(45deg,var(--surface-2) 0 6px,var(--line) 6px 9px)}
+.colx .nm{font-weight:700}
+.colx.r{--cc:var(--red)}.colx.g{--cc:var(--green)}.colx.b{--cc:var(--blue)}
+
+/* waffle */
+.waffle{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:3px;max-width:300px;width:100%}
+.cell{aspect-ratio:1;border-radius:3px}
+.cell.r{background:var(--reflect)}.cell.t{background:var(--transmit)}.cell.a{background:var(--absorb)}
+
+/* ice race */
+.race{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pad{position:relative;height:170px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden}
+.pad.w{background:#F4F4F1}.pad.b{background:#14161C}
+.pad .lbl{position:absolute;left:8px;top:6px;font-size:.78rem;font-family:var(--font-mono)}
+.pad.w .lbl{color:#333}.pad.b .lbl{color:#ddd}
+.puddle{position:absolute;width:110px;height:46px;border-radius:50%;background:#7CC4F2;opacity:.65;transform:scale(0);bottom:22px}
+.ice{position:relative;width:76px;height:76px;border-radius:12px;background:linear-gradient(135deg,#E4F6FF,#9ED7F5);border:2px solid #fff;transform-origin:50% 100%;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.sunbar{height:10px;border-radius:99px;background:linear-gradient(90deg,var(--beam),color-mix(in srgb,var(--beam) 30%,transparent));opacity:.25;transition:opacity .3s}
+.sunbar.on{opacity:1}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap}
+.btn{font-size:.95rem;font-weight:700;padding:9px 16px;min-height:42px;border-radius:10px;border:0;background:var(--beam);color:var(--beam-ink);cursor:pointer}
+.btn.ghost{background:var(--surface);color:var(--ink);border:1.5px solid var(--line)}
+.btn:hover{filter:brightness(1.06)}
+
+/* misc */
+.glossary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px;margin:0}
+.glossary div{padding:10px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--line)}
+.glossary dt{font-weight:700}
+.glossary dd{margin:2px 0 0;font-size:.93rem;color:var(--muted)}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+details+details{margin-top:10px}
+summary{cursor:pointer;font-weight:700}
+details .in{display:grid;gap:10px;padding-top:10px;font-size:.95rem}
+details ul{margin:0;padding-left:1.2em;display:grid;gap:4px}
+footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;border-top:1px solid var(--line);padding-top:16px}
+.flow{stroke-dasharray:10 8;animation:flow 1s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-18}}
+@media (prefers-reduced-motion: reduce){.flow{animation:none}html{scroll-behavior:auto}.seetext,.seesheets,.meter i{transition:none}}
+@media (max-width:760px){
+  .aids{grid-template-columns:minmax(0,1fr)}
+  .trio{grid-template-columns:minmax(0,1fr)}
+  .glossary{grid-template-columns:minmax(0,1fr)}
+  .tally{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:420px){.brow{grid-template-columns:84px minmax(0,1fr)}.race{grid-template-columns:minmax(0,1fr)}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="mBeam" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--beam)"/></marker>
+    <marker id="mReflect" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--reflect)"/></marker>
+    <marker id="mTransmit" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--transmit)"/></marker>
+    <marker id="mAbsorb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--absorb)"/></marker>
+    <marker id="mInk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--ink)"/></marker>
+    <marker id="mRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#D93036"/></marker>
+  </defs>
+</svg>
+
+<style>.bridge{margin:14px 0 0;padding:12px 14px;border-left:4px solid var(--beam);background:var(--surface-2);border-radius:0 10px 10px 0;font-size:.95rem;line-height:1.5}.related ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}.related li{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}.related a{font-weight:700}.related .why{display:block;color:var(--muted);font-size:.9rem}</style>
+<style>
+.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:.8rem;color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:4px;vertical-align:-1px;border:1px solid var(--ink)}
+</style>
+
+<header class="hero">
+  <p class="kicker">Sixth grade science · Unit 12 · Extension</p>
+  <h1>Ecosystems &amp; Food Webs</h1>
+  <p class="lede">A forest, a pond, and a lake are not just collections of living things. They are systems where energy flows, matter cycles, and every species affects the others. Use the investigation steps from <b>Unit 0: How Science Works</b> when you study how changes ripple through a food web.</p>
+  <p class="bridge"><b>Side trip (best after Unit 8 or 9):</b> Units 7 to 9 were about living things one at a time. Now we ask how they depend on each other. You may already have learned that producers capture the Sun's energy (Unit 1) and that energy changes form (Unit 2). Food webs trace that energy and the matter that moves with it. Units 7.5 and 7.6 go deeper.</p>
+  <div class="hero-art">
+    <svg viewBox="0 0 640 190" role="img" aria-label="A simple food chain: sun, plant, grasshopper, frog, hawk.">
+      <g style="stroke:var(--ink);stroke-width:3"><circle cx="50" cy="60" r="28" style="fill:var(--beam)"/><rect x="130" y="95" width="80" height="50" rx="12" style="fill:var(--transmit);fill-opacity:.4"/><rect x="250" y="95" width="80" height="50" rx="12" style="fill:var(--beam);fill-opacity:.4"/><rect x="370" y="95" width="80" height="50" rx="12" style="fill:var(--reflect);fill-opacity:.4"/><rect x="490" y="95" width="100" height="50" rx="12" style="fill:var(--absorb);fill-opacity:.4"/></g>
+      <g font-size="13" text-anchor="middle" style="font-weight:700"><text x="170" y="124">Grass</text><text x="290" y="124">Grasshopper</text><text x="410" y="124">Frog</text><text x="540" y="124">Hawk</text></g>
+      <g style="stroke:var(--ink);stroke-width:3;fill:none"><path d="M76 72 L128 105" marker-end="url(#mInk)"/><path d="M212 120 H246" marker-end="url(#mInk)"/><path d="M332 120 H366" marker-end="url(#mInk)"/><path d="M452 120 H486" marker-end="url(#mInk)"/></g>
+      <text x="320" y="176" font-size="12" text-anchor="middle">arrows show the flow of energy, not "who chases whom"</text>
+    </svg>
+  </div>
+  <p class="howto">Look for the tags <span class="tag analogy">Analogy</span><span class="tag diagram">Diagram</span><span class="tag try">Try it</span><span class="tag data">Data</span><span class="tag real">Real world</span></p>
+</header>
+
+<nav class="nav" aria-label="Lesson sections"><ul>
+  <li><a href="#s1">1 Ecosystems</a></li><li><a href="#s2">2 Energy flow</a></li><li><a href="#s3">3 Matter cycles</a></li><li><a href="#s4">4 Populations</a></li><li><a href="#s5">5 Change</a></li><li><a href="#s6">6 Check yourself</a></li>
+  <li><a href="#game">7 Game</a></li>
+  </ul></nav>
+
+<main>
+
+<section class="sec" id="s1">
+  <div><p class="kicker">Concept 1 · What is an ecosystem?</p><h2>Living and non-living parts, working together</h2></div>
+  <p class="idea">An <mark>ecosystem</mark> includes all the <mark>living (biotic)</mark> and <mark>non-living (abiotic)</mark> things in an area and how they interact. Scientists study life at nested levels, from one organism up to the whole planet.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>A town</h3>
+      <div class="tw"><table class="tbl" style="min-width:380px">
+        <thead><tr><th>Ecology word</th><th>Town version</th></tr></thead>
+        <tbody>
+          <tr><td><b>Organism</b></td><td>One person</td></tr>
+          <tr><td><b>Population</b></td><td>All the people in town (one species)</td></tr>
+          <tr><td><b>Community</b></td><td>All the living things: people, pets, trees, birds</td></tr>
+          <tr><td><b>Ecosystem</b></td><td>People <i>plus</i> roads, weather, water, and buildings</td></tr>
+          <tr><td><b>Biome</b></td><td>The whole region type: "midwestern towns"</td></tr>
+        </tbody></table></div>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Zoom out from one tree</h3>
+      <div class="chips" id="lvChips" role="group" aria-label="Level"></div>
+      <div class="stage"><svg id="lvSvg" viewBox="0 0 480 220" role="img" aria-label="Nested circles from organism to biome."></svg></div>
+      <p class="readout" id="lvR" aria-live="polite"></p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Biotic or abiotic?</h3>
+      <div class="items" id="biSort"></div>
+      <p class="score" id="biS">0 of 6 correct</p>
+    </article>
+    <article class="aid">
+      <span class="tag data">Data</span>
+      <h3>How big is an ecosystem?</h3>
+      <div class="bars" id="areaBars"></div>
+      <p class="cap">Area in km². Ecosystems are nested: a pond sits inside a watershed, which sits inside a bigger biome.</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s2">
+  <div><p class="kicker">Concept 2 · Food and energy</p><h2>Producers, consumers, and decomposers</h2></div>
+  <p class="idea"><mark>Producers</mark> (plants, algae) capture sunlight and make food. <mark>Consumers</mark> eat other organisms. <mark>Decomposers</mark> (fungi, bacteria) break down dead things. Energy flows one way and <mark>only about 10% moves up</mark> to the next level.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>Passing a leaky bucket</h3>
+      <div class="stage"><svg viewBox="0 0 480 180" role="img" aria-label="Four buckets of decreasing size, each losing most of its water as it is passed along.">
+        <g style="stroke:var(--ink);stroke-width:3"><rect x="20" y="40" width="90" height="100" rx="8" style="fill:var(--transmit);fill-opacity:.45"/><rect x="140" y="85" width="70" height="55" rx="8" style="fill:var(--beam);fill-opacity:.45"/><rect x="240" y="115" width="55" height="25" rx="8" style="fill:var(--reflect);fill-opacity:.45"/><rect x="325" y="130" width="40" height="10" rx="4" style="fill:var(--absorb);fill-opacity:.6"/></g>
+        <g font-size="12" text-anchor="middle" style="font-weight:700"><text x="65" y="160">Producers</text><text x="175" y="160">Herbivores</text><text x="267" y="160">Carnivores</text><text x="345" y="160">Top predator</text></g>
+        <g font-size="11" text-anchor="middle"><text x="65" y="95">100%</text><text x="175" y="118">10%</text><text x="267" y="132">1%</text><text x="345" y="127">0.1%</text></g>
+        <text x="410" y="70" font-size="11" text-anchor="middle">the rest is used for</text><text x="410" y="84" font-size="11" text-anchor="middle">life and lost as heat</text>
+      </svg></div>
+      <p>Every living thing uses most of its food energy to move, grow, and stay warm, and releases it as heat (Unit 2). Only about one-tenth reaches the next level, so a bucket passed up the food chain gets emptier at every hand-off.</p>
+      <p class="cap"><b>Where it breaks:</b> the missing energy is not spilled. It leaves as heat and is no longer food, which is why food chains are short.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>Explore a Great Lakes food web</h3>
+      <div class="chips" id="fwChips" role="group" aria-label="Organism"></div>
+      <div class="stage"><svg id="fwSvg" viewBox="0 0 640 300" role="img" aria-label="A food web with arrows showing energy flowing from food to eater."></svg></div>
+      <div class="legend"><span><i style="background:var(--beam)"></i>selected</span><span><i style="background:var(--transmit)"></i>what it eats</span><span><i style="background:var(--absorb)"></i>what eats it</span></div>
+      <p class="readout" id="fwR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>Energy pyramid calculator</h3>
+      <div class="stage"><svg id="pySvg" viewBox="0 0 640 230" role="img" aria-label="Pyramid with four levels showing energy available."></svg></div>
+      <div class="ctl"><label for="pyE">Energy passed up each level: <span id="pyEV"></span>%</label><input id="pyE" type="range" min="2" max="20" step="1" value="10"></div>
+      <p class="readout" id="pyR" aria-live="polite"></p>
+      <p class="cap">Starting with 10,000 kcal captured by producers. Food chains rarely have more than 4–5 levels because too little energy is left. That's also why there are far fewer lake trout than plankton.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>Why eating plants is "efficient"</h3>
+      <p>Producing 1 kg of beef takes about 25 kg of feed, while grains and beans feed people directly. If the plants go straight to people, you skip a level and keep roughly ten times as much of the Sun's energy. That's one reason food scientists study plant-based protein.</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s3">
+  <div><p class="kicker">Concept 3 · Recycling matter</p><h2>Matter cycles; energy flows</h2></div>
+  <p class="idea">Unlike energy, <mark>matter is reused</mark>. The carbon in your body was once in a plant, and before that, in the air. Decomposers return nutrients to the soil so new plants can grow.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>A library</h3>
+      <p>Books (carbon atoms) are checked out by plants from the air, passed to readers (animals) and returned when they die or exhale, shelved again by decomposers. The library never makes or destroys books; they just move between hands. Burning fossil fuels is like returning books that had been in storage for 300 million years, all at once.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag diagram">Diagram</span>
+      <h3>The carbon cycle</h3>
+      <div class="chips" id="ccChips" role="group" aria-label="Process"></div>
+      <div class="stage"><svg id="ccSvg" viewBox="0 0 640 300" role="img" aria-label="Carbon moves between air, plants, animals, soil decomposers and fossil fuels."></svg></div>
+      <p class="readout" id="ccR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>How long does it take to break down?</h3>
+      <div class="bars" id="decBars"></div>
+      <p class="cap">Rough estimates (conditions change them a lot). Natural materials return to soil fast; plastics and glass last for centuries.</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s4">
+  <div><p class="kicker">Concept 4 · Populations</p><h2>Why population sizes rise and fall</h2></div>
+  <p class="idea">A population grows quickly when resources are plentiful, then levels off at the <mark>carrying capacity</mark>, the number the environment can support. Predators and prey keep each other's numbers in <mark>cycles</mark>.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>A restaurant with 100 seats</h3>
+      <p>The restaurant fills up fast at first, but only 100 people fit, no matter how many want a table. Food, water, shelter, and space are an ecosystem's "seats". When they run out, growth stops or the population crashes.</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Grow a population</h3>
+      <div class="stage"><svg id="lgSvg" viewBox="0 0 480 240" role="img" aria-label="S-shaped population growth curve."></svg></div>
+      <div class="ctl"><label for="lgK">Carrying capacity: <span id="lgKV"></span></label><input id="lgK" type="range" min="100" max="1000" step="50" value="500"></div>
+      <div class="ctl"><label for="lgR">Growth rate: <span id="lgRV"></span> per year</label><input id="lgR" type="range" min="0.2" max="1.2" step="0.1" value="0.6"></div>
+      <p class="readout" id="lgRd" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>Predator and prey cycles</h3>
+      <div class="chips" id="ppChips" role="group" aria-label="Start"></div>
+      <div class="stage"><svg id="ppSvg" viewBox="0 0 640 260" role="img" aria-label="Prey and predator numbers rising and falling in a delayed cycle."></svg></div>
+      <p class="readout" id="ppR" aria-live="polite"></p>
+      <p class="cap">A simple mathematical model (teaching version). Real populations also depend on weather, disease, and food, but the delay between prey peaks and predator peaks is real: on Isle Royale in Lake Superior, wolves and moose have been studied since 1958.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>Name the relationship</h3>
+      <div class="items" id="relSort"></div>
+      <p class="score" id="relS">0 of 6 correct</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s5">
+  <div><p class="kicker">Concept 5 · Changing ecosystems</p><h2>Remove one species, and the web shifts</h2></div>
+  <p class="idea">Ecosystems stay balanced only if their parts stay. Removing or adding a species, like an <mark>invasive species</mark>, causes a <mark>ripple effect</mark> through the food web. Many Great Lakes problems came from species that arrived from other places.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>Pulling a block from a tower</h3>
+      <p>In a game of Jenga, some blocks barely matter; others make the whole tower tilt. Species that many others depend on are the tower's key blocks: scientists call them <b>keystone species</b>. Sea otters, wolves, and beavers are famous examples.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>What if it disappears?</h3>
+      <div class="chips" id="rmChips" role="group" aria-label="Remove"></div>
+      <div class="stage"><svg id="rmSvg" viewBox="0 0 640 300" role="img" aria-label="The same food web with one species removed and arrows showing which groups rise or fall."></svg></div>
+      <div class="legend"><span><i style="background:#999"></i>removed</span><span><i style="background:var(--transmit)"></i>likely increase</span><span><i style="background:var(--absorb)"></i>likely decrease</span></div>
+      <p class="readout" id="rmR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>Invaders in Michigan waters</h3>
+      <div class="tw"><table class="tbl">
+        <thead><tr><th>Species</th><th>How it arrived</th><th>Effect</th></tr></thead>
+        <tbody>
+          <tr><td><b>Sea lamprey</b></td><td>Through canals in the 1800s–1900s</td><td>A parasite that attached to lake trout; one lamprey can kill about 18 kg (40 lb) of fish in its life. Lake trout nearly vanished until lamprey control began.</td></tr>
+          <tr><td><b>Zebra mussel</b></td><td>Ship ballast water, found near Detroit in 1988</td><td>Filter the water so clearly that plankton drops; clog pipes; but also boosted water clarity and some plants.</td></tr>
+          <tr><td><b>Emerald ash borer</b></td><td>Wood packing from Asia (about 2002)</td><td>Killed tens of millions of ash trees.</td></tr>
+          <tr><td><b>Asian carp</b></td><td>Escaped from fish farms (Mississippi basin)</td><td>Barriers in the Chicago canals try to keep them out of the Great Lakes.</td></tr>
+        </tbody></table></div>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>Good news: recovery is possible</h3>
+      <div class="bars" id="recBars"></div>
+      <p class="cap">Approximate. Bald eagles, hit by the pesticide DDT, dropped to under 500 nesting pairs in the lower 48 states in 1963. After DDT was banned (1972) they recovered, and the bird left the endangered list in 2007. Similarly, restored wetlands and fish-ladders are helping Michigan species return.</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s6">
+  <div><p class="kicker">Check yourself</p><h2>Can you explain it?</h2></div>
+  <p class="idea">Zebra mussels filter huge amounts of plankton out of a lake. Predict what happens to zooplankton and to the alewife that eat them, and explain how energy moves along the chain.</p>
+  <details><summary>Show a model answer</summary><div class="in">
+    <p>Zebra mussels eat phytoplankton, so they compete with zooplankton for the same food. Less phytoplankton means fewer zooplankton, which means less food for alewife, and fewer fish are fed higher up. Energy flows from the Sun to phytoplankton to its consumers, losing about 90% at each step, so a loss at the bottom is felt by everyone above.</p></div></details>
+  <div class="items" id="quiz"></div>
+  <p class="score" id="quizScore">0 of 6 correct</p>
+  <h3 style="margin-top:8px">Words to know</h3>
+  <dl class="glossary">
+    <div><dt>ecosystem</dt><dd>Living and non-living things interacting in an area.</dd></div>
+    <div><dt>producer</dt><dd>An organism that makes its own food from sunlight.</dd></div>
+    <div><dt>consumer</dt><dd>An organism that eats others.</dd></div>
+    <div><dt>decomposer</dt><dd>An organism that breaks down dead matter.</dd></div>
+    <div><dt>food web</dt><dd>Many connected food chains.</dd></div>
+    <div><dt>trophic level</dt><dd>A step in the flow of energy.</dd></div>
+    <div><dt>carrying capacity</dt><dd>The largest population an environment can support.</dd></div>
+    <div><dt>limiting factor</dt><dd>A resource or condition that limits population growth.</dd></div>
+    <div><dt>keystone species</dt><dd>A species with a large effect on its ecosystem.</dd></div>
+    <div><dt>invasive species</dt><dd>A non-native species that harms its new ecosystem.</dd></div>
+  </dl>
+  <details><summary>Tutor notes: hands-on kit, misconceptions, pacing</summary><div class="in">
+    <p><b>Kit (about $8):</b> index cards and yarn (human food web), a clear jar with soil, leaves and a bit of water (mini ecosystem, or a closed bottle ecosystem), a meter-square frame, a hand lens, a bag of beans and poker chips (predator–prey game).</p>
+    <ul>
+      <li><b>Concept 1:</b> scavenger hunt in a yard or park: list 10 biotic and 5 abiotic things.</li>
+      <li><b>Concept 2:</b> each student is an organism; connect them with yarn; one drops out and everyone connected tugs.</li>
+      <li><b>Concept 3:</b> bury a banana peel, a piece of paper and a plastic bag; dig them up later to compare.</li>
+      <li><b>Concept 4:</b> predator-prey game: "wolves" collect "moose" tokens; record numbers each round and graph.</li>
+      <li><b>Concept 5:</b> role-play adding an invasive species to the yarn web.</li>
+    </ul>
+    <p><b>Common misconceptions:</b></p>
+    <ul>
+      <li>"Arrows in a food web point from the eater to the eaten." They show energy flow: from the eaten to the eater.</li>
+      <li>"Decomposers aren't part of the food web." They're essential: no decomposers, no recycling.</li>
+      <li>"Predators are bad for prey populations." They often keep prey healthy by removing the sick and preventing overgrazing.</li>
+      <li>"Energy is recycled like matter." Energy flows one way and leaves as heat.</li>
+    </ul>
+    <p><b>Pacing:</b> about five 30-minute sessions. <b>Method link:</b> have students write an "If we remove…, then…, because…" hypothesis (Unit 0, Concept 3) before using the ripple tool.</p></div></details>
+</section>
+
+<section class="sec lesson-game-sec" id="game"><div><p class="kicker">After the lesson · Game</p><h2>Play: Lake Keeper</h2></div><p class="idea">Manage a Great Lakes food web for ten years while zebra mussels and sea lamprey invade. Spend a small budget each year and watch the ripple effects move through the web.</p><div class="lesson-game" id="lesson-game"></div>
+<script>(function(){
+/* Mounts one game into a shadow root so the lesson page's CSS and the game's CSS never collide. */
+function __mountLessonGame(host, css, html, init){
+  if(!host || host.shadowRoot) return;
+  const root = host.attachShadow({mode:"open"});
+  root.innerHTML = "<style>"+css+"</style>"+html;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let visible = true;
+  try{ new IntersectionObserver(es=>{ visible = es[es.length-1].isIntersecting; }).observe(host); }catch(e){}
+  const loops = [];
+  let last = performance.now();
+  function frame(t){
+    const dt = Math.min(0.05, (t-last)/1000); last = t;
+    if(visible && !document.hidden) for(const f of loops){ try{ f(t, dt); }catch(e){ console.error(e); } }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+  const env = {
+    root, reduce,
+    $: id => root.getElementById(id),
+    $$: sel => [...root.querySelectorAll(sel)],
+    loop: f => loops.push(f),
+    esc: s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])),
+    // A canvas drawn in fixed logical units (W x H) that scales to its container.
+    stage(canvas, W, H){
+      const ctx = canvas.getContext("2d");
+      const st = {ctx, W, H, dpr:1};
+      function fit(){
+        st.dpr = Math.min(2.5, window.devicePixelRatio || 1);
+        const cw = canvas.clientWidth || W;
+        const scale = cw / W;
+        canvas.width = Math.round(W*scale*st.dpr); canvas.height = Math.round(H*scale*st.dpr);
+        st.k = scale*st.dpr;
+        ctx.setTransform(st.k,0,0,st.k,0,0);
+        if(st.onfit) st.onfit();
+      }
+      canvas.style.aspectRatio = W+"/"+H;
+      st.begin = () => ctx.setTransform(st.k,0,0,st.k,0,0);
+      st.pt = ev => { const r = canvas.getBoundingClientRect(); return {x:(ev.clientX-r.left)*W/r.width, y:(ev.clientY-r.top)*H/r.height}; };
+      try{ new ResizeObserver(fit).observe(canvas); }catch(e){ addEventListener("resize", fit); }
+      fit();
+      return st;
+    },
+    // Level buttons in the header.
+    levelBar(box, names, onPick){
+      const solved = new Set(); let cur = 0;
+      function render(){
+        box.innerHTML = '<span class="label">Level</span>';
+        names.forEach((n,i)=>{ const b = document.createElement("button"); b.type="button";
+          b.className = "lv"+(solved.has(i)?" done":""); b.textContent = i+1; b.title = n;
+          b.setAttribute("aria-label", "Level "+(i+1)+": "+n+(solved.has(i)?" (solved)":""));
+          if(i===cur) b.setAttribute("aria-current","true");
+          b.onclick = () => { cur = i; render(); onPick(i); }; box.appendChild(b); });
+      }
+      render();
+      return { set(i){ cur=i; render(); }, solve(i){ solved.add(i); render(); }, get cur(){ return cur; }, solved };
+    },
+    // Result card over a stage. buttons: [{label, primary, onClick}]
+    card(stageEl, o){
+      let ov = stageEl.querySelector(":scope > .over");
+      if(!ov){ ov = document.createElement("div"); ov.className = "over"; stageEl.appendChild(ov); }
+      ov.hidden = false;
+      ov.innerHTML = '<div class="card'+(o.fail?' fail':'')+'" role="dialog" aria-live="polite"><h4></h4>'+(o.why?'<span class="why"></span>':'')+'<p class="cb"></p><div class="btns"></div></div>';
+      ov.querySelector("h4").textContent = o.title;
+      if(o.why) ov.querySelector(".why").textContent = o.why;
+      ov.querySelector(".cb").textContent = o.body || "";
+      if(o.list && o.list.length){ const ul = document.createElement("ul"); ul.className = "clist";
+        o.list.forEach(t => { const li = document.createElement("li"); li.textContent = t; ul.appendChild(li); });
+        ov.querySelector(".cb").after(ul); }
+      const bb = ov.querySelector(".btns");
+      (o.buttons||[]).forEach((b,i)=>{ const e = document.createElement("button"); e.type="button"; e.className = "btn"+(b.primary?" primary":""); e.textContent = b.label;
+        e.onclick = () => { ov.hidden = true; b.onClick && b.onClick(); }; bb.appendChild(e); if(i===0) setTimeout(()=>e.focus({preventScroll:true}),30); });
+      if(getComputedStyle(ov).position === "static") setTimeout(()=>ov.scrollIntoView({block:"nearest", behavior: reduce?"auto":"smooth"}), 40);
+      return ov;
+    },
+    hideCard(stageEl){ const ov = stageEl.querySelector(":scope > .over"); if(ov) ov.hidden = true; }
+  };
+  try{ init(root, env); }catch(e){ console.error(e); root.innerHTML += '<p style="color:#fff;padding:12px">This game could not start.</p>'; }
+}
+
+__mountLessonGame(document.getElementById("lesson-game"), "/* Shared frame for every lesson game. Lives inside a shadow root, so nothing here touches the lesson page.\n   Deliberately one dark \"lab console\" look in both page themes; each game sets its own --acc accent. */\n:host{\n  display:block; color-scheme:dark;\n  --bg:#0B0F15; --panel:#141A23; --panel-2:#1B2330; --line:#2B3544; --ink:#E9EEF5; --muted:#93A0B2;\n  --good:#3FD3BB; --bad:#FF6B5E; --warn:#FFB547; --acc:#FFD84A; --acc-ink:#1A1400;\n  --reflect:#78A2FF; --heat:#FF7A2E;\n  --f-display:\"Bahnschrift\",\"DIN Alternate\",\"Roboto Condensed\",\"Arial Narrow\",system-ui,sans-serif;\n  --f-body:\"Roboto\",\"Segoe UI\",system-ui,-apple-system,sans-serif;\n  --f-mono:ui-monospace,\"Roboto Mono\",\"Cascadia Mono\",Menlo,Consolas,monospace;\n}\n*{box-sizing:border-box}\n[hidden]{display:none!important}\n.g{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;border-radius:16px;\n  border:1px solid var(--line);padding:16px;display:grid;gap:14px;text-align:left;box-shadow:0 10px 36px rgba(0,0,0,.35)}\n.g button{font:inherit;color:inherit}\n.g :focus-visible{outline:3px solid var(--acc);outline-offset:2px}\n.g h3,.g h4{margin:0;font-family:var(--f-display);letter-spacing:.02em;line-height:1.15}\n.g p{margin:0}\n.bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 18px}\n.brand{display:grid;gap:2px}\n.label{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}\n.gtitle{font-family:var(--f-display);font-weight:700;font-size:1.45rem;text-transform:uppercase;letter-spacing:.04em}\n.gtitle b{color:var(--acc);font-weight:700}\n.levels{display:flex;flex-wrap:wrap;gap:6px;align-items:center}\n.lv{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--line);background:var(--panel);font-family:var(--f-mono);font-size:.85rem;cursor:pointer;font-variant-numeric:tabular-nums;padding:0}\n.lv:hover{border-color:var(--muted)}\n.lv.done{border-color:var(--good);color:var(--good)}\n.lv[aria-current=\"true\"]{background:var(--acc);border-color:var(--acc);color:var(--acc-ink);font-weight:700}\n.goalrow{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 12px}\n.goalrow h4{font-size:1.25rem}\n.goalrow .goal{color:var(--muted)}\n.cols{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:14px;align-items:start}\n.cols>*{min-width:0}\n.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:10px;min-width:0}\n.panel>.label{margin-bottom:-2px}\n.stage{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px;min-width:0}\n.stage canvas{display:block;width:100%;max-width:100%;height:auto;border-radius:8px;touch-action:none}\n.btns{display:flex;flex-wrap:wrap;gap:8px}\n.btn{padding:8px 14px;min-height:40px;border-radius:10px;border:1.5px solid var(--line);background:var(--panel-2);cursor:pointer;font-weight:700;font-size:.92rem;line-height:1.2}\n.btn:hover:not([disabled]){border-color:var(--muted)}\n.btn[disabled]{opacity:.45;cursor:default}\n.btn.primary{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}\n.btn[aria-pressed=\"true\"]{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset}\n.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;font-size:.82rem;border:1px solid var(--line);background:var(--panel-2)}\n.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}\n.msg{font-size:.93rem;padding:9px 12px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line)}\n.msg.good{border-color:color-mix(in srgb,var(--good) 60%,var(--line));color:var(--ink)}\n.msg.bad{border-color:color-mix(in srgb,var(--bad) 60%,var(--line))}\n.msg.warn{border-color:color-mix(in srgb,var(--warn) 60%,var(--line))}\n.help{font-size:.86rem;color:var(--muted)}\n.meter{height:12px;border-radius:99px;background:var(--panel-2);overflow:hidden;border:1px solid var(--line)}\n.meter>i{display:block;height:100%;background:var(--acc);transition:width .15s}\n.ctl{display:grid;gap:4px}\n.ctl label{font-size:.9rem;font-weight:700;display:flex;justify-content:space-between;gap:8px}\n.ctl input[type=range]{width:100%;accent-color:var(--acc);height:30px;margin:0}\n.over{position:absolute;inset:6px;border-radius:8px;display:grid;place-items:center;padding:14px;background:color-mix(in srgb,var(--bg) 74%,transparent);backdrop-filter:blur(2px);z-index:5}\n.card{max-width:440px;display:grid;gap:10px;padding:18px;border-radius:14px;background:var(--panel-2);border:1px solid var(--acc);box-shadow:0 0 36px color-mix(in srgb,var(--acc) 22%,transparent)}\n.card h4{font-size:1.5rem;color:var(--acc)}\n.card.fail{border-color:var(--bad);box-shadow:0 0 36px color-mix(in srgb,var(--bad) 18%,transparent)}\n.card.fail h4{color:var(--bad)}\n.clist{margin:0;padding-left:1.15em;display:grid;gap:5px;font-size:.9rem}\n.over{align-items:start}\n.card{position:sticky;top:16px;margin-top:clamp(8px,8%,60px)}\n.why{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}\ntable.data{width:100%;border-collapse:collapse;font-size:.85rem}\ntable.data th,table.data td{padding:5px 7px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}\ntable.data th{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}\ntable.data td.num{text-align:right}\n.scroll{overflow-x:auto}\n@media (max-width:820px){.cols{grid-template-columns:minmax(0,1fr)}\n  .over{position:static;inset:auto;background:none;backdrop-filter:none;padding:8px 0 2px}\n  .card{max-width:none;position:static;margin-top:0}}\n@media (prefers-reduced-motion:reduce){.meter>i{transition:none}}\n\n:host{--acc:#5AD1FF;--acc-ink:#03141C}\n.left,.aside{display:grid;gap:12px;min-width:0}\n.acts{display:grid;gap:8px}\n.act{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;align-items:center;padding:8px 10px;border-radius:10px;border:1.5px solid var(--line);background:var(--panel-2);cursor:pointer;text-align:left}\n.act:hover:not([disabled]){border-color:var(--muted)}\n.act[aria-pressed=\"true\"]{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset}\n.act[disabled]{opacity:.45;cursor:default}\n.act .nm{font-weight:700;font-size:.92rem}\n.act .sub{font-size:.78rem;color:var(--muted);grid-column:1}\n.act .cost{grid-row:1/3;grid-column:2;font-family:var(--f-mono);font-size:.8rem;padding:2px 9px;border-radius:999px;border:1px solid var(--line);background:var(--bg)}\n.news{margin:0;padding-left:1.3em;display:grid;gap:5px;font-size:.87rem;max-height:240px;overflow:auto}\n.news li.alert{color:var(--warn)}\n.news li.bad{color:var(--bad)}\n", "<div class=\"g\">\n  <div class=\"bar\">\n    <div class=\"goalrow\"><h4 id=\"lvName\">Invaders</h4><span class=\"goal\" id=\"lvGoal\"></span></div>\n    <nav class=\"levels\" id=\"levels\" aria-label=\"Levels\"></nav>\n  </div>\n  <div class=\"cols\">\n    <div class=\"left\">\n      <div class=\"stage\" id=\"stage\"><canvas id=\"cv\" aria-label=\"Lake food web and population chart over ten years.\"></canvas></div>\n    </div>\n    <div class=\"aside\">\n      <div class=\"panel\">\n        <div class=\"bar\"><span class=\"label\">Year <b class=\"num\" id=\"year\">1</b> of 10</span><span class=\"chip\">Budget <b class=\"num\" id=\"budget\">2</b> this year</span></div>\n        <div class=\"acts\" id=\"acts\"></div>\n        <div class=\"btns\"><button class=\"btn primary\" id=\"next\" type=\"button\">Run the year</button><button class=\"btn\" id=\"restart\" type=\"button\">Start over</button></div>\n        <p class=\"msg\" id=\"msg\"></p>\n      </div>\n      <div class=\"panel\">\n        <span class=\"label\">Lake news</span>\n        <ol class=\"news\" id=\"news\"></ol>\n      </div>\n    </div>\n  </div>\n</div>\n", function(root, env){
+const SPECIES = [
+  {id:"P", short:"Producer: makes food from sunlight", name:"Phytoplankton", role:"Producer: tiny algae that make food from sunlight", col:"#4FCB85", native:true},
+  {id:"Z", short:"Eats phytoplankton", name:"Zooplankton", role:"Tiny animals that eat phytoplankton", col:"#5AD1FF", native:true},
+  {id:"A", short:"Small fish, eats zooplankton", name:"Alewife", role:"Small fish that eat zooplankton", col:"#C9D2DE", native:true},
+  {id:"T", short:"Top predator, eats alewife", name:"Lake trout", role:"Top predator that eats alewife", col:"#FF9F43", native:true},
+  {id:"M", short:"Invader: eats phytoplankton", name:"Zebra mussels", role:"Invader: filters phytoplankton out of the water", col:"#E2B866", native:false},
+  {id:"L", short:"Invader: feeds on trout", name:"Sea lamprey", role:"Invader: a parasite that feeds on lake trout", col:"#FF5E7A", native:false},
+];
+const ACTIONS = [
+  {id:"wash", name:"Boat-washing stations", sub:"Slows zebra mussel spread this year", cost:1},
+  {id:"lamp", name:"Lampricide in streams", sub:"Kills young sea lamprey this year", cost:1},
+  {id:"stock", name:"Stock lake trout", sub:"Release 15 young trout", cost:1},
+  {id:"nofish", name:"Pause trout fishing", sub:"No trout caught this year", cost:1},
+];
+const KP = 300;
+function newLake(){ return {P:100, Z:100, A:100, T:100, M:0, L:0, year:0}; }
+// Advance one year. acts: Set of action ids.
+function stepYear(s, acts, events){
+  s = {...s}; const N = 12;
+  const y = s.year + 1;
+  if(y === events.mussels) s.M = Math.max(s.M, 6);
+  if(y === events.lamprey) s.L = Math.max(s.L, 8);
+  if(acts.has("stock")) s.T += 15;
+  if(acts.has("lamp")) s.L *= .3;
+  const h = acts.has("nofish") ? 0 : .05;
+  const rM = acts.has("wash") ? .35 : 1.4;
+  for(let i=0;i<N;i++){
+    const {P,Z,A,T,M,L} = s, k = 1/N;
+    const dP = .5*P*(1-P/KP) - .333*P*Z/100 - .55*P*M/100;
+    const dZ = .3*Z*P/100 - .2*Z*A/100 - .1*Z;
+    const dA = .25*A*Z/100 - .15*A*T/100 - .1*A;
+    const dT = .12*T*A/100 - .07*T - h*T - .8*T*L/100;
+    const dM = M>0 ? rM*M*(1-M/120) : 0;
+    const dL = L>0 ? .9*L*(T/(T+40)) - .35*L : 0;
+    s.P = Math.max(.1, P+dP*k); s.Z = Math.max(.1, Z+dZ*k); s.A = Math.max(.1, A+dA*k); s.T = Math.max(.1, T+dT*k);
+    s.M = Math.max(0, M+dM*k); s.L = Math.max(0, L+dL*k);
+  }
+  s.year = y; return s;
+}
+
+
+const LEVELS = [
+  {name:"Invaders", events:{mussels:2, lamprey:4}, budget:2,
+   goal:"Keep every native species at 40% or more of where it started for 10 years. Two invaders are on the way.",
+   learn:"Zebra mussels filtered out the phytoplankton at the bottom of the food web, and sea lamprey attacked the trout at the top. Every species depends on the others, so a change at one level ripples through the whole web."},
+  {name:"Early Arrival", events:{mussels:1, lamprey:2}, budget:2,
+   goal:"Both invaders arrive almost at once. Same goal, less time to react.",
+   learn:"When invaders spread fast, slowing them early matters most. Managers on the Great Lakes still use boat washing and lampricide every year for exactly this reason."},
+];
+const FLOOR = 40, YEARS = 10;
+const $ = env.$;
+const cv = $("cv"), st = env.stage(cv, 640, 400), ctx = st.ctx;
+const bar = env.levelBar($("levels"), LEVELS.map(l=>l.name), i => load(i));
+let li = 0, lake = null, hist = [], acts = new Set(), news = [], over = false, anim = 1, prev = null;
+const L = () => LEVELS[li];
+const SP = Object.fromEntries(SPECIES.map(s=>[s.id,s]));
+
+function load(i){
+  li = i; lake = newLake(); hist = [{...lake}]; acts = new Set(); news = []; over = false; anim = 1; prev = {...lake}; env.hideCard($("stage"));
+  $("lvName").textContent = L().name; $("lvGoal").textContent = L().goal;
+  addNews("Year 0: The lake is healthy. Every population starts at 100%.");
+  say("Choose up to two actions, then run the year."); render();
+}
+function say(s, kind){ const m = $("msg"); m.textContent = s; m.className = "msg"+(kind?" "+kind:""); }
+function addNews(t, cls){ news.push({t, cls}); }
+function render(){
+  $("year").textContent = Math.min(YEARS, lake.year+1);
+  $("budget").textContent = L().budget - acts.size;
+  const box = $("acts"); box.innerHTML = "";
+  for(const a of ACTIONS){ const b = document.createElement("button"); b.type = "button"; b.className = "act"; const on = acts.has(a.id);
+    b.setAttribute("aria-pressed", on?"true":"false"); b.disabled = over || (!on && acts.size >= L().budget);
+    b.innerHTML = `<span class="nm">${a.name}</span><span class="cost">${a.cost} pt</span><span class="sub">${a.sub}</span>`;
+    b.onclick = () => { on ? acts.delete(a.id) : acts.add(a.id); render(); }; box.appendChild(b); }
+  $("next").disabled = over;
+  $("news").innerHTML = news.slice().reverse().map(n => `<li class="${n.cls||""}">${env.esc(n.t)}</li>`).join("");
+}
+$("next").onclick = () => {
+  if(over) return;
+  prev = {...lake};
+  const y = lake.year+1;
+  lake = stepYear(lake, acts, L().events);
+  hist.push({...lake}); anim = 0;
+  const chosen = ACTIONS.filter(a=>acts.has(a.id)).map(a=>a.name.toLowerCase());
+  if(y===L().events.mussels) addNews(`Year ${y}: Zebra mussels found! They hitched a ride on a boat and are filtering the water.`, "alert");
+  if(y===L().events.lamprey) addNews(`Year ${y}: Sea lamprey spotted in the rivers. They latch onto trout.`, "alert");
+  addNews(`Year ${y}: ${chosen.length ? "You chose " + chosen.join(" and ") + "." : "You took no action."}`);
+  const natives = SPECIES.filter(s=>s.native);
+  const low = natives.filter(s => lake[s.id] < FLOOR);
+  for(const s of low) addNews(`Year ${y}: ${s.name} fell to ${Math.round(lake[s.id])}%.`, "bad");
+  acts = new Set();
+  if(low.length){ over = true; render(); setTimeout(()=>env.card($("stage"), {fail:true, title:`${low[0].name} crashed`, why:"Follow the arrows", body: explain(low[0].id), buttons:[{label:"Try again", primary:true, onClick:()=>load(li)}]}), env.reduce?0:700); return; }
+  if(lake.year >= YEARS){ over = true; bar.solve(li); render(); setTimeout(()=>env.card($("stage"), {title:"The lake made it!", why:"The science", body:L().learn, buttons:[{label: li<LEVELS.length-1?"Next level":"Play level 1 again", primary:true, onClick:()=>{ const n=li<LEVELS.length-1?li+1:0; bar.set(n); load(n); }}, {label:"Play again", onClick:()=>load(li)}]}), env.reduce?0:700); return; }
+  say(`Year ${y} is done. Plan year ${y+1}.`); render();
+};
+function explain(id){
+  return {P:"Zebra mussels ate so much phytoplankton that the bottom of the food web collapsed. Slow the mussels down with boat washing.",
+    Z:"With less phytoplankton to eat, zooplankton starved. The trouble started at the bottom of the web.",
+    A:"Alewife ran short of zooplankton to eat, or there were too many trout eating them. Every link matters.",
+    T:"Lake trout were hit by sea lamprey and fishing. Protect the top predator with lampricide or by stocking young trout."}[id];
+}
+$("restart").onclick = () => load(li);
+
+const POS = {T:[330,46], A:[330,104], Z:[330,162], P:[330,220], M:[470,220], L:[470,46]};
+const EDGES = [["P","Z"],["Z","A"],["A","T"],["P","M"],["T","L"]];
+function draw(now, dt){
+  anim = Math.min(1, anim + dt*(env.reduce?10:1.6));
+  st.begin();
+  const W = 640, H = 400;
+  const g = ctx.createLinearGradient(0,0,0,260); g.addColorStop(0,"#0E2A3D"); g.addColorStop(1,"#0A1B29"); ctx.fillStyle = g; ctx.fillRect(0,0,W,260);
+  ctx.fillStyle = "#10151D"; ctx.fillRect(0,260,W,H-260);
+  const cur = {}; for(const s of SPECIES) cur[s.id] = prev[s.id] + (lake[s.id]-prev[s.id])*anim;
+  // edges (energy flows from food to eater)
+  for(const [a,b] of EDGES){ const [x1,y1] = POS[a], [x2,y2] = POS[b]; if((a==="P"&&b==="M"&&cur.M<.5)||(b==="L"&&cur.L<.5)) continue;
+    const w = 1 + Math.min(6, Math.sqrt(cur[a]*cur[b])/30);
+    ctx.strokeStyle = "rgba(233,238,245,.35)"; ctx.lineWidth = w; ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
+    const mx = (x1+x2)/2, my = (y1+y2)/2, an = Math.atan2(y2-y1, x2-x1);
+    ctx.fillStyle = "rgba(233,238,245,.6)"; ctx.beginPath(); ctx.moveTo(mx+Math.cos(an)*7, my+Math.sin(an)*7); ctx.lineTo(mx+Math.cos(an+2.5)*7, my+Math.sin(an+2.5)*7); ctx.lineTo(mx+Math.cos(an-2.5)*7, my+Math.sin(an-2.5)*7); ctx.fill(); }
+  ctx.fillStyle = "rgba(233,238,245,.55)"; ctx.font = "10px ui-monospace,monospace"; ctx.textAlign = "left"; ctx.fillText("arrows: energy flows from food to eater", 12, 252);
+  for(const s of SPECIES){ const [x,y] = POS[s.id], v = cur[s.id];
+    if(!s.native && v < .5){ ctx.strokeStyle = "rgba(233,238,245,.18)"; ctx.setLineDash([3,3]); ctx.beginPath(); ctx.arc(x,y,16,0,7); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = "rgba(233,238,245,.35)"; ctx.font = "11px ui-monospace,monospace"; ctx.textAlign = "left"; ctx.fillText(s.name, x+24, y-3); ctx.fillText("(not here yet)", x+24, y+11); continue; }
+    const r = 6 + Math.sqrt(Math.max(0,v))*1.25, low = s.native && v < FLOOR;
+    ctx.fillStyle = s.col; ctx.globalAlpha = .9; ctx.beginPath(); ctx.arc(x,y,r,0,7); ctx.fill(); ctx.globalAlpha = 1;
+    if(low){ ctx.strokeStyle = "#FF6B5E"; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(x,y,r+4,0,7); ctx.stroke(); }
+    const right = !s.native, lx = right ? x+r+10 : x-r-10;
+    ctx.fillStyle = "#E9EEF5"; ctx.font = "700 12px ui-monospace,monospace"; ctx.textAlign = right ? "left" : "right"; ctx.fillText(`${s.name}  ${Math.round(v)}%`, lx, y-3);
+    ctx.fillStyle = "#93A0B2"; ctx.font = "10px ui-monospace,monospace"; ctx.fillText(s.short, lx, y+11); }
+  // chart
+  const x0 = 46, x1 = 624, y0 = 384, y1 = 276, maxV = 150;
+  const X = yr => x0 + yr/YEARS*(x1-x0), Y = v => y0 - Math.min(v,maxV)/maxV*(y0-y1);
+  ctx.fillStyle = "rgba(255,107,94,.12)"; ctx.fillRect(x0, Y(FLOOR), x1-x0, y0-Y(FLOOR));
+  ctx.strokeStyle = "rgba(255,107,94,.6)"; ctx.setLineDash([4,4]); ctx.beginPath(); ctx.moveTo(x0, Y(FLOOR)); ctx.lineTo(x1, Y(FLOOR)); ctx.stroke(); ctx.setLineDash([]);
+  ctx.fillStyle = "#93A0B2"; ctx.font = "10px ui-monospace,monospace"; ctx.textAlign = "right"; ctx.textBaseline = "middle";
+  for(const v of [0,50,100,150]) ctx.fillText(v+"%", x0-6, Y(v));
+  ctx.textAlign = "center"; for(let yr=0; yr<=YEARS; yr+=2) ctx.fillText("yr "+yr, X(yr), y0+10);
+  ctx.textBaseline = "alphabetic";
+  for(const s of SPECIES){ ctx.strokeStyle = s.col; ctx.lineWidth = s.native ? 2.2 : 1.4; ctx.setLineDash(s.native ? [] : [4,3]); ctx.beginPath();
+    hist.forEach((h,i) => { const isLast = i===hist.length-1; const v = isLast ? cur[s.id] : h[s.id]; const xx = isLast && i>0 ? X(i-1 + anim) : X(i); i ? ctx.lineTo(xx, Y(v)) : ctx.moveTo(xx, Y(v)); }); ctx.stroke(); }
+  ctx.setLineDash([]);
+}
+env.loop(draw);
+load(0);
+
+});
+})();</script></section>
+
+<section class="sec related" id="more"><div><p class="kicker">Keep exploring</p><h2>Related lessons</h2></div><p class="idea">Side trip: continue to Grade 7 when finished. Up next: <a href="../7th/unit-7.1-structure-and-properties-of-matter.html">Unit 7.1: Structure &amp; Properties of Matter</a>. Overlap alert: ideas you have already met are marked above as "you may already have learned".</p><ul><li><a href="unit-07-cells.html">Unit 7: Cells</a><span class="why">Cells in every organism.</span></li><li><a href="unit-08-classifying-life.html">Unit 8: Classifying Life</a><span class="why">Classifying the organisms in a web.</span></li><li><a href="unit-13-energy-resources-and-human-impact.html">Unit 13: Energy Resources &amp; Human Impact</a><span class="why">Energy choices and ecosystems.</span></li><li><a href="../7th/unit-7.5-photosynthesis-and-matter-cycling.html">Unit 7.5: Photosynthesis &amp; Matter Cycling</a><span class="why">Grade 7: photosynthesis and the carbon cycle.</span></li><li><a href="../7th/unit-7.6-ecosystem-dynamics.html">Unit 7.6: Ecosystem Dynamics</a><span class="why">Grade 7: what makes ecosystems change.</span></li><li><a href="../8th/unit-8.9-natural-selection-and-common-ancestry.html">Unit 8.9: Natural Selection &amp; Common Ancestry</a><span class="why">Grade 8: how species change over time.</span></li></ul></section>
+</main>
+
+<footer>Built for sixth-grade tutoring as an extension unit. Aligned with NGSS MS-LS2-1 through MS-LS2-5 (resource effects, interdependence, matter and energy flow, ecosystem change). Figures are approximate.</footer>
+
+<script>
+(function(){
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const safe=fn=>{try{fn()}catch(e){console.error(e)}};
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const setPressed=(g,b)=>$$('button',g).forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));
+function mkChips(g,labels,sel=0){ g.innerHTML=labels.map((l,i)=>`<button class="chip" type="button" data-i="${i}" aria-pressed="${i===sel}">${l}</button>`).join(''); }
+function chipsOn(g,fn){ g.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; setPressed(g,b); fn(+b.dataset.i,b); }); }
+function quizBox(box,scoreEl,items,labels){
+  let right=0;
+  box.innerHTML=items.map((it,i)=>`<div class="item" data-i="${i}"><span class="nm">${it.n}</span><div class="opts">${labels.map((l,j)=>`<button class="opt" type="button" data-j="${j}">${l}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
+  box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.disabled)return; const row=b.closest('.item'), it=items[+row.dataset.i], ok=+b.dataset.j===it.a;
+    $$('.opt',row).forEach(o=>{ o.disabled=true; if(+o.dataset.j===it.a)o.classList.add('good'); }); if(!ok)b.classList.add('bad'); else right++;
+    $('.fb',row).textContent=(ok?'Yes. ':'Not quite. ')+it.e; scoreEl.textContent=`${right} of ${items.length} correct`; });
+}
+function finalQuiz(Q){
+  const box=$('#quiz'), sc=$('#quizScore'); let right=0;
+  box.innerHTML=Q.map((x,i)=>`<div class="q item" data-i="${i}" style="display:grid"><h4>${i+1}. ${x.q}</h4><div class="opts">${x.o.map((t,j)=>`<button class="opt" type="button" data-j="${j}">${t}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
+  box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.disabled)return; const row=b.closest('.q'), x=Q[+row.dataset.i], ok=+b.dataset.j===x.a;
+    $$('.opt',row).forEach(o=>{ o.disabled=true; if(+o.dataset.j===x.a)o.classList.add('good'); }); if(!ok)b.classList.add('bad'); else right++;
+    $('.fb',row).textContent=(ok?'Correct. ':'Not quite. ')+x.e; sc.textContent=`${right} of ${Q.length} correct`; });
+}
+/* bars: rows [label, value, text, cls('r'|'t'|'a')]; opt {log:true, labW:140, max} */
+function bars(el,rows,opt={}){
+  const log=opt.log, vals=rows.map(r=>r[1]), mx=opt.max||Math.max(...vals), mn=log?Math.log10(Math.min(...vals))-.3:0, top=log?Math.log10(mx)+.3:mx;
+  el.innerHTML=rows.map(([n,v,t,c])=>`<div class="brow" style="grid-template-columns:${opt.labW||140}px minmax(0,1fr)"><span class="lab">${n}</span><div class="stack" role="img" aria-label="${n}: ${t}"><div class="seg ${c||'t'}" style="width:${Math.max(4,((log?Math.log10(v):v)-mn)/(top-mn)*100)}%;min-width:48px">${t}</div></div></div>`).join('')+(log?'<p class="cap" style="margin-top:2px">Log scale.</p>':'');
+}
+/* line: generic SVG chart. o:{x0,x1,y0,y1,xt,yt,xl,yl,series:[{pts,color,w,dash}],dots,hl:[[y,label,color]],mark,bands:[[y0,y1,label]],W,H,L,B,T,R} */
+function line(svg,o){
+  const W=o.W||640,H=o.H||260,L=o.L||56,B=o.B||40,T=o.T||16,R=o.R||16;
+  const X=x=>L+(x-o.x0)/(o.x1-o.x0)*(W-L-R), Y=y=>H-B-(y-o.y0)/(o.y1-o.y0)*(H-B-T);
+  let s='';
+  (o.bands||[]).forEach(b=>{ s+=`<rect x="${L}" y="${Y(b[1])}" width="${W-L-R}" height="${Y(b[0])-Y(b[1])}" style="fill:var(--transmit);fill-opacity:.14"/><text x="${L+6}" y="${Y(b[1])+13}" font-size="11">${b[2]}</text>`; });
+  o.yt.forEach(v=>{ s+=`<line x1="${L}" y1="${Y(v)}" x2="${W-R}" y2="${Y(v)}" style="stroke:var(--line)"/><text x="${L-6}" y="${Y(v)+4}" font-size="12" text-anchor="end">${v}</text>`; });
+  o.xt.forEach(v=>{ const a=Array.isArray(v)?v:[v,v]; s+=`<text x="${X(a[0])}" y="${H-B+16}" font-size="12" text-anchor="middle">${a[1]}</text>`; });
+  (o.hl||[]).forEach(v=>{ s+=`<line x1="${L}" y1="${Y(v[0])}" x2="${W-R}" y2="${Y(v[0])}" style="stroke:${v[2]};stroke-width:2;stroke-dasharray:6 5"/><text x="${W-R-4}" y="${Y(v[0])-5}" font-size="11" text-anchor="end">${v[1]}</text>`; });
+  s+=`<line x1="${L}" y1="${H-B}" x2="${W-R}" y2="${H-B}" style="stroke:var(--ink);stroke-width:2"/><line x1="${L}" y1="${T}" x2="${L}" y2="${H-B}" style="stroke:var(--ink);stroke-width:2"/>`;
+  (o.series||[]).forEach(se=>{ if(se.pts.length) s+=`<path d="${se.pts.map((p,i)=>`${i?'L':'M'}${X(p[0]).toFixed(1)} ${Y(p[1]).toFixed(1)}`).join('')}" style="fill:none;stroke:${se.color};stroke-width:${se.w||4};stroke-linejoin:round${se.dash?';stroke-dasharray:'+se.dash:''}"/>`; });
+  (o.dots||[]).forEach(d=>{ s+=`<circle cx="${X(d[0])}" cy="${Y(d[1])}" r="5" style="fill:var(--reflect);fill-opacity:.7;stroke:var(--ink);stroke-width:1.5"/>`; });
+  if(o.mark) s+=`<circle cx="${X(o.mark[0])}" cy="${Y(o.mark[1])}" r="8" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/>`;
+  s+=`<text x="${(L+W-R)/2}" y="${H-4}" font-size="13" text-anchor="middle">${o.xl}</text><text transform="rotate(-90 14 ${(T+H-B)/2})" x="14" y="${(T+H-B)/2}" font-size="13" text-anchor="middle">${o.yl}</text>`;
+  svg.innerHTML=s;
+}
+
+
+/* ===== 1 ===== */
+safe(()=>{
+  const LV=[['Organism','One sugar maple tree','A single living thing.'],['Population','All sugar maples in Nichols Arboretum','Same species, same place.'],['Community','All the living things in the woods: trees, birds, fungi, insects','Different species living together.'],['Ecosystem','The woods plus soil, sunlight, rain, and air','Living and non-living parts interacting.'],['Biome','Temperate deciduous forest (much of the eastern U.S.)','A large region with a similar climate and life.']];
+  const chips=$('#lvChips'), svg=$('#lvSvg'), rd=$('#lvR'); mkChips(chips,LV.map(x=>x[0]),0);
+  const draw=i=>{ let s=''; for(let k=LV.length-1;k>=0;k--){ const r=22+k*21, on=k===i; s+=`<circle cx="190" cy="${210-r}" r="${r}" style="fill:${on?'var(--beam)':'var(--transmit)'};fill-opacity:${on?.45:.12};stroke:var(--ink);stroke-width:${on?4:2}"/>`; }
+    LV.forEach((l,k)=>{ const r=22+k*21, y=210-2*r+13; s+=`<text x="190" y="${y}" font-size="11" text-anchor="middle" style="font-weight:${k===i?700:400}">${l[0]}</text>`; });
+    svg.innerHTML=s; rd.innerHTML=`<b>${LV[i][0]}:</b> ${LV[i][1]}. ${LV[i][2]}`; };
+  chipsOn(chips,draw); draw(0);
+  quizBox($('#biSort'),$('#biS'),[
+    {n:'A mushroom',a:0,e:'Fungi are living: biotic.'},
+    {n:'Sunlight',a:1,e:'Non-living: abiotic.'},
+    {n:'Soil minerals',a:1,e:'Non-living: abiotic (though soil also contains living organisms).'},
+    {n:'A beaver',a:0,e:'Living: biotic.'},
+    {n:'Air temperature',a:1,e:'A physical condition: abiotic.'},
+    {n:'A dead log',a:0,e:'Once living, and home to decomposers; usually counted as biotic.'}
+  ],['Biotic','Abiotic']);
+  bars($('#areaBars'),[['Backyard garden',0.0004,'400 m²','r'],['Nichols Arboretum',0.5,'0.5 km²','t'],['Huron River watershed',5960,'~6,000 km²','t'],['Lake Michigan',58000,'~58,000 km²','a'],['Great Lakes (water)',244000,'~244,000 km²','a'],['Earth\'s biosphere',510e6,'510 million km²','a']],{log:true,labW:140});
+});
+
+/* ===== 2 ===== */
+const WEB={ nodes:{
+  phy:{n:'Phytoplankton',x:150,y:262,role:'Producer'}, plt:{n:'Aquatic plants',x:480,y:262,role:'Producer'},
+  zoo:{n:'Zooplankton',x:90,y:182,role:'Primary consumer'}, zeb:{n:'Zebra mussel',x:250,y:182,role:'Primary consumer'}, cra:{n:'Crayfish',x:520,y:182,role:'Primary consumer'},
+  ale:{n:'Alewife',x:170,y:104,role:'Secondary consumer'}, bas:{n:'Smallmouth bass',x:430,y:104,role:'Secondary consumer'},
+  lam:{n:'Sea lamprey',x:60,y:30,role:'Parasite / top consumer'}, trt:{n:'Lake trout',x:260,y:30,role:'Top predator'}, eag:{n:'Bald eagle',x:520,y:30,role:'Top predator'} },
+  eats:{ zoo:['phy'], zeb:['phy'], cra:['plt'], ale:['zoo'], bas:['cra','ale'], trt:['ale'], eag:['bas','ale'], lam:['trt'] } };
+function drawWeb(svg,color){ // color: map id -> css color or null
+  const N=WEB.nodes; let s='';
+  Object.entries(WEB.eats).forEach(([pred,preys])=>preys.forEach(prey=>{ const a=N[prey], b=N[pred], dx=b.x-a.x, dy=b.y-a.y, d=Math.hypot(dx,dy), ux=dx/d, uy=dy/d;
+    s+=`<line x1="${(a.x+ux*20).toFixed(1)}" y1="${(a.y+uy*16).toFixed(1)}" x2="${(b.x-ux*44).toFixed(1)}" y2="${(b.y-uy*16).toFixed(1)}" style="stroke:var(--ink);stroke-width:2;opacity:.55" marker-end="url(#mInk)"/>`; }));
+  Object.entries(N).forEach(([id,o])=>{ const c=color[id]; s+=`<rect x="${o.x-46}" y="${o.y-16}" width="92" height="32" rx="10" style="fill:${c||'var(--surface)'};fill-opacity:${c?.85:1};stroke:var(--ink);stroke-width:${c?3:1.8}"/><text x="${o.x}" y="${o.y+4}" font-size="11" text-anchor="middle" style="font-weight:700;fill:${c?'#111':'var(--ink)'}">${o.n}</text>`; });
+  svg.innerHTML=s; }
+safe(()=>{
+  const chips=$('#fwChips'), svg=$('#fwSvg'), rd=$('#fwR'), ids=Object.keys(WEB.nodes); mkChips(chips,ids.map(i=>WEB.nodes[i].n),4);
+  const draw=k=>{ const id=ids[k], N=WEB.nodes, col={}; col[id]='var(--beam)'; (WEB.eats[id]||[]).forEach(p=>col[p]='var(--transmit)'); Object.entries(WEB.eats).forEach(([pred,preys])=>{ if(preys.includes(id)) col[pred]='var(--absorb)'; });
+    drawWeb(svg,col); const eats=(WEB.eats[id]||[]).map(p=>N[p].n), eaten=Object.entries(WEB.eats).filter(([p,pr])=>pr.includes(id)).map(([p])=>N[p].n);
+    rd.innerHTML=`<b>${N[id].n}</b> (${N[id].role}). ${eats.length?'Eats: <b>'+eats.join(', ')+'</b>.':'Makes its own food from sunlight.'} ${eaten.length?'Eaten by: <b>'+eaten.join(', ')+'</b>.':'Nothing here eats it (but decomposers will, after it dies).'}`; };
+  chipsOn(chips,draw); draw(4);
+});
+safe(()=>{
+  const sl=$('#pyE'), svg=$('#pySvg'), rd=$('#pyR'), names=['Producers','Herbivores','Small carnivores','Top predators'], cols=['var(--transmit)','var(--beam)','var(--reflect)','var(--absorb)'];
+  const draw=()=>{ const p=+sl.value/100; $('#pyEV').textContent=sl.value; const e=[10000,10000*p,10000*p*p,10000*p*p*p]; let s='';
+    e.forEach((v,i)=>{ const w=500-i*110, y=180-i*46; s+=`<rect x="${320-w/2}" y="${y}" width="${w}" height="42" rx="6" style="fill:${cols[i]};fill-opacity:.7;stroke:var(--ink);stroke-width:2"/><text x="320" y="${y+26}" font-size="13" text-anchor="middle" style="font-weight:700;fill:#111">${names[i]}: ${v>=10?Math.round(v).toLocaleString():v.toFixed(1)} kcal</text>`; });
+    svg.innerHTML=s; rd.innerHTML=`With <b>${sl.value}%</b> passed on, top predators get only <b>${e[3]>=10?Math.round(e[3]).toLocaleString():e[3].toFixed(1)} kcal</b> out of 10,000: just <b>${(e[3]/100).toFixed(2)}%</b> of what the producers captured.`; };
+  sl.addEventListener('input',draw); draw();
+});
+
+/* ===== 3 ===== */
+safe(()=>{
+  const chips=$('#ccChips'), svg=$('#ccSvg'), rd=$('#ccR');
+  const P=[['Photosynthesis','CO₂ moves from the air into plants and becomes sugar.',['a']],['Eating','Carbon in plants passes into animals.',['b']],['Respiration','All living things release CO₂ back to the air as they use food for energy.',['c','d']],['Decomposition','Dead organisms and waste are broken down by decomposers; some carbon returns to the air, some enriches the soil.',['e','f']],['Burning fossil fuels','Carbon locked underground for millions of years is released to the air as CO₂, faster than plants can absorb it.',['g']]];
+  mkChips(chips,P.map(p=>p[0]),0);
+  const draw=i=>{ const on=P[i][2]; const E={a:[320,70,210,118,'var(--transmit)'],b:[330,180,450,232,'var(--beam)']};
+    const edge=(id,d,lbl,lx,ly,c)=>`<path d="${d}" style="fill:none;stroke:${on.includes(id)?c:'var(--line)'};stroke-width:${on.includes(id)?4:2.5}" marker-end="url(#${on.includes(id)?'mInk':'mInk'})"/><text x="${lx}" y="${ly}" font-size="11" text-anchor="middle" style="font-weight:${on.includes(id)?700:400}">${lbl}</text>`;
+    let s=`<g style="stroke:var(--ink);stroke-width:2.5">
+      <rect x="240" y="10" width="160" height="46" rx="12" style="fill:var(--reflect);fill-opacity:.25"/>
+      <rect x="40" y="130" width="130" height="46" rx="12" style="fill:var(--transmit);fill-opacity:.35"/>
+      <rect x="470" y="130" width="130" height="46" rx="12" style="fill:var(--beam);fill-opacity:.35"/>
+      <rect x="240" y="240" width="160" height="46" rx="12" style="fill:#8B5E3C;fill-opacity:.5"/>
+      <rect x="470" y="240" width="130" height="46" rx="12" style="fill:var(--ink);fill-opacity:.45"/></g>
+      <g font-size="13" text-anchor="middle" style="font-weight:700"><text x="320" y="38">CO₂ in the air</text><text x="105" y="158">Plants</text><text x="535" y="158">Animals</text><text x="320" y="268">Soil + decomposers</text><text x="535" y="268" style="fill:#fff">Fossil fuels</text></g>`;
+    s+=edge('a','M240 40 C150 40 120 90 105 126','photosynthesis',110,86,'var(--transmit)');
+    s+=edge('b','M170 150 C300 130 380 130 466 150','eaten',320,128,'var(--beam)');
+    s+=edge('c','M105 126 C130 60 210 20 238 30','',0,0,'var(--absorb)');
+    s+=edge('d','M535 126 C520 60 440 20 402 32','respiration',480,66,'var(--absorb)');
+    s+=edge('e','M105 180 C120 230 180 260 238 262','dead plants',150,246,'#8B5E3C');
+    s+=edge('f','M320 240 C320 180 320 100 320 60','decomposers breathe',350,170,'var(--absorb)');
+    s+=edge('g','M535 238 C560 150 480 60 402 40','burning',568,190,'var(--absorb)');
+    svg.innerHTML=s; rd.innerHTML=`<b>${P[i][0]}:</b> ${P[i][1]}`; };
+  chipsOn(chips,draw); draw(0);
+  bars($('#decBars'),[['Banana peel',0.08,'2–5 weeks','t'],['Cotton shirt',0.5,'~6 months','t'],['Wool sock',2,'1–5 years','t'],['Plastic bag',20,'~20 years','a'],['Aluminum can',200,'~200 years','a'],['Plastic bottle',450,'~450 years','a'],['Glass bottle',1e6,'~1 million years','a']],{log:true,labW:120});
+});
+
+/* ===== 4 ===== */
+safe(()=>{
+  const K=$('#lgK'), R=$('#lgR'), svg=$('#lgSvg'), rd=$('#lgRd');
+  const draw=()=>{ const k=+K.value, r=+R.value; $('#lgKV').textContent=k; $('#lgRV').textContent=r.toFixed(1); const N0=10, pts=[]; for(let t=0;t<=30;t+=.5) pts.push([t,k/(1+((k-N0)/N0)*Math.exp(-r*t))]);
+    const half=pts.find(p=>p[1]>=k/2); line(svg,{W:480,H:240,L:50,x0:0,x1:30,y0:0,y1:1100,yt:[0,250,500,750,1000],xt:[0,10,20,30],xl:'years',yl:'population',series:[{pts,color:'var(--transmit)'}],hl:[[k,'carrying capacity ('+k+')','var(--absorb)']]});
+    rd.innerHTML=`Starts with 10 animals; growth is <b>${r<.5?'slow':r<.9?'moderate':'fast'}</b>. It passes half the carrying capacity around <b>year ${half?half[0].toFixed(0):'?'}</b> and then levels off near <b>${k}</b>. Slowing happens because food, water, and space become limiting factors.`; };
+  K.addEventListener('input',draw); R.addEventListener('input',draw); draw();
+});
+safe(()=>{
+  const chips=$('#ppChips'), svg=$('#ppSvg'), rd=$('#ppR'); const S=[['Typical start',60,25],['Many predators',50,80],['Few prey',15,30]]; mkChips(chips,S.map(s=>s[0]),0);
+  const sim=(x,y)=>{ const a=.6,b=.02,c=.5,d=.01,dt=.01, pr=[],pd=[]; for(let i=0;i<=6000;i++){ if(i%25===0){ pr.push([i*dt,x]); pd.push([i*dt,y]); } const k1x=a*x-b*x*y, k1y=-c*y+d*x*y, x2=x+k1x*dt/2, y2=y+k1y*dt/2, k2x=a*x2-b*x2*y2, k2y=-c*y2+d*x2*y2; x+=k2x*dt; y+=k2y*dt; x=Math.max(x,.05); y=Math.max(y,.05); } return [pr,pd]; };
+  const draw=i=>{ const [pr,pd]=sim(S[i][1],S[i][2]), mx=Math.max(...pr.map(p=>p[1]),...pd.map(p=>p[1])), top=Math.ceil(mx/50)*50; line(svg,{x0:0,x1:60,y0:0,y1:top,yt:[0,top/2,top],xt:[0,15,30,45,60],xl:'time (years)',yl:'number of animals',series:[{pts:pr,color:'var(--transmit)'},{pts:pd,color:'var(--absorb)'}]});
+    svg.innerHTML+=`<g font-size="12"><text x="70" y="26" style="fill:var(--transmit);font-weight:700">● prey (moose)</text><text x="200" y="26" style="fill:var(--absorb);font-weight:700">● predators (wolves)</text></g>`;
+    rd.innerHTML=i===0?'Typical: the prey rises, predators follow a bit later, then predators overshoot and prey drops, and the cycle repeats.':i===1?'Too many predators early: prey crashes first, then predators starve; both recover in cycles.':'Few prey: predators decline, prey rebounds, then the cycle begins.'; };
+  chipsOn(chips,draw); draw(0);
+  quizBox($('#relSort'),$('#relS'),[
+    {n:'A bee gets nectar; the flower gets pollinated',a:0,e:'Both benefit: mutualism.'},
+    {n:'A tick feeds on a deer',a:1,e:'One benefits, one is harmed: parasitism.'},
+    {n:'Barnacles ride on a whale',a:2,e:'One benefits, the other is unaffected: commensalism.'},
+    {n:'Two trees compete for sunlight',a:3,e:'Both use the same limited resource: competition.'},
+    {n:'A hawk catches a mouse',a:4,e:'One eats the other: predation.'},
+    {n:'Lichen: algae makes food, fungus gives shelter',a:0,e:'Both benefit: mutualism.'}
+  ],['Mutualism','Parasitism','Commensalism','Competition','Predation']);
+});
+
+/* ===== 5 ===== */
+safe(()=>{
+  const chips=$('#rmChips'), svg=$('#rmSvg'), rd=$('#rmR'), ids=Object.keys(WEB.nodes), N=WEB.nodes; mkChips(chips,ids.map(i=>N[i].n),3);
+  const draw=k=>{ const id=ids[k], col={}; col[id]='#999';
+    const prey=WEB.eats[id]||[], preds=Object.entries(WEB.eats).filter(([p,pr])=>pr.includes(id)).map(([p])=>p);
+    prey.forEach(p=>col[p]='var(--transmit)'); preds.forEach(p=>col[p]='var(--absorb)');
+    // second-order: predators of the predators' prey competitors? keep it simple; add extra decreases for predators whose only prey are decreasing
+    drawWeb(svg,col);
+    const sole=preds.filter(p=>WEB.eats[p].length===1);
+    rd.innerHTML=`Remove <b>${N[id].n}</b>: ${prey.length?'what it ate (<b>'+prey.map(p=>N[p].n).join(', ')+'</b>) likely <b style="color:var(--transmit)">increases</b>. ':''}${preds.length?'Animals that ate it (<b>'+preds.map(p=>N[p].n).join(', ')+'</b>) likely <b style="color:var(--absorb)">decrease</b>'+(sole.length?', especially <b>'+sole.map(p=>N[p].n).join(', ')+'</b>, which has no other food in this web.':'; those with other food sources cope better.'):'Nothing here eats it, so the change is felt mainly by what it ate.'} Real ecosystems have more links, so the full effects take research.`; };
+  chipsOn(chips,draw); draw(3);
+  bars($('#recBars'),[['Bald eagle pairs, 1963',417,'~417','a'],['Bald eagle pairs, 1993',4000,'~4,000','t'],['Bald eagle pairs, 2007',10000,'~10,000','t'],['Bald eagle pairs, 2020',71000,'~71,000 (est.)','t']],{log:true,labW:160});
+});
+
+finalQuiz([
+  {q:'Which are producers?',o:['Plants and algae','Hawks','Mushrooms'],a:0,e:'They make food from sunlight.'},
+  {q:'In a food web, arrows show...',o:['Who chases whom','The flow of energy from food to eater','The direction of the wind'],a:1,e:'Energy goes from the eaten to the eater.'},
+  {q:'About how much energy passes from one level to the next?',o:['About 10%','About 50%','About 90%'],a:0,e:'Most is used or lost as heat.'},
+  {q:'What does a decomposer do?',o:['Eats only plants','Breaks down dead matter and returns nutrients','Makes sugar from sunlight'],a:1,e:'They recycle matter back to the soil.'},
+  {q:'A population levels off near its...',o:['Carrying capacity','Growth rate','Biome'],a:0,e:'Limited resources set the maximum.'},
+  {q:'Why can an invasive species harm an ecosystem?',o:['It has no predators and outcompetes natives','It always dies right away','It makes more oxygen'],a:0,e:'Lacking natural controls, it can take over.'}
+]);
+})();
+</script>

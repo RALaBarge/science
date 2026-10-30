@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@500;700;800&family=IBM+Plex+Mono:wght@400;600&display=swap">
-<link rel="stylesheet" href="../shared/core.css">
+<link rel="stylesheet" href="shared/core.css">
 <style>
   .hub-intro { margin: 0; max-width: 62ch; color: var(--muted); font-family: system-ui, sans-serif; font-size: 16px; line-height: 1.5; }
   .games { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 14px; }
@@ -30,7 +30,7 @@
   <header class="bar">
     <h1>Science Arcade <span>play · learn · repeat</span></h1>
   </header>
-  <p class="hub-intro">Six science games for grades 3–6. Every game runs in a Chromebook browser with no sign-in, plays a demo until you click, and lets you answer science questions to earn bonuses.</p>
+  <p class="hub-intro">Six science games for grades 3–6. Every game runs in a Chromebook browser with no sign-in, plays a demo until you click, and lets you answer science questions to earn bonuses. <a href="index.html" style="color:var(--code);font-weight:600;text-decoration:none">Lessons by grade &rarr;</a></p>
 
   <section class="games">
     <a class="game-card" href="gravity-duel.html" style="--gc: #ff8a5c">
@@ -83,9 +83,9 @@
     <button type="button" class="linkish" id="practice-btn">Practice quiz</button>
   </div>
 </div>
-<script src="../shared/questions.js"></script>
-<script src="../shared/facts.js"></script>
-<script src="../shared/core.js"></script>
+<script src="shared/questions.js"></script>
+<script src="shared/facts.js"></script>
+<script src="shared/core.js"></script>
 <script>
   Arcade.$('practice-btn').addEventListener('click', () => Arcade.quiz.practice({ game: 'hub' }));
 </script>

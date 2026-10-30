@@ -1,0 +1,934 @@
+<title>Natural Hazards</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout concept: one long lesson column. Each concept opens with a one-sentence big idea, then a grid of labelled visual aids
+   (Analogy, Diagram, Try it, Data, Real world) that collapses to one column on phones.
+   Color roles are fixed for the whole page: amber = incoming light, blue = reflected, teal = transmitted, orange = absorbed. */
+:root{
+  --bg:#F2F5FA; --surface:#FFFFFF; --surface-2:#E8EDF6; --ink:#12172B; --muted:#47506E; --line:#D0D8E8;
+  --beam:#F2A900; --beam-ink:#1A1400; --reflect:#2B66E8; --absorb:#D6450B; --transmit:#0B7F70; --on-color:#FFFFFF;
+  --red:#D93036; --green:#25904F; --blue:#3558D6; --shade:#222A4A;
+  --font-display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --font-body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+  --font-mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C1022; --surface:#151A33; --surface-2:#1D2444; --ink:#EDF0FB; --muted:#A8B1CE; --line:#2B3459;
+    --beam:#FFC93C; --beam-ink:#1A1400; --reflect:#7BA2FF; --absorb:#FF8F5C; --transmit:#46D6C0; --on-color:#0B1020;
+    --red:#FF6A70; --green:#4FCB85; --blue:#7C97FF; --shade:#02040B; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C1022; --surface:#151A33; --surface-2:#1D2444; --ink:#EDF0FB; --muted:#A8B1CE; --line:#2B3459;
+  --beam:#FFC93C; --beam-ink:#1A1400; --reflect:#7BA2FF; --absorb:#FF8F5C; --transmit:#46D6C0; --on-color:#0B1020;
+  --red:#FF6A70; --green:#4FCB85; --blue:#7C97FF; --shade:#02040B; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--font-body); font-size:17px; line-height:1.55;
+  padding-block:0 72px;
+  padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+main,.hero{max-width:920px;margin:0 auto}
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance;margin:0;line-height:1.1}
+p{margin:0}
+a{color:inherit}
+svg{display:block;width:100%;height:auto}
+svg text{font-family:var(--font-body);fill:var(--ink)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--reflect);outline-offset:2px}
+
+/* hero */
+.hero{padding-block:28px 8px;display:grid;gap:18px}
+.kicker{font-family:var(--font-mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
+.lede{font-size:clamp(1.1rem,3.4vw,1.35rem);max-width:34em;text-wrap:pretty}
+.hero-art{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:10px 12px}
+.howto{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:.92rem;color:var(--muted)}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);margin-top:18px;border-bottom:1px solid var(--line);
+  margin-inline:auto;max-width:920px}
+.nav ul{list-style:none;margin:0;padding:8px 0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin}
+.nav a{display:block;white-space:nowrap;text-decoration:none;font-size:.9rem;padding:7px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface)}
+.nav a:hover{border-color:var(--ink)}
+
+/* sections */
+.sec{padding-block:52px 6px;scroll-margin-top:68px;display:grid;gap:20px}
+.sec h2{font-size:clamp(1.9rem,6vw,2.7rem);font-weight:800;letter-spacing:-.02em}
+.idea{font-family:var(--font-display);font-size:clamp(1.25rem,4.4vw,1.75rem);line-height:1.25;font-weight:700;text-wrap:balance;max-width:28em}
+.idea mark{background:linear-gradient(transparent 58%,color-mix(in srgb,var(--beam) 50%,transparent) 58%);color:inherit}
+.aids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.aid{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.aid.wide{grid-column:1/-1}
+.aid h3{font-size:1.2rem;font-weight:700}
+.aid p.cap{font-size:.95rem;color:var(--muted)}
+.aid p.cap b{color:var(--ink)}
+.tag{align-self:flex-start;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;padding:3px 9px;border-radius:999px;
+  background:color-mix(in srgb,var(--tint) 24%,var(--surface));border:1px solid color-mix(in srgb,var(--tint) 55%,var(--line))}
+.tag.analogy{--tint:var(--beam)} .tag.diagram{--tint:var(--reflect)} .tag.try{--tint:var(--transmit)} .tag.data{--tint:var(--absorb)} .tag.real{--tint:var(--muted)} .tag.build{--tint:#8A63D2}
+ol.steps{margin:4px 0 0;padding-left:1.3em;display:grid;gap:6px}
+.stage{background:var(--surface-2);border-radius:10px;padding:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:.92rem;padding:7px 13px;min-height:40px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.ctl{display:grid;gap:6px}
+.ctl label{font-size:.92rem;font-weight:700}
+input[type=range]{width:100%;accent-color:var(--beam);height:32px}
+.readout{font-size:1rem}
+.readout b{font-family:var(--font-mono);font-weight:500}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{display:inline-flex;gap:6px;align-items:baseline;padding:5px 11px;border-radius:999px;font-family:var(--font-mono);font-size:.84rem;font-weight:500;background:var(--c);color:var(--on-color)}
+.pill.r{--c:var(--reflect)} .pill.a{--c:var(--absorb)} .pill.t{--c:var(--transmit)}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.trio>div{display:grid;gap:6px;align-content:start;min-width:0}
+.trio h4{margin:0;font-family:var(--font-display);font-size:1.05rem}
+.trio p{font-size:.93rem;color:var(--muted)}
+.trio svg{background:var(--surface-2);border-radius:10px}
+.swatch-r{color:var(--reflect);font-weight:700}.swatch-t{color:var(--transmit);font-weight:700}.swatch-a{color:var(--absorb);font-weight:700}
+
+/* stacked bars */
+.bars{display:grid;gap:9px}
+.brow{display:grid;grid-template-columns:104px minmax(0,1fr);gap:10px;align-items:center;font-size:.9rem}
+.brow.on .lab{font-weight:700}
+.stack{display:flex;height:28px;border-radius:7px;overflow:hidden;background:var(--surface-2);outline:2px solid transparent;outline-offset:2px}
+.brow.on .stack{outline-color:var(--ink)}
+.seg{display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:.72rem;color:var(--on-color);min-width:0;overflow:hidden}
+.seg.r{background:var(--reflect)}.seg.t{background:var(--transmit)}.seg.a{background:var(--absorb)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.88rem}
+.legend span::before{content:"";display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--c)}
+.legend .r{--c:var(--reflect)}.legend .t{--c:var(--transmit)}.legend .a{--c:var(--absorb)}
+
+/* sort game, quiz */
+.items{display:grid;gap:10px}
+.item{display:grid;gap:6px;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.item .nm{font-weight:700}
+.item .opts{display:flex;flex-wrap:wrap;gap:6px}
+.opt{font-size:.85rem;padding:6px 10px;border-radius:8px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;min-height:36px;text-align:left}
+.opt:hover:not([disabled]){border-color:var(--ink)}
+.opt.good{background:var(--transmit);color:var(--on-color);border-color:var(--transmit)}
+.opt.bad{background:var(--absorb);color:var(--on-color);border-color:var(--absorb)}
+.fb{font-size:.88rem;color:var(--muted)}
+.score{font-family:var(--font-mono);font-size:.9rem}
+.q{display:grid;gap:10px;padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.q h4{margin:0;font-size:1.05rem;font-family:var(--font-body);font-weight:700}
+.q .opts{display:grid;gap:8px}
+
+/* tables */
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:.92rem;min-width:420px}
+.tbl th,.tbl td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+.tbl th{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+/* see-through demo */
+.seebox{position:relative;border-radius:10px;overflow:hidden;background:var(--surface-2);padding:22px 16px;min-height:130px;display:grid;place-items:center}
+.seetext{font-family:var(--font-display);font-weight:800;font-size:clamp(1.2rem,5vw,1.7rem);text-align:center;letter-spacing:.02em;transition:filter .2s,opacity .2s}
+.seesheets{position:absolute;inset:0;pointer-events:none;background:var(--surface);transition:opacity .2s}
+.meter{height:12px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--transmit);transition:width .2s}
+
+/* canvas */
+canvas{width:100%;aspect-ratio:640/260;display:block;border-radius:10px;background:var(--surface-2)}
+.tally{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;font-size:.85rem}
+.tally div{padding:8px;border-radius:8px;background:var(--bg);border:1px solid var(--line)}
+.tally b{display:block;font-family:var(--font-mono);font-weight:500;font-size:1.05rem}
+
+/* color mixer + channel columns */
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.colx{display:grid;gap:6px;justify-items:center;font-size:.85rem;text-align:center}
+.tube{position:relative;width:100%;max-width:90px;height:150px;border:2px solid var(--line);border-radius:8px;display:flex;flex-direction:column-reverse;overflow:hidden;background:var(--bg)}
+.tube.empty{border-style:dashed}
+.tube .rf{background:var(--cc)}
+.tube .ab{background:repeating-linear-gradient(45deg,var(--surface-2) 0 6px,var(--line) 6px 9px)}
+.colx .nm{font-weight:700}
+.colx.r{--cc:var(--red)}.colx.g{--cc:var(--green)}.colx.b{--cc:var(--blue)}
+
+/* waffle */
+.waffle{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:3px;max-width:300px;width:100%}
+.cell{aspect-ratio:1;border-radius:3px}
+.cell.r{background:var(--reflect)}.cell.t{background:var(--transmit)}.cell.a{background:var(--absorb)}
+
+/* ice race */
+.race{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pad{position:relative;height:170px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden}
+.pad.w{background:#F4F4F1}.pad.b{background:#14161C}
+.pad .lbl{position:absolute;left:8px;top:6px;font-size:.78rem;font-family:var(--font-mono)}
+.pad.w .lbl{color:#333}.pad.b .lbl{color:#ddd}
+.puddle{position:absolute;width:110px;height:46px;border-radius:50%;background:#7CC4F2;opacity:.65;transform:scale(0);bottom:22px}
+.ice{position:relative;width:76px;height:76px;border-radius:12px;background:linear-gradient(135deg,#E4F6FF,#9ED7F5);border:2px solid #fff;transform-origin:50% 100%;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.sunbar{height:10px;border-radius:99px;background:linear-gradient(90deg,var(--beam),color-mix(in srgb,var(--beam) 30%,transparent));opacity:.25;transition:opacity .3s}
+.sunbar.on{opacity:1}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap}
+.btn{font-size:.95rem;font-weight:700;padding:9px 16px;min-height:42px;border-radius:10px;border:0;background:var(--beam);color:var(--beam-ink);cursor:pointer}
+.btn.ghost{background:var(--surface);color:var(--ink);border:1.5px solid var(--line)}
+.btn:hover{filter:brightness(1.06)}
+
+/* misc */
+.glossary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px;margin:0}
+.glossary div{padding:10px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--line)}
+.glossary dt{font-weight:700}
+.glossary dd{margin:2px 0 0;font-size:.93rem;color:var(--muted)}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+details+details{margin-top:10px}
+summary{cursor:pointer;font-weight:700}
+details .in{display:grid;gap:10px;padding-top:10px;font-size:.95rem}
+details ul{margin:0;padding-left:1.2em;display:grid;gap:4px}
+footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;border-top:1px solid var(--line);padding-top:16px}
+.flow{stroke-dasharray:10 8;animation:flow 1s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-18}}
+@media (prefers-reduced-motion: reduce){.flow{animation:none}html{scroll-behavior:auto}.seetext,.seesheets,.meter i{transition:none}}
+@media (max-width:760px){
+  .aids{grid-template-columns:minmax(0,1fr)}
+  .trio{grid-template-columns:minmax(0,1fr)}
+  .glossary{grid-template-columns:minmax(0,1fr)}
+  .tally{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:420px){.brow{grid-template-columns:84px minmax(0,1fr)}.race{grid-template-columns:minmax(0,1fr)}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="mBeam" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--beam)"/></marker>
+    <marker id="mReflect" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--reflect)"/></marker>
+    <marker id="mTransmit" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--transmit)"/></marker>
+    <marker id="mAbsorb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--absorb)"/></marker>
+    <marker id="mInk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--ink)"/></marker>
+    <marker id="mRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#D93036"/></marker>
+  </defs>
+</svg>
+
+<style>.bridge{margin:14px 0 0;padding:12px 14px;border-left:4px solid var(--beam);background:var(--surface-2);border-radius:0 10px 10px 0;font-size:.95rem;line-height:1.5}.related ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}.related li{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}.related a{font-weight:700}.related .why{display:block;color:var(--muted);font-size:.9rem}</style>
+<style>
+.heat{display:grid;grid-template-columns:104px repeat(12,minmax(0,1fr));gap:3px;font-size:.78rem;min-width:520px}
+.heat .h{padding:6px 0;text-align:center;font-family:var(--font-mono);color:var(--muted)}
+.heat .n{padding:6px 4px;font-weight:700;font-size:.82rem}
+.heat .c{border-radius:4px;height:26px;background:color-mix(in srgb,var(--absorb) calc(var(--l)*30%),var(--surface-2))}
+.chk{display:grid;gap:8px}
+.chk label{display:flex;gap:10px;align-items:center;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);cursor:pointer;min-height:44px}
+.chk input{width:20px;height:20px;accent-color:var(--transmit)}
+</style>
+
+<header class="hero">
+  <p class="kicker">Sixth grade science · Unit 6</p>
+  <h1>Natural Hazards</h1>
+  <p class="lede">Two powerful earthquakes hit two countries in the same year. The stronger one, in Chile, killed a few hundred people. The weaker one, in Haiti, killed over a hundred thousand. Earth's hazards obey the same physics everywhere. What changes the outcome is what people do before they happen.</p>
+  <p class="bridge"><b>Where we left off:</b> Unit 5 explained where earthquakes and volcanoes come from, and Unit 4 explained how storms form. You may already have learned that plates stick and then slip, and that storms draw energy from warm water. This unit asks a new question: given these forces of nature, how do people predict, prepare, and lower the damage?</p>
+      <div class="hero-art">
+    <svg viewBox="0 0 640 190" role="img" aria-label="Three hazard symbols: a cracked ground and a house, a big ocean wave, and a swirling storm.">
+      <path d="M20 160 H190" style="stroke:var(--ink);stroke-width:4"/><path d="M60 160 l12 -14 l-10 -12 l14 -10" style="fill:none;stroke:var(--absorb);stroke-width:4"/>
+      <path d="M90 130 L120 96 L150 130z M98 130 V160 H142 V130" style="fill:var(--surface);stroke:var(--ink);stroke-width:3;stroke-linejoin:round"/>
+      <path d="M240 160 Q290 50 360 110 Q330 90 320 140 Q300 120 290 160 Z" style="fill:var(--reflect);fill-opacity:.6;stroke:var(--reflect);stroke-width:4"/><path d="M230 170 H420" style="stroke:var(--ink);stroke-width:3"/>
+      <circle cx="530" cy="94" r="14" style="fill:var(--absorb)"/><path d="M470 94 a60 60 0 0 1 120 0 M490 94 a40 40 0 0 1 80 0" style="fill:none;stroke:var(--ink);stroke-width:4"/><path d="M500 140 h60 M510 156 h40" style="stroke:var(--reflect);stroke-width:4;stroke-linecap:round"/>
+      <text x="105" y="30" font-size="15" text-anchor="middle" style="font-weight:700">earthquake</text><text x="330" y="30" font-size="15" text-anchor="middle" style="font-weight:700">tsunami</text><text x="530" y="30" font-size="15" text-anchor="middle" style="font-weight:700">severe storm</text>
+    </svg>
+  </div>
+  <p class="howto">Look for the tags <span class="tag analogy">Analogy</span><span class="tag diagram">Diagram</span><span class="tag try">Try it</span><span class="tag data">Data</span><span class="tag real">Real world</span></p>
+</header>
+
+<nav class="nav" aria-label="Lesson sections"><ul>
+  <li><a href="#s1">1 Hazard &amp; risk</a></li><li><a href="#s2">2 Shaking</a></li><li><a href="#s3">3 Tsunamis</a></li><li><a href="#s4">4 Floods &amp; slides</a></li><li><a href="#s5">5 Warnings</a></li><li><a href="#s6">6 Check yourself</a></li>
+  <li><a href="#game">7 Game</a></li>
+  </ul></nav>
+
+<main>
+
+<section class="sec" id="s1">
+  <div><p class="kicker">Concept 1 · Hazard and risk</p><h2>A hazard isn't a disaster</h2></div>
+  <p class="idea">A <mark>hazard</mark> is a natural event that could cause harm. A <mark>disaster</mark> is what happens when it hits people who weren't ready. <mark>Risk</mark> = how strong the hazard is × how many are exposed × how vulnerable they are.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>Rain on a picnic</h3>
+      <div class="stage"><svg viewBox="0 0 480 220" role="img" aria-label="Same rain falls on a picnic with no cover and on a covered shelter. The first is a disaster, the second is fine.">
+        <g style="stroke:var(--reflect);stroke-width:3;stroke-linecap:round"><path d="M40 14 l-6 18 M80 14 l-6 18 M120 14 l-6 18 M160 14 l-6 18 M200 14 l-6 18 M280 14 l-6 18 M320 14 l-6 18 M360 14 l-6 18 M400 14 l-6 18 M440 14 l-6 18"/></g>
+        <rect x="40" y="160" width="150" height="14" style="fill:var(--beam);stroke:var(--ink);stroke-width:2"/><text x="115" y="150" font-size="14" text-anchor="middle">open picnic: soaked</text>
+        <path d="M280 70 H440 L420 60 H300z" style="fill:var(--transmit);stroke:var(--ink);stroke-width:2"/><path d="M290 70 V170 M430 70 V170" style="stroke:var(--ink);stroke-width:4"/><rect x="310" y="160" width="100" height="12" style="fill:var(--beam);stroke:var(--ink);stroke-width:2"/><text x="360" y="204" font-size="14" text-anchor="middle">same rain, covered: fine</text>
+      </svg></div>
+      <p>Rain is the hazard in both scenes. The open picnic gets soaked; the sheltered one is fine. <b>Same hazard, different preparation.</b> A hazard becomes a disaster only when people are exposed and vulnerable.</p>
+      <p class="cap"><b>Where it breaks:</b> a picnic shelter can stop rain, but no tent stops an earthquake. For big hazards, preparation means building codes, drills, and warnings, not just cover.</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Risk calculator</h3>
+      <div class="ctl"><label for="hz">Hazard strength: <span id="hzV"></span> / 10</label><input id="hz" type="range" min="1" max="10" value="7"></div>
+      <div class="ctl"><label for="ex">People and buildings in the path: <span id="exV"></span></label><input id="ex" type="range" min="1" max="10" value="6"></div>
+      <div class="ctl"><label for="pr">Preparation (building codes, drills, warnings): <span id="prV"></span>%</label><input id="pr" type="range" min="0" max="100" step="10" value="20"></div>
+      <div class="bars" id="rkBars"></div>
+      <p class="readout" id="rkR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>Two earthquakes in 2010</h3>
+      <div class="bars" id="cmpBars"></div>
+      <div class="tw"><table class="tbl" style="margin-top:6px">
+        <thead><tr><th></th><th>Haiti (Jan 2010)</th><th>Chile (Feb 2010)</th></tr></thead>
+        <tbody>
+          <tr><td><b>Magnitude</b></td><td>7.0</td><td>8.8</td></tr>
+          <tr><td><b>Energy released</b></td><td>1×</td><td>about 500× more</td></tr>
+          <tr><td><b>Depth, location</b></td><td>shallow (about 13 km), 25 km from a city of millions</td><td>deeper (about 35 km), offshore</td></tr>
+          <tr><td><b>Building rules</b></td><td>few enforced</td><td>strict earthquake codes</td></tr>
+          <tr><td><b>Deaths</b></td><td>over 100,000 (estimates range widely)</td><td>about 500</td></tr>
+        </tbody></table></div>
+      <p class="cap">The much bigger quake did far less harm. Hazard strength is only one third of the equation. Figures are approximate.</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s2">
+  <div><p class="kicker">Concept 2 · Making buildings safer</p><h2>Resonance: the shaking that matches</h2></div>
+  <p class="idea">Every building has a <mark>natural sway rate</mark>. If the ground shakes at about that rate, the building sways bigger and bigger: <mark>resonance</mark>. Engineers design to avoid it or absorb it.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>Pushing a swing</h3>
+      <div class="stage"><svg viewBox="0 0 480 240" role="img" aria-label="A swing pushed at the right moment goes higher each push, pushed at the wrong rate it stays low.">
+        <path d="M60 20 H240 M100 20 V210 M200 20 V210" style="fill:none;stroke:var(--ink);stroke-width:5"/>
+        <path d="M150 20 L110 150 M150 20 L190 150" style="stroke:var(--muted);stroke-width:2.5"/><rect x="100" y="150" width="100" height="10" rx="3" style="fill:var(--beam);stroke:var(--ink);stroke-width:2"/>
+        <path d="M300 150 q60 -90 120 0" style="fill:none;stroke:var(--absorb);stroke-width:4;stroke-dasharray:6 5"/><text x="360" y="60" font-size="14" text-anchor="middle" style="font-weight:700">push in rhythm: swing gets huge</text>
+        <text x="360" y="190" font-size="14" text-anchor="middle">push at random: stays small</text>
+      </svg></div>
+      <p class="cap">Small pushes that match the swing's rhythm add up. Earthquake waves are the pushes, and the building is the swing.</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Shake the building</h3>
+      <div class="stage"><svg id="bldSvg" viewBox="0 0 320 300" role="img" aria-label="A building swaying on a shaking ground."></svg></div>
+      <div class="ctl"><label for="fl">Building height: <span id="flV"></span> floors</label><input id="fl" type="range" min="2" max="40" value="10"></div>
+      <div class="ctl"><label for="gf">Ground shaking rate: <span id="gfV"></span> per second</label><input id="gf" type="range" min="0.2" max="5" step="0.1" value="1"></div>
+      <div class="chips" id="dmpChips" role="group" aria-label="Damping"><button class="chip" type="button" data-z="0.03" aria-pressed="true">Plain frame</button><button class="chip" type="button" data-z="0.2" aria-pressed="false">With shock absorbers</button></div>
+      <p class="readout" id="bldR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>Sway amount vs. shaking rate</h3>
+      <div class="stage"><svg id="resSvg" viewBox="0 0 640 260" role="img" aria-label="Resonance curve: the building sways most when the ground shakes at its natural rate."></svg></div>
+      <p class="cap">The peak is at the building's natural rate (about 10 ÷ the number of floors, rounded). Shock absorbers flatten the peak but do not move it. Simplified model.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>Engineering fixes</h3>
+      <div class="tw"><table class="tbl">
+        <thead><tr><th>Idea</th><th>How it helps</th></tr></thead>
+        <tbody>
+          <tr><td><b>Tuned mass damper</b> (a giant swinging weight at the top)</td><td>Swings against the sway, taking energy away. Used in some very tall towers.</td></tr>
+          <tr><td><b>Base isolators</b> (rubber and steel pads)</td><td>Let the ground move while the building stays calm.</td></tr>
+          <tr><td><b>Cross-bracing</b> (X-shaped beams)</td><td>Stops the frame from folding sideways.</td></tr>
+          <tr><td><b>Flexible joints</b></td><td>Bend instead of snapping.</td></tr>
+          <tr><td><b>Mexico City 1985</b></td><td>Soft lake-bed soil shook at about the same rate as mid-height buildings, and those collapsed most.</td></tr>
+        </tbody></table></div>
+    </article>
+    <article class="aid wide">
+      <span class="tag build">Build it</span>
+      <h3>Engineering challenge: the shake-proof tower</h3>
+      <p><b>The problem:</b> build a tower that stays standing through an earthquake, whether the ground shakes slowly or quickly.</p>
+      <p><b>Criteria:</b> at least 30 cm tall, holds a cup with 5 coins on top, and survives 10 seconds of slow shaking and 10 seconds of fast shaking. Taller wins ties.</p>
+      <p><b>Constraints:</b> 30 sticks of dry spaghetti, 20 mini marshmallows, and 50 cm of tape. The tower must stand on the shake tray by itself.</p>
+      <p><b>The shake tray:</b> a baking tray sitting on 6 marbles. One person pushes it back and forth about 5 cm each way. Slow is 1 push per second, fast is 3 per second. Count out loud so every team gets the same quake.</p>
+      <ol class="steps">
+        <li><b>Try it in the game first.</b> Play Shake Tower at the bottom of this page. Which heights sway most when the shaking is slow? Which sway most when it's fast?</li>
+        <li><b>Plan.</b> Sketch two different ideas on your design log. For each, write how it avoids or absorbs the sway: a wide base, X-shaped braces, keeping the weight low, or changing the height.</li>
+        <li><b>Build and test.</b> Shake slow for 10 seconds, then fast for 10 seconds. Write down which speed did more damage.</li>
+        <li><b>Improve.</b> Change one thing, test again, and record it.</li>
+      </ol>
+      <p class="cap">Print a <a href="../design-log.html#tower">design log</a> for each team. If a tower wobbles more and more during one shaking speed, you're watching resonance, the same idea as the swing above.</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s3">
+  <div><p class="kicker">Concept 3 · Tsunamis</p><h2>Giant, fast, shallow-water waves</h2></div>
+  <p class="idea">A tsunami is a train of waves from an underwater earthquake or landslide. In deep ocean it is <mark>fast and low</mark>. In shallow water it <mark>slows and grows tall</mark>.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>A highway traffic jam</h3>
+      <div class="stage"><svg viewBox="0 0 480 220" role="img" aria-label="Fast cars on a highway slow down at a traffic jam and bunch up. Wave energy bunches up the same way in shallow water.">
+        <g style="fill:var(--reflect)"><rect x="20" y="70" width="30" height="16" rx="4"/><rect x="90" y="70" width="30" height="16" rx="4"/><rect x="160" y="70" width="30" height="16" rx="4"/></g>
+        <line x1="20" y1="60" x2="220" y2="60" style="stroke:var(--reflect);stroke-width:3" marker-end="url(#mReflect)"/><text x="120" y="50" font-size="14" text-anchor="middle" style="font-weight:700">open highway: fast, spread out</text>
+        <g style="fill:var(--absorb)"><rect x="300" y="140" width="30" height="16" rx="4"/><rect x="334" y="140" width="30" height="16" rx="4"/><rect x="368" y="140" width="30" height="16" rx="4"/><rect x="402" y="140" width="30" height="16" rx="4"/></g>
+        <text x="360" y="190" font-size="14" text-anchor="middle" style="font-weight:700">jam: slow, bunched up, piled high</text>
+      </svg></div>
+      <p>On an open highway, cars are fast and spread out. At a jam, the front slows while the back keeps arriving, so cars bunch up. A tsunami does the same in shallow water: the front slows, the back catches up, and the water piles upward because it has nowhere else to go.</p>
+      <p class="cap"><b>Where it breaks:</b> cars can stop and wait. Water cannot, so the pile-up becomes a wall of water instead of a delay.</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Ride a wave to shore</h3>
+      <div class="stage"><svg id="tsSvg" viewBox="0 0 480 260" role="img" aria-label="A tsunami wave moving from deep ocean toward a shore, drawn with its speed, length and height at the chosen position."></svg></div>
+      <div class="ctl"><label for="tsD">Position: ocean depth <span id="tsDV"></span></label><input id="tsD" type="range" min="0" max="100" value="0"></div>
+      <p class="readout" id="tsR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>Wave speed depends on depth</h3>
+      <div class="stage"><svg id="tsChart" viewBox="0 0 640 250" role="img" aria-label="Wave speed in meters per second versus water depth: very fast in deep ocean, slow near shore."></svg></div>
+      <p class="cap">Speed ≈ √(9.8 × depth). In 4,000 m water that is about 198 m/s, or 713 km/h, the speed of a jet airliner. The wave is only about half a meter tall out there, so ships barely notice.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>Warning signs and travel times</h3>
+      <div class="tw"><table class="tbl">
+        <thead><tr><th>Event</th><th>Travel</th><th>Time</th></tr></thead>
+        <tbody>
+          <tr><td><b>Chile 1960</b></td><td>Chile to Japan (about 17,000 km)</td><td>about 22 hours</td></tr>
+          <tr><td><b>Japan 2011</b></td><td>Japan to Hawaii</td><td>about 7 hours</td></tr>
+          <tr><td><b>Japan 2011</b></td><td>Japan to California</td><td>about 10 hours</td></tr>
+        </tbody></table></div>
+      <p class="cap"><b>If you feel long strong shaking near the coast, or see the sea suddenly pull far back: go to high ground right away. Do not wait for a siren.</b> Tsunamis are not a risk for Michigan's Great Lakes shores, but seiches (water sloshing back and forth) and storm surges can still flood the shore.</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s4">
+  <div><p class="kicker">Concept 4 · Floods and landslides</p><h2>Water and slopes</h2></div>
+  <p class="idea">Rain that can't soak in <mark>runs off fast</mark> and floods. Water-soaked slopes <mark>lose their grip</mark> and slide. Pavement and bare slopes make both worse.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>Pouring water on a sponge vs. a plate</h3>
+      <div class="stage"><svg viewBox="0 0 480 220" role="img" aria-label="Water poured on a sponge soaks in; water poured on a plate runs off the edge.">
+        <rect x="40" y="140" width="150" height="40" rx="6" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/><g style="fill:var(--ink);opacity:.4"><circle cx="70" cy="156" r="4"/><circle cx="104" cy="164" r="4"/><circle cx="140" cy="154" r="4"/><circle cx="168" cy="166" r="4"/></g>
+        <line x1="115" y1="30" x2="115" y2="132" style="stroke:var(--reflect);stroke-width:6" marker-end="url(#mReflect)"/><text x="115" y="204" font-size="14" text-anchor="middle" style="font-weight:700">sponge (forest, lawn): soaks in</text>
+        <rect x="290" y="150" width="150" height="10" rx="3" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:2.5"/>
+        <line x1="365" y1="30" x2="365" y2="142" style="stroke:var(--reflect);stroke-width:6" marker-end="url(#mReflect)"/><path d="M290 156 q-30 8 -30 40 M440 156 q30 8 30 40" class="flow" style="fill:none;stroke:var(--reflect);stroke-width:4"/>
+        <text x="365" y="204" font-size="14" text-anchor="middle" style="font-weight:700">plate (pavement): runs off</text>
+      </svg></div>
+      <p>Pavement is the plate; a forest floor is the sponge. In a forest, most rain soaks in and reaches the creek slowly. On pavement it cannot soak in, so it sheets off and can flood a street in minutes.</p>
+      <p class="cap"><b>Where it breaks:</b> a sponge stops soaking once it is full, and city storm drains carry some water away. The analogy explains the speed, not the whole flood.</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Hydrograph: how fast the river rises</h3>
+      <div class="chips" id="fdChips" role="group" aria-label="Surface"></div>
+      <div class="ctl"><label for="rn">Rain: <span id="rnV"></span> mm in 1 hour</label><input id="rn" type="range" min="10" max="80" step="5" value="40"></div>
+      <div class="stage"><svg id="fdSvg" viewBox="0 0 480 260" role="img" aria-label="River height over 12 hours after a storm for forest, lawn, and city."></svg></div>
+      <p class="readout" id="fdR" aria-live="polite"></p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Will the hillside slide?</h3>
+      <div class="stage"><svg id="lsSvg" viewBox="0 0 480 240" role="img" aria-label="A hillside with a block of soil that slides when the slope is steep and soaked."></svg></div>
+      <div class="ctl"><label for="sa">Slope steepness: <span id="saV"></span>°</label><input id="sa" type="range" min="10" max="50" value="28"></div>
+      <div class="ctl"><label for="ss">Soil soaked with water: <span id="ssV"></span>%</label><input id="ss" type="range" min="0" max="100" step="10" value="20"></div>
+      <div class="chips" id="rootChips" role="group" aria-label="Tree roots"><button class="chip" type="button" data-r="0" aria-pressed="true">Bare slope</button><button class="chip" type="button" data-r="1" aria-pressed="false">Trees and roots</button></div>
+      <p class="readout" id="lsR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>Safety factor vs. slope steepness</h3>
+      <div class="stage"><svg id="fsSvg" viewBox="0 0 640 250" role="img" aria-label="Safety factor falls as slope gets steeper; below 1 the slope fails."></svg></div>
+      <p class="cap">Safety factor = how much stronger the soil is than gravity's pull. Above 1 holds. Below 1 slides. Water lowers friction, tree roots add strength. Simplified model.</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s5">
+  <div><p class="kicker">Concept 5 · Warnings and preparing</p><h2>Seconds, minutes, and a plan</h2></div>
+  <p class="idea">We can't stop hazards, but <mark>warnings</mark> and <mark>preparation</mark> save lives. The more lead time and the better the plan, the less harm.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>Lightning, then thunder</h3>
+      <div class="stage"><svg viewBox="0 0 480 220" role="img" aria-label="Lightning flash reaches you instantly; thunder arrives seconds later. Earthquake waves work the same way: fast P waves first, damaging S waves later.">
+        <path d="M60 20 l-18 44 h22 l-16 50" style="fill:none;stroke:var(--beam);stroke-width:7;stroke-linejoin:round"/>
+        <line x1="90" y1="150" x2="420" y2="150" style="stroke:var(--beam);stroke-width:6" marker-end="url(#mBeam)"/><text x="250" y="140" font-size="14" text-anchor="middle" style="font-weight:700">flash: nearly instant (like P waves)</text>
+        <line x1="90" y1="190" x2="260" y2="190" style="stroke:var(--absorb);stroke-width:6" marker-end="url(#mAbsorb)"/><text x="270" y="195" font-size="12" style="font-weight:700">thunder: later (like S waves)</text>
+      </svg></div>
+      <p>Light reaches your eye almost instantly; thunder lags behind because sound is slower. Earthquake waves pull the same trick underground: the first, gentler <b>P wave</b> outruns the damaging <b>S wave</b>. Sensors that catch the P wave can send an alert before the strong shaking arrives.</p>
+      <p class="cap"><b>Where it breaks:</b> lightning and thunder are light and sound, while P and S waves are both vibrations in rock. The useful part is the <i>race</i>, not the material.</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Earthquake early warning</h3>
+      <div class="ctl"><label for="dist">Distance from the epicenter: <span id="distV"></span> km</label><input id="dist" type="range" min="10" max="300" step="5" value="100"></div>
+      <div class="stage"><svg id="ewSvg" viewBox="0 0 480 200" role="img" aria-label="Timeline of P wave arrival, alert, and S wave arrival at the chosen distance."></svg></div>
+      <p class="readout" id="ewR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>When is Michigan's hazard season?</h3>
+      <div class="tw"><div class="heat" id="heat" role="table" aria-label="Month by month relative hazard levels in Michigan"></div></div>
+      <p class="cap">Darker means more likely. Approximate and qualitative, based on typical Great Lakes region patterns.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>Family emergency plan: how ready are you?</h3>
+      <div class="chk" id="chk"></div>
+      <div class="meter" aria-hidden="true"><i id="rdyM" style="width:0%"></i></div>
+      <p class="readout" id="rdyR" aria-live="polite">Check what you already have.</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s6">
+  <div><p class="kicker">Check yourself</p><h2>Can you explain it?</h2></div>
+  <p class="idea">Why did a smaller earthquake in Haiti kill so many more people than a much bigger one in Chile?</p>
+  <details><summary>Show a model answer</summary><div class="in">
+    <p>Hazard strength is only one part of risk. The Haiti quake was shallow and struck close to a crowded city with few enforced building rules, so many buildings collapsed. Chile's quake was bigger but deeper and offshore, and its strict building codes and drills meant people were better prepared. Risk = hazard × exposure × vulnerability.</p></div></details>
+  <div class="items" id="quiz"></div>
+  <p class="score" id="quizScore">0 of 6 correct</p>
+  <h3 style="margin-top:8px">Words to know</h3>
+  <dl class="glossary">
+    <div><dt>hazard</dt><dd>A natural event that could cause harm.</dd></div>
+    <div><dt>disaster</dt><dd>A hazard that causes major harm to people.</dd></div>
+    <div><dt>risk</dt><dd>How likely and how bad harm could be.</dd></div>
+    <div><dt>resonance</dt><dd>Big shaking from pushes matched to an object's natural rate.</dd></div>
+    <div><dt>tsunami</dt><dd>Long ocean waves from an underwater quake or slide.</dd></div>
+    <div><dt>runoff</dt><dd>Rain that flows over the ground instead of soaking in.</dd></div>
+    <div><dt>landslide</dt><dd>Soil and rock sliding down a slope.</dd></div>
+    <div><dt>P wave</dt><dd>The fast, gentler first quake wave.</dd></div>
+    <div><dt>S wave</dt><dd>The slower, stronger quake wave that does most damage.</dd></div>
+    <div><dt>mitigation</dt><dd>Steps to reduce the harm a hazard can cause.</dd></div>
+  </dl>
+  <details><summary>Tutor notes: hands-on kit, misconceptions, pacing</summary><div class="in">
+    <p><b>Kit (about $10):</b> uncooked spaghetti and mini marshmallows, a baking tray and 6 marbles (the shake tray), a paper cup and 5 coins, jello or sponge cake, a pan with sand and a spray bottle, a toy house, tape.</p>
+    <ul>
+      <li><b>Concept 1:</b> compare two toy houses, one with a sturdy base. Rate each hazard and exposure.</li>
+      <li><b>Concept 2:</b> run the shake-proof tower challenge (about 45 to 60 minutes). Keep the pushing steady: same distance, counted out loud.</li>
+      <li><b>Concept 3:</b> in a long tray of water with a sloping sand beach, push a block to make a wave and watch it grow at the beach.</li>
+      <li><b>Concept 4:</b> spray sand piles at different slopes. Compare a dry pile, a wet pile, and one held with toothpick "roots".</li>
+      <li><b>Concept 5:</b> assemble a real go-bag; walk through the family meeting place and plan.</li>
+    </ul>
+    <p><b>Common misconceptions:</b></p>
+    <ul>
+      <li>"Natural disasters just happen." The disaster part depends on human choices.</li>
+      <li>"Bigger quake means bigger disaster." Depth, distance, building quality, and preparation matter.</li>
+      <li>"Tsunamis look like big surfing waves." Often they look like a rapidly rising tide.</li>
+      <li>"Michigan has no hazards." Tornadoes, floods, ice storms, and heat waves are real.</li>
+    </ul>
+    <p><b>Pacing:</b> about five 30-minute sessions. Handle disaster examples with care; stay with preparation and engineering rather than losses.</p></div></details>
+</section>
+
+<section class="sec lesson-game-sec" id="game"><div><p class="kicker">After the lesson · Game</p><h2>Play: Shake Tower</h2></div><p class="idea">Design a building, then hit it with an earthquake. If the ground shakes at your building's natural sway rate, the sway keeps growing. Pick the height and the fixes that keep it standing.</p><div class="lesson-game" id="lesson-game"></div>
+<script>(function(){
+/* Mounts one game into a shadow root so the lesson page's CSS and the game's CSS never collide. */
+function __mountLessonGame(host, css, html, init){
+  if(!host || host.shadowRoot) return;
+  const root = host.attachShadow({mode:"open"});
+  root.innerHTML = "<style>"+css+"</style>"+html;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let visible = true;
+  try{ new IntersectionObserver(es=>{ visible = es[es.length-1].isIntersecting; }).observe(host); }catch(e){}
+  const loops = [];
+  let last = performance.now();
+  function frame(t){
+    const dt = Math.min(0.05, (t-last)/1000); last = t;
+    if(visible && !document.hidden) for(const f of loops){ try{ f(t, dt); }catch(e){ console.error(e); } }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+  const env = {
+    root, reduce,
+    $: id => root.getElementById(id),
+    $$: sel => [...root.querySelectorAll(sel)],
+    loop: f => loops.push(f),
+    esc: s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])),
+    // A canvas drawn in fixed logical units (W x H) that scales to its container.
+    stage(canvas, W, H){
+      const ctx = canvas.getContext("2d");
+      const st = {ctx, W, H, dpr:1};
+      function fit(){
+        st.dpr = Math.min(2.5, window.devicePixelRatio || 1);
+        const cw = canvas.clientWidth || W;
+        const scale = cw / W;
+        canvas.width = Math.round(W*scale*st.dpr); canvas.height = Math.round(H*scale*st.dpr);
+        st.k = scale*st.dpr;
+        ctx.setTransform(st.k,0,0,st.k,0,0);
+        if(st.onfit) st.onfit();
+      }
+      canvas.style.aspectRatio = W+"/"+H;
+      st.begin = () => ctx.setTransform(st.k,0,0,st.k,0,0);
+      st.pt = ev => { const r = canvas.getBoundingClientRect(); return {x:(ev.clientX-r.left)*W/r.width, y:(ev.clientY-r.top)*H/r.height}; };
+      try{ new ResizeObserver(fit).observe(canvas); }catch(e){ addEventListener("resize", fit); }
+      fit();
+      return st;
+    },
+    // Level buttons in the header.
+    levelBar(box, names, onPick){
+      const solved = new Set(); let cur = 0;
+      function render(){
+        box.innerHTML = '<span class="label">Level</span>';
+        names.forEach((n,i)=>{ const b = document.createElement("button"); b.type="button";
+          b.className = "lv"+(solved.has(i)?" done":""); b.textContent = i+1; b.title = n;
+          b.setAttribute("aria-label", "Level "+(i+1)+": "+n+(solved.has(i)?" (solved)":""));
+          if(i===cur) b.setAttribute("aria-current","true");
+          b.onclick = () => { cur = i; render(); onPick(i); }; box.appendChild(b); });
+      }
+      render();
+      return { set(i){ cur=i; render(); }, solve(i){ solved.add(i); render(); }, get cur(){ return cur; }, solved };
+    },
+    // Result card over a stage. buttons: [{label, primary, onClick}]
+    card(stageEl, o){
+      let ov = stageEl.querySelector(":scope > .over");
+      if(!ov){ ov = document.createElement("div"); ov.className = "over"; stageEl.appendChild(ov); }
+      ov.hidden = false;
+      ov.innerHTML = '<div class="card'+(o.fail?' fail':'')+'" role="dialog" aria-live="polite"><h4></h4>'+(o.why?'<span class="why"></span>':'')+'<p class="cb"></p><div class="btns"></div></div>';
+      ov.querySelector("h4").textContent = o.title;
+      if(o.why) ov.querySelector(".why").textContent = o.why;
+      ov.querySelector(".cb").textContent = o.body || "";
+      if(o.list && o.list.length){ const ul = document.createElement("ul"); ul.className = "clist";
+        o.list.forEach(t => { const li = document.createElement("li"); li.textContent = t; ul.appendChild(li); });
+        ov.querySelector(".cb").after(ul); }
+      const bb = ov.querySelector(".btns");
+      (o.buttons||[]).forEach((b,i)=>{ const e = document.createElement("button"); e.type="button"; e.className = "btn"+(b.primary?" primary":""); e.textContent = b.label;
+        e.onclick = () => { ov.hidden = true; b.onClick && b.onClick(); }; bb.appendChild(e); if(i===0) setTimeout(()=>e.focus({preventScroll:true}),30); });
+      if(getComputedStyle(ov).position === "static") setTimeout(()=>ov.scrollIntoView({block:"nearest", behavior: reduce?"auto":"smooth"}), 40);
+      return ov;
+    },
+    hideCard(stageEl){ const ov = stageEl.querySelector(":scope > .over"); if(ov) ov.hidden = true; }
+  };
+  try{ init(root, env); }catch(e){ console.error(e); root.innerHTML += '<p style="color:#fff;padding:12px">This game could not start.</p>'; }
+}
+
+__mountLessonGame(document.getElementById("lesson-game"), "/* Shared frame for every lesson game. Lives inside a shadow root, so nothing here touches the lesson page.\n   Deliberately one dark \"lab console\" look in both page themes; each game sets its own --acc accent. */\n:host{\n  display:block; color-scheme:dark;\n  --bg:#0B0F15; --panel:#141A23; --panel-2:#1B2330; --line:#2B3544; --ink:#E9EEF5; --muted:#93A0B2;\n  --good:#3FD3BB; --bad:#FF6B5E; --warn:#FFB547; --acc:#FFD84A; --acc-ink:#1A1400;\n  --reflect:#78A2FF; --heat:#FF7A2E;\n  --f-display:\"Bahnschrift\",\"DIN Alternate\",\"Roboto Condensed\",\"Arial Narrow\",system-ui,sans-serif;\n  --f-body:\"Roboto\",\"Segoe UI\",system-ui,-apple-system,sans-serif;\n  --f-mono:ui-monospace,\"Roboto Mono\",\"Cascadia Mono\",Menlo,Consolas,monospace;\n}\n*{box-sizing:border-box}\n[hidden]{display:none!important}\n.g{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;border-radius:16px;\n  border:1px solid var(--line);padding:16px;display:grid;gap:14px;text-align:left;box-shadow:0 10px 36px rgba(0,0,0,.35)}\n.g button{font:inherit;color:inherit}\n.g :focus-visible{outline:3px solid var(--acc);outline-offset:2px}\n.g h3,.g h4{margin:0;font-family:var(--f-display);letter-spacing:.02em;line-height:1.15}\n.g p{margin:0}\n.bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 18px}\n.brand{display:grid;gap:2px}\n.label{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}\n.gtitle{font-family:var(--f-display);font-weight:700;font-size:1.45rem;text-transform:uppercase;letter-spacing:.04em}\n.gtitle b{color:var(--acc);font-weight:700}\n.levels{display:flex;flex-wrap:wrap;gap:6px;align-items:center}\n.lv{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--line);background:var(--panel);font-family:var(--f-mono);font-size:.85rem;cursor:pointer;font-variant-numeric:tabular-nums;padding:0}\n.lv:hover{border-color:var(--muted)}\n.lv.done{border-color:var(--good);color:var(--good)}\n.lv[aria-current=\"true\"]{background:var(--acc);border-color:var(--acc);color:var(--acc-ink);font-weight:700}\n.goalrow{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 12px}\n.goalrow h4{font-size:1.25rem}\n.goalrow .goal{color:var(--muted)}\n.cols{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:14px;align-items:start}\n.cols>*{min-width:0}\n.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:10px;min-width:0}\n.panel>.label{margin-bottom:-2px}\n.stage{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px;min-width:0}\n.stage canvas{display:block;width:100%;max-width:100%;height:auto;border-radius:8px;touch-action:none}\n.btns{display:flex;flex-wrap:wrap;gap:8px}\n.btn{padding:8px 14px;min-height:40px;border-radius:10px;border:1.5px solid var(--line);background:var(--panel-2);cursor:pointer;font-weight:700;font-size:.92rem;line-height:1.2}\n.btn:hover:not([disabled]){border-color:var(--muted)}\n.btn[disabled]{opacity:.45;cursor:default}\n.btn.primary{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}\n.btn[aria-pressed=\"true\"]{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset}\n.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;font-size:.82rem;border:1px solid var(--line);background:var(--panel-2)}\n.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}\n.msg{font-size:.93rem;padding:9px 12px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line)}\n.msg.good{border-color:color-mix(in srgb,var(--good) 60%,var(--line));color:var(--ink)}\n.msg.bad{border-color:color-mix(in srgb,var(--bad) 60%,var(--line))}\n.msg.warn{border-color:color-mix(in srgb,var(--warn) 60%,var(--line))}\n.help{font-size:.86rem;color:var(--muted)}\n.meter{height:12px;border-radius:99px;background:var(--panel-2);overflow:hidden;border:1px solid var(--line)}\n.meter>i{display:block;height:100%;background:var(--acc);transition:width .15s}\n.ctl{display:grid;gap:4px}\n.ctl label{font-size:.9rem;font-weight:700;display:flex;justify-content:space-between;gap:8px}\n.ctl input[type=range]{width:100%;accent-color:var(--acc);height:30px;margin:0}\n.over{position:absolute;inset:6px;border-radius:8px;display:grid;place-items:center;padding:14px;background:color-mix(in srgb,var(--bg) 74%,transparent);backdrop-filter:blur(2px);z-index:5}\n.card{max-width:440px;display:grid;gap:10px;padding:18px;border-radius:14px;background:var(--panel-2);border:1px solid var(--acc);box-shadow:0 0 36px color-mix(in srgb,var(--acc) 22%,transparent)}\n.card h4{font-size:1.5rem;color:var(--acc)}\n.card.fail{border-color:var(--bad);box-shadow:0 0 36px color-mix(in srgb,var(--bad) 18%,transparent)}\n.card.fail h4{color:var(--bad)}\n.clist{margin:0;padding-left:1.15em;display:grid;gap:5px;font-size:.9rem}\n.over{align-items:start}\n.card{position:sticky;top:16px;margin-top:clamp(8px,8%,60px)}\n.why{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}\ntable.data{width:100%;border-collapse:collapse;font-size:.85rem}\ntable.data th,table.data td{padding:5px 7px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}\ntable.data th{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}\ntable.data td.num{text-align:right}\n.scroll{overflow-x:auto}\n@media (max-width:820px){.cols{grid-template-columns:minmax(0,1fr)}\n  .over{position:static;inset:auto;background:none;backdrop-filter:none;padding:8px 0 2px}\n  .card{max-width:none;position:static;margin-top:0}}\n@media (prefers-reduced-motion:reduce){.meter>i{transition:none}}\n\n:host{--acc:#FFB547;--acc-ink:#1A1000}\n.left,.aside{display:grid;gap:14px;min-width:0}\n.chartbox{padding:4px;background:var(--panel-2)}\n.rate{font-size:.9rem;color:var(--muted)}\n.rate b{color:var(--ink);font-family:var(--f-mono)}\n.fixes{display:grid;gap:8px}\n.fix{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;align-items:center;padding:8px 10px;border-radius:10px;border:1.5px solid var(--line);background:var(--panel-2);cursor:pointer;text-align:left}\n.fix:hover{border-color:var(--muted)}\n.fix[aria-pressed=\"true\"]{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset}\n.fix .nm{font-weight:700;font-size:.92rem}\n.fix .sub{font-size:.78rem;color:var(--muted);grid-column:1}\n.fix .cost{grid-row:1/3;grid-column:2;font-family:var(--f-mono);font-size:.82rem;padding:2px 9px;border-radius:999px;border:1px solid var(--line);background:var(--bg)}\n.money{font-size:.9rem}\n.money.over{color:var(--bad);font-weight:700}\n.req{font-size:.9rem;font-weight:700}\n", "<div class=\"g\">\n  <div class=\"bar\">\n    <div class=\"goalrow\"><h4 id=\"lvName\">Find the Rhythm</h4><span class=\"goal\" id=\"lvGoal\"></span></div>\n    <nav class=\"levels\" id=\"levels\" aria-label=\"Levels\"></nav>\n  </div>\n  <div class=\"cols\">\n    <div class=\"left\">\n      <div class=\"stage\" id=\"stage\"><canvas id=\"cv\" aria-label=\"Your building on shaking ground.\"></canvas></div>\n      <div class=\"panel\">\n        <div class=\"bar\"><span class=\"label\">Sway vs. shaking rate</span><span class=\"help\">Shaded: this earthquake's shaking rates</span></div>\n        <div class=\"stage chartbox\"><canvas id=\"ch\" aria-label=\"Chart of how much the building sways at each ground-shaking rate.\"></canvas></div>\n      </div>\n    </div>\n    <div class=\"aside\">\n      <div class=\"panel\">\n        <span class=\"label\">Design your building</span>\n        <div class=\"ctl\"><label for=\"floors\">Floors <span class=\"num\" id=\"floorsV\">8</span></label><input type=\"range\" id=\"floors\" min=\"3\" max=\"14\" value=\"8\"></div>\n        <p class=\"rate\" id=\"rate\"></p>\n        <div class=\"fixes\" id=\"fixes\"></div>\n        <div class=\"money\" id=\"money\"></div>\n        <p class=\"req\" id=\"req\"></p>\n        <div class=\"btns\"><button class=\"btn primary\" id=\"run\" type=\"button\">Run the earthquake</button></div>\n        <p class=\"msg\" id=\"msg\"></p>\n      </div>\n    </div>\n  </div>\n</div>\n", function(root, env){
+const LIMIT = 4;
+const LEVELS = [
+  {name:"Find the Rhythm", quakes:[{band:[1.0,1.4], name:"a nearby earthquake"}], min:6, max:14, start:8, fixes:false,
+   goal:"This city's ground shakes 1.0 to 1.4 times per second. Build at least 6 floors that stay standing.",
+   learn:"A building sways most when the ground shakes at its own natural rate. That's resonance. Choosing a height whose rate doesn't match the shaking keeps the sway small."},
+  {name:"Two Quakes", quakes:[{band:[2.0,2.6], name:"a close, quick quake"},{band:[0.7,0.9], name:"a far, slow quake"}], min:4, max:16, start:4, fixes:false,
+   goal:"Two different earthquakes will hit. Build at least 4 floors that survive both.",
+   learn:"Short buildings sway quickly and tall ones sway slowly. Quick shaking hurts short buildings and slow shaking hurts tall ones, so the safe height sits between the two."},
+  {name:"Tall Order", quakes:[{band:[0.8,1.1], name:"a strong earthquake"}], min:10, max:13, start:10, fixes:true, budget:20,
+   goal:"The owner needs 10 to 13 floors, and every height in that range resonates. Use engineering. You have 20 coins.",
+   learn:"When you can't avoid the matching rate, you can absorb it. Shock absorbers flatten the resonance peak, and base isolators let the ground move under a calm building."},
+  {name:"Mexico City", quakes:[{band:[0.45,0.6], name:"slow shaking on a soft old lake bed"}], min:15, max:24, start:15, fixes:true, budget:30,
+   goal:"Soft lake-bed soil shakes slowly, 0.45 to 0.6 times per second. Build at least 15 floors. You have 30 coins.",
+   learn:"Base isolators work by letting the building sway slowly, but here the ground already shakes slowly, so they made it worse. Shock absorbers work at any rate. Engineers match the fix to the ground."},
+];
+const FIXES = {damper:{name:"Shock absorbers", sub:"Flatten the sway peak", cost:6}, iso:{name:"Base isolators", sub:"Rubber pads under the building", cost:4}};
+const $ = env.$;
+const cv = $("cv"), st = env.stage(cv, 640, 330), ctx = st.ctx;
+const chEl = $("ch"), cs = env.stage(chEl, 640, 200), cx = cs.ctx;
+const bar = env.levelBar($("levels"), LEVELS.map(l=>l.name), i => load(i));
+let li = 0, floors = 8, fix = {damper:false, iso:false}, run = null, tSim = 0, amp = 0, ground = 0, collapsed = null;
+
+const Lv = () => LEVELS[li];
+const f0 = () => 10/floors;
+function A(f){ const r = f/f0(), z = fix.damper ? .25 : .05; return 1/Math.sqrt((1-r*r)**2 + (2*z*r)**2); }
+function TR(f){ if(!fix.iso) return 1; const r = f/.5, z = .15; return Math.sqrt(1+(2*z*r)**2)/Math.sqrt((1-r*r)**2 + (2*z*r)**2); }
+const sway = f => A(f)*TR(f);
+function cost(){ return floors + (fix.damper?FIXES.damper.cost:0) + (fix.iso?FIXES.iso.cost:0); }
+function load(i){
+  li = i; floors = Lv().start; fix = {damper:false, iso:false}; run = null; collapsed = null; amp = 0; env.hideCard($("stage"));
+  $("lvName").textContent = Lv().name; $("lvGoal").textContent = Lv().goal;
+  const sl = $("floors"); sl.min = 3; sl.max = Lv().max; sl.value = floors;
+  say("Pick a height and watch where its peak lands on the chart. Then run the earthquake.");
+  render();
+}
+function say(t, kind){ const m = $("msg"); m.textContent = t; m.className = "msg"+(kind?" "+kind:""); }
+function render(){
+  $("floorsV").textContent = floors;
+  $("rate").innerHTML = `Natural sway rate: about <b>${f0().toFixed(2)}</b> times per second (10 ÷ ${floors} floors).`;
+  const fx = $("fixes"); fx.innerHTML = "";
+  if(Lv().fixes){ for(const k in FIXES){ const b = document.createElement("button"); b.type = "button"; b.className = "fix"; b.setAttribute("aria-pressed", fix[k]?"true":"false");
+      b.innerHTML = `<span class="nm">${FIXES[k].name}</span><span class="cost">${FIXES[k].cost} coins</span><span class="sub">${FIXES[k].sub}</span>`;
+      b.onclick = () => { if(run) return; fix[k] = !fix[k]; collapsed = null; env.hideCard($("stage")); render(); }; fx.appendChild(b); } }
+  const m = $("money");
+  if(Lv().budget){ m.hidden = false; m.textContent = `Cost: ${cost()} of ${Lv().budget} coins (1 coin per floor)`; m.className = "money"+(cost()>Lv().budget?" over":""); } else m.hidden = true;
+  const ok = floors >= Lv().min;
+  $("req").textContent = ok ? `Floors: ${floors} (needs at least ${Lv().min}) ✓` : `Needs at least ${Lv().min} floors. You have ${floors}.`;
+  $("req").style.color = ok ? "var(--good)" : "var(--warn)";
+  $("run").disabled = !!run;
+  drawChart();
+}
+$("floors").oninput = e => { if(run) return; floors = +e.target.value; collapsed = null; env.hideCard($("stage")); render(); };
+$("run").onclick = () => {
+  if(floors < Lv().min) return say(`The owner needs at least ${Lv().min} floors.`, "warn");
+  if(Lv().budget && cost() > Lv().budget) return say(`That costs ${cost()} coins, but you only have ${Lv().budget}.`, "warn");
+  env.hideCard($("stage")); collapsed = null; amp = 0; run = {q:0, t:0, peak:0}; render(); say(`Here comes ${Lv().quakes[0].name}…`);
+};
+function quakeF(q, t){ const b = Lv().quakes[q].band, D = 7; return b[0] + (b[1]-b[0])*Math.min(1, t/D); }
+function step(t, dt){
+  if(run && !collapsed){
+    run.t += dt; tSim += dt;
+    const D = 7, q = run.q, f = quakeF(q, run.t);
+    const env_ = run.t < .8 ? run.t/.8 : run.t > D ? Math.max(0, 1-(run.t-D)/1) : 1;
+    const target = sway(f) * env_;
+    amp += (target-amp) * Math.min(1, dt*2.2);
+    run.peak = Math.max(run.peak, sway(f));
+    ground = Math.sin(tSim*2*Math.PI*f) * env_;
+    if(sway(f) > LIMIT && amp > LIMIT*0.85){ collapsed = {t:0, side: Math.sign(Math.sin(tSim*2*Math.PI*f))||1, f}; finish(false); }
+    else if(run.t > D+1){
+      if(q+1 < Lv().quakes.length){ run.q++; run.t = 0; say(`It survived! Now here comes ${Lv().quakes[run.q].name}…`, "good"); }
+      else finish(true);
+    }
+  } else { ground *= Math.max(0, 1-dt*4); amp *= Math.max(0, 1-dt*2); tSim += dt; }
+  if(collapsed) collapsed.t += dt;
+  draw();
+}
+function finish(ok){
+  const q = Lv().quakes[run.q];
+  run = null; render();
+  if(ok){ bar.solve(li); say("Still standing!", "good");
+    env.card($("stage"), {title:"Still standing!", why:"The science", body:Lv().learn, buttons:[{label: li<LEVELS.length-1?"Next level":"Play level 1 again", primary:true, onClick:()=>{ const n=li<LEVELS.length-1?li+1:0; bar.set(n); load(n); }}, {label:"Try another design"}]}); }
+  else { say("Too much sway. The building failed.", "bad");
+    setTimeout(()=>env.card($("stage"), {fail:true, title:"Collapsed", why:"What happened", body:`During ${q.name} the ground shook about ${collapsed.f.toFixed(2)} times per second, close to your building's natural rate of ${f0().toFixed(2)}. Each shake pushed in rhythm and the sway kept growing. Look at the chart: move the peak out of the shaded band${Lv().fixes?", or flatten it":""}.`,
+      buttons:[{label:"Change the design", primary:true, onClick:()=>{ collapsed=null; }}]}), env.reduce?50:1200); }
+}
+function draw(){
+  st.begin();
+  const W = 640, H = 330, GY = 280;
+  const sky = ctx.createLinearGradient(0,0,0,GY); sky.addColorStop(0,"#16243A"); sky.addColorStop(1,"#22324A"); ctx.fillStyle = sky; ctx.fillRect(0,0,W,H);
+  const gx = ground*6;
+  ctx.fillStyle = li===3 ? "#6B5B45" : "#4A3B2E"; ctx.fillRect(0, GY, W, H-GY);
+  ctx.fillStyle = "rgba(0,0,0,.2)"; for(let i=0;i<20;i++) ctx.fillRect(((i*67)+gx*3+640)%640, GY+14+(i%3)*12, 18, 3);
+  // building
+  const fh = Math.min(22, 230/floors), bw = 90, bx = 320 + gx;
+  const iso = fix.iso ? 10 : 0;
+  if(fix.iso){ ctx.fillStyle = "#1B1F25"; for(let i=0;i<4;i++) ctx.fillRect(bx-bw/2+6+i*22, GY-iso, 14, iso); }
+  const by = GY - iso;
+  const top = amp * 9 * Math.sin(tSim*2*Math.PI*(run?quakeF(run.q,run.t):f0())) * (env.reduce?.4:1);
+  let fall = 0; if(collapsed){ fall = Math.min(1.35, collapsed.t*collapsed.t*1.6) * collapsed.side; }
+  ctx.save(); ctx.translate(bx, by); ctx.rotate(fall);
+  for(let i=0;i<floors;i++){
+    const h0 = i/floors, h1 = (i+1)/floors, off0 = top*h0*h0, off1 = top*h1*h1;
+    const y0 = -i*fh, y1 = -(i+1)*fh;
+    ctx.fillStyle = i%2 ? "#8C99AB" : "#7D8A9C";
+    ctx.beginPath(); ctx.moveTo(-bw/2+off0, y0); ctx.lineTo(bw/2+off0, y0); ctx.lineTo(bw/2+off1, y1); ctx.lineTo(-bw/2+off1, y1); ctx.closePath(); ctx.fill();
+    ctx.fillStyle = "#FFE7A3"; ctx.globalAlpha = .75;
+    for(let w=0; w<4; w++){ const x = -bw/2+10+w*20 + (off0+off1)/2; ctx.fillRect(x, y1+fh*.25, 10, fh*.45); }
+    ctx.globalAlpha = 1;
+  }
+  if(fix.damper){ const yy = -floors*fh; ctx.fillStyle = "#FFD84A"; ctx.fillRect(-12+top*.6, yy-14, 24, 14); }
+  ctx.restore();
+  // meter
+  const mw = 200, mx = 20, my = 20;
+  ctx.fillStyle = "rgba(11,15,21,.7)"; ctx.fillRect(mx-8, my-10, mw+120, 54);
+  ctx.fillStyle = "#93A0B2"; ctx.font = "12px ui-monospace,monospace"; ctx.textAlign = "left"; ctx.textBaseline = "middle"; ctx.fillText("SWAY (× ground motion)", mx, my);
+  ctx.fillStyle = "#1B2330"; ctx.fillRect(mx, my+12, mw, 14);
+  const v = Math.min(amp, 10); ctx.fillStyle = v > LIMIT ? "#FF6B5E" : v > LIMIT*.7 ? "#FFB547" : "#3FD3BB"; ctx.fillRect(mx, my+12, mw*v/10, 14);
+  ctx.fillStyle = "#FF6B5E"; ctx.fillRect(mx + mw*LIMIT/10 - 1, my+8, 2, 22);
+  ctx.fillStyle = "#E9EEF5"; ctx.font = "700 14px ui-monospace,monospace"; ctx.fillText(amp.toFixed(1)+"×", mx+mw+10, my+19);
+  ctx.fillStyle = "#FF6B5E"; ctx.font = "11px ui-monospace,monospace"; ctx.fillText("breaks at "+LIMIT+"×", mx+mw*LIMIT/10-30, my+40);
+  if(run){ ctx.fillStyle = "#E9EEF5"; ctx.textAlign = "right"; ctx.font = "13px ui-monospace,monospace"; ctx.fillText(`ground: ${quakeF(run.q,run.t).toFixed(2)} shakes/second`, W-14, 24); }
+  if(run || collapsed) drawChart();
+}
+function drawChart(){
+  cs.begin();
+  const W = 640, H = 200, x0 = 50, x1 = 620, y0 = 170, y1 = 14, fmax = 3;
+  const X = f => x0 + f/fmax*(x1-x0), Y = a => y0 - Math.min(a, 10)/10*(y0-y1);
+  cx.fillStyle = "#1B2330"; cx.fillRect(0,0,W,H);
+  for(const q of Lv().quakes){ cx.fillStyle = "rgba(255,181,71,.18)"; cx.fillRect(X(q.band[0]), y1, X(q.band[1])-X(q.band[0]), y0-y1); }
+  cx.strokeStyle = "rgba(147,160,178,.2)"; cx.lineWidth = 1; cx.font = "11px ui-monospace,monospace"; cx.fillStyle = "#93A0B2"; cx.textBaseline = "middle";
+  for(const a of [0,2,4,6,8,10]){ cx.beginPath(); cx.moveTo(x0, Y(a)); cx.lineTo(x1, Y(a)); cx.stroke(); cx.textAlign = "right"; cx.fillText(a+"×", x0-6, Y(a)); }
+  cx.textAlign = "center"; for(let f=0; f<=3; f+=.5){ cx.fillText(f.toFixed(1), X(f), y0+14); }
+  cx.fillText("ground shakes per second", (x0+x1)/2, y0+26);
+  cx.strokeStyle = "#FF6B5E"; cx.setLineDash([5,4]); cx.beginPath(); cx.moveTo(x0, Y(LIMIT)); cx.lineTo(x1, Y(LIMIT)); cx.stroke(); cx.setLineDash([]);
+  cx.fillStyle = "#FF6B5E"; cx.textAlign = "left"; cx.fillText("breaks", x1-44, Y(LIMIT)-9);
+  cx.strokeStyle = "#78A2FF"; cx.lineWidth = 3; cx.beginPath();
+  for(let i=0;i<=300;i++){ const f = .05 + i/300*(fmax-.05), y = Y(sway(f)); i ? cx.lineTo(X(f), y) : cx.moveTo(X(f), y); } cx.stroke();
+  cx.strokeStyle = "rgba(233,238,245,.5)"; cx.setLineDash([3,3]); cx.beginPath(); cx.moveTo(X(f0()), y1); cx.lineTo(X(f0()), y0); cx.stroke(); cx.setLineDash([]);
+  cx.fillStyle = "#E9EEF5"; cx.textAlign = "left"; cx.fillText("natural rate", Math.min(X(f0())+5, x1-80), y1+8);
+  if(run){ const f = quakeF(run.q, run.t); cx.fillStyle = "#FFD84A"; cx.beginPath(); cx.arc(X(f), Y(sway(f)), 6, 0, 7); cx.fill(); }
+}
+cs.onfit = () => drawChart();
+env.loop(step);
+load(0);
+
+});
+})();</script></section>
+
+<section class="sec related" id="more"><div><p class="kicker">Keep exploring</p><h2>Related lessons</h2></div><p class="idea"> Up next: <a href="unit-07-cells.html">Unit 7: Cells</a>. Overlap alert: ideas you have already met are marked above as "you may already have learned".</p><ul><li><a href="unit-03-forces-motion-and-energy.html">Unit 3: Forces, Motion &amp; Energy</a><span class="why">Forces, energy, safety factors.</span></li><li><a href="unit-04-weather-and-the-water-cycle.html">Unit 4: Weather &amp; the Water Cycle</a><span class="why">How storms and floods form.</span></li><li><a href="unit-05-plate-tectonics-and-rocks.html">Unit 5: Plate Tectonics &amp; Rocks</a><span class="why">Why earthquakes and volcanoes occur where they do.</span></li><li><a href="unit-09-body-systems-and-homeostasis.html">Unit 9: Body Systems &amp; Homeostasis</a><span class="why">Staying safe: your body responds to stress.</span></li><li><a href="unit-13-energy-resources-and-human-impact.html">Unit 13: Energy Resources &amp; Human Impact</a><span class="why">Hazards linked to energy choices.</span></li><li><a href="../7th/unit-7.7-earth-resources-and-human-impact.html">Unit 7.7: Earth Resources &amp; Human Impact</a><span class="why">Grade 7: human impact and solutions.</span></li></ul></section>
+</main>
+
+<footer>Built for sixth-grade tutoring. Aligned with NGSS MS-ESS3-2 (analyze data on natural hazards to forecast and reduce their impacts), MS-ETS1-1 to 1-4 (the shake-proof tower) and the OpenSciEd-style 6th grade natural hazards strand. Models are simplified; casualty figures are approximate and widely varying.</footer>
+
+<script>
+(function(){
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const safe=fn=>{try{fn()}catch(e){console.error(e)}};
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const setPressed=(g,b)=>$$('button',g).forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));
+
+/* ===== 1 ===== */
+safe(()=>{
+  const hz=$('#hz'), ex=$('#ex'), pr=$('#pr'), bars=$('#rkBars'), rd=$('#rkR');
+  const lab={1:'a few',2:'a few',3:'a small town',4:'a small town',5:'a mid-size town',6:'a mid-size town',7:'a city',8:'a city',9:'a huge city',10:'a huge city'};
+  function draw(){
+    const H=+hz.value, E=+ex.value, P=+pr.value; $('#hzV').textContent=H; $('#exV').textContent=lab[E]; $('#prV').textContent=P;
+    const vuln=1-.85*P/100, risk=(H/10)*(E/10)*vuln, level=risk<.08?'low':risk<.25?'moderate':risk<.5?'high':'extreme';
+    const row=(n,v,c,txt)=>`<div class="brow" style="grid-template-columns:130px minmax(0,1fr)"><span class="lab">${n}</span><div class="stack"><div class="seg" style="width:${Math.max(2,v*100)}%;background:${c};color:var(--on-color)">${txt}</div></div></div>`;
+    bars.innerHTML=row('Hazard',H/10,'var(--absorb)',(H/10).toFixed(1))+row('× Exposed',E/10,'var(--beam)',(E/10).toFixed(1))+row('× Vulnerable',vuln,'var(--reflect)',vuln.toFixed(2))+row('= Risk',risk,'var(--transmit)',risk.toFixed(2));
+    rd.innerHTML=`Risk is <b>${level}</b>. ${P<40&&H>=6?'A strong hazard with little preparation is how disasters happen.':P>=70?'Preparation cuts vulnerability and makes the same hazard far less harmful.':'Try moving the preparation slider and watch risk change.'}`;
+  }
+  [hz,ex,pr].forEach(e=>e.addEventListener('input',draw)); draw();
+  const mx=500;
+  const D=[['Chile quake (8.8): energy',500,'var(--absorb)','500×'],['Haiti quake (7.0): energy',1,'var(--absorb)','1×']];
+  const ln=v=>Math.max(1.5,Math.log10(v)/Math.log10(500)*100);
+  $('#cmpBars').innerHTML=[['Haiti 7.0: energy',1,'1×','var(--absorb)'],['Chile 8.8: energy',500,'about 500×','var(--absorb)'],['Haiti: deaths',100000,'over 100,000','var(--reflect)'],['Chile: deaths',500,'about 500','var(--reflect)']].map(([n,v,t,c])=>{ const w=n.includes('energy')?ln(v):Math.max(2,Math.log10(v)/5*100); return `<div class="brow" style="grid-template-columns:130px minmax(0,1fr)"><span class="lab">${n}</span><div class="stack"><div class="seg" style="width:${w}%;background:${c};color:var(--on-color)">${t}</div></div></div>`; }).join('')+'<p class="cap" style="margin-top:2px">Log scales (each section has its own), so both rows fit. The big energy gap points one way; the death gap points the other.</p>';
+});
+
+/* ===== 2 ===== */
+safe(()=>{
+  const fl=$('#fl'), gf=$('#gf'), svg=$('#bldSvg'), rd=$('#bldR'), chips=$('#dmpChips'); let z=.03, t0=performance.now(), amp=1, vis=true;
+  const f0=()=>10/+fl.value;
+  const A=(fg,f,zz)=>{ const r=fg/f; return 1/Math.sqrt(Math.pow(1-r*r,2)+Math.pow(2*zz*r,2)); };
+  function frame(now){
+    const f=f0(), fg=+gf.value, a=Math.min(A(fg,f,z),14), N=+fl.value, H=Math.min(240,50+N*5.2);
+    const tt=(now-t0)/1000, ground=Math.sin(2*Math.PI*fg*tt)*6, sway=reduce?a*3:a*3*Math.sin(2*Math.PI*fg*tt-0.3), dx=clamp(sway,-70,70);
+    const y1=270-H, x0=120+ground, x1=200+ground;
+    let fls=''; for(let i=1;i<N;i++){ const f2=i/N, y=270-H*f2, off=dx*f2; fls+=`<line x1="${x0+off}" y1="${y}" x2="${x1+off}" y2="${y}" style="stroke:var(--ink);stroke-width:1;opacity:.5"/>`; }
+    svg.innerHTML=`<rect x="0" y="270" width="320" height="30" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:2" transform="translate(${ground} 0)"/>
+      <polygon points="${x0},270 ${x1},270 ${x1+dx},${y1} ${x0+dx},${y1}" style="fill:var(--beam);fill-opacity:.8;stroke:var(--ink);stroke-width:3;stroke-linejoin:round"/>${fls}
+      <text x="160" y="24" font-size="14" text-anchor="middle">natural rate: ${f.toFixed(2)} per second</text>`;
+    if(vis&&!reduce) requestAnimationFrame(frame);
+  }
+  function info(){ const f=f0(), fg=+gf.value, a=A(fg,f,z); $('#flV').textContent=fl.value; $('#gfV').textContent=fg.toFixed(1);
+    rd.innerHTML=`Building natural rate <b>${f.toFixed(2)}</b> per second, ground <b>${fg.toFixed(1)}</b>. Sway is <b>${a.toFixed(1)}×</b> the ground motion: ${a>6?'<b>resonance! dangerous swaying.</b>':a>2?'noticeable amplification.':'moderate.'}`; chart(); if(reduce) frame(performance.now()); }
+  const cs=$('#resSvg'), X=v=>60+(v-.2)/4.8*540, Y=a=>220-Math.min(a,14)/14*200;
+  function chart(){
+    const f=f0(), fg=+gf.value; let d='',d2='';
+    for(let v=.2;v<=5.001;v+=.05){ d+=`${d?'L':'M'}${X(v).toFixed(1)} ${Y(A(v,f,z)).toFixed(1)}`; }
+    let g=''; [0,5,10].forEach(v=>{ g+=`<line x1="60" y1="${Y(v)}" x2="600" y2="${Y(v)}" style="stroke:var(--line)"/><text x="52" y="${Y(v)+5}" font-size="13" text-anchor="end">${v}×</text>`; });
+    [1,2,3,4,5].forEach(v=>{ g+=`<text x="${X(v)}" y="240" font-size="13" text-anchor="middle">${v}</text>`; });
+    cs.innerHTML=`${g}<line x1="60" y1="220" x2="600" y2="220" style="stroke:var(--ink);stroke-width:2"/><line x1="60" y1="20" x2="60" y2="220" style="stroke:var(--ink);stroke-width:2"/>
+      <path d="${d}" style="fill:none;stroke:var(--absorb);stroke-width:4"/><line x1="${X(clamp(f,.2,5))}" y1="20" x2="${X(clamp(f,.2,5))}" y2="220" style="stroke:var(--muted);stroke-dasharray:5 4"/><text x="${X(clamp(f,.2,5))+6}" y="34" font-size="12">natural rate</text>
+      <circle cx="${X(fg)}" cy="${Y(A(fg,f,z))}" r="8" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/>
+      <text x="330" y="258" font-size="14" text-anchor="middle">ground shaking rate (per second)</text><text transform="rotate(-90 14 120)" x="14" y="120" font-size="14" text-anchor="middle">sway amplification</text>`;
+  }
+  [fl,gf].forEach(e=>e.addEventListener('input',info));
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; z=+b.dataset.z; setPressed(chips,b); info(); });
+  new IntersectionObserver(es=>{ const v=es[0].isIntersecting; if(v&&!vis&&!reduce){ vis=true; requestAnimationFrame(frame); } vis=v; }).observe(svg);
+  info(); requestAnimationFrame(frame);
+});
+
+/* ===== 3 ===== */
+safe(()=>{
+  const sl=$('#tsD'), svg=$('#tsSvg'), rd=$('#tsR');
+  const dep=v=>4000*Math.pow(10/4000,v/100);
+  function draw(){
+    const v=+sl.value, d=dep(v), sp=Math.sqrt(9.8*d), h=.5*Math.pow(4000/d,.25), lam=sp*1200/1000; // km
+    $('#tsDV').textContent=d>=100?`${Math.round(d).toLocaleString()} m`:`${d.toFixed(0)} m`;
+    const lpx=clamp(lam/237*160,16,160), ap=clamp(h*7,4,46);
+    let bed=`M0 ${260}`; for(let x=0;x<=480;x+=10){ const dd=dep(clamp(x/480*100*1.02,0,100)); bed+=` L${x} ${260-Math.max(4,(1-Math.log10(dd)/3.7)*0+ (1-Math.log10(Math.max(dd,10))/Math.log10(4000))*150)}`; }
+    bed+=' L480 260 Z';
+    const wy=70; let w=`M0 ${wy}`; for(let x=0;x<=480;x+=4){ const env=Math.exp(-Math.pow((x-240)/(lpx*1.6),2)); w+=` L${x} ${wy-ap*env*Math.sin(2*Math.PI*(x-240)/lpx)}`; }
+    svg.innerHTML=`<rect x="0" y="${wy}" width="480" height="${260-wy}" style="fill:var(--reflect);fill-opacity:.35"/><path d="${w}" style="fill:none;stroke:var(--reflect);stroke-width:4"/>
+      <path d="${bed}" style="fill:#B08A5A;stroke:var(--ink);stroke-width:2"/>
+      <line x1="240" y1="${wy-50}" x2="${240+clamp(sp/198*120,10,120)}" y2="${wy-50}" style="stroke:var(--absorb);stroke-width:5" marker-end="url(#mAbsorb)"/><text x="240" y="${wy-58}" font-size="13" style="font-weight:700">wave speed</text>
+      <line x1="${240-lpx/2}" y1="${wy+30}" x2="${240+lpx/2}" y2="${wy+30}" style="stroke:var(--ink);stroke-width:2"/><text x="240" y="${wy+46}" font-size="12" text-anchor="middle">wavelength</text>
+      <text x="470" y="250" font-size="13" text-anchor="end" style="font-weight:700">shore →</text>`;
+    rd.innerHTML=`Depth <b>${d>=100?Math.round(d).toLocaleString():d.toFixed(0)} m</b>: speed <b>${sp.toFixed(0)} m/s</b> (${(sp*3.6).toFixed(0)} km/h), wavelength about <b>${lam.toFixed(0)} km</b>, height at least <b>${h.toFixed(1)} m</b> (it can run up much higher onshore). The wave slows, bunches up, and rises.`;
+    chart(d);
+  }
+  const cs=$('#tsChart'), X=dv=>60+Math.log10(dv/10)/Math.log10(400)*540, Y=s=>220-s/210*200;
+  function chart(d){
+    let ln=''; for(let i=0;i<=100;i++){ const dd=dep(100-i), dd2=10*Math.pow(400,i/100); ln+=`${i?'L':'M'}${X(dd2).toFixed(1)} ${Y(Math.sqrt(9.8*dd2)).toFixed(1)}`; }
+    let g=''; [0,50,100,150,200].forEach(v=>{ g+=`<line x1="60" y1="${Y(v)}" x2="600" y2="${Y(v)}" style="stroke:var(--line)"/><text x="52" y="${Y(v)+5}" font-size="13" text-anchor="end">${v}</text>`; });
+    [10,100,1000,4000].forEach(v=>{ g+=`<text x="${X(v)}" y="240" font-size="13" text-anchor="middle">${v.toLocaleString()}</text>`; });
+    cs.innerHTML=`${g}<line x1="60" y1="220" x2="600" y2="220" style="stroke:var(--ink);stroke-width:2"/><line x1="60" y1="20" x2="60" y2="220" style="stroke:var(--ink);stroke-width:2"/><path d="${ln}" style="fill:none;stroke:var(--absorb);stroke-width:4"/>
+      <circle cx="${X(d)}" cy="${Y(Math.sqrt(9.8*d))}" r="8" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/>
+      <text x="330" y="250" font-size="14" text-anchor="middle">water depth (m, log scale)</text><text transform="rotate(-90 14 120)" x="14" y="120" font-size="14" text-anchor="middle">wave speed (m/s)</text>`;
+  }
+  sl.addEventListener('input',draw); draw();
+});
+
+/* ===== 4 ===== */
+const SURF=[{n:'Forest',C:.15,tau:6,c:'var(--transmit)'},{n:'Lawn',C:.35,tau:4,c:'var(--beam)'},{n:'City (paved)',C:.85,tau:1.5,c:'var(--absorb)'}];
+safe(()=>{
+  const chips=$('#fdChips'), sl=$('#rn'), svg=$('#fdSvg'), rd=$('#fdR'); const on=new Set([0,1,2]);
+  SURF.forEach((s,i)=>{ const b=document.createElement('button'); b.type='button'; b.className='chip'; b.textContent=s.n; b.dataset.i=i; b.setAttribute('aria-pressed','true'); chips.appendChild(b); });
+  const Q=(s,R,t)=>s.C*R*(t/s.tau)*Math.exp(1-t/s.tau), X=t=>50+t/12*400, Y=q=>220-clamp(q,0,70)/70*200;
+  function draw(){
+    const R=+sl.value; $('#rnV').textContent=R;
+    let g='',ln='';
+    [0,20,40,60].forEach(v=>{ g+=`<line x1="50" y1="${Y(v)}" x2="450" y2="${Y(v)}" style="stroke:var(--line)"/><text x="44" y="${Y(v)+5}" font-size="12" text-anchor="end">${v}</text>`; });
+    [0,3,6,9,12].forEach(v=>{ g+=`<text x="${X(v)}" y="240" font-size="12" text-anchor="middle">${v}</text>`; });
+    g+=`<line x1="50" y1="${Y(25)}" x2="450" y2="${Y(25)}" style="stroke:var(--absorb);stroke-width:2;stroke-dasharray:7 5"/><text x="452" y="${Y(25)-4}" font-size="12" text-anchor="end" style="fill:var(--absorb);font-weight:700">flood level</text>`;
+    SURF.forEach((s,i)=>{ if(!on.has(i))return; let d=''; for(let t=0;t<=12;t+=.1) d+=`${t?'L':'M'}${X(t).toFixed(1)} ${Y(Q(s,R,t)).toFixed(1)}`; ln+=`<path d="${d}" style="fill:none;stroke:${s.c};stroke-width:4"/>`; });
+    svg.innerHTML=`${g}<line x1="50" y1="220" x2="450" y2="220" style="stroke:var(--ink);stroke-width:2"/><line x1="50" y1="20" x2="50" y2="220" style="stroke:var(--ink);stroke-width:2"/>${ln}
+      <text x="250" y="256" font-size="13" text-anchor="middle">hours after the storm starts</text><text transform="rotate(-90 12 120)" x="12" y="120" font-size="13" text-anchor="middle">river flow (relative)</text>`;
+    rd.innerHTML=SURF.filter((s,i)=>on.has(i)).map(s=>{ const pk=s.C*R; return `${s.n}: peak <b>${pk.toFixed(0)}</b> at hour <b>${s.tau}</b>${pk>25?' <b>(floods)</b>':''}`; }).join(' · ')||'Turn on at least one.';
+  }
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; const i=+b.dataset.i; if(on.has(i))on.delete(i); else on.add(i); b.setAttribute('aria-pressed',on.has(i)); draw(); });
+  sl.addEventListener('input',draw); draw();
+});
+safe(()=>{
+  const sa=$('#sa'), ss=$('#ss'), svg=$('#lsSvg'), rd=$('#lsR'), chips=$('#rootChips'), fsS=$('#fsSvg'); let roots=0;
+  const FS=(th,s,r)=>Math.tan(35*Math.PI/180)*(1-.5*s)/Math.tan(th*Math.PI/180)+(r?.25:0);
+  function draw(){
+    const th=+sa.value, s=+ss.value/100, f=FS(th,s,roots); $('#saV').textContent=th; $('#ssV').textContent=Math.round(s*100);
+    const rad=th*Math.PI/180, L=380, x0=40, yb=210, x1=x0+L*Math.cos(rad), y1=yb-L*Math.sin(rad);
+    const slide=f<1, mid=.45, bx=x0+L*mid*Math.cos(rad)+(slide?70:0), by=yb-L*mid*Math.sin(rad)+(slide?40:0);
+    svg.innerHTML=`<polygon points="${x0},${yb} ${x1},${yb} ${x1},${y1}" style="fill:#B08A5A;fill-opacity:${.4+s*.5};stroke:var(--ink);stroke-width:3"/>
+      <rect x="${x1-380*0}" y="${yb}" width="0" height="0"/>
+      <g transform="translate(${bx} ${by}) rotate(${-th})"><rect x="-30" y="-24" width="60" height="24" rx="4" style="fill:${slide?'var(--absorb)':'var(--beam)'};stroke:var(--ink);stroke-width:2.5"/></g>
+      ${roots?`<g style="stroke:var(--transmit);stroke-width:4"><path d="M${x0+L*.25*Math.cos(rad)} ${yb-L*.25*Math.sin(rad)} v-22 M${x0+L*.65*Math.cos(rad)} ${yb-L*.65*Math.sin(rad)} v-22"/></g><circle cx="${x0+L*.25*Math.cos(rad)}" cy="${yb-L*.25*Math.sin(rad)-30}" r="12" style="fill:var(--transmit)"/><circle cx="${x0+L*.65*Math.cos(rad)}" cy="${yb-L*.65*Math.sin(rad)-30}" r="12" style="fill:var(--transmit)"/>`:''}
+      ${s>.3?`<g style="stroke:var(--reflect);stroke-width:3;stroke-linecap:round"><path d="M80 20 l-4 14 M140 14 l-4 14 M200 20 l-4 14 M260 14 l-4 14"/></g>`:''}
+      <text x="440" y="40" font-size="15" text-anchor="end" style="font-weight:700;fill:${slide?'var(--absorb)':'var(--transmit)'}">${slide?'LANDSLIDE':'holds'}</text>`;
+    rd.innerHTML=`Safety factor = <b>${f.toFixed(2)}</b>. ${slide?'Below 1: gravity wins and the slope slides.':f<1.3?'Just above 1. It holds, but only barely.':'Comfortably above 1. It holds.'}`;
+    // chart
+    const X=a=>60+(a-10)/40*540, Y=v=>220-clamp(v,0,3)/3*200;
+    let d=''; for(let a=10;a<=50;a+=1) d+=`${a>10?'L':'M'}${X(a)} ${Y(FS(a,s,roots)).toFixed(1)}`;
+    let g=''; [0,1,2,3].forEach(v=>{ g+=`<line x1="60" y1="${Y(v)}" x2="600" y2="${Y(v)}" style="stroke:var(--line)"/><text x="52" y="${Y(v)+5}" font-size="13" text-anchor="end">${v}</text>`; });
+    [10,20,30,40,50].forEach(v=>{ g+=`<text x="${X(v)}" y="240" font-size="13" text-anchor="middle">${v}°</text>`; });
+    fsS.innerHTML=`${g}<rect x="60" y="${Y(1)}" width="540" height="${220-Y(1)}" style="fill:var(--absorb);fill-opacity:.15"/><line x1="60" y1="${Y(1)}" x2="600" y2="${Y(1)}" style="stroke:var(--absorb);stroke-width:3"/><text x="598" y="${Y(1)+16}" font-size="12" text-anchor="end" style="font-weight:700;fill:var(--absorb)">slides below this line</text>
+      <line x1="60" y1="220" x2="600" y2="220" style="stroke:var(--ink);stroke-width:2"/><line x1="60" y1="20" x2="60" y2="220" style="stroke:var(--ink);stroke-width:2"/><path d="${d}" style="fill:none;stroke:var(--reflect);stroke-width:4"/>
+      <circle cx="${X(th)}" cy="${Y(f)}" r="8" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/>
+      <text x="330" y="258" font-size="14" text-anchor="middle">slope steepness</text><text transform="rotate(-90 14 120)" x="14" y="120" font-size="14" text-anchor="middle">safety factor</text>`;
+  }
+  [sa,ss].forEach(e=>e.addEventListener('input',draw));
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; roots=+b.dataset.r; setPressed(chips,b); draw(); });
+  draw();
+});
+
+/* ===== 5 ===== */
+safe(()=>{
+  const sl=$('#dist'), svg=$('#ewSvg'), rd=$('#ewR'), VP=6, VS=3.5, DELAY=4;
+  function draw(){
+    const d=+sl.value; $('#distV').textContent=d;
+    const tp=d/VP, ts=d/VS, alert=tp+DELAY, warn=ts-alert, T=Math.max(ts,90/ 1)*1.1, X=t=>30+t/Math.max(100,ts*1.1)*420;
+    svg.innerHTML=`<line x1="30" y1="100" x2="460" y2="100" style="stroke:var(--ink);stroke-width:3"/>
+      <circle cx="${X(0)}" cy="100" r="9" style="fill:var(--absorb);stroke:var(--ink);stroke-width:2"/><text x="${X(0)}" y="130" font-size="12" text-anchor="middle">quake starts</text>
+      <circle cx="${X(tp)}" cy="100" r="8" style="fill:var(--reflect);stroke:var(--ink);stroke-width:2"/><text x="${X(tp)}" y="74" font-size="12" text-anchor="middle" style="font-weight:700">P wave ${tp.toFixed(0)} s</text>
+      <circle cx="${X(alert)}" cy="100" r="8" style="fill:var(--beam);stroke:var(--ink);stroke-width:2"/><text x="${X(alert)}" y="150" font-size="12" text-anchor="middle" style="font-weight:700">alert ${alert.toFixed(0)} s</text>
+      <circle cx="${X(ts)}" cy="100" r="9" style="fill:var(--absorb);stroke:var(--ink);stroke-width:2"/><text x="${X(ts)}" y="74" font-size="12" text-anchor="middle" style="font-weight:700;fill:var(--absorb)">strong S ${ts.toFixed(0)} s</text>
+      ${warn>0?`<line x1="${X(alert)}" y1="176" x2="${X(ts)}" y2="176" style="stroke:var(--transmit);stroke-width:7"/><text x="${(X(alert)+X(ts))/2}" y="194" font-size="13" text-anchor="middle" style="font-weight:700;fill:var(--transmit)">${warn.toFixed(0)} s of warning</text>`:`<text x="240" y="186" font-size="13" text-anchor="middle" style="font-weight:700">too close for any warning</text>`}`;
+    rd.innerHTML=`At <b>${d} km</b>: P waves arrive in ${tp.toFixed(0)} s, damaging S waves in ${ts.toFixed(0)} s. With about 4 s to detect and send the alert, you'd get <b>${warn>0?warn.toFixed(0)+' seconds':'no warning'}</b>. Enough time to drop, cover, and hold on, stop a train, or open a fire-station door. The farther away you are, the more time.`;
+  }
+  sl.addEventListener('input',draw); draw();
+});
+safe(()=>{
+  const HZ=[['Tornado',[0,0,1,2,2,3,3,2,1,0,0,0]],['Flood',[0,1,2,3,2,2,1,1,1,1,1,0]],['Severe storm',[0,0,1,1,2,3,3,3,2,1,0,0]],['Heavy snow / lake effect',[3,2,1,0,0,0,0,0,0,0,2,3]],['Ice storm',[2,3,2,1,0,0,0,0,0,0,1,2]],['Extreme heat',[0,0,0,0,1,2,3,3,2,0,0,0]]];
+  const M=['J','F','M','A','M','J','J','A','S','O','N','D'];
+  let h='<div></div>'+M.map(m=>`<div class="h">${m}</div>`).join('');
+  HZ.forEach(([n,a])=>{ h+=`<div class="n">${n}</div>`+a.map((l,i)=>`<div class="c" style="--l:${l}" role="img" aria-label="${n}, ${M[i]}: level ${l} of 3"></div>`).join(''); });
+  $('#heat').innerHTML=h;
+});
+safe(()=>{
+  const items=['A meeting place everyone knows (a tree, a mailbox)','A flashlight and spare batteries','3 days of water (1 gallon per person per day)','Non-perishable food and a can opener','A first aid kit and needed medicines','A phone charger or battery pack and a weather radio','Important phone numbers written on paper','You know where to shelter from a tornado (basement or inside room)'];
+  const box=$('#chk'), m=$('#rdyM'), rd=$('#rdyR');
+  box.innerHTML=items.map((t,i)=>`<label><input type="checkbox" data-i="${i}"> <span>${t}</span></label>`).join('');
+  box.addEventListener('change',()=>{ const n=$$('input:checked',box).length, p=Math.round(n/items.length*100); m.style.width=p+'%'; rd.innerHTML=`<b>${n} of ${items.length}</b> ready. ${n<3?'A great place to start: pick two items to gather this week.':n<7?'Good progress.':'Excellent. Practice the plan twice a year.'}`; });
+});
+function quiz(){
+  const Q=[
+    {q:'Risk from a natural hazard depends on...',o:['Only how strong the hazard is','Hazard strength, how many are exposed, and how vulnerable they are','Only the weather'],a:1,e:'All three parts multiply together.'},
+    {q:'A building sways most when the ground shakes at...',o:['Any rate','Its own natural rate','The fastest possible rate'],a:1,e:'That match is called resonance.'},
+    {q:'As a tsunami moves from deep ocean into shallow water it...',o:['Speeds up and shrinks','Slows down and grows taller','Stays the same'],a:1,e:'Speed depends on depth, so it slows near shore and the water piles up.'},
+    {q:'Why does a city street flood faster than a forest?',o:['Pavement lets water soak in','Pavement makes rain run off quickly','Forests have more rain'],a:1,e:'Pavement can\'t absorb water, so it all runs off at once.'},
+    {q:'Why can early warning give seconds of notice for an earthquake?',o:['Quakes can be predicted exactly','Fast P waves arrive before the damaging S waves','Sirens travel faster than waves'],a:1,e:'Sensors detect P waves, and alerts travel faster than S waves.'},
+    {q:'Which action best lowers risk before a hazard?',o:['Hoping it won\'t happen','Building codes, a plan, and a kit','Moving right next to the hazard'],a:1,e:'Preparation cuts vulnerability.'}
+  ];
+  const box=$('#quiz'), sc=$('#quizScore'); let right=0;
+  box.innerHTML=Q.map((x,i)=>`<div class="q" data-i="${i}"><h4>${i+1}. ${x.q}</h4><div class="opts">${x.o.map((t,j)=>`<button class="opt" type="button" data-j="${j}">${t}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
+  box.addEventListener('click',e=>{
+    const b=e.target.closest('.opt'); if(!b||b.disabled)return;
+    const row=b.closest('.q'), x=Q[+row.dataset.i], ok=+b.dataset.j===x.a;
+    $$('.opt',row).forEach(o=>{ o.disabled=true; if(+o.dataset.j===x.a) o.classList.add('good'); });
+    if(!ok) b.classList.add('bad'); else right++;
+    $('.fb',row).textContent=(ok?'Correct. ':'Not quite. ')+x.e; sc.textContent=`${right} of ${Q.length} correct`;
+  });
+}
+safe(quiz);
+})();
+</script>

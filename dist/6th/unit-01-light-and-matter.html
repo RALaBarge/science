@@ -1,0 +1,1578 @@
+<title>Light & Matter</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout concept: one long lesson column. Each concept opens with a one-sentence big idea, then a grid of labelled visual aids
+   (Analogy, Diagram, Try it, Data, Real world) that collapses to one column on phones.
+   Color roles are fixed for the whole page: amber = incoming light, blue = reflected, teal = transmitted, orange = absorbed. */
+:root{
+  --bg:#F2F5FA; --surface:#FFFFFF; --surface-2:#E8EDF6; --ink:#12172B; --muted:#47506E; --line:#D0D8E8;
+  --beam:#F2A900; --beam-ink:#1A1400; --reflect:#2B66E8; --absorb:#D6450B; --transmit:#0B7F70; --on-color:#FFFFFF;
+  --red:#D93036; --green:#25904F; --blue:#3558D6; --shade:#222A4A;
+  --font-display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --font-body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+  --font-mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C1022; --surface:#151A33; --surface-2:#1D2444; --ink:#EDF0FB; --muted:#A8B1CE; --line:#2B3459;
+    --beam:#FFC93C; --beam-ink:#1A1400; --reflect:#7BA2FF; --absorb:#FF8F5C; --transmit:#46D6C0; --on-color:#0B1020;
+    --red:#FF6A70; --green:#4FCB85; --blue:#7C97FF; --shade:#02040B; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C1022; --surface:#151A33; --surface-2:#1D2444; --ink:#EDF0FB; --muted:#A8B1CE; --line:#2B3459;
+  --beam:#FFC93C; --beam-ink:#1A1400; --reflect:#7BA2FF; --absorb:#FF8F5C; --transmit:#46D6C0; --on-color:#0B1020;
+  --red:#FF6A70; --green:#4FCB85; --blue:#7C97FF; --shade:#02040B; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--font-body); font-size:17px; line-height:1.55;
+  padding-block:0 72px;
+  padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+main,.hero{max-width:920px;margin:0 auto}
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance;margin:0;line-height:1.1}
+p{margin:0}
+a{color:inherit}
+svg{display:block;width:100%;height:auto}
+svg text{font-family:var(--font-body);fill:var(--ink)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--reflect);outline-offset:2px}
+
+/* hero */
+.hero{padding-block:28px 8px;display:grid;gap:18px}
+.kicker{font-family:var(--font-mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
+.lede{font-size:clamp(1.1rem,3.4vw,1.35rem);max-width:34em;text-wrap:pretty}
+.hero-art{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:10px 12px}
+.howto{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:.92rem;color:var(--muted)}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);margin-top:18px;border-bottom:1px solid var(--line);
+  margin-inline:auto;max-width:920px}
+.nav ul{list-style:none;margin:0;padding:8px 0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin}
+.nav a{display:block;white-space:nowrap;text-decoration:none;font-size:.9rem;padding:7px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface)}
+.nav a:hover{border-color:var(--ink)}
+
+/* sections */
+.sec{padding-block:52px 6px;scroll-margin-top:68px;display:grid;gap:20px}
+.sec h2{font-size:clamp(1.9rem,6vw,2.7rem);font-weight:800;letter-spacing:-.02em}
+.idea{font-family:var(--font-display);font-size:clamp(1.25rem,4.4vw,1.75rem);line-height:1.25;font-weight:700;text-wrap:balance;max-width:28em}
+.idea mark{background:linear-gradient(transparent 58%,color-mix(in srgb,var(--beam) 50%,transparent) 58%);color:inherit}
+.aids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.aid{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.aid.wide{grid-column:1/-1}
+.aid h3{font-size:1.2rem;font-weight:700}
+.aid p.cap{font-size:.95rem;color:var(--muted)}
+.aid p.cap b{color:var(--ink)}
+.tag{align-self:flex-start;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;padding:3px 9px;border-radius:999px;
+  background:color-mix(in srgb,var(--tint) 24%,var(--surface));border:1px solid color-mix(in srgb,var(--tint) 55%,var(--line))}
+.tag.analogy{--tint:var(--beam)} .tag.diagram{--tint:var(--reflect)} .tag.try{--tint:var(--transmit)} .tag.data{--tint:var(--absorb)} .tag.real{--tint:var(--muted)} .tag.build{--tint:#8A63D2}
+ol.steps{margin:4px 0 0;padding-left:1.3em;display:grid;gap:6px}
+.stage{background:var(--surface-2);border-radius:10px;padding:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:.92rem;padding:7px 13px;min-height:40px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.ctl{display:grid;gap:6px}
+.ctl label{font-size:.92rem;font-weight:700}
+input[type=range]{width:100%;accent-color:var(--beam);height:32px}
+.readout{font-size:1rem}
+.readout b{font-family:var(--font-mono);font-weight:500}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{display:inline-flex;gap:6px;align-items:baseline;padding:5px 11px;border-radius:999px;font-family:var(--font-mono);font-size:.84rem;font-weight:500;background:var(--c);color:var(--on-color)}
+.pill.r{--c:var(--reflect)} .pill.a{--c:var(--absorb)} .pill.t{--c:var(--transmit)}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.trio>div{display:grid;gap:6px;align-content:start;min-width:0}
+.trio h4{margin:0;font-family:var(--font-display);font-size:1.05rem}
+.trio p{font-size:.93rem;color:var(--muted)}
+.trio svg{background:var(--surface-2);border-radius:10px}
+.swatch-r{color:var(--reflect);font-weight:700}.swatch-t{color:var(--transmit);font-weight:700}.swatch-a{color:var(--absorb);font-weight:700}
+
+/* stacked bars */
+.bars{display:grid;gap:9px}
+.brow{display:grid;grid-template-columns:104px minmax(0,1fr);gap:10px;align-items:center;font-size:.9rem}
+.brow.on .lab{font-weight:700}
+.stack{display:flex;height:28px;border-radius:7px;overflow:hidden;background:var(--surface-2);outline:2px solid transparent;outline-offset:2px}
+.brow.on .stack{outline-color:var(--ink)}
+.seg{display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:.72rem;color:var(--on-color);min-width:0;overflow:hidden}
+.seg.r{background:var(--reflect)}.seg.t{background:var(--transmit)}.seg.a{background:var(--absorb)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.88rem}
+.legend span::before{content:"";display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--c)}
+.legend .r{--c:var(--reflect)}.legend .t{--c:var(--transmit)}.legend .a{--c:var(--absorb)}
+
+/* sort game, quiz */
+.items{display:grid;gap:10px}
+.item{display:grid;gap:6px;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.item .nm{font-weight:700}
+.item .opts{display:flex;flex-wrap:wrap;gap:6px}
+.opt{font-size:.85rem;padding:6px 10px;border-radius:8px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;min-height:36px;text-align:left}
+.opt:hover:not([disabled]){border-color:var(--ink)}
+.opt.good{background:var(--transmit);color:var(--on-color);border-color:var(--transmit)}
+.opt.bad{background:var(--absorb);color:var(--on-color);border-color:var(--absorb)}
+.fb{font-size:.88rem;color:var(--muted)}
+.score{font-family:var(--font-mono);font-size:.9rem}
+.q{display:grid;gap:10px;padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.q h4{margin:0;font-size:1.05rem;font-family:var(--font-body);font-weight:700}
+.q .opts{display:grid;gap:8px}
+
+/* tables */
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:.92rem;min-width:420px}
+.tbl th,.tbl td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+.tbl th{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+/* see-through demo */
+.seebox{position:relative;border-radius:10px;overflow:hidden;background:var(--surface-2);padding:22px 16px;min-height:130px;display:grid;place-items:center}
+.seetext{font-family:var(--font-display);font-weight:800;font-size:clamp(1.2rem,5vw,1.7rem);text-align:center;letter-spacing:.02em;transition:filter .2s,opacity .2s}
+.seesheets{position:absolute;inset:0;pointer-events:none;background:var(--surface);transition:opacity .2s}
+.meter{height:12px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--transmit);transition:width .2s}
+
+/* canvas */
+canvas{width:100%;aspect-ratio:640/260;display:block;border-radius:10px;background:var(--surface-2)}
+.tally{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;font-size:.85rem}
+.tally div{padding:8px;border-radius:8px;background:var(--bg);border:1px solid var(--line)}
+.tally b{display:block;font-family:var(--font-mono);font-weight:500;font-size:1.05rem}
+
+/* color mixer + channel columns */
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.colx{display:grid;gap:6px;justify-items:center;font-size:.85rem;text-align:center}
+.tube{position:relative;width:100%;max-width:90px;height:150px;border:2px solid var(--line);border-radius:8px;display:flex;flex-direction:column-reverse;overflow:hidden;background:var(--bg)}
+.tube.empty{border-style:dashed}
+.tube .rf{background:var(--cc)}
+.tube .ab{background:repeating-linear-gradient(45deg,var(--surface-2) 0 6px,var(--line) 6px 9px)}
+.colx .nm{font-weight:700}
+.colx.r{--cc:var(--red)}.colx.g{--cc:var(--green)}.colx.b{--cc:var(--blue)}
+
+/* waffle */
+.waffle{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:3px;max-width:300px;width:100%}
+.cell{aspect-ratio:1;border-radius:3px}
+.cell.r{background:var(--reflect)}.cell.t{background:var(--transmit)}.cell.a{background:var(--absorb)}
+
+/* ice race */
+.race{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pad{position:relative;height:170px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden}
+.pad.w{background:#F4F4F1}.pad.b{background:#14161C}
+.pad .lbl{position:absolute;left:8px;top:6px;font-size:.78rem;font-family:var(--font-mono)}
+.pad.w .lbl{color:#333}.pad.b .lbl{color:#ddd}
+.puddle{position:absolute;width:110px;height:46px;border-radius:50%;background:#7CC4F2;opacity:.65;transform:scale(0);bottom:22px}
+.ice{position:relative;width:76px;height:76px;border-radius:12px;background:linear-gradient(135deg,#E4F6FF,#9ED7F5);border:2px solid #fff;transform-origin:50% 100%;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.sunbar{height:10px;border-radius:99px;background:linear-gradient(90deg,var(--beam),color-mix(in srgb,var(--beam) 30%,transparent));opacity:.25;transition:opacity .3s}
+.sunbar.on{opacity:1}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap}
+.btn{font-size:.95rem;font-weight:700;padding:9px 16px;min-height:42px;border-radius:10px;border:0;background:var(--beam);color:var(--beam-ink);cursor:pointer}
+.btn.ghost{background:var(--surface);color:var(--ink);border:1.5px solid var(--line)}
+.btn:hover{filter:brightness(1.06)}
+
+/* misc */
+.glossary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px;margin:0}
+.glossary div{padding:10px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--line)}
+.glossary dt{font-weight:700}
+.glossary dd{margin:2px 0 0;font-size:.93rem;color:var(--muted)}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+details+details{margin-top:10px}
+summary{cursor:pointer;font-weight:700}
+details .in{display:grid;gap:10px;padding-top:10px;font-size:.95rem}
+details ul{margin:0;padding-left:1.2em;display:grid;gap:4px}
+footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;border-top:1px solid var(--line);padding-top:16px}
+.flow{stroke-dasharray:10 8;animation:flow 1s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-18}}
+@media (prefers-reduced-motion: reduce){.flow{animation:none}html{scroll-behavior:auto}.seetext,.seesheets,.meter i{transition:none}}
+@media (max-width:760px){
+  .aids{grid-template-columns:minmax(0,1fr)}
+  .trio{grid-template-columns:minmax(0,1fr)}
+  .glossary{grid-template-columns:minmax(0,1fr)}
+  .tally{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:420px){.brow{grid-template-columns:84px minmax(0,1fr)}.race{grid-template-columns:minmax(0,1fr)}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="mBeam" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--beam)"/></marker>
+    <marker id="mReflect" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--reflect)"/></marker>
+    <marker id="mTransmit" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--transmit)"/></marker>
+    <marker id="mAbsorb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--absorb)"/></marker>
+    <marker id="mInk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--ink)"/></marker>
+    <marker id="mRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#D93036"/></marker>
+  </defs>
+</svg>
+
+<header class="hero">
+  <p class="kicker">Sixth grade science · Unit 1</p>
+  <h1>Light &amp; Matter</h1>
+  <p class="lede">You can see through a window but not through a door. A black shirt gets very hot in the sun while a white one stays cooler. Same sunlight, different results. By the end of this page you can explain why.</p>
+  <p class="bridge"><b>Where we start:</b> if you have not yet done <b>Unit 0: How Science Works</b>, take a quick look first: the steps of asking, hypothesizing, and testing are used in every unit. Light, the topic here, is the best first example: everything you see is light bouncing off, passing through, or soaking into matter. Keep one question in mind for the next unit: <i>when light is absorbed, where does that energy go?</i></p>
+      <div class="hero-art">
+    <svg viewBox="0 0 640 190" role="img" aria-label="A lamp sends a beam of light to a slab. Some light bounces back, some passes through, and some is absorbed as heat.">
+      <circle cx="46" cy="100" r="20" style="fill:var(--beam);stroke:var(--ink);stroke-width:2"/>
+      <path d="M68 86 L296 86 L296 114 L68 114Z" style="fill:var(--beam);opacity:.35"/>
+      <line x1="68" y1="100" x2="292" y2="100" class="flow" style="stroke:var(--beam);stroke-width:5"/>
+      <rect x="300" y="38" width="28" height="124" rx="4" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:2.5"/>
+      <line x1="298" y1="100" x2="196" y2="36" style="stroke:var(--reflect);stroke-width:4" marker-end="url(#mReflect)"/>
+      <line x1="330" y1="100" x2="520" y2="100" style="stroke:var(--transmit);stroke-width:4" marker-end="url(#mTransmit)"/>
+      <path d="M306 28 q5 -10 10 0 t10 0" style="fill:none;stroke:var(--absorb);stroke-width:3.5;stroke-linecap:round"/>
+      <path d="M306 14 q5 -10 10 0 t10 0" style="fill:none;stroke:var(--absorb);stroke-width:3.5;stroke-linecap:round;opacity:.6"/>
+      <text x="90" y="30" font-size="17" style="fill:var(--reflect);font-weight:700">bounces back</text>
+      <text x="530" y="106" font-size="17" style="fill:var(--transmit);font-weight:700">passes through</text>
+      <text x="340" y="24" font-size="17" style="fill:var(--absorb);font-weight:700">soaked up as heat</text>
+      <text x="16" y="150" font-size="16">light source</text>
+    </svg>
+  </div>
+  <p class="howto">Every concept below has several visual aids. Look for the tags
+    <span class="tag analogy">Analogy</span><span class="tag diagram">Diagram</span><span class="tag try">Try it</span><span class="tag data">Data</span><span class="tag real">Real world</span></p>
+</header>
+
+<nav class="nav" aria-label="Lesson sections">
+  <ul>
+    <li><a href="#s1">1 Straight lines</a></li>
+    <li><a href="#s2">2 Three outcomes</a></li>
+    <li><a href="#s3">3 See-through?</a></li>
+    <li><a href="#s4">4 Color</a></li>
+    <li><a href="#s5">5 Heat</a></li>
+    <li><a href="#s6">6 Check yourself</a></li>
+    <li><a href="#game">7 Game</a></li>
+  </ul>
+</nav>
+
+<style>.bridge{margin:14px 0 0;padding:12px 14px;border-left:4px solid var(--beam);background:var(--surface-2);border-radius:0 10px 10px 0;font-size:.95rem;line-height:1.5}.related ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}.related li{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}.related a{font-weight:700}.related .why{display:block;color:var(--muted);font-size:.9rem}</style>
+<main>
+
+<!-- =============== 1 =============== -->
+<section class="sec" id="s1">
+  <div>
+    <p class="kicker">Concept 1 · How light travels</p>
+    <h2>Light goes straight</h2>
+  </div>
+  <p class="idea">Light travels in <mark>straight lines called rays</mark> until something gets in its way. That is why shadows exist.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>Straight arrows, not sprinkler drops</h3>
+      <div class="stage"><div id="sprinkler"></div></div>
+      <p>Light does not spray like a garden sprinkler. A water drop follows a curved arc because gravity pulls it down. A light ray does not sag: it keeps going in a <b>straight line</b> until it hits something.</p>
+      <p class="cap">Imagine tiny arrows flying out in every direction. A book stops the arrows that hit it, so the space directly behind gets none. <b>That arrow-free space is the shadow.</b></p>
+    </article>
+    <article class="aid">
+      <span class="tag diagram">Diagram</span>
+      <h3>Pinhole box: proof the rays are straight</h3>
+      <div class="stage">
+        <svg viewBox="0 0 480 280" role="img" aria-label="A pinhole box. Straight rays from the top and bottom of an arrow cross at the hole, so the image on the back wall is upside down.">
+          <path d="M200 20 H420 V240 H200" style="fill:none;stroke:var(--ink);stroke-width:3"/>
+          <path d="M200 20 V124 M200 136 V240" style="fill:none;stroke:var(--ink);stroke-width:3"/>
+          <line x1="420" y1="20" x2="420" y2="240" style="stroke:var(--ink);stroke-width:7"/>
+          <line x1="50" y1="80" x2="420" y2="203.3" style="stroke:var(--beam);stroke-width:2.6"/>
+          <line x1="50" y1="180" x2="420" y2="56.7" style="stroke:var(--beam);stroke-width:2.6"/>
+          <line x1="50" y1="180" x2="50" y2="90" style="stroke:var(--ink);stroke-width:5"/>
+          <path d="M50 76 l-9 16 h18z" style="fill:var(--ink)"/>
+          <line x1="404" y1="56.7" x2="404" y2="190" style="stroke:var(--ink);stroke-width:5"/>
+          <path d="M404 206 l-9 -16 h18z" style="fill:var(--ink)"/>
+          <text x="50" y="206" font-size="16" text-anchor="middle">object</text>
+          <text x="200" y="12" font-size="16" text-anchor="middle">pinhole</text>
+          <text x="330" y="262" font-size="16" text-anchor="middle">image on back wall is upside down</text>
+        </svg>
+      </div>
+      <p class="cap">The ray from the <b>top</b> of the arrow goes down through the hole. The ray from the <b>bottom</b> goes up. Straight lines that cross make a flipped picture. Your eye and a camera work the same way.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>Move the lamp, change the shadow</h3>
+      <div class="stage">
+        <svg id="shadowSvg" viewBox="0 0 640 280" role="img" aria-label="A lamp, a small object, and a wall. Rays from the lamp are blocked by the object and leave a shadow on the wall."></svg>
+      </div>
+      <div class="ctl">
+        <label for="lampSlider">Lamp position (drag left and right)</label>
+        <input id="lampSlider" type="range" min="40" max="240" step="1" value="120">
+      </div>
+      <p class="readout" id="shadowRead" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>How much bigger is the shadow?</h3>
+      <div class="stage">
+        <svg id="shadowChart" viewBox="0 0 640 250" role="img" aria-label="Line chart. The closer the lamp is to the object, the larger the shadow compared with the object."></svg>
+      </div>
+      <p class="cap">The wall is 60 cm behind the object. Move the slider above and watch the dot slide along the curve. <b>Closer lamp, bigger shadow.</b> A faraway lamp, like the Sun, makes a shadow almost the same size as the object.</p>
+    </article>
+  </div>
+</section>
+
+<!-- =============== 2 =============== -->
+<section class="sec" id="s2">
+  <div>
+    <p class="kicker">Concept 2 · What light does when it hits something</p>
+    <h2>Bounce, pass, or soak</h2>
+  </div>
+  <p class="idea">When light hits a material it can be <mark>reflected, transmitted, or absorbed</mark>. Usually it does a mix of all three.</p>
+  <div class="aids">
+    <article class="aid wide">
+      <span class="tag analogy">Analogy</span>
+      <h3>A ball hitting three different things</h3>
+      <div class="trio">
+        <div>
+          <svg viewBox="0 0 200 150" role="img" aria-label="A ball bounces off a wall."><rect x="150" y="15" width="14" height="120" rx="3" style="fill:var(--surface);stroke:var(--ink);stroke-width:2"/><circle cx="30" cy="38" r="9" style="fill:var(--beam);stroke:var(--ink);stroke-width:1.5"/><line x1="42" y1="43" x2="146" y2="92" style="stroke:var(--beam);stroke-width:3.5" marker-end="url(#mBeam)"/><line x1="146" y1="92" x2="52" y2="132" style="stroke:var(--reflect);stroke-width:3.5" marker-end="url(#mReflect)"/></svg>
+          <h4 class="swatch-r">Reflect</h4>
+          <p>A ball hits a wall and <b>bounces back</b>. Mirrors, snow, and white paper send most light back.</p>
+        </div>
+        <div>
+          <svg viewBox="0 0 200 150" role="img" aria-label="A ball flies through an open gap in a wall."><rect x="95" y="15" width="14" height="45" rx="3" style="fill:var(--surface);stroke:var(--ink);stroke-width:2"/><rect x="95" y="90" width="14" height="45" rx="3" style="fill:var(--surface);stroke:var(--ink);stroke-width:2"/><circle cx="26" cy="75" r="9" style="fill:var(--beam);stroke:var(--ink);stroke-width:1.5"/><line x1="38" y1="75" x2="186" y2="75" style="stroke:var(--transmit);stroke-width:3.5" marker-end="url(#mTransmit)"/></svg>
+          <h4 class="swatch-t">Transmit</h4>
+          <p>A ball flies through an open window and <b>keeps going</b>. Clear glass and clean water let most light through.</p>
+        </div>
+        <div>
+          <svg viewBox="0 0 200 150" role="img" aria-label="A ball lands in a sponge and stops. Heat squiggles rise."><rect x="118" y="46" width="64" height="80" rx="8" style="fill:var(--surface);stroke:var(--ink);stroke-width:2"/><circle cx="136" cy="68" r="4" style="fill:var(--line)"/><circle cx="158" cy="90" r="5" style="fill:var(--line)"/><circle cx="140" cy="108" r="4" style="fill:var(--line)"/><circle cx="168" cy="64" r="3" style="fill:var(--line)"/><circle cx="26" cy="75" r="9" style="fill:var(--beam);stroke:var(--ink);stroke-width:1.5"/><line x1="38" y1="77" x2="114" y2="86" style="stroke:var(--beam);stroke-width:3.5" marker-end="url(#mBeam)"/><path d="M126 34 q5 -9 10 0 t10 0 t10 0 t10 0" style="fill:none;stroke:var(--absorb);stroke-width:3.5;stroke-linecap:round"/><path d="M126 20 q5 -9 10 0 t10 0 t10 0 t10 0" style="fill:none;stroke:var(--absorb);stroke-width:3.5;stroke-linecap:round;opacity:.55"/></svg>
+          <h4 class="swatch-a">Absorb</h4>
+          <p>A ball lands in a sponge and <b>stays there</b>. Its energy gets soaked in. Dark cloth and asphalt soak up light and warm up.</p>
+        </div>
+      </div>
+    </article>
+    <article class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>Shine light on different materials</h3>
+      <div class="chips" id="matChips" role="group" aria-label="Choose a material"></div>
+      <div class="stage"><svg id="matSvg" viewBox="0 0 640 300" role="img" aria-label="Light hits the chosen material. Thicker arrows mean more light takes that path."></svg></div>
+      <div class="pills" id="matPills"></div>
+      <p class="readout" id="matNote" aria-live="polite"></p>
+      <p class="cap">Thicker arrow = more of the light goes that way. The numbers are rounded teaching values, not lab measurements.</p>
+    </article>
+    <article class="aid">
+      <span class="tag data">Data</span>
+      <h3>If 100 units of light hit a material, where do they go?</h3>
+      <div class="bars" id="matBars"></div>
+      <div class="legend"><span class="r">reflected</span><span class="t">transmitted</span><span class="a">absorbed</span></div>
+      <p class="cap">Every bar adds up to 100. A mirror is almost all blue. A window is almost all teal. A black shirt is almost all orange.</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Quick sort</h3>
+      <p class="cap">What does each thing do <b>most</b>? Tap an answer.</p>
+      <div class="items" id="sortItems"></div>
+      <p class="score" id="sortScore">0 of 8 correct</p>
+    </article>
+  </div>
+</section>
+
+<!-- =============== 3 =============== -->
+<section class="sec" id="s3">
+  <div>
+    <p class="kicker">Concept 3 · Why materials are different</p>
+    <h2>See-through, sort of, or not at all</h2>
+  </div>
+  <p class="idea">Materials are <mark>transparent, translucent, or opaque</mark> depending on how their tiny particles handle light.</p>
+  <div class="aids">
+    <article class="aid wide">
+      <span class="tag analogy">Analogy</span>
+      <h3>Three spaces: hallway, crowd, wall</h3>
+      <div class="trio">
+        <div>
+          <svg viewBox="0 0 200 150" role="img" aria-label="Three people walk straight down an empty hallway."><line x1="0" y1="20" x2="200" y2="20" style="stroke:var(--ink);stroke-width:3"/><line x1="0" y1="130" x2="200" y2="130" style="stroke:var(--ink);stroke-width:3"/><circle cx="100" cy="28" r="7" style="fill:var(--muted)"/><circle cx="100" cy="122" r="7" style="fill:var(--muted)"/><g style="stroke:var(--transmit);stroke-width:3"><line x1="26" y1="50" x2="186" y2="50" marker-end="url(#mTransmit)"/><line x1="26" y1="75" x2="186" y2="75" marker-end="url(#mTransmit)"/><line x1="26" y1="100" x2="186" y2="100" marker-end="url(#mTransmit)"/></g><g style="fill:var(--beam);stroke:var(--ink);stroke-width:1.5"><circle cx="16" cy="50" r="7"/><circle cx="16" cy="75" r="7"/><circle cx="16" cy="100" r="7"/></g></svg>
+          <h4>Empty hallway = transparent</h4>
+          <p>Almost nothing in the way. Light walks <b>straight through</b>, so you see a clear picture on the other side.</p>
+        </div>
+        <div>
+          <svg viewBox="0 0 200 150" role="img" aria-label="People zigzag through a crowded mall and come out the other side in different directions."><g style="fill:var(--surface);stroke:var(--ink);stroke-width:1.5"><circle cx="48" cy="30" r="7"/><circle cx="62" cy="86" r="7"/><circle cx="80" cy="52" r="7"/><circle cx="92" cy="112" r="7"/><circle cx="108" cy="30" r="7"/><circle cx="118" cy="78" r="7"/><circle cx="136" cy="48" r="7"/><circle cx="142" cy="108" r="7"/><circle cx="160" cy="76" r="7"/><circle cx="70" cy="128" r="7"/><circle cx="104" cy="58" r="7"/><circle cx="40" cy="64" r="7"/></g><g style="fill:none;stroke:var(--transmit);stroke-width:3"><path d="M14 60 L46 74 L72 66 L96 86 L128 62 L152 92 L188 70" marker-end="url(#mTransmit)"/><path d="M14 90 L50 100 L78 76 L110 100 L130 92 L160 120 L188 124" marker-end="url(#mTransmit)"/><path d="M14 40 L40 46 L66 30 L96 44 L122 28 L150 34 L188 28" marker-end="url(#mTransmit)"/></g><g style="fill:var(--beam);stroke:var(--ink);stroke-width:1.5"><circle cx="12" cy="60" r="6"/><circle cx="12" cy="90" r="6"/><circle cx="12" cy="40" r="6"/></g></svg>
+          <h4>Crowded mall = translucent</h4>
+          <p>People get through, but they bump around and leave in <b>random directions</b>. Light is scattered the same way: you see a glow, not a clear picture.</p>
+        </div>
+        <div>
+          <svg viewBox="0 0 200 150" role="img" aria-label="People run into a solid wall. Some bounce back and some stop."><rect x="122" y="12" width="18" height="126" rx="3" style="fill:var(--surface);stroke:var(--ink);stroke-width:2"/><line x1="26" y1="36" x2="118" y2="56" style="stroke:var(--beam);stroke-width:3" marker-end="url(#mBeam)"/><line x1="118" y1="56" x2="40" y2="92" style="stroke:var(--reflect);stroke-width:3" marker-end="url(#mReflect)"/><line x1="26" y1="116" x2="118" y2="116" style="stroke:var(--beam);stroke-width:3" marker-end="url(#mBeam)"/><path d="M146 100 q5 -9 10 0 t10 0 t10 0" style="fill:none;stroke:var(--absorb);stroke-width:3.2;stroke-linecap:round"/><g style="fill:var(--beam);stroke:var(--ink);stroke-width:1.5"><circle cx="16" cy="34" r="7"/><circle cx="16" cy="116" r="7"/></g></svg>
+          <h4>Locked wall = opaque</h4>
+          <p>Nobody gets through. Some people bounce back and the rest stop. No light reaches your eye from behind it, so <b>you see a shadow</b>.</p>
+        </div>
+      </div>
+      <p><b>What changes is the direction of the light.</b> Transparent: straight through, clear picture. Translucent: scattered, glow but no picture. Opaque: stopped, shadow.</p>
+      <p class="cap"><b>Where it breaks:</b> real materials are messy. A single sheet of frosted glass can be almost clear; five sheets are clearly translucent.</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Stack up wax paper</h3>
+      <div class="seebox" id="seebox">
+        <div class="seetext" id="seetext">CAN YOU READ THIS?</div>
+        <div class="seesheets" id="seesheets"></div>
+      </div>
+      <div class="meter" aria-hidden="true"><i id="seeMeter" style="width:100%"></i></div>
+      <div class="ctl">
+        <label for="layers">Sheets of wax paper in front of the words: <span id="layersVal">0</span></label>
+        <input id="layers" type="range" min="0" max="5" step="1" value="0">
+      </div>
+      <p class="readout" id="seeRead" aria-live="polite"></p>
+    </article>
+    <article class="aid">
+      <span class="tag real">Real world</span>
+      <h3>Sort your house</h3>
+      <div class="tw">
+        <table class="tbl">
+          <thead><tr><th>Type</th><th>Light does this</th><th>Examples</th></tr></thead>
+          <tbody>
+            <tr><td><b>Transparent</b></td><td>Passes through in straight lines</td><td>window glass, clear water, plastic wrap</td></tr>
+            <tr><td><b>Translucent</b></td><td>Passes through but scatters</td><td>wax paper, frosted bathroom glass, lampshade</td></tr>
+            <tr><td><b>Opaque</b></td><td>Reflected or absorbed, none gets through</td><td>wood door, brick, metal pan, cardboard</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="cap"><b>Home test:</b> hold the object between a flashlight and a wall. Sharp image = transparent. Glow with no shape = translucent. Dark shadow = opaque.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag diagram">Diagram</span>
+      <h3>Zoom way, way in</h3>
+      <div class="chips" id="zoomChips" role="group" aria-label="Choose a material to zoom in on">
+        <button class="chip" type="button" data-mode="clear" aria-pressed="true">Window glass</button>
+        <button class="chip" type="button" data-mode="scatter" aria-pressed="false">Wax paper</button>
+        <button class="chip" type="button" data-mode="opaque" aria-pressed="false">Brick</button>
+        <button class="chip" type="button" id="zoomPlay" aria-pressed="false">Pause</button>
+      </div>
+      <canvas id="zoomCv" width="640" height="260" role="img" aria-label="Zoomed-in animation. Small dots of light travel left to right into a block of matter made of particles. What happens depends on the material."></canvas>
+      <div class="tally" id="zoomTally"></div>
+      <p class="cap">Light is not one blob. Think of it as a stream of tiny packets of energy. The dark dots are the material's particles. <b>Glass:</b> few collisions, so most light passes. <b>Wax paper:</b> lots of bumps that bend the path. <b>Brick:</b> dense and tight, so light is bounced off or soaked up. Watch the warm particles glow when they absorb light.</p>
+    </article>
+  </div>
+</section>
+
+<!-- =============== 4 =============== -->
+<section class="sec" id="s4">
+  <div>
+    <p class="kicker">Concept 4 · Color</p>
+    <h2>Why a banana looks yellow</h2>
+  </div>
+  <p class="idea">White light is a <mark>mix of colors</mark>. An object bounces back some colors and soaks up the rest. The colors that reach your eye are the color you see.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>A bag of marbles</h3>
+      <div class="stage">
+        <svg viewBox="0 0 480 260" role="img" aria-label="Red, green, and blue marbles are thrown at a red apple. The red marble bounces back to an eye. The green and blue marbles are soaked up.">
+          <circle cx="360" cy="140" r="70" fill="#D93036" stroke="#7A1418" stroke-width="2"/>
+          <path d="M360 72 q4 -20 22 -26" fill="none" stroke="#6B4423" stroke-width="5" stroke-linecap="round"/>
+          <ellipse cx="392" cy="50" rx="16" ry="8" fill="#25904F" transform="rotate(-25 392 50)"/>
+          <circle cx="40" cy="80" r="10" fill="#D93036"/><circle cx="40" cy="140" r="10" fill="#25904F"/><circle cx="40" cy="200" r="10" fill="#3558D6"/>
+          <line x1="54" y1="80" x2="318" y2="80" style="stroke:var(--ink);stroke-width:2.5" marker-end="url(#mInk)"/>
+          <line x1="54" y1="140" x2="284" y2="140" style="stroke:var(--ink);stroke-width:2.5" marker-end="url(#mInk)"/>
+          <line x1="54" y1="200" x2="318" y2="200" style="stroke:var(--ink);stroke-width:2.5" marker-end="url(#mInk)"/>
+          <line x1="316" y1="74" x2="150" y2="42" stroke="#D93036" stroke-width="3" stroke-dasharray="7 5" marker-end="url(#mRed)"/>
+          <ellipse cx="124" cy="38" rx="24" ry="13" style="fill:var(--surface);stroke:var(--ink);stroke-width:2"/><circle cx="124" cy="38" r="7" style="fill:var(--ink)"/>
+          <text x="124" y="16" font-size="16" text-anchor="middle">your eye sees red</text>
+          <text x="190" y="166" font-size="16" style="fill:var(--absorb);font-weight:700">soaked up</text>
+          <text x="190" y="226" font-size="16" style="fill:var(--absorb);font-weight:700">soaked up</text>
+          <text x="240" y="252" font-size="15" text-anchor="middle">white light = red + green + blue marbles</text>
+        </svg>
+      </div>
+      <p>A red apple is a wall that <b>bounces red marbles</b> and <b>swallows green and blue ones</b>. Only red comes back to your eye, so the apple looks red.</p>
+      <p class="cap"><b>Where it breaks:</b> real objects reflect a blend of colors, not one pure marble. The blend still peaks in red, so your eye says "red."</p>
+    </article>
+    <article class="aid">
+      <span class="tag diagram">Diagram</span>
+      <h3>A prism splits white light</h3>
+      <div class="stage">
+        <svg viewBox="0 0 480 260" role="img" aria-label="A white beam enters a prism and fans out into a rainbow: red, orange, yellow, green, blue, indigo, violet.">
+          <line x1="30" y1="144" x2="188" y2="130" style="stroke:#8993AE;stroke-width:9;stroke-linecap:round"/>
+          <line x1="30" y1="144" x2="188" y2="130" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>
+          <path d="M170 190 L250 190 L210 60 Z" style="fill:var(--surface);fill-opacity:.55;stroke:var(--ink);stroke-width:3;stroke-linejoin:round"/>
+          <g stroke-width="9" stroke-linecap="round">
+            <line x1="228" y1="120" x2="440" y2="56" stroke="#E5383B"/>
+            <line x1="228" y1="120" x2="440" y2="76" stroke="#F77F00"/>
+            <line x1="228" y1="120" x2="440" y2="96" stroke="#F4C20D"/>
+            <line x1="228" y1="120" x2="440" y2="116" stroke="#2BA84A"/>
+            <line x1="228" y1="120" x2="440" y2="136" stroke="#1D7FE0"/>
+            <line x1="228" y1="120" x2="440" y2="156" stroke="#4B3FBF"/>
+            <line x1="228" y1="120" x2="440" y2="176" stroke="#8E44AD"/>
+          </g>
+          <text x="448" y="62" font-size="15">red</text>
+          <text x="448" y="182" font-size="15">violet</text>
+          <text x="30" y="124" font-size="15">white light</text>
+          <text x="240" y="244" font-size="15" text-anchor="middle">Raindrops do the same job: that is a rainbow.</text>
+        </svg>
+      </div>
+      <p class="cap">White light was never just white. It was a stack of colors traveling together. The prism bends each one by a different amount.</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Change the object and the light</h3>
+      <div class="ctl"><label>Object</label><div class="chips" id="objChips" role="group" aria-label="Choose an object"></div></div>
+      <div class="ctl"><label>Light shining on it</label><div class="chips" id="lightChips" role="group" aria-label="Choose a light color"></div></div>
+      <div class="stage"><svg id="mixSvg" viewBox="0 0 240 200" role="img" aria-label="The chosen object lit by the chosen colored light."></svg></div>
+      <p class="readout" id="mixRead" aria-live="polite"></p>
+    </article>
+    <article class="aid">
+      <span class="tag data">Data</span>
+      <h3>What the object does to each color</h3>
+      <div class="cols" id="mixCols"></div>
+      <p class="cap" id="mixCap">Colored part = reflected back to your eye. Striped part = absorbed. Dashed empty tube = that color is not in the light.</p>
+    </article>
+  </div>
+</section>
+
+<!-- =============== 5 =============== -->
+<section class="sec" id="s5">
+  <div>
+    <p class="kicker">Concept 5 · Light is energy</p>
+    <h2>Absorbed light becomes heat</h2>
+  </div>
+  <p class="idea">Light carries <mark>energy</mark>. When a material absorbs it, the material's particles jiggle faster and the object gets warmer.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>100 coins of sunlight</h3>
+      <div class="chips" id="carChips" role="group" aria-label="Choose a car color"></div>
+      <div class="waffle" id="waffle" aria-hidden="true"></div>
+      <p class="readout" id="waffleRead" aria-live="polite"></p>
+      <p class="cap">Think of sunlight as 100 coins landing on a car hood. <b>Reflected coins</b> get thrown back out. <b>Absorbed coins</b> stay in the pocket, and that energy shows up as heat.</p>
+      <div class="legend"><span class="r">reflected</span><span class="t">passes through</span><span class="a">absorbed (heat)</span></div>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Ice cube race</h3>
+      <div class="race">
+        <div class="pad w"><span class="lbl">WHITE paper</span><div class="puddle" id="puddleW"></div><div class="ice" id="iceW"></div></div>
+        <div class="pad b"><span class="lbl">BLACK paper</span><div class="puddle" id="puddleB"></div><div class="ice" id="iceB"></div></div>
+      </div>
+      <div class="sunbar" id="sunbar"></div>
+      <div class="btnrow"><button class="btn" id="iceGo" type="button">Turn on the sun</button><button class="btn ghost" id="iceReset" type="button">Reset</button></div>
+      <p class="readout" id="iceRead" aria-live="polite">Two identical ice cubes. Press the button to see which melts faster.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>Car temperature in the sun</h3>
+      <div class="chips" id="tempChips" role="group" aria-label="Choose which cars to show"></div>
+      <div class="stage"><svg id="tempSvg" viewBox="0 0 640 290" role="img" aria-label="Line chart of hood temperature over 30 minutes in the sun for four car colors. The black car gets hottest."></svg></div>
+      <div class="ctl">
+        <label for="tSlider">Minutes in the sun: <span id="tVal">15</span></label>
+        <input id="tSlider" type="range" min="0" max="30" step="1" value="15">
+      </div>
+      <p class="readout" id="tRead" aria-live="polite"></p>
+      <p class="cap">This is a simple model of a sunny summer day, starting at 75°F. The real numbers depend on the weather, but the pattern is real: <b>more absorbed light, more heat.</b></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>Where you have already seen this</h3>
+      <div class="tw">
+        <table class="tbl">
+          <thead><tr><th>Thing</th><th>What the light does</th><th>Result</th></tr></thead>
+          <tbody>
+            <tr><td><b>White roofs</b></td><td>Reflect most sunlight</td><td>Building stays cooler, less air conditioning</td></tr>
+            <tr><td><b>Solar panels</b></td><td>Dark surface absorbs light</td><td>Light energy is turned into electricity (and some heat)</td></tr>
+            <tr><td><b>Fresh snow</b></td><td>Reflects most sunlight</td><td>Snow melts slowly, and you squint without sunglasses</td></tr>
+            <tr><td><b>Black asphalt</b></td><td>Absorbs most sunlight</td><td>Road is hot enough to hurt bare feet</td></tr>
+            <tr><td><b>Bike reflectors</b></td><td>Bounce headlights straight back</td><td>Drivers see you at night</td></tr>
+            <tr><td><b>Greenhouse glass</b></td><td>Lets sunlight in, plants and soil absorb it</td><td>Inside warms up</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+    <article class="aid wide">
+      <span class="tag build">Build it</span>
+      <h3>Engineering challenge: the sun shade</h3>
+      <p><b>The problem:</b> build a free-standing shade that keeps an ice cube cooler than an identical ice cube with no shade, under the same lamp.</p>
+      <p><b>Criteria:</b> less meltwater than the uncovered control cube after 10 minutes. Least meltwater wins.</p>
+      <p><b>Constraints:</b> 4 straws, 1 meter of tape, and one sheet each of foil, black paper, white paper, wax paper, and plastic wrap. The shade must stand on its own, not taped to the lamp.</p>
+      <ol class="steps">
+        <li><b>Try it in the game first.</b> Play Beam Bounce at the bottom of this page. Notice which materials reflect a beam away and which absorb it.</li>
+        <li><b>Plan.</b> Sketch two different ideas on your design log. Label which parts reflect light away and which would absorb it if light got through.</li>
+        <li><b>Build and test.</b> Set your shaded cube and the bare control cube under the same lamp at the same time. After 10 minutes, pour off and measure each one's meltwater in mL.</li>
+        <li><b>Improve.</b> Change one thing, test again, and record it.</li>
+      </ol>
+      <p class="cap">Print a <a href="../design-log.html#shade">design log</a> for each team. A shade that reflects light away works differently than one that just blocks it and absorbs the heat itself.</p>
+    </article>
+  </div>
+</section>
+
+<!-- =============== 6 =============== -->
+<section class="sec" id="s6">
+  <div>
+    <p class="kicker">Check yourself</p>
+    <h2>Can you explain it?</h2>
+  </div>
+  <p class="idea">Answer the big question from the top: <mark>why is a window see-through, and why does black get hotter than white?</mark></p>
+  <details>
+    <summary>Show a model answer</summary>
+    <div class="in">
+      <p><b>Window:</b> glass is transparent. Light travels through it in straight lines, so you see a clear picture on the other side. A door is opaque, so the light is reflected or absorbed and none gets through.</p>
+      <p><b>Black vs. white:</b> a black shirt absorbs almost all the light that lands on it. Absorbed light energy turns into thermal energy, so the shirt warms up. A white shirt reflects most of the light, so less energy stays behind.</p>
+    </div>
+  </details>
+  <div class="items" id="quiz"></div>
+  <p class="score" id="quizScore">0 of 6 correct</p>
+  <h3 style="margin-top:8px">Words to know</h3>
+  <dl class="glossary">
+    <div><dt>ray</dt><dd>A straight line showing the path light takes.</dd></div>
+    <div><dt>reflect</dt><dd>Light bounces off a surface.</dd></div>
+    <div><dt>transmit</dt><dd>Light passes through a material.</dd></div>
+    <div><dt>absorb</dt><dd>Light energy is soaked into a material.</dd></div>
+    <div><dt>transparent</dt><dd>Lets light through in straight lines. You can see clearly.</dd></div>
+    <div><dt>translucent</dt><dd>Lets some light through but scatters it. Images look blurry.</dd></div>
+    <div><dt>opaque</dt><dd>Lets no light through.</dd></div>
+    <div><dt>scatter</dt><dd>Light is bounced in many directions.</dd></div>
+    <div><dt>spectrum</dt><dd>The rainbow of colors that makes up white light.</dd></div>
+    <div><dt>thermal energy</dt><dd>The energy of moving particles. More of it means a higher temperature.</dd></div>
+  </dl>
+  <details>
+    <summary>Tutor notes: hands-on kit, misconceptions, pacing</summary>
+    <div class="in">
+      <p><b>Kit (about $10):</b> a flashlight, wax paper, aluminum foil, black and white construction paper, clear plastic wrap, a CD or small prism, ice cubes, a sunny windowsill or a lamp. For the sun shade: 4 straws and a meter of tape.</p>
+      <ul>
+        <li><b>Concept 1:</b> make a shadow puppet, then move the flashlight closer and farther. Tape a pinhole in black paper and project a window onto a wall.</li>
+        <li><b>Concept 2:</b> shine the flashlight on foil, plastic wrap, black paper, and white paper. Predict first, then sort.</li>
+        <li><b>Concept 3:</b> layer wax paper over printed text, one sheet at a time, like the slider.</li>
+        <li><b>Concept 4:</b> view colored objects through red, green, and blue plastic.</li>
+        <li><b>Concept 5:</b> put identical ice cubes on black and white paper in a sunny window. Time them. Then run the sun shade challenge (about 30 minutes including the 10-minute test).</li>
+      </ul>
+      <p><b>Common misconceptions to listen for:</b></p>
+      <ul>
+        <li>"We see because light comes out of our eyes." Light travels <i>into</i> the eye after bouncing off things.</li>
+        <li>"Only mirrors reflect." Everything you can see is reflecting light, just in scattered directions.</li>
+        <li>"Absorbed light disappears." It becomes thermal energy.</li>
+        <li>"Black reflects black." Black objects reflect almost nothing, which is why they look dark.</li>
+        <li>"A shadow is a thing." A shadow is just the place the rays could not reach.</li>
+      </ul>
+      <p><b>Pacing:</b> about five 30-minute sessions, one per concept, with the check-yourself questions at the start of the next session as a warm-up.</p>
+      <p><b>Ask these out loud:</b> What would change if the glass were thicker? Why is the inside of a car hotter than the outside? What color would the apple look under blue light, and why?</p>
+    </div>
+  </details>
+</section>
+
+<section class="sec lesson-game-sec" id="game"><div><p class="kicker">After the lesson · Game</p><h2>Play: Beam Bounce</h2></div><p class="idea">Steer a beam of light with mirrors, windows, color filters, and paint. Every level uses one idea from this lesson: reflect, transmit, or absorb.</p><div class="lesson-game" id="lesson-game"></div>
+<script>(function(){
+/* Mounts one game into a shadow root so the lesson page's CSS and the game's CSS never collide. */
+function __mountLessonGame(host, css, html, init){
+  if(!host || host.shadowRoot) return;
+  const root = host.attachShadow({mode:"open"});
+  root.innerHTML = "<style>"+css+"</style>"+html;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let visible = true;
+  try{ new IntersectionObserver(es=>{ visible = es[es.length-1].isIntersecting; }).observe(host); }catch(e){}
+  const loops = [];
+  let last = performance.now();
+  function frame(t){
+    const dt = Math.min(0.05, (t-last)/1000); last = t;
+    if(visible && !document.hidden) for(const f of loops){ try{ f(t, dt); }catch(e){ console.error(e); } }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+  const env = {
+    root, reduce,
+    $: id => root.getElementById(id),
+    $$: sel => [...root.querySelectorAll(sel)],
+    loop: f => loops.push(f),
+    esc: s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])),
+    // A canvas drawn in fixed logical units (W x H) that scales to its container.
+    stage(canvas, W, H){
+      const ctx = canvas.getContext("2d");
+      const st = {ctx, W, H, dpr:1};
+      function fit(){
+        st.dpr = Math.min(2.5, window.devicePixelRatio || 1);
+        const cw = canvas.clientWidth || W;
+        const scale = cw / W;
+        canvas.width = Math.round(W*scale*st.dpr); canvas.height = Math.round(H*scale*st.dpr);
+        st.k = scale*st.dpr;
+        ctx.setTransform(st.k,0,0,st.k,0,0);
+        if(st.onfit) st.onfit();
+      }
+      canvas.style.aspectRatio = W+"/"+H;
+      st.begin = () => ctx.setTransform(st.k,0,0,st.k,0,0);
+      st.pt = ev => { const r = canvas.getBoundingClientRect(); return {x:(ev.clientX-r.left)*W/r.width, y:(ev.clientY-r.top)*H/r.height}; };
+      try{ new ResizeObserver(fit).observe(canvas); }catch(e){ addEventListener("resize", fit); }
+      fit();
+      return st;
+    },
+    // Level buttons in the header.
+    levelBar(box, names, onPick){
+      const solved = new Set(); let cur = 0;
+      function render(){
+        box.innerHTML = '<span class="label">Level</span>';
+        names.forEach((n,i)=>{ const b = document.createElement("button"); b.type="button";
+          b.className = "lv"+(solved.has(i)?" done":""); b.textContent = i+1; b.title = n;
+          b.setAttribute("aria-label", "Level "+(i+1)+": "+n+(solved.has(i)?" (solved)":""));
+          if(i===cur) b.setAttribute("aria-current","true");
+          b.onclick = () => { cur = i; render(); onPick(i); }; box.appendChild(b); });
+      }
+      render();
+      return { set(i){ cur=i; render(); }, solve(i){ solved.add(i); render(); }, get cur(){ return cur; }, solved };
+    },
+    // Result card over a stage. buttons: [{label, primary, onClick}]
+    card(stageEl, o){
+      let ov = stageEl.querySelector(":scope > .over");
+      if(!ov){ ov = document.createElement("div"); ov.className = "over"; stageEl.appendChild(ov); }
+      ov.hidden = false;
+      ov.innerHTML = '<div class="card'+(o.fail?' fail':'')+'" role="dialog" aria-live="polite"><h4></h4>'+(o.why?'<span class="why"></span>':'')+'<p class="cb"></p><div class="btns"></div></div>';
+      ov.querySelector("h4").textContent = o.title;
+      if(o.why) ov.querySelector(".why").textContent = o.why;
+      ov.querySelector(".cb").textContent = o.body || "";
+      if(o.list && o.list.length){ const ul = document.createElement("ul"); ul.className = "clist";
+        o.list.forEach(t => { const li = document.createElement("li"); li.textContent = t; ul.appendChild(li); });
+        ov.querySelector(".cb").after(ul); }
+      const bb = ov.querySelector(".btns");
+      (o.buttons||[]).forEach((b,i)=>{ const e = document.createElement("button"); e.type="button"; e.className = "btn"+(b.primary?" primary":""); e.textContent = b.label;
+        e.onclick = () => { ov.hidden = true; b.onClick && b.onClick(); }; bb.appendChild(e); if(i===0) setTimeout(()=>e.focus({preventScroll:true}),30); });
+      if(getComputedStyle(ov).position === "static") setTimeout(()=>ov.scrollIntoView({block:"nearest", behavior: reduce?"auto":"smooth"}), 40);
+      return ov;
+    },
+    hideCard(stageEl){ const ov = stageEl.querySelector(":scope > .over"); if(ov) ov.hidden = true; }
+  };
+  try{ init(root, env); }catch(e){ console.error(e); root.innerHTML += '<p style="color:#fff;padding:12px">This game could not start.</p>'; }
+}
+
+__mountLessonGame(document.getElementById("lesson-game"), "/* Shared frame for every lesson game. Lives inside a shadow root, so nothing here touches the lesson page.\n   Deliberately one dark \"lab console\" look in both page themes; each game sets its own --acc accent. */\n:host{\n  display:block; color-scheme:dark;\n  --bg:#0B0F15; --panel:#141A23; --panel-2:#1B2330; --line:#2B3544; --ink:#E9EEF5; --muted:#93A0B2;\n  --good:#3FD3BB; --bad:#FF6B5E; --warn:#FFB547; --acc:#FFD84A; --acc-ink:#1A1400;\n  --reflect:#78A2FF; --heat:#FF7A2E;\n  --f-display:\"Bahnschrift\",\"DIN Alternate\",\"Roboto Condensed\",\"Arial Narrow\",system-ui,sans-serif;\n  --f-body:\"Roboto\",\"Segoe UI\",system-ui,-apple-system,sans-serif;\n  --f-mono:ui-monospace,\"Roboto Mono\",\"Cascadia Mono\",Menlo,Consolas,monospace;\n}\n*{box-sizing:border-box}\n[hidden]{display:none!important}\n.g{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;border-radius:16px;\n  border:1px solid var(--line);padding:16px;display:grid;gap:14px;text-align:left;box-shadow:0 10px 36px rgba(0,0,0,.35)}\n.g button{font:inherit;color:inherit}\n.g :focus-visible{outline:3px solid var(--acc);outline-offset:2px}\n.g h3,.g h4{margin:0;font-family:var(--f-display);letter-spacing:.02em;line-height:1.15}\n.g p{margin:0}\n.bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 18px}\n.brand{display:grid;gap:2px}\n.label{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}\n.gtitle{font-family:var(--f-display);font-weight:700;font-size:1.45rem;text-transform:uppercase;letter-spacing:.04em}\n.gtitle b{color:var(--acc);font-weight:700}\n.levels{display:flex;flex-wrap:wrap;gap:6px;align-items:center}\n.lv{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--line);background:var(--panel);font-family:var(--f-mono);font-size:.85rem;cursor:pointer;font-variant-numeric:tabular-nums;padding:0}\n.lv:hover{border-color:var(--muted)}\n.lv.done{border-color:var(--good);color:var(--good)}\n.lv[aria-current=\"true\"]{background:var(--acc);border-color:var(--acc);color:var(--acc-ink);font-weight:700}\n.goalrow{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 12px}\n.goalrow h4{font-size:1.25rem}\n.goalrow .goal{color:var(--muted)}\n.cols{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:14px;align-items:start}\n.cols>*{min-width:0}\n.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:10px;min-width:0}\n.panel>.label{margin-bottom:-2px}\n.stage{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px;min-width:0}\n.stage canvas{display:block;width:100%;max-width:100%;height:auto;border-radius:8px;touch-action:none}\n.btns{display:flex;flex-wrap:wrap;gap:8px}\n.btn{padding:8px 14px;min-height:40px;border-radius:10px;border:1.5px solid var(--line);background:var(--panel-2);cursor:pointer;font-weight:700;font-size:.92rem;line-height:1.2}\n.btn:hover:not([disabled]){border-color:var(--muted)}\n.btn[disabled]{opacity:.45;cursor:default}\n.btn.primary{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}\n.btn[aria-pressed=\"true\"]{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset}\n.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;font-size:.82rem;border:1px solid var(--line);background:var(--panel-2)}\n.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}\n.msg{font-size:.93rem;padding:9px 12px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line)}\n.msg.good{border-color:color-mix(in srgb,var(--good) 60%,var(--line));color:var(--ink)}\n.msg.bad{border-color:color-mix(in srgb,var(--bad) 60%,var(--line))}\n.msg.warn{border-color:color-mix(in srgb,var(--warn) 60%,var(--line))}\n.help{font-size:.86rem;color:var(--muted)}\n.meter{height:12px;border-radius:99px;background:var(--panel-2);overflow:hidden;border:1px solid var(--line)}\n.meter>i{display:block;height:100%;background:var(--acc);transition:width .15s}\n.ctl{display:grid;gap:4px}\n.ctl label{font-size:.9rem;font-weight:700;display:flex;justify-content:space-between;gap:8px}\n.ctl input[type=range]{width:100%;accent-color:var(--acc);height:30px;margin:0}\n.over{position:absolute;inset:6px;border-radius:8px;display:grid;place-items:center;padding:14px;background:color-mix(in srgb,var(--bg) 74%,transparent);backdrop-filter:blur(2px);z-index:5}\n.card{max-width:440px;display:grid;gap:10px;padding:18px;border-radius:14px;background:var(--panel-2);border:1px solid var(--acc);box-shadow:0 0 36px color-mix(in srgb,var(--acc) 22%,transparent)}\n.card h4{font-size:1.5rem;color:var(--acc)}\n.card.fail{border-color:var(--bad);box-shadow:0 0 36px color-mix(in srgb,var(--bad) 18%,transparent)}\n.card.fail h4{color:var(--bad)}\n.clist{margin:0;padding-left:1.15em;display:grid;gap:5px;font-size:.9rem}\n.over{align-items:start}\n.card{position:sticky;top:16px;margin-top:clamp(8px,8%,60px)}\n.why{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}\ntable.data{width:100%;border-collapse:collapse;font-size:.85rem}\ntable.data th,table.data td{padding:5px 7px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}\ntable.data th{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}\ntable.data td.num{text-align:right}\n.scroll{overflow-x:auto}\n@media (max-width:820px){.cols{grid-template-columns:minmax(0,1fr)}\n  .over{position:static;inset:auto;background:none;backdrop-filter:none;padding:8px 0 2px}\n  .card{max-width:none;position:static;margin-top:0}}\n@media (prefers-reduced-motion:reduce){.meter>i{transition:none}}\n\n:host{--acc:#FFD84A;--acc-ink:#1A1400}\n:host{--table:var(--bg);--plate:var(--panel);--plate-2:var(--panel-2);--rail:var(--line);--steel:#C3CDD9;--transmit:#3FD3BB;--win:var(--acc);\n--font-display:var(--f-display);--font-mono:var(--f-mono)}\n.game{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:16px;align-items:start}\n.boardcol{display:grid;gap:10px;min-width:0}\n.title-row{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px}\n.title-row h2{margin:0;font-family:var(--font-display);font-size:1.5rem;font-weight:700;letter-spacing:.02em}\n.title-row .goal{color:var(--muted);font-size:.98rem}\n.boardwrap{position:relative;border-radius:14px;background:var(--plate);border:1px solid var(--rail);padding:6px;box-shadow:0 12px 40px rgba(0,0,0,.45)}\n.boardwrap canvas{display:block;width:100%;height:auto;max-width:100%;border-radius:10px;cursor:pointer;touch-action:manipulation}\n.help{font-size:.88rem;color:var(--muted)}\n.help kbd{font-family:var(--font-mono);font-size:.78rem;padding:1px 6px;border-radius:5px;border:1px solid var(--rail);background:var(--plate);color:var(--ink)}\n\n\n.aside{display:grid;gap:14px;min-width:0}\n.panel{background:var(--plate);border:1px solid var(--rail);border-radius:14px;padding:14px;display:grid;gap:10px}\n.panel h3{margin:0;font-family:var(--font-mono);font-size:.74rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}\n.tray{display:grid;gap:8px}\n.part{display:grid;grid-template-columns:40px minmax(0,1fr) auto;align-items:center;gap:10px;padding:7px 10px;border-radius:10px;\n  border:1.5px solid var(--rail);background:var(--plate-2);cursor:pointer;text-align:left;min-height:52px}\n.part:hover:not([disabled]){border-color:var(--steel)}\n.part[aria-pressed=\"true\"]{border-color:var(--win);box-shadow:0 0 0 1px var(--win) inset}\n.part[disabled]{opacity:.45;cursor:default}\n.part svg{width:40px;height:40px;display:block}\n.part .nm{font-weight:700;line-height:1.2}\n.part .sub{display:block;font-size:.8rem;font-weight:400;color:var(--muted)}\n.part .ct{font-family:var(--font-mono);font-variant-numeric:tabular-nums;font-size:.95rem;padding:2px 8px;border-radius:999px;background:var(--table);border:1px solid var(--rail)}\n.hinttext{font-size:.92rem;color:var(--ink);padding:10px 12px;border-radius:10px;background:var(--plate-2);border:1px dashed var(--rail);margin:0}\n\n.log{list-style:none;margin:0;padding:0;display:grid;gap:8px}\n.log li{display:grid;grid-template-columns:12px minmax(0,1fr);gap:9px;font-size:.92rem;line-height:1.4}\n.log li::before{content:\"\";width:10px;height:10px;border-radius:50%;margin-top:5px;background:var(--dot,var(--muted))}\n.log li.t-reflect{--dot:var(--reflect)}.log li.t-transmit{--dot:var(--transmit)}.log li.t-absorb{--dot:var(--heat)}.log li.t-win{--dot:var(--win)}\n.log .empty{color:var(--muted)}\n.legend{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:.78rem;color:var(--muted)}\n.legend span::before{content:\"\";display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--c)}\n\n@media (max-width:860px){ .game{grid-template-columns:minmax(0,1fr)} }\n@media (max-width:420px){ .part{grid-template-columns:34px minmax(0,1fr) auto} .part svg{width:34px;height:34px} }\n", "<div class=\"g\">\n  <div class=\"bar\">\n    <div class=\"goalrow\"><h4 id=\"lvName\">First Bounce</h4><span class=\"goal\" id=\"lvGoal\"></span></div>\n    <nav class=\"levels\" id=\"levelBtns\" aria-label=\"Levels\"></nav>\n  </div>\n  <div class=\"game\">\n    <section class=\"boardcol\" aria-label=\"Game board\">\n      <div class=\"boardwrap\" id=\"boardwrap\">\n        <canvas id=\"board\" tabindex=\"0\" aria-label=\"Optical table. Use the arrow keys to move, Enter to place or turn a piece, Delete to pick it up.\"></canvas>\n      </div>\n      <p class=\"help\">Pick a part, then click a square to place it. Click a placed mirror or paint panel to turn it.\n        Right-click a part to pick it up. Keyboard: <kbd>&larr;&uarr;&darr;&rarr;</kbd> move, <kbd>Enter</kbd> place or turn, <kbd>Delete</kbd> pick up, <kbd>1</kbd>&ndash;<kbd>6</kbd> choose a part.</p>\n    </section>\n    <div class=\"aside\">\n      <div class=\"panel\">\n        <span class=\"label\">Parts tray</span>\n        <div class=\"tray\" id=\"tray\"></div>\n        <div class=\"btns\"><button class=\"btn\" id=\"hintBtn\" type=\"button\">Hint</button><button class=\"btn\" id=\"resetBtn\" type=\"button\">Clear my parts</button></div>\n        <p class=\"hinttext\" id=\"hint\" hidden></p>\n      </div>\n      <div class=\"panel\">\n        <span class=\"label\">Beam log</span>\n        <ul class=\"log\" id=\"log\"></ul>\n        <div class=\"legend\"><span style=\"--c:var(--reflect)\">reflected</span><span style=\"--c:var(--transmit)\">transmitted</span><span style=\"--c:var(--heat)\">absorbed</span></div>\n      </div>\n    </div>\n  </div>\n</div>", function(root, env){
+// ---- Beam Bounce: shared game logic (used by the page and by the level checker) ----
+const COLOR_NAMES = {1:"red",2:"green",3:"yellow",4:"blue",5:"magenta",6:"cyan",7:"white"};
+const DIRS = {R:[1,0],L:[-1,0],U:[0,-1],D:[0,1]};
+function colorName(c){ return COLOR_NAMES[c] || "no"; }
+function parts(c){ // list primary colors inside c
+  const out=[]; if(c&1)out.push("red"); if(c&2)out.push("green"); if(c&4)out.push("blue");
+  return out.length<=1?out.join(""):out.slice(0,-1).join(", ")+" and "+out[out.length-1];
+}
+
+/* Levels. Map legend: . empty   # wall (opaque)   w clear window (transparent)
+   k black block (absorbs)   / \ fixed mirrors. Everything else is listed in `items`.
+   Colors: 1 red, 2 green, 4 blue, 7 white. */
+const LEVELS = [
+ { name:"First Bounce", map:[
+   ".........",
+   ".........",
+   ".........",
+   ".........",
+   ".........",
+   ".........",
+   "........."],
+   items:[{t:"emit",x:0,y:5,d:"R",c:7},{t:"target",x:6,y:1,c:7}],
+   tray:{mirror:1},
+   goal:"Steer the beam into the target.",
+   hint:"Put the mirror where the beam is, right under the target. Click the mirror to turn it.",
+   learn:"Smooth, shiny surfaces like mirrors reflect light. The beam bounces off and keeps going in a new direction."},
+
+ { name:"Around the Wall", map:[
+   ".........",
+   "....#....",
+   "....#....",
+   "....#....",
+   "....#....",
+   "....#....",
+   "....#...."],
+   items:[{t:"emit",x:0,y:3,d:"R",c:7},{t:"target",x:7,y:0,c:7}],
+   tray:{mirror:2},
+   goal:"The wall is in the way. Find a path over it.",
+   hint:"Send the beam up first, then turn it right along the top row.",
+   learn:"Walls are opaque: no light gets through. Two mirrors can carry a beam around anything that blocks it."},
+
+ { name:"Black Soaks It Up", map:[
+   ".........",
+   "....k....",
+   "....k....",
+   "....k....",
+   ".........",
+   ".........",
+   "........."],
+   items:[{t:"emit",x:0,y:1,d:"R",c:7},{t:"target",x:8,y:5,c:7}],
+   tray:{mirror:2},
+   goal:"Get past the black blocks.",
+   hint:"Watch what happens when the beam hits black. Then go under the blocks instead.",
+   learn:"Black surfaces absorb almost all the light that hits them. The light's energy turns into heat, which is why a black shirt gets hot in the sun."},
+
+ { name:"Window or Wall", map:[
+   "....#....",
+   "....w....",
+   "....#....",
+   "....wk...",
+   "....#....",
+   "....#....",
+   "....#...."],
+   items:[{t:"emit",x:0,y:5,d:"R",c:7},{t:"target",x:7,y:5,c:7}],
+   tray:{mirror:3},
+   goal:"Use a window to get through the wall.",
+   hint:"Both windows let light through, but only one of them leads somewhere useful.",
+   learn:"Clear glass is transparent: light passes straight through it. The wall is opaque and stops the light completely."},
+
+ { name:"Red Light Only", map:[
+   ".........",
+   ".........",
+   "#########",
+   ".........",
+   "#########",
+   ".........",
+   "........."],
+   items:[{t:"emit",x:0,y:3,d:"R",c:7},{t:"target",x:8,y:3,c:1}],
+   tray:{filter1:1,filter2:1,filter4:1},
+   goal:"This target only lights up for red light.",
+   hint:"White light is red, green and blue mixed together. Which filter keeps only the red?",
+   learn:"A red filter transmits red light and absorbs green and blue. White light is all the colors mixed, so a filter picks one out."},
+
+ { name:"Two Colors", map:[
+   ".........",
+   ".........",
+   ".........",
+   "...#.....",
+   ".........",
+   ".........",
+   "........."],
+   items:[{t:"emit",x:0,y:1,d:"R",c:7},{t:"emit",x:0,y:5,d:"R",c:7},
+          {t:"target",x:7,y:6,c:1},{t:"target",x:8,y:0,c:4}],
+   tray:{mirror:2,filter1:1,filter2:1,filter4:1},
+   goal:"Light both targets with the right colors.",
+   hint:"Beams can cross each other without bumping. Each beam needs one mirror and one filter.",
+   learn:"Light beams pass right through each other. Each target only responds to its own color of light."},
+
+ { name:"Blocked by Blue", map:[
+   "....#....",
+   "....#....",
+   "....#....",
+   ".........",
+   "....#....",
+   "....#....",
+   "........."],
+   items:[{t:"emit",x:0,y:3,d:"R",c:7},{t:"filter",x:4,y:3,c:4},{t:"target",x:6,y:6,c:1}],
+   tray:{mirror:2,filter1:1},
+   goal:"Make red light and get it to the red target.",
+   hint:"Try sending red light into the blue filter. What happens? Then use the gap at the bottom.",
+   learn:"A blue filter only lets blue through. Red light has no blue in it, so the blue filter absorbs all of it."},
+
+ { name:"Painted Red", map:[
+   ".........",
+   ".........",
+   ".........",
+   ".........",
+   ".........",
+   ".........",
+   "........."],
+   items:[{t:"emit",x:0,y:1,d:"R",c:7},{t:"paint",x:4,y:1,c:1,o:"\\"},{t:"target",x:8,y:5,c:1}],
+   tray:{mirror:1},
+   goal:"White light hits a red-painted wall. Follow what bounces off.",
+   hint:"Look at the color of the beam after it hits the red paint.",
+   learn:"Red paint reflects red light and absorbs the green and blue. That is why it looks red to your eyes: only red light bounces back to you."},
+
+ { name:"Paint Shop", map:[
+   ".........",
+   ".........",
+   ".........",
+   ".........",
+   ".........",
+   ".........",
+   "........."],
+   items:[{t:"emit",x:0,y:3,d:"R",c:7},{t:"emit",x:8,y:6,d:"L",c:7},
+          {t:"target",x:5,y:0,c:2},{t:"target",x:3,y:0,c:4}],
+   tray:{paint1:1,paint2:1,paint4:1},
+   goal:"No mirrors this time. Use colored paint to bounce the light.",
+   hint:"Each painted panel reflects only its own color. Click a panel to turn it.",
+   learn:"An object's color is the light it reflects. Green paint bounces back green and soaks up red and blue."},
+
+ { name:"Lab Finale", map:[
+   "....k....",
+   "....w....",
+   "....#....",
+   "....#....",
+   "....#....",
+   ".........",
+   "....k...."],
+   items:[{t:"emit",x:0,y:0,d:"R",c:7},{t:"emit",x:8,y:6,d:"L",c:7},
+          {t:"filter",x:4,y:5,c:4},{t:"target",x:8,y:3,c:2},{t:"target",x:0,y:5,c:4}],
+   tray:{mirror:5,filter1:1,filter2:1},
+   goal:"Two beams, two targets, one wall. Use everything you've learned.",
+   hint:"The top beam goes through the window. The bottom beam goes through the blue filter.",
+   learn:"Mirrors reflect, glass transmits, black absorbs, and colored filters and paints sort light by color. You used all of it."}
+];
+
+function cellFromChar(ch){
+  switch(ch){
+    case "#": return {t:"wall",fixed:true};
+    case "w": return {t:"window",fixed:true};
+    case "k": return {t:"black",fixed:true};
+    case "/": return {t:"mirror",o:"/",fixed:true};
+    case "\\": return {t:"mirror",o:"\\",fixed:true};
+    default: return null;
+  }
+}
+function buildBoard(level){
+  const h=level.map.length, w=level.map[0].length;
+  const b=[]; for(let y=0;y<h;y++){ b.push([]); for(let x=0;x<w;x++) b[y].push(cellFromChar(level.map[y][x])); }
+  for(const it of level.items){ const c=Object.assign({fixed:true},it); delete c.x; delete c.y; b[it.y][it.x]=c; }
+  return {w,h,cells:b};
+}
+function reflect(dx,dy,o){ return o==="/" ? [-dy,-dx] : [dy,dx]; }
+
+// Trace every beam. Returns line segments (in cell units), events, and target status.
+function trace(board){
+  const {w,h,cells}=board, segs=[], events=[], hits={}, seen=new Set();
+  const beams=[];
+  for(let y=0;y<h;y++) for(let x=0;x<w;x++){ const c=cells[y][x];
+    if(c&&c.t==="emit"){ const [dx,dy]=DIRS[c.d]; beams.push({x,y,dx,dy,c:c.c,sx:x+.5+dx*.32,sy:y+.5+dy*.32}); } }
+  while(beams.length){
+    let bm=beams.shift(); let {x,y,dx,dy,c,sx,sy}=bm; let steps=0;
+    while(steps++<400){
+      const nx=x+dx, ny=y+dy;
+      const key=nx+","+ny+","+dx+","+dy+","+c; if(seen.has(key)) break; seen.add(key);
+      const edgeX=x+.5+dx*.5, edgeY=y+.5+dy*.5, cx=nx+.5, cy=ny+.5;
+      if(nx<0||ny<0||nx>=w||ny>=h){ segs.push({x1:sx,y1:sy,x2:edgeX,y2:edgeY,c}); events.push({k:"out",c}); break; }
+      const cell=cells[ny][nx];
+      if(!cell){ x=nx;y=ny; continue; }
+      if(cell.t==="window"){ events.push({k:"window",c}); x=nx;y=ny; continue; }
+      if(cell.t==="wall"||cell.t==="emit"){ segs.push({x1:sx,y1:sy,x2:edgeX,y2:edgeY,c}); events.push({k:"wall",c,x:nx,y:ny}); break; }
+      if(cell.t==="black"){ segs.push({x1:sx,y1:sy,x2:edgeX,y2:edgeY,c}); events.push({k:"black",c,x:nx,y:ny,px:edgeX,py:edgeY}); break; }
+      if(cell.t==="target"){ segs.push({x1:sx,y1:sy,x2:cx,y2:cy,c});
+        const tk=nx+","+ny; const ok=(c===cell.c);
+        hits[tk]=hits[tk]||{ok:false,wrong:0}; if(ok) hits[tk].ok=true; else hits[tk].wrong=c;
+        events.push({k:ok?"lit":"wrongcolor",c,tc:cell.c}); break; }
+      if(cell.t==="mirror"){ segs.push({x1:sx,y1:sy,x2:cx,y2:cy,c}); [dx,dy]=reflect(dx,dy,cell.o);
+        events.push({k:"mirror",c}); x=nx;y=ny;sx=cx;sy=cy; continue; }
+      if(cell.t==="filter"){ const nc=c&cell.c; segs.push({x1:sx,y1:sy,x2:cx,y2:cy,c});
+        events.push({k:"filter",c,nc,fc:cell.c,x:nx,y:ny,px:cx,py:cy});
+        if(!nc) break; c=nc; x=nx;y=ny;sx=cx;sy=cy; continue; }
+      if(cell.t==="paint"){ const nc=c&cell.c; segs.push({x1:sx,y1:sy,x2:cx,y2:cy,c});
+        events.push({k:"paint",c,nc,fc:cell.c,x:nx,y:ny,px:cx,py:cy});
+        if(!nc) break; [dx,dy]=reflect(dx,dy,cell.o); c=nc; x=nx;y=ny;sx=cx;sy=cy; continue; }
+      break;
+    }
+  }
+  let total=0, lit=0;
+  for(let y=0;y<h;y++) for(let x=0;x<w;x++){ const c=cells[y][x]; if(c&&c.t==="target"){ total++; if(hits[x+","+y]&&hits[x+","+y].ok) lit++; } }
+  return {segs,events,hits,total,lit,won:total>0&&lit===total};
+}
+
+// Plain-language sentence for one event (what the beam log shows).
+function describe(e){
+  const cn=colorName(e.c);
+  switch(e.k){
+    case "mirror": return {tone:"reflect",text:`The mirror reflected the ${cn} beam.`};
+    case "window": return {tone:"transmit",text:`The ${cn} beam passed straight through the clear window. Glass is transparent.`};
+    case "wall": return {tone:"stop",text:`The wall is opaque. It stopped the ${cn} beam.`};
+    case "black": return {tone:"absorb",text:`The black block absorbed the ${cn} light and turned it into heat.`};
+    case "filter": {
+      const fn=colorName(e.fc), lost=parts(e.c&~e.nc);
+      if(!e.nc) return {tone:"absorb",text:`The ${fn} filter absorbed all of the ${cn} light. ${cn[0].toUpperCase()+cn.slice(1)} light has no ${fn} in it.`};
+      if(!lost) return {tone:"transmit",text:`The ${fn} filter let the ${cn} light pass through.`};
+      return {tone:"transmit",text:`The ${fn} filter let ${colorName(e.nc)} through and absorbed the ${lost}.`};
+    }
+    case "paint": {
+      const fn=colorName(e.fc), lost=parts(e.c&~e.nc);
+      if(!e.nc) return {tone:"absorb",text:`The ${fn} paint absorbed all of the ${cn} light. Nothing bounced off.`};
+      if(!lost) return {tone:"reflect",text:`The ${fn} paint reflected the ${cn} light.`};
+      return {tone:"reflect",text:`The ${fn} paint reflected ${colorName(e.nc)} and absorbed the ${lost}.`};
+    }
+    case "lit": return {tone:"win",text:`The ${colorName(e.tc)} target is lit!`};
+    case "wrongcolor": return {tone:"stop",text:`The ${colorName(e.tc)} target needs ${colorName(e.tc)} light, but ${cn} light arrived.`};
+    case "out": return {tone:"stop",text:`The ${cn} beam left the table.`};
+  }
+  return null;
+}
+
+
+
+const BEAM={1:"#FF4040",2:"#33FF77",3:"#FFE640",4:"#4D86FF",5:"#FF4DF0",6:"#40F0FF",7:"#FFF6DE"};
+const LETTER={1:"R",2:"G",4:"B",7:"W"};
+const PART_INFO={
+  mirror:{nm:"Mirror",sub:"Reflects every color"},
+  filter1:{nm:"Red filter",sub:"Lets only red through"},
+  filter2:{nm:"Green filter",sub:"Lets only green through"},
+  filter4:{nm:"Blue filter",sub:"Lets only blue through"},
+  paint1:{nm:"Red paint",sub:"Reflects only red"},
+  paint2:{nm:"Green paint",sub:"Reflects only green"},
+  paint4:{nm:"Blue paint",sub:"Reflects only blue"},
+};
+const reduce=env.reduce;
+const cv=env.$("board"), ctx=cv.getContext("2d");
+let li=0, board=null, placed={}, tool=null, cursor={x:0,y:0,show:false}, hover=null, result=null, solved=new Set(), winShown=false, winTimer=0;
+
+function kindOf(cell){ if(cell.t==="mirror") return "mirror"; return cell.t+cell.c; }
+function makePiece(kind,o){ if(kind==="mirror") return {t:"mirror",o:o||"/"}; const t=kind.slice(0,-1), c=+kind.slice(-1); return t==="paint"?{t,c,o:o||"/"}:{t,c}; }
+function remaining(kind){ const L=LEVELS[li]; let used=0; for(const k in placed) if(placed[k]===kind) used++; return (L.tray[kind]||0)-used; }
+
+function loadLevel(i,keep){
+  li=i; board=buildBoard(LEVELS[i]); placed={};
+  if(keep&&keep.placed){ for(const k in keep.placed){ const [x,y]=k.split(",").map(Number); const p=keep.placed[k];
+    if(!board.cells[y][x]){ board.cells[y][x]=makePiece(p.kind,p.o); placed[k]=p.kind; } } }
+  const kinds=Object.keys(LEVELS[i].tray); tool=kinds.find(k=>remaining(k)>0)||null;
+  winShown=false; clearTimeout(winTimer); env.hideCard(env.$("boardwrap"));
+  env.$("hint").hidden=true;
+  env.$("lvName").textContent=LEVELS[i].name;
+  env.$("lvGoal").textContent=LEVELS[i].goal;
+  env.$("hint").textContent=LEVELS[i].hint;
+  cursor={x:0,y:0,show:false}; resize(); update();
+}
+
+/* ---------- UI: level buttons, tray, log ---------- */
+function renderLevels(){
+  const box=env.$("levelBtns"); box.innerHTML='<span class="label">Level</span>';
+  LEVELS.forEach((L,i)=>{ const b=document.createElement("button"); b.className="lv"+(solved.has(i)?" done":"");
+    b.textContent=i+1; b.title=L.name; b.setAttribute("aria-label",`Level ${i+1}: ${L.name}${solved.has(i)?" (solved)":""}`);
+    if(i===li) b.setAttribute("aria-current","true"); b.onclick=()=>{loadLevel(i);renderLevels();}; box.appendChild(b); });
+}
+function partIcon(kind){
+  const st=`stroke-linecap="round"`;
+  if(kind==="mirror") return `<svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="8" fill="#0B0F15"/><line x1="10" y1="30" x2="30" y2="10" stroke="#C3CDD9" stroke-width="4" ${st}/><line x1="13" y1="33" x2="33" y2="13" stroke="#5B6676" stroke-width="2" stroke-dasharray="2 3"/></svg>`;
+  const c=+kind.slice(-1), col=BEAM[c], L=LETTER[c];
+  if(kind.startsWith("filter")) return `<svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="8" fill="#0B0F15"/><rect x="10" y="7" width="20" height="26" rx="3" fill="${col}" fill-opacity=".35" stroke="${col}" stroke-width="2"/><text x="20" y="25" text-anchor="middle" font-family="ui-monospace,monospace" font-weight="700" font-size="13" fill="#fff">${L}</text></svg>`;
+  return `<svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="8" fill="#0B0F15"/><line x1="10" y1="30" x2="30" y2="10" stroke="${col}" stroke-width="6" ${st}/><text x="29" y="33" text-anchor="middle" font-family="ui-monospace,monospace" font-weight="700" font-size="11" fill="#fff">${L}</text></svg>`;
+}
+function renderTray(){
+  const box=env.$("tray"); box.innerHTML="";
+  Object.keys(LEVELS[li].tray).forEach((k,i)=>{ const r=remaining(k), info=PART_INFO[k];
+    const b=document.createElement("button"); b.className="part"; b.setAttribute("aria-pressed",tool===k?"true":"false");
+    b.disabled=r<=0&&tool!==k;
+    b.innerHTML=`${partIcon(k)}<span class="nm">${info.nm}<span class="sub">${i+1} · ${info.sub}</span></span><span class="ct" aria-label="${r} left">×${r}</span>`;
+    b.onclick=()=>{ tool=k; renderTray(); draw(); cv.focus({preventScroll:true}); }; box.appendChild(b); });
+}
+function renderLog(){
+  const ul=env.$("log"); ul.innerHTML=""; const seen=new Set(); let n=0;
+  for(const e of result.events){ const d=describe(e); if(!d||seen.has(d.text)) continue; seen.add(d.text);
+    const li_=document.createElement("li"); li_.className="t-"+d.tone; li_.textContent=d.text; ul.appendChild(li_); if(++n>=7) break; }
+  if(!n){ const p=document.createElement("li"); p.className="empty"; p.textContent="Nothing yet."; ul.appendChild(p); }
+}
+
+function update(){
+  result=trace(board); renderTray(); renderLog(); draw();
+  if(result.won&&!winShown){ winShown=true; solved.add(li); renderLevels();
+    winTimer=setTimeout(()=>{ env.card(env.$("boardwrap"),{title:"Target lit!",why:"The science",body:LEVELS[li].learn,
+      buttons:[{label:li<LEVELS.length-1?"Next level":"Play again from level 1",primary:true,onClick:()=>{ loadLevel(li<LEVELS.length-1?li+1:0); renderLevels(); cv.focus({preventScroll:true}); }},
+               {label:"Keep playing",onClick:()=>cv.focus({preventScroll:true})}]}); }, reduce?150:700); }
+  if(!result.won){ winShown=false; env.hideCard(env.$("boardwrap")); }
+}
+
+/* ---------- actions ---------- */
+function act(x,y){
+  const k=x+","+y, cell=board.cells[y][x];
+  if(cell){
+    if(cell.fixed){ flash(x,y); return; }
+    if(cell.o){ cell.o=cell.o==="/"?"\\":"/"; update(); return; }
+    pickUp(x,y); return;
+  }
+  if(!tool||remaining(tool)<=0){ const k2=Object.keys(LEVELS[li].tray).find(t=>remaining(t)>0); if(!k2) return; tool=k2; }
+  board.cells[y][x]=makePiece(tool); placed[k]=tool;
+  if(remaining(tool)<=0){ const nxt=Object.keys(LEVELS[li].tray).find(t=>remaining(t)>0); if(nxt) tool=nxt; }
+  update();
+}
+function pickUp(x,y){ const k=x+","+y, cell=board.cells[y][x]; if(!cell||cell.fixed) return;
+  tool=placed[k]; delete placed[k]; board.cells[y][x]=null; update(); }
+let flashCell=null, flashT=0;
+function flash(x,y){ flashCell={x,y}; flashT=performance.now(); }
+
+/* ---------- geometry ---------- */
+let S=60, M=26, dpr=1;
+function resize(){
+  const w=board.w,h=board.h; const avail=cv.parentElement.clientWidth-12;
+  S=Math.max(30,Math.min(78,Math.floor((avail-28)/w))); M=Math.round(S*.42);
+  dpr=window.devicePixelRatio||1; const W=w*S+M*2, H=h*S+M*2;
+  cv.width=W*dpr; cv.height=H*dpr; cv.style.aspectRatio=W+"/"+H;
+  draw();
+}
+function cellAt(ev){ const r=cv.getBoundingClientRect(); const sc=(board.w*S+M*2)/r.width;
+  const x=Math.floor(((ev.clientX-r.left)*sc-M)/S), y=Math.floor(((ev.clientY-r.top)*sc-M)/S);
+  return (x>=0&&y>=0&&x<board.w&&y<board.h)?{x,y}:null; }
+
+/* ---------- drawing ---------- */
+function rr(x,y,w,h,r){ ctx.beginPath(); ctx.roundRect?ctx.roundRect(x,y,w,h,r):ctx.rect(x,y,w,h); }
+function drawTable(){
+  const W=board.w*S+M*2,H=board.h*S+M*2;
+  ctx.fillStyle="#141A23"; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle="#10151D"; rr(M-4,M-4,board.w*S+8,board.h*S+8,8); ctx.fill();
+  // tapped holes on a regular pitch, like a real optical breadboard
+  for(let y=0;y<=board.h;y++) for(let x=0;x<=board.w;x++){ ctx.fillStyle="#05070A"; ctx.beginPath(); ctx.arc(M+x*S,M+y*S,Math.max(1.6,S*.045),0,7); ctx.fill(); }
+  ctx.strokeStyle="rgba(140,153,171,.08)"; ctx.lineWidth=1;
+  for(let x=1;x<board.w;x++){ ctx.beginPath(); ctx.moveTo(M+x*S,M); ctx.lineTo(M+x*S,M+board.h*S); ctx.stroke(); }
+  for(let y=1;y<board.h;y++){ ctx.beginPath(); ctx.moveTo(M,M+y*S); ctx.lineTo(M+board.w*S,M+y*S); ctx.stroke(); }
+  // edge coordinates
+  ctx.fillStyle="#5E6B7D"; ctx.font=`${Math.round(S*.2)}px ui-monospace,Menlo,monospace`; ctx.textAlign="center"; ctx.textBaseline="middle";
+  for(let x=0;x<board.w;x++) ctx.fillText(String.fromCharCode(65+x),M+x*S+S/2,M/2);
+  for(let y=0;y<board.h;y++) ctx.fillText(y+1,M/2,M+y*S+S/2);
+}
+function bolts(px,py){ ctx.fillStyle="#6B7686"; for(const [a,b] of [[.16,.16],[.84,.16],[.16,.84],[.84,.84]]){ ctx.beginPath(); ctx.arc(px+a*S,py+b*S,S*.035,0,7); ctx.fill(); } }
+function drawCell(x,y,c,now){
+  const px=M+x*S, py=M+y*S, cx=px+S/2, cy=py+S/2;
+  ctx.save();
+  if(c.t==="wall"){ const g=ctx.createLinearGradient(px,py,px+S,py+S); g.addColorStop(0,"#4A5566"); g.addColorStop(1,"#2C3440");
+    ctx.fillStyle=g; rr(px+2,py+2,S-4,S-4,5); ctx.fill(); ctx.strokeStyle="rgba(255,255,255,.08)"; ctx.stroke(); bolts(px,py); }
+  else if(c.t==="black"){ ctx.fillStyle="#020203"; rr(px+3,py+3,S-6,S-6,6); ctx.fill(); ctx.strokeStyle="#262B33"; ctx.lineWidth=1.5; ctx.stroke(); }
+  else if(c.t==="window"){ ctx.fillStyle="rgba(170,225,255,.13)"; rr(px+S*.3,py+3,S*.4,S-6,4); ctx.fill();
+    ctx.strokeStyle="rgba(190,235,255,.55)"; ctx.lineWidth=1.5; ctx.stroke();
+    ctx.strokeStyle="rgba(255,255,255,.5)"; ctx.beginPath(); ctx.moveTo(px+S*.38,py+S*.2); ctx.lineTo(px+S*.48,py+S*.08); ctx.stroke(); }
+  else if(c.t==="mirror"||c.t==="paint"){
+    const d=S*.34, sgn=c.o==="/"?1:-1;
+    const x1=cx-d, y1=cy+d*sgn, x2=cx+d, y2=cy-d*sgn;
+    // mount
+    ctx.fillStyle=c.fixed?"#222A36":"#1C2430"; ctx.beginPath(); ctx.arc(cx,cy,S*.42,0,7); ctx.fill();
+    ctx.strokeStyle=c.fixed?"#3A4554":"rgba(255,216,74,.35)"; ctx.lineWidth=1.5; ctx.stroke();
+    // back hatch (the non-shiny side)
+    const nx=-(y2-y1), ny=(x2-x1), nl=Math.hypot(nx,ny), ox=nx/nl*S*.07, oy=ny/nl*S*.07;
+    ctx.strokeStyle="#4C5768"; ctx.lineWidth=Math.max(2,S*.05); ctx.lineCap="round";
+    ctx.beginPath(); ctx.moveTo(x1+ox,y1+oy); ctx.lineTo(x2+ox,y2+oy); ctx.stroke();
+    ctx.strokeStyle="#4C5768"; ctx.beginPath(); ctx.moveTo(x1-ox,y1-oy); ctx.lineTo(x2-ox,y2-oy); ctx.stroke();
+    if(c.t==="mirror"){ const g=ctx.createLinearGradient(x1,y1,x2,y2); g.addColorStop(0,"#9AA7B8"); g.addColorStop(.5,"#FFFFFF"); g.addColorStop(1,"#9AA7B8");
+      ctx.strokeStyle=g; ctx.lineWidth=Math.max(3,S*.09); }
+    else { ctx.strokeStyle=BEAM[c.c]; ctx.lineWidth=Math.max(5,S*.14); }
+    ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
+    if(c.t==="paint"){ ctx.fillStyle="#0B0F15"; ctx.font=`700 ${Math.round(S*.22)}px ui-monospace,monospace`; ctx.textAlign="center"; ctx.textBaseline="middle";
+      ctx.fillStyle="#fff"; ctx.fillText(LETTER[c.c],cx+S*.22,cy+(sgn>0?S*.22:-S*.22)); }
+    if(c.fixed) bolts(px,py);
+  }
+  else if(c.t==="filter"){ const col=BEAM[c.c];
+    ctx.fillStyle=c.fixed?"#222A36":"#1C2430"; rr(px+S*.24,py+S*.06,S*.52,S*.88,5); ctx.fill();
+    ctx.globalAlpha=.4; ctx.fillStyle=col; rr(px+S*.3,py+S*.12,S*.4,S*.76,4); ctx.fill(); ctx.globalAlpha=1;
+    ctx.strokeStyle=col; ctx.lineWidth=2; ctx.stroke();
+    ctx.fillStyle="#fff"; ctx.font=`700 ${Math.round(S*.26)}px ui-monospace,monospace`; ctx.textAlign="center"; ctx.textBaseline="middle"; ctx.fillText(LETTER[c.c],cx,cy+1);
+    if(c.fixed) bolts(px,py);
+  }
+  else if(c.t==="emit"){ const [dx,dy]=DIRS[c.d]; ctx.translate(cx,cy); ctx.rotate(Math.atan2(dy,dx));
+    ctx.fillStyle="#2F3846"; rr(-S*.42,-S*.26,S*.62,S*.52,6); ctx.fill(); ctx.strokeStyle="#4A5566"; ctx.lineWidth=1.5; ctx.stroke();
+    ctx.fillStyle="#1A2029"; rr(S*.18,-S*.13,S*.2,S*.26,3); ctx.fill();
+    ctx.fillStyle=BEAM[c.c]; ctx.shadowColor=BEAM[c.c]; ctx.shadowBlur=S*.3; ctx.beginPath(); ctx.arc(S*.34,0,S*.07,0,7); ctx.fill(); ctx.shadowBlur=0;
+    ctx.rotate(-Math.atan2(dy,dx)); ctx.fillStyle="#D7DEE8"; ctx.font=`700 ${Math.round(S*.17)}px ui-monospace,monospace`; ctx.textAlign="center"; ctx.textBaseline="middle";
+    ctx.fillText(c.c===7?"LAMP":LETTER[c.c],-dx*S*.08,-dy*S*.08);
+  }
+  else if(c.t==="target"){ const col=BEAM[c.c]; const h=result&&result.hits[x+","+y]; const lit=h&&h.ok, wrong=h&&!h.ok&&h.wrong;
+    if(lit){ const pulse=reduce?1:.85+.15*Math.sin(now/220); ctx.shadowColor=col; ctx.shadowBlur=S*.6*pulse; }
+    ctx.fillStyle=lit?col:"#10151D"; ctx.beginPath(); ctx.arc(cx,cy,S*.4,0,7); ctx.fill(); ctx.shadowBlur=0;
+    ctx.strokeStyle=col; ctx.lineWidth=Math.max(2,S*.05);
+    for(const r of [.4,.27,.14]){ ctx.globalAlpha=lit?1:.75; ctx.beginPath(); ctx.arc(cx,cy,S*r,0,7); ctx.stroke(); }
+    ctx.globalAlpha=1; ctx.fillStyle=lit?"#0B0F15":"#fff"; ctx.font=`700 ${Math.round(S*.22)}px ui-monospace,monospace`; ctx.textAlign="center"; ctx.textBaseline="middle";
+    ctx.fillText(LETTER[c.c],cx,cy+1);
+    if(wrong){ ctx.strokeStyle="#FF7A2E"; ctx.lineWidth=3; ctx.setLineDash([4,4]); ctx.beginPath(); ctx.arc(cx,cy,S*.47,0,7); ctx.stroke(); ctx.setLineDash([]); }
+  }
+  ctx.restore();
+}
+function drawBeams(now){
+  ctx.save(); ctx.globalCompositeOperation="lighter"; ctx.lineCap="round";
+  const P=(v)=>M+v*S;
+  for(const s of result.segs){ const col=BEAM[s.c];
+    ctx.strokeStyle=col; ctx.globalAlpha=.16; ctx.lineWidth=S*.36; ctx.beginPath(); ctx.moveTo(P(s.x1),P(s.y1)); ctx.lineTo(P(s.x2),P(s.y2)); ctx.stroke();
+    ctx.globalAlpha=.85; ctx.lineWidth=Math.max(2.5,S*.075); ctx.stroke();
+    ctx.globalAlpha=.9; ctx.strokeStyle="#FFFFFF"; ctx.lineWidth=Math.max(1,S*.022); ctx.stroke();
+    if(!reduce){ // light travelling along the beam
+      const len=Math.hypot(s.x2-s.x1,s.y2-s.y1); if(len<.05) continue; const step=.8, off=(now/600)%step;
+      ctx.fillStyle=col; ctx.globalAlpha=.9;
+      for(let t=off;t<len;t+=step){ const f=t/len; ctx.beginPath(); ctx.arc(P(s.x1+(s.x2-s.x1)*f),P(s.y1+(s.y2-s.y1)*f),S*.055,0,7); ctx.fill(); } }
+  }
+  ctx.restore();
+  // heat where light was absorbed
+  for(const e of result.events){ if(e.k!=="black"&&!((e.k==="filter"||e.k==="paint")&&(e.c&~e.nc))) continue;
+    const px=M+(e.px)*S, py=M+(e.py)*S; const f=reduce?1:.7+.3*Math.sin(now/90+px);
+    const g=ctx.createRadialGradient(px,py,0,px,py,S*.45); g.addColorStop(0,`rgba(255,122,46,${.75*f})`); g.addColorStop(1,"rgba(255,122,46,0)");
+    ctx.fillStyle=g; ctx.beginPath(); ctx.arc(px,py,S*.45,0,7); ctx.fill(); }
+}
+function draw(now){
+  if(!board||!result) return; now=now||performance.now();
+  ctx.setTransform(dpr,0,0,dpr,0,0); drawTable();
+  // pieces under beams except targets/emitters on top
+  for(let y=0;y<board.h;y++) for(let x=0;x<board.w;x++){ const c=board.cells[y][x]; if(c&&c.t!=="target") drawCell(x,y,c,now); }
+  drawBeams(now);
+  for(let y=0;y<board.h;y++) for(let x=0;x<board.w;x++){ const c=board.cells[y][x]; if(c&&c.t==="target") drawCell(x,y,c,now); }
+  const sel=cursor.show?cursor:hover;
+  if(sel){ ctx.strokeStyle="#FFD84A"; ctx.lineWidth=2; ctx.setLineDash([6,4]); rr(M+sel.x*S+3,M+sel.y*S+3,S-6,S-6,6); ctx.stroke(); ctx.setLineDash([]);
+    const c=board.cells[sel.y][sel.x];
+    if(!c&&tool&&remaining(tool)>0){ ctx.globalAlpha=.35; drawCell(sel.x,sel.y,Object.assign(makePiece(tool),{}),now); ctx.globalAlpha=1; } }
+  if(flashCell&&now-flashT<600){ ctx.fillStyle=`rgba(255,122,46,${.35*(1-(now-flashT)/600)})`; rr(M+flashCell.x*S+2,M+flashCell.y*S+2,S-4,S-4,6); ctx.fill(); }
+}
+
+
+/* ---------- input ---------- */
+cv.addEventListener("click",ev=>{ const c=cellAt(ev); if(c){ cursor.show=false; act(c.x,c.y); } });
+cv.addEventListener("contextmenu",ev=>{ ev.preventDefault(); const c=cellAt(ev); if(c) pickUp(c.x,c.y); });
+cv.addEventListener("pointermove",ev=>{ hover=cellAt(ev); if(hover) cursor.show=false; });
+cv.addEventListener("pointerleave",()=>{ hover=null; });
+cv.addEventListener("keydown",ev=>{
+  const mv={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]}[ev.key];
+  if(mv){ ev.preventDefault(); if(cursor.show){ cursor.x=Math.max(0,Math.min(board.w-1,cursor.x+mv[0])); cursor.y=Math.max(0,Math.min(board.h-1,cursor.y+mv[1])); } cursor.show=true; return; }
+  if(ev.key==="Enter"||ev.key===" "){ ev.preventDefault(); cursor.show=true; act(cursor.x,cursor.y); return; }
+  if(ev.key==="Delete"||ev.key==="Backspace"){ ev.preventDefault(); cursor.show=true; pickUp(cursor.x,cursor.y); return; }
+});
+root.querySelector(".g").addEventListener("keydown",ev=>{ if(/^[1-7]$/.test(ev.key)&&!ev.ctrlKey&&!ev.metaKey){ const k=Object.keys(LEVELS[li].tray)[+ev.key-1]; if(k){ tool=k; renderTray(); } } });
+env.$("resetBtn").onclick=()=>loadLevel(li);
+env.$("hintBtn").onclick=()=>{ const h=env.$("hint"); h.hidden=!h.hidden; };
+try{ new ResizeObserver(()=>resize()).observe(env.$("boardwrap")); }catch(e){ addEventListener("resize",()=>resize()); }
+
+/* ---------- start ---------- */
+function start(data){
+  if(data&&data.solved) data.solved.forEach(i=>solved.add(i));
+  loadLevel((data&&data.li)||0, data); renderLevels(); env.loop(t=>draw(t));
+}
+start({});
+});
+})();</script></section>
+
+<section class="sec related" id="more"><div><p class="kicker">Keep exploring</p><h2>Related lessons</h2></div><p class="idea"> Up next: <a href="unit-02-thermal-energy.html">Unit 2: Thermal Energy</a>. Overlap alert: ideas you have already met are marked above as "you may already have learned".</p><ul><li><a href="../k-5/unit-00-how-science-works.html">Unit 0: How Science Works</a><span class="why">The method: how scientists check ideas.</span></li><li><a href="unit-02-thermal-energy.html">Unit 2: Thermal Energy</a><span class="why">Absorbed light turns into thermal energy.</span></li><li><a href="unit-04-weather-and-the-water-cycle.html">Unit 4: Weather &amp; the Water Cycle</a><span class="why">Sunlight drives the weather and water cycle.</span></li><li><a href="unit-07-cells.html">Unit 7: Cells</a><span class="why">Plants use light to make food.</span></li><li><a href="unit-09-body-systems-and-homeostasis.html">Unit 9: Body Systems &amp; Homeostasis</a><span class="why">Your eyes detect light.</span></li><li><a href="../7th/unit-7.8-light-and-the-electromagnetic-spectrum.html">Unit 7.8: Light &amp; the Electromagnetic Spectrum</a><span class="why">Grade 7: the full electromagnetic spectrum.</span></li><li><a href="../8th/unit-8.5-light-waves-and-information.html">Unit 8.5: Light, Waves &amp; Information</a><span class="why">Grade 8: how light bends and carries data.</span></li></ul></section>
+</main>
+
+<footer>
+  Built for sixth-grade tutoring. Matches the light-and-matter strand found in OpenSciEd-style 6th grade courses and NGSS performance expectation MS-PS4-2 (waves reflected, absorbed, or transmitted through materials), with the heat ideas in MS-PS3-4 and the sun shade in MS-ETS1-1 to 1-4. All percentages and temperatures here are rounded teaching values.
+</footer>
+
+<script>
+(function(){
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const safe=fn=>{try{fn()}catch(e){console.error(e)}};
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+function setPressed(group,btn){ $$('button',group).forEach(b=>b.setAttribute('aria-pressed',b===btn?'true':'false')); }
+
+/* ===== 1. sprinkler ===== */
+safe(()=>{
+  const lx=60,ly=130,bx=250,bw=18,by0=100,by1=160;
+  let rays='',dots='';
+  for(let a=-48;a<=48;a+=6){
+    const t=Math.tan(a*Math.PI/180), yb=ly+t*(bx-lx), hit=yb>=by0&&yb<=by1;
+    const ex=hit?bx:470, ey=ly+t*(ex-lx);
+    rays+=`<line x1="${lx}" y1="${ly}" x2="${ex}" y2="${ey}" style="stroke:var(--beam);stroke-width:1.6;opacity:.8" marker-end="url(#mBeam)"/>`;
+    const len=Math.hypot(ex-lx,ey-ly);
+    for(let d=40;d<len;d+=38){ const f=d/len; dots+=`<circle cx="${lx+(ex-lx)*f}" cy="${ly+(ey-ly)*f}" r="2.6" style="fill:var(--beam)"/>`; }
+  }
+  const sx=bx+bw/2, s=(by0-ly)/(sx-lx);
+  const yt=ly+s*(470-lx), yb2=ly-s*(470-lx);
+  $('#sprinkler').innerHTML=`<svg viewBox="0 0 480 260" role="img" aria-label="A lamp sends straight rays like tiny arrows. A book blocks some, leaving a shadow behind it.">
+    <polygon points="${sx},${by0} 470,${yt} 470,${yb2} ${sx},${by1}" style="fill:var(--shade);opacity:.22"/>
+    ${rays}${dots}
+    <rect x="${bx}" y="${by0}" width="${bw}" height="${by1-by0}" rx="3" style="fill:var(--surface);stroke:var(--ink);stroke-width:2.5"/>
+    <circle cx="${lx}" cy="${ly}" r="15" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/>
+    <text x="${lx}" y="${ly+38}" font-size="16" text-anchor="middle">lamp</text>
+    <text x="${bx+bw/2}" y="${by1+24}" font-size="16" text-anchor="middle">a book</text>
+    <text x="388" y="136" font-size="17" text-anchor="middle" style="font-weight:700">shadow</text>
+  </svg>`;
+});
+
+/* ===== 1. shadow sim + chart ===== */
+safe(()=>{
+  const svg=$('#shadowSvg'), lamp=$('#lampSlider'), read=$('#shadowRead'), chart=$('#shadowChart');
+  const O=300,Wx=600,ly=140,ho=18;
+  const CX=d=>56+(d-10)/45*560, CY=r=>190-(r/7)*170;
+  let pts=''; for(let d=10;d<=55;d+=1){ pts+=`${pts?'L':'M'}${CX(d).toFixed(1)} ${CY(1+60/d).toFixed(1)}`; }
+  let grid='';
+  [0,2,4,6].forEach(v=>{ grid+=`<line x1="56" y1="${CY(v)}" x2="616" y2="${CY(v)}" style="stroke:var(--line);stroke-width:1"/><text x="48" y="${CY(v)+5}" font-size="15" text-anchor="end">${v}×</text>`; });
+  [10,20,30,40,50].forEach(v=>{ grid+=`<text x="${CX(v)}" y="212" font-size="15" text-anchor="middle">${v}</text>`; });
+  chart.innerHTML=`${grid}
+    <line x1="56" y1="190" x2="616" y2="190" style="stroke:var(--ink);stroke-width:2"/><line x1="56" y1="20" x2="56" y2="190" style="stroke:var(--ink);stroke-width:2"/>
+    <path d="${pts}" style="fill:none;stroke:var(--absorb);stroke-width:3.5"/>
+    <line id="gx" x1="0" y1="190" x2="0" y2="20" style="stroke:var(--muted);stroke-width:1.5;stroke-dasharray:4 4"/>
+    <line id="gy" x1="56" y1="0" x2="0" y2="0" style="stroke:var(--muted);stroke-width:1.5;stroke-dasharray:4 4"/>
+    <circle id="mk" r="8" cx="0" cy="0" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/>
+    <text x="336" y="240" font-size="16" text-anchor="middle">lamp distance from the object (cm)</text>
+    <text transform="rotate(-90 14 105)" x="14" y="105" font-size="16" text-anchor="middle">shadow ÷ object height</text>`;
+  function draw(){
+    const L=+lamp.value, ratio=(Wx-L)/(O-L), dcm=(O-L)*0.2;
+    let rays='';
+    for(let yw=0;yw<=280;yw+=14){
+      const yO=ly+(yw-ly)*(O-L)/(Wx-L), stop=Math.abs(yO-ly)<=ho;
+      rays+=`<line x1="${L}" y1="${ly}" x2="${stop?O-5:Wx}" y2="${stop?yO:yw}" style="stroke:var(--beam);stroke-width:1.4;opacity:.6"/>`;
+    }
+    const top=ly-ho*ratio, h=2*ho*ratio;
+    svg.innerHTML=`<rect x="600" y="0" width="30" height="280" style="fill:var(--surface);stroke:var(--ink);stroke-width:2"/>
+      <rect x="600" y="0" width="30" height="280" style="fill:var(--beam);opacity:.3"/>
+      <polygon points="${O},${ly-ho} ${Wx},${top} ${Wx},${top+h} ${O},${ly+ho}" style="fill:var(--shade);opacity:.2"/>
+      ${rays}
+      <rect x="596" y="${top}" width="34" height="${h}" style="fill:var(--shade)"/>
+      <rect x="${O-5}" y="${ly-ho}" width="10" height="${2*ho}" rx="2" style="fill:var(--surface);stroke:var(--ink);stroke-width:2.5"/>
+      <circle cx="${L}" cy="${ly}" r="14" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/>
+      <text x="${L}" y="${ly+36}" font-size="16" text-anchor="middle">lamp</text>
+      <text x="${O}" y="${ly-ho-10}" font-size="16" text-anchor="middle">object</text>
+      <text x="560" y="20" font-size="16" text-anchor="end">wall</text>`;
+    read.innerHTML=`The lamp is <b>${dcm.toFixed(0)} cm</b> from the object. The shadow is <b>${ratio.toFixed(1)} times</b> as tall as the object.`;
+    const x=CX(dcm), y=CY(ratio);
+    $('#mk',chart).setAttribute('cx',x); $('#mk',chart).setAttribute('cy',y);
+    const gx=$('#gx',chart); gx.setAttribute('x1',x); gx.setAttribute('x2',x); gx.setAttribute('y1',190); gx.setAttribute('y2',y);
+    const gy=$('#gy',chart); gy.setAttribute('x1',56); gy.setAttribute('x2',x); gy.setAttribute('y1',y); gy.setAttribute('y2',y);
+  }
+  lamp.addEventListener('input',draw); draw();
+});
+
+/* ===== 2. materials ===== */
+const MATS=[
+  {id:'mirror',name:'Mirror',R:.92,A:.07,T:.01,mode:'spec',fill:'#C9D2E3',op:1,note:'A smooth, shiny metal coating bounces light off in one neat direction. That is why you see a clear picture of yourself.'},
+  {id:'glass',name:'Window glass',R:.08,A:.02,T:.90,mode:'clear',fill:'#9CCBF0',op:.55,note:'Glass lets nearly all the light go straight through. A little bounces off, which is the faint reflection you see on a window at night.'},
+  {id:'wax',name:'Wax paper',R:.25,A:.15,T:.60,mode:'scatter',fill:'#F7F1DC',op:.9,note:'Light gets through, but the wax scrambles the directions. You see a soft glow instead of a clear picture.'},
+  {id:'paper',name:'White paper',R:.80,A:.15,T:.05,mode:'diffuse',fill:'#FFFFFF',op:1,note:'A rough surface bounces light in many directions, so you can see it from any angle. Nearly all of it comes back, which is why white looks bright.'},
+  {id:'brick',name:'Brick wall',R:.25,A:.75,T:0,mode:'diffuse',fill:'#B5533C',op:1,note:'Brick soaks up most of the light and scatters the rest. The absorbed energy warms the brick.'},
+  {id:'shirt',name:'Black T-shirt',R:.05,A:.94,T:.01,mode:'diffuse',fill:'#1B1F2A',op:1,note:'Black dye absorbs almost every color of light. The energy turns into heat, so a black shirt feels hot in the sun.'}
+];
+let matSel='mirror';
+safe(()=>{
+  const chips=$('#matChips'), svg=$('#matSvg'), pills=$('#matPills'), note=$('#matNote'), bars=$('#matBars');
+  MATS.forEach(m=>{ const b=document.createElement('button'); b.type='button'; b.className='chip'; b.textContent=m.name; b.dataset.id=m.id; b.setAttribute('aria-pressed',m.id===matSel); chips.appendChild(b); });
+  const pct=v=>Math.round(v*100);
+  function drawBars(){
+    bars.innerHTML=MATS.map(m=>`<div class="brow ${m.id===matSel?'on':''}"><span class="lab">${m.name}</span><div class="stack" role="img" aria-label="${m.name}: ${pct(m.R)} percent reflected, ${pct(m.T)} percent transmitted, ${pct(m.A)} percent absorbed">
+      <div class="seg r" style="width:${pct(m.R)}%">${pct(m.R)>=9?pct(m.R):''}</div><div class="seg t" style="width:${pct(m.T)}%">${pct(m.T)>=9?pct(m.T):''}</div><div class="seg a" style="width:${pct(m.A)}%">${pct(m.A)>=9?pct(m.A):''}</div></div></div>`).join('');
+  }
+  function draw(){
+    const m=MATS.find(x=>x.id===matSel), HX=320, HY=150;
+    const w=f=>(2+14*f);
+    let out='';
+    // reflected
+    if(m.mode==='spec'){ out+=`<line class="flow" x1="${HX}" y1="${HY}" x2="90" y2="90" style="stroke:var(--reflect);stroke-width:${w(m.R)}"/>`; }
+    else { const n=5; [-55,-27,0,27,55].forEach(a=>{ const r=a*Math.PI/180; out+=`<line class="flow" x1="${HX}" y1="${HY}" x2="${HX-170*Math.cos(r)}" y2="${HY+170*Math.sin(r)}" style="stroke:var(--reflect);stroke-width:${Math.max(.8,w(m.R)/1.9)};opacity:${m.R<.1?.45:1}"/>`; }); }
+    // transmitted
+    if(m.mode==='clear'){ out+=`<line class="flow" x1="350" y1="${HY}" x2="580" y2="90" style="stroke:var(--transmit);stroke-width:${w(m.T)}"/>`; }
+    else if(m.T>=.02){ [-40,-20,0,20,40].forEach(a=>{ const r=a*Math.PI/180; out+=`<line class="flow" x1="350" y1="${HY}" x2="${350+170*Math.cos(r)}" y2="${HY+170*Math.sin(r)}" style="stroke:var(--transmit);stroke-width:${Math.max(.8,w(m.T)/1.8)}"/>`; }); }
+    // absorbed
+    let heat=''; const nh=Math.max(1,Math.round(m.A*4));
+    for(let i=0;i<nh;i++){ const y=46-i*14; heat+=`<path d="M318 ${y} q5 -9 10 0 t10 0 t10 0" style="fill:none;stroke:var(--absorb);stroke-width:${2+3*m.A};stroke-linecap:round;opacity:${.35+.65*m.A}"/>`; }
+    svg.innerHTML=`<line class="flow" x1="90" y1="210" x2="${HX}" y2="${HY}" style="stroke:var(--beam);stroke-width:9"/>
+      <circle cx="74" cy="214" r="16" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/>
+      <rect x="320" y="60" width="30" height="180" rx="3" style="fill:${m.fill};fill-opacity:${m.op};stroke:var(--ink);stroke-width:2.5"/>
+      <rect x="320" y="60" width="30" height="180" rx="3" style="fill:var(--absorb);opacity:${(m.A*.45).toFixed(2)}"/>
+      ${out}${heat}
+      <text x="20" y="30" font-size="17" style="fill:var(--reflect);font-weight:700">reflected</text>
+      <text x="470" y="292" font-size="17" style="fill:var(--transmit);font-weight:700">transmitted</text>
+      <text x="368" y="30" font-size="17" style="fill:var(--absorb);font-weight:700">absorbed = heat</text>
+      <text x="74" y="252" font-size="16" text-anchor="middle">light</text>`;
+    pills.innerHTML=`<span class="pill r">reflected ${pct(m.R)}</span><span class="pill t">transmitted ${pct(m.T)}</span><span class="pill a">absorbed ${pct(m.A)}</span>`;
+    note.textContent=m.note;
+    drawBars();
+  }
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; matSel=b.dataset.id; setPressed(chips,b); draw(); });
+  draw();
+});
+
+/* ===== 2. sort game ===== */
+safe(()=>{
+  const items=[
+    {n:'Bathroom mirror',a:'R',e:'Smooth metal coating bounces light back.'},
+    {n:'Clear window',a:'T',e:'Glass is transparent, so light goes through.'},
+    {n:'Black asphalt road',a:'A',e:'Dark and rough, it soaks up sunlight and gets hot.'},
+    {n:'Fresh snow',a:'R',e:'Snow reflects most sunlight, which is why it is so bright.'},
+    {n:'Clean pool water',a:'T',e:'Clear water lets most light through, so you can see the bottom.'},
+    {n:'Aluminum foil',a:'R',e:'Shiny metal bounces nearly all the light.'},
+    {n:'Black velvet curtain',a:'A',e:'Dark fuzzy cloth traps light and sends almost none back.'},
+    {n:'Clear plastic wrap',a:'T',e:'It is transparent, like thin glass.'}
+  ];
+  const box=$('#sortItems'), sc=$('#sortScore'); let right=0, done=0;
+  const L={R:'Mostly reflects',T:'Mostly lets through',A:'Mostly absorbs'};
+  box.innerHTML=items.map((it,i)=>`<div class="item" data-i="${i}"><span class="nm">${it.n}</span><div class="opts">${['R','T','A'].map(k=>`<button class="opt" type="button" data-k="${k}">${L[k]}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
+  box.addEventListener('click',e=>{
+    const b=e.target.closest('.opt'); if(!b||b.disabled)return;
+    const row=b.closest('.item'), it=items[+row.dataset.i], ok=b.dataset.k===it.a;
+    $$('.opt',row).forEach(o=>{ o.disabled=true; if(o.dataset.k===it.a) o.classList.add('good'); });
+    if(!ok) b.classList.add('bad');
+    $('.fb',row).textContent=(ok?'Yes. ':'Not quite. ')+it.e;
+    done++; if(ok) right++; sc.textContent=`${right} of ${items.length} correct`;
+  });
+});
+
+/* ===== 3. wax paper stack ===== */
+safe(()=>{
+  const sl=$('#layers'), tx=$('#seetext'), sh=$('#seesheets'), mt=$('#seeMeter'), rd=$('#seeRead'), val=$('#layersVal');
+  function upd(){
+    const n=+sl.value, pass=Math.max(0,1-n*.2);
+    val.textContent=n;
+    tx.style.filter=`blur(${n*2.1}px)`; tx.style.opacity=pass;
+    sh.style.opacity=n===0?0:Math.min(.85,n*.17);
+    mt.style.width=Math.round(pass*100)+'%';
+    const kind=n===0?'Transparent':(n<5?'Translucent':'Opaque');
+    const txt=n===0?'Light goes straight through, so the words are sharp.':(n<5?'Some light gets through, but it is scrambled. The words look blurry and dim.':'Almost no light gets through. You cannot see the words at all.');
+    rd.innerHTML=`<b>${kind}.</b> ${txt} About <b>${Math.round(pass*100)}%</b> of the light gets through.`;
+  }
+  sl.addEventListener('input',upd); upd();
+});
+
+/* ===== 3. zoom canvas ===== */
+safe(()=>{
+  const cv=$('#zoomCv'), ctx=cv.getContext('2d'), chips=$('#zoomChips'), tal=$('#zoomTally'), playBtn=$('#zoomPlay');
+  const LW=640,LH=260,RX0=230,RX1=410,RY0=26,RY1=234;
+  let mode='clear', parts=[], phs=[], tally, running=!reduce, visible=true, frame=0, colors={}, seed=7;
+  const rnd=()=>{ seed=(seed*16807)%2147483647; return seed/2147483647; };
+  function readColors(){ const cs=getComputedStyle(document.documentElement); ['beam','ink','muted','absorb','transmit','reflect','surface-2','line'].forEach(k=>colors[k]=cs.getPropertyValue('--'+k).trim()); }
+  function build(){
+    parts=[]; phs=[]; tally={through:0,scatter:0,back:0,abs:0}; seed=7;
+    if(mode==='clear'){ const cols=4,rows=6; for(let i=0;i<cols;i++)for(let j=0;j<rows;j++) parts.push({x:RX0+26+i*((RX1-RX0-52)/(cols-1)),y:RY0+22+j*((RY1-RY0-44)/(rows-1)),r:5,h:0}); }
+    else if(mode==='scatter'){ for(let k=0;k<40;k++) parts.push({x:RX0+12+rnd()*(RX1-RX0-24),y:RY0+10+rnd()*(RY1-RY0-20),r:5,h:0}); }
+    else { const cols=7,rows=10; for(let i=0;i<cols;i++)for(let j=0;j<rows;j++) parts.push({x:RX0+14+i*((RX1-RX0-28)/(cols-1)),y:RY0+12+j*((RY1-RY0-24)/(rows-1)),r:6,h:0}); }
+  }
+  function spawn(){ phs.push({x:-6,y:RY0+8+Math.random()*(RY1-RY0-16),vx:2.6,vy:0,k:'s',touched:new Set(),fl:0}); }
+  function endPh(p,kind){ tally[kind]++; const t=tally.through+tally.scatter+tally.back+tally.abs; if(t>300){ for(const k in tally) tally[k]=Math.round(tally[k]/2); } }
+  function step(){
+    frame++;
+    if(frame%6===0 && phs.length<60) spawn();
+    for(let i=phs.length-1;i>=0;i--){
+      const p=phs[i]; p.x+=p.vx; p.y+=p.vy;
+      if(p.x>RX0-8 && p.x<RX1+8){
+        for(let j=0;j<parts.length;j++){
+          const q=parts[j]; if(p.touched.has(j)) continue;
+          if(Math.hypot(p.x-q.x,p.y-q.y)<q.r+5){
+            p.touched.add(j); const r=Math.random();
+            if(mode==='clear'){ if(r<.04){ q.h=1; endPh(p,'abs'); phs.splice(i,1); break; } }
+            else if(mode==='scatter'){
+              if(r<.04){ q.h=1; endPh(p,'abs'); phs.splice(i,1); break; }
+              else if(r<.45){ const a=(Math.random()-.5)*2*1.2; p.vx=2.6*Math.cos(a); p.vy=2.6*Math.sin(a); p.k='x'; }
+            } else {
+              if(r<.40){ q.h=1; endPh(p,'abs'); phs.splice(i,1); break; }
+              else if(r<.62){ p.vx=-Math.abs(p.vx)*(.8+Math.random()*.4); p.vy=(Math.random()-.5)*1.8; p.k='b'; }
+            }
+          }
+        }
+      }
+      if(phs[i]!==p) continue;
+      if(p.x>LW+6){ endPh(p,p.k==='x'?'scatter':'through'); phs.splice(i,1); }
+      else if(p.x<-8){ endPh(p,'back'); phs.splice(i,1); }
+      else if(p.y<-8||p.y>LH+8){ endPh(p,p.k==='x'?'scatter':'through'); phs.splice(i,1); }
+    }
+    parts.forEach(q=>{ q.h*=.985; });
+  }
+  function draw(){
+    if(frame%30===0||!colors.beam) readColors();
+    const s=cv.width/LW; ctx.setTransform(s,0,0,s,0,0); ctx.clearRect(0,0,LW,LH);
+    ctx.fillStyle=colors['surface-2']; ctx.fillRect(0,0,LW,LH);
+    const tint=mode==='clear'?colors.transmit:(mode==='scatter'?colors.beam:colors.absorb);
+    ctx.globalAlpha=mode==='clear'?.10:(mode==='scatter'?.16:.18); ctx.fillStyle=tint; ctx.fillRect(RX0,RY0-10,RX1-RX0,RY1-RY0+20); ctx.globalAlpha=1;
+    ctx.strokeStyle=colors.ink; ctx.lineWidth=2; ctx.strokeRect(RX0,RY0-10,RX1-RX0,RY1-RY0+20);
+    parts.forEach(q=>{
+      const jx=(Math.random()-.5)*q.h*4, jy=(Math.random()-.5)*q.h*4;
+      if(q.h>.05){ ctx.globalAlpha=Math.min(.55,q.h*.6); ctx.fillStyle=colors.absorb; ctx.beginPath(); ctx.arc(q.x+jx,q.y+jy,q.r+7*q.h,0,6.283); ctx.fill(); ctx.globalAlpha=1; }
+      ctx.fillStyle=q.h>.25?colors.absorb:colors.muted; ctx.beginPath(); ctx.arc(q.x+jx,q.y+jy,q.r,0,6.283); ctx.fill();
+    });
+    phs.forEach(p=>{
+      ctx.fillStyle=p.k==='b'?colors.reflect:(p.k==='x'?colors.transmit:colors.beam);
+      ctx.strokeStyle=colors.ink; ctx.lineWidth=1; ctx.beginPath(); ctx.arc(p.x,p.y,3.6,0,6.283); ctx.fill(); ctx.stroke();
+    });
+    ctx.fillStyle=colors.ink; ctx.font='600 14px "Atkinson Hyperlegible",system-ui,sans-serif'; ctx.textAlign='center';
+    ctx.fillText('light in',60,18); ctx.fillText('the material, zoomed in',(RX0+RX1)/2,RY1+30);
+    const t=tally.through+tally.scatter+tally.back+tally.abs||1;
+    const names=[['through','Straight through'],['scatter','Through, scattered'],['back','Bounced back'],['abs','Absorbed']];
+    tal.innerHTML=names.map(([k,l])=>`<div>${l}<b>${Math.round(100*tally[k]/t)}%</b></div>`).join('');
+  }
+  function resize(){ const dpr=Math.min(2,devicePixelRatio||1), w=cv.clientWidth||640; cv.width=Math.round(w*dpr); cv.height=Math.round(w*dpr*LH/LW); draw(); }
+  function prewarm(n){ for(let i=0;i<n;i++) step(); draw(); }
+  function loop(){ if(running&&visible){ step(); draw(); } requestAnimationFrame(loop); }
+  chips.addEventListener('click',e=>{
+    const b=e.target.closest('button'); if(!b)return;
+    if(b===playBtn){ running=!running; b.textContent=running?'Pause':'Play'; return; }
+    mode=b.dataset.mode; $$('button[data-mode]',chips).forEach(x=>x.setAttribute('aria-pressed',x===b)); build(); prewarm(260);
+  });
+  new IntersectionObserver(es=>{ visible=es[0].isIntersecting; }).observe(cv);
+  if('ResizeObserver' in window) new ResizeObserver(resize).observe(cv);
+  if(reduce){ playBtn.textContent='Play'; }
+  build(); resize(); prewarm(260); requestAnimationFrame(loop);
+});
+
+/* ===== 4. color mixer ===== */
+safe(()=>{
+  const OBJ=[
+    {id:'apple',n:'Red apple',c:[.85,.05,.05]},{id:'banana',n:'Banana',c:[.85,.80,.10]},{id:'leaf',n:'Green leaf',c:[.10,.65,.10]},
+    {id:'jeans',n:'Blue jeans',c:[.08,.15,.70]},{id:'paper',n:'White paper',c:[.92,.92,.92]},{id:'cloth',n:'Black cloth',c:[.04,.04,.04]}
+  ];
+  const LIG=[
+    {id:'white',n:'White',c:[1,1,1],sw:'#FFFFFF'},{id:'red',n:'Red',c:[1,0,0],sw:'#FF2A2A'},{id:'green',n:'Green',c:[0,1,0],sw:'#18E04A'},
+    {id:'blue',n:'Blue',c:[0,0,1],sw:'#2A4DFF'},{id:'yellow',n:'Yellow (red+green)',c:[1,1,0],sw:'#FFE81A'}
+  ];
+  let oi=0, li=0;
+  const oc=$('#objChips'), lc=$('#lightChips'), svg=$('#mixSvg'), rd=$('#mixRead'), cols=$('#mixCols');
+  OBJ.forEach((o,i)=>{ const b=document.createElement('button'); b.type='button'; b.className='chip'; b.textContent=o.n; b.dataset.i=i; b.setAttribute('aria-pressed',i===oi); oc.appendChild(b); });
+  LIG.forEach((o,i)=>{ const b=document.createElement('button'); b.type='button'; b.className='chip'; b.textContent=o.n; b.dataset.i=i; b.setAttribute('aria-pressed',i===li); lc.appendChild(b); });
+  const shape=(id,f)=>({
+    apple:`<circle cx="120" cy="124" r="48" fill="${f}"/><path d="M120 80 q3 -16 16 -20" fill="none" stroke="#5a3b1c" stroke-width="4" stroke-linecap="round"/>`,
+    banana:`<path d="M52 98 Q100 180 188 84" fill="none" stroke="${f}" stroke-width="30" stroke-linecap="round"/>`,
+    leaf:`<path d="M58 160 Q64 62 182 62 Q190 150 80 170Z" fill="${f}"/><path d="M62 164 L150 92" stroke="rgba(0,0,0,.35)" stroke-width="3" fill="none"/>`,
+    jeans:`<path d="M72 54 H168 L178 176 H128 L120 106 L112 176 H62Z" fill="${f}"/>`,
+    paper:`<rect x="76" y="52" width="88" height="122" rx="4" fill="${f}"/>`,
+    cloth:`<path d="M64 62 Q92 48 120 62 T176 62 V168 Q148 182 120 168 T64 168Z" fill="${f}"/>`
+  })[id];
+  const cname=(r,g,b)=>{ const m=Math.max(r,g,b); if(m<.12) return 'black'; const R=r/m>.55,G=g/m>.55,B=b/m>.55;
+    if(R&&G&&B) return m>.6?'white':'gray'; if(R&&G) return 'yellow'; if(R&&B) return 'purple'; if(G&&B) return 'teal'; if(R) return 'red'; if(G) return 'green'; return 'blue'; };
+  function draw(){
+    const o=OBJ[oi], l=LIG[li], seen=o.c.map((v,i)=>v*l.c[i]);
+    const rgb=`rgb(${seen.map(v=>Math.round(255*v)).join(',')})`;
+    svg.innerHTML=`<rect width="240" height="200" rx="8" fill="#5B6278"/>
+      <polygon points="14,12 232,40 232,196 14,36" fill="${l.sw}" opacity=".30"/>
+      <circle cx="22" cy="24" r="12" fill="${l.sw}" stroke="#fff" stroke-width="2"/>
+      <g stroke="rgba(255,255,255,.55)" stroke-width="1.5">${shape(o.id,rgb)}</g>
+      <rect x="0" y="176" width="240" height="24" rx="0" fill="rgba(0,0,0,.35)"/>
+      <text x="120" y="193" font-size="14" text-anchor="middle" fill="#fff">${o.n} under ${l.n.split(' ')[0].toLowerCase()} light</text>`;
+    const cn=cname(...seen), names=['red','green','blue'];
+    const has=l.c.map((v,i)=>v?names[i]:null).filter(Boolean).join(' + ');
+    const refl=seen.map((v,i)=>v>.3?names[i]:null).filter(Boolean);
+    rd.innerHTML=`The light contains <b>${has}</b>. The ${o.n.toLowerCase()} reflects <b>${refl.length?refl.join(' + '):'almost none of it'}</b> and absorbs the rest. Your eye sees <b>${cn}</b>.`+(cn==='black'&&o.id!=='cloth'?' With no matching color to bounce back, it goes dark.':'');
+    cols.innerHTML=['r','g','b'].map((k,i)=>{
+      const inL=l.c[i], rf=seen[i], ab=inL-rf, nm=['Red','Green','Blue'][i];
+      const body=inL===0?'':`<div class="rf" style="height:${rf*100}%"></div><div class="ab" style="height:${ab*100}%"></div>`;
+      const lab=inL===0?'none in this light':`${Math.round(rf*100)}% reflected`;
+      return `<div class="colx ${k}"><div class="tube ${inL===0?'empty':''}" role="img" aria-label="${nm} light: ${lab}">${body}</div><span class="nm">${nm}</span><span>${lab}</span></div>`;
+    }).join('');
+  }
+  oc.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; oi=+b.dataset.i; setPressed(oc,b); draw(); });
+  lc.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; li=+b.dataset.i; setPressed(lc,b); draw(); });
+  draw();
+});
+
+/* ===== 5. coins + temps + ice ===== */
+const CARS=[
+  {id:'white',n:'White car',A:.20,R:.80,col:'var(--blue)',dash:'2 6'},
+  {id:'silver',n:'Silver car',A:.35,R:.65,col:'var(--muted)',dash:'9 5'},
+  {id:'red',n:'Red car',A:.60,R:.40,col:'var(--red)',dash:''},
+  {id:'black',n:'Black car',A:.95,R:.05,col:'var(--ink)',dash:''}
+];
+safe(()=>{
+  const chips=$('#carChips'), wf=$('#waffle'), rd=$('#waffleRead'); let sel='black';
+  CARS.forEach(c=>{ const b=document.createElement('button'); b.type='button'; b.className='chip'; b.textContent=c.n; b.dataset.id=c.id; b.setAttribute('aria-pressed',c.id===sel); chips.appendChild(b); });
+  function draw(){
+    const c=CARS.find(x=>x.id===sel), r=Math.round(c.R*100), a=100-r;
+    wf.innerHTML=Array.from({length:100},(_,i)=>`<div class="cell ${i<r?'r':'a'}"></div>`).join('');
+    rd.innerHTML=`<b>${r}</b> coins bounce away. <b>${a}</b> coins stay as heat.`;
+  }
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; sel=b.dataset.id; setPressed(chips,b); draw(); });
+  draw();
+});
+safe(()=>{
+  const svg=$('#tempSvg'), chips=$('#tempChips'), sl=$('#tSlider'), tv=$('#tVal'), rd=$('#tRead');
+  const on=new Set(CARS.map(c=>c.id));
+  CARS.forEach(c=>{ const b=document.createElement('button'); b.type='button'; b.className='chip'; b.textContent=c.n; b.dataset.id=c.id; b.setAttribute('aria-pressed','true'); chips.appendChild(b); });
+  const T0=75, X=t=>60+t/30*520, Y=T=>240-(T-70)/90*210, temp=(c,t)=>T0+80*c.A*(1-Math.exp(-t/12));
+  function draw(){
+    const t=+sl.value; tv.textContent=t;
+    let g='';
+    [80,100,120,140,160].forEach(v=>{ g+=`<line x1="60" y1="${Y(v)}" x2="580" y2="${Y(v)}" style="stroke:var(--line);stroke-width:1"/><text x="52" y="${Y(v)+5}" font-size="15" text-anchor="end">${v}</text>`; });
+    [0,10,20,30].forEach(v=>{ g+=`<text x="${X(v)}" y="262" font-size="15" text-anchor="middle">${v}</text>`; });
+    let lines='', marks='';
+    CARS.filter(c=>on.has(c.id)).forEach(c=>{
+      let d=''; for(let m=0;m<=30;m+=1) d+=`${m?'L':'M'}${X(m).toFixed(1)} ${Y(temp(c,m)).toFixed(1)}`;
+      lines+=`<path d="${d}" style="fill:none;stroke:${c.col};stroke-width:3.5;stroke-linecap:round;${c.dash?`stroke-dasharray:${c.dash}`:''}"/>`;
+      lines+=`<text x="586" y="${Y(temp(c,30))+5}" font-size="14" style="font-weight:700">${c.n.split(' ')[0]}</text>`;
+      marks+=`<circle cx="${X(t)}" cy="${Y(temp(c,t))}" r="6" style="fill:${c.col};stroke:var(--bg);stroke-width:2"/>`;
+    });
+    svg.innerHTML=`${g}<line x1="60" y1="240" x2="580" y2="240" style="stroke:var(--ink);stroke-width:2"/><line x1="60" y1="30" x2="60" y2="240" style="stroke:var(--ink);stroke-width:2"/>
+      <line x1="${X(t)}" y1="30" x2="${X(t)}" y2="240" style="stroke:var(--muted);stroke-width:1.5;stroke-dasharray:4 4"/>${lines}${marks}
+      <text x="320" y="284" font-size="16" text-anchor="middle">minutes in the sun</text>
+      <text transform="rotate(-90 14 135)" x="14" y="135" font-size="16" text-anchor="middle">hood temperature (°F)</text>`;
+    const rows=CARS.filter(c=>on.has(c.id)).map(c=>{ const F=temp(c,t), C=(F-32)*5/9; return `${c.n.split(' ')[0]} <b>${Math.round(F)}°F</b> (${Math.round(C)}°C)`; });
+    rd.innerHTML=rows.length?rows.join(' · '):'Turn on at least one car.';
+  }
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; const id=b.dataset.id; if(on.has(id)) on.delete(id); else on.add(id); b.setAttribute('aria-pressed',on.has(id)); draw(); });
+  sl.addEventListener('input',draw); draw();
+});
+safe(()=>{
+  const go=$('#iceGo'), reset=$('#iceReset'), rd=$('#iceRead'), sun=$('#sunbar');
+  const els={w:{ice:$('#iceW'),pud:$('#puddleW'),A:.15},b:{ice:$('#iceB'),pud:$('#puddleB'),A:.95}};
+  let timer=null, p=0;
+  const left=A=>Math.max(0,1-(A/.95)*p);
+  function apply(){
+    for(const k of ['w','b']){ const r=left(els[k].A); els[k].ice.style.transform=`scale(${r})`; els[k].pud.style.transform=`scale(${(1-r)*1.15})`; }
+    const m=Math.round(p*10);
+    rd.innerHTML=`After <b>${m} min</b>: white paper ice is <b>${Math.round(left(.15)*100)}%</b> left. Black paper ice is <b>${Math.round(left(.95)*100)}%</b> left.`+(p>=1?' The black paper absorbed more light, so more energy went into melting.':'');
+  }
+  function stop(){ if(timer){clearInterval(timer);timer=null;} sun.classList.remove('on'); }
+  go.addEventListener('click',()=>{
+    stop(); if(p>=1) p=0; sun.classList.add('on');
+    if(reduce){ p=1; apply(); stop(); return; }
+    timer=setInterval(()=>{ p=Math.min(1,p+.0125); apply(); if(p>=1) stop(); },100);
+  });
+  reset.addEventListener('click',()=>{ stop(); p=0; apply(); rd.textContent='Two identical ice cubes. Press the button to see which melts faster.'; });
+  apply(); rd.textContent='Two identical ice cubes. Press the button to see which melts faster.';
+});
+
+/* ===== 6. quiz ===== */
+safe(()=>{
+  const Q=[
+    {q:'A mirror is mostly doing which thing to light?',o:['Reflecting it','Absorbing it','Letting it through'],a:0,e:'A mirror sends about 90% of the light back in one neat direction.'},
+    {q:'Wax paper lets light through, but you cannot see a clear picture through it. What is it?',o:['Transparent','Translucent','Opaque'],a:1,e:'Translucent materials pass light but scatter it in many directions.'},
+    {q:'Why does a black shirt feel hotter in the sun than a white one?',o:['It reflects more light','It absorbs more light, and that energy becomes heat','Black makes its own heat'],a:1,e:'Absorbed light energy turns into thermal energy. White reflects most of it away.'},
+    {q:'A banana looks yellow under white light because it...',o:['makes yellow light','absorbs yellow and reflects the rest','reflects yellow and absorbs most other colors'],a:2,e:'Only the colors it reflects reach your eye.'},
+    {q:'You move a lamp closer to an object. What happens to the shadow on the wall?',o:['It gets bigger','It gets smaller','It stays the same'],a:0,e:'Rays spread out more from a close lamp, so the blocked area grows.'},
+    {q:'A red apple sits under pure blue light. What does it look like?',o:['Bright red','Very dark, almost black','Blue'],a:1,e:'The apple reflects red, but there is no red in blue light. Nothing is reflected back.'}
+  ];
+  const box=$('#quiz'), sc=$('#quizScore'); let right=0;
+  box.innerHTML=Q.map((x,i)=>`<div class="q" data-i="${i}"><h4>${i+1}. ${x.q}</h4><div class="opts">${x.o.map((t,j)=>`<button class="opt" type="button" data-j="${j}">${t}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
+  box.addEventListener('click',e=>{
+    const b=e.target.closest('.opt'); if(!b||b.disabled)return;
+    const row=b.closest('.q'), x=Q[+row.dataset.i], ok=+b.dataset.j===x.a;
+    $$('.opt',row).forEach(o=>{ o.disabled=true; if(+o.dataset.j===x.a) o.classList.add('good'); });
+    if(!ok) b.classList.add('bad'); else right++;
+    $('.fb',row).textContent=(ok?'Correct. ':'Not quite. ')+x.e; sc.textContent=`${right} of ${Q.length} correct`;
+  });
+});
+})();
+</script>

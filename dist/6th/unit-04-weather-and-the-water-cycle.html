@@ -1,0 +1,1046 @@
+<title>Weather &amp; the Water Cycle</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout concept: one long lesson column. Each concept opens with a one-sentence big idea, then a grid of labelled visual aids
+   (Analogy, Diagram, Try it, Data, Real world) that collapses to one column on phones.
+   Color roles are fixed for the whole page: amber = incoming light, blue = reflected, teal = transmitted, orange = absorbed. */
+:root{
+  --bg:#F2F5FA; --surface:#FFFFFF; --surface-2:#E8EDF6; --ink:#12172B; --muted:#47506E; --line:#D0D8E8;
+  --beam:#F2A900; --beam-ink:#1A1400; --reflect:#2B66E8; --absorb:#D6450B; --transmit:#0B7F70; --on-color:#FFFFFF;
+  --red:#D93036; --green:#25904F; --blue:#3558D6; --shade:#222A4A;
+  --font-display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --font-body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+  --font-mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C1022; --surface:#151A33; --surface-2:#1D2444; --ink:#EDF0FB; --muted:#A8B1CE; --line:#2B3459;
+    --beam:#FFC93C; --beam-ink:#1A1400; --reflect:#7BA2FF; --absorb:#FF8F5C; --transmit:#46D6C0; --on-color:#0B1020;
+    --red:#FF6A70; --green:#4FCB85; --blue:#7C97FF; --shade:#02040B; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C1022; --surface:#151A33; --surface-2:#1D2444; --ink:#EDF0FB; --muted:#A8B1CE; --line:#2B3459;
+  --beam:#FFC93C; --beam-ink:#1A1400; --reflect:#7BA2FF; --absorb:#FF8F5C; --transmit:#46D6C0; --on-color:#0B1020;
+  --red:#FF6A70; --green:#4FCB85; --blue:#7C97FF; --shade:#02040B; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--font-body); font-size:17px; line-height:1.55;
+  padding-block:0 72px;
+  padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+main,.hero{max-width:920px;margin:0 auto}
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance;margin:0;line-height:1.1}
+p{margin:0}
+a{color:inherit}
+svg{display:block;width:100%;height:auto}
+svg text{font-family:var(--font-body);fill:var(--ink)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--reflect);outline-offset:2px}
+
+/* hero */
+.hero{padding-block:28px 8px;display:grid;gap:18px}
+.kicker{font-family:var(--font-mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
+.lede{font-size:clamp(1.1rem,3.4vw,1.35rem);max-width:34em;text-wrap:pretty}
+.hero-art{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:10px 12px}
+.howto{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:.92rem;color:var(--muted)}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);margin-top:18px;border-bottom:1px solid var(--line);
+  margin-inline:auto;max-width:920px}
+.nav ul{list-style:none;margin:0;padding:8px 0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin}
+.nav a{display:block;white-space:nowrap;text-decoration:none;font-size:.9rem;padding:7px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface)}
+.nav a:hover{border-color:var(--ink)}
+
+/* sections */
+.sec{padding-block:52px 6px;scroll-margin-top:68px;display:grid;gap:20px}
+.sec h2{font-size:clamp(1.9rem,6vw,2.7rem);font-weight:800;letter-spacing:-.02em}
+.idea{font-family:var(--font-display);font-size:clamp(1.25rem,4.4vw,1.75rem);line-height:1.25;font-weight:700;text-wrap:balance;max-width:28em}
+.idea mark{background:linear-gradient(transparent 58%,color-mix(in srgb,var(--beam) 50%,transparent) 58%);color:inherit}
+.aids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.aid{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.aid.wide{grid-column:1/-1}
+.aid h3{font-size:1.2rem;font-weight:700}
+.aid p.cap{font-size:.95rem;color:var(--muted)}
+.aid p.cap b{color:var(--ink)}
+.tag{align-self:flex-start;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;padding:3px 9px;border-radius:999px;
+  background:color-mix(in srgb,var(--tint) 24%,var(--surface));border:1px solid color-mix(in srgb,var(--tint) 55%,var(--line))}
+.tag.analogy{--tint:var(--beam)} .tag.diagram{--tint:var(--reflect)} .tag.try{--tint:var(--transmit)} .tag.data{--tint:var(--absorb)} .tag.real{--tint:var(--muted)} .tag.build{--tint:#8A63D2}
+ol.steps{margin:4px 0 0;padding-left:1.3em;display:grid;gap:6px}
+.stage{background:var(--surface-2);border-radius:10px;padding:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:.92rem;padding:7px 13px;min-height:40px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.ctl{display:grid;gap:6px}
+.ctl label{font-size:.92rem;font-weight:700}
+input[type=range]{width:100%;accent-color:var(--beam);height:32px}
+.readout{font-size:1rem}
+.readout b{font-family:var(--font-mono);font-weight:500}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{display:inline-flex;gap:6px;align-items:baseline;padding:5px 11px;border-radius:999px;font-family:var(--font-mono);font-size:.84rem;font-weight:500;background:var(--c);color:var(--on-color)}
+.pill.r{--c:var(--reflect)} .pill.a{--c:var(--absorb)} .pill.t{--c:var(--transmit)}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.trio>div{display:grid;gap:6px;align-content:start;min-width:0}
+.trio h4{margin:0;font-family:var(--font-display);font-size:1.05rem}
+.trio p{font-size:.93rem;color:var(--muted)}
+.trio svg{background:var(--surface-2);border-radius:10px}
+.swatch-r{color:var(--reflect);font-weight:700}.swatch-t{color:var(--transmit);font-weight:700}.swatch-a{color:var(--absorb);font-weight:700}
+
+/* stacked bars */
+.bars{display:grid;gap:9px}
+.brow{display:grid;grid-template-columns:104px minmax(0,1fr);gap:10px;align-items:center;font-size:.9rem}
+.brow.on .lab{font-weight:700}
+.stack{display:flex;height:28px;border-radius:7px;overflow:hidden;background:var(--surface-2);outline:2px solid transparent;outline-offset:2px}
+.brow.on .stack{outline-color:var(--ink)}
+.seg{display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:.72rem;color:var(--on-color);min-width:0;overflow:hidden}
+.seg.r{background:var(--reflect)}.seg.t{background:var(--transmit)}.seg.a{background:var(--absorb)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.88rem}
+.legend span::before{content:"";display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--c)}
+.legend .r{--c:var(--reflect)}.legend .t{--c:var(--transmit)}.legend .a{--c:var(--absorb)}
+
+/* sort game, quiz */
+.items{display:grid;gap:10px}
+.item{display:grid;gap:6px;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.item .nm{font-weight:700}
+.item .opts{display:flex;flex-wrap:wrap;gap:6px}
+.opt{font-size:.85rem;padding:6px 10px;border-radius:8px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;min-height:36px;text-align:left}
+.opt:hover:not([disabled]){border-color:var(--ink)}
+.opt.good{background:var(--transmit);color:var(--on-color);border-color:var(--transmit)}
+.opt.bad{background:var(--absorb);color:var(--on-color);border-color:var(--absorb)}
+.fb{font-size:.88rem;color:var(--muted)}
+.score{font-family:var(--font-mono);font-size:.9rem}
+.q{display:grid;gap:10px;padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.q h4{margin:0;font-size:1.05rem;font-family:var(--font-body);font-weight:700}
+.q .opts{display:grid;gap:8px}
+
+/* tables */
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:.92rem;min-width:420px}
+.tbl th,.tbl td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+.tbl th{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+/* see-through demo */
+.seebox{position:relative;border-radius:10px;overflow:hidden;background:var(--surface-2);padding:22px 16px;min-height:130px;display:grid;place-items:center}
+.seetext{font-family:var(--font-display);font-weight:800;font-size:clamp(1.2rem,5vw,1.7rem);text-align:center;letter-spacing:.02em;transition:filter .2s,opacity .2s}
+.seesheets{position:absolute;inset:0;pointer-events:none;background:var(--surface);transition:opacity .2s}
+.meter{height:12px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--transmit);transition:width .2s}
+
+/* canvas */
+canvas{width:100%;aspect-ratio:640/260;display:block;border-radius:10px;background:var(--surface-2)}
+.tally{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;font-size:.85rem}
+.tally div{padding:8px;border-radius:8px;background:var(--bg);border:1px solid var(--line)}
+.tally b{display:block;font-family:var(--font-mono);font-weight:500;font-size:1.05rem}
+
+/* color mixer + channel columns */
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.colx{display:grid;gap:6px;justify-items:center;font-size:.85rem;text-align:center}
+.tube{position:relative;width:100%;max-width:90px;height:150px;border:2px solid var(--line);border-radius:8px;display:flex;flex-direction:column-reverse;overflow:hidden;background:var(--bg)}
+.tube.empty{border-style:dashed}
+.tube .rf{background:var(--cc)}
+.tube .ab{background:repeating-linear-gradient(45deg,var(--surface-2) 0 6px,var(--line) 6px 9px)}
+.colx .nm{font-weight:700}
+.colx.r{--cc:var(--red)}.colx.g{--cc:var(--green)}.colx.b{--cc:var(--blue)}
+
+/* waffle */
+.waffle{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:3px;max-width:300px;width:100%}
+.cell{aspect-ratio:1;border-radius:3px}
+.cell.r{background:var(--reflect)}.cell.t{background:var(--transmit)}.cell.a{background:var(--absorb)}
+
+/* ice race */
+.race{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pad{position:relative;height:170px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden}
+.pad.w{background:#F4F4F1}.pad.b{background:#14161C}
+.pad .lbl{position:absolute;left:8px;top:6px;font-size:.78rem;font-family:var(--font-mono)}
+.pad.w .lbl{color:#333}.pad.b .lbl{color:#ddd}
+.puddle{position:absolute;width:110px;height:46px;border-radius:50%;background:#7CC4F2;opacity:.65;transform:scale(0);bottom:22px}
+.ice{position:relative;width:76px;height:76px;border-radius:12px;background:linear-gradient(135deg,#E4F6FF,#9ED7F5);border:2px solid #fff;transform-origin:50% 100%;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.sunbar{height:10px;border-radius:99px;background:linear-gradient(90deg,var(--beam),color-mix(in srgb,var(--beam) 30%,transparent));opacity:.25;transition:opacity .3s}
+.sunbar.on{opacity:1}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap}
+.btn{font-size:.95rem;font-weight:700;padding:9px 16px;min-height:42px;border-radius:10px;border:0;background:var(--beam);color:var(--beam-ink);cursor:pointer}
+.btn.ghost{background:var(--surface);color:var(--ink);border:1.5px solid var(--line)}
+.btn:hover{filter:brightness(1.06)}
+
+/* misc */
+.glossary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px;margin:0}
+.glossary div{padding:10px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--line)}
+.glossary dt{font-weight:700}
+.glossary dd{margin:2px 0 0;font-size:.93rem;color:var(--muted)}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+details+details{margin-top:10px}
+summary{cursor:pointer;font-weight:700}
+details .in{display:grid;gap:10px;padding-top:10px;font-size:.95rem}
+details ul{margin:0;padding-left:1.2em;display:grid;gap:4px}
+footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;border-top:1px solid var(--line);padding-top:16px}
+.flow{stroke-dasharray:10 8;animation:flow 1s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-18}}
+@media (prefers-reduced-motion: reduce){.flow{animation:none}html{scroll-behavior:auto}.seetext,.seesheets,.meter i{transition:none}}
+@media (max-width:760px){
+  .aids{grid-template-columns:minmax(0,1fr)}
+  .trio{grid-template-columns:minmax(0,1fr)}
+  .glossary{grid-template-columns:minmax(0,1fr)}
+  .tally{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:420px){.brow{grid-template-columns:84px minmax(0,1fr)}.race{grid-template-columns:minmax(0,1fr)}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="mBeam" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--beam)"/></marker>
+    <marker id="mReflect" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--reflect)"/></marker>
+    <marker id="mTransmit" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--transmit)"/></marker>
+    <marker id="mAbsorb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--absorb)"/></marker>
+    <marker id="mInk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--ink)"/></marker>
+    <marker id="mRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#D93036"/></marker>
+  </defs>
+</svg>
+
+<style>.bridge{margin:14px 0 0;padding:12px 14px;border-left:4px solid var(--beam);background:var(--surface-2);border-radius:0 10px 10px 0;font-size:.95rem;line-height:1.5}.related ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}.related li{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}.related a{font-weight:700}.related .why{display:block;color:var(--muted);font-size:.9rem}</style>
+<style>
+.cityrow{display:flex;flex-wrap:wrap;gap:8px}
+</style>
+
+<header class="hero">
+  <p class="kicker">Sixth grade science · Unit 4</p>
+  <h1>Weather &amp; the Water Cycle</h1>
+  <p class="lede">The water in your glass has been rain, ocean, cloud, and ice before. Weather is the atmosphere moving that water around, powered by the Sun. By the end of this page you can explain why it rains, why the wind blows, and why Ann Arbor isn't Miami.</p>
+  <p class="bridge"><b>Where we left off:</b> sunlight (Unit 1) is absorbed and becomes thermal energy (Unit 2), and heated air and water move in loops called convection. You may already have learned that warm fluids rise and cool fluids sink. That is what powers weather, and forces (Unit 3) such as air pressure and gravity steer it.</p>
+      <div class="hero-art">
+    <svg viewBox="0 0 640 190" role="img" aria-label="Water cycle loop: sun, evaporation arrows from the ocean, cloud, rain, and runoff back to the ocean.">
+      <circle cx="70" cy="46" r="26" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/>
+      <path d="M0 170 H260 V150 H640 V190 H0z" style="fill:var(--reflect);fill-opacity:.4"/>
+      <path d="M380 150 L470 70 L520 110 L560 80 L640 150z" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:2.5"/>
+      <g class="flow" style="stroke:var(--absorb);stroke-width:4;fill:none"><path d="M140 160 V80"/><path d="M180 160 V84"/></g>
+      <path d="M140 76 l-8 14 h16z M180 80 l-8 14 h16z" style="fill:var(--absorb)"/>
+      <path d="M210 70 q-6 -26 22 -26 q8 -22 36 -12 q28 -4 30 22 q22 4 14 22 H220 q-14 0 -10 -6z" style="fill:var(--surface);stroke:var(--ink);stroke-width:2.5"/>
+      <g style="stroke:var(--reflect);stroke-width:3;stroke-linecap:round"><path d="M240 106 l-4 14 M262 106 l-4 14 M284 106 l-4 14"/></g>
+      <path d="M480 120 Q440 150 300 156" class="flow" style="fill:none;stroke:var(--reflect);stroke-width:4"/>
+      <text x="150" y="68" font-size="15" text-anchor="middle" style="fill:var(--absorb);font-weight:700">evaporation</text>
+      <text x="250" y="20" font-size="15" text-anchor="middle" style="font-weight:700">condensation</text>
+      <text x="355" y="130" font-size="15" style="fill:var(--reflect);font-weight:700">runoff</text>
+    </svg>
+  </div>
+  <p class="howto">Look for the tags <span class="tag analogy">Analogy</span><span class="tag diagram">Diagram</span><span class="tag try">Try it</span><span class="tag data">Data</span><span class="tag real">Real world</span></p>
+</header>
+
+<nav class="nav" aria-label="Lesson sections"><ul>
+  <li><a href="#s1">1 Air</a></li><li><a href="#s2">2 Water cycle</a></li><li><a href="#s3">3 Pressure &amp; fronts</a></li><li><a href="#s4">4 Winds</a></li><li><a href="#s5">5 Climate</a></li><li><a href="#s6">6 Check yourself</a></li>
+  <li><a href="#game">7 Game</a></li>
+  </ul></nav>
+
+<main>
+
+<section class="sec" id="s1">
+  <div><p class="kicker">Concept 1 · The atmosphere</p><h2>An ocean of air</h2></div>
+  <p class="idea">Air has mass. The atmosphere is a stack of layers, and the higher you go the <mark>thinner the air</mark> and the <mark>lower the pressure</mark>.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>A stack of blankets</h3>
+      <div class="stage"><svg viewBox="0 0 480 240" role="img" aria-label="A stack of blankets: the bottom one is squished by all the others, the top one is fluffy.">
+        <rect x="90" y="190" width="300" height="22" rx="8" style="fill:var(--reflect);fill-opacity:.9;stroke:var(--ink);stroke-width:2"/>
+        <rect x="90" y="162" width="300" height="28" rx="10" style="fill:var(--reflect);fill-opacity:.7;stroke:var(--ink);stroke-width:2"/>
+        <rect x="90" y="124" width="300" height="38" rx="12" style="fill:var(--reflect);fill-opacity:.5;stroke:var(--ink);stroke-width:2"/>
+        <rect x="90" y="78" width="300" height="46" rx="14" style="fill:var(--reflect);fill-opacity:.35;stroke:var(--ink);stroke-width:2"/>
+        <rect x="90" y="24" width="300" height="54" rx="16" style="fill:var(--reflect);fill-opacity:.2;stroke:var(--ink);stroke-width:2"/>
+        <text x="400" y="204" font-size="14">squished flat</text><text x="400" y="50" font-size="14">fluffy</text>
+        <text x="240" y="232" font-size="14" text-anchor="middle">Air at the bottom carries the weight of all the air above.</text>
+      </svg></div>
+      <p class="cap">The bottom blanket is crushed by everything on top. Air near the ground is packed tightly (high pressure); air at the top is loose (low pressure).</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Rise through the atmosphere</h3>
+      <div class="stage"><svg id="layerSvg" viewBox="0 0 480 300" role="img" aria-label="Atmosphere layers from ground to 50 kilometers with a balloon at the chosen altitude."></svg></div>
+      <div class="ctl"><label for="alt">Altitude: <span id="altV"></span></label><input id="alt" type="range" min="0" max="50" step="0.5" value="0"></div>
+      <p class="readout" id="altR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>Pressure drops fast as you climb</h3>
+      <div class="stage"><svg id="presSvg" viewBox="0 0 640 260" role="img" aria-label="Curve of air pressure falling from 1013 hectopascals at sea level to near 0 at 50 kilometers. Marked points show Denver, Mount Everest, and an airliner."></svg></div>
+      <p class="cap">Half of all the air is below about 5.5 km. Pressure is measured in hectopascals (hPa); sea level is about 1,013 hPa. Rounded teaching model.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>Feel the pressure change</h3>
+      <div class="tw"><table class="tbl">
+        <thead><tr><th>Where</th><th>Altitude</th><th>Air pressure</th><th>What you notice</th></tr></thead>
+        <tbody>
+          <tr><td><b>Ann Arbor</b></td><td>0.26 km</td><td>~98% of sea level</td><td>Normal</td></tr>
+          <tr><td><b>Denver</b></td><td>1.6 km</td><td>~83%</td><td>Chip bags puff up, water boils sooner</td></tr>
+          <tr><td><b>Airplane cabin</b></td><td>2.4 km (cabin)</td><td>~75%</td><td>Ears pop, bottles squeeze</td></tr>
+          <tr><td><b>Mount Everest</b></td><td>8.85 km</td><td>~35%</td><td>Climbers need bottled oxygen</td></tr>
+        </tbody></table></div>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s2">
+  <div><p class="kicker">Concept 2 · The water cycle</p><h2>The same water, over and over</h2></div>
+  <p class="idea">The Sun's energy drives the cycle: <mark>evaporation</mark> lifts water up, <mark>condensation</mark> makes clouds, <mark>precipitation</mark> brings it down, and <mark>collection</mark> sends it back. No water is made or lost.</p>
+  <div class="aids">
+    <article class="aid wide">
+      <span class="tag analogy">Analogy</span>
+      <h3>Your bathroom after a hot shower</h3>
+      <div class="trio">
+        <div>
+          <svg viewBox="0 0 200 150" role="img" aria-label="A shower with steam rising."><rect x="20" y="110" width="160" height="26" rx="6" style="fill:var(--reflect);fill-opacity:.4;stroke:var(--ink);stroke-width:2"/><path d="M50 100 q-8 -14 0 -28 q8 -14 0 -28 M90 100 q-8 -14 0 -28 q8 -14 0 -28 M130 100 q-8 -14 0 -28 q8 -14 0 -28" style="fill:none;stroke:var(--absorb);stroke-width:4;stroke-linecap:round"/></svg>
+          <h4>Steam rises</h4><p>Hot water turns to gas: <b>evaporation</b>.</p>
+        </div>
+        <div>
+          <svg viewBox="0 0 200 150" role="img" aria-label="A foggy mirror."><rect x="40" y="16" width="120" height="110" rx="10" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:3"/><g style="fill:var(--reflect);fill-opacity:.6"><circle cx="70" cy="46" r="5"/><circle cx="104" cy="38" r="4"/><circle cx="130" cy="60" r="6"/><circle cx="84" cy="80" r="5"/><circle cx="116" cy="96" r="4"/><circle cx="64" cy="102" r="4"/></g></svg>
+          <h4>Mirror fogs</h4><p>Steam hits the cold mirror and turns to droplets: <b>condensation</b>.</p>
+        </div>
+        <div>
+          <svg viewBox="0 0 200 150" role="img" aria-label="Droplets running down a mirror."><rect x="40" y="16" width="120" height="110" rx="10" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:3"/><g style="stroke:var(--reflect);stroke-width:4;stroke-linecap:round"><path d="M70 36 v70"/><path d="M104 30 v50"/><path d="M134 44 v76"/></g></svg>
+          <h4>Drips run down</h4><p>Droplets get heavy and fall: <b>precipitation</b>.</p>
+        </div>
+      </div>
+      <p class="cap">That mirror is a tiny water cycle. The Sun does the same job for the whole planet.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag diagram">Diagram</span>
+      <h3>The whole cycle</h3>
+      <div class="chips" id="wcChips" role="group" aria-label="Stage"></div>
+      <div class="stage"><svg id="wcSvg" viewBox="0 0 640 300" role="img" aria-label="Water cycle with sun, ocean, mountain, cloud, rain and runoff. A chosen stage is highlighted."></svg></div>
+      <p class="readout" id="wcR" aria-live="polite"></p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Will the cold glass sweat?</h3>
+      <div class="ctl"><label for="gT">Air temperature: <span id="gTv"></span></label><input id="gT" type="range" min="10" max="35" value="28"></div>
+      <div class="ctl"><label for="gH">Humidity: <span id="gHv"></span></label><input id="gH" type="range" min="20" max="100" step="5" value="70"></div>
+      <div class="ctl"><label for="gS">Glass surface: <span id="gSv"></span></label><input id="gS" type="range" min="0" max="25" value="8"></div>
+      <div class="stage"><svg id="glassSvg" viewBox="0 0 240 200" role="img" aria-label="A glass of cold water. Droplets appear on the outside when the surface is colder than the dew point."></svg></div>
+      <p class="readout" id="glassR" aria-live="polite"></p>
+    </article>
+    <article class="aid">
+      <span class="tag data">Data</span>
+      <h3>Where is Earth's water?</h3>
+      <div class="waffle" id="wWaffle" aria-hidden="true" style="max-width:260px"></div>
+      <div class="legend"><span class="r">ocean (salty) 97</span><span class="t">ice and glaciers 2</span><span class="a">groundwater 1</span></div>
+      <p class="cap">Out of every 100 drops of Earth's water, about 97 are in the oceans. Lakes and rivers are less than one hundredth of one drop. We rely on a very small slice. (Rounded; groundwater is partly salty.)</p>
+    </article>
+  </div>
+  <div class="aids">
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>Water cycle moments you've seen</h3>
+      <div class="tw"><table class="tbl">
+        <thead><tr><th>You notice</th><th>Stage</th></tr></thead>
+        <tbody>
+          <tr><td>Puddle disappears on a sunny day</td><td>Evaporation</td></tr>
+          <tr><td>Cold soda can gets wet outside</td><td>Condensation</td></tr>
+          <tr><td>Dew on grass in the morning</td><td>Condensation</td></tr>
+          <tr><td>Rain, snow, sleet, hail</td><td>Precipitation</td></tr>
+          <tr><td>Water in the Huron River after a storm</td><td>Collection and runoff</td></tr>
+          <tr><td>Plants breathing out water</td><td>Transpiration (a type of evaporation)</td></tr>
+        </tbody></table></div>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s3">
+  <div><p class="kicker">Concept 3 · Pressure and fronts</p><h2>Why the weather changes</h2></div>
+  <p class="idea">Weather changes when air masses of different temperature and pressure meet. A falling barometer usually means <mark>a storm is coming</mark>, and a <mark>front</mark> is where two air masses collide.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>A crowded gym and an empty gym</h3>
+      <div class="stage"><svg viewBox="0 0 480 220" role="img" aria-label="A crowded room on the left and an empty room on the right joined by a door. People flow toward the empty room like wind from high pressure to low pressure.">
+        <rect x="14" y="30" width="200" height="150" rx="8" style="fill:var(--surface);stroke:var(--ink);stroke-width:3"/><rect x="266" y="30" width="200" height="150" rx="8" style="fill:var(--surface);stroke:var(--ink);stroke-width:3"/>
+        <g style="fill:var(--absorb)" id="crowd"></g><g style="fill:var(--absorb)"><circle cx="340" cy="100" r="6"/><circle cx="400" cy="140" r="6"/></g>
+        <line x1="220" y1="105" x2="262" y2="105" class="flow" style="stroke:var(--ink);stroke-width:5" marker-end="url(#mInk)"/>
+        <text x="114" y="204" font-size="15" text-anchor="middle" style="font-weight:700">HIGH pressure</text><text x="366" y="204" font-size="15" text-anchor="middle" style="font-weight:700">LOW pressure</text>
+        <text x="240" y="22" font-size="14" text-anchor="middle">wind = air leaving the crowd</text>
+      </svg></div>
+      <p class="cap">People spread from the crowded room to the empty one. Air does the same: wind blows from high pressure toward low pressure.</p>
+    </article>
+    <article class="aid">
+      <span class="tag diagram">Diagram</span>
+      <h3>Cold front vs. warm front</h3>
+      <div class="chips" id="frChips" role="group" aria-label="Front type"><button class="chip" type="button" data-f="cold" aria-pressed="true">Cold front</button><button class="chip" type="button" data-f="warm" aria-pressed="false">Warm front</button></div>
+      <div class="stage"><svg id="frSvg" viewBox="0 0 480 240" role="img" aria-label="Cross section of air masses at a front."></svg></div>
+      <p class="readout" id="frR"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>Three days, one storm</h3>
+      <div class="stage"><svg id="stormSvg" viewBox="0 0 640 400" role="img" aria-label="Three stacked line charts over 72 hours: pressure dips, temperature jumps up then drops sharply, and rain peaks, all around the same time."></svg></div>
+      <div class="ctl"><label for="stormT">Hour: <span id="stormTv">20</span></label><input id="stormT" type="range" min="0" max="72" value="20"></div>
+      <p class="readout" id="stormR" aria-live="polite"></p>
+      <p class="cap">Made-up but realistic data for a cold front passing through. Warm before the front (southwest wind), then a sharp drop in temperature, rising pressure, and clearing after.</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s4">
+  <div><p class="kicker">Concept 4 · Why the wind blows</p><h2>Sun heats ground unevenly</h2></div>
+  <p class="idea">Land warms and cools faster than water. The warm air over land rises, cool air from the water rushes in, and that is a <mark>sea breeze</mark>. At night the pattern <mark>flips</mark>.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>A pan and a pot of water</h3>
+      <div class="stage"><svg viewBox="0 0 480 220" role="img" aria-label="A frying pan and a pot of water on the same burner level. The pan is very hot after a minute, the pot barely warm.">
+        <rect x="40" y="130" width="160" height="12" rx="4" style="fill:var(--muted)"/><rect x="280" y="130" width="160" height="12" rx="4" style="fill:var(--muted)"/>
+        <path d="M50 120 h140 l-8 -26 h-124z" style="fill:var(--absorb);fill-opacity:.7;stroke:var(--ink);stroke-width:3"/>
+        <path d="M290 120 h140 v-60 h-140z" style="fill:var(--reflect);fill-opacity:.35;stroke:var(--ink);stroke-width:3"/>
+        <text x="120" y="170" font-size="15" text-anchor="middle" style="font-weight:700">dry pan (like land)</text><text x="120" y="190" font-size="14" text-anchor="middle">scorching in 1 min</text>
+        <text x="360" y="170" font-size="15" text-anchor="middle" style="font-weight:700">water (like ocean)</text><text x="360" y="190" font-size="14" text-anchor="middle">barely warm in 1 min</text>
+      </svg></div>
+      <p>Same sunshine, same minute. The pan (land) gets hot fast; the pot of water (ocean) barely warms. Water needs about four times as much energy as rock or soil to warm up, so it heats and cools slowly. Now add air: air over the hot pan rises, and cooler air from over the pot slides in to replace it. <b>That sliding air is the sea breeze.</b> At night the pan cools faster, the pattern flips, and the breeze blows the other way.</p>
+      <p class="cap"><b>Where it breaks:</b> a beach is not a stove. The Sun heats the ground from above and the ocean is deep, so the real ocean stores far more heat than a pot.</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Beach through the day</h3>
+      <div class="stage"><svg id="seaSvg" viewBox="0 0 480 260" role="img" aria-label="Beach scene. Arrows show wind direction depending on whether land or water is warmer."></svg></div>
+      <div class="ctl"><label for="hr">Time of day: <span id="hrv"></span></label><input id="hr" type="range" min="0" max="23" step="1" value="14"></div>
+      <p class="readout" id="seaR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>Land swings, water barely moves</h3>
+      <div class="stage"><svg id="lwSvg" viewBox="0 0 640 260" role="img" aria-label="Two curves over 24 hours: land temperature swings widely while water temperature stays almost flat."></svg></div>
+      <p class="cap">The wind blows from whichever is cooler toward whichever is warmer. They cross around mid-morning and evening, and the breeze switches. Teaching values.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>Michigan examples</h3>
+      <div class="tw"><table class="tbl">
+        <thead><tr><th>Event</th><th>Explanation</th></tr></thead>
+        <tbody>
+          <tr><td><b>Cool breeze off Lake Michigan on a hot day</b></td><td>Land is warmer than the lake; air rises over land and lake air flows in.</td></tr>
+          <tr><td><b>Lake-effect snow in West Michigan</b></td><td>Cold air crosses warmer lake water, picks up moisture, then cools over land and drops it as snow.</td></tr>
+          <tr><td><b>Lake keeps the shore mild in fall</b></td><td>Water releases its stored thermal energy slowly.</td></tr>
+        </tbody></table></div>
+    </article>
+    <article class="aid wide">
+      <span class="tag build">Build it</span>
+      <h3>Engineering challenge: the cup anemometer</h3>
+      <p><b>The problem:</b> build a spinning anemometer that counts wind speed by how fast it turns in front of a fan.</p>
+      <p><b>Criteria:</b> spins freely, and gives roughly the same count (within 2) on two tries at the same fan speed.</p>
+      <p><b>Constraints:</b> 4 small cups, 2 straws, 1 pencil, a pin or paperclip for the axle, and tape.</p>
+      <ol class="steps">
+        <li><b>Try it in the game first.</b> Play Droplet's Journey at the bottom of this page. Notice how the wind keeps pushing in one direction.</li>
+        <li><b>Plan.</b> Sketch two different ideas on your design log. Think about why the cups all face the same way and why the pivot needs to spin with as little friction as possible.</li>
+        <li><b>Build and test.</b> Count rotations for 20 seconds at low fan speed, then at high fan speed. Repeat each speed once to check your count.</li>
+        <li><b>Improve.</b> Change one thing, test again, and record it.</li>
+      </ol>
+      <p class="cap">Print a <a href="../design-log.html#wind">design log</a> for each team. Real anemometers use this exact idea: count spins in a fixed time, and faster wind means more spins.</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s5">
+  <div><p class="kicker">Concept 5 · Weather vs climate</p><h2>One day vs. thirty years</h2></div>
+  <p class="idea"><mark>Weather</mark> is what the atmosphere is doing today. <mark>Climate</mark> is the pattern over many years, usually 30 or more. Climate tells you what to pack; weather tells you what to wear today.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>Mood vs. personality</h3>
+      <div class="stage"><svg viewBox="0 0 480 200" role="img" aria-label="A wavy line of daily moods around a steady average line, like daily weather around a steady climate.">
+        <line x1="30" y1="100" x2="450" y2="100" style="stroke:var(--ink);stroke-width:3;stroke-dasharray:8 6"/>
+        <path d="M30 120 q20 -80 40 -20 t40 -30 t40 70 t40 -60 t40 40 t40 -50 t40 60 t40 -40 t40 20 t40 -60" style="fill:none;stroke:var(--absorb);stroke-width:4"/>
+        <text x="240" y="26" font-size="15" text-anchor="middle" style="fill:var(--absorb);font-weight:700">daily mood = weather</text>
+        <text x="240" y="186" font-size="15" text-anchor="middle" style="font-weight:700">steady personality = climate</text>
+      </svg></div>
+      <p class="cap">One grumpy Tuesday doesn't make someone a grumpy person. One cold day doesn't change the climate. <b>Climate is the average of thousands of days</b>, just as personality is the pattern across thousands of moods.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>Average monthly temperature (°F)</h3>
+      <div class="cityrow" id="clChips" role="group" aria-label="Cities"></div>
+      <div class="stage"><svg id="clSvg" viewBox="0 0 640 280" role="img" aria-label="Line chart of average monthly temperature for Ann Arbor, Phoenix and Miami."></svg></div>
+      <div class="btnrow"><button class="btn" id="freak" type="button" aria-pressed="false">Add one freak 85 °F day in April</button></div>
+      <p class="readout" id="clR" aria-live="polite"></p>
+      <p class="cap">Approximate 30-year monthly averages. One hot April day is weather. It does not move the line, which is climate.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag diagram">Diagram</span>
+      <h3>The greenhouse effect</h3>
+      <div class="chips" id="ghChips" role="group" aria-label="Greenhouse gases"><button class="chip" type="button" data-g="none" aria-pressed="false">No greenhouse gases</button><button class="chip" type="button" data-g="now" aria-pressed="true">Today's level</button><button class="chip" type="button" data-g="more" aria-pressed="false">Much more</button></div>
+      <div class="stage"><svg id="ghSvg" viewBox="0 0 640 300" role="img" aria-label="Sunlight arrives, Earth warms and sends heat back up, greenhouse gases return some of it."></svg></div>
+      <p class="readout" id="ghR" aria-live="polite"></p>
+      <p class="cap">Sunlight passes through the air and is absorbed by the ground. The warm ground gives off invisible heat rays. Greenhouse gases like carbon dioxide and water vapor absorb some of those rays, then give the energy off again in every direction, so part of it heads back down. Nothing is sealed in like a lid: heat still escapes to space, just more slowly. Without any, Earth's average would be about -18 °C (0 °F) instead of about 15 °C (59 °F).</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>Weather or climate?</h3>
+      <div class="items" id="wcSort"></div>
+      <p class="score" id="wcSortS">0 of 6 correct</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s6">
+  <div><p class="kicker">Check yourself</p><h2>Can you explain it?</h2></div>
+  <p class="idea">Explain why a breeze blows off the lake on a hot afternoon, and how the lake is part of the water cycle.</p>
+  <details><summary>Show a model answer</summary><div class="in">
+    <p>Land heats faster than water, so air above land warms, expands, and rises, leaving low pressure. Cooler air from the lake flows in to fill the gap, which is the breeze.</p>
+    <p>The Sun evaporates lake water into water vapor. High in the air it cools and condenses into clouds, and then falls as rain or snow that runs back into the lake: evaporation, condensation, precipitation, collection.</p></div></details>
+  <div class="items" id="quiz"></div>
+  <p class="score" id="quizScore">0 of 6 correct</p>
+  <h3 style="margin-top:8px">Words to know</h3>
+  <dl class="glossary">
+    <div><dt>atmosphere</dt><dd>The layer of gases around Earth.</dd></div>
+    <div><dt>air pressure</dt><dd>The push of air's weight on everything below it.</dd></div>
+    <div><dt>evaporation</dt><dd>Liquid water turning into water vapor.</dd></div>
+    <div><dt>condensation</dt><dd>Water vapor turning into liquid droplets.</dd></div>
+    <div><dt>precipitation</dt><dd>Water falling as rain, snow, sleet, or hail.</dd></div>
+    <div><dt>dew point</dt><dd>The temperature at which air gets so cool that water vapor condenses.</dd></div>
+    <div><dt>front</dt><dd>Boundary between two air masses.</dd></div>
+    <div><dt>sea breeze</dt><dd>Daytime wind from cool water to warm land.</dd></div>
+    <div><dt>weather</dt><dd>Atmosphere conditions at a place and time.</dd></div>
+    <div><dt>climate</dt><dd>Typical weather pattern over 30 or more years.</dd></div>
+  </dl>
+  <details><summary>Tutor notes: hands-on kit, misconceptions, pacing</summary><div class="in">
+    <p><b>Kit (about $10):</b> a clear jar, ice, hot water, hairspray or a match for the cloud-in-a-jar demo, a metal can, a balloon, a bottle, thermometers, sand and water in two trays, a lamp. For the cup anemometer: 4 small cups, 2 straws, a pencil, a pin or paperclip, and a fan.</p>
+    <ul>
+      <li><b>Concept 1:</b> blow up a balloon, tie it, put it in a bag, and squeeze: air takes up space and presses back. A quick balloon-on-bottle barometer works.</li>
+      <li><b>Concept 2:</b> make a cloud in a jar with hot water, a plate of ice on top, and a squirt of aerosol. Sweat a cold can.</li>
+      <li><b>Concept 3:</b> record pressure from a weather app each hour for a day.</li>
+      <li><b>Concept 4:</b> put sand and water under a lamp and compare temperatures every minute for 10 minutes. Then run the cup anemometer challenge (about 30 to 40 minutes).</li>
+      <li><b>Concept 5:</b> print a month of daily highs for your town and draw the average line.</li>
+    </ul>
+    <p><b>Common misconceptions:</b></p>
+    <ul>
+      <li>"Clouds are made of smoke or cotton." They are billions of tiny water droplets or ice crystals.</li>
+      <li>"Rain comes from clouds holding all the water at once." It falls when droplets collide and get heavy.</li>
+      <li>"Cold weather today disproves climate change." It confuses weather with climate.</li>
+      <li>"The greenhouse effect is bad." It's natural and necessary. The concern is adding too much.</li>
+      <li>"Greenhouse gases put a lid on the heat." They absorb heat rays and send some back down; heat still leaves for space, just more slowly.</li>
+    </ul>
+    <p><b>Pacing:</b> about five 30-minute sessions.</p></div></details>
+</section>
+
+<section class="sec lesson-game-sec" id="game"><div><p class="kicker">After the lesson · Game</p><h2>Play: Droplet's Journey</h2></div><p class="idea">Guide one water molecule from Lake Michigan to a garden in Ann Arbor. Every step of the water cycle only works when the conditions are right, and the wind keeps pushing you east.</p><div class="lesson-game" id="lesson-game"></div>
+<script>(function(){
+/* Mounts one game into a shadow root so the lesson page's CSS and the game's CSS never collide. */
+function __mountLessonGame(host, css, html, init){
+  if(!host || host.shadowRoot) return;
+  const root = host.attachShadow({mode:"open"});
+  root.innerHTML = "<style>"+css+"</style>"+html;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let visible = true;
+  try{ new IntersectionObserver(es=>{ visible = es[es.length-1].isIntersecting; }).observe(host); }catch(e){}
+  const loops = [];
+  let last = performance.now();
+  function frame(t){
+    const dt = Math.min(0.05, (t-last)/1000); last = t;
+    if(visible && !document.hidden) for(const f of loops){ try{ f(t, dt); }catch(e){ console.error(e); } }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+  const env = {
+    root, reduce,
+    $: id => root.getElementById(id),
+    $$: sel => [...root.querySelectorAll(sel)],
+    loop: f => loops.push(f),
+    esc: s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])),
+    // A canvas drawn in fixed logical units (W x H) that scales to its container.
+    stage(canvas, W, H){
+      const ctx = canvas.getContext("2d");
+      const st = {ctx, W, H, dpr:1};
+      function fit(){
+        st.dpr = Math.min(2.5, window.devicePixelRatio || 1);
+        const cw = canvas.clientWidth || W;
+        const scale = cw / W;
+        canvas.width = Math.round(W*scale*st.dpr); canvas.height = Math.round(H*scale*st.dpr);
+        st.k = scale*st.dpr;
+        ctx.setTransform(st.k,0,0,st.k,0,0);
+        if(st.onfit) st.onfit();
+      }
+      canvas.style.aspectRatio = W+"/"+H;
+      st.begin = () => ctx.setTransform(st.k,0,0,st.k,0,0);
+      st.pt = ev => { const r = canvas.getBoundingClientRect(); return {x:(ev.clientX-r.left)*W/r.width, y:(ev.clientY-r.top)*H/r.height}; };
+      try{ new ResizeObserver(fit).observe(canvas); }catch(e){ addEventListener("resize", fit); }
+      fit();
+      return st;
+    },
+    // Level buttons in the header.
+    levelBar(box, names, onPick){
+      const solved = new Set(); let cur = 0;
+      function render(){
+        box.innerHTML = '<span class="label">Level</span>';
+        names.forEach((n,i)=>{ const b = document.createElement("button"); b.type="button";
+          b.className = "lv"+(solved.has(i)?" done":""); b.textContent = i+1; b.title = n;
+          b.setAttribute("aria-label", "Level "+(i+1)+": "+n+(solved.has(i)?" (solved)":""));
+          if(i===cur) b.setAttribute("aria-current","true");
+          b.onclick = () => { cur = i; render(); onPick(i); }; box.appendChild(b); });
+      }
+      render();
+      return { set(i){ cur=i; render(); }, solve(i){ solved.add(i); render(); }, get cur(){ return cur; }, solved };
+    },
+    // Result card over a stage. buttons: [{label, primary, onClick}]
+    card(stageEl, o){
+      let ov = stageEl.querySelector(":scope > .over");
+      if(!ov){ ov = document.createElement("div"); ov.className = "over"; stageEl.appendChild(ov); }
+      ov.hidden = false;
+      ov.innerHTML = '<div class="card'+(o.fail?' fail':'')+'" role="dialog" aria-live="polite"><h4></h4>'+(o.why?'<span class="why"></span>':'')+'<p class="cb"></p><div class="btns"></div></div>';
+      ov.querySelector("h4").textContent = o.title;
+      if(o.why) ov.querySelector(".why").textContent = o.why;
+      ov.querySelector(".cb").textContent = o.body || "";
+      if(o.list && o.list.length){ const ul = document.createElement("ul"); ul.className = "clist";
+        o.list.forEach(t => { const li = document.createElement("li"); li.textContent = t; ul.appendChild(li); });
+        ov.querySelector(".cb").after(ul); }
+      const bb = ov.querySelector(".btns");
+      (o.buttons||[]).forEach((b,i)=>{ const e = document.createElement("button"); e.type="button"; e.className = "btn"+(b.primary?" primary":""); e.textContent = b.label;
+        e.onclick = () => { ov.hidden = true; b.onClick && b.onClick(); }; bb.appendChild(e); if(i===0) setTimeout(()=>e.focus({preventScroll:true}),30); });
+      if(getComputedStyle(ov).position === "static") setTimeout(()=>ov.scrollIntoView({block:"nearest", behavior: reduce?"auto":"smooth"}), 40);
+      return ov;
+    },
+    hideCard(stageEl){ const ov = stageEl.querySelector(":scope > .over"); if(ov) ov.hidden = true; }
+  };
+  try{ init(root, env); }catch(e){ console.error(e); root.innerHTML += '<p style="color:#fff;padding:12px">This game could not start.</p>'; }
+}
+
+__mountLessonGame(document.getElementById("lesson-game"), "/* Shared frame for every lesson game. Lives inside a shadow root, so nothing here touches the lesson page.\n   Deliberately one dark \"lab console\" look in both page themes; each game sets its own --acc accent. */\n:host{\n  display:block; color-scheme:dark;\n  --bg:#0B0F15; --panel:#141A23; --panel-2:#1B2330; --line:#2B3544; --ink:#E9EEF5; --muted:#93A0B2;\n  --good:#3FD3BB; --bad:#FF6B5E; --warn:#FFB547; --acc:#FFD84A; --acc-ink:#1A1400;\n  --reflect:#78A2FF; --heat:#FF7A2E;\n  --f-display:\"Bahnschrift\",\"DIN Alternate\",\"Roboto Condensed\",\"Arial Narrow\",system-ui,sans-serif;\n  --f-body:\"Roboto\",\"Segoe UI\",system-ui,-apple-system,sans-serif;\n  --f-mono:ui-monospace,\"Roboto Mono\",\"Cascadia Mono\",Menlo,Consolas,monospace;\n}\n*{box-sizing:border-box}\n[hidden]{display:none!important}\n.g{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;border-radius:16px;\n  border:1px solid var(--line);padding:16px;display:grid;gap:14px;text-align:left;box-shadow:0 10px 36px rgba(0,0,0,.35)}\n.g button{font:inherit;color:inherit}\n.g :focus-visible{outline:3px solid var(--acc);outline-offset:2px}\n.g h3,.g h4{margin:0;font-family:var(--f-display);letter-spacing:.02em;line-height:1.15}\n.g p{margin:0}\n.bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 18px}\n.brand{display:grid;gap:2px}\n.label{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}\n.gtitle{font-family:var(--f-display);font-weight:700;font-size:1.45rem;text-transform:uppercase;letter-spacing:.04em}\n.gtitle b{color:var(--acc);font-weight:700}\n.levels{display:flex;flex-wrap:wrap;gap:6px;align-items:center}\n.lv{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--line);background:var(--panel);font-family:var(--f-mono);font-size:.85rem;cursor:pointer;font-variant-numeric:tabular-nums;padding:0}\n.lv:hover{border-color:var(--muted)}\n.lv.done{border-color:var(--good);color:var(--good)}\n.lv[aria-current=\"true\"]{background:var(--acc);border-color:var(--acc);color:var(--acc-ink);font-weight:700}\n.goalrow{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 12px}\n.goalrow h4{font-size:1.25rem}\n.goalrow .goal{color:var(--muted)}\n.cols{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:14px;align-items:start}\n.cols>*{min-width:0}\n.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:10px;min-width:0}\n.panel>.label{margin-bottom:-2px}\n.stage{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px;min-width:0}\n.stage canvas{display:block;width:100%;max-width:100%;height:auto;border-radius:8px;touch-action:none}\n.btns{display:flex;flex-wrap:wrap;gap:8px}\n.btn{padding:8px 14px;min-height:40px;border-radius:10px;border:1.5px solid var(--line);background:var(--panel-2);cursor:pointer;font-weight:700;font-size:.92rem;line-height:1.2}\n.btn:hover:not([disabled]){border-color:var(--muted)}\n.btn[disabled]{opacity:.45;cursor:default}\n.btn.primary{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}\n.btn[aria-pressed=\"true\"]{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset}\n.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;font-size:.82rem;border:1px solid var(--line);background:var(--panel-2)}\n.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}\n.msg{font-size:.93rem;padding:9px 12px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line)}\n.msg.good{border-color:color-mix(in srgb,var(--good) 60%,var(--line));color:var(--ink)}\n.msg.bad{border-color:color-mix(in srgb,var(--bad) 60%,var(--line))}\n.msg.warn{border-color:color-mix(in srgb,var(--warn) 60%,var(--line))}\n.help{font-size:.86rem;color:var(--muted)}\n.meter{height:12px;border-radius:99px;background:var(--panel-2);overflow:hidden;border:1px solid var(--line)}\n.meter>i{display:block;height:100%;background:var(--acc);transition:width .15s}\n.ctl{display:grid;gap:4px}\n.ctl label{font-size:.9rem;font-weight:700;display:flex;justify-content:space-between;gap:8px}\n.ctl input[type=range]{width:100%;accent-color:var(--acc);height:30px;margin:0}\n.over{position:absolute;inset:6px;border-radius:8px;display:grid;place-items:center;padding:14px;background:color-mix(in srgb,var(--bg) 74%,transparent);backdrop-filter:blur(2px);z-index:5}\n.card{max-width:440px;display:grid;gap:10px;padding:18px;border-radius:14px;background:var(--panel-2);border:1px solid var(--acc);box-shadow:0 0 36px color-mix(in srgb,var(--acc) 22%,transparent)}\n.card h4{font-size:1.5rem;color:var(--acc)}\n.card.fail{border-color:var(--bad);box-shadow:0 0 36px color-mix(in srgb,var(--bad) 18%,transparent)}\n.card.fail h4{color:var(--bad)}\n.clist{margin:0;padding-left:1.15em;display:grid;gap:5px;font-size:.9rem}\n.over{align-items:start}\n.card{position:sticky;top:16px;margin-top:clamp(8px,8%,60px)}\n.why{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}\ntable.data{width:100%;border-collapse:collapse;font-size:.85rem}\ntable.data th,table.data td{padding:5px 7px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}\ntable.data th{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}\ntable.data td.num{text-align:right}\n.scroll{overflow-x:auto}\n@media (max-width:820px){.cols{grid-template-columns:minmax(0,1fr)}\n  .over{position:static;inset:auto;background:none;backdrop-filter:none;padding:8px 0 2px}\n  .card{max-width:none;position:static;margin-top:0}}\n@media (prefers-reduced-motion:reduce){.meter>i{transition:none}}\n\n:host{--acc:#5AB1FF;--acc-ink:#03111F}\n.left,.aside{display:grid;gap:14px;min-width:0}\n.status{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 12px;font-size:.92rem}\n.status dt{color:var(--muted)}\n.status dd{margin:0;font-weight:700}\n.acts{display:grid;grid-template-columns:1fr 1fr;gap:8px}\n.acts .btn{text-align:left;display:grid;gap:2px;font-size:.9rem}\n.acts .btn small{font-weight:400;color:var(--muted);font-size:.76rem}\n.acts .btn.primary small{color:inherit;opacity:.75}\n.log{margin:0;padding-left:1.4em;display:grid;gap:5px;font-size:.88rem;max-height:220px;overflow:auto}\n.log li.no{color:var(--warn)}\n.log li .hr{font-family:var(--f-mono);color:var(--muted);font-size:.78rem;margin-right:6px}\n@media (max-width:420px){.acts{grid-template-columns:1fr}}\n", "<div class=\"g\">\n  <div class=\"bar\">\n    <div class=\"goalrow\"><h4 id=\"lvName\">To the Garden</h4><span class=\"goal\" id=\"lvGoal\"></span></div>\n    <nav class=\"levels\" id=\"levels\" aria-label=\"Levels\"></nav>\n  </div>\n  <div class=\"cols\">\n    <div class=\"left\">\n      <div class=\"stage\" id=\"stage\"><canvas id=\"cv\" aria-label=\"Side view from Lake Michigan to Ann Arbor showing where the water molecule is.\"></canvas></div>\n      <div class=\"panel\">\n        <span class=\"label\">Trip log</span>\n        <ol class=\"log\" id=\"log\"></ol>\n      </div>\n    </div>\n    <div class=\"aside\">\n      <div class=\"panel\">\n        <span class=\"label\">You are</span>\n        <dl class=\"status\" id=\"status\"></dl>\n      </div>\n      <div class=\"panel\">\n        <span class=\"label\">What do you do next?</span>\n        <div class=\"acts\" id=\"acts\"></div>\n        <p class=\"msg\" id=\"msg\"></p>\n        <button class=\"btn\" id=\"restart\" type=\"button\">Start over</button>\n      </div>\n    </div>\n  </div>\n</div>\n", function(root, env){
+// Droplet's Journey rules (shared by the game and the level checker)
+const ZONES = [
+  {name:"Lake Michigan", ground:"lake"},
+  {name:"Sand dunes", ground:"sand"},
+  {name:"Farm fields", ground:"field"},
+  {name:"Forest", ground:"forest"},
+  {name:"Highway & parking lot", ground:"pavement"},
+  {name:"Ann Arbor garden", ground:"garden"},
+];
+const ALT_TEMP = [24, 17, 9, 1];   // °C at each height band
+const DEW = 10;                    // vapor condenses at or below this temperature
+const DLEVELS = [
+  {name:"To the Garden", start:10, wind:[0,0,1,1],
+   goal:"Get from Lake Michigan into the soil of the garden in Ann Arbor."},
+  {name:"Night Start", start:22, wind:[0,0,1,1],
+   goal:"It's 10 p.m. at the lake. Same trip, but the Sun isn't up yet."},
+  {name:"Jet Stream", start:9, wind:[0,0,1,2],
+   goal:"Winds high up are twice as fast today. Don't overshoot the garden."},
+];
+function sunUp(h){ const x = ((h%24)+24)%24; return x>=7 && x<19; }
+function initState(L){ return {zone:0, alt:0, form:"liquid", size:0, hour:L.start, over:null}; }
+// returns {ok, s (new state), why}
+function act(L, s, a){
+  s = {...s}; let why = "";
+  const day = sunUp(s.hour);
+  switch(a){
+    case "evaporate":
+      if(s.form!=="liquid") return {ok:false, why:"Only liquid water can evaporate."};
+      if(!day) return {ok:false, why:"It's dark. Evaporation needs energy from sunlight to speed up the water particles."};
+      s.form = "vapor"; why = "Sunlight warmed you enough to break free of the lake. You're water vapor now: an invisible gas."; break;
+    case "rise":
+      if(s.form!=="vapor" && s.form!=="cloud") return {ok:false, why:"You have to be in the air to rise."};
+      if(s.alt>=3) return {ok:false, why:"You're as high as this air goes today."};
+      if(!day) return {ok:false, why:"At night the ground cools and warm air stops rising."};
+      s.alt++; why = `Warm air carried you up. It's ${ALT_TEMP[s.alt]} °C up here: the higher you go, the colder it gets.`; break;
+    case "condense":
+      if(s.form!=="vapor") return {ok:false, why:"Only water vapor can condense."};
+      if(ALT_TEMP[s.alt] > DEW) return {ok:false, why:`Too warm (${ALT_TEMP[s.alt]} °C). Vapor only condenses when it cools to about ${DEW} °C. Rise higher.`};
+      s.form = "cloud"; s.size = 1; why = "You cooled and condensed onto a speck of dust: a tiny cloud droplet."; break;
+    case "merge":
+      if(s.form!=="cloud") return {ok:false, why:"Only cloud droplets can bump together and merge."};
+      if(s.size>=3) return {ok:false, why:"You're already a full raindrop, heavy enough to fall."};
+      s.size++; why = s.size===3 ? "You merged with other droplets. Now you're heavy enough to fall as rain." : "You bumped into another droplet and got bigger."; break;
+    case "fall":
+      if(s.form!=="cloud") return {ok:false, why:"Only a cloud droplet can fall as rain."};
+      if(s.size<3) return {ok:false, why:"Cloud droplets are so tiny that rising air holds them up. Merge until you're heavy enough."};
+      s.form = "landed"; s.alt = 0;
+      { const g = ZONES[s.zone].ground;
+        s.over = g==="garden" ? "win" : g;
+        why = {garden:"You fell as rain and soaked into the garden soil. A tomato plant's roots took you in!",
+               lake:"You fell back into the lake. The cycle continues, but you didn't reach the garden.",
+               sand:"You soaked into the dunes and seeped back toward the lake.",
+               field:"You soaked into a farm field. Close, but not the garden.",
+               forest:"You landed in the forest. A maple tree drank you up. Not the garden yet.",
+               pavement:"You hit the pavement. Water can't soak in there, so you ran off into a storm drain and down the river."}[g]; }
+      s.hour++; return {ok:true, s, why};
+    case "wait": why = "Time passes."; break;
+    default: return {ok:false, why:"?"};
+  }
+  s.hour++;
+  if(s.form==="vapor" || s.form==="cloud"){
+    const w = L.wind[s.alt];
+    if(w){ s.zone += w; why += ` The wind blew you ${w>1?w+" zones":"one zone"} east.`; }
+    if(s.zone >= ZONES.length){ s.zone = ZONES.length-1; s.over = "blown"; why += " You blew right past Ann Arbor toward Lake Erie."; }
+  }
+  return {ok:true, s, why};
+}
+const ACTIONS = ["evaporate","rise","condense","merge","fall","wait"];
+
+
+const PAR = [8, 17, 8];
+const ACT_INFO = {
+  evaporate:{label:"Evaporate", sub:"Turn from liquid to gas"},
+  rise:{label:"Rise", sub:"Ride warm air upward"},
+  condense:{label:"Condense", sub:"Turn from gas to a cloud droplet"},
+  merge:{label:"Merge", sub:"Bump into other droplets"},
+  fall:{label:"Fall as rain", sub:"Drop to the ground"},
+  wait:{label:"Wait 1 hour", sub:"Let time pass"},
+};
+const $ = env.$;
+const cv = $("cv"), st = env.stage(cv, 640, 330), ctx = st.ctx;
+const bar = env.levelBar($("levels"), DLEVELS.map(l=>l.name), i => load(i));
+let li = 0, s = null, trail = [], logItems = [], moves = 0, shown = {x:0,y:0}, flash = 0;
+
+function L(){ return DLEVELS[li]; }
+function load(i){ li = i; s = initState(L()); trail = [{zone:0, alt:0}]; logItems = []; moves = 0; env.hideCard($("stage"));
+  $("lvName").textContent = L().name; $("lvGoal").textContent = L().goal;
+  say("You are one water molecule in Lake Michigan. Pick your first move.");
+  render(); const p = pos(s); shown = {x:p.x, y:p.y}; }
+function say(t, kind){ const m = $("msg"); m.textContent = t; m.className = "msg"+(kind?" "+kind:""); }
+function clock(h){ const x = ((h%24)+24)%24; const ap = x<12?"a.m.":"p.m."; const hh = x%12===0?12:x%12; return hh+":00 "+ap; }
+function formName(){ return {liquid:"Liquid water", vapor:"Water vapor (a gas)", cloud:`Cloud droplet, size ${s.size} of 3`, landed:"Landed"}[s.form]; }
+function render(){
+  $("status").innerHTML = `<dt>Form</dt><dd>${formName()}</dd><dt>Where</dt><dd>${ZONES[s.zone].name}</dd>
+    <dt>Height</dt><dd>${["At the surface","Low air","Middle air","High air"][s.alt]} · ${ALT_TEMP[s.alt]} °C</dd>
+    <dt>Time</dt><dd>${clock(s.hour)} ${sunUp(s.hour)?"· Sun up":"· Dark"}</dd><dt>Hours used</dt><dd>${moves}</dd>`;
+  const box = $("acts"); box.innerHTML = "";
+  const over = !!s.over;
+  for(const a of ACTIONS){ const b = document.createElement("button"); b.type = "button"; b.className = "btn"; b.disabled = over;
+    b.innerHTML = `${ACT_INFO[a].label}<small>${ACT_INFO[a].sub}</small>`; b.onclick = () => doAct(a); box.appendChild(b); }
+  if(!sunUp(s.hour) && !over){ const b = document.createElement("button"); b.type = "button"; b.className = "btn primary"; b.style.gridColumn = "1/-1";
+    b.innerHTML = `Wait until sunrise<small>Skip ahead to 7:00 a.m.</small>`; b.onclick = () => { let n = 0; while(!sunUp(s.hour) && !s.over && n<24){ doAct("wait", true); n++; } logItems.push({h:s.hour, t:`Waited ${n} hours until sunrise.`}); renderLog(); render(); }; box.appendChild(b); }
+  renderLog();
+}
+function renderLog(){
+  $("log").innerHTML = logItems.slice(-30).map(x => `<li class="${x.no?'no':''}"><span class="hr">${clock(x.h)}</span>${env.esc(x.t)}</li>`).join("") || '<li style="list-style:none;margin-left:-1.4em;color:var(--muted)">Nothing yet.</li>';
+  const ol = $("log"); ol.scrollTop = ol.scrollHeight;
+}
+function doAct(a, quiet){
+  if(s.over) return;
+  const r = act(L(), s, a);
+  if(!r.ok){ say(r.why, "warn"); flash = 1; if(!quiet){ logItems.push({h:s.hour, t:`Tried to ${ACT_INFO[a].label.toLowerCase()}: ${r.why}`, no:true}); renderLog(); } return; }
+  s = r.s; moves++; trail.push({zone:s.zone, alt:s.alt});
+  if(!quiet){ logItems.push({h:s.hour-1, t:r.why}); say(r.why, s.over==="win"?"good":s.over?"bad":""); render(); }
+  if(s.over) finish(r.why);
+}
+function finish(why){
+  if(s.over==="win"){
+    bar.solve(li);
+    const stars = moves<=PAR[li] ? "in the fewest hours possible" : `in ${moves} hours (the best route takes ${PAR[li]})`;
+    env.card($("stage"), {title:"Watered the garden!", why:"The science", body:`You made the trip ${stars}. The Sun's energy did the lifting: it evaporated you and powered the rising air. No water was made or lost, just moved.`,
+      buttons:[{label: li<DLEVELS.length-1?"Next level":"Play level 1 again", primary:true, onClick:()=>{ const n=li<DLEVELS.length-1?li+1:0; bar.set(n); load(n); }}, {label:"Try for fewer hours", onClick:()=>load(li)}]});
+  } else {
+    env.card($("stage"), {fail:true, title:"Not the garden", why:"What happened", body:why+" Every drop keeps cycling: lake, air, cloud, ground, and back.", buttons:[{label:"Try again", primary:true, onClick:()=>load(li)}]});
+  }
+}
+$("restart").onclick = () => load(li);
+
+/* ---------- drawing ---------- */
+const GX0 = 20, ZW = 100, GROUND = 270, AH = 58;
+function pos(st_){ return {x: GX0 + st_.zone*ZW + ZW/2, y: GROUND - 12 - st_.alt*AH}; }
+function draw(t, dt){
+  st.begin();
+  const W = 640, H = 330, day = sunUp(s.hour), hr = ((s.hour%24)+24)%24;
+  const sky = ctx.createLinearGradient(0,0,0,GROUND);
+  if(day){ sky.addColorStop(0,"#1E4E8C"); sky.addColorStop(1,"#6FA8D8"); } else { sky.addColorStop(0,"#050914"); sky.addColorStop(1,"#18233A"); }
+  ctx.fillStyle = sky; ctx.fillRect(0,0,W,GROUND);
+  // sun / moon
+  if(day){ const f = (hr-7)/12, sx = 40 + f*560, sy = 70 - Math.sin(f*Math.PI)*46; ctx.fillStyle = "#FFE27A"; ctx.shadowColor = "#FFE27A"; ctx.shadowBlur = 24; ctx.beginPath(); ctx.arc(sx, sy, 16, 0, 7); ctx.fill(); ctx.shadowBlur = 0; }
+  else { ctx.fillStyle = "#DDE6F2"; ctx.beginPath(); ctx.arc(560, 40, 12, 0, 7); ctx.fill(); ctx.fillStyle = "#050914"; ctx.beginPath(); ctx.arc(566, 36, 11, 0, 7); ctx.fill();
+    ctx.fillStyle = "rgba(255,255,255,.6)"; for(let i=0;i<30;i++) ctx.fillRect((i*131)%W, (i*47)%150, 1.5, 1.5); }
+  // altitude bands
+  ctx.font = "11px ui-monospace,monospace"; ctx.textBaseline = "middle";
+  for(let a=1;a<=3;a++){ const y = GROUND - a*AH - 12 + AH/2; ctx.strokeStyle = "rgba(255,255,255,.08)"; ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
+  for(let a=0;a<=3;a++){ const y = GROUND - 12 - a*AH; ctx.fillStyle = ALT_TEMP[a] <= DEW ? "rgba(160,215,255,.9)" : "rgba(255,255,255,.65)"; ctx.textAlign = "left"; ctx.fillText(ALT_TEMP[a]+" °C", 4, y-14); }
+  // dew line
+  const dewY = GROUND - 12 - 1.5*AH; ctx.strokeStyle = "rgba(160,215,255,.5)"; ctx.setLineDash([6,5]); ctx.beginPath(); ctx.moveTo(0, dewY); ctx.lineTo(W, dewY); ctx.stroke(); ctx.setLineDash([]);
+  ctx.fillStyle = "rgba(160,215,255,.85)"; ctx.textAlign = "right"; ctx.fillText("colder than "+DEW+" °C above this line: vapor can condense", W-6, dewY-9);
+  // wind arrows
+  for(let a=2;a<=3;a++){ const w = L().wind[a]; if(!w) continue; const y = GROUND - 12 - a*AH;
+    ctx.strokeStyle = "rgba(255,255,255,.35)"; ctx.lineWidth = 1.5; const off = env.reduce?0:((t/40)%60);
+    for(let x=60+off; x<W-20; x+=120/w){ ctx.beginPath(); ctx.moveTo(x, y+18); ctx.lineTo(x+22, y+18); ctx.lineTo(x+17, y+14); ctx.moveTo(x+22, y+18); ctx.lineTo(x+17, y+22); ctx.stroke(); }
+    ctx.fillStyle = "rgba(255,255,255,.55)"; ctx.textAlign = "right"; ctx.fillText(`wind ${w} zone${w>1?"s":""}/hour →`, W-6, y+2); }
+  // ground
+  const GC = {lake:"#1D5FA3", sand:"#D9C08A", field:"#6D9A3C", forest:"#2E6B3A", pavement:"#4A4F57", garden:"#7A5A3A"};
+  ctx.fillStyle = GC.lake; ctx.fillRect(0, GROUND, GX0, H-GROUND);
+  ZONES.forEach((z,i)=>{ const x = GX0 + i*ZW; ctx.fillStyle = GC[z.ground]; ctx.fillRect(x, GROUND, ZW, H-GROUND);
+    if(z.ground==="forest"){ ctx.fillStyle = "#1F4F2A"; for(let k=0;k<4;k++){ const tx = x+14+k*24; ctx.beginPath(); ctx.moveTo(tx, GROUND); ctx.lineTo(tx+10, GROUND-28); ctx.lineTo(tx+20, GROUND); ctx.fill(); } }
+    if(z.ground==="garden"){ ctx.fillStyle = "#4FCB85"; for(let k=0;k<5;k++){ ctx.beginPath(); ctx.ellipse(x+14+k*18, GROUND-6, 6, 9, 0, 0, 7); ctx.fill(); } ctx.fillStyle = "#FF5E5E"; ctx.beginPath(); ctx.arc(x+50, GROUND-12, 4, 0, 7); ctx.fill(); }
+    if(z.ground==="pavement"){ ctx.fillStyle = "#E9EEF5"; for(let k=0;k<4;k++) ctx.fillRect(x+8+k*24, GROUND+20, 12, 3); }
+    if(z.ground==="field"){ ctx.strokeStyle = "#8DBA55"; for(let k=0;k<8;k++){ ctx.beginPath(); ctx.moveTo(x+6+k*12, GROUND); ctx.lineTo(x+6+k*12, GROUND-12); ctx.stroke(); } }
+    ctx.fillStyle = "#0B0F15"; ctx.globalAlpha = .55; ctx.fillRect(x+2, H-26, ZW-4, 22); ctx.globalAlpha = 1;
+    ctx.fillStyle = "#E9EEF5"; ctx.textAlign = "center"; ctx.font = "11px ui-monospace,monospace"; ctx.fillText(z.name.replace("Highway & parking lot","Parking lot").replace("Ann Arbor garden","Garden"), x+ZW/2, H-15);
+    if(i>0){ ctx.strokeStyle = "rgba(0,0,0,.25)"; ctx.beginPath(); ctx.moveTo(x, GROUND); ctx.lineTo(x, H); ctx.stroke(); } });
+  // trail
+  ctx.strokeStyle = "rgba(255,255,255,.4)"; ctx.setLineDash([3,4]); ctx.lineWidth = 2; ctx.beginPath();
+  trail.forEach((p,i)=>{ const q = pos(p); i ? ctx.lineTo(q.x, q.y) : ctx.moveTo(q.x, q.y); }); ctx.stroke(); ctx.setLineDash([]);
+  // the molecule
+  const target = pos(s); const k = env.reduce ? 1 : Math.min(1, dt*6);
+  shown.x += (target.x-shown.x)*k; shown.y += (target.y-shown.y)*k;
+  const x = shown.x, y = shown.y;
+  if(flash>0){ flash -= dt*2; ctx.strokeStyle = `rgba(255,181,71,${flash})`; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(x, y, 22, 0, 7); ctx.stroke(); }
+  if(s.form==="vapor"){ ctx.strokeStyle = "#E9F6FF"; ctx.lineWidth = 2.5; ctx.beginPath();
+    for(let i=0;i<=24;i++){ const xx = x-12+i, yy = y + Math.sin(i*.6 + t/150)*4; i?ctx.lineTo(xx,yy):ctx.moveTo(xx,yy); } ctx.stroke(); }
+  else if(s.form==="cloud"){ ctx.fillStyle = "rgba(240,246,255,.95)"; [[-12,2,10],[0,-4,13],[12,2,10],[0,6,10]].forEach(c=>{ ctx.beginPath(); ctx.arc(x+c[0], y+c[1], c[2], 0, 7); ctx.fill(); });
+    ctx.fillStyle = "#3D8BFF"; for(let i=0;i<s.size;i++){ ctx.beginPath(); ctx.arc(x-6+i*6, y+3, 2.6, 0, 7); ctx.fill(); } }
+  else { ctx.fillStyle = "#5AB1FF"; ctx.strokeStyle = "#E9F6FF"; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(x, y-13); ctx.quadraticCurveTo(x+11, y+2, x, y+8); ctx.quadraticCurveTo(x-11, y+2, x, y-13); ctx.fill(); ctx.stroke(); }
+  ctx.fillStyle = "rgba(11,15,21,.7)"; ctx.fillRect(W-150, 6, 144, 22); ctx.fillStyle = "#E9EEF5"; ctx.textAlign = "right"; ctx.font = "700 13px ui-monospace,monospace"; ctx.fillText(clock(s.hour), W-12, 17);
+}
+env.loop(draw);
+load(0);
+
+});
+})();</script></section>
+
+<section class="sec related" id="more"><div><p class="kicker">Keep exploring</p><h2>Related lessons</h2></div><p class="idea"> Up next: <a href="unit-05-plate-tectonics-and-rocks.html">Unit 5: Plate Tectonics &amp; Rocks</a>. Overlap alert: ideas you have already met are marked above as "you may already have learned".</p><ul><li><a href="unit-01-light-and-matter.html">Unit 1: Light &amp; Matter</a><span class="why">Light and the Sun as the energy source.</span></li><li><a href="unit-02-thermal-energy.html">Unit 2: Thermal Energy</a><span class="why">Convection, evaporation, condensation.</span></li><li><a href="unit-03-forces-motion-and-energy.html">Unit 3: Forces, Motion &amp; Energy</a><span class="why">Pressure is force over area.</span></li><li><a href="unit-06-natural-hazards.html">Unit 6: Natural Hazards</a><span class="why">Hurricanes, floods, and tornadoes.</span></li><li><a href="unit-07-cells.html">Unit 7: Cells</a><span class="why">Water and diffusion in cells.</span></li><li><a href="unit-11-earth-in-space.html">Unit 11: Earth in Space</a><span class="why">Why seasons change the weather.</span></li><li><a href="unit-13-energy-resources-and-human-impact.html">Unit 13: Energy Resources &amp; Human Impact</a><span class="why">Weather, climate, and energy resources.</span></li><li><a href="unit-10-states-of-matter.html">Unit 10: States of Matter</a><span class="why">Water changing state.</span></li></ul></section>
+</main>
+
+<footer>Built for sixth-grade tutoring. Aligned with NGSS MS-ESS2-4 (water cycle), MS-ESS2-5 (air masses and weather), MS-ESS2-6 (atmospheric circulation and climate), MS-ETS1-1 to 1-4 (the cup anemometer), and the OpenSciEd-style 6th grade weather, climate, and water cycling strand. Numbers are rounded teaching values; city temperatures are approximate averages.</footer>
+
+<script>
+(function(){
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const safe=fn=>{try{fn()}catch(e){console.error(e)}};
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const setPressed=(g,b)=>$$('button',g).forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));
+const cF=c=>c*9/5+32;
+
+/* ===== 1 atmosphere ===== */
+const pres=h=>1013*Math.exp(-h/8.4);
+const temp=h=> h<11?15-6.5*h : h<20?-56.5 : h<32?-56.5+(h-20) : h<47?-44.5+(h-32)*2.8 : -2.5;
+safe(()=>{
+  const sl=$('#alt'), svg=$('#layerSvg'), rd=$('#altR'), av=$('#altV');
+  const L=[{n:'Troposphere',a:0,b:12,c:'var(--reflect)',o:.35,note:'weather happens here; gets colder as you climb'},{n:'Stratosphere',a:12,b:50,c:'var(--transmit)',o:.25,note:'ozone layer; gets warmer as you climb'}];
+  const Y=h=>270-h/50*250;
+  function draw(){
+    const h=+sl.value; av.textContent=`${h} km`;
+    let s='';
+    L.forEach(l=>{ s+=`<rect x="40" y="${Y(l.b)}" width="200" height="${Y(l.a)-Y(l.b)}" style="fill:${l.c};fill-opacity:${l.o}"/><line x1="40" y1="${Y(l.b)}" x2="240" y2="${Y(l.b)}" style="stroke:var(--ink);stroke-width:1.5;stroke-dasharray:5 4"/>`; });
+    s+=`<rect x="40" y="20" width="200" height="250" style="fill:none;stroke:var(--ink);stroke-width:3"/>
+      <text x="140" y="${Y(6)+5}" font-size="16" text-anchor="middle" style="font-weight:700">Troposphere</text><text x="140" y="${Y(30)+5}" font-size="16" text-anchor="middle" style="font-weight:700">Stratosphere</text>
+      <text x="36" y="${Y(12)+4}" font-size="12" text-anchor="end">12 km</text><text x="36" y="${Y(50)+4}" font-size="12" text-anchor="end">50 km</text><text x="36" y="274" font-size="12" text-anchor="end">0</text>
+      <line x1="40" y1="${Y(h)}" x2="262" y2="${Y(h)}" style="stroke:var(--ink);stroke-width:2;stroke-dasharray:4 4"/>
+      <circle cx="140" cy="${Y(h)}" r="11" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/>
+      <text x="270" y="${Y(h)+5}" font-size="14" style="font-weight:700">you are here</text>
+      <text x="330" y="80" font-size="14">Mt. Everest: 8.9 km</text><text x="330" y="100" font-size="14">Airliners: 11 km</text><text x="330" y="120" font-size="14">Weather balloon: ~30 km</text>`;
+    svg.innerHTML=s;
+    const lay=h<12?'troposphere':'stratosphere';
+    rd.innerHTML=`At <b>${h} km</b> (${(h*.621).toFixed(1)} miles) you're in the <b>${lay}</b>. Pressure: <b>${pres(h).toFixed(0)} hPa</b> (${(pres(h)/1013*100).toFixed(0)}% of sea level). Temperature: <b>${temp(h).toFixed(0)} °C</b> (${cF(temp(h)).toFixed(0)} °F).`;
+    pdraw(h);
+  }
+  const ps=$('#presSvg'), X=p=>60+p/1013*540, YY=h=>220-h/50*200;
+  function pdraw(h){
+    let d=''; for(let i=0;i<=100;i++){ const hh=i/2; d+=`${i?'L':'M'}${X(pres(hh)).toFixed(1)} ${YY(hh).toFixed(1)}`; }
+    let g='';
+    [0,10,20,30,40,50].forEach(v=>{ g+=`<line x1="60" y1="${YY(v)}" x2="600" y2="${YY(v)}" style="stroke:var(--line)"/><text x="52" y="${YY(v)+5}" font-size="13" text-anchor="end">${v}</text>`; });
+    [0,250,500,750,1000].forEach(v=>{ g+=`<text x="${X(v)}" y="240" font-size="13" text-anchor="middle">${v}</text>`; });
+    const pts=[['Ann Arbor',.26],['Denver',1.6],['Everest',8.85],['Airliner',11]].map(([n,a],i)=>`<circle cx="${X(pres(a))}" cy="${YY(a)}" r="5" style="fill:var(--ink)"/><text x="${X(pres(a))+9}" y="${YY(a)+(i===0?-4:5)}" font-size="13">${n}</text>`).join('');
+    ps.innerHTML=`${g}<line x1="60" y1="220" x2="600" y2="220" style="stroke:var(--ink);stroke-width:2"/><line x1="60" y1="20" x2="60" y2="220" style="stroke:var(--ink);stroke-width:2"/>
+      <path d="${d}" style="fill:none;stroke:var(--reflect);stroke-width:4"/>${pts}
+      <circle cx="${X(pres(h))}" cy="${YY(h)}" r="8" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/>
+      <text x="330" y="258" font-size="14" text-anchor="middle">air pressure (hPa)</text><text transform="rotate(-90 14 120)" x="14" y="120" font-size="14" text-anchor="middle">altitude (km)</text>`;
+  }
+  sl.addEventListener('input',draw); draw();
+});
+
+/* ===== 2 water cycle ===== */
+safe(()=>{
+  const ST=[
+    {id:'all',n:'All stages',t:'The Sun powers the loop. Water evaporates, condenses, falls, and runs back. The total amount of water on Earth stays the same.'},
+    {id:'evap',n:'1 Evaporation',t:'Sunlight is absorbed by ocean, lakes, and wet ground. The extra thermal energy lets water particles escape into the air as invisible water vapor. Plants add some too (transpiration).'},
+    {id:'cond',n:'2 Condensation',t:'Rising air cools. Cooler air can hold less vapor, so vapor condenses onto tiny dust specks into droplets: a cloud.'},
+    {id:'prec',n:'3 Precipitation',t:'Droplets merge until they are too heavy to float and fall as rain, snow, sleet, or hail, depending on the air temperature.'},
+    {id:'coll',n:'4 Collection',t:'Water runs over land into streams and the ocean, or soaks into the ground. Then the Sun starts the loop again.'}
+  ];
+  const chips=$('#wcChips'), svg=$('#wcSvg'), rd=$('#wcR'); let sel='all';
+  ST.forEach(s=>{ const b=document.createElement('button'); b.type='button'; b.className='chip'; b.textContent=s.n; b.dataset.id=s.id; b.setAttribute('aria-pressed',s.id===sel); chips.appendChild(b); });
+  function draw(){
+    const on=id=>sel==='all'||sel===id, op=id=>on(id)?1:.18;
+    svg.innerHTML=`<circle cx="70" cy="50" r="30" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/>
+      <path d="M0 250 H300 V230 H640 V300 H0z" style="fill:var(--reflect);fill-opacity:.4"/>
+      <path d="M420 230 L520 120 L560 150 L600 100 L640 230z" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:2.5"/><path d="M590 110 l10 -10 l12 14z" style="fill:var(--surface);stroke:var(--ink);stroke-width:1.5"/>
+      <g style="opacity:${op('evap')}"><g class="flow" style="stroke:var(--absorb);stroke-width:5;fill:none"><path d="M120 230 V130"/><path d="M170 230 V134"/><path d="M220 230 V138"/></g><path d="M120 120 l-9 16 h18z M170 124 l-9 16 h18z M220 128 l-9 16 h18z" style="fill:var(--absorb)"/><text x="170" y="106" font-size="16" text-anchor="middle" style="fill:var(--absorb);font-weight:700">evaporation</text></g>
+      <g style="opacity:${op('cond')}"><path d="M230 90 q-8 -34 28 -34 q10 -28 46 -14 q36 -6 38 28 q28 6 18 28 H244 q-18 0 -14 -8z" style="fill:var(--surface);stroke:var(--ink);stroke-width:3"/><text x="300" y="78" font-size="16" text-anchor="middle" style="font-weight:700">condensation</text></g>
+      <g style="opacity:${op('prec')}"><g style="stroke:var(--reflect);stroke-width:4;stroke-linecap:round"><path d="M270 120 l-5 22 M295 126 l-5 22 M320 120 l-5 22 M345 126 l-5 22"/></g><text x="400" y="150" font-size="16" style="fill:var(--reflect);font-weight:700">precipitation</text></g>
+      <g style="opacity:${op('coll')}"><path d="M500 190 Q440 225 330 236" class="flow" style="fill:none;stroke:var(--reflect);stroke-width:5"/><path d="M330 236 l16 -9 v18z" style="fill:var(--reflect)"/><text x="420" y="270" font-size="16" style="fill:var(--reflect);font-weight:700">collection / runoff</text></g>`;
+    rd.textContent=ST.find(s=>s.id===sel).t;
+  }
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; sel=b.dataset.id; setPressed(chips,b); draw(); }); draw();
+});
+safe(()=>{
+  const gT=$('#gT'), gH=$('#gH'), gS=$('#gS'), svg=$('#glassSvg'), rd=$('#glassR');
+  const dew=(T,RH)=>{ const a=17.62,b=243.12, g=a*T/(b+T)+Math.log(RH/100); return b*g/(a-g); };
+  function draw(){
+    const T=+gT.value, RH=+gH.value, S=+gS.value, Td=dew(T,RH), fog=S<=Td;
+    $('#gTv').textContent=`${T} °C (${cF(T).toFixed(0)} °F)`; $('#gHv').textContent=`${RH}%`; $('#gSv').textContent=`${S} °C`;
+    let drops=''; if(fog){ const n=Math.round(clamp((Td-S)*3+6,6,40)); for(let i=0;i<n;i++){ const x=66+((i*37)%108), y=70+((i*53)%110); drops+=`<circle cx="${x}" cy="${y}" r="${2+(i%3)}" style="fill:var(--reflect);fill-opacity:.8;stroke:var(--surface);stroke-width:1"/>`; } }
+    svg.innerHTML=`<path d="M60 40 L72 180 q2 14 16 14 h64 q14 0 16 -14 L180 40" style="fill:var(--reflect);fill-opacity:.25;stroke:var(--ink);stroke-width:4"/>
+      <path d="M66 70 H174" style="stroke:var(--reflect);stroke-width:3"/>${drops}
+      <text x="120" y="24" font-size="15" text-anchor="middle" style="font-weight:700">${fog?'sweating!':'dry glass'}</text>`;
+    rd.innerHTML=`Dew point of this air is <b>${Td.toFixed(1)} °C</b>. The glass surface is ${S} °C, so it is ${fog?'<b>below</b> the dew point: water vapor condenses on the glass.':'<b>above</b> the dew point: the vapor stays a gas.'}`;
+  }
+  [gT,gH,gS].forEach(e=>e.addEventListener('input',draw)); draw();
+});
+safe(()=>{
+  const w=$('#wWaffle'); w.innerHTML=Array.from({length:100},(_,i)=>`<div class="cell ${i<97?'r':i<99?'t':'a'}"></div>`).join('');
+});
+
+/* ===== 3 ===== */
+safe(()=>{
+  let s=''; for(let i=0;i<26;i++){ const x=34+(i%6)*30+(i*7)%9, y=54+Math.floor(i/6)*28+(i*5)%7; s+=`<circle cx="${x}" cy="${y}" r="7"/>`; } $('#crowd').innerHTML=s;
+});
+safe(()=>{
+  const chips=$('#frChips'), svg=$('#frSvg'), rd=$('#frR');
+  function draw(k){
+    const cold=k==='cold';
+    svg.innerHTML=`<rect x="20" y="200" width="440" height="20" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:2"/>
+      ${cold?`<path d="M20 30 H460 V200 H300 Q270 180 250 140 Q235 90 230 30z" style="fill:var(--absorb);fill-opacity:.25"/><path d="M20 30 H230 Q235 90 250 140 Q270 180 300 200 H20z" style="fill:var(--reflect);fill-opacity:.35"/>
+      <path d="M230 30 Q235 90 250 140 Q270 180 300 200" style="fill:none;stroke:var(--ink);stroke-width:3"/>
+      <path d="M200 46 q-8 -34 28 -34 q18 -22 46 -4 q30 0 26 26 q-4 22 -36 20 H208z" style="fill:var(--surface);stroke:var(--ink);stroke-width:3"/>
+      <g style="stroke:var(--reflect);stroke-width:4;stroke-linecap:round"><path d="M220 70 l-4 18 M240 76 l-4 18 M260 70 l-4 18"/></g>
+      <line x1="90" y1="120" x2="190" y2="120" style="stroke:var(--reflect);stroke-width:6" marker-end="url(#mReflect)"/>
+      <text x="100" y="100" font-size="15" style="fill:var(--reflect);font-weight:700">cold air pushes</text><text x="340" y="90" font-size="15" style="fill:var(--absorb);font-weight:700">warm air</text>
+      <text x="170" y="236" font-size="14" text-anchor="middle">front moves →</text>`
+      :`<path d="M20 30 H460 V200 H20z" style="fill:var(--absorb);fill-opacity:.2"/><path d="M20 200 H290 Q380 190 440 100 Q450 60 460 30 V200z" style="fill:var(--reflect);fill-opacity:.35"/>
+      <path d="M290 200 Q380 190 440 100 Q450 60 460 30" style="fill:none;stroke:var(--ink);stroke-width:3"/>
+      <path d="M120 70 H340" style="stroke:var(--muted);stroke-width:14;stroke-linecap:round;opacity:.55"/><path d="M180 100 H380" style="stroke:var(--muted);stroke-width:12;stroke-linecap:round;opacity:.4"/>
+      <g style="stroke:var(--reflect);stroke-width:2.5;stroke-linecap:round;opacity:.8"><path d="M200 112 v14 M230 112 v14 M260 112 v14 M290 112 v14 M320 112 v14"/></g>
+      <line x1="40" y1="160" x2="130" y2="160" style="stroke:var(--absorb);stroke-width:6" marker-end="url(#mAbsorb)"/>
+      <text x="40" y="146" font-size="15" style="fill:var(--absorb);font-weight:700">warm air glides up</text><text x="330" y="180" font-size="15" style="fill:var(--reflect);font-weight:700">cool air</text>
+      <text x="170" y="236" font-size="14" text-anchor="middle">front moves →</text>`}`;
+    rd.innerHTML=cold?'<b>Cold front:</b> a steep wall. Cold, dense air plows under warm air and shoves it up fast. Result: tall thunderclouds, short heavy storms, then clear, cooler, drier air.':'<b>Warm front:</b> a gentle slope. Warm air slides up over cool air gradually. Result: layered clouds, long steady drizzle, then warmer, more humid air.';
+  }
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; setPressed(chips,b); draw(b.dataset.f); }); draw('cold');
+});
+safe(()=>{
+  const sl=$('#stormT'), svg=$('#stormSvg'), rd=$('#stormR');
+  const sg=x=>1/(1+Math.exp(-x));
+  const P=t=>1016-15*Math.exp(-Math.pow((t-34)/12,2));
+  const T=t=>14+8*sg((t-24)/3)-14*sg((t-37)/1.5)+2.5*Math.sin(2*Math.PI*(t-9)/24);
+  const R=t=>4*Math.exp(-Math.pow((t-38)/3,2));
+  const X=t=>60+t/72*540;
+  const panels=[{n:'Pressure (hPa)',f:P,y0:1000,y1:1020,top:14,c:'var(--reflect)'},{n:'Temperature (°C)',f:T,y0:0,y1:30,top:144,c:'var(--absorb)'},{n:'Rain (mm per hour)',f:R,y0:0,y1:5,top:274,c:'var(--transmit)'}];
+  function draw(){
+    const t=+sl.value; $('#stormTv').textContent=t;
+    let s='';
+    panels.forEach(p=>{ const H=100, Y=v=>p.top+H-(v-p.y0)/(p.y1-p.y0)*H;
+      let d=''; for(let i=0;i<=72;i++) d+=`${i?'L':'M'}${X(i)} ${Y(p.f(i)).toFixed(1)}`;
+      s+=`<rect x="60" y="${p.top}" width="540" height="${H}" style="fill:var(--surface);stroke:var(--line)"/><path d="${d}" style="fill:none;stroke:${p.c};stroke-width:3.5"/>
+        <text x="64" y="${p.top+14}" font-size="13" style="font-weight:700">${p.n}</text><text x="54" y="${p.top+H+4}" font-size="11" text-anchor="end">${p.y0}</text><text x="54" y="${p.top+10}" font-size="11" text-anchor="end">${p.y1}</text>
+        <circle cx="${X(t)}" cy="${Y(p.f(t))}" r="6" style="fill:var(--beam);stroke:var(--ink);stroke-width:2"/>`; });
+    s+=`<line x1="${X(t)}" y1="14" x2="${X(t)}" y2="374" style="stroke:var(--muted);stroke-dasharray:4 4"/>`;
+    [0,12,24,36,48,60,72].forEach(h=>{ s+=`<text x="${X(h)}" y="394" font-size="12" text-anchor="middle">${h}</text>`; });
+    svg.innerHTML=s;
+    const phase=t<22?'Calm, pressure slowly falling.':t<34?'Warm, humid air ahead of the front. Pressure falling fast.':t<44?'The front is here: rain, temperature plunging, pressure bottoming out.':'Behind the front: clear, cool, pressure rising.';
+    rd.innerHTML=`Hour ${t}: <b>${P(t).toFixed(0)} hPa</b>, <b>${T(t).toFixed(0)} °C</b>, <b>${R(t).toFixed(1)} mm/h</b> rain. ${phase}`;
+  }
+  sl.addEventListener('input',draw); draw();
+});
+
+/* ===== 4 ===== */
+safe(()=>{
+  const sl=$('#hr'), svg=$('#seaSvg'), rd=$('#seaR');
+  const land=h=>18+8*Math.sin(2*Math.PI*(h-9)/24), sea=h=>17+1.5*Math.sin(2*Math.PI*(h-9)/24);
+  const fmt=h=>`${((h+11)%12)+1}:00 ${h<12?'AM':'PM'}`;
+  function draw(){
+    const h=+sl.value, L=land(h), S=sea(h), d=L-S; $('#hrv').textContent=fmt(h);
+    const day=h>=6&&h<18, sea_=d>0.5, land_=d<-0.5;
+    svg.innerHTML=`<rect width="480" height="260" style="fill:${day?'var(--surface-2)':'var(--shade)'};opacity:${day?1:.7}"/>
+      ${day?`<circle cx="240" cy="40" r="22" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/>`:`<circle cx="240" cy="40" r="16" style="fill:var(--surface);stroke:var(--ink);stroke-width:2.5"/><circle cx="248" cy="36" r="14" style="fill:var(--shade)"/>`}
+      <rect x="0" y="170" width="220" height="90" style="fill:var(--reflect);fill-opacity:.55"/><rect x="220" y="170" width="260" height="90" style="fill:#C9A27A;fill-opacity:.9"/>
+      <text x="110" y="226" font-size="16" text-anchor="middle" style="font-weight:700;fill:var(--ink)">water ${S.toFixed(0)} °C</text><text x="350" y="226" font-size="16" text-anchor="middle" style="font-weight:700;fill:var(--ink)">land ${L.toFixed(0)} °C</text>
+      ${sea_?`<path d="M370 160 V80" class="flow" style="stroke:var(--absorb);stroke-width:5;fill:none"/><path d="M370 74 l-8 14 h16z" style="fill:var(--absorb)"/><path d="M370 74 Q300 50 190 70" style="fill:none;stroke:var(--ink);stroke-width:3;stroke-dasharray:6 5" marker-end="url(#mInk)"/><line x1="130" y1="150" x2="320" y2="150" style="stroke:var(--reflect);stroke-width:7" marker-end="url(#mReflect)"/><text x="230" y="140" font-size="14" text-anchor="middle" style="font-weight:700">SEA BREEZE: cool air flows to land</text>`:land_?`<path d="M110 160 V80" class="flow" style="stroke:var(--absorb);stroke-width:5;fill:none"/><path d="M110 74 l-8 14 h16z" style="fill:var(--absorb)"/><line x1="340" y1="150" x2="150" y2="150" style="stroke:var(--reflect);stroke-width:7" marker-end="url(#mReflect)"/><text x="250" y="140" font-size="14" text-anchor="middle" style="font-weight:700">LAND BREEZE: air flows to the water</text>`:`<text x="240" y="130" font-size="15" text-anchor="middle" style="font-weight:700">same temperature: almost no wind</text>`}`;
+    rd.innerHTML=`${fmt(h)}: land is <b>${L.toFixed(0)} °C</b>, water <b>${S.toFixed(0)} °C</b>. ${sea_?'Land is warmer, so warm air rises there and a <b>sea breeze</b> blows in from the water.':land_?'Water is warmer, so warm air rises over the water and a <b>land breeze</b> blows out to sea.':'Nearly equal temperatures, so the breeze is switching direction.'}`;
+    lw(h);
+  }
+  const ls=$('#lwSvg'), X=h=>60+h/24*540, Y=v=>230-(v-6)/24*210;
+  function lw(h){
+    let a='',b=''; for(let i=0;i<=48;i++){ const x=i/2; a+=`${i?'L':'M'}${X(x)} ${Y(land(x))}`; b+=`${i?'L':'M'}${X(x)} ${Y(sea(x))}`; }
+    let g=''; [10,15,20,25].forEach(v=>{ g+=`<line x1="60" y1="${Y(v)}" x2="600" y2="${Y(v)}" style="stroke:var(--line)"/><text x="52" y="${Y(v)+5}" font-size="13" text-anchor="end">${v}</text>`; });
+    [0,6,12,18,24].forEach(v=>{ g+=`<text x="${X(v)}" y="250" font-size="13" text-anchor="middle">${v}:00</text>`; });
+    ls.innerHTML=`${g}<line x1="60" y1="230" x2="600" y2="230" style="stroke:var(--ink);stroke-width:2"/><line x1="60" y1="20" x2="60" y2="230" style="stroke:var(--ink);stroke-width:2"/>
+      <path d="${a}" style="fill:none;stroke:#B07A4A;stroke-width:4"/><path d="${b}" style="fill:none;stroke:var(--reflect);stroke-width:4"/>
+      <text x="${X(14)}" y="${Y(26)-6}" font-size="13" style="font-weight:700">land</text><text x="${X(14)}" y="${Y(18.3)-8}" font-size="13" style="font-weight:700;fill:var(--reflect)">water</text>
+      <line x1="${X(h)}" y1="20" x2="${X(h)}" y2="230" style="stroke:var(--muted);stroke-dasharray:4 4"/><circle cx="${X(h)}" cy="${Y(land(h))}" r="6" style="fill:var(--beam);stroke:var(--ink);stroke-width:2"/><circle cx="${X(h)}" cy="${Y(sea(h))}" r="6" style="fill:var(--beam);stroke:var(--ink);stroke-width:2"/>
+      <text x="330" y="272" font-size="14" text-anchor="middle">time of day</text><text transform="rotate(-90 14 125)" x="14" y="125" font-size="14" text-anchor="middle">temperature (°C)</text>`;
+  }
+  sl.addEventListener('input',draw); draw();
+});
+
+/* ===== 5 ===== */
+safe(()=>{
+  const C=[{n:'Ann Arbor, MI',d:[24,27,36,48,59,69,73,71,63,51,40,29],c:'var(--reflect)'},{n:'Phoenix, AZ',d:[56,60,65,73,82,92,96,94,88,76,63,55],c:'var(--absorb)'},{n:'Miami, FL',d:[68,70,73,77,81,85,87,87,85,80,74,70],c:'var(--transmit)'}];
+  const on=new Set([0,1,2]); const chips=$('#clChips'), svg=$('#clSvg'), rd=$('#clR'), fb=$('#freak'); let freak=false;
+  C.forEach((c,i)=>{ const b=document.createElement('button'); b.type='button'; b.className='chip'; b.textContent=c.n; b.dataset.i=i; b.setAttribute('aria-pressed','true'); chips.appendChild(b); });
+  const M=['J','F','M','A','M','J','J','A','S','O','N','D'], X=m=>70+m*(520/11), Y=v=>230-(v-10)/100*210;
+  function draw(){
+    let g='',ln='';
+    [20,40,60,80,100].forEach(v=>{ g+=`<line x1="60" y1="${Y(v)}" x2="600" y2="${Y(v)}" style="stroke:var(--line)"/><text x="52" y="${Y(v)+5}" font-size="13" text-anchor="end">${v}</text>`; });
+    M.forEach((m,i)=>{ g+=`<text x="${X(i)}" y="250" font-size="13" text-anchor="middle">${m}</text>`; });
+    C.forEach((c,i)=>{ if(!on.has(i))return; let d=''; c.d.forEach((v,m)=>d+=`${m?'L':'M'}${X(m)} ${Y(v)}`); ln+=`<path d="${d}" style="fill:none;stroke:${c.c};stroke-width:4;stroke-linejoin:round"/>`; });
+    if(freak&&on.has(0)) ln+=`<circle cx="${X(3)}" cy="${Y(85)}" r="8" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/><text x="${X(3)+12}" y="${Y(85)+4}" font-size="13" style="font-weight:700">one 85 °F day</text>`;
+    svg.innerHTML=`${g}<line x1="60" y1="230" x2="600" y2="230" style="stroke:var(--ink);stroke-width:2"/><line x1="60" y1="20" x2="60" y2="230" style="stroke:var(--ink);stroke-width:2"/>${ln}<text transform="rotate(-90 14 125)" x="14" y="125" font-size="14" text-anchor="middle">average temperature (°F)</text>`;
+    rd.innerHTML=freak?'That hot April day is <b>weather</b>: 36 °F above Ann Arbor\'s April <b>climate</b> average of 48 °F. The climate line did not change.':'Different locations have very different climate lines. Ann Arbor has all four seasons; Miami hardly changes.';
+  }
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; const i=+b.dataset.i; if(on.has(i))on.delete(i); else on.add(i); b.setAttribute('aria-pressed',on.has(i)); draw(); });
+  fb.addEventListener('click',()=>{ freak=!freak; fb.setAttribute('aria-pressed',freak); fb.textContent=freak?'Remove the freak day':'Add one freak 85 °F day in April'; draw(); });
+  draw();
+});
+safe(()=>{
+  const chips=$('#ghChips'), svg=$('#ghSvg'), rd=$('#ghR');
+  const D={none:{k:0,T:'-18 °C (0 °F)',n:'No greenhouse gases: heat rays escape straight to space. Earth would be frozen.'},now:{k:.5,T:'15 °C (59 °F)',n:'Today\'s level: gases return part of the heat to the ground, keeping Earth comfortable.'},more:{k:.8,T:'warmer than 15 °C',n:'With much more greenhouse gas, even more heat is sent back down, so the average temperature rises.'}};
+  function draw(key){
+    const d=D[key], w=2+d.k*8;
+    svg.innerHTML=`<rect x="0" y="0" width="640" height="300" style="fill:var(--surface-2);opacity:.6"/><rect x="0" y="250" width="640" height="50" style="fill:#7A9A5C"/>
+      <circle cx="100" cy="46" r="26" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/>
+      <line x1="130" y1="62" x2="270" y2="238" style="stroke:var(--beam);stroke-width:8" marker-end="url(#mBeam)"/><text x="190" y="120" font-size="14" style="font-weight:700">sunlight in</text>
+      <rect x="0" y="120" width="640" height="28" style="fill:var(--reflect);fill-opacity:${.08+d.k*.5}"/><text x="630" y="140" font-size="13" text-anchor="end" style="font-weight:700">greenhouse gases</text>
+      <line x1="320" y1="240" x2="400" y2="156" style="stroke:var(--absorb);stroke-width:5" marker-end="url(#mAbsorb)"/>
+      <line x1="400" y1="150" x2="440" y2="30" style="stroke:var(--absorb);stroke-width:${Math.max(2,6-d.k*6)}" marker-end="url(#mAbsorb)"/><text x="450" y="40" font-size="13" style="fill:var(--absorb);font-weight:700">heat escapes to space</text>
+      ${d.k>0?`<line x1="412" y1="148" x2="512" y2="232" style="stroke:var(--absorb);stroke-width:${w};stroke-dasharray:8 5" marker-end="url(#mAbsorb)"/><text x="520" y="228" font-size="13" style="fill:var(--absorb);font-weight:700">sent back down</text>`:''}
+      <text x="320" y="282" font-size="15" text-anchor="middle" style="font-weight:700;fill:var(--shade)">ground warms, gives off heat rays</text>`;
+    rd.innerHTML=`<b>Average temperature: ${d.T}.</b> ${d.n}`;
+  }
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; setPressed(chips,b); draw(b.dataset.g); }); draw('now');
+});
+function quizBox(box,scoreEl,items,labels){
+  let right=0;
+  box.innerHTML=items.map((it,i)=>`<div class="item" data-i="${i}"><span class="nm">${it.n}</span><div class="opts">${labels.map((l,j)=>`<button class="opt" type="button" data-j="${j}">${l}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
+  box.addEventListener('click',e=>{
+    const b=e.target.closest('.opt'); if(!b||b.disabled)return;
+    const row=b.closest('.item'), it=items[+row.dataset.i], ok=+b.dataset.j===it.a;
+    $$('.opt',row).forEach(o=>{ o.disabled=true; if(+o.dataset.j===it.a) o.classList.add('good'); });
+    if(!ok) b.classList.add('bad'); else right++;
+    $('.fb',row).textContent=(ok?'Yes. ':'Not quite. ')+it.e; scoreEl.textContent=`${right} of ${items.length} correct`;
+  });
+}
+safe(()=>{
+  quizBox($('#wcSort'),$('#wcSortS'),[
+    {n:'It is 31 °F and snowing in Ann Arbor today.',a:0,e:'A single day at one place is weather.'},
+    {n:'Ann Arbor winters are usually cold and snowy.',a:1,e:'A long-term pattern is climate.'},
+    {n:'Phoenix gets about 8 inches of rain per year.',a:1,e:'A yearly average is climate.'},
+    {n:'A thunderstorm just rolled through at 3 PM.',a:0,e:'An event happening now is weather.'},
+    {n:'Miami is warm all year.',a:1,e:'The typical pattern over many years is climate.'},
+    {n:'Yesterday was windy with a high of 52 °F.',a:0,e:'Conditions on one day are weather.'}
+  ],['Weather','Climate']);
+});
+safe(()=>{
+  const Q=[
+    {q:'What happens to air pressure as you climb a mountain?',o:['It increases','It decreases','It stays the same'],a:1,e:'There is less air above you, so less weight pressing down.'},
+    {q:'What drives the water cycle?',o:['The Moon','Energy from the Sun','Wind alone'],a:1,e:'Sunlight provides the energy for evaporation.'},
+    {q:'A cold glass of lemonade gets wet on the outside. This is...',o:['The glass leaking','Condensation of water vapor from the air','Evaporation'],a:1,e:'Vapor cools below the dew point on the cold surface and condenses.'},
+    {q:'Wind blows from...',o:['Low pressure to high pressure','High pressure to low pressure','Cold air to cold air'],a:1,e:'Air moves from where it is more crowded to where it is less.'},
+    {q:'On a hot afternoon at the beach, the breeze blows...',o:['From land to water','From water to land','Not at all'],a:1,e:'Land is warmer, so air rises over it and cooler water-side air moves in.'},
+    {q:'Which statement is about climate?',o:['It rained yesterday.','Seattle is rainy most of the year.','There is fog this morning.'],a:1,e:'Climate is the long-term pattern.'}
+  ];
+  const box=$('#quiz'), sc=$('#quizScore'); let right=0;
+  box.innerHTML=Q.map((x,i)=>`<div class="q" data-i="${i}"><h4>${i+1}. ${x.q}</h4><div class="opts">${x.o.map((t,j)=>`<button class="opt" type="button" data-j="${j}">${t}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
+  box.addEventListener('click',e=>{
+    const b=e.target.closest('.opt'); if(!b||b.disabled)return;
+    const row=b.closest('.q'), x=Q[+row.dataset.i], ok=+b.dataset.j===x.a;
+    $$('.opt',row).forEach(o=>{ o.disabled=true; if(+o.dataset.j===x.a) o.classList.add('good'); });
+    if(!ok) b.classList.add('bad'); else right++;
+    $('.fb',row).textContent=(ok?'Correct. ':'Not quite. ')+x.e; sc.textContent=`${right} of ${Q.length} correct`;
+  });
+});
+})();
+</script>

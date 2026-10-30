@@ -1,0 +1,968 @@
+<title>Classifying Life</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout concept: one long lesson column. Each concept opens with a one-sentence big idea, then a grid of labelled visual aids
+   (Analogy, Diagram, Try it, Data, Real world) that collapses to one column on phones.
+   Color roles are fixed for the whole page: amber = incoming light, blue = reflected, teal = transmitted, orange = absorbed. */
+:root{
+  --bg:#F2F5FA; --surface:#FFFFFF; --surface-2:#E8EDF6; --ink:#12172B; --muted:#47506E; --line:#D0D8E8;
+  --beam:#F2A900; --beam-ink:#1A1400; --reflect:#2B66E8; --absorb:#D6450B; --transmit:#0B7F70; --on-color:#FFFFFF;
+  --red:#D93036; --green:#25904F; --blue:#3558D6; --shade:#222A4A;
+  --font-display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --font-body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+  --font-mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C1022; --surface:#151A33; --surface-2:#1D2444; --ink:#EDF0FB; --muted:#A8B1CE; --line:#2B3459;
+    --beam:#FFC93C; --beam-ink:#1A1400; --reflect:#7BA2FF; --absorb:#FF8F5C; --transmit:#46D6C0; --on-color:#0B1020;
+    --red:#FF6A70; --green:#4FCB85; --blue:#7C97FF; --shade:#02040B; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C1022; --surface:#151A33; --surface-2:#1D2444; --ink:#EDF0FB; --muted:#A8B1CE; --line:#2B3459;
+  --beam:#FFC93C; --beam-ink:#1A1400; --reflect:#7BA2FF; --absorb:#FF8F5C; --transmit:#46D6C0; --on-color:#0B1020;
+  --red:#FF6A70; --green:#4FCB85; --blue:#7C97FF; --shade:#02040B; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--font-body); font-size:17px; line-height:1.55;
+  padding-block:0 72px;
+  padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+main,.hero{max-width:920px;margin:0 auto}
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance;margin:0;line-height:1.1}
+p{margin:0}
+a{color:inherit}
+svg{display:block;width:100%;height:auto}
+svg text{font-family:var(--font-body);fill:var(--ink)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--reflect);outline-offset:2px}
+
+/* hero */
+.hero{padding-block:28px 8px;display:grid;gap:18px}
+.kicker{font-family:var(--font-mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
+.lede{font-size:clamp(1.1rem,3.4vw,1.35rem);max-width:34em;text-wrap:pretty}
+.hero-art{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:10px 12px}
+.howto{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:.92rem;color:var(--muted)}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);margin-top:18px;border-bottom:1px solid var(--line);
+  margin-inline:auto;max-width:920px}
+.nav ul{list-style:none;margin:0;padding:8px 0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin}
+.nav a{display:block;white-space:nowrap;text-decoration:none;font-size:.9rem;padding:7px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface)}
+.nav a:hover{border-color:var(--ink)}
+
+/* sections */
+.sec{padding-block:52px 6px;scroll-margin-top:68px;display:grid;gap:20px}
+.sec h2{font-size:clamp(1.9rem,6vw,2.7rem);font-weight:800;letter-spacing:-.02em}
+.idea{font-family:var(--font-display);font-size:clamp(1.25rem,4.4vw,1.75rem);line-height:1.25;font-weight:700;text-wrap:balance;max-width:28em}
+.idea mark{background:linear-gradient(transparent 58%,color-mix(in srgb,var(--beam) 50%,transparent) 58%);color:inherit}
+.aids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.aid{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.aid.wide{grid-column:1/-1}
+.aid h3{font-size:1.2rem;font-weight:700}
+.aid p.cap{font-size:.95rem;color:var(--muted)}
+.aid p.cap b{color:var(--ink)}
+.tag{align-self:flex-start;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;padding:3px 9px;border-radius:999px;
+  background:color-mix(in srgb,var(--tint) 24%,var(--surface));border:1px solid color-mix(in srgb,var(--tint) 55%,var(--line))}
+.tag.analogy{--tint:var(--beam)} .tag.diagram{--tint:var(--reflect)} .tag.try{--tint:var(--transmit)} .tag.data{--tint:var(--absorb)} .tag.real{--tint:var(--muted)}
+.stage{background:var(--surface-2);border-radius:10px;padding:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:.92rem;padding:7px 13px;min-height:40px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.ctl{display:grid;gap:6px}
+.ctl label{font-size:.92rem;font-weight:700}
+input[type=range]{width:100%;accent-color:var(--beam);height:32px}
+.readout{font-size:1rem}
+.readout b{font-family:var(--font-mono);font-weight:500}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{display:inline-flex;gap:6px;align-items:baseline;padding:5px 11px;border-radius:999px;font-family:var(--font-mono);font-size:.84rem;font-weight:500;background:var(--c);color:var(--on-color)}
+.pill.r{--c:var(--reflect)} .pill.a{--c:var(--absorb)} .pill.t{--c:var(--transmit)}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.trio>div{display:grid;gap:6px;align-content:start;min-width:0}
+.trio h4{margin:0;font-family:var(--font-display);font-size:1.05rem}
+.trio p{font-size:.93rem;color:var(--muted)}
+.trio svg{background:var(--surface-2);border-radius:10px}
+.swatch-r{color:var(--reflect);font-weight:700}.swatch-t{color:var(--transmit);font-weight:700}.swatch-a{color:var(--absorb);font-weight:700}
+
+/* stacked bars */
+.bars{display:grid;gap:9px}
+.brow{display:grid;grid-template-columns:104px minmax(0,1fr);gap:10px;align-items:center;font-size:.9rem}
+.brow.on .lab{font-weight:700}
+.stack{display:flex;height:28px;border-radius:7px;overflow:hidden;background:var(--surface-2);outline:2px solid transparent;outline-offset:2px}
+.brow.on .stack{outline-color:var(--ink)}
+.seg{display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:.72rem;color:var(--on-color);min-width:0;overflow:hidden}
+.seg.r{background:var(--reflect)}.seg.t{background:var(--transmit)}.seg.a{background:var(--absorb)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.88rem}
+.legend span::before{content:"";display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--c)}
+.legend .r{--c:var(--reflect)}.legend .t{--c:var(--transmit)}.legend .a{--c:var(--absorb)}
+
+/* sort game, quiz */
+.items{display:grid;gap:10px}
+.item{display:grid;gap:6px;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.item .nm{font-weight:700}
+.item .opts{display:flex;flex-wrap:wrap;gap:6px}
+.opt{font-size:.85rem;padding:6px 10px;border-radius:8px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;min-height:36px;text-align:left}
+.opt:hover:not([disabled]){border-color:var(--ink)}
+.opt.good{background:var(--transmit);color:var(--on-color);border-color:var(--transmit)}
+.opt.bad{background:var(--absorb);color:var(--on-color);border-color:var(--absorb)}
+.fb{font-size:.88rem;color:var(--muted)}
+.score{font-family:var(--font-mono);font-size:.9rem}
+.q{display:grid;gap:10px;padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.q h4{margin:0;font-size:1.05rem;font-family:var(--font-body);font-weight:700}
+.q .opts{display:grid;gap:8px}
+
+/* tables */
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:.92rem;min-width:420px}
+.tbl th,.tbl td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+.tbl th{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+/* see-through demo */
+.seebox{position:relative;border-radius:10px;overflow:hidden;background:var(--surface-2);padding:22px 16px;min-height:130px;display:grid;place-items:center}
+.seetext{font-family:var(--font-display);font-weight:800;font-size:clamp(1.2rem,5vw,1.7rem);text-align:center;letter-spacing:.02em;transition:filter .2s,opacity .2s}
+.seesheets{position:absolute;inset:0;pointer-events:none;background:var(--surface);transition:opacity .2s}
+.meter{height:12px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--transmit);transition:width .2s}
+
+/* canvas */
+canvas{width:100%;aspect-ratio:640/260;display:block;border-radius:10px;background:var(--surface-2)}
+.tally{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;font-size:.85rem}
+.tally div{padding:8px;border-radius:8px;background:var(--bg);border:1px solid var(--line)}
+.tally b{display:block;font-family:var(--font-mono);font-weight:500;font-size:1.05rem}
+
+/* color mixer + channel columns */
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.colx{display:grid;gap:6px;justify-items:center;font-size:.85rem;text-align:center}
+.tube{position:relative;width:100%;max-width:90px;height:150px;border:2px solid var(--line);border-radius:8px;display:flex;flex-direction:column-reverse;overflow:hidden;background:var(--bg)}
+.tube.empty{border-style:dashed}
+.tube .rf{background:var(--cc)}
+.tube .ab{background:repeating-linear-gradient(45deg,var(--surface-2) 0 6px,var(--line) 6px 9px)}
+.colx .nm{font-weight:700}
+.colx.r{--cc:var(--red)}.colx.g{--cc:var(--green)}.colx.b{--cc:var(--blue)}
+
+/* waffle */
+.waffle{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:3px;max-width:300px;width:100%}
+.cell{aspect-ratio:1;border-radius:3px}
+.cell.r{background:var(--reflect)}.cell.t{background:var(--transmit)}.cell.a{background:var(--absorb)}
+
+/* ice race */
+.race{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pad{position:relative;height:170px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden}
+.pad.w{background:#F4F4F1}.pad.b{background:#14161C}
+.pad .lbl{position:absolute;left:8px;top:6px;font-size:.78rem;font-family:var(--font-mono)}
+.pad.w .lbl{color:#333}.pad.b .lbl{color:#ddd}
+.puddle{position:absolute;width:110px;height:46px;border-radius:50%;background:#7CC4F2;opacity:.65;transform:scale(0);bottom:22px}
+.ice{position:relative;width:76px;height:76px;border-radius:12px;background:linear-gradient(135deg,#E4F6FF,#9ED7F5);border:2px solid #fff;transform-origin:50% 100%;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.sunbar{height:10px;border-radius:99px;background:linear-gradient(90deg,var(--beam),color-mix(in srgb,var(--beam) 30%,transparent));opacity:.25;transition:opacity .3s}
+.sunbar.on{opacity:1}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap}
+.btn{font-size:.95rem;font-weight:700;padding:9px 16px;min-height:42px;border-radius:10px;border:0;background:var(--beam);color:var(--beam-ink);cursor:pointer}
+.btn.ghost{background:var(--surface);color:var(--ink);border:1.5px solid var(--line)}
+.btn:hover{filter:brightness(1.06)}
+
+/* misc */
+.glossary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px;margin:0}
+.glossary div{padding:10px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--line)}
+.glossary dt{font-weight:700}
+.glossary dd{margin:2px 0 0;font-size:.93rem;color:var(--muted)}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+details+details{margin-top:10px}
+summary{cursor:pointer;font-weight:700}
+details .in{display:grid;gap:10px;padding-top:10px;font-size:.95rem}
+details ul{margin:0;padding-left:1.2em;display:grid;gap:4px}
+footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;border-top:1px solid var(--line);padding-top:16px}
+.flow{stroke-dasharray:10 8;animation:flow 1s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-18}}
+@media (prefers-reduced-motion: reduce){.flow{animation:none}html{scroll-behavior:auto}.seetext,.seesheets,.meter i{transition:none}}
+@media (max-width:760px){
+  .aids{grid-template-columns:minmax(0,1fr)}
+  .trio{grid-template-columns:minmax(0,1fr)}
+  .glossary{grid-template-columns:minmax(0,1fr)}
+  .tally{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:420px){.brow{grid-template-columns:84px minmax(0,1fr)}.race{grid-template-columns:minmax(0,1fr)}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="mBeam" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--beam)"/></marker>
+    <marker id="mReflect" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--reflect)"/></marker>
+    <marker id="mTransmit" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--transmit)"/></marker>
+    <marker id="mAbsorb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--absorb)"/></marker>
+    <marker id="mInk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--ink)"/></marker>
+    <marker id="mRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#D93036"/></marker>
+  </defs>
+</svg>
+
+<style>.bridge{margin:14px 0 0;padding:12px 14px;border-left:4px solid var(--beam);background:var(--surface-2);border-radius:0 10px 10px 0;font-size:.95rem;line-height:1.5}.related ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}.related li{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}.related a{font-weight:700}.related .why{display:block;color:var(--muted);font-size:.9rem}</style>
+<style>
+.rank{display:grid;gap:6px}
+.rank>div{display:grid;grid-template-columns:104px 1fr;gap:10px;align-items:center;padding:8px 12px;border-radius:10px;border:2px solid var(--line);background:var(--surface);transition:border-color .2s}
+.rank>div.on{border-color:var(--ink);background:color-mix(in srgb,var(--beam) 35%,var(--surface))}
+.rank b{font-family:var(--font-mono);font-size:.74rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.rank i{font-style:normal;font-weight:700}
+.key{display:grid;gap:10px;padding:14px;border-radius:12px;background:var(--bg);border:1px solid var(--line)}
+.key .q{font-weight:700;font-size:1.05rem}
+.path{display:flex;flex-wrap:wrap;gap:6px;font-size:.85rem;color:var(--muted)}
+.path span{padding:3px 8px;border-radius:999px;background:var(--surface-2)}
+.mat{width:100%;border-collapse:collapse;font-size:.88rem;min-width:520px}
+.mat th,.mat td{padding:8px 6px;text-align:center;border-bottom:1px solid var(--line)}
+.mat th:first-child,.mat td:first-child{text-align:left;font-weight:700}
+.mat th{font-family:var(--font-mono);font-size:.7rem;text-transform:uppercase;color:var(--muted);letter-spacing:.05em;font-weight:500}
+.yes{color:var(--transmit);font-weight:700}.no{color:var(--muted)}
+</style>
+
+<header class="hero">
+  <p class="kicker">Sixth grade science · Unit 8</p>
+  <h1>Classifying Life</h1>
+  <p class="lede">Scientists have named about 2 million kinds of living things, and probably millions more are still unknown. To keep track, they sort life into groups, like organizing a giant library. Learn the system and you can place any living thing on the tree of life.</p>
+  <p class="bridge"><b>Where we left off:</b> Unit 7 showed that all life is made of cells, and that some living things are one cell and others are many. You may already have learned the difference between cells with a nucleus and cells without. We use exactly that feature to start sorting life into groups.</p>
+      <div class="hero-art">
+    <svg viewBox="0 0 640 190" role="img" aria-label="A branching tree with groups: bacteria, archaea, protists, fungi, plants, and animals.">
+      <path d="M320 180 V120 M320 120 L160 80 M320 120 L480 80 M160 80 L80 40 M160 80 L220 40 M480 80 L400 40 M480 80 L560 40" style="fill:none;stroke:var(--ink);stroke-width:5;stroke-linecap:round"/>
+      <g style="font-weight:700" font-size="14" text-anchor="middle"><text x="80" y="30" style="fill:var(--reflect)">Bacteria</text><text x="220" y="30" style="fill:var(--absorb)">Archaea</text><text x="400" y="30" style="fill:var(--transmit)">Plants</text><text x="560" y="30" style="fill:var(--ink)">Animals</text></g>
+      <g font-size="12" text-anchor="middle"><text x="160" y="104">Protists</text><text x="480" y="104">Fungi</text></g>
+      <g style="fill:var(--surface);stroke:var(--ink);stroke-width:2.5"><circle cx="80" cy="40" r="7"/><circle cx="220" cy="40" r="7"/><circle cx="400" cy="40" r="7"/><circle cx="560" cy="40" r="7"/></g>
+    </svg>
+  </div>
+  <p class="howto">Look for the tags <span class="tag analogy">Analogy</span><span class="tag diagram">Diagram</span><span class="tag try">Try it</span><span class="tag data">Data</span><span class="tag real">Real world</span></p>
+</header>
+
+<nav class="nav" aria-label="Lesson sections"><ul>
+  <li><a href="#s1">1 Ranks</a></li><li><a href="#s2">2 Kingdoms</a></li><li><a href="#s3">3 Keys</a></li><li><a href="#s4">4 Backbones</a></li><li><a href="#s5">5 Biodiversity</a></li><li><a href="#s6">6 Check yourself</a></li>
+  <li><a href="#game">7 Game</a></li>
+  </ul></nav>
+
+<main>
+
+<section class="sec" id="s1">
+  <div><p class="kicker">Concept 1 · Sorting life</p><h2>From broad groups to one species</h2></div>
+  <p class="idea">Scientists sort living things into <mark>nested groups</mark>, from huge to tiny: domain, kingdom, phylum, class, order, family, <mark>genus</mark>, <mark>species</mark>. Each living thing gets a <mark>two-part scientific name</mark>: genus + species.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>Your mailing address</h3>
+      <div class="stage"><svg viewBox="0 0 480 240" role="img" aria-label="Nested boxes: country, state, city, street, house, like domain, kingdom, class, genus, species.">
+        <rect x="10" y="10" width="460" height="220" rx="12" style="fill:var(--reflect);fill-opacity:.12;stroke:var(--reflect);stroke-width:3"/><text x="24" y="34" font-size="13" style="font-weight:700">USA = domain / kingdom</text>
+        <rect x="50" y="48" width="380" height="170" rx="12" style="fill:var(--transmit);fill-opacity:.14;stroke:var(--transmit);stroke-width:3"/><text x="64" y="70" font-size="13" style="font-weight:700">Michigan = phylum / class</text>
+        <rect x="90" y="84" width="300" height="122" rx="12" style="fill:var(--beam);fill-opacity:.2;stroke:var(--beam);stroke-width:3"/><text x="104" y="106" font-size="13" style="font-weight:700">Ann Arbor = order / family</text>
+        <rect x="130" y="120" width="220" height="74" rx="12" style="fill:var(--absorb);fill-opacity:.2;stroke:var(--absorb);stroke-width:3"/><text x="144" y="142" font-size="13" style="font-weight:700">your street = genus</text>
+        <rect x="170" y="154" width="140" height="32" rx="8" style="fill:var(--surface);stroke:var(--ink);stroke-width:3"/><text x="240" y="175" font-size="13" text-anchor="middle" style="font-weight:700">your house = species</text>
+      </svg></div>
+      <p class="cap">Each smaller box narrows the search, until just one place (or species) is left.</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Find your place on the tree</h3>
+      <div class="chips" id="orgChips" role="group" aria-label="Organism"></div>
+      <div class="rank" id="rankBox"></div>
+      <div class="ctl"><label for="rk">Narrow down to: <span id="rkV"></span></label><input id="rk" type="range" min="1" max="8" value="1"></div>
+      <p class="readout" id="rkR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>Each rank has fewer kinds</h3>
+      <div class="bars" id="funnel"></div>
+      <p class="cap">Approximate number of known (described) species at each rank leading to the house cat. Log scale; the last bar is just one species. Mnemonic for the ranks: <b>D</b>ear <b>K</b>ing <b>P</b>hilip <b>C</b>ame <b>O</b>ver <b>F</b>or <b>G</b>ood <b>S</b>oup.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>Scientific names (Genus species)</h3>
+      <div class="tw"><table class="tbl">
+        <thead><tr><th>Common name</th><th>Scientific name</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td><b>Human</b></td><td><i>Homo sapiens</i></td><td>"Wise human"</td></tr>
+          <tr><td><b>American robin</b></td><td><i>Turdus migratorius</i></td><td>Michigan's state bird</td></tr>
+          <tr><td><b>White pine</b></td><td><i>Pinus strobus</i></td><td>Michigan's state tree</td></tr>
+          <tr><td><b>Sugar maple</b></td><td><i>Acer saccharum</i></td><td>Source of maple syrup</td></tr>
+          <tr><td><b>Monarch butterfly</b></td><td><i>Danaus plexippus</i></td><td>Migrates to Mexico</td></tr>
+          <tr><td><b>European robin</b></td><td><i>Erithacus rubecula</i></td><td>A different bird with the same common name! This is why scientists use Latin names.</td></tr>
+        </tbody></table></div>
+      <p class="cap">Write the genus with a capital letter, the species in lowercase, and both in italics (or underline when handwriting).</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s2">
+  <div><p class="kicker">Concept 2 · The big groups</p><h2>Three domains, six kingdoms</h2></div>
+  <p class="idea">Life splits into <mark>three domains</mark>. One of them, <mark>Eukarya</mark> (cells with a nucleus), holds four kingdoms: protists, fungi, plants, animals. The other two, Bacteria and Archaea, are single cells without a nucleus.</p>
+  <div class="aids">
+    <article class="aid wide">
+      <span class="tag analogy">Analogy</span>
+      <h3>Jobs in a kitchen</h3>
+      <div class="trio">
+        <div>
+          <svg viewBox="0 0 200 150" role="img" aria-label="A farmer growing a plant. Plants make their own food."><path d="M30 130 H170" style="stroke:var(--ink);stroke-width:3"/><path d="M100 130 V80 M100 100 q-30 -10 -34 -36 q28 4 34 36 M100 90 q30 -10 34 -36 q-28 4 -34 36" style="fill:var(--transmit);fill-opacity:.6;stroke:var(--transmit);stroke-width:3"/><circle cx="160" cy="34" r="14" style="fill:var(--beam);stroke:var(--ink);stroke-width:2"/></svg>
+          <h4>Plants = farmers</h4><p>Make their own food from sunlight.</p>
+        </div>
+        <div>
+          <svg viewBox="0 0 200 150" role="img" aria-label="A hungry diner eating."><circle cx="100" cy="60" r="26" style="fill:var(--absorb);fill-opacity:.6;stroke:var(--ink);stroke-width:3"/><path d="M88 64 q12 12 24 0" style="fill:none;stroke:var(--ink);stroke-width:3"/><circle cx="90" cy="54" r="3" style="fill:var(--ink)"/><circle cx="110" cy="54" r="3" style="fill:var(--ink)"/><path d="M50 116 H150 V126 H50z" style="fill:var(--surface);stroke:var(--ink);stroke-width:2.5"/><circle cx="100" cy="112" r="10" style="fill:var(--beam);stroke:var(--ink);stroke-width:2"/></svg>
+          <h4>Animals = diners</h4><p>Eat other living things.</p>
+        </div>
+        <div>
+          <svg viewBox="0 0 200 150" role="img" aria-label="A mushroom growing on a log, recycling it."><rect x="30" y="100" width="140" height="30" rx="10" style="fill:#8B5E3C;stroke:var(--ink);stroke-width:2.5"/><path d="M70 100 V80 a30 24 0 0 1 60 0 V100" style="fill:var(--absorb);fill-opacity:.7;stroke:var(--ink);stroke-width:2.5"/><g style="fill:var(--surface)"><circle cx="86" cy="62" r="4"/><circle cx="112" cy="58" r="3"/></g></svg>
+          <h4>Fungi = recyclers</h4><p>Digest dead material and absorb it.</p>
+        </div>
+      </div>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Kingdom detective</h3>
+      <div class="chips" id="kdChips" role="group" aria-label="Mystery organism"></div>
+      <div class="key" id="kd"></div>
+    </article>
+    <article class="aid">
+      <span class="tag diagram">Diagram</span>
+      <h3>Who has what?</h3>
+      <div class="tw"><table class="tbl" style="min-width:460px">
+        <thead><tr><th>Group</th><th>Nucleus?</th><th>Cells</th><th>Food</th></tr></thead>
+        <tbody>
+          <tr><td><b>Bacteria</b></td><td>No</td><td>One</td><td>Varied</td></tr>
+          <tr><td><b>Archaea</b></td><td>No</td><td>One</td><td>Varied, often in extreme places</td></tr>
+          <tr><td><b>Protists</b></td><td>Yes</td><td>Mostly one</td><td>Varied (algae make it, amoebas eat)</td></tr>
+          <tr><td><b>Fungi</b></td><td>Yes</td><td>Mostly many (yeast: one)</td><td>Absorb from surroundings</td></tr>
+          <tr><td><b>Plants</b></td><td>Yes</td><td>Many</td><td>Make their own (photosynthesis)</td></tr>
+          <tr><td><b>Animals</b></td><td>Yes</td><td>Many</td><td>Eat other organisms</td></tr>
+        </tbody></table></div>
+      <p class="cap">Nature loves exceptions: yeast is a single-celled fungus, and kelp is a many-celled protist.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>How many kinds of each?</h3>
+      <div class="bars" id="kingBars"></div>
+      <p class="cap">Approximate number of species scientists have named. Insects alone outnumber everything else. Most bacteria, archaea, and fungi are still unnamed, so the true totals are much larger.</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s3">
+  <div><p class="kicker">Concept 3 · Identifying living things</p><h2>Dichotomous keys</h2></div>
+  <p class="idea">A <mark>dichotomous key</mark> is a series of two-choice questions. Each answer sends you down one branch until you reach a name. Every question should be about something you can <mark>observe</mark>.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>Guess Who?</h3>
+      <div class="stage"><svg viewBox="0 0 480 240" role="img" aria-label="Eight faces. Each yes-or-no question cuts the group in half until one face is left.">
+        <g id="gw"></g>
+        <text x="240" y="30" font-size="14" text-anchor="middle" style="font-weight:700">8 → 4 → 2 → 1: three questions</text>
+      </svg></div>
+      <p class="cap">In the board game, each yes/no question halves the candidates. A good key does the same thing for species.</p>
+    </article>
+    <article class="aid">
+      <span class="tag data">Data</span>
+      <h3>Questions needed</h3>
+      <div class="stage"><svg id="qSvg" viewBox="0 0 480 260" role="img" aria-label="Number of possible species a key can separate grows by doubling with each question."></svg></div>
+      <div class="ctl"><label for="nq">Number of yes/no questions: <span id="nqV"></span></label><input id="nq" type="range" min="1" max="20" value="10"></div>
+      <p class="readout" id="nqR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>Identify a Michigan tree from its leaf</h3>
+      <div class="chips" id="leafChips" role="group" aria-label="Mystery leaf"></div>
+      <div class="stage"><svg id="leafSvg" viewBox="0 0 640 245" role="img" aria-label="The mystery leaf drawn large next to a branching key."></svg></div>
+      <div class="key" id="keyBox"></div>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>Where keys are used</h3>
+      <div class="tw"><table class="tbl">
+        <thead><tr><th>Who</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td><b>Field guides to birds, trees, and wildflowers</b></td><td>Hikers and scientists identify what they see.</td></tr>
+          <tr><td><b>Doctors and labs</b></td><td>Identify bacteria by yes/no tests (does it grow on this food? does it stain purple?).</td></tr>
+          <tr><td><b>Invasive-species watchers</b></td><td>Quickly spot a harmful insect like the emerald ash borer, which has killed millions of Michigan ash trees.</td></tr>
+          <tr><td><b>Apps like iNaturalist and Seek</b></td><td>Compare your photo to many known species.</td></tr>
+        </tbody></table></div>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s4">
+  <div><p class="kicker">Concept 4 · Animals with backbones</p><h2>Five vertebrate groups</h2></div>
+  <p class="idea">Animals with backbones fall into five groups: <mark>fish, amphibians, reptiles, birds, mammals</mark>. Each new group added a new trait, like a toolbox that gets upgrades.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>Phone upgrades</h3>
+      <div class="stage"><svg viewBox="0 0 480 220" role="img" aria-label="A basic phone gets a camera, then GPS, then more features, like animals gaining traits over time.">
+        <g style="fill:var(--surface);stroke:var(--ink);stroke-width:3"><rect x="30" y="50" width="60" height="110" rx="10"/><rect x="130" y="50" width="60" height="110" rx="10"/><rect x="230" y="50" width="60" height="110" rx="10"/><rect x="330" y="50" width="60" height="110" rx="10"/></g>
+        <circle cx="160" cy="72" r="6" style="fill:var(--reflect)"/><circle cx="260" cy="72" r="6" style="fill:var(--reflect)"/><circle cx="260" cy="100" r="9" style="fill:var(--transmit)"/><circle cx="360" cy="72" r="6" style="fill:var(--reflect)"/><circle cx="360" cy="100" r="9" style="fill:var(--transmit)"/><rect x="342" y="122" width="36" height="14" rx="4" style="fill:var(--absorb)"/>
+        <g font-size="12" text-anchor="middle" style="font-weight:700"><text x="60" y="184">basic call</text><text x="160" y="184">+ camera</text><text x="260" y="184">+ GPS</text><text x="360" y="184">+ more</text></g>
+        <path d="M96 105 H124 M196 105 H224 M296 105 H324" style="stroke:var(--ink);stroke-width:3" marker-end="url(#mInk)"/>
+      </svg></div>
+      <p>Each group keeps the features it inherited and adds its own: backbone, then limbs, then shelled eggs, then feathers or fur.</p>
+      <p class="cap"><b>Where it breaks:</b> evolution is not a phone upgrade plan, and "new" does not mean "better." Each group is a branch that survived with its own mix of traits; a fish is not an older model of a mammal.</p>
+    </article>
+    <article class="aid">
+      <span class="tag diagram">Diagram</span>
+      <h3>Vertebrate family tree</h3>
+      <div class="stage"><svg viewBox="0 0 480 300" role="img" aria-label="A branching tree: all vertebrates have backbones; fish branch first, then amphibians (limbs), then reptiles, birds, and mammals (shelled or protected eggs).">
+        <g style="fill:none;stroke:var(--ink);stroke-width:4;stroke-linecap:round"><path d="M20 250 H440"/><path d="M110 250 V200 M110 200 H440"/><path d="M200 200 V70 M200 160 H440 M200 115 H440 M200 70 H440"/></g>
+        <g font-size="13" style="font-weight:700"><text x="446" y="254">Fish</text><text x="446" y="204">Amphibians</text><text x="446" y="164">Reptiles</text><text x="446" y="119">Birds</text><text x="446" y="74">Mammals</text></g>
+        <g font-size="11"><text x="24" y="238">backbone</text><text x="114" y="190">four limbs</text><text x="204" y="150">dry skin + shelled eggs</text><text x="300" y="108">feathers</text><text x="300" y="63">hair + milk</text></g>
+        <g style="fill:var(--beam);stroke:var(--ink);stroke-width:2"><circle cx="20" cy="250" r="6"/><circle cx="110" cy="250" r="6"/><circle cx="200" cy="200" r="6"/></g>
+      </svg></div>
+      <p class="cap">Simplified. Real family trees show birds are a kind of reptile. Many fish, amphibians, and reptiles are cold-blooded; birds and mammals are warm-blooded.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>Trait matrix</h3>
+      <div class="tw"><table class="mat">
+        <thead><tr><th>Group</th><th>Backbone</th><th>Gills</th><th>Lungs</th><th>Scales</th><th>Feathers</th><th>Hair/fur</th><th>Warm-blooded</th></tr></thead>
+        <tbody>
+          <tr><td>Fish</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">–</td><td class="yes">✓</td><td class="no">–</td><td class="no">–</td><td class="no">–</td></tr>
+          <tr><td>Amphibians</td><td class="yes">✓</td><td class="yes">as young</td><td class="yes">as adults</td><td class="no">–</td><td class="no">–</td><td class="no">–</td><td class="no">–</td></tr>
+          <tr><td>Reptiles</td><td class="yes">✓</td><td class="no">–</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">–</td><td class="no">–</td><td class="no">–</td></tr>
+          <tr><td>Birds</td><td class="yes">✓</td><td class="no">–</td><td class="yes">✓</td><td class="yes">legs</td><td class="yes">✓</td><td class="no">–</td><td class="yes">✓</td></tr>
+          <tr><td>Mammals</td><td class="yes">✓</td><td class="no">–</td><td class="yes">✓</td><td class="no">–</td><td class="no">–</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        </tbody></table></div>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Which group?</h3>
+      <div class="items" id="vsort"></div>
+      <p class="score" id="vsortS">0 of 8 correct</p>
+    </article>
+    <article class="aid">
+      <span class="tag data">Data</span>
+      <h3>Backbones are the minority</h3>
+      <div class="bars" id="vertBars"></div>
+      <p class="cap">Approximate described species. More than 95 out of every 100 animal species are invertebrates (no backbone), mostly insects. Fish are about half of all vertebrates.</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s5">
+  <div><p class="kicker">Concept 5 · Biodiversity</p><h2>Why variety matters</h2></div>
+  <p class="idea"><mark>Biodiversity</mark> is the variety of life in a place. More variety makes ecosystems <mark>more stable</mark>, and bigger habitats <mark>hold more species</mark>.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>A sports team</h3>
+      <div class="stage"><svg viewBox="0 0 480 220" role="img" aria-label="A team with all goalies can't score. A varied team handles any situation.">
+        <g style="fill:var(--absorb)"><circle cx="50" cy="90" r="14"/><circle cx="90" cy="90" r="14"/><circle cx="130" cy="90" r="14"/><circle cx="170" cy="90" r="14"/></g>
+        <g style="fill:var(--reflect)"><circle cx="290" cy="90" r="14"/></g><g style="fill:var(--transmit)"><circle cx="330" cy="90" r="14"/></g><g style="fill:var(--beam)"><circle cx="370" cy="90" r="14"/></g><g style="fill:var(--muted)"><circle cx="410" cy="90" r="14"/></g>
+        <text x="110" y="140" font-size="14" text-anchor="middle" style="font-weight:700">all the same: one problem hurts all</text><text x="350" y="140" font-size="14" text-anchor="middle" style="font-weight:700">varied: someone can handle each problem</text>
+      </svg></div>
+      <p class="cap">A cornfield with one crop can be wiped out by a single disease. A prairie with 100 plants usually survives.</p>
+    </article>
+    <article class="aid">
+      <span class="tag data">Data</span>
+      <h3>Lawn vs. meadow</h3>
+      <div class="chips" id="plotChips" role="group" aria-label="Plot"><button class="chip" type="button" data-p="lawn" aria-pressed="true">Lawn</button><button class="chip" type="button" data-p="meadow" aria-pressed="false">Meadow</button></div>
+      <div class="bars" id="plotBars"></div>
+      <p class="readout" id="plotR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>How many species fit in a habitat?</h3>
+      <div class="stage"><svg id="saSvg" viewBox="0 0 640 260" role="img" aria-label="Curve showing species count rising with habitat area: bigger habitats hold more species, with diminishing increases."></svg></div>
+      <div class="ctl"><label for="area">Habitat size: <span id="areaV"></span> acres</label><input id="area" type="range" min="0" max="3" step="0.05" value="1"></div>
+      <p class="readout" id="saR" aria-live="polite"></p>
+      <p class="cap">Typical pattern: species ≈ 10 × (area)<sup>0.25</sup>. Ten times more land gives about 1.8 times more species. Teaching model.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>Michigan's living things</h3>
+      <div class="tw"><table class="tbl">
+        <thead><tr><th>Species</th><th>Group</th><th>Story</th></tr></thead>
+        <tbody>
+          <tr><td><b>Kirtland's warbler</b></td><td>Bird</td><td>Nests only in young jack pine forests. It fell to about 170 singing males in the late 1980s, then recovered after habitat work and was removed from the endangered list in 2019.</td></tr>
+          <tr><td><b>Lake sturgeon</b></td><td>Fish</td><td>Can live over 100 years. Dams and overfishing cut numbers; restoration projects are helping.</td></tr>
+          <tr><td><b>Painted turtle</b></td><td>Reptile</td><td>Michigan's state reptile, seen sunning on logs.</td></tr>
+          <tr><td><b>Spring peeper</b></td><td>Amphibian</td><td>Tiny frog whose peeping marks spring's arrival.</td></tr>
+          <tr><td><b>White-tailed deer</b></td><td>Mammal</td><td>Thrives at forest edges.</td></tr>
+          <tr><td><b>Emerald ash borer</b></td><td>Insect (invasive)</td><td>Arrived from Asia and has killed tens of millions of ash trees.</td></tr>
+        </tbody></table></div>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s6">
+  <div><p class="kicker">Check yourself</p><h2>Can you explain it?</h2></div>
+  <p class="idea">A mystery organism has cells with a nucleus, is made of many cells, and absorbs food from the dead log it grows on. What kingdom is it, and how do you know?</p>
+  <details><summary>Show a model answer</summary><div class="in">
+    <p>Fungi. A nucleus means it's in Eukarya (not bacteria or archaea). Being made of many cells rules out most protists. It doesn't make its own food like a plant and it doesn't eat food like an animal; it absorbs nutrients from its surroundings, like a mushroom on a log.</p></div></details>
+  <div class="items" id="quiz"></div>
+  <p class="score" id="quizScore">0 of 6 correct</p>
+  <h3 style="margin-top:8px">Words to know</h3>
+  <dl class="glossary">
+    <div><dt>classification</dt><dd>Sorting living things into groups by shared features.</dd></div>
+    <div><dt>taxonomy</dt><dd>The science of naming and classifying life.</dd></div>
+    <div><dt>species</dt><dd>A group of organisms that can reproduce with one another.</dd></div>
+    <div><dt>genus</dt><dd>A group of closely related species.</dd></div>
+    <div><dt>domain</dt><dd>The largest classification group (three exist).</dd></div>
+    <div><dt>kingdom</dt><dd>Group below domain, like Animalia or Plantae.</dd></div>
+    <div><dt>vertebrate</dt><dd>An animal with a backbone.</dd></div>
+    <div><dt>invertebrate</dt><dd>An animal without a backbone.</dd></div>
+    <div><dt>dichotomous key</dt><dd>A tool for identifying organisms with two-choice questions.</dd></div>
+    <div><dt>biodiversity</dt><dd>The variety of living things in a place.</dd></div>
+  </dl>
+  <details><summary>Tutor notes: hands-on kit, misconceptions, pacing</summary><div class="in">
+    <p><b>Kit (about $10):</b> a bag of mixed buttons, a hand lens, a field guide or the Seek/iNaturalist app, a clipboard, index cards, string, a meter-square frame made from PVC or yarn.</p>
+    <ul>
+      <li><b>Concept 1:</b> sort buttons many ways, then make a nested "address" for each.</li>
+      <li><b>Concept 2:</b> sort 12 photo cards of organisms into kingdoms using the detective questions.</li>
+      <li><b>Concept 3:</b> write a dichotomous key for the contents of a pencil case, then swap with a partner to test it.</li>
+      <li><b>Concept 4:</b> sort animal photo cards into five groups and justify each choice with a trait.</li>
+      <li><b>Concept 5:</b> mark a square meter in a yard and count the different species you find.</li>
+    </ul>
+    <p><b>Common misconceptions:</b></p>
+    <ul>
+      <li>"Whales and dolphins are fish." They breathe air, have hair, and nurse young, so they are mammals.</li>
+      <li>"Bats are birds." They are mammals.</li>
+      <li>"Fungi are plants." They are closer to animals and don't photosynthesize.</li>
+      <li>"A species is just a name." It is a real group that interbreeds.</li>
+    </ul>
+    <p><b>Pacing:</b> about five 30-minute sessions.</p></div></details>
+</section>
+
+<section class="sec lesson-game-sec" id="game"><div><p class="kicker">After the lesson · Game</p><h2>Play: Key Maker</h2></div><p class="idea">Build your own dichotomous key from a bank of yes/no questions, then let rangers test it in the field. Questions about things you can see work. Opinions don't.</p><div class="lesson-game" id="lesson-game"></div>
+<script>(function(){
+/* Mounts one game into a shadow root so the lesson page's CSS and the game's CSS never collide. */
+function __mountLessonGame(host, css, html, init){
+  if(!host || host.shadowRoot) return;
+  const root = host.attachShadow({mode:"open"});
+  root.innerHTML = "<style>"+css+"</style>"+html;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let visible = true;
+  try{ new IntersectionObserver(es=>{ visible = es[es.length-1].isIntersecting; }).observe(host); }catch(e){}
+  const loops = [];
+  let last = performance.now();
+  function frame(t){
+    const dt = Math.min(0.05, (t-last)/1000); last = t;
+    if(visible && !document.hidden) for(const f of loops){ try{ f(t, dt); }catch(e){ console.error(e); } }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+  const env = {
+    root, reduce,
+    $: id => root.getElementById(id),
+    $$: sel => [...root.querySelectorAll(sel)],
+    loop: f => loops.push(f),
+    esc: s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])),
+    // A canvas drawn in fixed logical units (W x H) that scales to its container.
+    stage(canvas, W, H){
+      const ctx = canvas.getContext("2d");
+      const st = {ctx, W, H, dpr:1};
+      function fit(){
+        st.dpr = Math.min(2.5, window.devicePixelRatio || 1);
+        const cw = canvas.clientWidth || W;
+        const scale = cw / W;
+        canvas.width = Math.round(W*scale*st.dpr); canvas.height = Math.round(H*scale*st.dpr);
+        st.k = scale*st.dpr;
+        ctx.setTransform(st.k,0,0,st.k,0,0);
+        if(st.onfit) st.onfit();
+      }
+      canvas.style.aspectRatio = W+"/"+H;
+      st.begin = () => ctx.setTransform(st.k,0,0,st.k,0,0);
+      st.pt = ev => { const r = canvas.getBoundingClientRect(); return {x:(ev.clientX-r.left)*W/r.width, y:(ev.clientY-r.top)*H/r.height}; };
+      try{ new ResizeObserver(fit).observe(canvas); }catch(e){ addEventListener("resize", fit); }
+      fit();
+      return st;
+    },
+    // Level buttons in the header.
+    levelBar(box, names, onPick){
+      const solved = new Set(); let cur = 0;
+      function render(){
+        box.innerHTML = '<span class="label">Level</span>';
+        names.forEach((n,i)=>{ const b = document.createElement("button"); b.type="button";
+          b.className = "lv"+(solved.has(i)?" done":""); b.textContent = i+1; b.title = n;
+          b.setAttribute("aria-label", "Level "+(i+1)+": "+n+(solved.has(i)?" (solved)":""));
+          if(i===cur) b.setAttribute("aria-current","true");
+          b.onclick = () => { cur = i; render(); onPick(i); }; box.appendChild(b); });
+      }
+      render();
+      return { set(i){ cur=i; render(); }, solve(i){ solved.add(i); render(); }, get cur(){ return cur; }, solved };
+    },
+    // Result card over a stage. buttons: [{label, primary, onClick}]
+    card(stageEl, o){
+      let ov = stageEl.querySelector(":scope > .over");
+      if(!ov){ ov = document.createElement("div"); ov.className = "over"; stageEl.appendChild(ov); }
+      ov.hidden = false;
+      ov.innerHTML = '<div class="card'+(o.fail?' fail':'')+'" role="dialog" aria-live="polite"><h4></h4>'+(o.why?'<span class="why"></span>':'')+'<p class="cb"></p><div class="btns"></div></div>';
+      ov.querySelector("h4").textContent = o.title;
+      if(o.why) ov.querySelector(".why").textContent = o.why;
+      ov.querySelector(".cb").textContent = o.body || "";
+      if(o.list && o.list.length){ const ul = document.createElement("ul"); ul.className = "clist";
+        o.list.forEach(t => { const li = document.createElement("li"); li.textContent = t; ul.appendChild(li); });
+        ov.querySelector(".cb").after(ul); }
+      const bb = ov.querySelector(".btns");
+      (o.buttons||[]).forEach((b,i)=>{ const e = document.createElement("button"); e.type="button"; e.className = "btn"+(b.primary?" primary":""); e.textContent = b.label;
+        e.onclick = () => { ov.hidden = true; b.onClick && b.onClick(); }; bb.appendChild(e); if(i===0) setTimeout(()=>e.focus({preventScroll:true}),30); });
+      if(getComputedStyle(ov).position === "static") setTimeout(()=>ov.scrollIntoView({block:"nearest", behavior: reduce?"auto":"smooth"}), 40);
+      return ov;
+    },
+    hideCard(stageEl){ const ov = stageEl.querySelector(":scope > .over"); if(ov) ov.hidden = true; }
+  };
+  try{ init(root, env); }catch(e){ console.error(e); root.innerHTML += '<p style="color:#fff;padding:12px">This game could not start.</p>'; }
+}
+
+__mountLessonGame(document.getElementById("lesson-game"), "/* Shared frame for every lesson game. Lives inside a shadow root, so nothing here touches the lesson page.\n   Deliberately one dark \"lab console\" look in both page themes; each game sets its own --acc accent. */\n:host{\n  display:block; color-scheme:dark;\n  --bg:#0B0F15; --panel:#141A23; --panel-2:#1B2330; --line:#2B3544; --ink:#E9EEF5; --muted:#93A0B2;\n  --good:#3FD3BB; --bad:#FF6B5E; --warn:#FFB547; --acc:#FFD84A; --acc-ink:#1A1400;\n  --reflect:#78A2FF; --heat:#FF7A2E;\n  --f-display:\"Bahnschrift\",\"DIN Alternate\",\"Roboto Condensed\",\"Arial Narrow\",system-ui,sans-serif;\n  --f-body:\"Roboto\",\"Segoe UI\",system-ui,-apple-system,sans-serif;\n  --f-mono:ui-monospace,\"Roboto Mono\",\"Cascadia Mono\",Menlo,Consolas,monospace;\n}\n*{box-sizing:border-box}\n[hidden]{display:none!important}\n.g{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;border-radius:16px;\n  border:1px solid var(--line);padding:16px;display:grid;gap:14px;text-align:left;box-shadow:0 10px 36px rgba(0,0,0,.35)}\n.g button{font:inherit;color:inherit}\n.g :focus-visible{outline:3px solid var(--acc);outline-offset:2px}\n.g h3,.g h4{margin:0;font-family:var(--f-display);letter-spacing:.02em;line-height:1.15}\n.g p{margin:0}\n.bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 18px}\n.brand{display:grid;gap:2px}\n.label{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}\n.gtitle{font-family:var(--f-display);font-weight:700;font-size:1.45rem;text-transform:uppercase;letter-spacing:.04em}\n.gtitle b{color:var(--acc);font-weight:700}\n.levels{display:flex;flex-wrap:wrap;gap:6px;align-items:center}\n.lv{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--line);background:var(--panel);font-family:var(--f-mono);font-size:.85rem;cursor:pointer;font-variant-numeric:tabular-nums;padding:0}\n.lv:hover{border-color:var(--muted)}\n.lv.done{border-color:var(--good);color:var(--good)}\n.lv[aria-current=\"true\"]{background:var(--acc);border-color:var(--acc);color:var(--acc-ink);font-weight:700}\n.goalrow{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 12px}\n.goalrow h4{font-size:1.25rem}\n.goalrow .goal{color:var(--muted)}\n.cols{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:14px;align-items:start}\n.cols>*{min-width:0}\n.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:10px;min-width:0}\n.panel>.label{margin-bottom:-2px}\n.stage{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px;min-width:0}\n.stage canvas{display:block;width:100%;max-width:100%;height:auto;border-radius:8px;touch-action:none}\n.btns{display:flex;flex-wrap:wrap;gap:8px}\n.btn{padding:8px 14px;min-height:40px;border-radius:10px;border:1.5px solid var(--line);background:var(--panel-2);cursor:pointer;font-weight:700;font-size:.92rem;line-height:1.2}\n.btn:hover:not([disabled]){border-color:var(--muted)}\n.btn[disabled]{opacity:.45;cursor:default}\n.btn.primary{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}\n.btn[aria-pressed=\"true\"]{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset}\n.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;font-size:.82rem;border:1px solid var(--line);background:var(--panel-2)}\n.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}\n.msg{font-size:.93rem;padding:9px 12px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line)}\n.msg.good{border-color:color-mix(in srgb,var(--good) 60%,var(--line));color:var(--ink)}\n.msg.bad{border-color:color-mix(in srgb,var(--bad) 60%,var(--line))}\n.msg.warn{border-color:color-mix(in srgb,var(--warn) 60%,var(--line))}\n.help{font-size:.86rem;color:var(--muted)}\n.meter{height:12px;border-radius:99px;background:var(--panel-2);overflow:hidden;border:1px solid var(--line)}\n.meter>i{display:block;height:100%;background:var(--acc);transition:width .15s}\n.ctl{display:grid;gap:4px}\n.ctl label{font-size:.9rem;font-weight:700;display:flex;justify-content:space-between;gap:8px}\n.ctl input[type=range]{width:100%;accent-color:var(--acc);height:30px;margin:0}\n.over{position:absolute;inset:6px;border-radius:8px;display:grid;place-items:center;padding:14px;background:color-mix(in srgb,var(--bg) 74%,transparent);backdrop-filter:blur(2px);z-index:5}\n.card{max-width:440px;display:grid;gap:10px;padding:18px;border-radius:14px;background:var(--panel-2);border:1px solid var(--acc);box-shadow:0 0 36px color-mix(in srgb,var(--acc) 22%,transparent)}\n.card h4{font-size:1.5rem;color:var(--acc)}\n.card.fail{border-color:var(--bad);box-shadow:0 0 36px color-mix(in srgb,var(--bad) 18%,transparent)}\n.card.fail h4{color:var(--bad)}\n.clist{margin:0;padding-left:1.15em;display:grid;gap:5px;font-size:.9rem}\n.over{align-items:start}\n.card{position:sticky;top:16px;margin-top:clamp(8px,8%,60px)}\n.why{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}\ntable.data{width:100%;border-collapse:collapse;font-size:.85rem}\ntable.data th,table.data td{padding:5px 7px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}\ntable.data th{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}\ntable.data td.num{text-align:right}\n.scroll{overflow-x:auto}\n@media (max-width:820px){.cols{grid-template-columns:minmax(0,1fr)}\n  .over{position:static;inset:auto;background:none;backdrop-filter:none;padding:8px 0 2px}\n  .card{max-width:none;position:static;margin-top:0}}\n@media (prefers-reduced-motion:reduce){.meter>i{transition:none}}\n\n:host{--acc:#9FD36B;--acc-ink:#0D1A03}\n.left,.aside{display:grid;gap:14px;min-width:0}\n.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:8px}\n.card-a{display:grid;justify-items:center;gap:4px;padding:8px 6px;border-radius:10px;border:1px solid var(--line);background:var(--panel-2);text-align:center;font-size:.8rem;line-height:1.25}\n.card-a svg{width:64px;height:48px}\n.card-a b{font-size:.84rem}\n.treewrap{display:grid;gap:10px;padding:10px}\n.tree{display:grid;gap:8px;overflow-x:auto}\n.node{display:grid;gap:8px;padding:10px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);min-width:0}\n.node.leaf{border-color:color-mix(in srgb,var(--good) 60%,var(--line))}\n.node .who{display:flex;flex-wrap:wrap;gap:5px}\n.node .who span{font-size:.78rem;padding:2px 8px;border-radius:999px;background:var(--panel-2);border:1px solid var(--line)}\n.node .q{font-weight:700;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}\n.node .q .op{font-size:.72rem;font-family:var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--bad);border:1px solid var(--bad);border-radius:6px;padding:1px 6px}\n.node select{font:inherit;font-size:.88rem;padding:6px 8px;border-radius:8px;border:1.5px solid var(--line);background:var(--panel-2);color:var(--ink);max-width:100%}\n.kids{display:grid;gap:8px;padding-left:12px;border-left:2px dashed var(--line)}\n.branch{display:grid;gap:4px}\n.branch>.yn{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}\n.mini{font-size:.78rem;padding:3px 8px;min-height:0;border-radius:6px}\n.stats{font-size:.9rem;display:grid;gap:4px}\n.results{margin:0;padding-left:1.3em;display:grid;gap:6px;font-size:.86rem}\n.results .ok{color:var(--good)}\n.results .bad{color:var(--bad)}\n", "<div class=\"g\">\n  <div class=\"bar\">\n    <div class=\"goalrow\"><h4 id=\"lvName\">Pond Critters</h4><span class=\"goal\" id=\"lvGoal\"></span></div>\n    <nav class=\"levels\" id=\"levels\" aria-label=\"Levels\"></nav>\n  </div>\n  <div class=\"cols\">\n    <div class=\"left\">\n      <div class=\"panel\">\n        <span class=\"label\">The animals</span>\n        <div class=\"cards\" id=\"cards\"></div>\n      </div>\n      <div class=\"stage\" id=\"stage\">\n        <div class=\"treewrap\"><span class=\"label\">Your dichotomous key</span><div class=\"tree\" id=\"tree\"></div></div>\n      </div>\n    </div>\n    <div class=\"aside\">\n      <div class=\"panel\">\n        <span class=\"label\">How to build it</span>\n        <p class=\"help\">Each box is a group of animals. Pick a yes/no question for any group with more than one animal. Keep going until every box holds just one.</p>\n        <div class=\"stats\" id=\"stats\"></div>\n        <div class=\"btns\"><button class=\"btn primary\" id=\"test\" type=\"button\">Test my key</button><button class=\"btn\" id=\"clear\" type=\"button\">Start over</button></div>\n        <p class=\"msg\" id=\"msg\"></p>\n      </div>\n      <div class=\"panel\" id=\"resultsPanel\" hidden>\n        <span class=\"label\">Field test</span>\n        <ol class=\"results\" id=\"results\"></ol>\n      </div>\n    </div>\n  </div>\n</div>\n", function(root, env){
+const QUESTIONS = [
+  {id:"legs", q:"Does it have legs?", f:a=>a.legs>0},
+  {id:"many", q:"Does it have more than 4 legs?", f:a=>a.legs>4},
+  {id:"eight", q:"Does it have exactly 8 legs?", f:a=>a.legs===8},
+  {id:"wings", q:"Does it have wings?", f:a=>!!a.wings},
+  {id:"shell", q:"Does it carry a coiled or domed shell?", f:a=>!!a.shell},
+  {id:"claws", q:"Does it have big pincers?", f:a=>!!a.claws},
+  {id:"backbone", q:"Does it have a backbone?", f:a=>!!a.backbone},
+  {id:"feathers", q:"Does it have feathers?", f:a=>!!a.feathers},
+  {id:"fur", q:"Does it have fur?", f:a=>!!a.fur},
+  {id:"scales", q:"Does it have scales?", f:a=>!!a.scales},
+  {id:"fins", q:"Does it have fins?", f:a=>!!a.fins},
+  {id:"moist", q:"Is its skin smooth and slimy?", f:a=>!!a.moist},
+  {id:"rings", q:"Is its body made of ring-like segments?", f:a=>!!a.rings},
+  {id:"friendly", q:"Is it friendly?", opinion:true},
+  {id:"fast", q:"Is it fast?", opinion:true},
+  {id:"big", q:"Is it big?", opinion:true},
+  {id:"scary", q:"Is it scary?", opinion:true},
+];
+const SETS = [
+  {name:"Pond Critters", goal:"Build a key that names all 6 pond animals. Use only questions anyone could check by looking.", animals:[
+    {id:"snail", name:"Pond snail", legs:0, shell:"spiral", moist:true, col:"#B98A5E"},
+    {id:"crayfish", name:"Crayfish", legs:10, claws:true, col:"#C8553D"},
+    {id:"strider", name:"Water strider", legs:6, col:"#6E7F8D"},
+    {id:"leech", name:"Leech", legs:0, rings:true, moist:true, col:"#3D4F3A"},
+    {id:"frog", name:"Leopard frog", legs:4, backbone:true, moist:true, col:"#5E9E4A"},
+    {id:"turtle", name:"Painted turtle", legs:4, backbone:true, shell:"dome", scales:true, col:"#4C6B3C"},
+  ]},
+  {name:"Backyard Michigan", goal:"Eight animals from around Ann Arbor. Split each group as evenly as you can.", animals:[
+    {id:"robin", name:"American robin", legs:2, backbone:true, feathers:true, wings:true, col:"#C8553D"},
+    {id:"squirrel", name:"Gray squirrel", legs:4, backbone:true, fur:true, col:"#8C8C8C"},
+    {id:"snake", name:"Garter snake", legs:0, backbone:true, scales:true, col:"#4F7A3A"},
+    {id:"monarch", name:"Monarch butterfly", legs:6, wings:true, col:"#E8892B"},
+    {id:"spider", name:"Wolf spider", legs:8, col:"#6B5440"},
+    {id:"worm", name:"Earthworm", legs:0, rings:true, moist:true, col:"#C77E7E"},
+    {id:"peeper", name:"Spring peeper", legs:4, backbone:true, moist:true, col:"#B08B5A"},
+    {id:"trout", name:"Brook trout", legs:0, backbone:true, scales:true, fins:true, col:"#5A7FA0"},
+  ]},
+];
+// a node: {animals:[ids], q:null|qid, yes:node, no:node, opinion:{id:bool}}
+function splitNode(set, node, qid, rng){
+  const Q = QUESTIONS.find(x=>x.id===qid), A = id => set.animals.find(a=>a.id===id);
+  let ans = {};
+  if(Q.opinion){ node.animals.forEach((id,i)=>ans[id] = rng()<.5); if(Object.values(ans).every(v=>v)||Object.values(ans).every(v=>!v)) ans[node.animals[0]] = !ans[node.animals[0]]; }
+  else node.animals.forEach(id => ans[id] = Q.f(A(id)));
+  const yes = node.animals.filter(id=>ans[id]), no = node.animals.filter(id=>!ans[id]);
+  if(!yes.length || !no.length) return {ok:false, why:`Every animal in this group gets the same answer (${yes.length?"yes":"no"}), so it doesn't split the group.`};
+  node.q = qid; node.opinion = Q.opinion ? ans : null; node.yes = {animals:yes}; node.no = {animals:no};
+  return {ok:true};
+}
+function leaves(n, d=0, out=[]){ if(!n.q){ out.push({n, d}); } else { leaves(n.yes, d+1, out); leaves(n.no, d+1, out); } return out; }
+function identify(set, root, id, rng){ // an observer walks the key for one specimen
+  let n = root, path = [];
+  while(n.q){ const Q = QUESTIONS.find(x=>x.id===n.q); const a = set.animals.find(x=>x.id===id);
+    const ans = Q.opinion ? rng()<.5 : Q.f(a); path.push({q:Q.q, ans, opinion:!!Q.opinion}); n = ans ? n.yes : n.no; }
+  return {got:n.animals[0], path};
+}
+function bestAvg(set){ // fewest questions per animal, on average, any key can manage
+  const Q = QUESTIONS.filter(q=>!q.opinion), memo = {};
+  function best(ids){ if(ids.length<=1) return 0; const k = ids.join(); if(k in memo) return memo[k];
+    let b = 1e9; for(const q of Q){ const y = ids.filter(id=>q.f(set.animals.find(a=>a.id===id))), n = ids.filter(id=>!y.includes(id));
+      if(!y.length||!n.length) continue; b = Math.min(b, best(y)+best(n)+ids.length); } return memo[k] = b; }
+  return best(set.animals.map(a=>a.id)) / set.animals.length;
+}
+
+
+const $ = env.$;
+const bar = env.levelBar($("levels"), SETS.map(s=>s.name), i => load(i));
+let si = 0, keyRoot = null, seedN = 1, solvedOnce = false;
+function rng(){ seedN = (seedN*16807) % 2147483647; return seedN/2147483647; }
+const S = () => SETS[si];
+const nameOf = id => S().animals.find(a=>a.id===id).name;
+
+function icon(a){
+  const c = a.col, k = "#0B0F15";
+  const legs = (n, x0, x1, y, len, bend) => { let s = ""; for(let i=0;i<n;i++){ const x = x0 + (x1-x0)*(n>1?i/(n-1):.5); s += `<path d="M${x} ${y} l${(i%2?1:-1)*bend} ${len}" stroke="${c}" stroke-width="2" fill="none" stroke-linecap="round"/>`; } return s; };
+  let b = "";
+  switch(a.id){
+    case "snail": b = `<ellipse cx="30" cy="38" rx="22" ry="5" fill="${c}" opacity=".7"/><circle cx="32" cy="26" r="13" fill="${c}"/><path d="M32 26 m0 -8 a8 8 0 1 1 -8 8 a5 5 0 1 1 5 -5" stroke="${k}" stroke-width="2" fill="none"/><path d="M50 36 l6 -8 M48 36 l4 -9" stroke="${c}" stroke-width="2"/>`; break;
+    case "crayfish": b = `<ellipse cx="34" cy="26" rx="18" ry="7" fill="${c}"/><path d="M52 26 l8 -5 l0 10z" fill="${c}"/><path d="M17 23 q-8 -8 -12 -6 q2 6 8 6 M17 29 q-8 8 -12 6 q2 -6 8 -6" fill="${c}" stroke="${c}" stroke-width="2"/>${legs(5,24,44,32,8,3)}`; break;
+    case "strider": b = `<ellipse cx="32" cy="24" rx="12" ry="3.5" fill="${c}"/><path d="M26 24 l-14 12 M30 24 l-20 -10 M34 24 l20 -10 M38 24 l14 12 M28 24 l-8 14 M36 24 l8 14" stroke="${c}" stroke-width="1.6" fill="none"/>`; break;
+    case "leech": case "worm": b = `<path d="M8 30 q10 -14 20 0 t20 0 t12 -6" stroke="${c}" stroke-width="8" fill="none" stroke-linecap="round"/>` + [14,22,30,38,46].map(x=>`<line x1="${x}" y1="${a.id==="worm"?20:22}" x2="${x}" y2="${36}" stroke="${k}" stroke-opacity=".35" stroke-width="1.5"/>`).join(""); break;
+    case "frog": case "peeper": b = `<ellipse cx="32" cy="28" rx="15" ry="10" fill="${c}"/><circle cx="25" cy="18" r="4" fill="${c}"/><circle cx="39" cy="18" r="4" fill="${c}"/><circle cx="25" cy="18" r="1.6" fill="${k}"/><circle cx="39" cy="18" r="1.6" fill="${k}"/><path d="M18 32 l-8 8 l6 0 M46 32 l8 8 l-6 0 M24 36 l-4 8 M40 36 l4 8" stroke="${c}" stroke-width="3" fill="none" stroke-linecap="round"/>${a.id==="peeper"?`<path d="M26 26 l12 6 M38 26 l-12 6" stroke="${k}" stroke-opacity=".4" stroke-width="2"/>`:`<circle cx="30" cy="30" r="2.5" fill="${k}" opacity=".35"/><circle cx="37" cy="27" r="2" fill="${k}" opacity=".35"/>`}`; break;
+    case "turtle": b = `<path d="M14 32 q18 -26 36 0z" fill="${c}"/><path d="M20 30 l8 -10 l8 10 M28 20 l8 0" stroke="${k}" stroke-opacity=".35" stroke-width="1.5" fill="none"/><circle cx="54" cy="29" r="4" fill="#C9A34A"/><path d="M18 32 l-2 7 M28 33 l-1 7 M38 33 l1 7 M46 32 l2 7" stroke="#C9A34A" stroke-width="3" stroke-linecap="round"/>`; break;
+    case "robin": b = `<ellipse cx="30" cy="24" rx="14" ry="10" fill="#5A5048"/><ellipse cx="32" cy="28" rx="10" ry="6" fill="${c}"/><circle cx="44" cy="16" r="6" fill="#3A332D"/><path d="M50 16 l6 2 l-6 2z" fill="#E8B23A"/><path d="M16 22 l-10 4 l10 2z" fill="#5A5048"/><path d="M28 34 l-2 9 M34 34 l1 9" stroke="#C9A34A" stroke-width="2"/>`; break;
+    case "squirrel": b = `<path d="M12 36 q-8 -20 6 -26 q10 -2 8 10 q-2 10 6 16z" fill="${c}" opacity=".85"/><ellipse cx="38" cy="28" rx="12" ry="9" fill="${c}"/><circle cx="48" cy="18" r="6" fill="${c}"/><circle cx="50" cy="16" r="1.4" fill="${k}"/><path d="M34 36 l-2 6 M44 35 l2 7" stroke="${c}" stroke-width="3" stroke-linecap="round"/>`; break;
+    case "snake": b = `<path d="M6 34 q8 -16 16 0 t16 0 t16 -2" stroke="${c}" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M6 34 q8 -16 16 0 t16 0 t16 -2" stroke="#E8D06A" stroke-width="1.5" fill="none" stroke-dasharray="3 3"/><circle cx="56" cy="31" r="4.5" fill="${c}"/>`; break;
+    case "monarch": b = `<path d="M32 24 q-14 -18 -24 -10 q-2 10 24 10 M32 24 q14 -18 24 -10 q2 10 -24 10 M32 26 q-12 4 -18 14 q10 2 18 -12 M32 26 q12 4 18 14 q-10 2 -18 -12" fill="${c}" stroke="${k}" stroke-width="1.2"/><rect x="31" y="14" width="2" height="22" rx="1" fill="${k}"/>`; break;
+    case "spider": b = `<circle cx="32" cy="26" r="8" fill="${c}"/><circle cx="32" cy="16" r="5" fill="${c}"/>` + [[-1,-6],[-1,-1],[-1,4],[-1,9],[1,-6],[1,-1],[1,4],[1,9]].map(([s,o])=>`<path d="M${32+s*6} ${24+o/2} q${s*10} ${-8+o} ${s*20} ${o+8}" stroke="${c}" stroke-width="1.8" fill="none"/>`).join(""); break;
+    case "trout": b = `<ellipse cx="30" cy="26" rx="20" ry="8" fill="${c}"/><path d="M48 26 l12 -9 l0 18z" fill="${c}"/><path d="M26 18 l6 -6 l4 6z M28 33 l4 6 l3 -6z" fill="${c}"/><circle cx="16" cy="24" r="1.8" fill="${k}"/>` + [22,30,38].map(x=>`<circle cx="${x}" cy="24" r="1.5" fill="#E86A5A"/>`).join(""); break;
+  }
+  return `<svg viewBox="0 0 64 48" aria-hidden="true">${b}</svg>`;
+}
+function traitText(a){
+  const t = []; t.push(a.legs ? `${a.legs} legs` : "no legs");
+  if(a.backbone) t.push("backbone"); if(a.shell) t.push(a.shell==="spiral"?"coiled shell":"domed shell"); if(a.claws) t.push("pincers");
+  if(a.feathers) t.push("feathers"); if(a.fur) t.push("fur"); if(a.scales) t.push("scales"); if(a.fins) t.push("fins"); if(a.wings) t.push("wings");
+  if(a.moist) t.push("slimy skin"); if(a.rings) t.push("ring segments");
+  return t.join(", ");
+}
+function load(i){
+  si = i; seedN = 7 + i*101; keyRoot = {animals:S().animals.map(a=>a.id)};
+  $("lvName").textContent = S().name; $("lvGoal").textContent = S().goal;
+  $("cards").innerHTML = S().animals.map(a => `<div class="card-a">${icon(a)}<b>${a.name}</b><span class="help">${traitText(a)}</span></div>`).join("");
+  $("resultsPanel").hidden = true; env.hideCard($("stage"));
+  say("Start with the top box. Which question splits these animals into two groups?");
+  render();
+}
+function say(t, kind){ const m = $("msg"); m.textContent = t; m.className = "msg"+(kind?" "+kind:""); }
+function nodeEl(n){
+  const d = document.createElement("div"); d.className = "node" + (n.animals.length===1 ? " leaf" : "");
+  const who = document.createElement("div"); who.className = "who"; who.innerHTML = n.animals.map(id => `<span>${env.esc(nameOf(id))}</span>`).join(""); d.appendChild(who);
+  if(n.animals.length===1){ return d; }
+  if(!n.q){
+    const sel = document.createElement("select"); sel.setAttribute("aria-label", "Question for this group");
+    sel.innerHTML = `<option value="">Choose a question…</option>` + QUESTIONS.map(q => `<option value="${q.id}">${env.esc(q.q)}</option>`).join("");
+    sel.onchange = () => { if(!sel.value) return; const r = splitNode(S(), n, sel.value, rng);
+      if(!r.ok){ say(r.why, "warn"); sel.value = ""; return; }
+      const Q = QUESTIONS.find(q=>q.id===n.q);
+      if(Q.opinion) say(`"${Q.q}" is an opinion. Two people could answer it differently, so a key built on it can send the same animal down different branches.`, "bad");
+      else say(`Good: "${Q.q}" is something anyone can check by looking.`, "good");
+      $("resultsPanel").hidden = true; render(); };
+    d.appendChild(sel); return d;
+  }
+  const Q = QUESTIONS.find(q=>q.id===n.q);
+  const qrow = document.createElement("div"); qrow.className = "q";
+  qrow.innerHTML = `<span>${env.esc(Q.q)}</span>` + (Q.opinion ? `<span class="op">Opinion</span>` : "");
+  const un = document.createElement("button"); un.type = "button"; un.className = "btn mini"; un.textContent = "Change"; un.onclick = () => { n.q = null; n.yes = n.no = null; $("resultsPanel").hidden = true; render(); };
+  qrow.appendChild(un); d.appendChild(qrow);
+  const kids = document.createElement("div"); kids.className = "kids";
+  for(const [lab, child] of [["Yes", n.yes], ["No", n.no]]){ const br = document.createElement("div"); br.className = "branch"; br.innerHTML = `<span class="yn">${lab} →</span>`; br.appendChild(nodeEl(child)); kids.appendChild(br); }
+  d.appendChild(kids); return d;
+}
+function render(){
+  const t = $("tree"); t.innerHTML = ""; t.appendChild(nodeEl(keyRoot));
+  const L = leaves(keyRoot), done = L.every(x => x.n.animals.length===1);
+  const avg = L.reduce((s,x)=>s + x.d*x.n.animals.length, 0) / S().animals.length;
+  const asked = (function c(n){ return n.q ? 1 + c(n.yes) + c(n.no) : 0; })(keyRoot);
+  $("stats").innerHTML = `<span>Questions in your key: <b class="num">${asked}</b></span><span>Animals named: <b class="num">${L.filter(x=>x.n.animals.length===1).length} of ${S().animals.length}</b></span>` +
+    (done ? `<span>Questions needed per animal, on average: <b class="num">${avg.toFixed(2)}</b> (best possible ${bestAvg(S()).toFixed(2)})</span>` : "");
+  $("test").disabled = !done;
+}
+$("test").onclick = () => {
+  const order = S().animals.map(a=>a.id).sort(() => rng()-.5).slice(0, 4);
+  const res = order.map(id => ({id, ...identify(S(), keyRoot, id, rng)}));
+  const right = res.filter(r => r.got===r.id).length;
+  $("resultsPanel").hidden = false;
+  $("results").innerHTML = res.map(r => `<li class="${r.got===r.id?'ok':'bad'}">A ranger found a <b>${env.esc(nameOf(r.id))}</b>. Your key said: ${env.esc(nameOf(r.got))}.${r.path.some(p=>p.opinion)?' (An opinion question was in the way.)':''}</li>`).join("");
+  const L = leaves(keyRoot), avg = L.reduce((s,x)=>s + x.d, 0) / L.length, best = bestAvg(S());
+  const opinions = (function c(n){ return n.q ? (QUESTIONS.find(q=>q.id===n.q).opinion?1:0) + c(n.yes) + c(n.no) : 0; })(keyRoot);
+  if(right===4 && !opinions){
+    bar.solve(si);
+    env.card($("stage"), {title:"Your key works!", why:"The science", body:`Four rangers used your key and named every animal correctly. ${avg <= best + 1e-9 ? "It's as short as a key can be." : `On average it takes ${avg.toFixed(2)} questions; the best keys take ${best.toFixed(2)}. Questions that split a group evenly make a key shorter.`} Good keys only use traits anyone can observe.`,
+      buttons:[{label: si<SETS.length-1 ? "Next set" : "Play set 1 again", primary:true, onClick:()=>{ const n = si<SETS.length-1?si+1:0; bar.set(n); load(n); }}, {label:"Improve this key"}]});
+  } else if(opinions){
+    env.card($("stage"), {fail:true, title:`${right} of 4 correct`, why:"What went wrong", body:"Your key uses an opinion question. Different rangers answered it differently, so the same animal went down different branches. Swap every opinion question for a trait you can see.", buttons:[{label:"Fix my key", primary:true}]});
+  } else {
+    env.card($("stage"), {fail:true, title:`${right} of 4 correct`, why:"What went wrong", body:"Some animals ended up in the wrong box. Check each question against the trait list on the cards.", buttons:[{label:"Fix my key", primary:true}]});
+  }
+};
+$("clear").onclick = () => load(si);
+load(0);
+
+});
+})();</script></section>
+
+<section class="sec related" id="more"><div><p class="kicker">Keep exploring</p><h2>Related lessons</h2></div><p class="idea"> Up next: <a href="unit-09-body-systems-and-homeostasis.html">Unit 9: Body Systems &amp; Homeostasis</a>. Overlap alert: ideas you have already met are marked above as "you may already have learned".</p><ul><li><a href="unit-07-cells.html">Unit 7: Cells</a><span class="why">Cell structure is the basis for classification.</span></li><li><a href="unit-05-plate-tectonics-and-rocks.html">Unit 5: Plate Tectonics &amp; Rocks</a><span class="why">Fossils and deep time.</span></li><li><a href="unit-06-natural-hazards.html">Unit 6: Natural Hazards</a><span class="why">Invasive species and habitat loss.</span></li><li><a href="unit-09-body-systems-and-homeostasis.html">Unit 9: Body Systems &amp; Homeostasis</a><span class="why">Vertebrate body systems compared.</span></li><li><a href="unit-12-ecosystems-and-food-webs.html">Unit 12: Ecosystems &amp; Food Webs</a><span class="why">How organisms depend on each other.</span></li><li><a href="../7th/unit-7.9-adaptation-and-earth-s-history.html">Unit 7.9: Adaptation &amp; Earth's History</a><span class="why">Grade 7: adaptation and fossils.</span></li><li><a href="../8th/unit-8.9-natural-selection-and-common-ancestry.html">Unit 8.9: Natural Selection &amp; Common Ancestry</a><span class="why">Grade 8: common ancestry.</span></li></ul></section>
+</main>
+
+<footer>Built for sixth-grade tutoring. Drawn from Michigan Virtual's classification module (OpenSciEd's grade 6 sequence has no classification unit) and aligned with the NGSS ideas in MS-LS4-2 and MS-LS2-5 on shared features and biodiversity. Species counts are approximate.</footer>
+
+<script>
+(function(){
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const safe=fn=>{try{fn()}catch(e){console.error(e)}};
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const setPressed=(g,b)=>$$('button',g).forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));
+function quizBox(box,scoreEl,items,labels){
+  let right=0;
+  box.innerHTML=items.map((it,i)=>`<div class="item" data-i="${i}"><span class="nm">${it.n}</span><div class="opts">${labels.map((l,j)=>`<button class="opt" type="button" data-j="${j}">${l}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
+  box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.disabled)return; const row=b.closest('.item'), it=items[+row.dataset.i], ok=+b.dataset.j===it.a;
+    $$('.opt',row).forEach(o=>{ o.disabled=true; if(+o.dataset.j===it.a)o.classList.add('good'); }); if(!ok)b.classList.add('bad'); else right++;
+    $('.fb',row).textContent=(ok?'Yes. ':'Not quite. ')+it.e; scoreEl.textContent=`${right} of ${items.length} correct`; });
+}
+
+/* ===== 1 ===== */
+safe(()=>{
+  const R=['Domain','Kingdom','Phylum','Class','Order','Family','Genus','Species'];
+  const O={
+    cat:{n:'House cat',v:['Eukarya','Animalia','Chordata','Mammalia','Carnivora','Felidae','Felis','Felis catus']},
+    human:{n:'Human',v:['Eukarya','Animalia','Chordata','Mammalia','Primates','Hominidae','Homo','Homo sapiens']},
+    oak:{n:'White oak',v:['Eukarya','Plantae','Tracheophyta','Magnoliopsida','Fagales','Fagaceae','Quercus','Quercus alba']},
+    robin:{n:'American robin',v:['Eukarya','Animalia','Chordata','Aves','Passeriformes','Turdidae','Turdus','Turdus migratorius']},
+    monarch:{n:'Monarch butterfly',v:['Eukarya','Animalia','Arthropoda','Insecta','Lepidoptera','Nymphalidae','Danaus','Danaus plexippus']}
+  };
+  const chips=$('#orgChips'), box=$('#rankBox'), sl=$('#rk'), rd=$('#rkR'); let sel='cat';
+  Object.entries(O).forEach(([k,o],i)=>{ const b=document.createElement('button'); b.type='button'; b.className='chip'; b.textContent=o.n; b.dataset.k=k; b.setAttribute('aria-pressed',i===0); chips.appendChild(b); });
+  function draw(){
+    const l=+sl.value, o=O[sel]; $('#rkV').textContent=R[l-1];
+    box.innerHTML=R.map((r,i)=>`<div class="${i<l?'on':''}" style="${i<l?'':'opacity:.4'}"><b>${r}</b><i>${i<l?(i>=6?`<em>${o.v[i]}</em>`:o.v[i]):'?'}</i></div>`).join('');
+    rd.innerHTML=l<8?`At the <b>${R[l-1].toLowerCase()}</b> level a ${o.n.toLowerCase()} belongs to <b>${o.v[l-1]}</b>, a big group with many other organisms. Keep narrowing.`:`The scientific name of the ${o.n.toLowerCase()} is <b><em>${o.v[7]}</em></b>.`;
+  }
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; sel=b.dataset.k; setPressed(chips,b); draw(); }); sl.addEventListener('input',draw); draw();
+  const F=[['Domain: Eukarya',2e6],['Kingdom: Animalia',1.5e6],['Phylum: Chordata',75000],['Class: Mammalia',6500],['Order: Carnivora',300],['Family: Felidae',40],['Genus: Felis',6],['Species: Felis catus',1]];
+  const mx=Math.log10(2e6)+.3;
+  $('#funnel').innerHTML=F.map(([n,v])=>`<div class="brow" style="grid-template-columns:150px minmax(0,1fr)"><span class="lab">${n}</span><div class="stack" role="img" aria-label="${n}: about ${v.toLocaleString()} species"><div class="seg a" style="width:${(Math.log10(v)+.3)/mx*100}%;min-width:44px">${v>=1e6?'~'+(v/1e6)+'M':v>=1000?'~'+(v/1000)+'K':v}</div></div></div>`).join('');
+});
+
+/* ===== 2 ===== */
+safe(()=>{
+  const O=[{n:'Mushroom',a:[1,1,2]},{n:'Oak tree',a:[1,1,0]},{n:'Deer',a:[1,1,1]},{n:'Amoeba',a:[1,0,1]},{n:'E. coli bacterium',a:[0,0,2]}];
+  // a = [nucleus?, many cells?, food: 0 makes own,1 eats,2 absorbs]
+  const chips=$('#kdChips'), box=$('#kd'); let ans=[], step=0;
+  O.forEach((o,i)=>{ const b=document.createElement('button'); b.type='button'; b.className='chip'; b.textContent='Try: '+o.n; b.dataset.i=i; b.setAttribute('aria-pressed','false'); chips.appendChild(b); });
+  const result=()=>{ const [nu,many,food]=ans; if(!nu) return ['Bacteria or Archaea','No nucleus means a prokaryote: a single-celled microbe. Bacteria are everywhere; archaea often live in extreme places like hot springs.'];
+    if(!many) return ['Protista','Eukaryotic and (mostly) single-celled: amoebas, paramecia, and algae. Kelp is a many-celled exception.'];
+    return food===0?['Plantae','Many cells, makes its own food with sunlight.']:food===1?['Animalia','Many cells, eats other organisms.']:['Fungi','Many cells, absorbs food from its surroundings.']; };
+  function draw(){
+    const Qs=[['Does each cell have a nucleus?',['Yes','No'],[1,0]],['Is it made of one cell or many?',['Many cells','One cell'],[1,0]],['How does it get food?',['Makes its own (photosynthesis)','Eats other organisms','Absorbs from surroundings'],[0,1,2]]];
+    let h='';
+    const path=ans.map((v,i)=>`<span>${Qs[i][0].replace('?','')}: ${Qs[i][1][Qs[i][2].indexOf(v)]}</span>`).join('');
+    const done=(ans.length===1&&ans[0]===0)||(ans.length===2&&ans[1]===0)||ans.length===3;
+    if(done){ const [r,t]=result(); h=`<div class="path">${path}</div><div class="q">Kingdom: ${r}</div><p>${t}</p><button class="btn ghost" type="button" data-act="reset">Start over</button>`; }
+    else { const q=Qs[ans.length]; h=`${path?`<div class="path">${path}</div>`:''}<div class="q">${q[0]}</div><div class="btnrow">${q[1].map((t,i)=>`<button class="btn ghost" type="button" data-v="${q[2][i]}">${t}</button>`).join('')}</div>`; }
+    box.innerHTML=h;
+  }
+  box.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; if(b.dataset.act==='reset'){ ans=[]; setPressed(chips,null); draw(); return; } ans.push(+b.dataset.v); draw(); });
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; setPressed(chips,b); const o=O[+b.dataset.i]; ans=[o.a[0]]; if(o.a[0]){ ans.push(o.a[1]); if(o.a[1]) ans.push(o.a[2]); } draw(); });
+  draw();
+  const K=[['Insects',1000000],['Other animals',500000],['Plants',400000],['Fungi',150000],['Protists',70000],['Bacteria + archaea',20000]];
+  const mx=Math.log10(1e6)+.3;
+  $('#kingBars').innerHTML=K.map(([n,v])=>`<div class="brow" style="grid-template-columns:140px minmax(0,1fr)"><span class="lab">${n}</span><div class="stack" role="img" aria-label="${n}: about ${v.toLocaleString()} species"><div class="seg ${n.includes('nsect')||n.includes('animals')?'a':n==='Plants'?'t':'r'}" style="width:${(Math.log10(v)+.3)/mx*100}%;min-width:56px">~${v>=1e6?'1M':(v/1000)+'K'}</div></div></div>`).join('')+'<p class="cap" style="margin-top:2px">Log scale.</p>';
+});
+
+/* ===== 3 ===== */
+safe(()=>{
+  let h=''; const pal=['var(--absorb)','var(--reflect)','var(--transmit)','var(--beam)','var(--muted)','var(--ink)','var(--absorb)','var(--reflect)'];
+  for(let i=0;i<8;i++){ const x=40+(i%4)*104, y=60+Math.floor(i/4)*84; h+=`<circle cx="${x+30}" cy="${y+22}" r="26" style="fill:${pal[i]};fill-opacity:.65;stroke:var(--ink);stroke-width:2.5"/><circle cx="${x+22}" cy="${y+16}" r="3" style="fill:var(--ink)"/><circle cx="${x+38}" cy="${y+16}" r="3" style="fill:var(--ink)"/><path d="M${x+20} ${y+30} q10 ${i%2?8:-6} 20 0" style="fill:none;stroke:var(--ink);stroke-width:2"/>`; }
+  $('#gw').innerHTML=h;
+});
+safe(()=>{
+  const sl=$('#nq'), svg=$('#qSvg'), rd=$('#nqR');
+  function draw(){
+    const n=+sl.value; $('#nqV').textContent=n;
+    const X=q=>50+(q-1)/19*400, Y=v=>220-Math.log10(v)/Math.log10(1048576)*200;
+    let d=''; for(let q=1;q<=20;q++) d+=`${q>1?'L':'M'}${X(q)} ${Y(Math.pow(2,q)).toFixed(1)}`;
+    let g=''; [[2,'2'],[1e3,'1K'],[1e6,'1M']].forEach(([v,t])=>{ g+=`<line x1="50" y1="${Y(v)}" x2="450" y2="${Y(v)}" style="stroke:var(--line)"/><text x="44" y="${Y(v)+4}" font-size="11" text-anchor="end">${t}</text>`; });
+    [1,5,10,15,20].forEach(q=>{ g+=`<text x="${X(q)}" y="238" font-size="11" text-anchor="middle">${q}</text>`; });
+    svg.innerHTML=`${g}<line x1="50" y1="220" x2="450" y2="220" style="stroke:var(--ink);stroke-width:2"/><line x1="50" y1="20" x2="50" y2="220" style="stroke:var(--ink);stroke-width:2"/><path d="${d}" style="fill:none;stroke:var(--absorb);stroke-width:4"/><circle cx="${X(n)}" cy="${Y(Math.pow(2,n))}" r="8" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/><text x="250" y="256" font-size="12" text-anchor="middle">questions asked</text><text transform="rotate(-90 12 120)" x="12" y="120" font-size="12" text-anchor="middle">species a key can tell apart (log)</text>`;
+    rd.innerHTML=`${n} yes/no questions can sort up to <b>${Math.pow(2,n).toLocaleString()}</b> species, if each question splits the group evenly. Twenty questions can cover over a million.`;
+  }
+  sl.addEventListener('input',draw); draw();
+});
+safe(()=>{
+  const L={
+    pine:{n:'White pine',f:{needle:1,bundle5:1,lobed:0,pointed:0}},
+    fir:{n:'Balsam fir',f:{needle:1,bundle5:0,lobed:0,pointed:0}},
+    maple:{n:'Sugar maple',f:{needle:0,bundle5:0,lobed:1,pointed:1}},
+    oak:{n:'White oak',f:{needle:0,bundle5:0,lobed:1,pointed:0}},
+    birch:{n:'Paper birch',f:{needle:0,bundle5:0,lobed:0,pointed:0}}
+  };
+  const T={ root:{q:'Are the leaves needles?',yes:'n1',no:'b1',f:'needle'}, n1:{q:'Are the needles in bundles of five?',yes:'pine',no:'fir',f:'bundle5'}, b1:{q:'Does the leaf have deep lobes (indentations)?',yes:'b2',no:'birch',f:'lobed'}, b2:{q:'Are the lobe tips pointed?',yes:'maple',no:'oak',f:'pointed'} };
+  const draw_leaf=k=>{
+    const st='fill:var(--transmit);fill-opacity:.7;stroke:var(--ink);stroke-width:3;stroke-linejoin:round';
+    if(k==='pine') return `<g style="stroke:#3E7F3E;stroke-width:3;stroke-linecap:round"><path d="M80 170 L40 40 M80 170 L66 36 M80 170 L84 34 M80 170 L102 38 M80 170 L120 44"/></g><rect x="74" y="168" width="14" height="22" rx="3" style="fill:#8B5E3C"/>`;
+    if(k==='fir') return `<path d="M20 110 H150" style="stroke:#8B5E3C;stroke-width:5"/><g style="stroke:#3E7F3E;stroke-width:3;stroke-linecap:round"><path d="M32 110 L30 70 M32 110 L34 150 M56 110 L54 68 M56 110 L58 152 M80 110 L78 66 M80 110 L82 154 M104 110 L102 68 M104 110 L106 152 M128 110 L126 72 M128 110 L130 150"/></g>`;
+    if(k==='maple') return `<path d="M80 30 L96 62 L132 54 L118 88 L148 104 L112 112 L120 146 L88 128 L88 176 L74 176 L74 128 L42 146 L50 112 L12 104 L44 88 L30 54 L66 62Z" style="${st}"/>`;
+    if(k==='oak') return `<path d="M80 26 Q104 22 98 48 Q128 40 120 66 Q150 74 128 94 Q148 114 120 122 Q128 148 100 140 Q96 168 84 160 L84 180 L76 180 L76 160 Q64 168 60 140 Q32 148 40 122 Q12 114 32 94 Q10 74 40 66 Q32 40 62 48 Q56 22 80 26Z" style="${st}"/>`;
+    return `<path d="M80 26 C128 50 138 110 80 176 C22 110 32 50 80 26Z" style="${st}"/><path d="M80 176 V30 M80 70 L56 56 M80 70 L104 56 M80 100 L52 82 M80 100 L108 82" style="fill:none;stroke:var(--ink);stroke-width:2"/><path d="M60 48 l-6 -2 M100 48 l6 -2 M44 74 l-6 -2 M116 74 l6 -2 M40 104 l-6 0 M120 104 l6 0" style="stroke:var(--ink);stroke-width:2"/>`;
+  };
+  const chips=$('#leafChips'), svg=$('#leafSvg'), box=$('#keyBox'); let leaf='maple', node='root', trail=[];
+  Object.entries(L).forEach(([k,o],i)=>{ const b=document.createElement('button'); b.type='button'; b.className='chip'; b.textContent=`Mystery leaf ${i+1}`; b.dataset.k=k; b.setAttribute('aria-pressed',k===leaf); chips.appendChild(b); });
+  const order=Object.keys(L);
+  const shuffled=['maple','pine','birch','oak','fir'];
+  chips.innerHTML=''; shuffled.forEach((k,i)=>{ const b=document.createElement('button'); b.type='button'; b.className='chip'; b.textContent=`Mystery leaf ${i+1}`; b.dataset.k=k; b.setAttribute('aria-pressed',k===leaf); chips.appendChild(b); });
+  const pos={root:[360,26],n1:[250,92],b1:[470,92],b2:[540,158],pine:[190,160],fir:[310,160],birch:[420,160],maple:[500,214],oak:[590,214]};
+  function tree(){
+    const edges=[['root','n1','yes'],['root','b1','no'],['n1','pine','yes'],['n1','fir','no'],['b1','b2','yes'],['b1','birch','no'],['b2','maple','yes'],['b2','oak','no']];
+    const visited=new Set(['root',...trail.map(t=>t.to)]);
+    let s=''; edges.forEach(([a,b,l])=>{ const on=trail.some(t=>t.from===a&&t.to===b); s+=`<line x1="${pos[a][0]}" y1="${pos[a][1]+10}" x2="${pos[b][0]}" y2="${pos[b][1]-10}" style="stroke:${on?'var(--absorb)':'var(--line)'};stroke-width:${on?4:2}"/><text x="${(pos[a][0]+pos[b][0])/2+(l==='yes'?-10:10)}" y="${(pos[a][1]+pos[b][1])/2}" font-size="10" text-anchor="middle" style="opacity:.7">${l}</text>`; });
+    Object.entries(pos).forEach(([k,[x,y]])=>{ const leafN=!T[k]; const on=visited.has(k); s+=`<rect x="${x-44}" y="${y-12}" width="88" height="24" rx="12" style="fill:${on?'var(--beam)':'var(--surface)'};stroke:var(--ink);stroke-width:2"/><text x="${x}" y="${y+4}" font-size="${leafN?10:10}" text-anchor="middle" style="font-weight:${leafN?700:400}">${leafN?L[k].n:'question'}</text>`; });
+    return s;
+  }
+  function draw(){
+    svg.innerHTML=`<g transform="translate(10 10)">${draw_leaf(leaf)}</g><text x="90" y="212" font-size="12" text-anchor="middle" style="opacity:0">.</text><g transform="translate(40 0) scale(.9 .9)">${''}</g>${tree().replace(/transform/,'transform')}`;
+    const t=T[node];
+    let h=''; const tr=trail.map(x=>`<span>${x.q.replace('?','')}: ${x.ans}</span>`).join('');
+    if(!t){ const ok=node===leaf; h=`<div class="path">${tr}</div><div class="q">Result: ${L[node].n}</div><p>${ok?'Correct! You identified it by following observable features.':`The key says ${L[node].n}, but the mystery leaf is ${L[leaf].n}. Look at the drawing again: which answer did you change your mind about?`}</p><button class="btn ghost" type="button" data-act="reset">Try again</button>`; }
+    else h=`${tr?`<div class="path">${tr}</div>`:''}<div class="q">${t.q}</div><div class="btnrow"><button class="btn ghost" type="button" data-a="yes">Yes</button><button class="btn ghost" type="button" data-a="no">No</button></div>`;
+    box.innerHTML=h;
+  }
+  box.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; if(b.dataset.act==='reset'){ node='root'; trail=[]; draw(); return; }
+    const t=T[node], to=t[b.dataset.a]; trail.push({from:node,to,q:t.q,ans:b.dataset.a==='yes'?'yes':'no'}); node=to; draw(); });
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; leaf=b.dataset.k; setPressed(chips,b); node='root'; trail=[]; draw(); });
+  draw();
+});
+
+/* ===== 4 ===== */
+safe(()=>{
+  quizBox($('#vsort'),$('#vsortS'),[
+    {n:'Salmon',a:0,e:'Gills, fins, and scales: a fish.'},
+    {n:'Frog',a:1,e:'Moist skin, lays eggs in water, lungs as an adult: an amphibian.'},
+    {n:'Garter snake',a:2,e:'Dry scaly skin and lungs: a reptile.'},
+    {n:'Penguin',a:3,e:'Can\'t fly, but has feathers and lays eggs: a bird.'},
+    {n:'Bat',a:4,e:'Flies, but has hair and nurses its young: a mammal.'},
+    {n:'Dolphin',a:4,e:'Lives in water, but breathes air, has a little hair, and nurses young: a mammal.'},
+    {n:'Sea turtle',a:2,e:'Scales, lungs, and shelled eggs: a reptile.'},
+    {n:'Salamander',a:1,e:'Moist skin, starts life with gills: an amphibian.'}
+  ],['Fish','Amphibian','Reptile','Bird','Mammal']);
+  const V=[['Fish',35000],['Reptiles',12000],['Birds',11000],['Amphibians',8700],['Mammals',6500],['Insects (for comparison)',1000000]];
+  const mx=Math.log10(1e6)+.3;
+  $('#vertBars').innerHTML=V.map(([n,v])=>`<div class="brow" style="grid-template-columns:130px minmax(0,1fr)"><span class="lab">${n}</span><div class="stack" role="img" aria-label="${n}: about ${v.toLocaleString()} species"><div class="seg ${n.startsWith('Insects')?'a':'r'}" style="width:${(Math.log10(v)+.3)/mx*100}%;min-width:50px">${v>=1e6?'~1M':'~'+(v/1000).toFixed(v<10000?1:0)+'K'}</div></div></div>`).join('')+'<p class="cap" style="margin-top:2px">Log scale.</p>';
+});
+
+/* ===== 5 ===== */
+safe(()=>{
+  const P={lawn:{n:'Lawn',s:[['Grass',480],['Clover',15],['Dandelion',5]],pol:'about 3 insect visits per hour',note:'Mostly one species, with a few weeds.'},
+    meadow:{n:'Meadow',s:[['Grasses',120],['Clover',90],['Goldenrod',80],['Milkweed',60],['Aster',70],['Coneflower',80]],pol:'about 40 insect visits per hour',note:'Many species of similar numbers. Illustrative data.'}};
+  const chips=$('#plotChips'), bars=$('#plotBars'), rd=$('#plotR');
+  function draw(k){
+    const p=P[k], mx=Math.max(...p.s.map(x=>x[1]));
+    bars.innerHTML=p.s.map(([n,v])=>`<div class="brow" style="grid-template-columns:100px minmax(0,1fr)"><span class="lab">${n}</span><div class="stack"><div class="seg ${k==='lawn'?'a':'t'}" style="width:${v/mx*100}%;min-width:34px">${v}</div></div></div>`).join('');
+    rd.innerHTML=`<b>${p.n}:</b> ${p.s.length} species, ${p.s.reduce((a,b)=>a+b[1],0)} plants in the sample square. ${p.note} Flower visitors: ${p.pol}.`;
+  }
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; setPressed(chips,b); draw(b.dataset.p); }); draw('lawn');
+});
+safe(()=>{
+  const sl=$('#area'), svg=$('#saSvg'), rd=$('#saR');
+  const S=a=>10*Math.pow(a,.25), X=lg=>60+lg/3*540, Y=v=>220-v/60*200;
+  function draw(){
+    const lg=+sl.value, a=Math.pow(10,lg); $('#areaV').textContent=a<10?a.toFixed(1):Math.round(a).toLocaleString();
+    let d=''; for(let v=0;v<=3.001;v+=.05) d+=`${v?'L':'M'}${X(v)} ${Y(S(Math.pow(10,v))).toFixed(1)}`;
+    let g=''; [0,20,40,60].forEach(v=>{ g+=`<line x1="60" y1="${Y(v)}" x2="600" y2="${Y(v)}" style="stroke:var(--line)"/><text x="52" y="${Y(v)+5}" font-size="12" text-anchor="end">${v}</text>`; });
+    [[0,'1'],[1,'10'],[2,'100'],[3,'1,000']].forEach(([v,t])=>{ g+=`<text x="${X(v)}" y="240" font-size="12" text-anchor="middle">${t}</text>`; });
+    svg.innerHTML=`${g}<line x1="60" y1="220" x2="600" y2="220" style="stroke:var(--ink);stroke-width:2"/><line x1="60" y1="20" x2="60" y2="220" style="stroke:var(--ink);stroke-width:2"/><path d="${d}" style="fill:none;stroke:var(--transmit);stroke-width:4"/><circle cx="${X(lg)}" cy="${Y(S(a))}" r="8" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/><text x="330" y="258" font-size="13" text-anchor="middle">habitat size (acres, log scale)</text><text transform="rotate(-90 14 120)" x="14" y="120" font-size="13" text-anchor="middle">number of species</text>`;
+    rd.innerHTML=`A <b>${a<10?a.toFixed(1):Math.round(a).toLocaleString()}-acre</b> habitat supports about <b>${S(a).toFixed(0)}</b> species. ${a<5?'Small patches lose species easily.':a>200?'Big habitats are species banks.':'Doubling the area adds a few more species.'}`;
+  }
+  sl.addEventListener('input',draw); draw();
+});
+
+/* ===== quiz ===== */
+safe(()=>{
+  const Q=[
+    {q:'What are the two parts of a scientific name?',o:['Kingdom and phylum','Genus and species','Family and order'],a:1,e:'Genus capitalized, species lowercase, both italicized.'},
+    {q:'A single-celled organism with no nucleus belongs to which group?',o:['Bacteria or archaea','Fungi','Plants'],a:0,e:'No nucleus means a prokaryote.'},
+    {q:'A question like "Is it pretty?" is a poor key question because...',o:['It can\'t be observed objectively','It has too many answers','It has too few answers'],a:0,e:'Good key questions are about features you can all agree on.'},
+    {q:'A whale breathes air, has hair, and nurses its young. It is a...',o:['Fish','Mammal','Reptile'],a:1,e:'Those traits define mammals.'},
+    {q:'Which group has the most species?',o:['Mammals','Birds','Insects'],a:2,e:'Insects outnumber all other animals combined.'},
+    {q:'Why are diverse ecosystems often more stable?',o:['More species means some can fill in if others struggle','They have fewer animals','They are always bigger'],a:0,e:'Variety means the ecosystem doesn\'t depend on one species.'}
+  ];
+  const box=$('#quiz'), sc=$('#quizScore'); let right=0;
+  box.innerHTML=Q.map((x,i)=>`<div class="q item" data-i="${i}" style="display:grid"><h4>${i+1}. ${x.q}</h4><div class="opts">${x.o.map((t,j)=>`<button class="opt" type="button" data-j="${j}">${t}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
+  box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.disabled)return; const row=b.closest('.q'), x=Q[+row.dataset.i], ok=+b.dataset.j===x.a;
+    $$('.opt',row).forEach(o=>{ o.disabled=true; if(+o.dataset.j===x.a)o.classList.add('good'); }); if(!ok)b.classList.add('bad'); else right++;
+    $('.fb',row).textContent=(ok?'Correct. ':'Not quite. ')+x.e; sc.textContent=`${right} of ${Q.length} correct`; });
+});
+})();
+</script>

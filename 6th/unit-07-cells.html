@@ -1,0 +1,1038 @@
+<title>Cells</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout concept: one long lesson column. Each concept opens with a one-sentence big idea, then a grid of labelled visual aids
+   (Analogy, Diagram, Try it, Data, Real world) that collapses to one column on phones.
+   Color roles are fixed for the whole page: amber = incoming light, blue = reflected, teal = transmitted, orange = absorbed. */
+:root{
+  --bg:#F2F5FA; --surface:#FFFFFF; --surface-2:#E8EDF6; --ink:#12172B; --muted:#47506E; --line:#D0D8E8;
+  --beam:#F2A900; --beam-ink:#1A1400; --reflect:#2B66E8; --absorb:#D6450B; --transmit:#0B7F70; --on-color:#FFFFFF;
+  --red:#D93036; --green:#25904F; --blue:#3558D6; --shade:#222A4A;
+  --font-display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --font-body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+  --font-mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C1022; --surface:#151A33; --surface-2:#1D2444; --ink:#EDF0FB; --muted:#A8B1CE; --line:#2B3459;
+    --beam:#FFC93C; --beam-ink:#1A1400; --reflect:#7BA2FF; --absorb:#FF8F5C; --transmit:#46D6C0; --on-color:#0B1020;
+    --red:#FF6A70; --green:#4FCB85; --blue:#7C97FF; --shade:#02040B; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C1022; --surface:#151A33; --surface-2:#1D2444; --ink:#EDF0FB; --muted:#A8B1CE; --line:#2B3459;
+  --beam:#FFC93C; --beam-ink:#1A1400; --reflect:#7BA2FF; --absorb:#FF8F5C; --transmit:#46D6C0; --on-color:#0B1020;
+  --red:#FF6A70; --green:#4FCB85; --blue:#7C97FF; --shade:#02040B; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--font-body); font-size:17px; line-height:1.55;
+  padding-block:0 72px;
+  padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+main,.hero{max-width:920px;margin:0 auto}
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance;margin:0;line-height:1.1}
+p{margin:0}
+a{color:inherit}
+svg{display:block;width:100%;height:auto}
+svg text{font-family:var(--font-body);fill:var(--ink)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--reflect);outline-offset:2px}
+
+/* hero */
+.hero{padding-block:28px 8px;display:grid;gap:18px}
+.kicker{font-family:var(--font-mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
+.lede{font-size:clamp(1.1rem,3.4vw,1.35rem);max-width:34em;text-wrap:pretty}
+.hero-art{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:10px 12px}
+.howto{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:.92rem;color:var(--muted)}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);margin-top:18px;border-bottom:1px solid var(--line);
+  margin-inline:auto;max-width:920px}
+.nav ul{list-style:none;margin:0;padding:8px 0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin}
+.nav a{display:block;white-space:nowrap;text-decoration:none;font-size:.9rem;padding:7px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface)}
+.nav a:hover{border-color:var(--ink)}
+
+/* sections */
+.sec{padding-block:52px 6px;scroll-margin-top:68px;display:grid;gap:20px}
+.sec h2{font-size:clamp(1.9rem,6vw,2.7rem);font-weight:800;letter-spacing:-.02em}
+.idea{font-family:var(--font-display);font-size:clamp(1.25rem,4.4vw,1.75rem);line-height:1.25;font-weight:700;text-wrap:balance;max-width:28em}
+.idea mark{background:linear-gradient(transparent 58%,color-mix(in srgb,var(--beam) 50%,transparent) 58%);color:inherit}
+.aids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.aid{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.aid.wide{grid-column:1/-1}
+.aid h3{font-size:1.2rem;font-weight:700}
+.aid p.cap{font-size:.95rem;color:var(--muted)}
+.aid p.cap b{color:var(--ink)}
+.tag{align-self:flex-start;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;padding:3px 9px;border-radius:999px;
+  background:color-mix(in srgb,var(--tint) 24%,var(--surface));border:1px solid color-mix(in srgb,var(--tint) 55%,var(--line))}
+.tag.analogy{--tint:var(--beam)} .tag.diagram{--tint:var(--reflect)} .tag.try{--tint:var(--transmit)} .tag.data{--tint:var(--absorb)} .tag.real{--tint:var(--muted)}
+.stage{background:var(--surface-2);border-radius:10px;padding:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:.92rem;padding:7px 13px;min-height:40px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.ctl{display:grid;gap:6px}
+.ctl label{font-size:.92rem;font-weight:700}
+input[type=range]{width:100%;accent-color:var(--beam);height:32px}
+.readout{font-size:1rem}
+.readout b{font-family:var(--font-mono);font-weight:500}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{display:inline-flex;gap:6px;align-items:baseline;padding:5px 11px;border-radius:999px;font-family:var(--font-mono);font-size:.84rem;font-weight:500;background:var(--c);color:var(--on-color)}
+.pill.r{--c:var(--reflect)} .pill.a{--c:var(--absorb)} .pill.t{--c:var(--transmit)}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.trio>div{display:grid;gap:6px;align-content:start;min-width:0}
+.trio h4{margin:0;font-family:var(--font-display);font-size:1.05rem}
+.trio p{font-size:.93rem;color:var(--muted)}
+.trio svg{background:var(--surface-2);border-radius:10px}
+.swatch-r{color:var(--reflect);font-weight:700}.swatch-t{color:var(--transmit);font-weight:700}.swatch-a{color:var(--absorb);font-weight:700}
+
+/* stacked bars */
+.bars{display:grid;gap:9px}
+.brow{display:grid;grid-template-columns:104px minmax(0,1fr);gap:10px;align-items:center;font-size:.9rem}
+.brow.on .lab{font-weight:700}
+.stack{display:flex;height:28px;border-radius:7px;overflow:hidden;background:var(--surface-2);outline:2px solid transparent;outline-offset:2px}
+.brow.on .stack{outline-color:var(--ink)}
+.seg{display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:.72rem;color:var(--on-color);min-width:0;overflow:hidden}
+.seg.r{background:var(--reflect)}.seg.t{background:var(--transmit)}.seg.a{background:var(--absorb)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.88rem}
+.legend span::before{content:"";display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--c)}
+.legend .r{--c:var(--reflect)}.legend .t{--c:var(--transmit)}.legend .a{--c:var(--absorb)}
+
+/* sort game, quiz */
+.items{display:grid;gap:10px}
+.item{display:grid;gap:6px;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.item .nm{font-weight:700}
+.item .opts{display:flex;flex-wrap:wrap;gap:6px}
+.opt{font-size:.85rem;padding:6px 10px;border-radius:8px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;min-height:36px;text-align:left}
+.opt:hover:not([disabled]){border-color:var(--ink)}
+.opt.good{background:var(--transmit);color:var(--on-color);border-color:var(--transmit)}
+.opt.bad{background:var(--absorb);color:var(--on-color);border-color:var(--absorb)}
+.fb{font-size:.88rem;color:var(--muted)}
+.score{font-family:var(--font-mono);font-size:.9rem}
+.q{display:grid;gap:10px;padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.q h4{margin:0;font-size:1.05rem;font-family:var(--font-body);font-weight:700}
+.q .opts{display:grid;gap:8px}
+
+/* tables */
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:.92rem;min-width:420px}
+.tbl th,.tbl td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+.tbl th{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+/* see-through demo */
+.seebox{position:relative;border-radius:10px;overflow:hidden;background:var(--surface-2);padding:22px 16px;min-height:130px;display:grid;place-items:center}
+.seetext{font-family:var(--font-display);font-weight:800;font-size:clamp(1.2rem,5vw,1.7rem);text-align:center;letter-spacing:.02em;transition:filter .2s,opacity .2s}
+.seesheets{position:absolute;inset:0;pointer-events:none;background:var(--surface);transition:opacity .2s}
+.meter{height:12px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--transmit);transition:width .2s}
+
+/* canvas */
+canvas{width:100%;aspect-ratio:640/260;display:block;border-radius:10px;background:var(--surface-2)}
+.tally{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;font-size:.85rem}
+.tally div{padding:8px;border-radius:8px;background:var(--bg);border:1px solid var(--line)}
+.tally b{display:block;font-family:var(--font-mono);font-weight:500;font-size:1.05rem}
+
+/* color mixer + channel columns */
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.colx{display:grid;gap:6px;justify-items:center;font-size:.85rem;text-align:center}
+.tube{position:relative;width:100%;max-width:90px;height:150px;border:2px solid var(--line);border-radius:8px;display:flex;flex-direction:column-reverse;overflow:hidden;background:var(--bg)}
+.tube.empty{border-style:dashed}
+.tube .rf{background:var(--cc)}
+.tube .ab{background:repeating-linear-gradient(45deg,var(--surface-2) 0 6px,var(--line) 6px 9px)}
+.colx .nm{font-weight:700}
+.colx.r{--cc:var(--red)}.colx.g{--cc:var(--green)}.colx.b{--cc:var(--blue)}
+
+/* waffle */
+.waffle{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:3px;max-width:300px;width:100%}
+.cell{aspect-ratio:1;border-radius:3px}
+.cell.r{background:var(--reflect)}.cell.t{background:var(--transmit)}.cell.a{background:var(--absorb)}
+
+/* ice race */
+.race{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pad{position:relative;height:170px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden}
+.pad.w{background:#F4F4F1}.pad.b{background:#14161C}
+.pad .lbl{position:absolute;left:8px;top:6px;font-size:.78rem;font-family:var(--font-mono)}
+.pad.w .lbl{color:#333}.pad.b .lbl{color:#ddd}
+.puddle{position:absolute;width:110px;height:46px;border-radius:50%;background:#7CC4F2;opacity:.65;transform:scale(0);bottom:22px}
+.ice{position:relative;width:76px;height:76px;border-radius:12px;background:linear-gradient(135deg,#E4F6FF,#9ED7F5);border:2px solid #fff;transform-origin:50% 100%;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.sunbar{height:10px;border-radius:99px;background:linear-gradient(90deg,var(--beam),color-mix(in srgb,var(--beam) 30%,transparent));opacity:.25;transition:opacity .3s}
+.sunbar.on{opacity:1}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap}
+.btn{font-size:.95rem;font-weight:700;padding:9px 16px;min-height:42px;border-radius:10px;border:0;background:var(--beam);color:var(--beam-ink);cursor:pointer}
+.btn.ghost{background:var(--surface);color:var(--ink);border:1.5px solid var(--line)}
+.btn:hover{filter:brightness(1.06)}
+
+/* misc */
+.glossary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px;margin:0}
+.glossary div{padding:10px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--line)}
+.glossary dt{font-weight:700}
+.glossary dd{margin:2px 0 0;font-size:.93rem;color:var(--muted)}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+details+details{margin-top:10px}
+summary{cursor:pointer;font-weight:700}
+details .in{display:grid;gap:10px;padding-top:10px;font-size:.95rem}
+details ul{margin:0;padding-left:1.2em;display:grid;gap:4px}
+footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;border-top:1px solid var(--line);padding-top:16px}
+.flow{stroke-dasharray:10 8;animation:flow 1s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-18}}
+@media (prefers-reduced-motion: reduce){.flow{animation:none}html{scroll-behavior:auto}.seetext,.seesheets,.meter i{transition:none}}
+@media (max-width:760px){
+  .aids{grid-template-columns:minmax(0,1fr)}
+  .trio{grid-template-columns:minmax(0,1fr)}
+  .glossary{grid-template-columns:minmax(0,1fr)}
+  .tally{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:420px){.brow{grid-template-columns:84px minmax(0,1fr)}.race{grid-template-columns:minmax(0,1fr)}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="mBeam" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--beam)"/></marker>
+    <marker id="mReflect" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--reflect)"/></marker>
+    <marker id="mTransmit" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--transmit)"/></marker>
+    <marker id="mAbsorb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--absorb)"/></marker>
+    <marker id="mInk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--ink)"/></marker>
+    <marker id="mRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#D93036"/></marker>
+  </defs>
+</svg>
+
+<style>.bridge{margin:14px 0 0;padding:12px 14px;border-left:4px solid var(--beam);background:var(--surface-2);border-radius:0 10px 10px 0;font-size:.95rem;line-height:1.5}.related ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}.related li{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}.related a{font-weight:700}.related .why{display:block;color:var(--muted);font-size:.9rem}</style>
+<style>
+.cellbtns{display:flex;flex-wrap:wrap;gap:8px}
+.lvl{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.lvl>div{padding:10px 6px;border-radius:10px;border:2px solid var(--line);background:var(--surface);text-align:center;font-size:.82rem;display:grid;gap:3px;align-content:start}
+.lvl>div.on{border-color:var(--ink);background:color-mix(in srgb,var(--beam) 35%,var(--surface))}
+.lvl b{font-size:.74rem;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+@media (max-width:560px){.lvl{grid-template-columns:minmax(0,1fr)}.lvl>div{grid-template-columns:96px 1fr;text-align:left;align-items:center}}
+</style>
+
+<header class="hero">
+  <p class="kicker">Sixth grade science · Unit 7</p>
+  <h1>Cells: The Units of Life</h1>
+  <p class="lede">You are about 30 trillion cells working together. Each one is a tiny city with a power plant, a library, a gate, and a recycling center. Learn how one cell works and you understand how every living thing works, from a bacterium to a blue whale.</p>
+  <p class="bridge"><b>Where we left off:</b> Units 1 to 6 were about matter and energy in the Earth system. Now we zoom in on living things. You may already have learned that sunlight is captured as energy (Unit 1), that energy changes form (Units 2 and 3), and that water moves through the world (Unit 4). Cells use all of these ideas to stay alive.</p>
+      <div class="hero-art">
+    <svg viewBox="0 0 640 190" role="img" aria-label="A cell drawn like a city with labels: nucleus is city hall, mitochondria is the power plant, membrane is the city wall with gates.">
+      <ellipse cx="220" cy="96" rx="190" ry="82" style="fill:var(--transmit);fill-opacity:.18;stroke:var(--transmit);stroke-width:6"/>
+      <circle cx="200" cy="90" r="38" style="fill:var(--reflect);fill-opacity:.6;stroke:var(--ink);stroke-width:3"/><circle cx="208" cy="88" r="10" style="fill:var(--ink)"/>
+      <ellipse cx="300" cy="128" rx="26" ry="14" style="fill:var(--absorb);fill-opacity:.8;stroke:var(--ink);stroke-width:2.5"/><path d="M286 128 q6 -8 12 0 t12 0" style="fill:none;stroke:var(--ink);stroke-width:2"/>
+      <ellipse cx="116" cy="136" rx="22" ry="12" style="fill:var(--absorb);fill-opacity:.8;stroke:var(--ink);stroke-width:2.5"/>
+      <g style="fill:var(--ink)"><circle cx="290" cy="74" r="3"/><circle cx="310" cy="64" r="3"/><circle cx="120" cy="72" r="3"/><circle cx="262" cy="96" r="3"/></g>
+      <text x="200" y="50" font-size="15" text-anchor="middle" style="font-weight:700">nucleus = city hall</text>
+      <text x="470" y="132" font-size="15" style="font-weight:700;fill:var(--absorb)">mitochondria = power plant</text>
+      <text x="470" y="70" font-size="15" style="font-weight:700;fill:var(--transmit)">membrane = gated wall</text>
+      <path d="M330 126 H464" style="stroke:var(--ink);stroke-width:1.5"/><path d="M395 68 L402 66 M404 66 H464" style="stroke:var(--ink);stroke-width:1.5"/>
+    </svg>
+  </div>
+  <p class="howto">Look for the tags <span class="tag analogy">Analogy</span><span class="tag diagram">Diagram</span><span class="tag try">Try it</span><span class="tag data">Data</span><span class="tag real">Real world</span></p>
+</header>
+
+<nav class="nav" aria-label="Lesson sections"><ul>
+  <li><a href="#s1">1 What is alive</a></li><li><a href="#s2">2 Cell parts</a></li><li><a href="#s3">3 Energy</a></li><li><a href="#s4">4 Moving in &amp; out</a></li><li><a href="#s5">5 Many cells</a></li><li><a href="#s6">6 Check yourself</a></li>
+  <li><a href="#game">7 Game</a></li>
+  </ul></nav>
+
+<main>
+
+<section class="sec" id="s1">
+  <div><p class="kicker">Concept 1 · What is life?</p><h2>Everything alive is made of cells</h2></div>
+  <p class="idea">Living things grow, use energy, respond to their surroundings, and reproduce. <mark>All living things are made of cells</mark>, and <mark>all cells come from other cells</mark>.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>LEGO bricks</h3>
+      <div class="stage"><svg viewBox="0 0 480 220" role="img" aria-label="A single brick, then a wall of bricks, then a castle, like a cell, a tissue, and an organism.">
+        <rect x="30" y="130" width="50" height="30" rx="4" style="fill:var(--absorb);stroke:var(--ink);stroke-width:2.5"/><circle cx="44" cy="126" r="5" style="fill:var(--absorb);stroke:var(--ink);stroke-width:2"/><circle cx="66" cy="126" r="5" style="fill:var(--absorb);stroke:var(--ink);stroke-width:2"/>
+        <g style="fill:var(--beam);stroke:var(--ink);stroke-width:2"><rect x="150" y="130" width="40" height="24"/><rect x="190" y="130" width="40" height="24"/><rect x="230" y="130" width="40" height="24"/><rect x="170" y="106" width="40" height="24"/><rect x="210" y="106" width="40" height="24"/><rect x="190" y="82" width="40" height="24"/></g>
+        <g style="fill:var(--reflect);stroke:var(--ink);stroke-width:2"><rect x="330" y="104" width="120" height="56"/><rect x="330" y="84" width="24" height="20"/><rect x="370" y="84" width="24" height="20"/><rect x="410" y="84" width="24" height="20"/><rect x="376" y="124" width="28" height="36" style="fill:var(--surface)"/></g>
+        <text x="55" y="190" font-size="14" text-anchor="middle" style="font-weight:700">one brick</text><text x="55" y="206" font-size="12" text-anchor="middle">= a cell</text>
+        <text x="210" y="190" font-size="14" text-anchor="middle" style="font-weight:700">a wall</text><text x="210" y="206" font-size="12" text-anchor="middle">= a tissue</text>
+        <text x="390" y="190" font-size="14" text-anchor="middle" style="font-weight:700">a castle</text><text x="390" y="206" font-size="12" text-anchor="middle">= a body</text>
+      </svg></div>
+      <p>You can't build a castle without bricks, and you can't build a body without cells. Every cell in your body came from an earlier cell, which is how one cell becomes a whole person.</p>
+      <p class="cap"><b>Where it breaks:</b> a brick cannot make another brick. Cells can divide and make more cells, which is why living things grow and heal; bricks have to come from a factory.</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Is it alive?</h3>
+      <p class="cap">Tap an answer. Think about: made of cells, uses energy, grows, reproduces, responds.</p>
+      <div class="items" id="lifeItems"></div>
+      <p class="score" id="lifeScore">0 of 8 correct</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>Cells are tiny</h3>
+      <div class="stage"><svg id="sizeSvg" viewBox="0 0 640 300" role="img" aria-label="Log-scale dot chart of sizes from a virus at 0.1 micrometers to a grain of salt at 300 micrometers."></svg></div>
+      <div class="ctl"><label for="zoom">Zoom the ruler: items larger than <span id="zoomV"></span> µm are dimmed</label><input id="zoom" type="range" min="0" max="100" value="100"></div>
+      <p class="cap">A micrometer (µm) is one thousandth of a millimeter. Each gridline is 10 times bigger than the last. Sizes are typical values.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>Seeing cells yourself</h3>
+      <div class="tw"><table class="tbl">
+        <thead><tr><th>Sample</th><th>What you will see</th><th>Tools</th></tr></thead>
+        <tbody>
+          <tr><td><b>Onion skin</b></td><td>Brick-shaped plant cells with a visible cell wall and nucleus</td><td>Microscope or phone clip-on lens, iodine</td></tr>
+          <tr><td><b>Cheek swab</b></td><td>Flat, irregular animal cells with a nucleus</td><td>Microscope, blue dye (adult help)</td></tr>
+          <tr><td><b>Pond water drop</b></td><td>Single-celled life zipping around</td><td>Microscope</td></tr>
+          <tr><td><b>Yeast in sugar water</b></td><td>Round cells, some budding to make new cells</td><td>Microscope</td></tr>
+        </tbody></table></div>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s2">
+  <div><p class="kicker">Concept 2 · Parts of a cell</p><h2>A tiny city</h2></div>
+  <p class="idea">Cells contain little structures called <mark>organelles</mark>, each with a job. Plant cells have three extras: <mark>a cell wall, chloroplasts, and a big vacuole</mark>.</p>
+  <div class="aids">
+    <article class="aid wide">
+      <span class="tag analogy">Analogy</span>
+      <h3>A cell is a city</h3>
+      <div class="tw"><table class="tbl">
+        <thead><tr><th>Cell part</th><th>City part</th><th>Job</th></tr></thead>
+        <tbody>
+          <tr><td><b>Nucleus</b></td><td>City hall</td><td>Stores the DNA instructions and gives orders</td></tr>
+          <tr><td><b>Cell membrane</b></td><td>Gate and guards</td><td>Controls what enters and leaves</td></tr>
+          <tr><td><b>Mitochondria</b></td><td>Power plant</td><td>Releases energy from food</td></tr>
+          <tr><td><b>Ribosomes</b></td><td>Factories</td><td>Build proteins from instructions</td></tr>
+          <tr><td><b>Cytoplasm</b></td><td>Ground and air</td><td>Jelly where everything floats and moves</td></tr>
+          <tr><td><b>Vacuole</b></td><td>Water tower and warehouse</td><td>Stores water and nutrients</td></tr>
+          <tr><td><b>Cell wall (plants)</b></td><td>Stone city wall</td><td>Strong support outside the membrane</td></tr>
+          <tr><td><b>Chloroplasts (plants)</b></td><td>Solar farm</td><td>Capture sunlight to make food</td></tr>
+        </tbody></table></div>
+    </article>
+    <article class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>Explore the cell</h3>
+      <div class="chips" id="cellType" role="group" aria-label="Cell type"><button class="chip" type="button" data-t="animal" aria-pressed="true">Animal cell</button><button class="chip" type="button" data-t="plant" aria-pressed="false">Plant cell</button></div>
+      <div class="stage"><svg id="cellSvg" viewBox="0 0 640 340" role="img" aria-label="Diagram of the chosen cell with labeled parts."></svg></div>
+      <div class="cellbtns" id="partBtns" role="group" aria-label="Choose a part"></div>
+      <p class="readout" id="partR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>Busy cells have more power plants</h3>
+      <div class="bars" id="mitoBars"></div>
+      <p class="cap">Rough typical numbers of mitochondria per cell. Cells that use more energy pack in more of them. Red blood cells have none at all, which leaves more room for oxygen.</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s3">
+  <div><p class="kicker">Concept 3 · Cell energy</p><h2>Making and using food energy</h2></div>
+  <p class="idea"><mark>Photosynthesis</mark> turns light, water, and carbon dioxide into sugar and oxygen. <mark>Cellular respiration</mark> turns sugar and oxygen back into usable energy. Plants do both; animals only do respiration.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>Solar farm and power plant</h3>
+      <div class="stage"><svg viewBox="0 0 480 240" role="img" aria-label="A solar farm charges batteries (sugar). A power plant burns them to run the city.">
+        <circle cx="60" cy="40" r="22" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/>
+        <path d="M30 150 L90 120 L120 150z" style="fill:var(--reflect);stroke:var(--ink);stroke-width:2.5"/><text x="80" y="176" font-size="13" text-anchor="middle" style="font-weight:700">chloroplast</text><text x="80" y="192" font-size="12" text-anchor="middle">(solar farm)</text>
+        <line x1="88" y1="56" x2="96" y2="110" style="stroke:var(--beam);stroke-width:5" marker-end="url(#mBeam)"/>
+        <rect x="190" y="104" width="100" height="36" rx="6" style="fill:var(--transmit);fill-opacity:.8;stroke:var(--ink);stroke-width:2.5"/><text x="240" y="127" font-size="14" text-anchor="middle" style="font-weight:700;fill:var(--on-color)">sugar</text><text x="240" y="162" font-size="12" text-anchor="middle">(charged battery)</text>
+        <line x1="130" y1="122" x2="186" y2="122" style="stroke:var(--ink);stroke-width:4" marker-end="url(#mInk)"/><line x1="296" y1="122" x2="352" y2="122" style="stroke:var(--ink);stroke-width:4" marker-end="url(#mInk)"/>
+        <path d="M360 150 V100 L390 80 V150z M400 150 V70 L430 56 V150z" style="fill:var(--absorb);fill-opacity:.8;stroke:var(--ink);stroke-width:2.5"/><text x="390" y="176" font-size="13" text-anchor="middle" style="font-weight:700">mitochondria</text><text x="390" y="192" font-size="12" text-anchor="middle">(power plant)</text>
+        <text x="240" y="224" font-size="13" text-anchor="middle">energy stored, then released as usable energy</text>
+      </svg></div>
+      <p class="cap">One organelle stores sunlight in sugar. Another organelle burns the sugar to run the cell.</p>
+    </article>
+    <article class="aid">
+      <span class="tag diagram">Diagram</span>
+      <h3>The two recipes</h3>
+      <div class="stage"><svg viewBox="0 0 480 280" role="img" aria-label="Photosynthesis: carbon dioxide plus water plus light makes sugar plus oxygen. Respiration: sugar plus oxygen makes carbon dioxide plus water plus energy.">
+        <rect x="10" y="14" width="460" height="100" rx="12" style="fill:var(--transmit);fill-opacity:.2;stroke:var(--transmit);stroke-width:3"/>
+        <text x="240" y="40" font-size="16" text-anchor="middle" style="font-weight:700">Photosynthesis (in chloroplasts)</text>
+        <text x="240" y="72" font-size="15" text-anchor="middle">carbon dioxide + water + light</text><text x="240" y="96" font-size="17" text-anchor="middle" style="font-weight:700">→ sugar + oxygen</text>
+        <rect x="10" y="150" width="460" height="100" rx="12" style="fill:var(--absorb);fill-opacity:.2;stroke:var(--absorb);stroke-width:3"/>
+        <text x="240" y="176" font-size="16" text-anchor="middle" style="font-weight:700">Cellular respiration (in mitochondria)</text>
+        <text x="240" y="208" font-size="15" text-anchor="middle">sugar + oxygen</text><text x="240" y="232" font-size="17" text-anchor="middle" style="font-weight:700">→ carbon dioxide + water + energy</text>
+        <path d="M250 118 q60 16 0 28" style="fill:none;stroke:var(--ink);stroke-width:3" marker-end="url(#mInk)"/><path d="M230 148 q-60 -16 0 -28" style="fill:none;stroke:var(--ink);stroke-width:3" marker-end="url(#mInk)"/>
+      </svg></div>
+      <p class="cap">The outputs of one recipe are the inputs of the other. That is why plants and animals depend on each other.</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Light a water plant</h3>
+      <div class="stage"><svg id="elodSvg" viewBox="0 0 320 260" role="img" aria-label="A water plant in a beaker releasing oxygen bubbles. More light gives more bubbles."></svg></div>
+      <div class="ctl"><label for="light">Light level: <span id="lightV"></span>%</label><input id="light" type="range" min="0" max="100" step="5" value="50"></div>
+      <p class="readout" id="elodR" aria-live="polite"></p>
+    </article>
+    <article class="aid">
+      <span class="tag data">Data</span>
+      <h3>More light, more bubbles (up to a limit)</h3>
+      <div class="stage"><svg id="lightChart" viewBox="0 0 480 260" role="img" aria-label="Curve of oxygen bubbles per minute against light level, rising quickly then leveling off."></svg></div>
+      <p class="cap">Typical lab result: the plant eventually can't use more light because other steps limit it, so the curve flattens.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>A plant over 24 hours</h3>
+      <div class="stage"><svg id="dayChart" viewBox="0 0 640 260" role="img" aria-label="Over a day, photosynthesis rises and falls with sunlight; respiration stays constant. At night the plant uses oxygen."></svg></div>
+      <div class="ctl"><label for="hr">Time: <span id="hrV"></span></label><input id="hr" type="range" min="0" max="24" step="1" value="12"></div>
+      <p class="readout" id="hrR" aria-live="polite"></p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s4">
+  <div><p class="kicker">Concept 4 · Moving in and out</p><h2>The membrane is a picky gate</h2></div>
+  <p class="idea">Particles <mark>spread out from crowded to less crowded</mark> places (diffusion). Water does too (osmosis). The <mark>cell membrane</mark> lets some things through and keeps others out.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>Perfume in a room and a club bouncer</h3>
+      <div class="stage"><svg viewBox="0 0 480 220" role="img" aria-label="Left: perfume spreading from a bottle through a room. Right: a bouncer at a door lets only some guests through.">
+        <rect x="10" y="20" width="220" height="150" rx="8" style="fill:var(--surface);stroke:var(--ink);stroke-width:2.5"/>
+        <circle cx="40" cy="140" r="14" style="fill:var(--absorb);fill-opacity:.6"/>
+        <g style="fill:var(--absorb);fill-opacity:.5"><circle cx="76" cy="124" r="6"/><circle cx="110" cy="100" r="5"/><circle cx="150" cy="86" r="4"/><circle cx="190" cy="62" r="3"/><circle cx="96" cy="140" r="5"/><circle cx="140" cy="120" r="4"/></g>
+        <text x="120" y="196" font-size="14" text-anchor="middle" style="font-weight:700">diffusion: crowded → open</text>
+        <rect x="270" y="20" width="200" height="150" rx="8" style="fill:var(--surface);stroke:var(--ink);stroke-width:2.5"/>
+        <rect x="360" y="20" width="20" height="150" style="fill:var(--ink)"/><rect x="360" y="70" width="20" height="40" style="fill:var(--surface)"/><circle cx="400" cy="88" r="9" style="fill:var(--muted)"/>
+        <g style="fill:var(--transmit)"><circle cx="300" cy="60" r="8"/><circle cx="320" cy="100" r="8"/></g><g style="fill:var(--absorb)"><circle cx="300" cy="140" r="9"/><circle cx="340" cy="46" r="9"/></g>
+        <line x1="334" y1="88" x2="356" y2="88" style="stroke:var(--transmit);stroke-width:4" marker-end="url(#mTransmit)"/>
+        <text x="370" y="196" font-size="14" text-anchor="middle" style="font-weight:700">membrane: selective</text>
+      </svg></div>
+      <p class="cap">Diffusion needs no energy, like perfume drifting. The bouncer (membrane) decides who can get in. Some cells also use energy to pump things through.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>Watch diffusion happen</h3>
+      <canvas id="difCv" width="640" height="260" role="img" aria-label="Particles start on the left of a membrane and gradually spread through its pores to the right."></canvas>
+      <div class="chips" id="difChips" role="group" aria-label="Temperature"><button class="chip" type="button" data-s="1" aria-pressed="true">Cool water</button><button class="chip" type="button" data-s="2.2" aria-pressed="false">Warm water</button><button class="chip" type="button" id="difReset">Restart</button></div>
+      <div class="stage"><svg id="difChart" viewBox="0 0 640 170" role="img" aria-label="Live chart of the share of particles on the left side over time, falling toward one half."></svg></div>
+      <p class="readout" id="difR" aria-live="polite"></p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Osmosis: salty water vs. a cell</h3>
+      <div class="stage"><svg id="osmSvg" viewBox="0 0 320 240" role="img" aria-label="A cell in salt water. Water moves in or out depending on the salt level, making the cell swell or shrink."></svg></div>
+      <div class="ctl"><label for="salt">Salt in the water outside: <span id="saltV"></span></label><input id="salt" type="range" min="0" max="100" step="5" value="0"></div>
+      <p class="readout" id="osmR" aria-live="polite"></p>
+    </article>
+    <article class="aid">
+      <span class="tag data">Data</span>
+      <h3>Potato slices in salt water</h3>
+      <div class="stage"><svg id="potSvg" viewBox="0 0 320 240" role="img" aria-label="Chart of potato mass change versus salt concentration. Mass increases in fresh water and decreases in salty water."></svg></div>
+      <p class="cap">Typical class-lab results after 30 minutes. A potato in fresh water gains mass as its cells absorb water; in salty water it loses mass. The zero crossing shows when the inside and outside match.</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s5">
+  <div><p class="kicker">Concept 5 · Many cells</p><h2>From one cell to a whole body</h2></div>
+  <p class="idea">Cells divide to grow and to repair. Living things can be <mark>one cell</mark> or <mark>trillions</mark>. In big organisms, cells team up in levels: <mark>cells → tissues → organs → organ systems → organism</mark>.</p>
+  <div class="aids">
+    <article class="aid wide">
+      <span class="tag analogy">Analogy</span>
+      <h3>A school</h3>
+      <div class="tw"><table class="tbl">
+        <thead><tr><th>Level</th><th>School</th><th>Body</th></tr></thead>
+        <tbody>
+          <tr><td><b>Cell</b></td><td>One student</td><td>One muscle cell</td></tr>
+          <tr><td><b>Tissue</b></td><td>A class doing the same work</td><td>Muscle tissue</td></tr>
+          <tr><td><b>Organ</b></td><td>A department (math, science)</td><td>The heart</td></tr>
+          <tr><td><b>Organ system</b></td><td>The whole school's operations</td><td>Circulatory system</td></tr>
+          <tr><td><b>Organism</b></td><td>The school as a living community</td><td>You</td></tr>
+        </tbody></table></div>
+    </article>
+    <article class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>Zoom through levels of organization</h3>
+      <div class="chips" id="lvChips" role="group" aria-label="Example"></div>
+      <div class="lvl" id="lvl"></div>
+      <div class="ctl"><label for="lv">Zoom level: <span id="lvV"></span></label><input id="lv" type="range" min="1" max="5" value="1"></div>
+      <p class="readout" id="lvR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>One cell, then 16 million</h3>
+      <div class="chips" id="dbChips" role="group" aria-label="Chart axis"><button class="chip" type="button" data-a="lin" aria-pressed="true">Normal axis</button><button class="chip" type="button" data-a="log" aria-pressed="false">Log axis</button></div>
+      <div class="stage"><svg id="dbSvg" viewBox="0 0 640 260" role="img" aria-label="Number of bacteria over 8 hours if they double every 20 minutes."></svg></div>
+      <div class="ctl"><label for="dbH">Hours: <span id="dbHV"></span></label><input id="dbH" type="range" min="0" max="8" step="0.5" value="4"></div>
+      <p class="readout" id="dbR" aria-live="polite"></p>
+      <p class="cap">If a bacterium divides every 20 minutes and nothing stops it (food and space would run out), one cell becomes more than 16 million in 8 hours. That is why food left out gets unsafe so fast, and why washing hands matters.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>How many cells?</h3>
+      <div class="bars" id="cntBars"></div>
+      <p class="cap">Approximate and rounded. Volvox is a green colony of thousands of cells; humans have about 30 trillion.</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s6">
+  <div><p class="kicker">Check yourself</p><h2>Can you explain it?</h2></div>
+  <p class="idea">Why does a leaf cell have chloroplasts but your skin cell doesn't, and why do both have mitochondria?</p>
+  <details><summary>Show a model answer</summary><div class="in">
+    <p>Plants make their own food using sunlight, and chloroplasts carry out photosynthesis. Animals eat food instead, so skin cells don't need chloroplasts. Both plant and animal cells must release energy from sugar to do their work, and mitochondria do that, so both have them.</p></div></details>
+  <div class="items" id="quiz"></div>
+  <p class="score" id="quizScore">0 of 6 correct</p>
+  <h3 style="margin-top:8px">Words to know</h3>
+  <dl class="glossary">
+    <div><dt>cell</dt><dd>The basic unit of life.</dd></div>
+    <div><dt>organelle</dt><dd>A small part inside a cell with a job.</dd></div>
+    <div><dt>nucleus</dt><dd>Holds the cell's DNA and controls its activities.</dd></div>
+    <div><dt>mitochondria</dt><dd>Release usable energy from sugar.</dd></div>
+    <div><dt>chloroplast</dt><dd>Plant organelle that does photosynthesis.</dd></div>
+    <div><dt>cell membrane</dt><dd>Thin boundary that controls what enters and leaves.</dd></div>
+    <div><dt>diffusion</dt><dd>Particles spreading from crowded to less crowded areas.</dd></div>
+    <div><dt>osmosis</dt><dd>Diffusion of water across a membrane.</dd></div>
+    <div><dt>tissue</dt><dd>A group of similar cells doing one job.</dd></div>
+    <div><dt>organ</dt><dd>Tissues working together, like the heart.</dd></div>
+  </dl>
+  <details><summary>Tutor notes: hands-on kit, misconceptions, pacing</summary><div class="in">
+    <p><b>Kit (about $10):</b> a clip-on phone microscope lens, an onion, iodine, a potato, salt, gummy bears, food coloring, clear cups, aquarium plant (Elodea) or a handful of spinach leaves, a lamp.</p>
+    <ul>
+      <li><b>Concept 1:</b> peel onion skin, dab iodine, and look for brick-shaped cells.</li>
+      <li><b>Concept 2:</b> build a cell model with a clear bag of gel: add beads, a grape, and a ball.</li>
+      <li><b>Concept 3:</b> count Elodea bubbles per minute at different lamp distances. Spinach leaf discs float when they make oxygen.</li>
+      <li><b>Concept 4:</b> drop food coloring into warm vs cool water. Soak gummy bears overnight in plain water and salt water.</li>
+      <li><b>Concept 5:</b> have students form a human "organ system" and name each level.</li>
+    </ul>
+    <p><b>Common misconceptions:</b></p>
+    <ul>
+      <li>"Plants get food from soil." They make sugar by photosynthesis; soil gives water and minerals.</li>
+      <li>"Plants don't do respiration." They do, all day and night.</li>
+      <li>"Bigger animals have bigger cells." They mostly have more cells.</li>
+      <li>"The nucleus is the cell's brain and does everything." It holds instructions; other organelles do the work.</li>
+    </ul>
+    <p><b>Pacing:</b> about five 30-minute sessions.</p></div></details>
+</section>
+
+<section class="sec lesson-game-sec" id="game"><div><p class="kicker">After the lesson · Game</p><h2>Play: Membrane Bouncer</h2></div><p class="idea">You are the cell membrane. Open a channel for sugar, keep toxins out, and let diffusion and osmosis do the rest, while the cell burns sugar and oxygen for energy.</p><div class="lesson-game" id="lesson-game"></div>
+<script>(function(){
+/* Mounts one game into a shadow root so the lesson page's CSS and the game's CSS never collide. */
+function __mountLessonGame(host, css, html, init){
+  if(!host || host.shadowRoot) return;
+  const root = host.attachShadow({mode:"open"});
+  root.innerHTML = "<style>"+css+"</style>"+html;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let visible = true;
+  try{ new IntersectionObserver(es=>{ visible = es[es.length-1].isIntersecting; }).observe(host); }catch(e){}
+  const loops = [];
+  let last = performance.now();
+  function frame(t){
+    const dt = Math.min(0.05, (t-last)/1000); last = t;
+    if(visible && !document.hidden) for(const f of loops){ try{ f(t, dt); }catch(e){ console.error(e); } }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+  const env = {
+    root, reduce,
+    $: id => root.getElementById(id),
+    $$: sel => [...root.querySelectorAll(sel)],
+    loop: f => loops.push(f),
+    esc: s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])),
+    // A canvas drawn in fixed logical units (W x H) that scales to its container.
+    stage(canvas, W, H){
+      const ctx = canvas.getContext("2d");
+      const st = {ctx, W, H, dpr:1};
+      function fit(){
+        st.dpr = Math.min(2.5, window.devicePixelRatio || 1);
+        const cw = canvas.clientWidth || W;
+        const scale = cw / W;
+        canvas.width = Math.round(W*scale*st.dpr); canvas.height = Math.round(H*scale*st.dpr);
+        st.k = scale*st.dpr;
+        ctx.setTransform(st.k,0,0,st.k,0,0);
+        if(st.onfit) st.onfit();
+      }
+      canvas.style.aspectRatio = W+"/"+H;
+      st.begin = () => ctx.setTransform(st.k,0,0,st.k,0,0);
+      st.pt = ev => { const r = canvas.getBoundingClientRect(); return {x:(ev.clientX-r.left)*W/r.width, y:(ev.clientY-r.top)*H/r.height}; };
+      try{ new ResizeObserver(fit).observe(canvas); }catch(e){ addEventListener("resize", fit); }
+      fit();
+      return st;
+    },
+    // Level buttons in the header.
+    levelBar(box, names, onPick){
+      const solved = new Set(); let cur = 0;
+      function render(){
+        box.innerHTML = '<span class="label">Level</span>';
+        names.forEach((n,i)=>{ const b = document.createElement("button"); b.type="button";
+          b.className = "lv"+(solved.has(i)?" done":""); b.textContent = i+1; b.title = n;
+          b.setAttribute("aria-label", "Level "+(i+1)+": "+n+(solved.has(i)?" (solved)":""));
+          if(i===cur) b.setAttribute("aria-current","true");
+          b.onclick = () => { cur = i; render(); onPick(i); }; box.appendChild(b); });
+      }
+      render();
+      return { set(i){ cur=i; render(); }, solve(i){ solved.add(i); render(); }, get cur(){ return cur; }, solved };
+    },
+    // Result card over a stage. buttons: [{label, primary, onClick}]
+    card(stageEl, o){
+      let ov = stageEl.querySelector(":scope > .over");
+      if(!ov){ ov = document.createElement("div"); ov.className = "over"; stageEl.appendChild(ov); }
+      ov.hidden = false;
+      ov.innerHTML = '<div class="card'+(o.fail?' fail':'')+'" role="dialog" aria-live="polite"><h4></h4>'+(o.why?'<span class="why"></span>':'')+'<p class="cb"></p><div class="btns"></div></div>';
+      ov.querySelector("h4").textContent = o.title;
+      if(o.why) ov.querySelector(".why").textContent = o.why;
+      ov.querySelector(".cb").textContent = o.body || "";
+      if(o.list && o.list.length){ const ul = document.createElement("ul"); ul.className = "clist";
+        o.list.forEach(t => { const li = document.createElement("li"); li.textContent = t; ul.appendChild(li); });
+        ov.querySelector(".cb").after(ul); }
+      const bb = ov.querySelector(".btns");
+      (o.buttons||[]).forEach((b,i)=>{ const e = document.createElement("button"); e.type="button"; e.className = "btn"+(b.primary?" primary":""); e.textContent = b.label;
+        e.onclick = () => { ov.hidden = true; b.onClick && b.onClick(); }; bb.appendChild(e); if(i===0) setTimeout(()=>e.focus({preventScroll:true}),30); });
+      if(getComputedStyle(ov).position === "static") setTimeout(()=>ov.scrollIntoView({block:"nearest", behavior: reduce?"auto":"smooth"}), 40);
+      return ov;
+    },
+    hideCard(stageEl){ const ov = stageEl.querySelector(":scope > .over"); if(ov) ov.hidden = true; }
+  };
+  try{ init(root, env); }catch(e){ console.error(e); root.innerHTML += '<p style="color:#fff;padding:12px">This game could not start.</p>'; }
+}
+
+__mountLessonGame(document.getElementById("lesson-game"), "/* Shared frame for every lesson game. Lives inside a shadow root, so nothing here touches the lesson page.\n   Deliberately one dark \"lab console\" look in both page themes; each game sets its own --acc accent. */\n:host{\n  display:block; color-scheme:dark;\n  --bg:#0B0F15; --panel:#141A23; --panel-2:#1B2330; --line:#2B3544; --ink:#E9EEF5; --muted:#93A0B2;\n  --good:#3FD3BB; --bad:#FF6B5E; --warn:#FFB547; --acc:#FFD84A; --acc-ink:#1A1400;\n  --reflect:#78A2FF; --heat:#FF7A2E;\n  --f-display:\"Bahnschrift\",\"DIN Alternate\",\"Roboto Condensed\",\"Arial Narrow\",system-ui,sans-serif;\n  --f-body:\"Roboto\",\"Segoe UI\",system-ui,-apple-system,sans-serif;\n  --f-mono:ui-monospace,\"Roboto Mono\",\"Cascadia Mono\",Menlo,Consolas,monospace;\n}\n*{box-sizing:border-box}\n[hidden]{display:none!important}\n.g{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;border-radius:16px;\n  border:1px solid var(--line);padding:16px;display:grid;gap:14px;text-align:left;box-shadow:0 10px 36px rgba(0,0,0,.35)}\n.g button{font:inherit;color:inherit}\n.g :focus-visible{outline:3px solid var(--acc);outline-offset:2px}\n.g h3,.g h4{margin:0;font-family:var(--f-display);letter-spacing:.02em;line-height:1.15}\n.g p{margin:0}\n.bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 18px}\n.brand{display:grid;gap:2px}\n.label{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}\n.gtitle{font-family:var(--f-display);font-weight:700;font-size:1.45rem;text-transform:uppercase;letter-spacing:.04em}\n.gtitle b{color:var(--acc);font-weight:700}\n.levels{display:flex;flex-wrap:wrap;gap:6px;align-items:center}\n.lv{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--line);background:var(--panel);font-family:var(--f-mono);font-size:.85rem;cursor:pointer;font-variant-numeric:tabular-nums;padding:0}\n.lv:hover{border-color:var(--muted)}\n.lv.done{border-color:var(--good);color:var(--good)}\n.lv[aria-current=\"true\"]{background:var(--acc);border-color:var(--acc);color:var(--acc-ink);font-weight:700}\n.goalrow{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 12px}\n.goalrow h4{font-size:1.25rem}\n.goalrow .goal{color:var(--muted)}\n.cols{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:14px;align-items:start}\n.cols>*{min-width:0}\n.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:10px;min-width:0}\n.panel>.label{margin-bottom:-2px}\n.stage{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px;min-width:0}\n.stage canvas{display:block;width:100%;max-width:100%;height:auto;border-radius:8px;touch-action:none}\n.btns{display:flex;flex-wrap:wrap;gap:8px}\n.btn{padding:8px 14px;min-height:40px;border-radius:10px;border:1.5px solid var(--line);background:var(--panel-2);cursor:pointer;font-weight:700;font-size:.92rem;line-height:1.2}\n.btn:hover:not([disabled]){border-color:var(--muted)}\n.btn[disabled]{opacity:.45;cursor:default}\n.btn.primary{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}\n.btn[aria-pressed=\"true\"]{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset}\n.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;font-size:.82rem;border:1px solid var(--line);background:var(--panel-2)}\n.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}\n.msg{font-size:.93rem;padding:9px 12px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line)}\n.msg.good{border-color:color-mix(in srgb,var(--good) 60%,var(--line));color:var(--ink)}\n.msg.bad{border-color:color-mix(in srgb,var(--bad) 60%,var(--line))}\n.msg.warn{border-color:color-mix(in srgb,var(--warn) 60%,var(--line))}\n.help{font-size:.86rem;color:var(--muted)}\n.meter{height:12px;border-radius:99px;background:var(--panel-2);overflow:hidden;border:1px solid var(--line)}\n.meter>i{display:block;height:100%;background:var(--acc);transition:width .15s}\n.ctl{display:grid;gap:4px}\n.ctl label{font-size:.9rem;font-weight:700;display:flex;justify-content:space-between;gap:8px}\n.ctl input[type=range]{width:100%;accent-color:var(--acc);height:30px;margin:0}\n.over{position:absolute;inset:6px;border-radius:8px;display:grid;place-items:center;padding:14px;background:color-mix(in srgb,var(--bg) 74%,transparent);backdrop-filter:blur(2px);z-index:5}\n.card{max-width:440px;display:grid;gap:10px;padding:18px;border-radius:14px;background:var(--panel-2);border:1px solid var(--acc);box-shadow:0 0 36px color-mix(in srgb,var(--acc) 22%,transparent)}\n.card h4{font-size:1.5rem;color:var(--acc)}\n.card.fail{border-color:var(--bad);box-shadow:0 0 36px color-mix(in srgb,var(--bad) 18%,transparent)}\n.card.fail h4{color:var(--bad)}\n.clist{margin:0;padding-left:1.15em;display:grid;gap:5px;font-size:.9rem}\n.over{align-items:start}\n.card{position:sticky;top:16px;margin-top:clamp(8px,8%,60px)}\n.why{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}\ntable.data{width:100%;border-collapse:collapse;font-size:.85rem}\ntable.data th,table.data td{padding:5px 7px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}\ntable.data th{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}\ntable.data td.num{text-align:right}\n.scroll{overflow-x:auto}\n@media (max-width:820px){.cols{grid-template-columns:minmax(0,1fr)}\n  .over{position:static;inset:auto;background:none;backdrop-filter:none;padding:8px 0 2px}\n  .card{max-width:none;position:static;margin-top:0}}\n@media (prefers-reduced-motion:reduce){.meter>i{transition:none}}\n\n:host{--acc:#7FD6B0;--acc-ink:#03140D}\n.left,.aside{display:grid;gap:12px;min-width:0}\n.stage canvas{cursor:pointer}\n.gauges{display:grid;gap:8px}\n.gauge{display:grid;grid-template-columns:96px minmax(0,1fr) 44px;gap:8px;align-items:center;font-size:.86rem}\n.gauge .num{text-align:right}\n.gauge .meter>i{background:var(--c,var(--good))}\n.counts{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;font-size:.88rem}\n.counts span b{font-family:var(--f-mono);font-weight:500}\n.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px;background:var(--c)}\n", "<div class=\"g\">\n  <div class=\"bar\">\n    <div class=\"goalrow\"><h4 id=\"lvName\">Feed the Cell</h4><span class=\"goal\" id=\"lvGoal\"></span></div>\n    <nav class=\"levels\" id=\"levels\" aria-label=\"Levels\"></nav>\n  </div>\n  <div class=\"cols\">\n    <div class=\"left\">\n      <div class=\"stage\" id=\"stage\"><canvas id=\"cv\" aria-label=\"A cell surrounded by molecules. Click sugar at the membrane to let it in.\"></canvas></div>\n      <p class=\"help\">Click a <b>sugar</b> (yellow hexagon) when it touches the membrane to open a channel and let it in. Don't let in <b>toxins</b> (purple spikes). Small molecules like oxygen pass through on their own.</p>\n    </div>\n    <div class=\"aside\">\n      <div class=\"panel\">\n        <div class=\"bar\"><span class=\"label\">Cell status</span><span class=\"chip\">Time left <b class=\"num\" id=\"timeLeft\">45</b> s</span></div>\n        <div class=\"gauges\" id=\"gauges\"></div>\n        <div class=\"btns\" id=\"ctrls\"></div>\n        <div class=\"btns\"><button class=\"btn primary\" id=\"start\" type=\"button\">Start</button><button class=\"btn\" id=\"pause\" type=\"button\">Pause</button></div>\n        <p class=\"msg\" id=\"msg\"></p>\n      </div>\n      <div class=\"panel\">\n        <span class=\"label\">Inside the cell right now</span>\n        <div class=\"counts\" id=\"counts\"></div>\n      </div>\n    </div>\n  </div>\n</div>\n", function(root, env){
+const LEVELS = [
+  {name:"Feed the Cell", time:45, blood:false, salt:false, o2Keep:40, toxinEvery:4.5, sugarEvery:3.2,
+   goal:"Let sugar in and keep toxins out for 45 seconds.",
+   learn:"The membrane is a picky gate. Small molecules like oxygen slip through on their own, but big ones like sugar need a channel to open. Harmful molecules stay out."},
+  {name:"Breathe", time:60, blood:true, salt:false, o2Keep:0, toxinEvery:5.5, sugarEvery:3.4,
+   goal:"Now oxygen runs low and carbon dioxide builds up. Use blood flow to refresh the water around the cell.",
+   learn:"Oxygen moves in and carbon dioxide moves out by diffusion: from where there's more to where there's less. Fresh blood keeps oxygen high outside and carries carbon dioxide away, so diffusion keeps going the right way."},
+  {name:"Salty Tide Pool", time:60, blood:true, salt:true, o2Keep:0, toxinEvery:6, sugarEvery:3.2,
+   goal:"Waves change how salty the water is. Keep the cell from shrinking or swelling too much.",
+   learn:"Water moves toward the saltier side (osmosis). When the outside got salty, water left and the cell shrank. Pumping salt across the membrane costs energy, but it lets the cell control where water goes."},
+];
+const R0 = 118, CX = 410, CY = 180, W = 640, H = 360;
+const TYPES = {
+  o2:{name:"Oxygen", c:"#FF7A7A", r:4.5, small:true},
+  co2:{name:"Carbon dioxide", c:"#B9C3CF", r:5, small:true},
+  sugar:{name:"Sugar", c:"#FFD84A", r:11, small:false},
+  toxin:{name:"Toxin", c:"#C27BFF", r:11, small:false},
+};
+const $ = env.$;
+const cv = $("cv"), st = env.stage(cv, W, H), ctx = st.ctx;
+const bar = env.levelBar($("levels"), LEVELS.map(l=>l.name), i => load(i));
+let li = 0, P = [], running = false, over = false, t = 0, energy = 70, harm = 0, sugarIn = 0, nextSugar = 0, nextToxin = 0, respCool = 0, bloodCool = 0, saltOut = 1, saltIn = 1, vol = 1, waveT = 0, pops = [];
+
+const L = () => LEVELS[li];
+const rnd = (a,b) => a + Math.random()*(b-a);
+const radius = () => R0 * Math.sqrt(vol);
+function inside(p){ return Math.hypot(p.x-CX, p.y-CY) < radius(); }
+function add(type, inCell){
+  let x, y;
+  if(inCell){ const a = rnd(0,6.28), d = rnd(0, radius()-14); x = CX+Math.cos(a)*d; y = CY+Math.sin(a)*d; }
+  else { do { x = rnd(12, W-12); y = rnd(12, H-12); } while(Math.hypot(x-CX, y-CY) < radius()+16); }
+  const a = rnd(0,6.28), sp = TYPES[type].small ? 70 : 34;
+  P.push({type, x, y, vx:Math.cos(a)*sp, vy:Math.sin(a)*sp, in:inCell, age:0});
+}
+function count(type, inCell){ return P.filter(p => p.type===type && p.in===inCell).length; }
+function load(i){
+  li = i; P = []; running = false; over = false; t = 0; energy = 70; harm = 0; respCool = 0; bloodCool = 0; saltOut = 1; saltIn = 1; vol = 1; waveT = 0; pops = [];
+  for(let k=0;k<(L().o2Keep?40:24);k++) add("o2", Math.random()<.2);
+  for(let k=0;k<4;k++) add("co2", Math.random()<.5);
+  add("sugar", true); add("sugar", false); add("sugar", false); add("toxin", false);
+  nextSugar = 2; nextToxin = 3;
+  env.hideCard($("stage"));
+  $("lvName").textContent = L().name; $("lvGoal").textContent = L().goal;
+  const c = $("ctrls"); c.innerHTML = "";
+  if(L().blood){ const b = document.createElement("button"); b.type = "button"; b.className = "btn"; b.id = "bloodBtn"; b.textContent = "Blood flow"; b.onclick = blood; c.appendChild(b); }
+  if(L().salt){ for(const [id,lab,d] of [["saltIn","Pump salt in",1],["saltOut","Pump salt out",-1]]){ const b = document.createElement("button"); b.type = "button"; b.className = "btn"; b.id = id; b.textContent = lab; b.onclick = () => pump(d); c.appendChild(b); } }
+  say("Press Start. Watch the energy bar.");
+  ui();
+}
+function say(s, kind){ const m = $("msg"); m.textContent = s; m.className = "msg"+(kind?" "+kind:""); }
+function blood(){
+  if(!running || bloodCool > 0) return;
+  P = P.filter(p => !(p.type==="co2" && !p.in));
+  const o2out = count("o2", false); for(let k=o2out; k<28; k++) add("o2", false);
+  bloodCool = 5; pops.push({x:40, y:CY, t:0, text:"Fresh blood!", c:"#FF7A7A"});
+}
+function pump(d){ if(!running) return; if(energy < 4){ say("Not enough energy to run the pump.", "warn"); return; }
+  energy -= 4; saltIn = Math.max(.3, Math.min(2.5, saltIn + d*.15)); pops.push({x:CX, y:CY-radius()-14, t:0, text: d>0?"Salt pumped in":"Salt pumped out", c:"#E9EEF5"}); }
+cv.addEventListener("pointerdown", e => {
+  if(!running) return; const q = st.pt(e);
+  let best = null, bd = 30;
+  for(const p of P){ if(p.in || TYPES[p.type].small) continue; const d = Math.hypot(p.x-q.x, p.y-q.y); if(d < bd){ bd = d; best = p; } }
+  if(!best) return;
+  const dm = Math.hypot(best.x-CX, best.y-CY) - radius();
+  if(dm > 34){ pops.push({x:best.x, y:best.y-18, t:0, text:"Wait until it touches the membrane", c:"#FFB547"}); return; }
+  const a = Math.atan2(best.y-CY, best.x-CX); best.x = CX+Math.cos(a)*(radius()-16); best.y = CY+Math.sin(a)*(radius()-16); best.in = true; best.age = 0;
+  if(best.type==="sugar") pops.push({x:best.x, y:best.y-16, t:0, text:"Sugar in!", c:"#FFD84A"});
+  else { harm += 34; pops.push({x:best.x, y:best.y-16, t:0, text:"Toxin got in!", c:"#C27BFF"}); say("A toxin got in and damaged the cell. Only let sugar through.", "bad"); }
+});
+$("start").onclick = () => { if(over) load(li); running = true; say("Go! Let the sugar in."); };
+$("pause").onclick = () => { if(!over){ running = !running; $("pause").textContent = running ? "Pause" : "Resume"; } };
+
+function step(now, dt){
+  if(running && !over){
+    t += dt;
+    // spawn
+    nextSugar -= dt; nextToxin -= dt;
+    if(nextSugar <= 0){ add("sugar", false); nextSugar = L().sugarEvery*rnd(.7,1.3); }
+    if(nextToxin <= 0){ add("toxin", false); nextToxin = L().toxinEvery*rnd(.7,1.3); }
+    if(L().o2Keep){ const n = P.filter(p=>p.type==="o2").length; for(let k=n;k<L().o2Keep;k++) add("o2", false); P = P.filter(p => !(p.type==="co2" && !p.in && p.x < 30)); }
+    // respiration: 1 sugar + 6 oxygen -> 6 carbon dioxide + energy
+    energy -= dt*2.6; respCool -= dt;
+    if(respCool <= 0 && energy < 88){
+      const s = P.find(p=>p.type==="sugar" && p.in), o = P.filter(p=>p.type==="o2" && p.in);
+      if(s && o.length >= 6){ P = P.filter(p => p!==s && !o.slice(0,6).includes(p)); for(let k=0;k<6;k++){ add("co2", true); const c = P[P.length-1]; c.x = s.x+rnd(-8,8); c.y = s.y+rnd(-8,8); }
+        energy = Math.min(100, energy+26); respCool = 1.4; pops.push({x:s.x, y:s.y, t:0, text:"+energy", c:"#3FD3BB"}); }
+    }
+    // toxins inside hurt until broken down; too much CO2 inside hurts
+    for(const p of P) if(p.type==="toxin" && p.in){ p.age += dt; if(p.age > 3) p.dead = true; }
+    const co2In = count("co2", true);
+    if(co2In >= 11) harm += dt*6;
+    // osmosis
+    if(L().salt){
+      waveT += dt; saltOut = 1 + .8*Math.sin(waveT*2*Math.PI/18) + (waveT>30 ? .35*Math.sin(waveT*1.3) : 0);
+      vol += (saltIn - saltOut)*dt*0.09; vol = Math.max(.45, Math.min(1.6, vol));
+      if(vol < .7 || vol > 1.35) harm += dt*7;
+    }
+    if(bloodCool > 0) bloodCool -= dt;
+    // end conditions
+    if(energy <= 0){ end(false, "The cell ran out of energy. It needs sugar and oxygen together to make energy, so let sugar in often" + (L().blood ? " and keep the blood flowing." : ".")); }
+    else if(harm >= 100){ end(false, co2In>=11 ? "Carbon dioxide built up inside the cell. It diffuses out only when there's less outside, so refresh the blood." : (L().salt && (vol<.7||vol>1.35)) ? "Water rushed " + (vol<.7?"out and the cell shriveled.":"in and the cell swelled too much.") + " Match the salt inside to the salt outside." : "Too many toxins got in. Only let sugar through the channel."); }
+    else if(t >= L().time){ end(true); }
+  }
+  // move particles (always, so the cell looks alive)
+  const rr = radius();
+  for(const p of P){
+    const T = TYPES[p.type], sp = T.small ? 70 : 30;
+    p.vx += rnd(-1,1)*sp*dt*6; p.vy += rnd(-1,1)*sp*dt*6;
+    const v = Math.hypot(p.vx, p.vy) || 1; p.vx = p.vx/v*sp; p.vy = p.vy/v*sp;
+    let nx = p.x + p.vx*dt, ny = p.y + p.vy*dt;
+    const was = p.in, d = Math.hypot(nx-CX, ny-CY), now_ = d < rr;
+    if(now_ !== was){
+      if(T.small) p.in = now_;           // small molecules diffuse through the membrane
+      else { const a = Math.atan2(ny-CY, nx-CX); const nd = was ? rr-T.r-1 : rr+T.r+1; nx = CX+Math.cos(a)*nd; ny = CY+Math.sin(a)*nd; p.vx = -p.vx; p.vy = -p.vy; }
+    }
+    if(nx < T.r){ nx = T.r; p.vx = Math.abs(p.vx); } if(nx > W-T.r){ nx = W-T.r; p.vx = -Math.abs(p.vx); }
+    if(ny < T.r){ ny = T.r; p.vy = Math.abs(p.vy); } if(ny > H-T.r){ ny = H-T.r; p.vy = -Math.abs(p.vy); }
+    p.x = nx; p.y = ny;
+  }
+  P = P.filter(p => !p.dead);
+  for(const q of pops) q.t += dt; pops = pops.filter(q => q.t < 1.3);
+  ui(); draw(now);
+}
+function end(ok, why){
+  over = true; running = false; $("pause").textContent = "Pause";
+  if(ok){ bar.solve(li); env.card($("stage"), {title:"The cell survived!", why:"The science", body:L().learn, buttons:[{label: li<LEVELS.length-1?"Next level":"Play level 1 again", primary:true, onClick:()=>{ const n=li<LEVELS.length-1?li+1:0; bar.set(n); load(n); }}, {label:"Play again", onClick:()=>load(li)}]}); say("Survived!", "good"); }
+  else { env.card($("stage"), {fail:true, title:"The cell is in trouble", why:"What happened", body:why, buttons:[{label:"Try again", primary:true, onClick:()=>load(li)}]}); say("The cell didn't make it.", "bad"); }
+}
+let lastUi = 0;
+function ui(){
+  const now = performance.now(); if(now - lastUi < 120) return; lastUi = now;
+  $("timeLeft").textContent = Math.max(0, Math.ceil(L().time - t));
+  const g = (n, v, c, txt) => `<div class="gauge" style="--c:${c}"><span>${n}</span><div class="meter"><i style="width:${Math.max(0,Math.min(100,v))}%"></i></div><span class="num">${txt}</span></div>`;
+  let h = g("Energy", energy, energy<25?"var(--bad)":"var(--good)", Math.round(energy)) + g("Damage", harm, "var(--bad)", Math.round(harm));
+  if(L().salt) h += g("Cell size", (vol-.45)/(1.6-.45)*100, (vol<.7||vol>1.35)?"var(--bad)":"var(--acc)", Math.round(vol*100)+"%");
+  $("gauges").innerHTML = h;
+  $("counts").innerHTML = ["sugar","o2","co2","toxin"].map(k => `<span><i class="dot" style="--c:${TYPES[k].c}"></i>${TYPES[k].name}: <b>${count(k,true)}</b></span>`).join("")
+    + (L().salt ? `<span>Salt inside: <b>${saltIn.toFixed(2)}</b></span><span>Salt outside: <b>${saltOut.toFixed(2)}</b></span>` : "");
+  const bb = $("bloodBtn"); if(bb){ bb.disabled = !running || bloodCool > 0; bb.textContent = bloodCool > 0 ? `Blood flow (${Math.ceil(bloodCool)} s)` : "Blood flow"; }
+  $("start").disabled = running;
+}
+function draw(now){
+  st.begin();
+  const salty = L().salt ? Math.max(0, Math.min(1, (saltOut-.4)/1.8)) : 0;
+  ctx.fillStyle = `rgb(${14+salty*30},${26+salty*14},${44-salty*8})`; ctx.fillRect(0,0,W,H);
+  if(L().blood){ ctx.fillStyle = "rgba(255,90,90,.08)"; ctx.fillRect(0,0,26,H); ctx.fillStyle = "#FF7A7A"; ctx.font = "10px ui-monospace,monospace"; ctx.save(); ctx.translate(16, H/2); ctx.rotate(-Math.PI/2); ctx.textAlign = "center"; ctx.fillText("BLOOD VESSEL SIDE", 0, 0); ctx.restore(); }
+  const rr = radius();
+  // cytoplasm
+  const g = ctx.createRadialGradient(CX-30, CY-30, 10, CX, CY, rr); g.addColorStop(0, "#1F3B33"); g.addColorStop(1, "#173028");
+  ctx.fillStyle = g; ctx.beginPath(); ctx.arc(CX, CY, rr, 0, 7); ctx.fill();
+  // nucleus + mitochondria
+  ctx.fillStyle = "rgba(120,162,255,.25)"; ctx.beginPath(); ctx.arc(CX+28, CY+20, 30*Math.sqrt(vol), 0, 7); ctx.fill();
+  ctx.fillStyle = "rgba(255,159,67,.35)"; ctx.beginPath(); ctx.ellipse(CX-46, CY-30, 22, 11, .5, 0, 7); ctx.fill(); ctx.beginPath(); ctx.ellipse(CX-20, CY+58, 20, 10, -.4, 0, 7); ctx.fill();
+  // membrane (double line with channel bumps)
+  ctx.strokeStyle = "#7FD6B0"; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(CX, CY, rr, 0, 7); ctx.stroke();
+  ctx.strokeStyle = "rgba(127,214,176,.45)"; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(CX, CY, rr-6, 0, 7); ctx.stroke();
+  for(let k=0;k<10;k++){ const a = k/10*6.283 + .2; ctx.fillStyle = "#4FA884"; ctx.beginPath(); ctx.arc(CX+Math.cos(a)*(rr-3), CY+Math.sin(a)*(rr-3), 5, 0, 7); ctx.fill(); }
+  // particles
+  for(const p of P){
+    const T = TYPES[p.type];
+    if(p.type==="sugar"){ ctx.fillStyle = T.c; ctx.beginPath(); for(let k=0;k<6;k++){ const a = k/6*6.283; ctx.lineTo(p.x+Math.cos(a)*T.r, p.y+Math.sin(a)*T.r); } ctx.closePath(); ctx.fill();
+      if(!p.in){ const dm = Math.hypot(p.x-CX,p.y-CY)-rr; if(dm < 34){ ctx.strokeStyle = "rgba(255,216,74,.8)"; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(p.x, p.y, T.r+5+Math.sin(now/120)*2, 0, 7); ctx.stroke(); } } }
+    else if(p.type==="toxin"){ ctx.fillStyle = T.c; ctx.beginPath(); for(let k=0;k<16;k++){ const a = k/16*6.283, r = k%2 ? T.r*.55 : T.r; ctx.lineTo(p.x+Math.cos(a)*r, p.y+Math.sin(a)*r); } ctx.closePath(); ctx.fill(); }
+    else { ctx.fillStyle = T.c; ctx.beginPath(); ctx.arc(p.x, p.y, T.r, 0, 7); ctx.fill(); if(p.type==="co2"){ ctx.fillStyle = "#0B0F15"; ctx.beginPath(); ctx.arc(p.x, p.y, 1.6, 0, 7); ctx.fill(); } }
+  }
+  for(const q of pops){ ctx.globalAlpha = Math.max(0, 1-q.t/1.3); ctx.fillStyle = q.c; ctx.font = "700 13px ui-monospace,monospace"; ctx.textAlign = "center"; ctx.fillText(q.text, q.x, q.y - q.t*20); }
+  ctx.globalAlpha = 1;
+  ctx.fillStyle = "#93A0B2"; ctx.font = "11px ui-monospace,monospace"; ctx.textAlign = "left"; ctx.fillText("OUTSIDE", 36, 18); ctx.textAlign = "center"; ctx.fillText("INSIDE THE CELL", CX, CY-rr+22);
+  if(!running && !over){ ctx.fillStyle = "rgba(11,15,21,.55)"; ctx.fillRect(0,0,W,H); ctx.fillStyle = "#E9EEF5"; ctx.font = "700 20px ui-monospace,monospace"; ctx.textAlign = "center"; ctx.fillText(t>0 ? "Paused" : "Press Start", W/2, H/2); }
+}
+env.loop(step);
+load(0);
+try{ root.host.__debug = { get P(){ return P; }, CX, CY, radius, get li(){ return li; }, get salt(){ return [saltIn, saltOut]; } }; }catch(e){}
+
+});
+})();</script></section>
+
+<section class="sec related" id="more"><div><p class="kicker">Keep exploring</p><h2>Related lessons</h2></div><p class="idea"> Up next: <a href="unit-08-classifying-life.html">Unit 8: Classifying Life</a>. Overlap alert: ideas you have already met are marked above as "you may already have learned".</p><ul><li><a href="unit-01-light-and-matter.html">Unit 1: Light &amp; Matter</a><span class="why">Light and photosynthesis.</span></li><li><a href="unit-02-thermal-energy.html">Unit 2: Thermal Energy</a><span class="why">Heat and chemical reactions in cells.</span></li><li><a href="unit-04-weather-and-the-water-cycle.html">Unit 4: Weather &amp; the Water Cycle</a><span class="why">The water cycle and osmosis.</span></li><li><a href="unit-08-classifying-life.html">Unit 8: Classifying Life</a><span class="why">Sorting cells and organisms.</span></li><li><a href="unit-09-body-systems-and-homeostasis.html">Unit 9: Body Systems &amp; Homeostasis</a><span class="why">Cells in body systems.</span></li><li><a href="../7th/unit-7.4-metabolic-reactions-and-the-body.html">Unit 7.4: Metabolic Reactions &amp; the Body</a><span class="why">Grade 7: cellular respiration.</span></li><li><a href="../7th/unit-7.5-photosynthesis-and-matter-cycling.html">Unit 7.5: Photosynthesis &amp; Matter Cycling</a><span class="why">Grade 7: photosynthesis in detail.</span></li><li><a href="../8th/unit-8.8-genetics-and-heredity.html">Unit 8.8: Genetics &amp; Heredity</a><span class="why">Grade 8: DNA in the nucleus.</span></li></ul></section>
+</main>
+
+<footer>Built for sixth-grade tutoring. Aligned with NGSS MS-LS1-1 (cells as the basic unit), MS-LS1-2 (cell parts), MS-LS1-3 (levels of organization), and MS-LS1-6 (photosynthesis), and the OpenSciEd-style 6th grade cells and systems strand. Counts and rates are rounded teaching values.</footer>
+
+<script>
+(function(){
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const safe=fn=>{try{fn()}catch(e){console.error(e)}};
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const setPressed=(g,b)=>$$('button',g).forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));
+const raf=requestAnimationFrame;
+
+/* ===== 1 ===== */
+safe(()=>{
+  const items=[
+    {n:'A dog',a:0,e:'Made of cells, grows, uses energy, reproduces.'},
+    {n:'A dry oak seed',a:0,e:'Alive but dormant. Its cells are ready to grow when it gets water.'},
+    {n:'A campfire',a:1,e:'It grows and uses fuel, but has no cells and can\'t reproduce on its own.'},
+    {n:'A mushroom',a:0,e:'Fungi are made of cells and reproduce with spores.'},
+    {n:'A growing salt crystal',a:1,e:'It gets bigger, but it isn\'t made of cells and has no life processes.'},
+    {n:'A robot vacuum',a:1,e:'It moves and "senses", but it is a machine with no cells.'},
+    {n:'A bacterium',a:0,e:'A single cell that does everything a living thing does.'},
+    {n:'A virus',a:2,e:'Debated. Not made of cells and reproduces only inside a host\'s cells, so most scientists say it sits on the edge of life.'}
+  ];
+  const box=$('#lifeItems'), sc=$('#lifeScore'); let right=0;
+  box.innerHTML=items.map((it,i)=>`<div class="item" data-i="${i}"><span class="nm">${it.n}</span><div class="opts"><button class="opt" type="button" data-j="0">Alive</button><button class="opt" type="button" data-j="1">Not alive</button><button class="opt" type="button" data-j="2">Debated</button></div><span class="fb" aria-live="polite"></span></div>`).join('');
+  box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.disabled)return; const row=b.closest('.item'), it=items[+row.dataset.i], ok=+b.dataset.j===it.a;
+    $$('.opt',row).forEach(o=>{ o.disabled=true; if(+o.dataset.j===it.a)o.classList.add('good'); }); if(!ok)b.classList.add('bad'); else right++;
+    $('.fb',row).textContent=(ok?'Yes. ':'Not quite. ')+it.e; sc.textContent=`${right} of ${items.length} correct`; });
+});
+safe(()=>{
+  const D=[['Grain of salt',300],['Human egg cell',120],['Human hair (width)',70],['Plant cell (typical)',50],['Skin cell',30],['Red blood cell',7],['Bacterium',2],['Mitochondrion',1],['Virus',.1]];
+  const svg=$('#sizeSvg'), sl=$('#zoom'), X=v=>150+Math.log10(v/.1)/Math.log10(3000)*440;
+  function draw(){
+    const lim=.1*Math.pow(3000,+sl.value/100); $('#zoomV').textContent=lim>=10?Math.round(lim):lim.toFixed(1);
+    let g=''; [.1,1,10,100,1000].forEach(v=>{ g+=`<line x1="${X(v)}" y1="14" x2="${X(v)}" y2="262" style="stroke:var(--line)"/><text x="${X(v)}" y="284" font-size="13" text-anchor="middle">${v>=1?v.toLocaleString():v}</text>`; });
+    let s=''; D.forEach(([n,v],i)=>{ const y=30+i*26, on=v<=lim+1e-9;
+      s+=`<text x="144" y="${y+5}" font-size="13" text-anchor="end" style="opacity:${on?1:.3};font-weight:${on?700:400}">${n}</text><line x1="${X(.1)}" y1="${y}" x2="${X(v)}" y2="${y}" style="stroke:var(--reflect);stroke-width:5;opacity:${on?.8:.2}"/><circle cx="${X(v)}" cy="${y}" r="7" style="fill:${on?'var(--absorb)':'var(--muted)'};stroke:var(--ink);stroke-width:2;opacity:${on?1:.4}"/><text x="${X(v)+12}" y="${y+5}" font-size="12" style="opacity:${on?1:.3}">${v} µm</text>`; });
+    svg.innerHTML=`${g}${s}<text x="370" y="298" font-size="13" text-anchor="middle" style="opacity:0">.</text>`;
+  }
+  sl.addEventListener('input',draw); draw();
+});
+
+/* ===== 2 cell explorer ===== */
+safe(()=>{
+  const P={
+    nucleus:{n:'Nucleus',c:'city hall',t:'Holds the DNA, the instruction manual for the cell, and controls what the cell does.',col:'var(--reflect)'},
+    mito:{n:'Mitochondria',c:'power plant',t:'Release usable energy from sugar using oxygen. Cells that need lots of energy have thousands.',col:'var(--absorb)'},
+    membrane:{n:'Cell membrane',c:'gate and guards',t:'A thin, flexible boundary that lets in nutrients and keeps out things the cell does not need.',col:'var(--transmit)'},
+    cyto:{n:'Cytoplasm',c:'ground and air',t:'The jelly-like fluid that fills the cell. Everything else floats in it.',col:'var(--muted)'},
+    ribo:{n:'Ribosomes',c:'factories',t:'Tiny machines that read instructions and build proteins.',col:'var(--ink)'},
+    vac:{n:'Vacuole',c:'water tower and warehouse',t:'Stores water, nutrients and wastes. Plant cells have one giant central vacuole that keeps them firm.',col:'var(--reflect)'},
+    wall:{n:'Cell wall',c:'stone wall',t:'Stiff outer layer of plant cells that gives shape and strength. Animal cells don\'t have one.',col:'var(--transmit)',plant:1},
+    chloro:{n:'Chloroplasts',c:'solar farm',t:'Contain green chlorophyll that captures sunlight for photosynthesis. Only in plants and algae.',col:'var(--transmit)',plant:1}
+  };
+  const svg=$('#cellSvg'), bt=$('#partBtns'), rd=$('#partR'), typ=$('#cellType'); let type='animal', sel='all';
+  function dim(k){ return sel==='all'||sel===k?1:.25; }
+  function strokeFor(k){ return sel===k?7:3; }
+  function draw(){
+    const pl=type==='plant';
+    let s='';
+    if(pl){
+      s+=`<rect x="70" y="20" width="500" height="300" rx="22" style="fill:var(--transmit);fill-opacity:.1;stroke:var(--transmit);stroke-width:${strokeFor('wall')+4};opacity:${dim('wall')}"/>
+        <rect x="84" y="34" width="472" height="272" rx="16" style="fill:var(--surface);fill-opacity:.35;stroke:var(--transmit);stroke-width:${strokeFor('membrane')};opacity:${dim('membrane')}"/>
+        <rect x="200" y="86" width="240" height="170" rx="40" style="fill:var(--reflect);fill-opacity:.3;stroke:var(--reflect);stroke-width:${strokeFor('vac')};opacity:${dim('vac')}"/>
+        <circle cx="140" cy="90" r="34" style="fill:var(--reflect);fill-opacity:.65;stroke:var(--ink);stroke-width:${strokeFor('nucleus')};opacity:${dim('nucleus')}"/><circle cx="148" cy="86" r="9" style="fill:var(--ink);opacity:${dim('nucleus')}"/>
+        <g style="opacity:${dim('chloro')}"><ellipse cx="120" cy="250" rx="30" ry="16" style="fill:#3E9B3F;stroke:var(--ink);stroke-width:${strokeFor('chloro')}"/><ellipse cx="500" cy="80" rx="30" ry="16" style="fill:#3E9B3F;stroke:var(--ink);stroke-width:${strokeFor('chloro')}"/><ellipse cx="510" cy="250" rx="30" ry="16" style="fill:#3E9B3F;stroke:var(--ink);stroke-width:${strokeFor('chloro')}"/></g>
+        <g style="opacity:${dim('mito')}"><ellipse cx="320" cy="62" rx="26" ry="13" style="fill:var(--absorb);fill-opacity:.85;stroke:var(--ink);stroke-width:${strokeFor('mito')}"/><ellipse cx="170" cy="190" rx="24" ry="12" style="fill:var(--absorb);fill-opacity:.85;stroke:var(--ink);stroke-width:${strokeFor('mito')}"/></g>
+        <g style="fill:var(--ink);opacity:${dim('ribo')}"><circle cx="180" cy="150" r="4.5"/><circle cx="196" cy="62" r="4.5"/><circle cx="470" cy="170" r="4.5"/><circle cx="250" cy="288" r="4.5"/><circle cx="400" cy="60" r="4.5"/><circle cx="470" cy="215" r="4.5"/></g>
+        <text x="320" y="180" font-size="15" text-anchor="middle" style="font-weight:700;opacity:${dim('vac')}">large central vacuole</text><text x="320" y="302" font-size="12" text-anchor="middle" style="opacity:${dim('cyto')};font-weight:700">cytoplasm (the jelly between)</text>`;
+    } else {
+      s+=`<path d="M320 24 C500 18 600 100 590 190 C580 280 470 322 330 316 C170 322 60 270 52 180 C48 90 140 30 320 24z" style="fill:var(--surface-2);stroke:var(--transmit);stroke-width:${strokeFor('membrane')+3};opacity:${Math.max(.35,dim('cyto'),dim('membrane'))}"/>
+        <path d="M320 34 C480 30 576 106 570 190 C562 270 462 304 330 300 C186 304 78 258 72 180 C68 100 156 40 320 34z" style="fill:var(--transmit);fill-opacity:.12;opacity:${dim('cyto')}"/>
+        <circle cx="300" cy="150" r="50" style="fill:var(--reflect);fill-opacity:.65;stroke:var(--ink);stroke-width:${strokeFor('nucleus')};opacity:${dim('nucleus')}"/><circle cx="312" cy="144" r="13" style="fill:var(--ink);opacity:${dim('nucleus')}"/>
+        <g style="opacity:${dim('mito')}"><ellipse cx="170" cy="120" rx="30" ry="14" style="fill:var(--absorb);fill-opacity:.85;stroke:var(--ink);stroke-width:${strokeFor('mito')}"/><ellipse cx="440" cy="110" rx="28" ry="13" style="fill:var(--absorb);fill-opacity:.85;stroke:var(--ink);stroke-width:${strokeFor('mito')}"/><ellipse cx="420" cy="240" rx="28" ry="13" style="fill:var(--absorb);fill-opacity:.85;stroke:var(--ink);stroke-width:${strokeFor('mito')}"/><ellipse cx="170" cy="230" rx="26" ry="12" style="fill:var(--absorb);fill-opacity:.85;stroke:var(--ink);stroke-width:${strokeFor('mito')}"/></g>
+        <g style="opacity:${dim('vac')}"><circle cx="230" cy="70" r="20" style="fill:var(--reflect);fill-opacity:.35;stroke:var(--reflect);stroke-width:${strokeFor('vac')}"/><circle cx="480" cy="170" r="16" style="fill:var(--reflect);fill-opacity:.35;stroke:var(--reflect);stroke-width:${strokeFor('vac')}"/></g>
+        <g style="fill:var(--ink);opacity:${dim('ribo')}"><circle cx="226" cy="180" r="5"/><circle cx="380" cy="210" r="5"/><circle cx="390" cy="86" r="5"/><circle cx="130" cy="170" r="5"/><circle cx="270" cy="250" r="5"/><circle cx="500" cy="230" r="5"/></g>
+        <text x="320" y="296" font-size="12" text-anchor="middle" style="opacity:${dim('cyto')};font-weight:700">cytoplasm (the jelly between)</text>`;
+    }
+    svg.innerHTML=s;
+    const keys=Object.keys(P).filter(k=>pl||!P[k].plant);
+    bt.innerHTML=keys.map(k=>`<button class="chip" type="button" data-k="${k}" aria-pressed="${k===sel}">${P[k].n}</button>`).join('')+`<button class="chip" type="button" data-k="all" aria-pressed="${sel==='all'}">Show all</button>`;
+    const p=P[sel];
+    rd.innerHTML=sel==='all'?`${pl?'Plant':'Animal'} cell: all parts shown.`:`<b>${p.n}</b> (${p.c}): ${p.t}`;
+  }
+  typ.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; type=b.dataset.t; setPressed(typ,b); if(P[sel]&&P[sel].plant&&type==='animal') sel='all'; draw(); });
+  bt.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; sel=b.dataset.k; draw(); });
+  draw();
+  const M=[['Red blood cell',0,''],['Fat cell',300,'hundreds'],['Liver cell',1500,'~1,000–2,000'],['Heart muscle cell',4000,'~3,000–5,000']];
+  $('#mitoBars').innerHTML=M.map(([n,v,t])=>`<div class="brow" style="grid-template-columns:130px minmax(0,1fr)"><span class="lab">${n}</span><div class="stack" role="img" aria-label="${n}: ${t||'none'} mitochondria"><div class="seg a" style="width:${Math.max(.5,v/4500*100)}%">${v>1000?t:''}</div><span style="margin-left:8px;align-self:center;font-size:.82rem;white-space:nowrap">${v<=1000?(t||'none'):''}</span></div></div>`).join('');
+});
+
+/* ===== 3 ===== */
+safe(()=>{
+  const sl=$('#light'), svg=$('#elodSvg'), rd=$('#elodR'), RM=30, K=40;
+  const rate=I=>RM*I/(I+K);
+  let bubbles=[], last=performance.now(), vis=true;
+  function frame(now){
+    const dt=Math.min(.05,(now-last)/1000); last=now; const I=+sl.value, r=rate(I);
+    if(!reduce&&vis){ if(Math.random()<r/60*dt*60*.2) bubbles.push({x:120+Math.random()*80,y:150,v:26+Math.random()*16});
+      bubbles.forEach(b=>{ b.y-=b.v*dt; b.x+=Math.sin(b.y/9)*.3; }); bubbles=bubbles.filter(b=>b.y>46); }
+    draw(I,r); if(vis&&!reduce) raf(frame);
+  }
+  function draw(I,r){
+    $('#lightV').textContent=I;
+    let bb=bubbles.map(b=>`<circle cx="${b.x}" cy="${b.y}" r="3.5" style="fill:var(--surface);stroke:var(--reflect);stroke-width:1.5"/>`).join('');
+    if(reduce){ for(let i=0;i<Math.round(r/3);i++){ bb+=`<circle cx="${130+(i*37)%70}" cy="${70+(i*29)%70}" r="3.5" style="fill:var(--surface);stroke:var(--reflect);stroke-width:1.5"/>`; } }
+    const rays=I>0?`<g style="stroke:var(--beam);stroke-width:${1+I/25};opacity:${.3+I/150}"><path d="M20 30 L110 130 M40 20 L130 110 M60 14 L150 100"/></g>`:'';
+    svg.innerHTML=`<circle cx="30" cy="26" r="${10+I/12}" style="fill:var(--beam);stroke:var(--ink);stroke-width:2;opacity:${.3+I/150}"/>${rays}
+      <path d="M90 50 H230 L216 220 H104z" style="fill:var(--reflect);fill-opacity:.3;stroke:var(--ink);stroke-width:3"/>
+      <path d="M160 214 q-26 -40 -6 -76 q-24 -10 -4 -50 M160 214 q26 -50 8 -90 q22 -12 -2 -50" style="fill:none;stroke:#3E9B3F;stroke-width:6;stroke-linecap:round"/>${bb}
+      <text x="160" y="246" font-size="13" text-anchor="middle" style="font-weight:700">water plant (Elodea)</text>`;
+    rd.innerHTML=`At <b>${I}%</b> light the plant makes about <b>${r.toFixed(0)}</b> bubbles of oxygen per minute. ${I===0?'No light, no photosynthesis: no bubbles.':I>=80?'Near the limit: more light adds little.':'Brighter light means faster photosynthesis.'}`;
+    lc(I);
+  }
+  const cs=$('#lightChart'), X=v=>50+v/100*400, Y=r=>220-r/30*190;
+  function lc(I){
+    let d=''; for(let v=0;v<=100;v+=2) d+=`${v?'L':'M'}${X(v)} ${Y(rate(v)).toFixed(1)}`;
+    let g=''; [0,10,20,30].forEach(v=>{ g+=`<line x1="50" y1="${Y(v)}" x2="450" y2="${Y(v)}" style="stroke:var(--line)"/><text x="44" y="${Y(v)+5}" font-size="12" text-anchor="end">${v}</text>`; });
+    [0,25,50,75,100].forEach(v=>{ g+=`<text x="${X(v)}" y="238" font-size="12" text-anchor="middle">${v}</text>`; });
+    cs.innerHTML=`${g}<line x1="50" y1="220" x2="450" y2="220" style="stroke:var(--ink);stroke-width:2"/><line x1="50" y1="30" x2="50" y2="220" style="stroke:var(--ink);stroke-width:2"/><path d="${d}" style="fill:none;stroke:var(--transmit);stroke-width:4"/><circle cx="${X(I)}" cy="${Y(rate(I))}" r="8" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/>
+      <text x="250" y="256" font-size="13" text-anchor="middle">light level (%)</text><text transform="rotate(-90 12 125)" x="12" y="125" font-size="13" text-anchor="middle">bubbles per minute</text>`;
+  }
+  sl.addEventListener('input',()=>{ if(reduce) draw(+sl.value,rate(+sl.value)); });
+  new IntersectionObserver(es=>{ const v=es[0].isIntersecting; if(v&&!vis&&!reduce){ vis=true; last=performance.now(); raf(frame); } vis=v; }).observe(svg);
+  if(reduce) draw(+sl.value,rate(+sl.value)); else raf(frame);
+});
+safe(()=>{
+  const sl=$('#hr'), svg=$('#dayChart'), rd=$('#hrR');
+  const sun=h=>Math.max(0,Math.sin(Math.PI*(h-6)/12)), P=h=>10*sun(h), R=2;
+  const X=h=>60+h/24*540, Y=v=>140-v*13;
+  const fmt=h=>h===0||h===24?'midnight':h===12?'noon':`${((h+11)%12)+1}${h<12?' AM':' PM'}`;
+  function draw(){
+    const t=+sl.value; $('#hrV').textContent=fmt(t);
+    let p='',n='',g='';
+    for(let h=0;h<=24;h+=.5){ p+=`${h?'L':'M'}${X(h)} ${Y(P(h))}`; n+=`${h?'L':'M'}${X(h)} ${Y(P(h)-R)}`; }
+    [-2,0,5,10].forEach(v=>{ g+=`<line x1="60" y1="${Y(v)}" x2="600" y2="${Y(v)}" style="stroke:var(--line)"/><text x="52" y="${Y(v)+5}" font-size="12" text-anchor="end">${v}</text>`; });
+    [0,6,12,18,24].forEach(h=>{ g+=`<text x="${X(h)}" y="252" font-size="12" text-anchor="middle">${h===24?'12 AM':h===12?'noon':h===0?'12 AM':h===6?'6 AM':'6 PM'}</text>`; });
+    svg.innerHTML=`<rect x="${X(0)}" y="20" width="${X(6)-X(0)}" height="200" style="fill:var(--shade);opacity:.15"/><rect x="${X(18)}" y="20" width="${X(24)-X(18)}" height="200" style="fill:var(--shade);opacity:.15"/>${g}
+      <line x1="60" y1="${Y(0)}" x2="600" y2="${Y(0)}" style="stroke:var(--ink);stroke-width:2"/>
+      <path d="${p}" style="fill:none;stroke:var(--transmit);stroke-width:4"/><line x1="60" y1="${Y(R)}" x2="600" y2="${Y(R)}" style="stroke:var(--absorb);stroke-width:4"/><path d="${n}" style="fill:none;stroke:var(--ink);stroke-width:3;stroke-dasharray:7 5"/>
+      <text x="${X(12)}" y="${Y(10)-8}" font-size="13" text-anchor="middle" style="fill:var(--transmit);font-weight:700">photosynthesis</text><text x="${X(1)}" y="${Y(R)-8}" font-size="13" style="fill:var(--absorb);font-weight:700">respiration (all day)</text><text x="${X(14.5)}" y="${Y(P(14.5)-R)+22}" font-size="12">net oxygen made</text>
+      <line x1="${X(t)}" y1="20" x2="${X(t)}" y2="220" style="stroke:var(--muted);stroke-dasharray:4 4"/><circle cx="${X(t)}" cy="${Y(P(t)-R)}" r="7" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/>
+      <text x="330" y="272" font-size="13" text-anchor="middle" style="opacity:0">.</text>`;
+    const net=P(t)-R;
+    rd.innerHTML=`${fmt(t)}: photosynthesis ${P(t).toFixed(1)}, respiration ${R}. Net oxygen: <b>${net>=0?'+':''}${net.toFixed(1)}</b>. ${net>0?'The plant gives off more oxygen than it uses.':'The plant uses oxygen and gives off carbon dioxide, just like you.'}`;
+  }
+  sl.addEventListener('input',draw); draw();
+});
+
+/* ===== 4 diffusion ===== */
+safe(()=>{
+  const cv=$('#difCv'), ctx=cv.getContext('2d'), dpr=Math.min(2,devicePixelRatio||1), chips=$('#difChips'), cs=$('#difChart'), rd=$('#difR');
+  cv.width=640*dpr; cv.height=260*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+  const N=140, MX=320, GAPS=[[40,75],[115,150],[185,220]];
+  let ps=[], sp=1, hist=[], fr=0, vis=true, col={};
+  const rc=()=>{ const cs=getComputedStyle(document.documentElement); ['absorb','reflect','ink','surface-2','transmit'].forEach(k=>col[k]=cs.getPropertyValue('--'+k).trim()); };
+  function init(){ ps=[]; for(let i=0;i<N;i++) ps.push({x:10+Math.random()*300,y:10+Math.random()*240,a:Math.random()*6.28}); hist=[]; fr=0; }
+  const inGap=y=>GAPS.some(g=>y>g[0]&&y<g[1]);
+  function step(){
+    fr++;
+    ps.forEach(p=>{ p.a+=(Math.random()-.5)*1.4; const nx=p.x+Math.cos(p.a)*2.2*sp, ny=p.y+Math.sin(p.a)*2.2*sp;
+      let x=nx,y=ny;
+      if(y<6){y=6;p.a=-p.a} if(y>254){y=254;p.a=-p.a}
+      if(x<6){x=6;p.a=Math.PI-p.a} if(x>634){x=634;p.a=Math.PI-p.a}
+      if((p.x<MX&&x>=MX)||(p.x>MX&&x<=MX)){ if(!inGap(y)){ x=p.x; p.a=Math.PI-p.a; } }
+      p.x=x; p.y=y; });
+    if(fr%8===0){ const L=ps.filter(p=>p.x<MX).length/N; hist.push(L); if(hist.length>300) hist.shift(); }
+  }
+  function draw(){
+    if(!col.absorb||fr%30===0) rc();
+    ctx.fillStyle=col['surface-2']; ctx.fillRect(0,0,640,260);
+    ctx.fillStyle=col.ink; GAPS.reduce((y0,g)=>{ ctx.fillRect(MX-3,y0,6,g[0]-y0); return g[1]; },0); ctx.fillRect(MX-3,GAPS[2][1],6,260-GAPS[2][1]);
+    ps.forEach(p=>{ ctx.fillStyle=p.x<MX?col.absorb:col.reflect; ctx.beginPath(); ctx.arc(p.x,p.y,4,0,6.283); ctx.fill(); });
+    const L=Math.round(ps.filter(p=>p.x<MX).length/N*100);
+    rd.innerHTML=`Left side: <b>${L}%</b> of particles. Right side: <b>${100-L}%</b>. ${L>58?'Still crowded on the left, so particles drift right on average.':'Nearly even. Particles still move, but no net flow: equilibrium.'}`;
+    let d=''; hist.forEach((v,i)=>{ d+=`${i?'L':'M'}${50+i/299*560} ${150-(v-.4)/.6*120}`; });
+    cs.innerHTML=`<line x1="50" y1="${150-(.5-.4)/.6*120}" x2="610" y2="${150-(.5-.4)/.6*120}" style="stroke:var(--muted);stroke-dasharray:5 4"/><text x="612" y="${150-(.5-.4)/.6*120+4}" font-size="11">50%</text><line x1="50" y1="150" x2="610" y2="150" style="stroke:var(--ink);stroke-width:2"/><line x1="50" y1="20" x2="50" y2="150" style="stroke:var(--ink);stroke-width:2"/>
+      <path d="${d}" style="fill:none;stroke:var(--absorb);stroke-width:3.5"/><text x="330" y="166" font-size="12" text-anchor="middle">time →</text><text transform="rotate(-90 14 85)" x="14" y="85" font-size="12" text-anchor="middle">% still on the left</text><text x="44" y="34" font-size="11" text-anchor="end">100</text><text x="44" y="154" font-size="11" text-anchor="end">40</text>`;
+  }
+  function loop(){ if(vis&&!reduce){ step(); step(); draw(); } requestAnimationFrame(loop); }
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; if(b.id==='difReset'){ init(); if(reduce) draw(); return; } sp=+b.dataset.s; setPressed(chips,b); });
+  new IntersectionObserver(es=>{ vis=es[0].isIntersecting; }).observe(cv);
+  init(); if(reduce){ for(let i=0;i<500;i++) step(); } rc(); draw(); loop();
+});
+safe(()=>{
+  const sl=$('#salt'), svg=$('#osmSvg'), rd=$('#osmR');
+  const IN=40;
+  function draw(){
+    const s=+sl.value; $('#saltV').textContent=s<IN-8?'fresh (less than inside)':s>IN+8?'very salty (more than inside)':'same as inside';
+    const r=60+(IN-s)*.55, arrows=s<IN-4?'in':s>IN+4?'out':'none';
+    let dots=''; for(let i=0;i<14;i++){ const a=i*2.4, rr=(60+(i%4)*14); dots+=`<circle cx="${160+Math.cos(a)*Math.min(rr, r-14)}" cy="${120+Math.sin(a)*Math.min(rr, r-14)}" r="4" style="fill:var(--ink);opacity:.45"/>`; }
+    const bump=r<52?`<path d="M${160-r} 120 q12 -22 0 -44 q-6 14 0 0z" style="opacity:0"/>`:'';
+    svg.innerHTML=`<rect x="10" y="10" width="300" height="220" rx="10" style="fill:var(--reflect);fill-opacity:${.1+s/180};stroke:var(--line);stroke-width:2"/>
+      <circle cx="160" cy="120" r="${r}" style="fill:var(--transmit);fill-opacity:.35;stroke:var(--transmit);stroke-width:5"/>${dots}
+      ${arrows==='in'?`<g style="stroke:var(--reflect);stroke-width:3"><line x1="30" y1="40" x2="${160-r-4+14}" y2="${120-r*.5}" marker-end="url(#mReflect)"/><line x1="290" y1="40" x2="${160+r+4-14}" y2="${120-r*.5}" marker-end="url(#mReflect)"/><line x1="160" y1="22" x2="160" y2="${120-r-4}" marker-end="url(#mReflect)"/></g>`:arrows==='out'?`<g style="stroke:var(--reflect);stroke-width:3"><line x1="${160-r+14}" y1="${120-r*.4}" x2="40" y2="30" marker-end="url(#mReflect)"/><line x1="${160+r-14}" y1="${120-r*.4}" x2="280" y2="30" marker-end="url(#mReflect)"/></g>`:''}
+      <g style="fill:var(--absorb);opacity:${s/110}">${Array.from({length:Math.round(s/6)},(_,i)=>`<circle cx="${24+(i*53)%272}" cy="${(i*37)%60+170}" r="3.5"/>`).join('')}</g>
+      <text x="160" y="226" font-size="13" text-anchor="middle" style="font-weight:700">salt outside: ${s}</text>`;
+    rd.innerHTML=arrows==='in'?'Outside has <b>less salt</b> (more free water), so <b>water moves in</b> and the cell swells. Plant cells press against their wall and get firm; animal cells can burst.':arrows==='out'?'Outside has <b>more salt</b>, so <b>water leaves</b> the cell and it shrivels, like a raisin or a wilted plant.':'Equal on both sides, so water moves in and out evenly. The cell keeps its shape.';
+    pot(s);
+  }
+  const ps=$('#potSvg'), X=v=>50+v/100*240, Y=m=>110-m*5;
+  const pm=s=>(IN-s)*.38; // % mass change
+  function pot(s){
+    let d=''; for(let v=0;v<=100;v+=5) d+=`${v?'L':'M'}${X(v)} ${Y(pm(v)).toFixed(1)}`;
+    let g=''; [-20,-10,0,10,20].forEach(v=>{ g+=`<line x1="50" y1="${Y(v)}" x2="290" y2="${Y(v)}" style="stroke:${v===0?'var(--ink)':'var(--line)'};stroke-width:${v===0?2:1}"/><text x="44" y="${Y(v)+4}" font-size="11" text-anchor="end">${v>0?'+':''}${v}%</text>`; });
+    [0,25,50,75,100].forEach(v=>{ g+=`<text x="${X(v)}" y="${Y(-20)+14}" font-size="11" text-anchor="middle">${v}</text>`; });
+    ps.innerHTML=`${g}<path d="${d}" style="fill:none;stroke:var(--absorb);stroke-width:4"/><circle cx="${X(s)}" cy="${Y(pm(s))}" r="7" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/><text x="170" y="${Y(-20)+30}" font-size="12" text-anchor="middle">salt in the water</text><text transform="rotate(-90 12 110)" x="12" y="110" font-size="12" text-anchor="middle">change in mass</text>`;
+  }
+  sl.addEventListener('input',draw); draw();
+});
+
+/* ===== 5 ===== */
+safe(()=>{
+  const EX={human:{n:'Heart',L:['Heart muscle cell','Cardiac muscle tissue','Heart','Circulatory system','Human'],d:['A single muscle cell that squeezes and relaxes.','Millions of these cells joined together to contract as one.','Muscle, nerves, and blood vessels combine into a pump.','Heart + arteries + veins + blood carry oxygen and nutrients.','All systems together keep you alive.']},
+    leaf:{n:'Leaf',L:['Leaf cell with chloroplasts','Leaf tissue (palisade layer)','Leaf','Shoot system','Oak tree'],d:['A plant cell packed with chloroplasts.','A layer of these cells does most of the photosynthesis.','Leaf tissues together make sugar from light.','Stems, leaves, and flowers above ground.','Shoot system plus root system.']},
+    gut:{n:'Stomach',L:['Stomach lining cell','Epithelial tissue','Stomach','Digestive system','Human'],d:['A cell that makes protective mucus.','A sheet of lining cells that protects the stomach wall.','Muscle, lining, and glands that churn and digest food.','Mouth, stomach, intestines, and more break down food.','All systems working together.']}};
+  const chips=$('#lvChips'), box=$('#lvl'), sl=$('#lv'), rd=$('#lvR'); let ex='human';
+  Object.entries(EX).forEach(([k,v],i)=>{ const b=document.createElement('button'); b.type='button'; b.className='chip'; b.textContent=v.n; b.dataset.k=k; b.setAttribute('aria-pressed',i===0); chips.appendChild(b); });
+  const NM=['Cell','Tissue','Organ','Organ system','Organism'];
+  function draw(){
+    const e=EX[ex], l=+sl.value; $('#lvV').textContent=`${l} of 5`;
+    box.innerHTML=e.L.map((t,i)=>`<div class="${i+1===l?'on':''}"><b>${NM[i]}</b><span>${t}</span></div>`).join('');
+    rd.innerHTML=`<b>${NM[l-1]}:</b> ${e.d[l-1]}`;
+  }
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; ex=b.dataset.k; setPressed(chips,b); draw(); });
+  sl.addEventListener('input',draw); draw();
+});
+safe(()=>{
+  const svg=$('#dbSvg'), sl=$('#dbH'), rd=$('#dbR'), chips=$('#dbChips'); let ax='lin';
+  const N=h=>Math.pow(2,h*3), X=h=>60+h/8*540;
+  function draw(){
+    const t=+sl.value; $('#dbHV').textContent=t.toFixed(1);
+    const Y=v=>ax==='lin'?220-v/17e6*200:220-Math.log10(v)/Math.log10(17e6)*200;
+    let d=''; for(let h=0;h<=8.001;h+=.1) d+=`${h?'L':'M'}${X(h).toFixed(1)} ${Y(N(h)).toFixed(1)}`;
+    let g='';
+    const ticks=ax==='lin'?[0,5e6,10e6,15e6]:[1,100,1e4,1e6];
+    ticks.forEach(v=>{ const yy=ax==='lin'?220-v/17e6*200:220-Math.log10(Math.max(1,v))/Math.log10(17e6)*200; g+=`<line x1="60" y1="${yy}" x2="600" y2="${yy}" style="stroke:var(--line)"/><text x="52" y="${yy+5}" font-size="12" text-anchor="end">${v>=1e6?(v/1e6)+'M':v>=1000?(v/1000)+'K':v}</text>`; });
+    [0,2,4,6,8].forEach(h=>{ g+=`<text x="${X(h)}" y="240" font-size="12" text-anchor="middle">${h}</text>`; });
+    svg.innerHTML=`${g}<line x1="60" y1="220" x2="600" y2="220" style="stroke:var(--ink);stroke-width:2"/><line x1="60" y1="20" x2="60" y2="220" style="stroke:var(--ink);stroke-width:2"/><path d="${d}" style="fill:none;stroke:var(--absorb);stroke-width:4"/>
+      <circle cx="${X(t)}" cy="${Y(N(t))}" r="8" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/><text x="330" y="258" font-size="13" text-anchor="middle">hours</text><text transform="rotate(-90 14 120)" x="14" y="120" font-size="13" text-anchor="middle">number of cells</text>`;
+    rd.innerHTML=`After <b>${t.toFixed(1)} hours</b> (${Math.round(t*3)} doublings): <b>${Math.round(N(t)).toLocaleString()}</b> cells.`;
+  }
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; ax=b.dataset.a; setPressed(chips,b); draw(); });
+  sl.addEventListener('input',draw); draw();
+});
+safe(()=>{
+  const D=[['Bacterium',1,'1'],['Paramecium',1,'1'],['Volvox colony',5000,'thousands'],['Human',3e13,'about 30 trillion']];
+  const mx=Math.log10(3e13)+.3;
+  $('#cntBars').innerHTML=D.map(([n,v,t])=>`<div class="brow" style="grid-template-columns:120px minmax(0,1fr)"><span class="lab">${n}</span><div class="stack" role="img" aria-label="${n}: ${t} cells"><div class="seg t" style="width:${(Math.log10(v)+.3)/mx*100}%;min-width:44px">${t}</div></div></div>`).join('')+'<p class="cap" style="margin-top:2px">Log scale.</p>';
+});
+
+safe(()=>{
+  const Q=[
+    {q:'Which statement is part of cell theory?',o:['All cells come from existing cells','Only animals are made of cells','Cells can appear from nothing'],a:0,e:'Every cell comes from another cell by division.'},
+    {q:'Which organelle releases usable energy from sugar?',o:['Nucleus','Mitochondria','Cell wall'],a:1,e:'Mitochondria are the cell\'s power plants.'},
+    {q:'Which is found in plant cells but not animal cells?',o:['Chloroplasts','Cytoplasm','Ribosomes'],a:0,e:'Chloroplasts, a cell wall, and a large vacuole are the plant extras.'},
+    {q:'Perfume spreads across a room because of...',o:['Diffusion','Photosynthesis','Respiration'],a:0,e:'Particles spread from crowded to less crowded areas.'},
+    {q:'A potato slice is put in very salty water. What happens?',o:['It gains mass','It loses mass as water leaves its cells','Nothing'],a:1,e:'Water moves toward the saltier side (osmosis).'},
+    {q:'Put in order from smallest to biggest: organ, cell, tissue, organism.',o:['Cell, tissue, organ, organism','Tissue, cell, organ, organism','Cell, organ, tissue, organism'],a:0,e:'Cells make tissues, tissues make organs, organs make an organism.'}
+  ];
+  const box=$('#quiz'), sc=$('#quizScore'); let right=0;
+  box.innerHTML=Q.map((x,i)=>`<div class="q" data-i="${i}"><h4>${i+1}. ${x.q}</h4><div class="opts">${x.o.map((t,j)=>`<button class="opt" type="button" data-j="${j}">${t}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
+  box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.disabled)return; const row=b.closest('.q'), x=Q[+row.dataset.i], ok=+b.dataset.j===x.a;
+    $$('.opt',row).forEach(o=>{ o.disabled=true; if(+o.dataset.j===x.a)o.classList.add('good'); }); if(!ok)b.classList.add('bad'); else right++;
+    $('.fb',row).textContent=(ok?'Correct. ':'Not quite. ')+x.e; sc.textContent=`${right} of ${Q.length} correct`; });
+});
+})();
+</script>

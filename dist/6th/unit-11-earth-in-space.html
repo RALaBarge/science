@@ -1,0 +1,869 @@
+<title>Earth in Space</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout concept: one long lesson column. Each concept opens with a one-sentence big idea, then a grid of labelled visual aids
+   (Analogy, Diagram, Try it, Data, Real world) that collapses to one column on phones.
+   Color roles are fixed for the whole page: amber = incoming light, blue = reflected, teal = transmitted, orange = absorbed. */
+:root{
+  --bg:#F2F5FA; --surface:#FFFFFF; --surface-2:#E8EDF6; --ink:#12172B; --muted:#47506E; --line:#D0D8E8;
+  --beam:#F2A900; --beam-ink:#1A1400; --reflect:#2B66E8; --absorb:#D6450B; --transmit:#0B7F70; --on-color:#FFFFFF;
+  --red:#D93036; --green:#25904F; --blue:#3558D6; --shade:#222A4A;
+  --font-display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --font-body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+  --font-mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C1022; --surface:#151A33; --surface-2:#1D2444; --ink:#EDF0FB; --muted:#A8B1CE; --line:#2B3459;
+    --beam:#FFC93C; --beam-ink:#1A1400; --reflect:#7BA2FF; --absorb:#FF8F5C; --transmit:#46D6C0; --on-color:#0B1020;
+    --red:#FF6A70; --green:#4FCB85; --blue:#7C97FF; --shade:#02040B; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C1022; --surface:#151A33; --surface-2:#1D2444; --ink:#EDF0FB; --muted:#A8B1CE; --line:#2B3459;
+  --beam:#FFC93C; --beam-ink:#1A1400; --reflect:#7BA2FF; --absorb:#FF8F5C; --transmit:#46D6C0; --on-color:#0B1020;
+  --red:#FF6A70; --green:#4FCB85; --blue:#7C97FF; --shade:#02040B; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--font-body); font-size:17px; line-height:1.55;
+  padding-block:0 72px;
+  padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+main,.hero{max-width:920px;margin:0 auto}
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance;margin:0;line-height:1.1}
+p{margin:0}
+a{color:inherit}
+svg{display:block;width:100%;height:auto}
+svg text{font-family:var(--font-body);fill:var(--ink)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--reflect);outline-offset:2px}
+
+/* hero */
+.hero{padding-block:28px 8px;display:grid;gap:18px}
+.kicker{font-family:var(--font-mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
+.lede{font-size:clamp(1.1rem,3.4vw,1.35rem);max-width:34em;text-wrap:pretty}
+.hero-art{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:10px 12px}
+.howto{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:.92rem;color:var(--muted)}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);margin-top:18px;border-bottom:1px solid var(--line);
+  margin-inline:auto;max-width:920px}
+.nav ul{list-style:none;margin:0;padding:8px 0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin}
+.nav a{display:block;white-space:nowrap;text-decoration:none;font-size:.9rem;padding:7px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface)}
+.nav a:hover{border-color:var(--ink)}
+
+/* sections */
+.sec{padding-block:52px 6px;scroll-margin-top:68px;display:grid;gap:20px}
+.sec h2{font-size:clamp(1.9rem,6vw,2.7rem);font-weight:800;letter-spacing:-.02em}
+.idea{font-family:var(--font-display);font-size:clamp(1.25rem,4.4vw,1.75rem);line-height:1.25;font-weight:700;text-wrap:balance;max-width:28em}
+.idea mark{background:linear-gradient(transparent 58%,color-mix(in srgb,var(--beam) 50%,transparent) 58%);color:inherit}
+.aids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.aid{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.aid.wide{grid-column:1/-1}
+.aid h3{font-size:1.2rem;font-weight:700}
+.aid p.cap{font-size:.95rem;color:var(--muted)}
+.aid p.cap b{color:var(--ink)}
+.tag{align-self:flex-start;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;padding:3px 9px;border-radius:999px;
+  background:color-mix(in srgb,var(--tint) 24%,var(--surface));border:1px solid color-mix(in srgb,var(--tint) 55%,var(--line))}
+.tag.analogy{--tint:var(--beam)} .tag.diagram{--tint:var(--reflect)} .tag.try{--tint:var(--transmit)} .tag.data{--tint:var(--absorb)} .tag.real{--tint:var(--muted)} .tag.build{--tint:#8A63D2}
+ol.steps{margin:4px 0 0;padding-left:1.3em;display:grid;gap:6px}
+.stage{background:var(--surface-2);border-radius:10px;padding:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:.92rem;padding:7px 13px;min-height:40px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.ctl{display:grid;gap:6px}
+.ctl label{font-size:.92rem;font-weight:700}
+input[type=range]{width:100%;accent-color:var(--beam);height:32px}
+.readout{font-size:1rem}
+.readout b{font-family:var(--font-mono);font-weight:500}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{display:inline-flex;gap:6px;align-items:baseline;padding:5px 11px;border-radius:999px;font-family:var(--font-mono);font-size:.84rem;font-weight:500;background:var(--c);color:var(--on-color)}
+.pill.r{--c:var(--reflect)} .pill.a{--c:var(--absorb)} .pill.t{--c:var(--transmit)}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.trio>div{display:grid;gap:6px;align-content:start;min-width:0}
+.trio h4{margin:0;font-family:var(--font-display);font-size:1.05rem}
+.trio p{font-size:.93rem;color:var(--muted)}
+.trio svg{background:var(--surface-2);border-radius:10px}
+.swatch-r{color:var(--reflect);font-weight:700}.swatch-t{color:var(--transmit);font-weight:700}.swatch-a{color:var(--absorb);font-weight:700}
+
+/* stacked bars */
+.bars{display:grid;gap:9px}
+.brow{display:grid;grid-template-columns:104px minmax(0,1fr);gap:10px;align-items:center;font-size:.9rem}
+.brow.on .lab{font-weight:700}
+.stack{display:flex;height:28px;border-radius:7px;overflow:hidden;background:var(--surface-2);outline:2px solid transparent;outline-offset:2px}
+.brow.on .stack{outline-color:var(--ink)}
+.seg{display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:.72rem;color:var(--on-color);min-width:0;overflow:hidden}
+.seg.r{background:var(--reflect)}.seg.t{background:var(--transmit)}.seg.a{background:var(--absorb)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.88rem}
+.legend span::before{content:"";display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--c)}
+.legend .r{--c:var(--reflect)}.legend .t{--c:var(--transmit)}.legend .a{--c:var(--absorb)}
+
+/* sort game, quiz */
+.items{display:grid;gap:10px}
+.item{display:grid;gap:6px;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.item .nm{font-weight:700}
+.item .opts{display:flex;flex-wrap:wrap;gap:6px}
+.opt{font-size:.85rem;padding:6px 10px;border-radius:8px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;min-height:36px;text-align:left}
+.opt:hover:not([disabled]){border-color:var(--ink)}
+.opt.good{background:var(--transmit);color:var(--on-color);border-color:var(--transmit)}
+.opt.bad{background:var(--absorb);color:var(--on-color);border-color:var(--absorb)}
+.fb{font-size:.88rem;color:var(--muted)}
+.score{font-family:var(--font-mono);font-size:.9rem}
+.q{display:grid;gap:10px;padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.q h4{margin:0;font-size:1.05rem;font-family:var(--font-body);font-weight:700}
+.q .opts{display:grid;gap:8px}
+
+/* tables */
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:.92rem;min-width:420px}
+.tbl th,.tbl td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+.tbl th{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+/* see-through demo */
+.seebox{position:relative;border-radius:10px;overflow:hidden;background:var(--surface-2);padding:22px 16px;min-height:130px;display:grid;place-items:center}
+.seetext{font-family:var(--font-display);font-weight:800;font-size:clamp(1.2rem,5vw,1.7rem);text-align:center;letter-spacing:.02em;transition:filter .2s,opacity .2s}
+.seesheets{position:absolute;inset:0;pointer-events:none;background:var(--surface);transition:opacity .2s}
+.meter{height:12px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--transmit);transition:width .2s}
+
+/* canvas */
+canvas{width:100%;aspect-ratio:640/260;display:block;border-radius:10px;background:var(--surface-2)}
+.tally{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;font-size:.85rem}
+.tally div{padding:8px;border-radius:8px;background:var(--bg);border:1px solid var(--line)}
+.tally b{display:block;font-family:var(--font-mono);font-weight:500;font-size:1.05rem}
+
+/* color mixer + channel columns */
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.colx{display:grid;gap:6px;justify-items:center;font-size:.85rem;text-align:center}
+.tube{position:relative;width:100%;max-width:90px;height:150px;border:2px solid var(--line);border-radius:8px;display:flex;flex-direction:column-reverse;overflow:hidden;background:var(--bg)}
+.tube.empty{border-style:dashed}
+.tube .rf{background:var(--cc)}
+.tube .ab{background:repeating-linear-gradient(45deg,var(--surface-2) 0 6px,var(--line) 6px 9px)}
+.colx .nm{font-weight:700}
+.colx.r{--cc:var(--red)}.colx.g{--cc:var(--green)}.colx.b{--cc:var(--blue)}
+
+/* waffle */
+.waffle{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:3px;max-width:300px;width:100%}
+.cell{aspect-ratio:1;border-radius:3px}
+.cell.r{background:var(--reflect)}.cell.t{background:var(--transmit)}.cell.a{background:var(--absorb)}
+
+/* ice race */
+.race{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pad{position:relative;height:170px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden}
+.pad.w{background:#F4F4F1}.pad.b{background:#14161C}
+.pad .lbl{position:absolute;left:8px;top:6px;font-size:.78rem;font-family:var(--font-mono)}
+.pad.w .lbl{color:#333}.pad.b .lbl{color:#ddd}
+.puddle{position:absolute;width:110px;height:46px;border-radius:50%;background:#7CC4F2;opacity:.65;transform:scale(0);bottom:22px}
+.ice{position:relative;width:76px;height:76px;border-radius:12px;background:linear-gradient(135deg,#E4F6FF,#9ED7F5);border:2px solid #fff;transform-origin:50% 100%;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.sunbar{height:10px;border-radius:99px;background:linear-gradient(90deg,var(--beam),color-mix(in srgb,var(--beam) 30%,transparent));opacity:.25;transition:opacity .3s}
+.sunbar.on{opacity:1}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap}
+.btn{font-size:.95rem;font-weight:700;padding:9px 16px;min-height:42px;border-radius:10px;border:0;background:var(--beam);color:var(--beam-ink);cursor:pointer}
+.btn.ghost{background:var(--surface);color:var(--ink);border:1.5px solid var(--line)}
+.btn:hover{filter:brightness(1.06)}
+
+/* misc */
+.glossary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px;margin:0}
+.glossary div{padding:10px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--line)}
+.glossary dt{font-weight:700}
+.glossary dd{margin:2px 0 0;font-size:.93rem;color:var(--muted)}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+details+details{margin-top:10px}
+summary{cursor:pointer;font-weight:700}
+details .in{display:grid;gap:10px;padding-top:10px;font-size:.95rem}
+details ul{margin:0;padding-left:1.2em;display:grid;gap:4px}
+footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;border-top:1px solid var(--line);padding-top:16px}
+.flow{stroke-dasharray:10 8;animation:flow 1s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-18}}
+@media (prefers-reduced-motion: reduce){.flow{animation:none}html{scroll-behavior:auto}.seetext,.seesheets,.meter i{transition:none}}
+@media (max-width:760px){
+  .aids{grid-template-columns:minmax(0,1fr)}
+  .trio{grid-template-columns:minmax(0,1fr)}
+  .glossary{grid-template-columns:minmax(0,1fr)}
+  .tally{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:420px){.brow{grid-template-columns:84px minmax(0,1fr)}.race{grid-template-columns:minmax(0,1fr)}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="mBeam" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--beam)"/></marker>
+    <marker id="mReflect" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--reflect)"/></marker>
+    <marker id="mTransmit" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--transmit)"/></marker>
+    <marker id="mAbsorb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--absorb)"/></marker>
+    <marker id="mInk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--ink)"/></marker>
+    <marker id="mRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#D93036"/></marker>
+  </defs>
+</svg>
+
+<style>.bridge{margin:14px 0 0;padding:12px 14px;border-left:4px solid var(--beam);background:var(--surface-2);border-radius:0 10px 10px 0;font-size:.95rem;line-height:1.5}.related ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}.related li{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}.related a{font-weight:700}.related .why{display:block;color:var(--muted);font-size:.9rem}</style>
+<style>
+.tabs{display:flex;flex-wrap:wrap;gap:6px}
+</style>
+
+<header class="hero">
+  <p class="kicker">Sixth grade science · Unit 11 · Extension</p>
+  <h1>Earth in Space</h1>
+  <p class="lede">Day and night, the seasons, the phases of the Moon, eclipses, and ocean tides are all caused by motion: Earth spinning, Earth orbiting the Sun, and the Moon orbiting Earth. Use the model-building steps from <b>Unit 0: How Science Works</b> to see why the same pattern repeats.</p>
+  <p class="bridge"><b>Side trip (best after Unit 3):</b> Unit 3 introduced gravity and motion, and Unit 1 showed how light travels in straight lines. You may already have learned that gravity keeps things in orbit. Here we use those ideas to explain day and night, seasons, moon phases, eclipses, and tides, and we scale up to the whole Solar System. Unit 8.6 returns to orbits with real numbers.</p>
+  <div class="hero-art">
+    <svg viewBox="0 0 640 190" role="img" aria-label="The Sun, Earth with a tilted axis, and the Moon.">
+      <circle cx="90" cy="95" r="52" style="fill:var(--beam);stroke:var(--ink);stroke-width:3"/>
+      <g style="stroke:var(--beam);stroke-width:3"><line x1="150" y1="60" x2="280" y2="60"/><line x1="150" y1="95" x2="280" y2="95"/><line x1="150" y1="130" x2="280" y2="130"/></g>
+      <circle cx="350" cy="95" r="40" style="fill:var(--reflect);fill-opacity:.35;stroke:var(--ink);stroke-width:3"/>
+      <path d="M350 95 L350 95" /><line x1="334" y1="36" x2="366" y2="154" style="stroke:var(--ink);stroke-width:3"/>
+      <circle cx="500" cy="55" r="14" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:3"/>
+      <ellipse cx="350" cy="95" rx="150" ry="62" style="fill:none;stroke:var(--line);stroke-width:2;stroke-dasharray:6 6"/>
+      <text x="90" y="100" font-size="14" text-anchor="middle" style="font-weight:700">Sun</text>
+    </svg>
+  </div>
+  <p class="howto">Look for the tags <span class="tag analogy">Analogy</span><span class="tag diagram">Diagram</span><span class="tag try">Try it</span><span class="tag data">Data</span><span class="tag real">Real world</span></p>
+</header>
+
+<nav class="nav" aria-label="Lesson sections"><ul>
+  <li><a href="#s1">1 Day &amp; night</a></li><li><a href="#s2">2 Seasons</a></li><li><a href="#s3">3 Moon phases</a></li><li><a href="#s4">4 Eclipses &amp; tides</a></li><li><a href="#s5">5 Solar system</a></li><li><a href="#s6">6 Check yourself</a></li>
+  <li><a href="#game">7 Game</a></li>
+  </ul></nav>
+
+<main>
+
+<section class="sec" id="s1">
+  <div><p class="kicker">Concept 1 · Earth spins</p><h2>Rotation gives us day and night</h2></div>
+  <p class="idea">Earth <mark>rotates</mark> once about every 24 hours around its axis. The side facing the Sun has day; the side facing away has night. The Sun doesn't move across the sky; <mark>we do</mark>.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>A merry-go-round and a lamp</h3>
+      <div class="stage"><svg viewBox="0 0 480 180" role="img" aria-label="A kid on a merry-go-round sees a lamp in the center come into view and disappear as the ride turns.">
+        <circle cx="240" cy="90" r="64" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:3"/><circle cx="240" cy="90" r="9" style="fill:var(--beam);stroke:var(--ink);stroke-width:2"/><text x="240" y="114" font-size="11" text-anchor="middle">lamp</text>
+        <path d="M330 90 C330 40 150 40 150 90" style="fill:none;stroke:var(--ink);stroke-width:3" marker-end="url(#mInk)"/>
+        <circle cx="304" cy="90" r="10" style="fill:var(--absorb);stroke:var(--ink);stroke-width:2"/>
+        <text x="430" y="94" font-size="12" text-anchor="middle">you</text>
+        <text x="90" y="30" font-size="12" text-anchor="middle" style="font-weight:700">Facing the lamp = day</text>
+        <text x="90" y="150" font-size="12" text-anchor="middle" style="font-weight:700">Facing away = night</text>
+      </svg></div>
+      <p class="cap">From a spinning ride the lamp seems to move even though it stays still. The Sun "rises" and "sets" the same way.</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Spin the Earth</h3>
+      <div class="stage"><svg id="rotSvg" viewBox="0 0 480 240" role="img" aria-label="Top view of Earth with a marker for Ann Arbor, lit from the left by the Sun."></svg></div>
+      <div class="ctl"><label for="rotH">Time of day: <span id="rotHV"></span></label><input id="rotH" type="range" min="0" max="24" step="0.5" value="12"></div>
+      <p class="readout" id="rotR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>Different times, same moment</h3>
+      <div class="bars" id="zoneBars"></div>
+      <p class="cap">When it is noon in Ann Arbor (EDT), these places are at the shown local time. Earth turns 15° each hour, so each 15° of longitude shifts the clock one hour.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>Proof the Earth rotates</h3>
+      <p>Time-lapse photos of the night sky show stars drawing circles around the North Star. A <b>Foucault pendulum</b> (found in many science museums) slowly changes the direction it swings, because the floor is rotating beneath it. Satellites launched eastward get a free speed boost of up to about 460 m/s from Earth's spin at the equator, which is why launch sites sit in the south.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag build">Build it</span>
+      <h3>Engineering challenge: the shadow clock</h3>
+      <p><b>The problem:</b> build a sundial that another team can read, using a lamp moved along a marked arc to stand in for the Sun's path across the sky.</p>
+      <p><b>Criteria:</b> the other team's guessed time is within 1 hour of the hour you actually set the lamp to.</p>
+      <p><b>Constraints:</b> 1 straight stick or pencil, a flat base, a marker, and a lamp. Mark the lamp's position for 9 AM (low, to one side), 12 PM (highest, overhead), and 3 PM (low, to the other side) before anyone reads it.</p>
+      <ol class="steps">
+        <li><b>Try it in the game first.</b> Play Moon Photographer at the bottom of this page, then revisit the "Spin the Earth" slider above, which shows the Sun's angle changing through the day.</li>
+        <li><b>Plan.</b> Sketch two different ideas on your design log. Predict where the shadow will point and how long it will be at each marked hour.</li>
+        <li><b>Build and test.</b> Set the lamp to each marked hour and mark the shadow it casts. Then set it to a mystery hour and see if your partner team can read the time from the shadow alone.</li>
+        <li><b>Improve.</b> Change one thing, test again, and record it.</li>
+      </ol>
+      <p class="cap">Print a <a href="../design-log.html#sundial">design log</a> for each team. The shadow is shortest at noon and swings because Earth, not the Sun, is turning: the same idea as the merry-go-round above.</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s2">
+  <div><p class="kicker">Concept 2 · Earth orbits</p><h2>The seasons come from tilt, not distance</h2></div>
+  <p class="idea">Earth orbits the Sun once a year with its axis <mark>tilted 23.4°</mark>. When the Northern Hemisphere tilts toward the Sun, sunlight hits more directly and days are longer: summer. Earth is actually <mark>closest to the Sun in early January</mark>.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>A flashlight on a tilted page</h3>
+      <div class="stage"><svg viewBox="0 0 480 180" role="img" aria-label="A flashlight shining straight down makes a small bright circle; tilted, the same light spreads over a bigger, dimmer oval.">
+        <polygon points="70,20 110,20 130,130 50,130" style="fill:var(--beam);fill-opacity:.35"/><rect x="50" y="10" width="80" height="16" rx="4" style="fill:var(--ink)"/><rect x="40" y="130" width="100" height="8" style="fill:var(--ink)"/><text x="90" y="160" font-size="12" text-anchor="middle" style="font-weight:700">direct: small, bright</text>
+        <polygon points="300,20 340,20 440,120 320,140" style="fill:var(--beam);fill-opacity:.25"/><rect x="280" y="10" width="80" height="16" rx="4" style="fill:var(--ink)"/><line x1="290" y1="150" x2="450" y2="100" style="stroke:var(--ink);stroke-width:8"/><text x="370" y="172" font-size="12" text-anchor="middle" style="font-weight:700">slanted: big, dim</text>
+      </svg></div>
+      <p class="cap">Same flashlight, same energy. Slanted light spreads over more ground, so each square meter warms less.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>Ride around the Sun</h3>
+      <div class="stage"><svg id="orbSvg" viewBox="0 0 640 300" role="img" aria-label="Earth at its position on the orbit with the tilted axis fixed in space."></svg></div>
+      <div class="ctl"><label for="orbD">Date: <span id="orbDV"></span></label><input id="orbD" type="range" min="1" max="365" step="1" value="172"></div>
+      <p class="readout" id="orbR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>Ann Arbor through the year</h3>
+      <div class="chips" id="seaChips" role="group" aria-label="Measure"><button class="chip" type="button" data-m="day" aria-pressed="true">Hours of daylight</button><button class="chip" type="button" data-m="sun" aria-pressed="false">Noon Sun height</button><button class="chip" type="button" data-m="both" aria-pressed="false">Compare with temperature</button></div>
+      <div class="stage"><svg id="seaSvg" viewBox="0 0 640 260" role="img" aria-label="Seasonal curves for Ann Arbor."></svg></div>
+      <p class="readout" id="seaR" aria-live="polite"></p>
+      <p class="cap">Computed from Ann Arbor's latitude (42.3° N) and the 23.4° tilt. Temperature lags behind daylight by about a month because land and lakes take time to warm and cool (Unit 2).</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>Midnight sun and polar night</h3>
+      <div class="tw"><table class="tbl">
+        <thead><tr><th>Place</th><th>June daylight</th><th>December daylight</th></tr></thead>
+        <tbody>
+          <tr><td><b>Quito, Ecuador (equator)</b></td><td>about 12 h</td><td>about 12 h</td></tr>
+          <tr><td><b>Ann Arbor, Michigan</b></td><td>about 15 h</td><td>about 9 h</td></tr>
+          <tr><td><b>Fairbanks, Alaska</b></td><td>about 22 h</td><td>about 4 h</td></tr>
+          <tr><td><b>Utqiagvik, Alaska (far north)</b></td><td>Sun doesn't set for ~80 days</td><td>Sun doesn't rise for ~65 days</td></tr>
+        </tbody></table></div>
+      <p class="cap">Seasons are opposite in the Southern Hemisphere: Australia has summer in December.</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s3">
+  <div><p class="kicker">Concept 3 · The Moon</p><h2>Moon phases</h2></div>
+  <p class="idea">The Moon always has one half lit by the Sun. As it orbits Earth, the cycle of phases repeats about every <mark>29.5 days</mark>, and we see different amounts of the lit half. Phases are <mark>not</mark> caused by Earth's shadow.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>A ball and a lamp</h3>
+      <p>Hold a ball at arm's length in a dark room with one lamp. The side facing the lamp is always lit. Turn slowly in a circle: sometimes you see the dark side (new moon), sometimes the lit half (full), and in between a slice.</p>
+      <p class="cap">That is the exact model we use to understand the Moon. Try it with a tennis ball and a flashlight.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>Orbit the Moon</h3>
+      <div class="stage"><svg id="moonSvg" viewBox="0 0 640 260" role="img" aria-label="Left: top view of the Moon orbiting Earth with sunlight from the left. Right: the phase seen from Earth."></svg></div>
+      <div class="ctl"><label for="moonD">Day in the cycle: <span id="moonDV"></span></label><input id="moonD" type="range" min="0" max="29.5" step="0.5" value="7"></div>
+      <p class="readout" id="moonR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>A month of phases</h3>
+      <div class="stage"><svg id="phSvg" viewBox="0 0 640 150" role="img" aria-label="Eight phases in order."></svg></div>
+      <div class="tw"><table class="tbl" style="min-width:420px">
+        <thead><tr><th>Phase</th><th>Day</th><th>Seen from Earth</th><th>Rises (approx.)</th></tr></thead>
+        <tbody>
+          <tr><td><b>New</b></td><td>0</td><td>Not visible</td><td>Sunrise</td></tr>
+          <tr><td><b>First quarter</b></td><td>7.4</td><td>Right half lit (N. Hemisphere)</td><td>Noon</td></tr>
+          <tr><td><b>Full</b></td><td>14.8</td><td>Whole face lit</td><td>Sunset</td></tr>
+          <tr><td><b>Third quarter</b></td><td>22.1</td><td>Left half lit</td><td>Midnight</td></tr>
+        </tbody></table></div>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s4">
+  <div><p class="kicker">Concept 4 · Alignments</p><h2>Eclipses and tides</h2></div>
+  <p class="idea">An <mark>eclipse</mark> happens when the Sun, Moon, and Earth line up. The Moon's gravity also pulls on ocean water, causing <mark>tides</mark>, and the biggest tides come when the Sun and Moon pull along the same line.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag diagram">Diagram</span>
+      <h3>Two kinds of eclipse</h3>
+      <div class="chips" id="ecChips" role="group" aria-label="Eclipse"></div>
+      <div class="stage"><svg id="ecSvg" viewBox="0 0 480 190" role="img" aria-label="Alignment of Sun, Moon and Earth."></svg></div>
+      <p class="readout" id="ecR" aria-live="polite"></p>
+    </article>
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>A tilted hula hoop</h3>
+      <p>The Moon's orbit is <b>tilted about 5°</b> from Earth's orbit, like a hula hoop tipped against another one. Most months, the Moon passes a little above or below the Sun–Earth line, so its shadow misses. We get 2 to 5 solar eclipses a year somewhere on Earth, but any one place sees a total one only about once in 375 years.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>Tide height over a month</h3>
+      <div class="stage"><svg id="tideSvg" viewBox="0 0 640 260" role="img" aria-label="High and low tides over 30 days, stronger at new and full moon."></svg></div>
+      <div class="chips" id="tideChips" role="group" aria-label="View"><button class="chip" type="button" data-t="1" aria-pressed="true">Two weeks of tides</button><button class="chip" type="button" data-t="0" aria-pressed="false">One day of tides</button></div>
+      <p class="readout" id="tideR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>Tides around the world</h3>
+      <div class="bars" id="tideBars"></div>
+      <p class="cap">Typical tidal range (high minus low). The Bay of Fundy in Canada has the world's biggest. The Great Lakes have tides of only a few centimeters, too small to notice, because the lakes are small compared to the oceans.</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s5">
+  <div><p class="kicker">Concept 5 · Gravity and scale</p><h2>The solar system is mostly empty space</h2></div>
+  <p class="idea"><mark>Gravity</mark> holds planets in orbit around the Sun and the Moon around Earth. Planets farther out move slower and take longer to orbit. The distances are so vast that a <mark>scale model</mark> is the only way to feel them.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>A ball on a string</h3>
+      <div class="stage"><svg viewBox="0 0 480 170" role="img" aria-label="A ball swung on a string: if the string is cut it flies off in a straight line, like a planet without the Sun's gravity.">
+        <circle cx="130" cy="85" r="10" style="fill:var(--beam);stroke:var(--ink);stroke-width:2"/><circle cx="130" cy="85" r="60" style="fill:none;stroke:var(--line);stroke-width:2;stroke-dasharray:5 5"/><circle cx="190" cy="85" r="10" style="fill:var(--reflect);stroke:var(--ink);stroke-width:2"/><line x1="140" y1="85" x2="180" y2="85" style="stroke:var(--ink);stroke-width:2"/>
+        <path d="M190 74 V30" style="stroke:var(--absorb);stroke-width:3" marker-end="url(#mBeam)"/><text x="230" y="60" font-size="12">its motion wants to go straight</text>
+        <path d="M184 90 L148 90" style="stroke:var(--transmit);stroke-width:3" marker-end="url(#mTransmit)"/><text x="190" y="130" font-size="12">gravity (string) keeps pulling it in</text>
+      </svg></div>
+      <p class="cap">An orbit is a continuous fall around the Sun: motion forward plus gravity pulling inward.</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Walk the scale model</h3>
+      <p class="tip">Scale: the Sun is a 10 cm ball.</p>
+      <div class="chips" id="plChips" role="group" aria-label="Planet"></div>
+      <div class="card2" id="plCard" aria-live="polite" style="padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg)"></div>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>Farther out, longer years</h3>
+      <div class="stage"><svg id="kepSvg" viewBox="0 0 640 270" role="img" aria-label="Orbital period versus distance on log scales; a straight line."></svg></div>
+      <p class="cap">Both axes are logarithmic. The straight line shows a pattern (Kepler's third law): period² ∝ distance³. Each planet is a dot: distance from the Sun in AU (Earth = 1), orbital period in Earth years.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>Your weight on other worlds</h3>
+      <div class="ctl"><label for="wtM">Your mass: <span id="wtMV"></span> kg</label><input id="wtM" type="range" min="25" max="80" step="1" value="40"></div>
+      <div class="bars" id="wtBars"></div>
+      <p class="cap">Mass (how much matter) stays the same everywhere. Weight (gravity's pull) changes: a bathroom scale would read the weight shown, expressed as the equivalent mass on Earth.</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s6">
+  <div><p class="kicker">Check yourself</p><h2>Can you explain it?</h2></div>
+  <p class="idea">A friend says: "It's colder in winter because Earth is farther from the Sun." Use evidence to explain why that is wrong and what really causes the seasons.</p>
+  <details><summary>Show a model answer</summary><div class="in">
+    <p>Earth is actually closest to the Sun in early January, which is winter in the Northern Hemisphere. Also, the hemispheres have opposite seasons at the same time, so distance can't be the cause. The seasons come from Earth's 23.4° axis tilt: in winter, our hemisphere tilts away from the Sun, so sunlight arrives at a slant (spread over more ground) and days are shorter, giving less heating.</p></div></details>
+  <div class="items" id="quiz"></div>
+  <p class="score" id="quizScore">0 of 6 correct</p>
+  <h3 style="margin-top:8px">Words to know</h3>
+  <dl class="glossary">
+    <div><dt>rotation</dt><dd>Spinning on an axis (one turn is a day).</dd></div>
+    <div><dt>revolution</dt><dd>Orbiting around another object (one is a year).</dd></div>
+    <div><dt>axis</dt><dd>The imaginary line a planet spins around.</dd></div>
+    <div><dt>solstice</dt><dd>The longest or shortest day of the year.</dd></div>
+    <div><dt>equinox</dt><dd>A day with equal day and night.</dd></div>
+    <div><dt>phase</dt><dd>How much of the lit Moon we see.</dd></div>
+    <div><dt>eclipse</dt><dd>When one body's shadow falls on another.</dd></div>
+    <div><dt>tide</dt><dd>The rise and fall of sea level.</dd></div>
+    <div><dt>orbit</dt><dd>The curved path of an object around another.</dd></div>
+    <div><dt>AU</dt><dd>Astronomical unit: Earth–Sun distance, about 150 million km.</dd></div>
+  </dl>
+  <details><summary>Tutor notes: hands-on kit, misconceptions, pacing</summary><div class="in">
+    <p><b>Kit (about $10):</b> a lamp, a tennis ball and a pencil, a globe or large ball, a flashlight, a ball on a string, a roll of toilet paper (scale model: 1 sheet = about 1 million km), a meter stick, a sticky note for "Ann Arbor". For the shadow clock: a straight stick or pencil, a flat base, and a marker.</p>
+    <ul>
+      <li><b>Concept 1:</b> turn a globe in front of a lamp; mark Ann Arbor with a sticky note and say when it is day. Then run the shadow clock challenge (about 30 to 40 minutes).</li>
+      <li><b>Concept 2:</b> shine a flashlight at a tilted vs. flat sheet of grid paper; count lit squares.</li>
+      <li><b>Concept 3:</b> the ball-and-lamp moon phase model.</li>
+      <li><b>Concept 4:</b> demonstrate eclipses with a lamp, tennis ball, and a small ball.</li>
+      <li><b>Concept 5:</b> pace out the scale model outside (10 m to Earth if the Sun is a 10 cm ball, a pinhead).</li>
+    </ul>
+    <p><b>Common misconceptions:</b></p>
+    <ul>
+      <li>"Seasons are caused by distance from the Sun." They are caused by axis tilt.</li>
+      <li>"Moon phases are Earth's shadow." The shadow causes lunar <i>eclipses</i> only.</li>
+      <li>"The Moon only comes out at night." It is often visible in daytime.</li>
+      <li>"There's no gravity in space." Gravity is what holds orbits together; astronauts float because they are in free fall.</li>
+    </ul>
+    <p><b>Pacing:</b> about five 30-minute sessions. <b>Method link:</b> have students make a prediction (Unit 0, Concept 3) before turning each model, then compare to what they see.</p></div></details>
+</section>
+
+<section class="sec lesson-game-sec" id="game"><div><p class="kicker">After the lesson · Game</p><h2>Play: Moon Photographer</h2></div><p class="idea">Move the Moon around its orbit to match each photo request. Learn where every phase happens, and see that Earth's shadow only matters during an eclipse.</p><div class="lesson-game" id="lesson-game"></div>
+<script>(function(){
+/* Mounts one game into a shadow root so the lesson page's CSS and the game's CSS never collide. */
+function __mountLessonGame(host, css, html, init){
+  if(!host || host.shadowRoot) return;
+  const root = host.attachShadow({mode:"open"});
+  root.innerHTML = "<style>"+css+"</style>"+html;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let visible = true;
+  try{ new IntersectionObserver(es=>{ visible = es[es.length-1].isIntersecting; }).observe(host); }catch(e){}
+  const loops = [];
+  let last = performance.now();
+  function frame(t){
+    const dt = Math.min(0.05, (t-last)/1000); last = t;
+    if(visible && !document.hidden) for(const f of loops){ try{ f(t, dt); }catch(e){ console.error(e); } }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+  const env = {
+    root, reduce,
+    $: id => root.getElementById(id),
+    $$: sel => [...root.querySelectorAll(sel)],
+    loop: f => loops.push(f),
+    esc: s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])),
+    // A canvas drawn in fixed logical units (W x H) that scales to its container.
+    stage(canvas, W, H){
+      const ctx = canvas.getContext("2d");
+      const st = {ctx, W, H, dpr:1};
+      function fit(){
+        st.dpr = Math.min(2.5, window.devicePixelRatio || 1);
+        const cw = canvas.clientWidth || W;
+        const scale = cw / W;
+        canvas.width = Math.round(W*scale*st.dpr); canvas.height = Math.round(H*scale*st.dpr);
+        st.k = scale*st.dpr;
+        ctx.setTransform(st.k,0,0,st.k,0,0);
+        if(st.onfit) st.onfit();
+      }
+      canvas.style.aspectRatio = W+"/"+H;
+      st.begin = () => ctx.setTransform(st.k,0,0,st.k,0,0);
+      st.pt = ev => { const r = canvas.getBoundingClientRect(); return {x:(ev.clientX-r.left)*W/r.width, y:(ev.clientY-r.top)*H/r.height}; };
+      try{ new ResizeObserver(fit).observe(canvas); }catch(e){ addEventListener("resize", fit); }
+      fit();
+      return st;
+    },
+    // Level buttons in the header.
+    levelBar(box, names, onPick){
+      const solved = new Set(); let cur = 0;
+      function render(){
+        box.innerHTML = '<span class="label">Level</span>';
+        names.forEach((n,i)=>{ const b = document.createElement("button"); b.type="button";
+          b.className = "lv"+(solved.has(i)?" done":""); b.textContent = i+1; b.title = n;
+          b.setAttribute("aria-label", "Level "+(i+1)+": "+n+(solved.has(i)?" (solved)":""));
+          if(i===cur) b.setAttribute("aria-current","true");
+          b.onclick = () => { cur = i; render(); onPick(i); }; box.appendChild(b); });
+      }
+      render();
+      return { set(i){ cur=i; render(); }, solve(i){ solved.add(i); render(); }, get cur(){ return cur; }, solved };
+    },
+    // Result card over a stage. buttons: [{label, primary, onClick}]
+    card(stageEl, o){
+      let ov = stageEl.querySelector(":scope > .over");
+      if(!ov){ ov = document.createElement("div"); ov.className = "over"; stageEl.appendChild(ov); }
+      ov.hidden = false;
+      ov.innerHTML = '<div class="card'+(o.fail?' fail':'')+'" role="dialog" aria-live="polite"><h4></h4>'+(o.why?'<span class="why"></span>':'')+'<p class="cb"></p><div class="btns"></div></div>';
+      ov.querySelector("h4").textContent = o.title;
+      if(o.why) ov.querySelector(".why").textContent = o.why;
+      ov.querySelector(".cb").textContent = o.body || "";
+      if(o.list && o.list.length){ const ul = document.createElement("ul"); ul.className = "clist";
+        o.list.forEach(t => { const li = document.createElement("li"); li.textContent = t; ul.appendChild(li); });
+        ov.querySelector(".cb").after(ul); }
+      const bb = ov.querySelector(".btns");
+      (o.buttons||[]).forEach((b,i)=>{ const e = document.createElement("button"); e.type="button"; e.className = "btn"+(b.primary?" primary":""); e.textContent = b.label;
+        e.onclick = () => { ov.hidden = true; b.onClick && b.onClick(); }; bb.appendChild(e); if(i===0) setTimeout(()=>e.focus({preventScroll:true}),30); });
+      if(getComputedStyle(ov).position === "static") setTimeout(()=>ov.scrollIntoView({block:"nearest", behavior: reduce?"auto":"smooth"}), 40);
+      return ov;
+    },
+    hideCard(stageEl){ const ov = stageEl.querySelector(":scope > .over"); if(ov) ov.hidden = true; }
+  };
+  try{ init(root, env); }catch(e){ console.error(e); root.innerHTML += '<p style="color:#fff;padding:12px">This game could not start.</p>'; }
+}
+
+__mountLessonGame(document.getElementById("lesson-game"), "/* Shared frame for every lesson game. Lives inside a shadow root, so nothing here touches the lesson page.\n   Deliberately one dark \"lab console\" look in both page themes; each game sets its own --acc accent. */\n:host{\n  display:block; color-scheme:dark;\n  --bg:#0B0F15; --panel:#141A23; --panel-2:#1B2330; --line:#2B3544; --ink:#E9EEF5; --muted:#93A0B2;\n  --good:#3FD3BB; --bad:#FF6B5E; --warn:#FFB547; --acc:#FFD84A; --acc-ink:#1A1400;\n  --reflect:#78A2FF; --heat:#FF7A2E;\n  --f-display:\"Bahnschrift\",\"DIN Alternate\",\"Roboto Condensed\",\"Arial Narrow\",system-ui,sans-serif;\n  --f-body:\"Roboto\",\"Segoe UI\",system-ui,-apple-system,sans-serif;\n  --f-mono:ui-monospace,\"Roboto Mono\",\"Cascadia Mono\",Menlo,Consolas,monospace;\n}\n*{box-sizing:border-box}\n[hidden]{display:none!important}\n.g{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;border-radius:16px;\n  border:1px solid var(--line);padding:16px;display:grid;gap:14px;text-align:left;box-shadow:0 10px 36px rgba(0,0,0,.35)}\n.g button{font:inherit;color:inherit}\n.g :focus-visible{outline:3px solid var(--acc);outline-offset:2px}\n.g h3,.g h4{margin:0;font-family:var(--f-display);letter-spacing:.02em;line-height:1.15}\n.g p{margin:0}\n.bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 18px}\n.brand{display:grid;gap:2px}\n.label{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}\n.gtitle{font-family:var(--f-display);font-weight:700;font-size:1.45rem;text-transform:uppercase;letter-spacing:.04em}\n.gtitle b{color:var(--acc);font-weight:700}\n.levels{display:flex;flex-wrap:wrap;gap:6px;align-items:center}\n.lv{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--line);background:var(--panel);font-family:var(--f-mono);font-size:.85rem;cursor:pointer;font-variant-numeric:tabular-nums;padding:0}\n.lv:hover{border-color:var(--muted)}\n.lv.done{border-color:var(--good);color:var(--good)}\n.lv[aria-current=\"true\"]{background:var(--acc);border-color:var(--acc);color:var(--acc-ink);font-weight:700}\n.goalrow{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 12px}\n.goalrow h4{font-size:1.25rem}\n.goalrow .goal{color:var(--muted)}\n.cols{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:14px;align-items:start}\n.cols>*{min-width:0}\n.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:10px;min-width:0}\n.panel>.label{margin-bottom:-2px}\n.stage{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px;min-width:0}\n.stage canvas{display:block;width:100%;max-width:100%;height:auto;border-radius:8px;touch-action:none}\n.btns{display:flex;flex-wrap:wrap;gap:8px}\n.btn{padding:8px 14px;min-height:40px;border-radius:10px;border:1.5px solid var(--line);background:var(--panel-2);cursor:pointer;font-weight:700;font-size:.92rem;line-height:1.2}\n.btn:hover:not([disabled]){border-color:var(--muted)}\n.btn[disabled]{opacity:.45;cursor:default}\n.btn.primary{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}\n.btn[aria-pressed=\"true\"]{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset}\n.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;font-size:.82rem;border:1px solid var(--line);background:var(--panel-2)}\n.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}\n.msg{font-size:.93rem;padding:9px 12px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line)}\n.msg.good{border-color:color-mix(in srgb,var(--good) 60%,var(--line));color:var(--ink)}\n.msg.bad{border-color:color-mix(in srgb,var(--bad) 60%,var(--line))}\n.msg.warn{border-color:color-mix(in srgb,var(--warn) 60%,var(--line))}\n.help{font-size:.86rem;color:var(--muted)}\n.meter{height:12px;border-radius:99px;background:var(--panel-2);overflow:hidden;border:1px solid var(--line)}\n.meter>i{display:block;height:100%;background:var(--acc);transition:width .15s}\n.ctl{display:grid;gap:4px}\n.ctl label{font-size:.9rem;font-weight:700;display:flex;justify-content:space-between;gap:8px}\n.ctl input[type=range]{width:100%;accent-color:var(--acc);height:30px;margin:0}\n.over{position:absolute;inset:6px;border-radius:8px;display:grid;place-items:center;padding:14px;background:color-mix(in srgb,var(--bg) 74%,transparent);backdrop-filter:blur(2px);z-index:5}\n.card{max-width:440px;display:grid;gap:10px;padding:18px;border-radius:14px;background:var(--panel-2);border:1px solid var(--acc);box-shadow:0 0 36px color-mix(in srgb,var(--acc) 22%,transparent)}\n.card h4{font-size:1.5rem;color:var(--acc)}\n.card.fail{border-color:var(--bad);box-shadow:0 0 36px color-mix(in srgb,var(--bad) 18%,transparent)}\n.card.fail h4{color:var(--bad)}\n.clist{margin:0;padding-left:1.15em;display:grid;gap:5px;font-size:.9rem}\n.over{align-items:start}\n.card{position:sticky;top:16px;margin-top:clamp(8px,8%,60px)}\n.why{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}\ntable.data{width:100%;border-collapse:collapse;font-size:.85rem}\ntable.data th,table.data td{padding:5px 7px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}\ntable.data th{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}\ntable.data td.num{text-align:right}\n.scroll{overflow-x:auto}\n@media (max-width:820px){.cols{grid-template-columns:minmax(0,1fr)}\n  .over{position:static;inset:auto;background:none;backdrop-filter:none;padding:8px 0 2px}\n  .card{max-width:none;position:static;margin-top:0}}\n@media (prefers-reduced-motion:reduce){.meter>i{transition:none}}\n\n:host{--acc:#C9B6FF;--acc-ink:#100A24}\n.left,.aside{display:grid;gap:12px;min-width:0}\n.stage canvas{cursor:grab}\n.request h4{font-size:1.5rem}\n.album{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}\n.ph{display:grid;justify-items:center;gap:3px;padding:6px;border-radius:10px;border:1px solid var(--line);background:var(--bg);font-size:.74rem;text-align:center;line-height:1.2}\n.ph canvas{width:52px;height:52px}\n.ph.ok{border-color:var(--good)}\n.ph.no{border-color:var(--bad)}\n.ph .r{font-family:var(--f-mono);font-size:.68rem}\n.ph.ok .r{color:var(--good)} .ph.no .r{color:var(--bad)}\n", "<div class=\"g\">\n  <div class=\"bar\">\n    <div class=\"goalrow\"><h4 id=\"lvName\">Phase Photos</h4><span class=\"goal\" id=\"lvGoal\"></span></div>\n    <nav class=\"levels\" id=\"levels\" aria-label=\"Levels\"></nav>\n  </div>\n  <div class=\"cols\">\n    <div class=\"left\">\n      <div class=\"stage\" id=\"stage\"><canvas id=\"cv\" tabindex=\"0\" aria-label=\"Top view of Earth and the Moon's orbit with sunlight coming from the left. Drag the Moon, or use the left and right arrow keys.\"></canvas></div>\n      <p class=\"help\">Drag the Moon around its orbit (or focus the picture and use the <b>←</b> <b>→</b> keys). The Sun is far off to the left.</p>\n    </div>\n    <div class=\"aside\">\n      <div class=\"panel request\">\n        <div class=\"bar\"><span class=\"label\">Photo request</span><span class=\"chip\">Photo <b class=\"num\" id=\"num\">1</b> of <span id=\"of\">6</span></span></div>\n        <h4 id=\"want\">Full moon</h4>\n        <p class=\"help\" id=\"wantHelp\"></p>\n        <div class=\"btns\"><button class=\"btn primary\" id=\"snap\" type=\"button\">Snap photo</button></div>\n        <p class=\"msg\" id=\"msg\"></p>\n      </div>\n      <div class=\"panel\">\n        <div class=\"bar\"><span class=\"label\">Your photos</span><span class=\"chip\">Correct <b class=\"num\" id=\"score\">0</b></span></div>\n        <div class=\"album\" id=\"album\"></div>\n      </div>\n    </div>\n  </div>\n</div>\n", function(root, env){
+const PHASES = [
+  {name:"New moon", e:0, tip:"The lit side faces away from us. Nearly impossible to see."},
+  {name:"Waxing crescent", e:45, tip:"A thin sliver, lit on the right, in the evening sky."},
+  {name:"First quarter", e:90, tip:"Half lit, on the right side. A quarter of the way around."},
+  {name:"Waxing gibbous", e:135, tip:"More than half lit, still growing."},
+  {name:"Full moon", e:180, tip:"The whole face we see is lit."},
+  {name:"Waning gibbous", e:225, tip:"More than half lit, shrinking, lit on the left."},
+  {name:"Third quarter", e:270, tip:"Half lit, on the left side."},
+  {name:"Waning crescent", e:315, tip:"A thin sliver lit on the left, before sunrise."},
+];
+const LEVELS = [
+  {name:"Phase Photos", view:true, eclipse:false, n:6, goal:"Move the Moon to match each photo request. You can see what it looks like from Earth."},
+  {name:"Foggy Lens", view:false, eclipse:false, n:6, goal:"Your view from Earth is fogged up. Place the Moon from where it is in its orbit alone."},
+  {name:"Eclipse Season", view:false, eclipse:true, n:6, goal:"This month the Moon's tilted orbit lines up with the Sun. Eclipses are possible."},
+];
+const ECL = [
+  {name:"Lunar eclipse", e:180, tip:"Earth's shadow falls on the Moon. Only possible at full moon.", ecl:true},
+  {name:"Solar eclipse", e:0, tip:"The Moon blocks the Sun from part of Earth. Only possible at new moon.", ecl:true},
+];
+const TOL = 20;
+const $ = env.$;
+const cv = $("cv"), st = env.stage(cv, 640, 360), ctx = st.ctx;
+const bar = env.levelBar($("levels"), LEVELS.map(l=>l.name), i => load(i));
+let li = 0, ang = 200, queue = [], qi = 0, shots = [], dragging = false;
+const L = () => LEVELS[li];
+const EX = 190, EY = 180, OR = 128;
+// ang: Moon's angle around Earth in degrees, counterclockwise as seen from above the North Pole, 180 = toward the Sun (left)
+const elong = () => (((ang - 180) % 360) + 360) % 360;
+
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j = Math.floor(Math.random()*(i+1)); [a[i],a[j]] = [a[j],a[i]]; } return a; }
+function load(i){
+  li = i; qi = 0; shots = []; ang = 200; env.hideCard($("stage"));
+  let pool = shuffle(PHASES.slice()).slice(0, L().eclipse ? 4 : 6);
+  if(L().eclipse) pool = shuffle(pool.concat(ECL));
+  queue = pool;
+  $("lvName").textContent = L().name; $("lvGoal").textContent = L().goal; $("of").textContent = queue.length;
+  say(""); render();
+}
+function say(s, kind){ const m = $("msg"); m.textContent = s; m.className = "msg"+(kind?" "+kind:""); m.hidden = !s; }
+function render(){
+  const q = queue[qi];
+  $("num").textContent = Math.min(qi+1, queue.length);
+  $("want").textContent = q ? q.name : "All done";
+  $("wantHelp").textContent = q ? q.tip : "";
+  $("snap").disabled = !q;
+  $("score").textContent = shots.filter(s=>s.ok).length;
+  const al = $("album"); al.innerHTML = "";
+  for(const s of shots){ const d = document.createElement("div"); d.className = "ph " + (s.ok?"ok":"no");
+    const c = document.createElement("canvas"); c.width = 104; c.height = 104; const x = c.getContext("2d"); x.scale(2,2); drawPhase(x, 26, 26, 22, s.e, s.ecl);
+    d.appendChild(c); d.insertAdjacentHTML("beforeend", `<span>${env.esc(s.want)}</span><span class="r">${s.ok?"Correct":"Missed"}</span>`); al.appendChild(d); }
+}
+function diff(a, b){ const d = Math.abs(a-b) % 360; return Math.min(d, 360-d); }
+$("snap").onclick = () => {
+  const q = queue[qi]; if(!q) return;
+  const e = elong(), ok = diff(e, q.e) <= TOL;
+  const ecl = !!q.ecl && ok;
+  shots.push({want:q.name, e, ok, ecl});
+  if(ok) say(q.ecl ? (q.e===180 ? "Got it: Earth's shadow is falling on the full Moon." : "Got it: the new Moon is blocking the Sun.") : "Nice shot!", "good");
+  else { const near = PHASES.slice().sort((a,b)=>diff(e,a.e)-diff(e,b.e))[0]; say(`That photo shows a ${near.name.toLowerCase()}. ${q.name} is ${q.e===0?"between Earth and the Sun":q.e===180?"on the far side of Earth from the Sun":"a different spot in the orbit"}.`, "bad"); }
+  qi++; render();
+  if(qi >= queue.length){
+    const n = shots.filter(s=>s.ok).length, need = queue.length-1;
+    if(n >= need){ bar.solve(li); env.card($("stage"), {title:`${n} of ${queue.length} photos!`, why:"The science",
+      body: L().eclipse ? "Eclipses need a perfect line-up: a lunar eclipse at full moon, when Earth's shadow hits the Moon, and a solar eclipse at new moon. The tilt of the Moon's orbit is why most months have neither." : "Half of the Moon is always lit by the Sun. As it orbits Earth, the phase cycle repeats about every 29.5 days, and we see different amounts of that lit half. Earth's shadow has nothing to do with the phases.",
+      buttons:[{label: li<LEVELS.length-1?"Next level":"Play level 1 again", primary:true, onClick:()=>{ const k=li<LEVELS.length-1?li+1:0; bar.set(k); load(k); }}, {label:"Shoot this level again", onClick:()=>load(li)}]}); }
+    else env.card($("stage"), {fail:true, title:`${n} of ${queue.length} photos`, why:"Try again", body:`You need at least ${need}. Tip: new moon sits between Earth and the Sun, full moon is on the far side, and the Moon moves counterclockwise, so the right side lights up first.`, buttons:[{label:"Try again", primary:true, onClick:()=>load(li)}]});
+  }
+};
+function setFromPointer(e){ const p = st.pt(e); ang = (Math.atan2(-(p.y-EY), p.x-EX)*180/Math.PI + 360) % 360; }
+cv.addEventListener("pointerdown", e => { const p = st.pt(e); if(p.x < 380){ dragging = true; cv.setPointerCapture(e.pointerId); setFromPointer(e); } });
+cv.addEventListener("pointermove", e => { if(dragging) setFromPointer(e); });
+cv.addEventListener("pointerup", () => dragging = false); cv.addEventListener("pointercancel", () => dragging = false);
+cv.addEventListener("keydown", e => { if(e.key==="ArrowLeft"||e.key==="ArrowUp"){ ang = (ang+5)%360; e.preventDefault(); } if(e.key==="ArrowRight"||e.key==="ArrowDown"){ ang = (ang+355)%360; e.preventDefault(); } if(e.key==="Enter"||e.key===" "){ $("snap").click(); e.preventDefault(); } });
+
+function drawPhase(c, x, y, r, e, eclipse){
+  c.save();
+  c.fillStyle = "#1C222C"; c.beginPath(); c.arc(x, y, r, 0, 7); c.fill();
+  const lit = eclipse && diff(e,180) < 30 ? "#B5502F" : "#F2EEDF";
+  const waxing = e > 0 && e < 180, k = Math.cos(e*Math.PI/180); // k: 1 new, 0 quarter, -1 full
+  c.fillStyle = lit;
+  if(diff(e,0) < 2){ /* new: nothing lit */ }
+  else if(diff(e,180) < 2){ c.beginPath(); c.arc(x, y, r, 0, 7); c.fill(); }
+  else {
+    c.beginPath();
+    // lit half
+    if(waxing) c.arc(x, y, r, -Math.PI/2, Math.PI/2, false); else c.arc(x, y, r, Math.PI/2, -Math.PI/2, false);
+    // terminator
+    const rx = Math.abs(k)*r;
+    if(waxing) c.ellipse(x, y, rx, r, 0, Math.PI/2, -Math.PI/2, k > 0); else c.ellipse(x, y, rx, r, 0, -Math.PI/2, Math.PI/2, k > 0);
+    c.fill();
+  }
+  c.strokeStyle = "rgba(242,238,223,.25)"; c.lineWidth = 1; c.beginPath(); c.arc(x, y, r, 0, 7); c.stroke();
+  c.restore();
+}
+function draw(now){
+  st.begin();
+  const W = 640, H = 360;
+  ctx.fillStyle = "#070A12"; ctx.fillRect(0,0,W,H);
+  for(let i=0;i<60;i++){ ctx.fillStyle = "rgba(255,255,255,.4)"; ctx.fillRect((i*137)%W, (i*61)%H, 1.2, 1.2); }
+  // sunlight
+  ctx.strokeStyle = "rgba(255,226,122,.25)"; ctx.lineWidth = 1.5;
+  for(let y=30; y<H; y+=36){ const off = env.reduce ? 0 : (now/30)%40; ctx.beginPath(); ctx.moveTo(4+off, y); ctx.lineTo(24+off, y); ctx.stroke(); }
+  ctx.fillStyle = "#FFE27A"; ctx.font = "11px ui-monospace,monospace"; ctx.textAlign = "left"; ctx.fillText("SUNLIGHT →", 8, 16);
+  // Earth's shadow
+  ctx.fillStyle = "rgba(0,0,0,.55)"; ctx.fillRect(EX, EY-24, 380-EX, 48);
+  ctx.fillStyle = "rgba(147,160,178,.55)"; ctx.font = "10px ui-monospace,monospace"; ctx.fillText("Earth's shadow", EX+40, EY+38);
+  // orbit
+  ctx.strokeStyle = "rgba(233,238,245,.25)"; ctx.setLineDash([4,5]); ctx.beginPath(); ctx.arc(EX, EY, OR, 0, 7); ctx.stroke(); ctx.setLineDash([]);
+  // direction arrow (counterclockwise from above)
+  ctx.strokeStyle = "rgba(233,238,245,.45)"; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(EX, EY, OR+16, Math.PI*.15, Math.PI*.35); ctx.stroke();
+  const ax = EX + Math.cos(Math.PI*.15)*(OR+16), ay = EY + Math.sin(Math.PI*.15)*(OR+16);
+  ctx.fillStyle = "rgba(233,238,245,.6)"; ctx.beginPath(); ctx.moveTo(ax+6, ay-4); ctx.lineTo(ax-2, ay-8); ctx.lineTo(ax-1, ay+2); ctx.fill();
+  // Earth
+  ctx.fillStyle = "#1E5FA8"; ctx.beginPath(); ctx.arc(EX, EY, 24, 0, 7); ctx.fill();
+  ctx.fillStyle = "rgba(0,0,0,.6)"; ctx.beginPath(); ctx.arc(EX, EY, 24, -Math.PI/2, Math.PI/2); ctx.fill();
+  ctx.fillStyle = "#E9EEF5"; ctx.font = "11px ui-monospace,monospace"; ctx.textAlign = "center"; ctx.fillText("EARTH", EX, EY+40);
+  // Moon (lit half faces the Sun)
+  const a = ang*Math.PI/180, mx = EX + Math.cos(a)*OR, my = EY - Math.sin(a)*OR;
+  ctx.fillStyle = "#3A3F48"; ctx.beginPath(); ctx.arc(mx, my, 13, 0, 7); ctx.fill();
+  ctx.fillStyle = "#F2EEDF"; ctx.beginPath(); ctx.arc(mx, my, 13, Math.PI/2, -Math.PI/2); ctx.fill();
+  ctx.strokeStyle = "#FFD84A"; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(mx, my, 17, 0, 7); ctx.stroke();
+  // view panel
+  const vx = 512, vy = 150;
+  ctx.fillStyle = "#0E131B"; ctx.strokeStyle = "rgba(233,238,245,.18)"; ctx.lineWidth = 1; ctx.beginPath(); ctx.roundRect ? ctx.roundRect(392, 22, 236, 316, 12) : ctx.rect(392,22,236,316); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = "#93A0B2"; ctx.font = "11px ui-monospace,monospace"; ctx.textAlign = "center"; ctx.fillText("VIEW FROM EARTH", vx, 44);
+  const inEcl = L().eclipse && diff(elong(),180) < 12;
+  if(L().view){ drawPhase(ctx, vx, vy, 74, elong(), inEcl);
+    ctx.fillStyle = "#93A0B2"; ctx.fillText("(northern hemisphere)", vx, 248); }
+  else { ctx.fillStyle = "#1B2330"; ctx.beginPath(); ctx.arc(vx, vy, 74, 0, 7); ctx.fill();
+    ctx.fillStyle = "rgba(201,210,222,.18)"; for(let i=0;i<9;i++){ ctx.beginPath(); ctx.arc(vx-50+((i*37)%100), vy-40+((i*53)%90), 18, 0, 7); ctx.fill(); }
+    ctx.fillStyle = "#C9D2DE"; ctx.font = "700 13px ui-monospace,monospace"; ctx.fillText("LENS FOGGED", vx, vy+4); }
+  if(L().eclipse && diff(elong(),0) < 12){ ctx.fillStyle = "rgba(0,0,0,.6)"; ctx.beginPath(); ctx.arc(EX-28, EY, 9, 0, 7); ctx.fill(); }
+  if(L().view){ ctx.fillStyle = "#93A0B2"; ctx.font = "11px ui-monospace,monospace"; ctx.fillText(`about ${Math.round(elong()/360*29.5)} days after new moon`, vx, 280); }
+}
+env.loop(draw);
+load(0);
+
+});
+})();</script></section>
+
+<section class="sec related" id="more"><div><p class="kicker">Keep exploring</p><h2>Related lessons</h2></div><p class="idea">Side trip: return to Unit 4 when finished. Up next: <a href="unit-04-weather-and-the-water-cycle.html">Unit 4: Weather &amp; the Water Cycle</a>. Overlap alert: ideas you have already met are marked above as "you may already have learned".</p><ul><li><a href="unit-01-light-and-matter.html">Unit 1: Light &amp; Matter</a><span class="why">Light, shadows, and the Moon's phases.</span></li><li><a href="unit-03-forces-motion-and-energy.html">Unit 3: Forces, Motion &amp; Energy</a><span class="why">Gravity and orbits.</span></li><li><a href="unit-04-weather-and-the-water-cycle.html">Unit 4: Weather &amp; the Water Cycle</a><span class="why">Seasons and weather.</span></li><li><a href="../8th/unit-8.6-gravity-orbits-and-the-solar-system.html">Unit 8.6: Gravity, Orbits &amp; the Solar System</a><span class="why">Grade 8: why orbits work, with numbers.</span></li><li><a href="../8th/unit-8.7-stars-galaxies-and-the-universe.html">Unit 8.7: Stars, Galaxies &amp; the Universe</a><span class="why">Grade 8: stars, galaxies, and the universe.</span></li></ul></section>
+</main>
+
+<footer>Built for sixth-grade tutoring as an extension unit. Aligned with NGSS MS-ESS1-1 (Earth–Sun–Moon system patterns), MS-ESS1-2 (gravity and orbits), MS-ESS1-3 (scale of the solar system), and MS-ETS1-1 to 1-4 (the shadow clock). Values are approximate.</footer>
+
+<script>
+(function(){
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const safe=fn=>{try{fn()}catch(e){console.error(e)}};
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const setPressed=(g,b)=>$$('button',g).forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));
+function mkChips(g,labels,sel=0){ g.innerHTML=labels.map((l,i)=>`<button class="chip" type="button" data-i="${i}" aria-pressed="${i===sel}">${l}</button>`).join(''); }
+function chipsOn(g,fn){ g.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; setPressed(g,b); fn(+b.dataset.i,b); }); }
+function quizBox(box,scoreEl,items,labels){
+  let right=0;
+  box.innerHTML=items.map((it,i)=>`<div class="item" data-i="${i}"><span class="nm">${it.n}</span><div class="opts">${labels.map((l,j)=>`<button class="opt" type="button" data-j="${j}">${l}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
+  box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.disabled)return; const row=b.closest('.item'), it=items[+row.dataset.i], ok=+b.dataset.j===it.a;
+    $$('.opt',row).forEach(o=>{ o.disabled=true; if(+o.dataset.j===it.a)o.classList.add('good'); }); if(!ok)b.classList.add('bad'); else right++;
+    $('.fb',row).textContent=(ok?'Yes. ':'Not quite. ')+it.e; scoreEl.textContent=`${right} of ${items.length} correct`; });
+}
+function finalQuiz(Q){
+  const box=$('#quiz'), sc=$('#quizScore'); let right=0;
+  box.innerHTML=Q.map((x,i)=>`<div class="q item" data-i="${i}" style="display:grid"><h4>${i+1}. ${x.q}</h4><div class="opts">${x.o.map((t,j)=>`<button class="opt" type="button" data-j="${j}">${t}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
+  box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.disabled)return; const row=b.closest('.q'), x=Q[+row.dataset.i], ok=+b.dataset.j===x.a;
+    $$('.opt',row).forEach(o=>{ o.disabled=true; if(+o.dataset.j===x.a)o.classList.add('good'); }); if(!ok)b.classList.add('bad'); else right++;
+    $('.fb',row).textContent=(ok?'Correct. ':'Not quite. ')+x.e; sc.textContent=`${right} of ${Q.length} correct`; });
+}
+/* bars: rows [label, value, text, cls('r'|'t'|'a')]; opt {log:true, labW:140, max} */
+function bars(el,rows,opt={}){
+  const log=opt.log, vals=rows.map(r=>r[1]), mx=opt.max||Math.max(...vals), mn=log?Math.log10(Math.min(...vals))-.3:0, top=log?Math.log10(mx)+.3:mx;
+  el.innerHTML=rows.map(([n,v,t,c])=>`<div class="brow" style="grid-template-columns:${opt.labW||140}px minmax(0,1fr)"><span class="lab">${n}</span><div class="stack" role="img" aria-label="${n}: ${t}"><div class="seg ${c||'t'}" style="width:${Math.max(4,((log?Math.log10(v):v)-mn)/(top-mn)*100)}%;min-width:48px">${t}</div></div></div>`).join('')+(log?'<p class="cap" style="margin-top:2px">Log scale.</p>':'');
+}
+/* line: generic SVG chart. o:{x0,x1,y0,y1,xt,yt,xl,yl,series:[{pts,color,w,dash}],dots,hl:[[y,label,color]],mark,bands:[[y0,y1,label]],W,H,L,B,T,R} */
+function line(svg,o){
+  const W=o.W||640,H=o.H||260,L=o.L||56,B=o.B||40,T=o.T||16,R=o.R||16;
+  const X=x=>L+(x-o.x0)/(o.x1-o.x0)*(W-L-R), Y=y=>H-B-(y-o.y0)/(o.y1-o.y0)*(H-B-T);
+  let s='';
+  (o.bands||[]).forEach(b=>{ s+=`<rect x="${L}" y="${Y(b[1])}" width="${W-L-R}" height="${Y(b[0])-Y(b[1])}" style="fill:var(--transmit);fill-opacity:.14"/><text x="${L+6}" y="${Y(b[1])+13}" font-size="11">${b[2]}</text>`; });
+  o.yt.forEach(v=>{ s+=`<line x1="${L}" y1="${Y(v)}" x2="${W-R}" y2="${Y(v)}" style="stroke:var(--line)"/><text x="${L-6}" y="${Y(v)+4}" font-size="12" text-anchor="end">${v}</text>`; });
+  o.xt.forEach(v=>{ const a=Array.isArray(v)?v:[v,v]; s+=`<text x="${X(a[0])}" y="${H-B+16}" font-size="12" text-anchor="middle">${a[1]}</text>`; });
+  (o.hl||[]).forEach(v=>{ s+=`<line x1="${L}" y1="${Y(v[0])}" x2="${W-R}" y2="${Y(v[0])}" style="stroke:${v[2]};stroke-width:2;stroke-dasharray:6 5"/><text x="${W-R-4}" y="${Y(v[0])-5}" font-size="11" text-anchor="end">${v[1]}</text>`; });
+  s+=`<line x1="${L}" y1="${H-B}" x2="${W-R}" y2="${H-B}" style="stroke:var(--ink);stroke-width:2"/><line x1="${L}" y1="${T}" x2="${L}" y2="${H-B}" style="stroke:var(--ink);stroke-width:2"/>`;
+  (o.series||[]).forEach(se=>{ if(se.pts.length) s+=`<path d="${se.pts.map((p,i)=>`${i?'L':'M'}${X(p[0]).toFixed(1)} ${Y(p[1]).toFixed(1)}`).join('')}" style="fill:none;stroke:${se.color};stroke-width:${se.w||4};stroke-linejoin:round${se.dash?';stroke-dasharray:'+se.dash:''}"/>`; });
+  (o.dots||[]).forEach(d=>{ s+=`<circle cx="${X(d[0])}" cy="${Y(d[1])}" r="5" style="fill:var(--reflect);fill-opacity:.7;stroke:var(--ink);stroke-width:1.5"/>`; });
+  if(o.mark) s+=`<circle cx="${X(o.mark[0])}" cy="${Y(o.mark[1])}" r="8" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/>`;
+  s+=`<text x="${(L+W-R)/2}" y="${H-4}" font-size="13" text-anchor="middle">${o.xl}</text><text transform="rotate(-90 14 ${(T+H-B)/2})" x="14" y="${(T+H-B)/2}" font-size="13" text-anchor="middle">${o.yl}</text>`;
+  svg.innerHTML=s;
+}
+
+const DEG=Math.PI/180, LAT=42.28;
+const decl=d=>23.44*Math.sin(2*Math.PI*(d-80)/365);
+const dayLen=d=>24/Math.PI*Math.acos(clamp(-Math.tan(LAT*DEG)*Math.tan(decl(d)*DEG),-1,1));
+const noonAlt=d=>90-LAT+decl(d);
+const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'], MSTART=[1,32,60,91,121,152,182,213,244,274,305,335];
+const dateOf=d=>{ let m=11; for(let i=0;i<12;i++){ if(d<MSTART[i]){ m=i-1; break; } } m=Math.max(0,m); return `${MONTHS[m]} ${d-MSTART[m]+1}`; };
+const fmtH=h=>{ const H=Math.floor(h), M=Math.round((h-H)*60); return `${H}h ${String(M).padStart(2,'0')}m`; };
+
+/* ===== 1 ===== */
+safe(()=>{
+  const sl=$('#rotH'), svg=$('#rotSvg'), rd=$('#rotR');
+  const draw=()=>{ const h=+sl.value; $('#rotHV').textContent=(h===24?'12:00 AM':(h%12===0?12:Math.floor(h%12))+':'+(h%1?'30':'00')+(h<12||h===24?' AM':' PM'));
+    const cx=290,cy=120,r=80, a=(h-12)*15*DEG; // Ann Arbor at angle a from the sun direction (sun at left)
+    const px=cx-r*Math.cos(a), py=cy-r*Math.sin(a), day=Math.cos(a)>0.0;
+    let s=`<circle cx="50" cy="120" r="34" style="fill:var(--beam);stroke:var(--ink);stroke-width:3"/><g style="stroke:var(--beam);stroke-width:3"><line x1="95" y1="70" x2="190" y2="70"/><line x1="95" y1="120" x2="190" y2="120"/><line x1="95" y1="170" x2="190" y2="170"/></g>
+    <circle cx="${cx}" cy="${cy}" r="${r}" style="fill:var(--ink);fill-opacity:.55;stroke:var(--ink);stroke-width:3"/><path d="M${cx} ${cy-r} A${r} ${r} 0 0 0 ${cx} ${cy+r} Z" style="fill:var(--reflect);fill-opacity:.55"/>
+    <circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="9" style="fill:var(--absorb);stroke:var(--ink);stroke-width:2.5"/><text x="${px.toFixed(1)}" y="${(py-14).toFixed(1)}" font-size="12" text-anchor="middle" style="font-weight:700">Ann Arbor</text>
+    <path d="M${cx+r+25} ${cy-30} A${r+25} ${r+25} 0 0 1 ${cx+r+25} ${cy+30}" style="fill:none;stroke:var(--ink);stroke-width:2" marker-end="url(#mInk)"/><text x="${cx+r+34}" y="${cy+4}" font-size="11">spin</text>
+    <text x="${cx}" y="${cy+r+22}" font-size="12" text-anchor="middle" style="font-weight:700">Earth (seen from above the North Pole)</text>`;
+    svg.innerHTML=s; const lbl=h<5.5||h>19?'night':h<7?'sunrise':h>17.5?'sunset':'day';
+    rd.innerHTML=`Local time <b>${$('#rotHV').textContent}</b>: Ann Arbor is in <b>${day?'sunlight':'darkness'}</b> (${lbl}). The Sun is straight ahead of the marker at noon; Earth turns 15° each hour.`; };
+  sl.addEventListener('input',draw); draw();
+  bars($('#zoneBars'),[['Ann Arbor',12,'12:00 PM','t'],['London (+5 h)',17,'5:00 PM','r'],['Tokyo (+13 h)',25,'1:00 AM next day','a'],['Los Angeles (−3 h)',9,'9:00 AM','t'],['Sydney (+14 h)',26,'2:00 AM next day','a']],{labW:130,max:26});
+});
+
+/* ===== 2 ===== */
+safe(()=>{
+  const sl=$('#orbD'), svg=$('#orbSvg'), rd=$('#orbR');
+  const draw=()=>{ const d=+sl.value; $('#orbDV').textContent=dateOf(d)+(Math.abs(d-172)<3?' (June solstice)':Math.abs(d-355)<3?' (December solstice)':Math.abs(d-80)<3?' (March equinox)':Math.abs(d-266)<3?' (September equinox)':'');
+    const cx=320,cy=150,R=110,a=2*Math.PI*(d-172)/365, ex=cx+R*Math.cos(a), ey=cy-R*0.55*Math.sin(a), tilt=23.44*DEG;
+    let s=`<ellipse cx="${cx}" cy="${cy}" rx="${R}" ry="${R*.55}" style="fill:none;stroke:var(--line);stroke-width:3"/><circle cx="${cx}" cy="${cy}" r="26" style="fill:var(--beam);stroke:var(--ink);stroke-width:3"/>`;
+    [[172,'Jun'],[266,'Sep'],[355,'Dec'],[80,'Mar']].forEach(([dd,l])=>{ const aa=2*Math.PI*(dd-172)/365; s+=`<text x="${(cx+(R+30)*Math.cos(aa)).toFixed(1)}" y="${(cy-(R+30)*.55*Math.sin(aa)+4).toFixed(1)}" font-size="11" text-anchor="middle" style="opacity:.7">${l}</text>`; });
+    const dx=cx-ex, dy=cy-ey, dl=Math.hypot(dx,dy);
+    s+=`<g><circle cx="${ex.toFixed(1)}" cy="${ey.toFixed(1)}" r="20" style="fill:var(--reflect);fill-opacity:.4;stroke:var(--ink);stroke-width:3"/><path d="M${ex.toFixed(1)} ${(ey-20).toFixed(1)} A20 20 0 0 ${dx>0?0:1} ${ex.toFixed(1)} ${(ey+20).toFixed(1)}" style="fill:none"/>
+    <line x1="${(ex+34*Math.sin(tilt)).toFixed(1)}" y1="${(ey+34*Math.cos(tilt)).toFixed(1)}" x2="${(ex-34*Math.sin(tilt)).toFixed(1)}" y2="${(ey-34*Math.cos(tilt)).toFixed(1)}" style="stroke:var(--ink);stroke-width:3"/><text x="${(ex-40*Math.sin(tilt)).toFixed(1)}" y="${(ey-40*Math.cos(tilt)).toFixed(1)}" font-size="11" text-anchor="middle" style="font-weight:700">N</text></g>
+    <text x="${cx}" y="${cy+5}" font-size="12" text-anchor="middle" style="font-weight:700">Sun</text><text x="30" y="30" font-size="12">Axis always points the same direction in space (toward the North Star).</text>`;
+    svg.innerHTML=s;
+    const dec=decl(d), alt=noonAlt(d), dist=1-0.0167*Math.cos(2*Math.PI*(d-3)/365);
+    const season=dec>15?'summer':dec<-15?'winter':dec>0?(d<172?'spring':'late summer'):(d>266?'autumn':'late summer');
+    rd.innerHTML=`<b>${dateOf(d)}:</b> the Sun's noon height in Ann Arbor is <b>${alt.toFixed(0)}°</b> above the horizon, with <b>${fmtH(dayLen(d))}</b> of daylight (${season}). Earth–Sun distance: <b>${dist.toFixed(3)} AU</b> (closest in early January).`; };
+  sl.addEventListener('input',draw); draw();
+});
+safe(()=>{
+  const svg=$('#seaSvg'), chips=$('#seaChips'), rd=$('#seaR');
+  const D=[...Array(73)].map((_,i)=>1+i*5), TM=d=>9.5+14*Math.sin(2*Math.PI*(d-110)/365);
+  const draw=m=>{ const ser=[]; if(m!=='sun') ser.push({pts:D.map(d=>[d,dayLen(d)]),color:'var(--absorb)'}); if(m==='sun') ser.push({pts:D.map(d=>[d,noonAlt(d)]),color:'var(--beam)'});
+    const xt=MSTART.map((d,i)=>[d+14,MONTHS[i]]);
+    if(m==='both'){ line(svg,{x0:1,x1:365,y0:0,y1:100,yt:[0,25,50,75,100],xt,xl:'month',yl:'scaled 0–100',series:[{pts:D.map(d=>[d,(dayLen(d)-8)/8*100]),color:'var(--absorb)'},{pts:D.map(d=>[d,(TM(d)+10)/ 40*100*1.0]),color:'var(--reflect)'}]}); svg.innerHTML+='<g font-size="12"><text x="70" y="28" style="fill:var(--absorb);font-weight:700">● daylight</text><text x="170" y="28" style="fill:var(--reflect);font-weight:700">● average temperature</text></g>'; rd.innerHTML='Daylight peaks at the June solstice, but temperature peaks about a month later in July: the land and lakes keep absorbing more energy than they lose until then.'; return; }
+    if(m==='day'){ line(svg,{x0:1,x1:365,y0:8,y1:16,yt:[8,10,12,14,16],xt,xl:'month',yl:'hours of daylight',series:ser,hl:[[12,'12 hours','var(--ink)']]}); rd.innerHTML=`Longest day: <b>${fmtH(dayLen(172))}</b> (June). Shortest: <b>${fmtH(dayLen(355))}</b> (December). A difference of about <b>${(dayLen(172)-dayLen(355)).toFixed(1)} hours</b>.`; }
+    else { line(svg,{x0:1,x1:365,y0:0,y1:80,yt:[0,20,40,60,80],xt,xl:'month',yl:'noon Sun height (degrees)',series:ser}); rd.innerHTML=`At noon in June the Sun reaches <b>${noonAlt(172).toFixed(0)}°</b>; in December only <b>${noonAlt(355).toFixed(0)}°</b>. Lower angle means spread-out, weaker sunlight.`; } };
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; setPressed(chips,b); draw(b.dataset.m); }); draw('day');
+});
+
+/* ===== 3 ===== */
+safe(()=>{
+  const phaseDisc=(cx,cy,r,th)=>{ // th: 0..360 degrees from new
+    const wax=th<180, t=wax?th:360-th, c=Math.cos(t*DEG), rx=Math.abs(c)*r, sweep=c<0?1:0;
+    let p=`<circle cx="${cx}" cy="${cy}" r="${r}" style="fill:#2b2f3a;stroke:var(--ink);stroke-width:2"/>`;
+    const sx=wax?1:-1;
+    p+=`<g transform="translate(${cx} ${cy}) scale(${sx} 1)"><path d="M0 ${-r} A${r} ${r} 0 0 1 0 ${r} A${rx.toFixed(2)} ${r} 0 0 ${sweep} 0 ${-r}Z" style="fill:#F4F1E4"/></g>`; return p; };
+  const names=th=>{ const t=((th%360)+360)%360; return t<12||t>348?'New Moon':t<78?'Waxing Crescent':t<102?'First Quarter':t<168?'Waxing Gibbous':t<192?'Full Moon':t<258?'Waning Gibbous':t<282?'Third Quarter':'Waning Crescent'; };
+  const sl=$('#moonD'), svg=$('#moonSvg'), rd=$('#moonR');
+  const draw=()=>{ const day=+sl.value, th=day/29.5*360; $('#moonDV').textContent=day.toFixed(1);
+    const ex=200,ey=130,R=80, mx=ex-R*Math.cos(th*DEG), my=ey-R*Math.sin(th*DEG);
+    let s=`<g style="stroke:var(--beam);stroke-width:3"><line x1="10" y1="60" x2="70" y2="60"/><line x1="10" y1="130" x2="70" y2="130"/><line x1="10" y1="200" x2="70" y2="200"/></g><text x="12" y="30" font-size="12" style="font-weight:700">sunlight</text>
+    <circle cx="${ex}" cy="${ey}" r="${R}" style="fill:none;stroke:var(--line);stroke-width:2;stroke-dasharray:5 5"/><circle cx="${ex}" cy="${ey}" r="24" style="fill:var(--reflect);fill-opacity:.5;stroke:var(--ink);stroke-width:3"/><text x="${ex}" y="${ey+4}" font-size="11" text-anchor="middle" style="font-weight:700">Earth</text>
+    <circle cx="${mx.toFixed(1)}" cy="${my.toFixed(1)}" r="13" style="fill:#2b2f3a;stroke:var(--ink);stroke-width:2"/><path d="M${mx.toFixed(1)} ${(my-13).toFixed(1)} A13 13 0 0 0 ${mx.toFixed(1)} ${(my+13).toFixed(1)} Z" style="fill:#F4F1E4"/>
+    <text x="400" y="30" font-size="13" style="font-weight:700">As seen from Earth</text>${phaseDisc(480,130,70,th)}<text x="480" y="225" font-size="14" text-anchor="middle" style="font-weight:700">${names(th)}</text>`;
+    svg.innerHTML=s; const k=(1-Math.cos(th*DEG))/2;
+    rd.innerHTML=`Day <b>${day.toFixed(1)}</b>: <b>${names(th)}</b>, about <b>${Math.round(k*100)}%</b> of the visible face is lit. The Moon is always half lit; the angle decides how much of that half faces us.`; };
+  sl.addEventListener('input',draw); draw();
+  let h=''; for(let i=0;i<8;i++){ h+=phaseDisc(40+i*80,60,28,i*45)+`<text x="${40+i*80}" y="120" font-size="11" text-anchor="middle">${names(i*45).replace('Waxing ','').replace('Waning ','')}</text>`; }
+  h+=`<text x="40" y="140" font-size="10">waxing (growing) →</text><text x="360" y="140" font-size="10">← waning (shrinking) after full</text>`; $('#phSvg').innerHTML=h;
+});
+
+/* ===== 4 ===== */
+safe(()=>{
+  const chips=$('#ecChips'), svg=$('#ecSvg'), rd=$('#ecR'); mkChips(chips,['Solar eclipse','Lunar eclipse'],0);
+  const draw=i=>{ const sun='<circle cx="50" cy="95" r="34" style="fill:var(--beam);stroke:var(--ink);stroke-width:3"/>', earth=(x)=>`<circle cx="${x}" cy="95" r="22" style="fill:var(--reflect);fill-opacity:.5;stroke:var(--ink);stroke-width:3"/>`, moon=x=>`<circle cx="${x}" cy="95" r="9" style="fill:#2b2f3a;stroke:var(--ink);stroke-width:2"/>`;
+    let s;
+    if(i===0) s=`${sun}<polygon points="84,82 300,92 300,98 84,108" style="fill:none"/><polygon points="${200},86 ${430},95 ${200},104" style="fill:var(--ink);fill-opacity:.35"/>${moon(200)}${earth(430)}<text x="200" y="130" font-size="12" text-anchor="middle">Moon (new moon)</text><text x="430" y="135" font-size="12" text-anchor="middle">Earth</text><text x="320" y="60" font-size="12" text-anchor="middle">shadow falls on a small spot of Earth</text>`;
+    else s=`${sun}${earth(250)}<polygon points="250,73 440,88 440,102 250,117" style="fill:var(--ink);fill-opacity:.3"/>${moon(400)}<text x="250" y="150" font-size="12" text-anchor="middle">Earth</text><text x="400" y="130" font-size="12" text-anchor="middle">Moon (full moon)</text><text x="340" y="60" font-size="12" text-anchor="middle">Earth's shadow covers the Moon</text>`;
+    svg.innerHTML=s; rd.innerHTML=i===0?'<b>Solar eclipse:</b> the Moon passes between the Sun and Earth at <i>new moon</i>. Only people inside the shadow see it, and it is never safe to look at without eclipse glasses. On April 8, 2024, people in Ann Arbor saw a deep partial eclipse (about 90%).':'<b>Lunar eclipse:</b> Earth passes between the Sun and Moon at <i>full moon</i>. Anyone on the night side can watch it safely; the Moon often turns a coppery red from sunlight bent through Earth\'s air.'; };
+  chipsOn(chips,draw); draw(0);
+});
+safe(()=>{
+  const svg=$('#tideSvg'), chips=$('#tideChips'), rd=$('#tideR');
+  const draw=m=>{ if(m===1){ const pts=[]; for(let t=0;t<=355;t+=2){ const days=t/24; const spring=1+.45*Math.cos(4*Math.PI*days/29.53); pts.push([days,spring*Math.cos(2*Math.PI*t/12.42)]); }
+      line(svg,{x0:0,x1:14.8,y0:-2,y1:2,yt:[-2,-1,0,1,2],xt:[[0,'New moon'],[7.4,'1st quarter'],[14.8,'Full moon']],xl:'days (phase of the Moon)',yl:'water level (relative)',series:[{pts,color:'var(--reflect)',w:3}],hl:[[0,'average sea level','var(--ink)']]}); rd.innerHTML='Biggest tides (<b>spring tides</b>) come at <b>new and full moon</b> when the Sun and Moon pull in a line; smallest (<b>neap tides</b>) at the quarter moons when they pull at right angles. (Spring tides have nothing to do with the season.)'; }
+    else { const pts=[]; for(let t=0;t<=48;t+=.5) pts.push([t,Math.cos(2*Math.PI*t/12.42)]); line(svg,{x0:0,x1:48,y0:-1.4,y1:1.4,yt:[-1,0,1],xt:[0,12,24,36,48],xl:'hours',yl:'water level (relative)',series:[{pts,color:'var(--reflect)',w:4}],hl:[[0,'average sea level','var(--ink)']]}); rd.innerHTML='Most coasts have <b>two high tides and two low tides</b> each lunar day (about 24 h 50 min): one bulge faces the Moon, and another on the far side, so high tide comes about every 12 h 25 min.'; } };
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; setPressed(chips,b); draw(+b.dataset.t); }); draw(1);
+  bars($('#tideBars'),[['Bay of Fundy, Canada',12,'~12 m','a'],['Anchorage, Alaska',8,'~8 m','a'],['English Channel',6,'~6 m','r'],['New York City',1.5,'~1.5 m','r'],['Gulf of Mexico',0.5,'~0.5 m','t'],['Lake Michigan',0.03,'~3 cm','t']],{log:true,labW:140});
+});
+
+/* ===== 5 ===== */
+safe(()=>{
+  const PL=[['Mercury',.39,.24],['Venus',.72,.615],['Earth',1,1],['Mars',1.52,1.88],['Jupiter',5.2,11.86],['Saturn',9.58,29.4],['Uranus',19.2,84],['Neptune',30.1,165]];
+  const chips=$('#plChips'), card=$('#plCard'); mkChips(chips,PL.map(p=>p[0]),2);
+  const draw=i=>{ const [n,au,yr]=PL[i], m=au*10.8, steps=m/0.75, light=au*8.317;
+    card.innerHTML=`<b>${n}</b><br>Distance from the Sun: <b>${au} AU</b> (${(au*149.6).toFixed(0)} million km)<br>In the model: <b>${m<100?m.toFixed(1):Math.round(m).toLocaleString()} m</b> from the 10 cm Sun (about <b>${Math.round(steps).toLocaleString()} steps</b>)<br>Light takes <b>${light<60?light.toFixed(1)+' minutes':(light/60).toFixed(1)+' hours'}</b> to arrive<br>One year there: <b>${yr<1?(yr*365).toFixed(0)+' Earth days':yr+' Earth years'}</b>`; };
+  chipsOn(chips,draw); draw(2);
+  const svg=$('#kepSvg'), L=64,B=44,T=16,R=16,W=640,H=270, lx=Math.log10, X=v=>L+(lx(v)-lx(.3))/(lx(70)-lx(.3))*(W-L-R), Y=v=>H-B-(lx(v)-lx(.2))/(lx(200)-lx(.2))*(H-B-T); let s='';
+  [.5,1,5,10,30].forEach(v=>{ s+=`<line x1="${X(v)}" y1="${T}" x2="${X(v)}" y2="${H-B}" style="stroke:var(--line)"/><text x="${X(v)}" y="${H-B+16}" font-size="12" text-anchor="middle">${v}</text>`; });
+  [.3,1,3,10,30,100].forEach(v=>{ s+=`<line x1="${L}" y1="${Y(v)}" x2="${W-R}" y2="${Y(v)}" style="stroke:var(--line)"/><text x="${L-6}" y="${Y(v)+4}" font-size="12" text-anchor="end">${v}</text>`; });
+  s+=`<line x1="${L}" y1="${H-B}" x2="${W-R}" y2="${H-B}" style="stroke:var(--ink);stroke-width:2"/><line x1="${L}" y1="${T}" x2="${L}" y2="${H-B}" style="stroke:var(--ink);stroke-width:2"/><path d="M${X(.3)} ${Y(Math.pow(.3,1.5))} L${X(40)} ${Y(Math.pow(40,1.5))}" style="stroke:var(--line);stroke-width:3;stroke-dasharray:6 5;fill:none"/>`;
+  PL.forEach(([n,au,yr])=>{ s+=`<circle cx="${X(au)}" cy="${Y(yr)}" r="7" style="fill:var(--absorb);stroke:var(--ink);stroke-width:2"/><text x="${X(au)+10}" y="${Y(yr)+14}" font-size="11">${n}</text>`; });
+  s+=`<text x="${(L+W-R)/2}" y="${H-6}" font-size="13" text-anchor="middle">distance from the Sun (AU, log)</text><text transform="rotate(-90 14 130)" x="14" y="130" font-size="13" text-anchor="middle">orbital period (Earth years, log)</text>`; svg.innerHTML=s;
+});
+safe(()=>{
+  const G=[['Moon',.166],['Mercury',.38],['Mars',.38],['Venus',.91],['Earth',1],['Jupiter',2.53]], sl=$('#wtM');
+  const draw=()=>{ const m=+sl.value; $('#wtMV').textContent=m; bars($('#wtBars'),G.map(([n,g])=>[n,g,`${(m*g).toFixed(0)} kg-equivalent`,n==='Earth'?'t':g<1?'r':'a']),{labW:90,max:2.6}); };
+  sl.addEventListener('input',draw); draw();
+});
+
+finalQuiz([
+  {q:'What causes day and night?',o:['Earth orbiting the Sun','Earth rotating on its axis','The Moon blocking the Sun'],a:1,e:'One rotation takes about 24 hours.'},
+  {q:'What causes the seasons?',o:['Earth getting closer to or farther from the Sun','Earth\'s tilted axis','The Moon\'s gravity'],a:1,e:'Tilt changes the sunlight angle and day length.'},
+  {q:'In Ann Arbor, when is the Sun highest at noon?',o:['Around June 21','Around March 1','Around December 21'],a:0,e:'About 71° in June versus about 24° in December.'},
+  {q:'A full moon happens when...',o:['The Moon is between Earth and the Sun','Earth is between the Sun and Moon','Earth\'s shadow covers the Moon'],a:1,e:'The fully lit side faces us; shadow is not involved (except in an eclipse).'},
+  {q:'Why don\'t we see an eclipse every month?',o:['The Moon\'s orbit is tilted about 5°','The Sun moves away','The Moon is too small'],a:0,e:'Most months the shadows miss.'},
+  {q:'A planet far from the Sun takes ___ to orbit than one close in.',o:['longer','the same time','less time'],a:0,e:'Farther planets travel slower and have a longer path.'}
+]);
+})();
+</script>

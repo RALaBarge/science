@@ -1,0 +1,949 @@
+<title>How Science Works</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout concept: one long lesson column. Each concept opens with a one-sentence big idea, then a grid of labelled visual aids
+   (Analogy, Diagram, Try it, Data, Real world) that collapses to one column on phones.
+   Color roles are fixed for the whole page: amber = incoming light, blue = reflected, teal = transmitted, orange = absorbed. */
+:root{
+  --bg:#F2F5FA; --surface:#FFFFFF; --surface-2:#E8EDF6; --ink:#12172B; --muted:#47506E; --line:#D0D8E8;
+  --beam:#F2A900; --beam-ink:#1A1400; --reflect:#2B66E8; --absorb:#D6450B; --transmit:#0B7F70; --on-color:#FFFFFF;
+  --red:#D93036; --green:#25904F; --blue:#3558D6; --shade:#222A4A;
+  --font-display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --font-body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+  --font-mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C1022; --surface:#151A33; --surface-2:#1D2444; --ink:#EDF0FB; --muted:#A8B1CE; --line:#2B3459;
+    --beam:#FFC93C; --beam-ink:#1A1400; --reflect:#7BA2FF; --absorb:#FF8F5C; --transmit:#46D6C0; --on-color:#0B1020;
+    --red:#FF6A70; --green:#4FCB85; --blue:#7C97FF; --shade:#02040B; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C1022; --surface:#151A33; --surface-2:#1D2444; --ink:#EDF0FB; --muted:#A8B1CE; --line:#2B3459;
+  --beam:#FFC93C; --beam-ink:#1A1400; --reflect:#7BA2FF; --absorb:#FF8F5C; --transmit:#46D6C0; --on-color:#0B1020;
+  --red:#FF6A70; --green:#4FCB85; --blue:#7C97FF; --shade:#02040B; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--font-body); font-size:17px; line-height:1.55;
+  padding-block:0 72px;
+  padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+main,.hero{max-width:920px;margin:0 auto}
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance;margin:0;line-height:1.1}
+p{margin:0}
+a{color:inherit}
+svg{display:block;width:100%;height:auto}
+svg text{font-family:var(--font-body);fill:var(--ink)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--reflect);outline-offset:2px}
+
+/* hero */
+.hero{padding-block:28px 8px;display:grid;gap:18px}
+.kicker{font-family:var(--font-mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
+.lede{font-size:clamp(1.1rem,3.4vw,1.35rem);max-width:34em;text-wrap:pretty}
+.hero-art{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:10px 12px}
+.howto{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:.92rem;color:var(--muted)}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);margin-top:18px;border-bottom:1px solid var(--line);
+  margin-inline:auto;max-width:920px}
+.nav ul{list-style:none;margin:0;padding:8px 0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin}
+.nav a{display:block;white-space:nowrap;text-decoration:none;font-size:.9rem;padding:7px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface)}
+.nav a:hover{border-color:var(--ink)}
+
+/* sections */
+.sec{padding-block:52px 6px;scroll-margin-top:68px;display:grid;gap:20px}
+.sec h2{font-size:clamp(1.9rem,6vw,2.7rem);font-weight:800;letter-spacing:-.02em}
+.idea{font-family:var(--font-display);font-size:clamp(1.25rem,4.4vw,1.75rem);line-height:1.25;font-weight:700;text-wrap:balance;max-width:28em}
+.idea mark{background:linear-gradient(transparent 58%,color-mix(in srgb,var(--beam) 50%,transparent) 58%);color:inherit}
+.aids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.aid{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.aid.wide{grid-column:1/-1}
+.aid h3{font-size:1.2rem;font-weight:700}
+.aid p.cap{font-size:.95rem;color:var(--muted)}
+.aid p.cap b{color:var(--ink)}
+.tag{align-self:flex-start;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;padding:3px 9px;border-radius:999px;
+  background:color-mix(in srgb,var(--tint) 24%,var(--surface));border:1px solid color-mix(in srgb,var(--tint) 55%,var(--line))}
+.tag.analogy{--tint:var(--beam)} .tag.diagram{--tint:var(--reflect)} .tag.try{--tint:var(--transmit)} .tag.data{--tint:var(--absorb)} .tag.real{--tint:var(--muted)}
+.stage{background:var(--surface-2);border-radius:10px;padding:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:.92rem;padding:7px 13px;min-height:40px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.ctl{display:grid;gap:6px}
+.ctl label{font-size:.92rem;font-weight:700}
+input[type=range]{width:100%;accent-color:var(--beam);height:32px}
+.readout{font-size:1rem}
+.readout b{font-family:var(--font-mono);font-weight:500}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{display:inline-flex;gap:6px;align-items:baseline;padding:5px 11px;border-radius:999px;font-family:var(--font-mono);font-size:.84rem;font-weight:500;background:var(--c);color:var(--on-color)}
+.pill.r{--c:var(--reflect)} .pill.a{--c:var(--absorb)} .pill.t{--c:var(--transmit)}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.trio>div{display:grid;gap:6px;align-content:start;min-width:0}
+.trio h4{margin:0;font-family:var(--font-display);font-size:1.05rem}
+.trio p{font-size:.93rem;color:var(--muted)}
+.trio svg{background:var(--surface-2);border-radius:10px}
+.swatch-r{color:var(--reflect);font-weight:700}.swatch-t{color:var(--transmit);font-weight:700}.swatch-a{color:var(--absorb);font-weight:700}
+
+/* stacked bars */
+.bars{display:grid;gap:9px}
+.brow{display:grid;grid-template-columns:104px minmax(0,1fr);gap:10px;align-items:center;font-size:.9rem}
+.brow.on .lab{font-weight:700}
+.stack{display:flex;height:28px;border-radius:7px;overflow:hidden;background:var(--surface-2);outline:2px solid transparent;outline-offset:2px}
+.brow.on .stack{outline-color:var(--ink)}
+.seg{display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:.72rem;color:var(--on-color);min-width:0;overflow:hidden}
+.seg.r{background:var(--reflect)}.seg.t{background:var(--transmit)}.seg.a{background:var(--absorb)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.88rem}
+.legend span::before{content:"";display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--c)}
+.legend .r{--c:var(--reflect)}.legend .t{--c:var(--transmit)}.legend .a{--c:var(--absorb)}
+
+/* sort game, quiz */
+.items{display:grid;gap:10px}
+.item{display:grid;gap:6px;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.item .nm{font-weight:700}
+.item .opts{display:flex;flex-wrap:wrap;gap:6px}
+.opt{font-size:.85rem;padding:6px 10px;border-radius:8px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;min-height:36px;text-align:left}
+.opt:hover:not([disabled]){border-color:var(--ink)}
+.opt.good{background:var(--transmit);color:var(--on-color);border-color:var(--transmit)}
+.opt.bad{background:var(--absorb);color:var(--on-color);border-color:var(--absorb)}
+.fb{font-size:.88rem;color:var(--muted)}
+.score{font-family:var(--font-mono);font-size:.9rem}
+.q{display:grid;gap:10px;padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.q h4{margin:0;font-size:1.05rem;font-family:var(--font-body);font-weight:700}
+.q .opts{display:grid;gap:8px}
+
+/* tables */
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:.92rem;min-width:420px}
+.tbl th,.tbl td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+.tbl th{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+/* see-through demo */
+.seebox{position:relative;border-radius:10px;overflow:hidden;background:var(--surface-2);padding:22px 16px;min-height:130px;display:grid;place-items:center}
+.seetext{font-family:var(--font-display);font-weight:800;font-size:clamp(1.2rem,5vw,1.7rem);text-align:center;letter-spacing:.02em;transition:filter .2s,opacity .2s}
+.seesheets{position:absolute;inset:0;pointer-events:none;background:var(--surface);transition:opacity .2s}
+.meter{height:12px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--transmit);transition:width .2s}
+
+/* canvas */
+canvas{width:100%;aspect-ratio:640/260;display:block;border-radius:10px;background:var(--surface-2)}
+.tally{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;font-size:.85rem}
+.tally div{padding:8px;border-radius:8px;background:var(--bg);border:1px solid var(--line)}
+.tally b{display:block;font-family:var(--font-mono);font-weight:500;font-size:1.05rem}
+
+/* color mixer + channel columns */
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.colx{display:grid;gap:6px;justify-items:center;font-size:.85rem;text-align:center}
+.tube{position:relative;width:100%;max-width:90px;height:150px;border:2px solid var(--line);border-radius:8px;display:flex;flex-direction:column-reverse;overflow:hidden;background:var(--bg)}
+.tube.empty{border-style:dashed}
+.tube .rf{background:var(--cc)}
+.tube .ab{background:repeating-linear-gradient(45deg,var(--surface-2) 0 6px,var(--line) 6px 9px)}
+.colx .nm{font-weight:700}
+.colx.r{--cc:var(--red)}.colx.g{--cc:var(--green)}.colx.b{--cc:var(--blue)}
+
+/* waffle */
+.waffle{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:3px;max-width:300px;width:100%}
+.cell{aspect-ratio:1;border-radius:3px}
+.cell.r{background:var(--reflect)}.cell.t{background:var(--transmit)}.cell.a{background:var(--absorb)}
+
+/* ice race */
+.race{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pad{position:relative;height:170px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden}
+.pad.w{background:#F4F4F1}.pad.b{background:#14161C}
+.pad .lbl{position:absolute;left:8px;top:6px;font-size:.78rem;font-family:var(--font-mono)}
+.pad.w .lbl{color:#333}.pad.b .lbl{color:#ddd}
+.puddle{position:absolute;width:110px;height:46px;border-radius:50%;background:#7CC4F2;opacity:.65;transform:scale(0);bottom:22px}
+.ice{position:relative;width:76px;height:76px;border-radius:12px;background:linear-gradient(135deg,#E4F6FF,#9ED7F5);border:2px solid #fff;transform-origin:50% 100%;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.sunbar{height:10px;border-radius:99px;background:linear-gradient(90deg,var(--beam),color-mix(in srgb,var(--beam) 30%,transparent));opacity:.25;transition:opacity .3s}
+.sunbar.on{opacity:1}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap}
+.btn{font-size:.95rem;font-weight:700;padding:9px 16px;min-height:42px;border-radius:10px;border:0;background:var(--beam);color:var(--beam-ink);cursor:pointer}
+.btn.ghost{background:var(--surface);color:var(--ink);border:1.5px solid var(--line)}
+.btn:hover{filter:brightness(1.06)}
+
+/* misc */
+.glossary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px;margin:0}
+.glossary div{padding:10px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--line)}
+.glossary dt{font-weight:700}
+.glossary dd{margin:2px 0 0;font-size:.93rem;color:var(--muted)}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+details+details{margin-top:10px}
+summary{cursor:pointer;font-weight:700}
+details .in{display:grid;gap:10px;padding-top:10px;font-size:.95rem}
+details ul{margin:0;padding-left:1.2em;display:grid;gap:4px}
+footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;border-top:1px solid var(--line);padding-top:16px}
+.flow{stroke-dasharray:10 8;animation:flow 1s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-18}}
+@media (prefers-reduced-motion: reduce){.flow{animation:none}html{scroll-behavior:auto}.seetext,.seesheets,.meter i{transition:none}}
+@media (max-width:760px){
+  .aids{grid-template-columns:minmax(0,1fr)}
+  .trio{grid-template-columns:minmax(0,1fr)}
+  .glossary{grid-template-columns:minmax(0,1fr)}
+  .tally{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:420px){.brow{grid-template-columns:84px minmax(0,1fr)}.race{grid-template-columns:minmax(0,1fr)}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="mBeam" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--beam)"/></marker>
+    <marker id="mReflect" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--reflect)"/></marker>
+    <marker id="mTransmit" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--transmit)"/></marker>
+    <marker id="mAbsorb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--absorb)"/></marker>
+    <marker id="mInk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--ink)"/></marker>
+    <marker id="mRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#D93036"/></marker>
+  </defs>
+</svg>
+
+<style>.bridge{margin:14px 0 0;padding:12px 14px;border-left:4px solid var(--beam);background:var(--surface-2);border-radius:0 10px 10px 0;font-size:.95rem;line-height:1.5}.related ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}.related li{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}.related a{font-weight:700}.related .why{display:block;color:var(--muted);font-size:.9rem}</style>
+<style>
+.step{display:grid;gap:4px}
+.tl{display:flex;flex-wrap:wrap;gap:6px}
+.card2{padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg)}
+.cer{display:grid;gap:8px}
+.cer>div{padding:10px 12px;border-radius:10px;border-left:5px solid var(--reflect);background:var(--surface-2)}
+.cer>div:nth-child(2){border-color:var(--beam)}.cer>div:nth-child(3){border-color:var(--transmit)}
+.cer b{display:block;font-family:var(--font-mono);font-size:.74rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.sel{display:grid;gap:4px;font-size:.9rem}
+.sel select{padding:8px;border-radius:8px;border:2px solid var(--line);background:var(--surface);color:var(--ink);font:inherit}
+.sentence{padding:12px 14px;border-radius:12px;background:color-mix(in srgb,var(--beam) 25%,var(--surface));border:2px solid var(--ink);font-weight:700;line-height:1.5}
+.ck{display:grid;gap:4px;font-size:.9rem}
+.ck span::before{content:"✓ ";color:var(--transmit);font-weight:700}
+</style>
+
+<header class="hero">
+  <p class="kicker">Start here · Unit 0</p>
+  <h1>How Science Works</h1>
+  <p class="lede">Science is not a pile of facts to memorize. It is a way of finding things out that people have been improving for thousands of years: ask a question, make a prediction, test it fairly, and let the evidence decide. Every other unit uses these steps, so learn them first.</p>
+  <p class="bridge"><b>Start here.</b> Before any content unit, this page explains where science came from and how scientists work: asking a question, making a testable hypothesis, running a fair test, and writing a claim with evidence and reasoning. Every later unit has a <i>Method link</i> in its tutor notes that points back to this page, so come back to it whenever a student asks "how do we know that?"</p>
+  <div class="hero-art">
+    <svg viewBox="0 0 640 190" role="img" aria-label="A cycle of seven steps: question, research, hypothesis, experiment, analyze, conclude, share.">
+      <circle cx="320" cy="95" r="70" style="fill:none;stroke:var(--line);stroke-width:3"/>
+      <g id="heroDots"></g>
+      <text x="320" y="92" font-size="15" text-anchor="middle" style="font-weight:700">Test it.</text><text x="320" y="112" font-size="15" text-anchor="middle" style="font-weight:700">Repeat it.</text>
+    </svg>
+  </div>
+  <p class="howto">Look for the tags <span class="tag analogy">Analogy</span><span class="tag diagram">Diagram</span><span class="tag try">Try it</span><span class="tag data">Data</span><span class="tag real">Real world</span></p>
+</header>
+
+<nav class="nav" aria-label="Lesson sections"><ul>
+  <li><a href="#s1">1 Origins</a></li><li><a href="#s2">2 The method</a></li><li><a href="#s3">3 Hypotheses</a></li><li><a href="#s4">4 Fair tests</a></li><li><a href="#s5">5 Data to claim</a></li><li><a href="#s6">6 Check yourself</a></li>
+  <li><a href="#game">7 Game</a></li>
+  </ul></nav>
+
+<main>
+
+<section class="sec" id="s1">
+  <div><p class="kicker">Concept 1 · Where science came from</p><h2>People have always asked "why?"</h2></div>
+  <p class="idea">Science grew out of a simple habit: <mark>look carefully, explain with natural causes, and check the explanation against the world</mark>. No single person or culture invented it. Egypt, Babylon, Greece, China, India, the Islamic world, the Maya, and many others each added tools and ideas.</p>
+  <div class="aids">
+    <article class="aid wide">
+      <span class="tag diagram">Diagram</span>
+      <h3>A timeline of discovering how to discover</h3>
+      <div class="stage"><svg id="tlSvg" viewBox="0 0 640 120" role="img" aria-label="Timeline from 1600 BCE to today with clickable dots."></svg></div>
+      <div class="tl" id="tlChips" role="group" aria-label="Event"></div>
+      <div class="card2" id="tlCard" aria-live="polite"></div>
+    </article>
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>Gossip vs. detective</h3>
+      <div class="trio" style="grid-template-columns:1fr 1fr">
+        <div><h4>Gossip</h4><p>"I heard the cafeteria is serving pizza!" It is exciting, so it spreads. Nobody checks the menu, and being wrong does not slow it down.</p></div>
+        <div><h4>A detective</h4><p>Walks to the cafeteria. Reads the menu. Asks the lunch staff. If the sign says tacos, the pizza story is dropped, no matter how many people repeated it.</p></div>
+      </div>
+      <p class="cap">Science is that second move. <b>A claim is kept only if it survives a check against the world</b>, not because it is popular or exciting.</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Measure the Earth with a stick</h3>
+      <div class="stage"><svg id="erSvg" viewBox="0 0 480 260" role="img" aria-label="Two sticks on a circle: one in Syene with no shadow, one in Alexandria casting a shadow at a measured angle."></svg></div>
+      <div class="ctl"><label for="erAng">Shadow angle in Alexandria: <span id="erAngV"></span>°</label><input id="erAng" type="range" min="3" max="14" step="0.2" value="7.2"></div>
+      <p class="readout" id="erR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>When evidence beat tradition: handwashing, 1847</h3>
+      <div class="bars" id="semBars"></div>
+      <p class="cap">Dr. Ignaz Semmelweis noticed far more mothers died in the Vienna hospital ward staffed by doctors than in the ward staffed by midwives. He guessed doctors were carrying "cadaverous particles" from autopsies on their hands, made them wash with chlorine, and deaths fell sharply. The germ theory that explained why came later (Pasteur, Lister). Approximate figures. Evidence can be right before the explanation is complete.</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s2">
+  <div><p class="kicker">Concept 2 · The scientific method</p><h2>A loop, not a ladder</h2></div>
+  <p class="idea">The <mark>scientific method</mark> is the set of steps scientists use to answer questions with evidence: <mark>question, research, hypothesis, experiment, analyze, conclude, share</mark>. Real scientists loop back and forth, because a conclusion usually raises a new question.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>Perfecting a recipe</h3>
+      <div class="stage"><svg viewBox="0 0 480 190" role="img" aria-label="A cook tastes soup, guesses it needs salt, adds salt, tastes again, and repeats.">
+        <g font-size="12" text-anchor="middle" style="font-weight:700">
+          <rect x="10" y="60" width="100" height="50" rx="12" style="fill:var(--reflect);fill-opacity:.25;stroke:var(--reflect);stroke-width:3"/><text x="60" y="82">Taste it</text><text x="60" y="98" style="font-weight:400" font-size="11">observe</text>
+          <rect x="130" y="60" width="100" height="50" rx="12" style="fill:var(--beam);fill-opacity:.3;stroke:var(--beam);stroke-width:3"/><text x="180" y="82">"Needs salt"</text><text x="180" y="98" style="font-weight:400" font-size="11">hypothesis</text>
+          <rect x="250" y="60" width="100" height="50" rx="12" style="fill:var(--absorb);fill-opacity:.25;stroke:var(--absorb);stroke-width:3"/><text x="300" y="82">Add 1 pinch</text><text x="300" y="98" style="font-weight:400" font-size="11">experiment</text>
+          <rect x="370" y="60" width="100" height="50" rx="12" style="fill:var(--transmit);fill-opacity:.25;stroke:var(--transmit);stroke-width:3"/><text x="420" y="82">Taste again</text><text x="420" y="98" style="font-weight:400" font-size="11">analyze</text>
+        </g>
+        <path d="M112 85 H128 M232 85 H248 M352 85 H368" style="stroke:var(--ink);stroke-width:3" marker-end="url(#mInk)"/>
+        <path d="M420 112 C420 170 60 170 60 114" style="fill:none;stroke:var(--ink);stroke-width:3;stroke-dasharray:6 5" marker-end="url(#mInk)"/>
+        <text x="240" y="180" font-size="12" text-anchor="middle">still not right? Loop back</text>
+      </svg></div>
+      <p>Tasting the soup is <b>collecting data</b>. "It needs salt" is a <b>hypothesis</b>. One pinch is <b>changing one variable</b>. Tasting again is <b>analyzing</b>; if the soup is still bland, the loop repeats.</p>
+      <p class="cap"><b>Where it breaks:</b> the cook can taste the soup directly. Scientists often measure something they cannot see, so they need instruments and careful records.</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Walk through one investigation</h3>
+      <p class="tip">Question: <b>Does the amount of light change how tall bean plants grow?</b></p>
+      <div class="stage"><svg id="mSvg" viewBox="0 0 480 260" role="img" aria-label="The seven steps arranged in a circle with the current step highlighted."></svg></div>
+      <div class="btnrow"><button class="btn ghost" type="button" id="mPrev">Back</button><button class="btn" type="button" id="mNext">Next step</button></div>
+      <div class="card2" id="mCard" aria-live="polite"></div>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>Seven steps at a glance</h3>
+      <div class="tw"><table class="tbl">
+        <thead><tr><th>#</th><th>Step</th><th>What you do</th><th>A question to ask yourself</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><b>Question</b></td><td>Notice something and ask a specific question.</td><td>Can I measure the answer?</td></tr>
+          <tr><td>2</td><td><b>Research</b></td><td>Find out what is already known.</td><td>Has someone already tested this?</td></tr>
+          <tr><td>3</td><td><b>Hypothesis</b></td><td>Write a testable prediction with a reason.</td><td>What would prove me wrong?</td></tr>
+          <tr><td>4</td><td><b>Experiment</b></td><td>Test one variable while controlling the others.</td><td>Is the test fair?</td></tr>
+          <tr><td>5</td><td><b>Analyze</b></td><td>Organize data in tables and graphs.</td><td>What pattern do I see?</td></tr>
+          <tr><td>6</td><td><b>Conclude</b></td><td>Decide if the evidence supports the hypothesis.</td><td>What is my evidence?</td></tr>
+          <tr><td>7</td><td><b>Share and repeat</b></td><td>Report results; others try to repeat them.</td><td>What new question did I find?</td></tr>
+        </tbody></table></div>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>Science also begins by accident</h3>
+      <p>In 1928, Alexander Fleming returned from vacation to find a mold (<i>Penicillium</i>) had landed on one of his bacteria dishes, and the bacteria around it had died. He observed, asked "why?", and tested the mold. It became the first antibiotic, penicillin, which has saved hundreds of millions of lives. His luck only mattered because he was <b>paying attention and asked a question</b>.</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s3">
+  <div><p class="kicker">Concept 3 · Questions and hypotheses</p><h2>Make a prediction you can test</h2></div>
+  <p class="idea">A <mark>hypothesis</mark> is a testable explanation or prediction. A strong one follows the pattern <mark>"If [we change this], then [this will happen], because [reason]."</mark> It must be possible to measure, and possible to prove wrong.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>A forecast you can check</h3>
+      <div class="tw"><table class="tbl" style="min-width:380px">
+        <thead><tr><th>Weak prediction</th><th>Strong prediction</th></tr></thead>
+        <tbody>
+          <tr><td>"The weather will be interesting."</td><td>"If the front arrives tonight, then tomorrow's high will be below 10 °C, because cold air follows the front."</td></tr>
+          <tr><td>Can never be wrong</td><td>Can be checked with a thermometer</td></tr>
+        </tbody></table></div>
+      <p class="cap">A prediction that cannot fail tells you nothing. <b>A hypothesis is a forecast with a test attached:</b> it says what will happen and what evidence would prove it wrong.</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Build a hypothesis</h3>
+      <div class="chips" id="hyChips" role="group" aria-label="Scenario"></div>
+      <div class="sel"><label for="hyDir">If we…</label><select id="hyDir"></select></div>
+      <div class="sentence" id="hySent" aria-live="polite"></div>
+      <div class="ck" id="hyCk"></div>
+    </article>
+    <article class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>Is it testable?</h3>
+      <div class="items" id="testSort"></div>
+      <p class="score" id="testS">0 of 6 correct</p>
+      <p class="cap">Science can answer questions about the natural world that can be measured. Opinions (best flavor), values (what is fair), and things nobody can observe are outside what an experiment can settle.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>Hypothesis, theory, law: what's the difference?</h3>
+      <div class="tw"><table class="tbl">
+        <thead><tr><th>Word</th><th>Meaning in science</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td><b>Hypothesis</b></td><td>A testable prediction, not yet confirmed.</td><td>"Plants in more light will grow taller."</td></tr>
+          <tr><td><b>Law</b></td><td>A description of a pattern that always holds.</td><td>Newton's law of gravity describes <i>what</i> happens.</td></tr>
+          <tr><td><b>Theory</b></td><td>A well-tested explanation backed by lots of evidence. It is <i>not</i> "just a guess".</td><td>Plate tectonics, germ theory, evolution.</td></tr>
+        </tbody></table></div>
+      <p class="cap">A hypothesis does not "graduate" into a theory. A theory explains <i>why</i>; a law describes <i>what</i>.</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s4">
+  <div><p class="kicker">Concept 4 · Fair testing</p><h2>Change one thing at a time</h2></div>
+  <p class="idea">In a fair test you change only the <mark>independent variable</mark>, measure the <mark>dependent variable</mark>, and keep everything else the same (<mark>controlled variables</mark>). Then repeat enough times to trust the result.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>Cookie test</h3>
+      <div class="stage"><svg viewBox="0 0 480 190" role="img" aria-label="Two batches of cookies: the only difference is the amount of sugar. Same oven, same time, same flour.">
+        <g style="fill:var(--surface);stroke:var(--ink);stroke-width:2.5"><rect x="30" y="30" width="190" height="100" rx="12"/><rect x="260" y="30" width="190" height="100" rx="12"/></g>
+        <g style="fill:#C98B4A;stroke:var(--ink);stroke-width:2"><circle cx="75" cy="85" r="16"/><circle cx="125" cy="85" r="16"/><circle cx="175" cy="85" r="16"/><circle cx="305" cy="85" r="22"/><circle cx="365" cy="85" r="22"/><circle cx="420" cy="85" r="22" style="opacity:0"/></g>
+        <g font-size="12" text-anchor="middle" style="font-weight:700"><text x="125" y="52">Batch A: 1 cup sugar</text><text x="355" y="52">Batch B: 2 cups sugar</text><text x="240" y="160">Same flour · same oven · same 10 minutes</text></g>
+        <text x="240" y="176" font-size="11" text-anchor="middle">Only sugar changed, so sugar explains any difference.</text>
+      </svg></div>
+      <p>Sugar is the only difference between the batches, so it is the only thing that can explain a difference in taste. <b>One change at a time is what makes a test fair.</b></p>
+      <p class="cap"><b>Where it breaks:</b> a real oven has hot spots. A careful baker would run several batches and compare averages, not judge from one cookie.</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Fair vs. unfair test</h3>
+      <div class="chips" id="fairChips" role="group" aria-label="Design"><button class="chip" type="button" data-f="1" aria-pressed="true">Change only light</button><button class="chip" type="button" data-f="0" aria-pressed="false">Change light, water, and pot</button></div>
+      <div class="tw"><table class="tbl" id="fairTbl" style="min-width:380px"></table></div>
+      <div class="stage"><svg id="fairSvg" viewBox="0 0 480 170" role="img" aria-label="Final heights of plants in group A and B."></svg></div>
+      <p class="readout" id="fairR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>Why we repeat: the average settles down</h3>
+      <div class="stage"><svg id="trSvg" viewBox="0 0 640 260" role="img" aria-label="Individual trial results scatter around the true value; the running average moves toward it."></svg></div>
+      <div class="btnrow"><button class="btn" type="button" id="trOne">Run 1 trial</button><button class="btn ghost" type="button" id="trTen">Run 10 trials</button><button class="btn ghost" type="button" id="trReset">Reset</button></div>
+      <p class="readout" id="trR" aria-live="polite"></p>
+      <p class="cap">Teaching simulation. Each trial of a plant's growth has natural variation (the true average is 20 cm). One trial can mislead; the average of many is far more reliable.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>Clinical trials</h3>
+      <p>New medicines are tested on thousands of people split randomly into two groups. One gets the medicine, the <b>control group</b> gets a look-alike without it. Neither the patients nor often the doctors know who gets which, a "double-blind" design, so expectations can't bias the result. The variable changed: the medicine. Everything else is balanced by chance and large numbers.</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s5">
+  <div><p class="kicker">Concept 5 · From data to claim</p><h2>Measure, graph, conclude</h2></div>
+  <p class="idea">Scientists measure in <mark>metric units (SI)</mark>, show data in the <mark>right kind of graph</mark>, and explain conclusions with <mark>claim, evidence, reasoning</mark>. Two things happening together (correlation) do not prove one causes the other.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag data">Data</span>
+      <h3>Metric lengths from ant to bridge</h3>
+      <div class="bars" id="lenBars"></div>
+      <p class="cap">Log scale: each step is ×10 or more. Prefixes: milli (1/1000), centi (1/100), kilo (1000×).</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Pick the right graph</h3>
+      <div class="items" id="gSort"></div>
+      <p class="score" id="gS">0 of 6 correct</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag analogy">Analogy</span>
+      <h3>Claim, Evidence, Reasoning (CER)</h3>
+      <div class="cer">
+        <div><b>Claim</b>Bean plants given more light grew taller.</div>
+        <div><b>Evidence</b>After 14 days the 12-hour group averaged 18 cm and the 4-hour group averaged 9 cm, across 10 plants each.</div>
+        <div><b>Reasoning</b>Plants use light energy to make food (photosynthesis), so more light gives more food for growth. Everything else was kept the same.</div>
+      </div>
+      <p class="cap">Like a lawyer in court: do not just say what you think. <b>Show the evidence, then explain why that evidence supports the claim.</b> A claim with no evidence is just an opinion.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>Correlation is not causation</h3>
+      <div class="stage"><svg id="coSvg" viewBox="0 0 640 260" role="img" aria-label="Monthly ice cream sales and swimming accidents rise and fall together; temperature explains both."></svg></div>
+      <div class="chips" id="coChips" role="group" aria-label="View"><button class="chip" type="button" data-v="2" aria-pressed="true">Ice cream and swimming accidents</button><button class="chip" type="button" data-v="3" aria-pressed="false">Add temperature</button></div>
+      <p class="readout" id="coR" aria-live="polite"></p>
+      <p class="cap">Illustrative, with each line scaled 0–100 over the year. Ice cream does not cause accidents. A hidden third factor (summer heat) drives both.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>Lab safety, quick rules</h3>
+      <div class="tw"><table class="tbl">
+        <thead><tr><th>Rule</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td><b>Goggles on when heating, mixing, or launching</b></td><td>Eyes cannot be replaced.</td></tr>
+          <tr><td><b>Tie back hair, no loose sleeves near flames</b></td><td>They can catch fire or knock things over.</td></tr>
+          <tr><td><b>Never taste or sniff unknown substances</b></td><td>Some are poisonous or irritating.</td></tr>
+          <tr><td><b>Tell an adult about any spill or break</b></td><td>Glass and chemicals need proper cleanup.</td></tr>
+          <tr><td><b>Wash hands afterward</b></td><td>Removes anything you touched.</td></tr>
+        </tbody></table></div>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s6">
+  <div><p class="kicker">Check yourself</p><h2>Can you explain it?</h2></div>
+  <p class="idea">A classmate says: "My plants grew taller with fertilizer, so fertilizer works!" But they used a bigger pot and a sunnier window for the fertilizer plants. What is wrong with the test, and how would you fix it?</p>
+  <details><summary>Show a model answer</summary><div class="in">
+    <p>The test is unfair because fertilizer wasn't the only thing that changed: the pot size and the amount of light also differed, so any of them could explain the taller plants. To fix it, keep pot, soil, water, light, and starting size identical in both groups, change only the fertilizer, include a control group with none, and grow several plants per group so the average is trustworthy.</p></div></details>
+  <div class="items" id="quiz"></div>
+  <p class="score" id="quizScore">0 of 6 correct</p>
+  <h3 style="margin-top:8px">Words to know</h3>
+  <dl class="glossary">
+    <div><dt>observation</dt><dd>Information gathered with your senses or instruments.</dd></div>
+    <div><dt>hypothesis</dt><dd>A testable prediction with a reason.</dd></div>
+    <div><dt>independent variable</dt><dd>The one thing you change on purpose.</dd></div>
+    <div><dt>dependent variable</dt><dd>What you measure to see the effect.</dd></div>
+    <div><dt>controlled variable</dt><dd>A factor you keep the same in every group.</dd></div>
+    <div><dt>control group</dt><dd>The comparison group that doesn't get the change.</dd></div>
+    <div><dt>data</dt><dd>Measurements and observations collected in a test.</dd></div>
+    <div><dt>conclusion</dt><dd>What the evidence shows about the hypothesis.</dd></div>
+    <div><dt>theory</dt><dd>A well-tested explanation backed by a lot of evidence.</dd></div>
+    <div><dt>replication</dt><dd>Repeating a test to see if you get the same result.</dd></div>
+  </dl>
+  <details><summary>Tutor notes: hands-on kit, misconceptions, pacing</summary><div class="in">
+    <p><b>Kit (about $8):</b> bean seeds, 6 clear cups, potting soil, a metric ruler, a stopwatch, paper clips and string, a small ramp (book + cardboard) and a toy car, graph paper.</p>
+    <ul>
+      <li><b>Concept 1:</b> do the shadow-stick measurement outside at noon (the Earth-size demo works with any two cities and the same angle idea). Discuss why a claim like "the Earth is flat" can be tested.</li>
+      <li><b>Concept 2:</b> start the bean-light investigation on day one so there is real data to analyze in Concept 5.</li>
+      <li><b>Concept 3:</b> rewrite 5 weak hypotheses into "If…then…because" form.</li>
+      <li><b>Concept 4:</b> ramp and car: change only ramp height, measure distance rolled, run 5 trials per height.</li>
+      <li><b>Concept 5:</b> graph the ramp data; write a CER paragraph.</li>
+    </ul>
+    <p><b>Common misconceptions:</b></p>
+    <ul>
+      <li>"There is one scientific method with fixed steps." Scientists loop, skip, and repeat; the steps describe common practice.</li>
+      <li>"A hypothesis is an educated guess you must prove right." A hypothesis can be wrong, and learning that is a result.</li>
+      <li>"A theory is just a guess." In science it is a strongly supported explanation.</li>
+      <li>"Experiments are the only kind of science." Observation, modeling, and comparison (e.g. astronomy, geology) are also science.</li>
+    </ul>
+    <p><b>Pacing:</b> about five 30-minute sessions, with the bean experiment running alongside them. <b>Refer back:</b> in later units, ask students which step of the method each Try it follows.</p></div></details>
+</section>
+
+<section class="sec lesson-game-sec" id="game"><div><p class="kicker">After the lesson · Game</p><h2>Play: Mystery Machine</h2></div><p class="idea">A plant-growing machine has five knobs, but only some of them matter. Run fair tests with a limited number of trials, then make a claim your data can back up.</p><div class="lesson-game" id="lesson-game"></div>
+<script>(function(){
+/* Mounts one game into a shadow root so the lesson page's CSS and the game's CSS never collide. */
+function __mountLessonGame(host, css, html, init){
+  if(!host || host.shadowRoot) return;
+  const root = host.attachShadow({mode:"open"});
+  root.innerHTML = "<style>"+css+"</style>"+html;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let visible = true;
+  try{ new IntersectionObserver(es=>{ visible = es[es.length-1].isIntersecting; }).observe(host); }catch(e){}
+  const loops = [];
+  let last = performance.now();
+  function frame(t){
+    const dt = Math.min(0.05, (t-last)/1000); last = t;
+    if(visible && !document.hidden) for(const f of loops){ try{ f(t, dt); }catch(e){ console.error(e); } }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+  const env = {
+    root, reduce,
+    $: id => root.getElementById(id),
+    $$: sel => [...root.querySelectorAll(sel)],
+    loop: f => loops.push(f),
+    esc: s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])),
+    // A canvas drawn in fixed logical units (W x H) that scales to its container.
+    stage(canvas, W, H){
+      const ctx = canvas.getContext("2d");
+      const st = {ctx, W, H, dpr:1};
+      function fit(){
+        st.dpr = Math.min(2.5, window.devicePixelRatio || 1);
+        const cw = canvas.clientWidth || W;
+        const scale = cw / W;
+        canvas.width = Math.round(W*scale*st.dpr); canvas.height = Math.round(H*scale*st.dpr);
+        st.k = scale*st.dpr;
+        ctx.setTransform(st.k,0,0,st.k,0,0);
+        if(st.onfit) st.onfit();
+      }
+      canvas.style.aspectRatio = W+"/"+H;
+      st.begin = () => ctx.setTransform(st.k,0,0,st.k,0,0);
+      st.pt = ev => { const r = canvas.getBoundingClientRect(); return {x:(ev.clientX-r.left)*W/r.width, y:(ev.clientY-r.top)*H/r.height}; };
+      try{ new ResizeObserver(fit).observe(canvas); }catch(e){ addEventListener("resize", fit); }
+      fit();
+      return st;
+    },
+    // Level buttons in the header.
+    levelBar(box, names, onPick){
+      const solved = new Set(); let cur = 0;
+      function render(){
+        box.innerHTML = '<span class="label">Level</span>';
+        names.forEach((n,i)=>{ const b = document.createElement("button"); b.type="button";
+          b.className = "lv"+(solved.has(i)?" done":""); b.textContent = i+1; b.title = n;
+          b.setAttribute("aria-label", "Level "+(i+1)+": "+n+(solved.has(i)?" (solved)":""));
+          if(i===cur) b.setAttribute("aria-current","true");
+          b.onclick = () => { cur = i; render(); onPick(i); }; box.appendChild(b); });
+      }
+      render();
+      return { set(i){ cur=i; render(); }, solve(i){ solved.add(i); render(); }, get cur(){ return cur; }, solved };
+    },
+    // Result card over a stage. buttons: [{label, primary, onClick}]
+    card(stageEl, o){
+      let ov = stageEl.querySelector(":scope > .over");
+      if(!ov){ ov = document.createElement("div"); ov.className = "over"; stageEl.appendChild(ov); }
+      ov.hidden = false;
+      ov.innerHTML = '<div class="card'+(o.fail?' fail':'')+'" role="dialog" aria-live="polite"><h4></h4>'+(o.why?'<span class="why"></span>':'')+'<p class="cb"></p><div class="btns"></div></div>';
+      ov.querySelector("h4").textContent = o.title;
+      if(o.why) ov.querySelector(".why").textContent = o.why;
+      ov.querySelector(".cb").textContent = o.body || "";
+      if(o.list && o.list.length){ const ul = document.createElement("ul"); ul.className = "clist";
+        o.list.forEach(t => { const li = document.createElement("li"); li.textContent = t; ul.appendChild(li); });
+        ov.querySelector(".cb").after(ul); }
+      const bb = ov.querySelector(".btns");
+      (o.buttons||[]).forEach((b,i)=>{ const e = document.createElement("button"); e.type="button"; e.className = "btn"+(b.primary?" primary":""); e.textContent = b.label;
+        e.onclick = () => { ov.hidden = true; b.onClick && b.onClick(); }; bb.appendChild(e); if(i===0) setTimeout(()=>e.focus({preventScroll:true}),30); });
+      if(getComputedStyle(ov).position === "static") setTimeout(()=>ov.scrollIntoView({block:"nearest", behavior: reduce?"auto":"smooth"}), 40);
+      return ov;
+    },
+    hideCard(stageEl){ const ov = stageEl.querySelector(":scope > .over"); if(ov) ov.hidden = true; }
+  };
+  try{ init(root, env); }catch(e){ console.error(e); root.innerHTML += '<p style="color:#fff;padding:12px">This game could not start.</p>'; }
+}
+
+__mountLessonGame(document.getElementById("lesson-game"), "/* Shared frame for every lesson game. Lives inside a shadow root, so nothing here touches the lesson page.\n   Deliberately one dark \"lab console\" look in both page themes; each game sets its own --acc accent. */\n:host{\n  display:block; color-scheme:dark;\n  --bg:#0B0F15; --panel:#141A23; --panel-2:#1B2330; --line:#2B3544; --ink:#E9EEF5; --muted:#93A0B2;\n  --good:#3FD3BB; --bad:#FF6B5E; --warn:#FFB547; --acc:#FFD84A; --acc-ink:#1A1400;\n  --reflect:#78A2FF; --heat:#FF7A2E;\n  --f-display:\"Bahnschrift\",\"DIN Alternate\",\"Roboto Condensed\",\"Arial Narrow\",system-ui,sans-serif;\n  --f-body:\"Roboto\",\"Segoe UI\",system-ui,-apple-system,sans-serif;\n  --f-mono:ui-monospace,\"Roboto Mono\",\"Cascadia Mono\",Menlo,Consolas,monospace;\n}\n*{box-sizing:border-box}\n[hidden]{display:none!important}\n.g{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;border-radius:16px;\n  border:1px solid var(--line);padding:16px;display:grid;gap:14px;text-align:left;box-shadow:0 10px 36px rgba(0,0,0,.35)}\n.g button{font:inherit;color:inherit}\n.g :focus-visible{outline:3px solid var(--acc);outline-offset:2px}\n.g h3,.g h4{margin:0;font-family:var(--f-display);letter-spacing:.02em;line-height:1.15}\n.g p{margin:0}\n.bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 18px}\n.brand{display:grid;gap:2px}\n.label{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}\n.gtitle{font-family:var(--f-display);font-weight:700;font-size:1.45rem;text-transform:uppercase;letter-spacing:.04em}\n.gtitle b{color:var(--acc);font-weight:700}\n.levels{display:flex;flex-wrap:wrap;gap:6px;align-items:center}\n.lv{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--line);background:var(--panel);font-family:var(--f-mono);font-size:.85rem;cursor:pointer;font-variant-numeric:tabular-nums;padding:0}\n.lv:hover{border-color:var(--muted)}\n.lv.done{border-color:var(--good);color:var(--good)}\n.lv[aria-current=\"true\"]{background:var(--acc);border-color:var(--acc);color:var(--acc-ink);font-weight:700}\n.goalrow{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 12px}\n.goalrow h4{font-size:1.25rem}\n.goalrow .goal{color:var(--muted)}\n.cols{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:14px;align-items:start}\n.cols>*{min-width:0}\n.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:10px;min-width:0}\n.panel>.label{margin-bottom:-2px}\n.stage{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px;min-width:0}\n.stage canvas{display:block;width:100%;max-width:100%;height:auto;border-radius:8px;touch-action:none}\n.btns{display:flex;flex-wrap:wrap;gap:8px}\n.btn{padding:8px 14px;min-height:40px;border-radius:10px;border:1.5px solid var(--line);background:var(--panel-2);cursor:pointer;font-weight:700;font-size:.92rem;line-height:1.2}\n.btn:hover:not([disabled]){border-color:var(--muted)}\n.btn[disabled]{opacity:.45;cursor:default}\n.btn.primary{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}\n.btn[aria-pressed=\"true\"]{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset}\n.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;font-size:.82rem;border:1px solid var(--line);background:var(--panel-2)}\n.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}\n.msg{font-size:.93rem;padding:9px 12px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line)}\n.msg.good{border-color:color-mix(in srgb,var(--good) 60%,var(--line));color:var(--ink)}\n.msg.bad{border-color:color-mix(in srgb,var(--bad) 60%,var(--line))}\n.msg.warn{border-color:color-mix(in srgb,var(--warn) 60%,var(--line))}\n.help{font-size:.86rem;color:var(--muted)}\n.meter{height:12px;border-radius:99px;background:var(--panel-2);overflow:hidden;border:1px solid var(--line)}\n.meter>i{display:block;height:100%;background:var(--acc);transition:width .15s}\n.ctl{display:grid;gap:4px}\n.ctl label{font-size:.9rem;font-weight:700;display:flex;justify-content:space-between;gap:8px}\n.ctl input[type=range]{width:100%;accent-color:var(--acc);height:30px;margin:0}\n.over{position:absolute;inset:6px;border-radius:8px;display:grid;place-items:center;padding:14px;background:color-mix(in srgb,var(--bg) 74%,transparent);backdrop-filter:blur(2px);z-index:5}\n.card{max-width:440px;display:grid;gap:10px;padding:18px;border-radius:14px;background:var(--panel-2);border:1px solid var(--acc);box-shadow:0 0 36px color-mix(in srgb,var(--acc) 22%,transparent)}\n.card h4{font-size:1.5rem;color:var(--acc)}\n.card.fail{border-color:var(--bad);box-shadow:0 0 36px color-mix(in srgb,var(--bad) 18%,transparent)}\n.card.fail h4{color:var(--bad)}\n.clist{margin:0;padding-left:1.15em;display:grid;gap:5px;font-size:.9rem}\n.over{align-items:start}\n.card{position:sticky;top:16px;margin-top:clamp(8px,8%,60px)}\n.why{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}\ntable.data{width:100%;border-collapse:collapse;font-size:.85rem}\ntable.data th,table.data td{padding:5px 7px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}\ntable.data th{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}\ntable.data td.num{text-align:right}\n.scroll{overflow-x:auto}\n@media (max-width:820px){.cols{grid-template-columns:minmax(0,1fr)}\n  .over{position:static;inset:auto;background:none;backdrop-filter:none;padding:8px 0 2px}\n  .card{max-width:none;position:static;margin-top:0}}\n@media (prefers-reduced-motion:reduce){.meter>i{transition:none}}\n\n:host{--acc:#FFD84A;--acc-ink:#1A1400}\n.left{display:grid;gap:14px;min-width:0}\n.aside{display:grid;gap:14px;min-width:0}\n.knobs{display:grid;gap:10px}\n.knob{display:grid;gap:5px}\n.knob .kn{font-weight:700;font-size:.92rem}\n.seg{display:flex;flex-wrap:wrap;gap:4px}\n.seg button{flex:1 1 0;min-width:0;padding:6px 8px;min-height:36px;border-radius:8px;border:1.5px solid var(--line);background:var(--panel-2);cursor:pointer;font-size:.84rem}\n.seg button:hover{border-color:var(--muted)}\n.seg button[aria-pressed=\"true\"]{background:var(--acc);border-color:var(--acc);color:var(--acc-ink);font-weight:700}\n.claim{display:grid;gap:6px}\n.claim label{display:flex;gap:8px;align-items:center;font-size:.92rem;cursor:pointer;padding:6px 8px;border-radius:8px;border:1px solid var(--line);background:var(--panel-2)}\n.claim input{width:18px;height:18px;accent-color:var(--acc)}\ntd.chg{font-size:.8rem;color:var(--muted)}\ntd.chg.fair{color:var(--good)}\ntd.chg.unfair{color:var(--warn)}\ntd.chg.same{color:var(--reflect)}\ntr.new td{background:color-mix(in srgb,var(--acc) 10%,transparent)}\n.report{display:grid;gap:6px;text-align:left;font-size:.9rem;margin:0;padding-left:1.1em}\n", "<div class=\"g\">\n  <div class=\"bar\">\n    <div class=\"goalrow\"><h4 id=\"caseName\">Case 1</h4><span class=\"goal\" id=\"caseGoal\"></span></div>\n    <nav class=\"levels\" id=\"levels\" aria-label=\"Cases\"></nav>\n  </div>\n  <div class=\"cols\">\n    <div class=\"left\">\n      <div class=\"stage\" id=\"stage\"><canvas id=\"cv\" aria-label=\"The plant growing machine. The plant's height after each trial is shown on the ruler.\"></canvas></div>\n      <div class=\"panel\">\n        <div class=\"bar\"><span class=\"label\">Your data</span><span class=\"chip\">Trials left: <b class=\"num\" id=\"left\">8</b></span></div>\n        <div class=\"scroll\"><table class=\"data\" id=\"tbl\"><thead><tr><th>#</th><th>Light</th><th>Water</th><th>Pot</th><th>Fertilizer</th><th>Music</th><th class=\"num\">Height</th><th>Compared with the trial before</th></tr></thead><tbody></tbody></table></div>\n        <p class=\"help\" id=\"empty\">No trials yet. Set the knobs and press Grow.</p>\n      </div>\n    </div>\n    <div class=\"aside\">\n      <div class=\"panel\">\n        <span class=\"label\">The knobs</span>\n        <div id=\"knobs\" class=\"knobs\"></div>\n        <div class=\"btns\"><button class=\"btn primary\" id=\"grow\" type=\"button\">Grow a plant (1 trial)</button></div>\n        <p class=\"msg\" id=\"msg\">One or two of these knobs really change how tall the plant grows. The rest do nothing. Find out which.</p>\n      </div>\n      <div class=\"panel\">\n        <span class=\"label\">Make your claim</span>\n        <p class=\"help\">Tick every knob you think changes the plant's height.</p>\n        <div id=\"claim\" class=\"claim\"></div>\n        <button class=\"btn\" id=\"submit\" type=\"button\">Check my claim</button>\n      </div>\n    </div>\n  </div>\n</div>\n", function(root, env){
+const KNOBS = [
+  {id:"light", name:"Light", opts:["Dim","Medium","Bright"]},
+  {id:"water", name:"Water", opts:["A little","Some","A lot"]},
+  {id:"pot",   name:"Pot size", opts:["Small","Large"]},
+  {id:"fert",  name:"Fertilizer", opts:["None","Some"]},
+  {id:"music", name:"Music", opts:["Off","On"]},
+];
+// Hidden truth for each case: centimeters added by each setting. Knobs not listed do nothing.
+const CASES = [
+  {name:"Case 1: One knob", trials:8, noise:1.0, effects:{light:[0,5,10]},
+   goal:"Exactly one knob matters. Find it in 8 trials.",
+   learn:"Only light changed the height. When you changed light and kept everything else the same, the difference could only come from light. That is a fair test."},
+  {name:"Case 2: Two knobs", trials:10, noise:1.5, effects:{water:[0,6,2], fert:[0,5]},
+   goal:"Two knobs matter this time. Careful: change one at a time.",
+   learn:"Water and fertilizer both mattered, and too much water was worse than some. If you change two knobs at once, you can't tell which one caused the change."},
+  {name:"Case 3: Small and noisy", trials:12, noise:2.2, effects:{pot:[0,3]},
+   goal:"One knob makes only a small difference, and every plant grows a little differently. Repeat trials.",
+   learn:"A large pot added about 3 cm, but plants vary by about 2 cm on their own. Only repeated trials show a small effect you can trust. One trial can fool you."},
+];
+const BASE = 10, MAXCM = 30;
+const $ = env.$;
+const cv = $("cv"), st = env.stage(cv, 640, 330), ctx = st.ctx;
+let ci = 0, set = {}, trials = [], left = 0, growAnim = null, lastHeight = null, done = false;
+const bar = env.levelBar($("levels"), CASES.map(c=>c.name), i => loadCase(i));
+
+function rand(){ return Math.random()*2-1; }
+function loadCase(i){
+  ci = i; const C = CASES[i];
+  set = {light:1, water:1, pot:0, fert:0, music:0};
+  trials = []; left = C.trials; lastHeight = null; growAnim = null; done = false;
+  $("caseName").textContent = C.name; $("caseGoal").textContent = C.goal;
+  msg("One or two of these knobs really change how tall the plant grows. The rest do nothing. Find out which.");
+  env.hideCard($("stage"));
+  renderKnobs(); renderClaim(); renderTable();
+}
+function msg(t, kind){ const m = $("msg"); m.textContent = t; m.className = "msg" + (kind?" "+kind:""); }
+function renderKnobs(){
+  const box = $("knobs"); box.innerHTML = "";
+  for(const k of KNOBS){
+    const d = document.createElement("div"); d.className = "knob";
+    d.innerHTML = `<span class="kn" id="kn-${k.id}">${k.name}</span>`;
+    const seg = document.createElement("div"); seg.className = "seg"; seg.setAttribute("role","group"); seg.setAttribute("aria-labelledby","kn-"+k.id);
+    k.opts.forEach((o,v)=>{ const b = document.createElement("button"); b.type = "button"; b.textContent = o;
+      b.setAttribute("aria-pressed", set[k.id]===v ? "true":"false");
+      b.onclick = () => { set[k.id] = v; renderKnobs(); }; seg.appendChild(b); });
+    d.appendChild(seg); box.appendChild(d);
+  }
+  $("grow").disabled = left<=0 || done;
+}
+function renderClaim(){
+  const box = $("claim"); box.innerHTML = "";
+  for(const k of KNOBS){ const l = document.createElement("label");
+    l.innerHTML = `<input type="checkbox" id="c-${k.id}"> ${k.name} matters`; box.appendChild(l); }
+}
+function changed(a, b){ return KNOBS.filter(k => a[k.id]!==b[k.id]).map(k=>k.id); }
+function renderTable(){
+  const tb = $("tbl").tBodies[0]; tb.innerHTML = "";
+  trials.forEach((t,i)=>{
+    const tr = document.createElement("tr"); if(i===trials.length-1) tr.className = "new";
+    let note = "", cls = "";
+    if(i>0){ const ch = changed(trials[i-1].s, t.s);
+      if(ch.length===0){ note = "Repeat of the same setup"; cls = "same"; }
+      else if(ch.length===1){ note = "Fair: only " + KNOBS.find(k=>k.id===ch[0]).name.toLowerCase() + " changed"; cls = "fair"; }
+      else { note = ch.length + " knobs changed, so you can't tell which mattered"; cls = "unfair"; } }
+    tr.innerHTML = `<td class="num">${i+1}</td>` + KNOBS.map(k=>`<td>${k.opts[t.s[k.id]]}</td>`).join("") + `<td class="num">${t.h.toFixed(1)} cm</td><td class="chg ${cls}">${note}</td>`;
+    tb.appendChild(tr);
+  });
+  $("empty").hidden = trials.length>0;
+  $("left").textContent = left;
+}
+function grow(){
+  if(left<=0 || done || growAnim) return;
+  const C = CASES[ci]; let h = BASE;
+  for(const k in C.effects) h += C.effects[k][set[k]];
+  h += rand()*C.noise; h = Math.round(h*10)/10;
+  left--; trials.push({s:{...set}, h});
+  growAnim = {t:0, to:h, from:0};
+  renderTable(); renderKnobs();
+  const prev = trials[trials.length-2];
+  if(prev){ const ch = changed(prev.s, set);
+    if(ch.length>1) msg(`Trial ${trials.length}: you changed ${ch.length} knobs at once. If the height changed, which knob did it?`, "warn");
+    else if(ch.length===1) msg(`Trial ${trials.length}: a fair comparison. Only ${KNOBS.find(k=>k.id===ch[0]).name.toLowerCase()} changed, so it explains any real difference.`, "good");
+    else msg(`Trial ${trials.length}: same setup again. Repeats show how much plants vary on their own.`);
+  } else msg("Trial 1 is your starting point. Now change one knob and compare.");
+  if(left===0) msg("Out of trials. Make your claim from the data you have.", "warn");
+}
+function check(){
+  if(done) return;
+  const C = CASES[ci];
+  const picked = KNOBS.filter(k => $("c-"+k.id).checked).map(k=>k.id);
+  const truth = Object.keys(C.effects);
+  const right = picked.length===truth.length && truth.every(t=>picked.includes(t));
+  // evidence: a pair of trials that differ only in this knob
+  const evidence = id => { for(let i=0;i<trials.length;i++) for(let j=i+1;j<trials.length;j++){ const ch = changed(trials[i].s, trials[j].s); if(ch.length===1 && ch[0]===id) return true; } return false; };
+  const repeats = (() => { const seen = {}; for(const t of trials){ const k = JSON.stringify(t.s); seen[k] = (seen[k]||0)+1; } return Object.values(seen).some(n=>n>=2); })();
+  const list = [];
+  for(const k of KNOBS){ const real = truth.includes(k.id), said = picked.includes(k.id);
+    if(real && said) list.push(`${k.name}: you were right, it matters.` + (evidence(k.id) ? " You had a fair test to prove it." : " But you never changed it alone, so your evidence was weak."));
+    else if(real && !said) list.push(`${k.name}: it does matter, and you missed it.`);
+    else if(!real && said) list.push(`${k.name}: it does nothing. Changing it with other knobs at the same time may have fooled you.`); }
+  if(ci===2) list.push(repeats ? "You repeated a setup. That's how you see past the natural variation." : "You never repeated a setup, so you couldn't tell a small effect from luck.");
+  const fair = trials.slice(1).filter((t,i)=>changed(trials[i].s,t.s).length===1).length;
+  list.push(`${fair} of your ${Math.max(0,trials.length-1)} comparisons changed just one knob.`);
+  if(right){ done = true; bar.solve(ci); renderKnobs(); }
+  env.card($("stage"), { title: right ? "Claim supported!" : "Not quite", fail: !right, why: right ? "The science" : "What the data shows",
+    body: right ? C.learn : "Your claim doesn't match what the machine really does. Look at the trials where only one knob changed.",
+    list, buttons: right
+      ? [{label: ci<CASES.length-1 ? "Next case" : "Play case 1 again", primary:true, onClick:()=>{ const n = ci<CASES.length-1?ci+1:0; bar.set(n); loadCase(n); }}, {label:"Look at my data"}]
+      : [{label:"Keep testing", primary:true}, {label:"Start this case over", onClick:()=>loadCase(ci)}] });
+}
+$("grow").onclick = grow;
+$("submit").onclick = check;
+
+/* ---------- drawing ---------- */
+function draw(t, dt){
+  st.begin();
+  const W = 640, H = 330;
+  ctx.fillStyle = "#10151D"; ctx.fillRect(0,0,W,H);
+  // ruler
+  const rx = 520, ry0 = 290, ry1 = 40, cm = (ry0-ry1)/MAXCM;
+  ctx.strokeStyle = "#3A4554"; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(rx,ry0); ctx.lineTo(rx,ry1); ctx.stroke();
+  ctx.fillStyle = "#93A0B2"; ctx.font = "12px ui-monospace,monospace"; ctx.textAlign = "left"; ctx.textBaseline = "middle";
+  for(let c=0;c<=MAXCM;c+=5){ const y = ry0-c*cm; ctx.fillRect(rx,y-1,c%10?8:14,2); ctx.fillText(c+" cm", rx+18, y); }
+  // previous heights as faint ticks
+  trials.slice(0,-1).forEach(tr=>{ const y = ry0-tr.h*cm; ctx.fillStyle = "rgba(255,216,74,.35)"; ctx.fillRect(rx-26,y-1,22,2); });
+  // lamp
+  const lamp = [0.25,0.6,1][set.light];
+  const lx = 300;
+  const g = ctx.createRadialGradient(lx,46,4,lx,140,240); g.addColorStop(0,`rgba(255,230,140,${.35*lamp})`); g.addColorStop(1,"rgba(255,230,140,0)");
+  ctx.fillStyle = g; ctx.beginPath(); ctx.moveTo(lx-30,48); ctx.lineTo(lx+30,48); ctx.lineTo(lx+170,ry0); ctx.lineTo(lx-170,ry0); ctx.closePath(); ctx.fill();
+  ctx.fillStyle = "#3A4554"; ctx.fillRect(lx-40,26,80,20); ctx.fillStyle = `rgba(255,230,140,${.3+.7*lamp})`; ctx.fillRect(lx-32,44,64,5);
+  ctx.fillStyle = "#3A4554"; ctx.fillRect(lx-2,0,4,26);
+  // pot
+  const pw = set.pot ? 120 : 84, ph = set.pot ? 64 : 48, px = lx, py = ry0;
+  ctx.fillStyle = "#A0522D"; ctx.beginPath(); ctx.moveTo(px-pw/2,py-ph); ctx.lineTo(px+pw/2,py-ph); ctx.lineTo(px+pw/2-12,py); ctx.lineTo(px-pw/2+12,py); ctx.closePath(); ctx.fill();
+  ctx.fillStyle = "#8B4426"; ctx.fillRect(px-pw/2-4,py-ph,pw+8,10);
+  ctx.fillStyle = "#3B2A20"; ctx.fillRect(px-pw/2+4,py-ph-4,pw-8,6);
+  // table
+  ctx.fillStyle = "#2B3544"; ctx.fillRect(0,ry0,W,H-ry0);
+  // plant: grows to current height
+  let h = lastHeight;
+  if(growAnim){ growAnim.t += dt*(env.reduce?10:1.4); const f = Math.min(1,growAnim.t); h = growAnim.to*(1-Math.pow(1-f,3)); if(f>=1){ lastHeight = growAnim.to; growAnim = null; } }
+  if(h!=null){
+    const top = ry0 - h*cm, soil = py-ph-2;
+    if(top < soil){
+      ctx.strokeStyle = "#4FCB85"; ctx.lineWidth = 5; ctx.lineCap = "round"; ctx.beginPath(); ctx.moveTo(px,soil);
+      ctx.quadraticCurveTo(px+8, (soil+top)/2, px, top); ctx.stroke();
+      const leaves = Math.max(1, Math.floor((soil-top)/34));
+      for(let i=1;i<=leaves;i++){ const y = soil-(soil-top)*i/(leaves+.6), s = i%2?1:-1;
+        ctx.fillStyle = "#3BB36E"; ctx.beginPath(); ctx.ellipse(px+s*18,y,18,7,s*-.5,0,7); ctx.fill(); }
+      ctx.strokeStyle = "rgba(255,216,74,.9)"; ctx.setLineDash([5,4]); ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(px+20,top); ctx.lineTo(rx,top); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = "#FFD84A"; ctx.font = "700 14px ui-monospace,monospace"; ctx.textAlign = "right"; ctx.fillText(h.toFixed(1)+" cm", rx-8, top-12);
+    }
+  }
+  // water drops
+  for(let i=0;i<=set.water;i++){ const x = 120+i*26, y = 200; ctx.fillStyle = "#5AA9FF"; ctx.beginPath(); ctx.moveTo(x,y-14); ctx.quadraticCurveTo(x+10,y,x,y+6); ctx.quadraticCurveTo(x-10,y,x,y-14); ctx.fill(); }
+  ctx.fillStyle = "#93A0B2"; ctx.font = "12px ui-monospace,monospace"; ctx.textAlign = "left"; ctx.fillText("WATER", 108, 228);
+  // fertilizer bag
+  if(set.fert){ ctx.fillStyle = "#C9B27A"; ctx.fillRect(108,240,52,40); ctx.fillStyle = "#1B2330"; ctx.font = "700 11px ui-monospace,monospace"; ctx.fillText("FERT", 117, 262); }
+  // music
+  if(set.music){ ctx.fillStyle = "#B78CFF"; ctx.font = "26px serif"; ctx.textAlign = "center"; const bob = env.reduce?0:Math.sin(t/300)*4; ctx.fillText("♪", 420, 140+bob); ctx.fillText("♫", 448, 118-bob); }
+  ctx.fillStyle = "#93A0B2"; ctx.font = "12px ui-monospace,monospace"; ctx.textAlign = "left"; ctx.fillText("PLANT GROWTH MACHINE · height after 14 days", 16, 18);
+}
+env.loop(draw);
+loadCase(0);
+
+});
+})();</script></section>
+
+<section class="sec related" id="more"><div><p class="kicker">Keep exploring</p><h2>Related lessons</h2></div><p class="idea"> Up next: <a href="../6th/unit-01-light-and-matter.html">Unit 1: Light &amp; Matter</a>. Overlap alert: ideas you have already met are marked above as "you may already have learned".</p><ul><li><a href="../6th/unit-01-light-and-matter.html">Unit 1: Light &amp; Matter</a><span class="why">Put the method to work on a first topic: light and matter.</span></li><li><a href="../6th/unit-10-states-of-matter.html">Unit 10: States of Matter</a><span class="why">Test ideas about states of matter.</span></li><li><a href="../6th/unit-12-ecosystems-and-food-webs.html">Unit 12: Ecosystems &amp; Food Webs</a><span class="why">Sampling and data in ecosystems.</span></li></ul></section>
+</main>
+
+<footer>Built for sixth-grade tutoring. Aligned with NGSS Science and Engineering Practices (asking questions, planning investigations, analyzing data, constructing explanations, engaging in argument from evidence). Dates and figures are approximate.</footer>
+
+<script>
+(function(){
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const safe=fn=>{try{fn()}catch(e){console.error(e)}};
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const setPressed=(g,b)=>$$('button',g).forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));
+function mkChips(g,labels,sel=0){ g.innerHTML=labels.map((l,i)=>`<button class="chip" type="button" data-i="${i}" aria-pressed="${i===sel}">${l}</button>`).join(''); }
+function quizBox(box,scoreEl,items,labels){
+  let right=0;
+  box.innerHTML=items.map((it,i)=>`<div class="item" data-i="${i}"><span class="nm">${it.n}</span><div class="opts">${labels.map((l,j)=>`<button class="opt" type="button" data-j="${j}">${l}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
+  box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.disabled)return; const row=b.closest('.item'), it=items[+row.dataset.i], ok=+b.dataset.j===it.a;
+    $$('.opt',row).forEach(o=>{ o.disabled=true; if(+o.dataset.j===it.a)o.classList.add('good'); }); if(!ok)b.classList.add('bad'); else right++;
+    $('.fb',row).textContent=(ok?'Yes. ':'Not quite. ')+it.e; scoreEl.textContent=`${right} of ${items.length} correct`; });
+}
+function line(svg,o){
+  const W=o.W||640,H=o.H||260,L=o.L||56,B=o.B||40,T=o.T||16,R=o.R||16;
+  const X=x=>L+(x-o.x0)/(o.x1-o.x0)*(W-L-R), Y=y=>H-B-(y-o.y0)/(o.y1-o.y0)*(H-B-T);
+  let s='';
+  o.yt.forEach(v=>{ s+=`<line x1="${L}" y1="${Y(v)}" x2="${W-R}" y2="${Y(v)}" style="stroke:var(--line)"/><text x="${L-6}" y="${Y(v)+4}" font-size="12" text-anchor="end">${v}</text>`; });
+  o.xt.forEach(v=>{ s+=`<text x="${X(v[0]!==undefined?v[0]:v)}" y="${H-B+16}" font-size="12" text-anchor="middle">${v[1]!==undefined?v[1]:v}</text>`; });
+  (o.hl||[]).forEach(v=>{ s+=`<line x1="${L}" y1="${Y(v[0])}" x2="${W-R}" y2="${Y(v[0])}" style="stroke:${v[2]};stroke-width:2;stroke-dasharray:6 5"/><text x="${W-R-4}" y="${Y(v[0])-5}" font-size="11" text-anchor="end">${v[1]}</text>`; });
+  s+=`<line x1="${L}" y1="${H-B}" x2="${W-R}" y2="${H-B}" style="stroke:var(--ink);stroke-width:2"/><line x1="${L}" y1="${T}" x2="${L}" y2="${H-B}" style="stroke:var(--ink);stroke-width:2"/>`;
+  (o.series||[]).forEach(se=>{ if(se.pts.length) s+=`<path d="${se.pts.map((p,i)=>`${i?'L':'M'}${X(p[0]).toFixed(1)} ${Y(p[1]).toFixed(1)}`).join('')}" style="fill:none;stroke:${se.color};stroke-width:${se.w||4};stroke-linejoin:round"/>`; });
+  (o.dots||[]).forEach(d=>{ s+=`<circle cx="${X(d[0])}" cy="${Y(d[1])}" r="5" style="fill:var(--reflect);fill-opacity:.7;stroke:var(--ink);stroke-width:1.5"/>`; });
+  if(o.mark) s+=`<circle cx="${X(o.mark[0])}" cy="${Y(o.mark[1])}" r="8" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/>`;
+  s+=`<text x="${(L+W-R)/2}" y="${H-4}" font-size="13" text-anchor="middle">${o.xl}</text><text transform="rotate(-90 14 ${(T+H-B)/2})" x="14" y="${(T+H-B)/2}" font-size="13" text-anchor="middle">${o.yl}</text>`;
+  svg.innerHTML=s;
+}
+
+/* hero ring */
+safe(()=>{
+  const c=['var(--reflect)','var(--reflect)','var(--beam)','var(--absorb)','var(--transmit)','var(--transmit)','var(--ink)']; let h='';
+  for(let i=0;i<7;i++){ const a=-Math.PI/2+i*2*Math.PI/7, x=320+70*Math.cos(a), y=95+70*Math.sin(a); h+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="13" style="fill:${c[i]};stroke:var(--ink);stroke-width:2.5"/><text x="${x.toFixed(1)}" y="${(y+4).toFixed(1)}" font-size="12" text-anchor="middle" style="font-weight:700;fill:#fff">${i+1}</text>`; }
+  $('#heroDots').innerHTML=h;
+});
+
+/* ===== 1 ===== */
+safe(()=>{
+  const E=[
+    {y:-1600,l:'~1600 BCE',n:'Egypt and Babylon',t:'Egyptian doctors wrote the Edwin Smith Papyrus, describing injuries by examining patients and giving treatments without magic. Babylonians kept careful records of the Moon and planets and could predict eclipses.'},
+    {y:-600,l:'~600 BCE',n:'Greece: natural causes',t:'Thales and others proposed that nature follows natural causes rather than the moods of gods. Aristotle later organized knowledge and classified living things, though he often did not test his ideas.'},
+    {y:-240,l:'~240 BCE',n:'Eratosthenes',t:'In Egypt, Eratosthenes compared shadow angles in two cities and calculated the size of the Earth to within a few percent, using only sticks, geometry, and measured distance.'},
+    {y:132,l:'132 CE',n:'China: seismoscope',t:'Zhang Heng built a bronze device with dropping balls that showed the direction of distant earthquakes. Chinese scientists also gave the world the compass, paper, and detailed astronomical records.'},
+    {y:500,l:'~500 CE',n:'India: numbers and astronomy',t:'Aryabhata and later scholars developed the decimal place-value system with zero, and explained eclipses and the Earth turning on its axis. These numbers are the ones we still use.'},
+    {y:1011,l:'~1011',n:'Ibn al-Haytham',t:'Working in Cairo, he wrote the Book of Optics, testing how light and vision work with controlled experiments (including the camera obscura). Many historians call him a founder of the experimental method.'},
+    {y:1610,l:'1610',n:'Galileo',t:'Galileo pointed a telescope at the sky and saw moons orbiting Jupiter, evidence that not everything circles the Earth. His careful measurements of motion helped make math and experiments central to science.'},
+    {y:1687,l:'1687',n:'Newton',t:'Isaac Newton published laws of motion and gravity that explained both falling apples and orbiting planets with the same math, a model for what a scientific theory can do.'},
+    {y:1859,l:'1859',n:'Darwin and Pasteur era',t:'Darwin published a theory of evolution by natural selection, and Pasteur showed that tiny germs cause disease and spoilage. Evidence from many people built these ideas.'},
+    {y:2000,l:'1900s–today',n:'Teams, tools, computers',t:'Modern science is a global team effort: Marie Curie on radioactivity, Rosalind Franklin on DNA structure, Katherine Johnson on orbit math, and thousands of researchers using computers, satellites, and telescopes.'}];
+  const svg=$('#tlSvg'), chips=$('#tlChips'), card=$('#tlCard');
+  const X=i=>30+i*(580/(E.length-1)); let cur=0;
+  mkChips(chips,E.map(e=>e.l),0);
+  const draw=()=>{ let s=`<line x1="20" y1="60" x2="620" y2="60" style="stroke:var(--ink);stroke-width:4"/>`;
+    E.forEach((e,i)=>{ s+=`<circle cx="${X(i)}" cy="60" r="${i===cur?13:8}" style="fill:${i===cur?'var(--beam)':'var(--surface)'};stroke:var(--ink);stroke-width:3"/>`; });
+    s+=`<text x="${X(cur)}" y="34" font-size="13" text-anchor="middle" style="font-weight:700">${E[cur].n}</text><text x="${X(cur)}" y="100" font-size="12" text-anchor="middle">${E[cur].l}</text>`;
+    svg.innerHTML=s; card.innerHTML=`<b>${E[cur].n} (${E[cur].l})</b><br>${E[cur].t}`; };
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; cur=+b.dataset.i; setPressed(chips,b); draw(); }); draw();
+});
+safe(()=>{
+  const sl=$('#erAng'), svg=$('#erSvg'), rd=$('#erR');
+  const draw=()=>{ const a=+sl.value; $('#erAngV').textContent=a.toFixed(1);
+    const cx=140,cy=165,r=80, ang=a*Math.PI/180, sy={x:cx,y:cy-r}, al={x:cx+r*Math.sin(ang),y:cy-r*Math.cos(ang)};
+    const circ=5000*360/a, km=circ*0.1575, n=360/a;
+    svg.innerHTML=`<circle cx="${cx}" cy="${cy}" r="${r}" style="fill:var(--reflect);fill-opacity:.15;stroke:var(--ink);stroke-width:3"/>
+    <line x1="${sy.x}" y1="14" x2="${sy.x}" y2="${sy.y-30}" style="stroke:var(--beam);stroke-width:3" marker-end="url(#mBeam)"/>
+    <line x1="${al.x}" y1="14" x2="${al.x}" y2="${al.y-30}" style="stroke:var(--beam);stroke-width:3" marker-end="url(#mBeam)"/>
+    <line x1="${sy.x}" y1="${sy.y}" x2="${sy.x}" y2="${sy.y-24}" style="stroke:var(--ink);stroke-width:5"/>
+    <line x1="${al.x}" y1="${al.y}" x2="${al.x+24*Math.sin(ang)}" y2="${al.y-24*Math.cos(ang)}" style="stroke:var(--ink);stroke-width:5"/>
+    <path d="M${cx} ${cy} L${sy.x} ${sy.y} M${cx} ${cy} L${al.x} ${al.y}" style="stroke:var(--ink);stroke-width:2;stroke-dasharray:5 4"/>
+    <path d="M${cx} ${cy-36} A36 36 0 0 1 ${cx+36*Math.sin(ang)} ${cy-36*Math.cos(ang)}" style="fill:none;stroke:var(--absorb);stroke-width:3"/>
+    <text x="${cx+30}" y="${cy-42}" font-size="12" style="fill:var(--absorb);font-weight:700">${a.toFixed(1)}°</text>
+    <text x="${sy.x-6}" y="${sy.y-34}" font-size="11" text-anchor="end">Syene: no shadow</text>
+    <text x="${al.x+34}" y="${al.y-8}" font-size="11">Alexandria</text>
+    <text x="${cx}" y="${cy+4}" font-size="12" text-anchor="middle">Earth</text>
+    <g font-size="12"><text x="270" y="60">Angle is that fraction of</text><text x="270" y="76">the full 360° circle, so the</text><text x="270" y="92">distance between the cities</text><text x="270" y="108">is the same fraction of the</text><text x="270" y="124">way around the Earth.</text><text x="270" y="156" style="font-weight:700">360 ÷ ${a.toFixed(1)} = ${n.toFixed(1)}</text><text x="270" y="176" style="font-weight:700">5,000 × ${n.toFixed(1)}</text><text x="270" y="196" style="font-weight:700">= ${Math.round(circ).toLocaleString()} stadia</text></g>`;
+    rd.innerHTML=`Eratosthenes measured <b>7.2°</b>, giving about <b>${Math.round(5000*50*0.1575).toLocaleString()} km</b> (a stadion is about 157.5 m). At <b>${a.toFixed(1)}°</b> you get <b>${Math.round(km).toLocaleString()} km</b>. The real distance around the Earth is about <b>40,075 km</b>. ${Math.abs(km-40075)/40075<.05?'Within 5%!':'A small error in the angle makes a large change in the answer.'}`; };
+  sl.addEventListener('input',draw); draw();
+});
+safe(()=>{
+  const D=[['Doctors\' ward, before handwashing (1841–46)',10,'a'],['Midwives\' ward (same years)',4,'r'],['Doctors\' ward, after chlorine handwashing (1848)',1.3,'t']];
+  $('#semBars').innerHTML=D.map(([n,v,c])=>`<div class="brow" style="grid-template-columns:200px minmax(0,1fr)"><span class="lab">${n}</span><div class="stack" role="img" aria-label="${n}: about ${v}% of mothers died"><div class="seg ${c}" style="width:${v/12*100}%;min-width:64px">~${v}%</div></div></div>`).join('')+'<p class="cap" style="margin-top:2px">Share of mothers who died of childbed fever, approximate.</p>';
+});
+
+/* ===== 2 ===== */
+safe(()=>{
+  const S=[
+    ['Question','Observation: some bean plants on a shelf look taller than others near the window. Question: <b>Does the amount of light change how tall bean plants grow?</b> It is specific and measurable.'],
+    ['Research','Learn what is known: plants use light for photosynthesis (see Unit 7: Cells), and too little light makes seedlings tall and weak ("leggy"). Look up how much light beans normally need.'],
+    ['Hypothesis','<b>If</b> bean plants get 12 hours of light instead of 4, <b>then</b> they will grow taller in two weeks, <b>because</b> more light means more photosynthesis and more food for growth.'],
+    ['Experiment','Plant 10 beans in each of two groups. Same cups, same soil, same water, same temperature. Change only the hours of light (12 h vs. 4 h). Measure height every day with a ruler.'],
+    ['Analyze','Compute each group\'s average height and graph it over 14 days. The 12-hour group averages 18 cm; the 4-hour group averages 9 cm.'],
+    ['Conclude','The data support the hypothesis: more light led to taller plants in this test. Write a claim, evidence, and reasoning. Note limits: only one bean type, only 14 days.'],
+    ['Share and repeat','Present the graph and method so others can repeat it. New questions appear: does color of light matter? Does 24 hours do even better, or harm the plants?']];
+  const svg=$('#mSvg'), card=$('#mCard'); let i=0;
+  const col=['var(--reflect)','var(--reflect)','var(--beam)','var(--absorb)','var(--transmit)','var(--transmit)','var(--ink)'];
+  const draw=()=>{ let s=''; const cx=240, cy=130, r=95;
+    s+=`<circle cx="${cx}" cy="${cy}" r="${r}" style="fill:none;stroke:var(--line);stroke-width:3"/>`;
+    S.forEach((st,k)=>{ const a=-Math.PI/2+k*2*Math.PI/7, x=cx+r*Math.cos(a), y=cy+r*Math.sin(a), on=k===i;
+      s+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${on?22:15}" style="fill:${on?'var(--beam)':col[k]};fill-opacity:${on?1:.7};stroke:var(--ink);stroke-width:${on?4:2.5}"/><text x="${x.toFixed(1)}" y="${(y+4).toFixed(1)}" font-size="12" text-anchor="middle" style="font-weight:700;fill:${on?'#111':'#fff'}">${k+1}</text>`; });
+    s+=`<text x="${cx}" y="${cy-4}" font-size="15" text-anchor="middle" style="font-weight:700">${S[i][0]}</text><text x="${cx}" y="${cy+16}" font-size="11" text-anchor="middle">step ${i+1} of 7</text>`;
+    svg.innerHTML=s; card.innerHTML=`<b>${i+1}. ${S[i][0]}</b><br>${S[i][1]}`; $('#mPrev').disabled=i===0; $('#mNext').textContent=i===6?'Start over':'Next step'; };
+  $('#mNext').addEventListener('click',()=>{ i=i===6?0:i+1; draw(); }); $('#mPrev').addEventListener('click',()=>{ i=Math.max(0,i-1); draw(); }); draw();
+});
+
+/* ===== 3 ===== */
+safe(()=>{
+  const SC=[
+    {n:'Bean plants and light',ch:['increase the hours of light','decrease the hours of light'],res:['grow taller','grow shorter'],iv:'hours of light per day',dv:'plant height (cm)',why:['more light means more photosynthesis and more food','less light means less photosynthesis and less food']},
+    {n:'Cooling water',ch:['start with hotter water','start with cooler water'],res:['take longer to reach room temperature','take less time to reach room temperature'],iv:'starting water temperature (°C)',dv:'minutes to reach 25 °C',why:['a bigger temperature difference moves heat faster, but there is more heat to lose','there is less thermal energy to lose']},
+    {n:'Ramp and toy car',ch:['raise the ramp higher','lower the ramp'],res:['roll farther','roll a shorter distance'],iv:'ramp height (cm)',dv:'distance rolled (cm)',why:['higher starting height gives more energy to turn into motion','lower height gives less energy']}];
+  const chips=$('#hyChips'), dir=$('#hyDir'), sent=$('#hySent'), ck=$('#hyCk'); let cur=0;
+  mkChips(chips,SC.map(x=>x.n),0);
+  const draw=()=>{ const sc=SC[cur]; dir.innerHTML=sc.ch.map((c,i)=>`<option value="${i}">${c}</option>`).join(''); upd(); };
+  const upd=()=>{ const sc=SC[cur], d=+dir.value; sent.innerHTML=`If we ${sc.ch[d]}, then the object will ${sc.res[d]}, because ${sc.why[d]}.`;
+    ck.innerHTML=`<span>Testable: we can measure <b>${sc.dv}</b>.</span><span>One variable changed: <b>${sc.iv}</b>.</span><span>Has a reason (the "because" part).</span><span>Could be proven wrong by the data.</span>`; };
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; cur=+b.dataset.i; setPressed(chips,b); draw(); }); dir.addEventListener('change',upd); draw();
+  quizBox($('#testSort'),$('#testS'),[
+    {n:'Do bean plants grow taller with more light?',a:0,e:'Yes: you can measure height under different light.'},
+    {n:'Which flavor of ice cream is the best?',a:1,e:'That is an opinion; there is no measurement to settle it.'},
+    {n:'Does salt lower the temperature at which water freezes?',a:0,e:'Yes: you can measure the freezing point with and without salt.'},
+    {n:'Is it fair that some people have more homework?',a:1,e:'This is about values and fairness, not something an experiment measures.'},
+    {n:'Does a heavier ball fall faster than a lighter one in a vacuum?',a:0,e:'Yes: Galileo-style tests (and astronauts on the Moon) can check this.'},
+    {n:'Which song is the prettiest?',a:1,e:'Beauty is a judgment, not a measurement.'}
+  ],['Testable','Not testable']);
+});
+
+/* ===== 4 ===== */
+safe(()=>{
+  const chips=$('#fairChips'), tbl=$('#fairTbl'), svg=$('#fairSvg'), rd=$('#fairR');
+  const draw=f=>{
+    tbl.innerHTML=`<thead><tr><th></th><th>Group A</th><th>Group B</th></tr></thead><tbody><tr><td><b>Light</b></td><td>12 h</td><td>4 h</td></tr><tr><td><b>Water</b></td><td>${f?'50 mL':'100 mL'}</td><td>50 mL</td></tr><tr><td><b>Pot size</b></td><td>${f?'small':'large'}</td><td>small</td></tr></tbody>`;
+    const A=f?18:21, Bv=f?9:11;
+    svg.innerHTML=`<line x1="40" y1="140" x2="440" y2="140" style="stroke:var(--ink);stroke-width:2"/><rect x="100" y="${140-A*5}" width="90" height="${A*5}" style="fill:var(--transmit)"/><rect x="280" y="${140-Bv*5}" width="90" height="${Bv*5}" style="fill:var(--absorb)"/><text x="145" y="${134-A*5}" font-size="13" text-anchor="middle" style="font-weight:700">${A} cm</text><text x="325" y="${134-Bv*5}" font-size="13" text-anchor="middle" style="font-weight:700">${Bv} cm</text><text x="145" y="158" font-size="13" text-anchor="middle">Group A</text><text x="325" y="158" font-size="13" text-anchor="middle">Group B</text>`;
+    rd.innerHTML=f?'<b>Fair test:</b> only light differs, so the 9 cm gap can be credited to light.':'<b>Unfair test:</b> light, water, and pot size all differ. Group A grew more, but was it the light, the extra water, or the bigger pot? You cannot tell, so the experiment cannot answer the question.'; };
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; setPressed(chips,b); draw(+b.dataset.f); }); draw(1);
+});
+safe(()=>{
+  const svg=$('#trSvg'), rd=$('#trR'); let tr=[];
+  const gauss=()=>{ let s=0; for(let i=0;i<6;i++)s+=Math.random(); return (s-3)*2; }; // ~N(0,1)
+  const draw=()=>{ const n=tr.length; let run=[],sum=0; tr.forEach((v,i)=>{ sum+=v; run.push([i+1,sum/(i+1)]); });
+    line(svg,{x0:0,x1:Math.max(20,n),y0:10,y1:30,yt:[10,15,20,25,30],xt:[0,5,10,15,20].map(v=>v).filter(v=>v<=Math.max(20,n)),xl:'trial number',yl:'plant height (cm)',series:[{pts:run,color:'var(--absorb)'}],dots:tr.map((v,i)=>[i+1,v]),hl:[[20,'true average 20 cm','var(--transmit)']]});
+    rd.innerHTML=n?`<b>${n}</b> trial${n>1?'s':''}: latest <b>${tr[n-1].toFixed(1)} cm</b> · running average <b>${(sum/n).toFixed(1)} cm</b>. ${n<4?'With few trials the average can be far from the truth.':n<12?'The average is settling.':'With many trials the average stays close to the true value.'}`:'Press a button to run trials.'; };
+  const add=k=>{ for(let i=0;i<k;i++) tr.push(20+gauss()*3.2); if(tr.length>60) tr=tr.slice(-60); draw(); };
+  $('#trOne').addEventListener('click',()=>add(1)); $('#trTen').addEventListener('click',()=>add(10)); $('#trReset').addEventListener('click',()=>{ tr=[]; draw(); }); draw();
+});
+
+/* ===== 5 ===== */
+safe(()=>{
+  const L=[['Ant',0.003,'3 mm'],['Pencil width',0.007,'7 mm'],['Pencil',0.19,'19 cm'],['Door height',2,'2 m'],['Football field',91,'91 m'],['Mackinac Bridge',8038,'8 km'],['Ann Arbor to Detroit',60000,'60 km']];
+  const mn=Math.log10(0.003)-.3, mx=Math.log10(60000)+.3;
+  $('#lenBars').innerHTML=L.map(([n,v,t])=>`<div class="brow" style="grid-template-columns:130px minmax(0,1fr)"><span class="lab">${n}</span><div class="stack" role="img" aria-label="${n}: ${t}"><div class="seg ${v<1?'r':v<1000?'t':'a'}" style="width:${(Math.log10(v)-mn)/(mx-mn)*100}%;min-width:50px">${t}</div></div></div>`).join('');
+  quizBox($('#gSort'),$('#gS'),[
+    {n:'Average plant height in 3 different soils',a:0,e:'Comparing separate categories: bar graph.'},
+    {n:'Water temperature measured every minute as it cools',a:1,e:'Change over time: line graph.'},
+    {n:'Hand length vs. height for 30 students',a:2,e:'Two measurements per person, looking for a relationship: scatter plot.'},
+    {n:'Number of students choosing each lunch',a:0,e:'Counts of categories: bar graph.'},
+    {n:'Distance a cart has traveled each second',a:1,e:'Continuous change with time: line graph.'},
+    {n:'Hours studied vs. test score for 25 students',a:2,e:'Two variables, one point per student: scatter plot.'}
+  ],['Bar','Line','Scatter']);
+});
+safe(()=>{
+  const svg=$('#coSvg'), chips=$('#coChips'), rd=$('#coR');
+  const M=['J','F','M','A','M','J','J','A','S','O','N','D'], T=[5,8,20,40,60,85,100,95,75,45,20,8], I=T.map((v,i)=>Math.max(2,v*.92+[3,-2,4,-3,2,-4,0,3,-2,4,-3,2][i])), A=T.map((v,i)=>Math.max(2,v*.85+[2,3,-3,4,-2,3,0,-3,2,-4,3,-2][i]));
+  const draw=n=>{ const ser=[{pts:I.map((v,i)=>[i,v]),color:'var(--absorb)'},{pts:A.map((v,i)=>[i,v]),color:'var(--reflect)'}]; if(n===3) ser.push({pts:T.map((v,i)=>[i,v]),color:'var(--beam)',w:3});
+    line(svg,{x0:0,x1:11,y0:0,y1:110,yt:[0,25,50,75,100],xt:M.map((m,i)=>[i,m]),xl:'month (January to December)',yl:'relative level (0–100)',series:ser});
+    svg.innerHTML+=`<g font-size="12"><text x="70" y="26" style="fill:var(--absorb);font-weight:700">● ice cream sales</text><text x="200" y="26" style="fill:var(--reflect);font-weight:700">● swimming accidents</text>${n===3?'<text x="360" y="26" style="fill:var(--beam);font-weight:700">● temperature</text>':''}</g>`;
+    rd.innerHTML=n===2?'The two lines rise and fall together. Does ice cream cause swimming accidents? Almost certainly not.':'Temperature rises and falls with both. Hot weather makes people buy ice cream <i>and</i> swim more, so the lines match. A <b>hidden third variable</b> explains the pattern.'; };
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; setPressed(chips,b); draw(+b.dataset.v); }); draw(2);
+});
+
+/* ===== quiz ===== */
+safe(()=>{
+  const Q=[
+    {q:'Which is the best hypothesis?',o:['Plants are cool.','If bean plants get more light, then they will grow taller, because they make more food.','Light is good.'],a:1,e:'It is testable, measurable, has one variable, and gives a reason.'},
+    {q:'In a fair test, how many variables should you change?',o:['As many as possible','Exactly one at a time','None'],a:1,e:'Changing one lets you attribute any difference to that variable.'},
+    {q:'What is a control group?',o:['The group that gets the change','The group that is left unchanged for comparison','The group that is measured last'],a:1,e:'It shows what happens without the change.'},
+    {q:'Why do scientists repeat trials?',o:['To waste time','Natural variation can mislead one trial','Their first result is always wrong'],a:1,e:'The average of many trials is more reliable.'},
+    {q:'In scientific language, a theory is...',o:['A guess','A well-tested explanation supported by a lot of evidence','A made-up story'],a:1,e:'Theories like plate tectonics are strongly supported.'},
+    {q:'Ice cream sales and swimming accidents rise together. This shows...',o:['Ice cream causes accidents','Correlation does not prove causation; heat drives both','Accidents cause ice cream sales'],a:1,e:'A hidden third variable (temperature) explains both.'}
+  ];
+  const box=$('#quiz'), sc=$('#quizScore'); let right=0;
+  box.innerHTML=Q.map((x,i)=>`<div class="q item" data-i="${i}" style="display:grid"><h4>${i+1}. ${x.q}</h4><div class="opts">${x.o.map((t,j)=>`<button class="opt" type="button" data-j="${j}">${t}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
+  box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.disabled)return; const row=b.closest('.q'), x=Q[+row.dataset.i], ok=+b.dataset.j===x.a;
+    $$('.opt',row).forEach(o=>{ o.disabled=true; if(+o.dataset.j===x.a)o.classList.add('good'); }); if(!ok)b.classList.add('bad'); else right++;
+    $('.fb',row).textContent=(ok?'Correct. ':'Not quite. ')+x.e; sc.textContent=`${right} of ${Q.length} correct`; });
+});
+})();
+</script>
