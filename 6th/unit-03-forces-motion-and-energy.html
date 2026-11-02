@@ -166,6 +166,13 @@ canvas{width:100%;aspect-ratio:640/260;display:block;border-radius:10px;backgrou
 .sunbar{height:10px;border-radius:99px;background:linear-gradient(90deg,var(--beam),color-mix(in srgb,var(--beam) 30%,transparent));opacity:.25;transition:opacity .3s}
 .sunbar.on{opacity:1}
 .btnrow{display:flex;gap:8px;flex-wrap:wrap}
+.aid.hl{border:3px solid var(--transmit);background:color-mix(in srgb,var(--transmit) 8%,var(--surface))}
+.stage.mid svg{max-width:540px;margin-inline:auto}
+.aid.hl .aid{background:var(--surface)}
+.hlh{font-family:var(--font-display);font-weight:800;font-size:1.35rem;color:var(--transmit);margin:0}
+.hero-art .ctl{margin-top:10px}
+.hero-art .btnrow{margin-top:10px}
+.hero-art .readout{margin-top:8px}
 .btn{font-size:.95rem;font-weight:700;padding:9px 16px;min-height:42px;border-radius:10px;border:0;background:var(--beam);color:var(--beam-ink);cursor:pointer}
 .btn.ghost{background:var(--surface);color:var(--ink);border:1.5px solid var(--line)}
 .btn:hover{filter:brightness(1.06)}
@@ -214,25 +221,19 @@ footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;bo
   <p class="kicker">Sixth grade science · Unit 3</p>
   <h1>Forces, Motion &amp; Energy</h1>
   <p class="lede">Why does a roller coaster go fastest at the bottom of a hill? Why is a full shopping cart so hard to stop? Why does an egg survive a fall onto a pillow but not onto the floor? Every motion you see comes from forces and energy, and both follow rules you can calculate.</p>
-  <p class="bridge"><b>Where we left off:</b> Unit 2 showed that thermal energy is particles jiggling, and that energy moves from hot to cold. You may already have learned that energy changes form rather than disappearing. Here we use the same energy ideas for moving objects, and we will see that friction is one way motion turns into heat.</p>
+  <p class="bridge"><b>Where we left off:</b> Unit 2 showed that thermal energy is particles jiggling, and that energy moves from hot to cold. Here we use the same energy ideas for moving objects, and we will see that friction is one way motion turns into heat.</p>
       <div class="hero-art">
-    <svg viewBox="0 0 640 190" role="img" aria-label="A cart on a hill with force arrows: gravity down, push forward, friction backward.">
-      <path d="M0 150 Q160 150 280 90 T640 170 V190 H0z" style="fill:var(--surface-2)"/>
-      <path d="M0 150 Q160 150 280 90 T640 170" style="fill:none;stroke:var(--ink);stroke-width:3"/>
-      <g transform="translate(250 56) rotate(-27)"><rect x="-40" y="-18" width="80" height="30" rx="6" style="fill:var(--beam);stroke:var(--ink);stroke-width:3"/><circle cx="-22" cy="16" r="9" style="fill:var(--ink)"/><circle cx="22" cy="16" r="9" style="fill:var(--ink)"/></g>
-      <line x1="250" y1="62" x2="250" y2="140" style="stroke:var(--absorb);stroke-width:5" marker-end="url(#mAbsorb)"/>
-      <line x1="262" y1="50" x2="332" y2="18" style="stroke:var(--transmit);stroke-width:5" marker-end="url(#mTransmit)"/>
-      <line x1="236" y1="62" x2="186" y2="84" style="stroke:var(--reflect);stroke-width:5" marker-end="url(#mReflect)"/>
-      <text x="258" y="150" font-size="15" style="fill:var(--absorb);font-weight:700">gravity</text>
-      <text x="338" y="20" font-size="15" style="fill:var(--transmit);font-weight:700">push</text>
-      <text x="120" y="110" font-size="15" style="fill:var(--reflect);font-weight:700">friction</text>
-    </svg>
+    <svg id="heroSvg" viewBox="0 -70 640 320" role="img" aria-label="A cart on an adjustable ramp. Arrows show gravity pulling down, your push up the ramp, and friction against the motion."></svg>
+    <div class="ctl"><label for="hp">Your push up the ramp: <span id="hpv"></span> N</label><input id="hp" type="range" min="0" max="200" step="10" value="120"></div>
+    <div class="ctl"><label for="ha">Ramp steepness: <span id="hav"></span>&deg;</label><input id="ha" type="range" min="0" max="30" step="1" value="10"></div>
+    <div class="btnrow"><button class="btn" id="heroGo" type="button">Let go of the cart</button><button class="btn ghost" id="heroReset" type="button">Reset</button></div>
+    <p class="readout" id="heroR" aria-live="polite"></p>
   </div>
   <p class="howto">Look for the tags <span class="tag analogy">Analogy</span><span class="tag diagram">Diagram</span><span class="tag try">Try it</span><span class="tag data">Data</span><span class="tag real">Real world</span></p>
 </header>
 
 <nav class="nav" aria-label="Lesson sections"><ul>
-  <li><a href="#s1">1 Speed</a></li><li><a href="#s2">2 Forces</a></li><li><a href="#s3">3 Friction</a></li><li><a href="#s4">4 Energy</a></li><li><a href="#s5">5 Energy never vanishes</a></li><li><a href="#s6c">6 Collisions</a></li><li><a href="#s6">7 Check yourself</a></li>
+  <li><a href="#s1">1 Speed</a></li><li><a href="#s2">2 Forces</a></li><li><a href="#s3">3 Friction</a></li><li><a href="#s4">4 Energy</a></li><li><a href="#s5">5 Where energy goes</a></li><li><a href="#s6c">6 Collisions</a></li><li><a href="#s6">7 Check yourself</a></li>
   <li><a href="#game">8 Game</a></li>
   </ul></nav>
 
@@ -304,16 +305,157 @@ footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;bo
     <article class="aid">
       <span class="tag analogy">Analogy</span>
       <h3>Tug of war</h3>
-      <div class="stage"><svg viewBox="0 0 480 220" role="img" aria-label="Two teams pull a rope. Equal teams, nobody moves. A stronger team wins.">
-        <line x1="60" y1="90" x2="420" y2="90" style="stroke:var(--ink);stroke-width:6"/><rect x="226" y="80" width="28" height="20" style="fill:var(--beam);stroke:var(--ink);stroke-width:2"/>
-        <g style="fill:var(--reflect)"><circle cx="60" cy="70" r="12"/><circle cx="100" cy="70" r="12"/><circle cx="140" cy="70" r="12"/></g>
-        <g style="fill:var(--absorb)"><circle cx="340" cy="70" r="12"/><circle cx="380" cy="70" r="12"/><circle cx="420" cy="70" r="12"/></g>
-        <line x1="170" y1="130" x2="100" y2="130" style="stroke:var(--reflect);stroke-width:8" marker-end="url(#mReflect)"/>
-        <line x1="310" y1="130" x2="380" y2="130" style="stroke:var(--absorb);stroke-width:8" marker-end="url(#mAbsorb)"/>
-        <text x="240" y="170" font-size="16" text-anchor="middle" style="font-weight:700">equal pulls = balanced = no change</text>
-        <text x="240" y="196" font-size="14" text-anchor="middle">Add one more kid to the red team and the flag starts to move.</text>
-      </svg></div>
-      <p class="cap">Net force = left pull minus right pull. When it isn't zero, the winner's direction is where the motion changes.</p>
+      <div class="stage"><svg role="img" aria-label="Two panels. Balanced: three kids pull each way with 300 newtons, so the flag on the rope stays at the center mark. Unbalanced: four kids on the right pull with 400 newtons against 300, so the flag moves right." viewBox="0 0 480 300">
+  <text x="16" y="24" font-size="15" font-weight="bold" fill="var(--ink)" font-family="sans-serif">Balanced</text>
+  <line x1="16" y1="118" x2="464" y2="118" stroke="var(--ink)" stroke-width="2"/>
+  <line x1="240" y1="118" x2="240" y2="106" stroke="var(--ink)" stroke-width="2"/>
+  <line x1="70" y1="88" x2="410" y2="88" stroke="var(--ink)" stroke-width="2"/>
+  <line x1="240" y1="88" x2="240" y2="72" stroke="var(--ink)" stroke-width="2"/>
+  <polygon points="240,72 258,77 240,82" fill="var(--beam)"/>
+  <g stroke="var(--ink)" stroke-width="2" fill="none" stroke-linecap="round">
+    <circle cx="86" cy="76" r="6" fill="var(--surface)"/>
+    <line x1="86" y1="82" x2="80" y2="100"/>
+    <line x1="80" y1="100" x2="72" y2="118"/>
+    <line x1="80" y1="100" x2="86" y2="118"/>
+    <line x1="84" y1="86" x2="98" y2="88"/>
+    <line x1="84" y1="90" x2="98" y2="90"/>
+  </g>
+  <rect x="82" y="82" width="8" height="14" rx="3" fill="var(--reflect)" stroke="var(--ink)" stroke-width="1.5"/>
+  <g stroke="var(--ink)" stroke-width="2" fill="none" stroke-linecap="round">
+    <circle cx="116" cy="76" r="6" fill="var(--surface)"/>
+    <line x1="116" y1="82" x2="110" y2="100"/>
+    <line x1="110" y1="100" x2="102" y2="118"/>
+    <line x1="110" y1="100" x2="116" y2="118"/>
+    <line x1="114" y1="86" x2="128" y2="88"/>
+    <line x1="114" y1="90" x2="128" y2="90"/>
+  </g>
+  <rect x="112" y="82" width="8" height="14" rx="3" fill="var(--reflect)" stroke="var(--ink)" stroke-width="1.5"/>
+  <g stroke="var(--ink)" stroke-width="2" fill="none" stroke-linecap="round">
+    <circle cx="146" cy="76" r="6" fill="var(--surface)"/>
+    <line x1="146" y1="82" x2="140" y2="100"/>
+    <line x1="140" y1="100" x2="132" y2="118"/>
+    <line x1="140" y1="100" x2="146" y2="118"/>
+    <line x1="144" y1="86" x2="158" y2="88"/>
+    <line x1="144" y1="90" x2="158" y2="90"/>
+  </g>
+  <rect x="142" y="82" width="8" height="14" rx="3" fill="var(--reflect)" stroke="var(--ink)" stroke-width="1.5"/>
+  <g stroke="var(--ink)" stroke-width="2" fill="none" stroke-linecap="round">
+    <circle cx="334" cy="76" r="6" fill="var(--surface)"/>
+    <line x1="334" y1="82" x2="340" y2="100"/>
+    <line x1="340" y1="100" x2="348" y2="118"/>
+    <line x1="340" y1="100" x2="334" y2="118"/>
+    <line x1="336" y1="86" x2="322" y2="88"/>
+    <line x1="336" y1="90" x2="322" y2="90"/>
+  </g>
+  <rect x="330" y="82" width="8" height="14" rx="3" fill="var(--absorb)" stroke="var(--ink)" stroke-width="1.5"/>
+  <g stroke="var(--ink)" stroke-width="2" fill="none" stroke-linecap="round">
+    <circle cx="364" cy="76" r="6" fill="var(--surface)"/>
+    <line x1="364" y1="82" x2="370" y2="100"/>
+    <line x1="370" y1="100" x2="378" y2="118"/>
+    <line x1="370" y1="100" x2="364" y2="118"/>
+    <line x1="366" y1="86" x2="352" y2="88"/>
+    <line x1="366" y1="90" x2="352" y2="90"/>
+  </g>
+  <rect x="360" y="82" width="8" height="14" rx="3" fill="var(--absorb)" stroke="var(--ink)" stroke-width="1.5"/>
+  <g stroke="var(--ink)" stroke-width="2" fill="none" stroke-linecap="round">
+    <circle cx="394" cy="76" r="6" fill="var(--surface)"/>
+    <line x1="394" y1="82" x2="400" y2="100"/>
+    <line x1="400" y1="100" x2="408" y2="118"/>
+    <line x1="400" y1="100" x2="394" y2="118"/>
+    <line x1="396" y1="86" x2="382" y2="88"/>
+    <line x1="396" y1="90" x2="382" y2="90"/>
+  </g>
+  <rect x="390" y="82" width="8" height="14" rx="3" fill="var(--absorb)" stroke="var(--ink)" stroke-width="1.5"/>
+  <line x1="160" y1="40" x2="70" y2="40" stroke="var(--reflect)" stroke-width="3"/>
+  <polygon points="70,40 82,34 82,46" fill="var(--reflect)"/>
+  <text x="150" y="30" font-size="13" fill="var(--reflect)" text-anchor="middle" font-family="sans-serif">300 N</text>
+  <line x1="320" y1="40" x2="410" y2="40" stroke="var(--absorb)" stroke-width="3"/>
+  <polygon points="410,40 398,34 398,46" fill="var(--absorb)"/>
+  <text x="365" y="30" font-size="13" fill="var(--absorb)" text-anchor="middle" font-family="sans-serif">300 N</text>
+  <text x="240" y="142" font-size="13" fill="var(--muted)" text-anchor="middle" font-family="sans-serif">Equal pulls, net force 0 N, the flag stays put.</text>
+  <line x1="16" y1="152" x2="464" y2="152" stroke="var(--muted)" stroke-width="1"/>
+  <text x="16" y="174" font-size="15" font-weight="bold" fill="var(--ink)" font-family="sans-serif">Unbalanced</text>
+  <line x1="16" y1="268" x2="464" y2="268" stroke="var(--ink)" stroke-width="2"/>
+  <line x1="240" y1="268" x2="240" y2="256" stroke="var(--ink)" stroke-width="2"/>
+  <line x1="70" y1="238" x2="410" y2="238" stroke="var(--ink)" stroke-width="2"/>
+  <line x1="272" y1="238" x2="272" y2="222" stroke="var(--ink)" stroke-width="2"/>
+  <polygon points="272,222 290,227 272,232" fill="var(--beam)"/>
+  <line x1="244" y1="212" x2="268" y2="212" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <polygon points="268,212 260,208 260,216" fill="var(--muted)"/>
+  <g stroke="var(--ink)" stroke-width="2" fill="none" stroke-linecap="round">
+    <circle cx="86" cy="226" r="6" fill="var(--surface)"/>
+    <line x1="86" y1="232" x2="80" y2="250"/>
+    <line x1="80" y1="250" x2="72" y2="268"/>
+    <line x1="80" y1="250" x2="86" y2="268"/>
+    <line x1="84" y1="236" x2="98" y2="238"/>
+    <line x1="84" y1="240" x2="98" y2="240"/>
+  </g>
+  <rect x="82" y="232" width="8" height="14" rx="3" fill="var(--reflect)" stroke="var(--ink)" stroke-width="1.5"/>
+  <g stroke="var(--ink)" stroke-width="2" fill="none" stroke-linecap="round">
+    <circle cx="116" cy="226" r="6" fill="var(--surface)"/>
+    <line x1="116" y1="232" x2="110" y2="250"/>
+    <line x1="110" y1="250" x2="102" y2="268"/>
+    <line x1="110" y1="250" x2="116" y2="268"/>
+    <line x1="114" y1="236" x2="128" y2="238"/>
+    <line x1="114" y1="240" x2="128" y2="240"/>
+  </g>
+  <rect x="112" y="232" width="8" height="14" rx="3" fill="var(--reflect)" stroke="var(--ink)" stroke-width="1.5"/>
+  <g stroke="var(--ink)" stroke-width="2" fill="none" stroke-linecap="round">
+    <circle cx="146" cy="226" r="6" fill="var(--surface)"/>
+    <line x1="146" y1="232" x2="140" y2="250"/>
+    <line x1="140" y1="250" x2="132" y2="268"/>
+    <line x1="140" y1="250" x2="146" y2="268"/>
+    <line x1="144" y1="236" x2="158" y2="238"/>
+    <line x1="144" y1="240" x2="158" y2="240"/>
+  </g>
+  <rect x="142" y="232" width="8" height="14" rx="3" fill="var(--reflect)" stroke="var(--ink)" stroke-width="1.5"/>
+  <g stroke="var(--ink)" stroke-width="2" fill="none" stroke-linecap="round">
+    <circle cx="304" cy="226" r="6" fill="var(--surface)"/>
+    <line x1="304" y1="232" x2="310" y2="250"/>
+    <line x1="310" y1="250" x2="318" y2="268"/>
+    <line x1="310" y1="250" x2="304" y2="268"/>
+    <line x1="306" y1="236" x2="292" y2="238"/>
+    <line x1="306" y1="240" x2="292" y2="240"/>
+  </g>
+  <rect x="300" y="232" width="8" height="14" rx="3" fill="var(--absorb)" stroke="var(--ink)" stroke-width="1.5"/>
+  <g stroke="var(--ink)" stroke-width="2" fill="none" stroke-linecap="round">
+    <circle cx="334" cy="226" r="6" fill="var(--surface)"/>
+    <line x1="334" y1="232" x2="340" y2="250"/>
+    <line x1="340" y1="250" x2="348" y2="268"/>
+    <line x1="340" y1="250" x2="334" y2="268"/>
+    <line x1="336" y1="236" x2="322" y2="238"/>
+    <line x1="336" y1="240" x2="322" y2="240"/>
+  </g>
+  <rect x="330" y="232" width="8" height="14" rx="3" fill="var(--absorb)" stroke="var(--ink)" stroke-width="1.5"/>
+  <g stroke="var(--ink)" stroke-width="2" fill="none" stroke-linecap="round">
+    <circle cx="364" cy="226" r="6" fill="var(--surface)"/>
+    <line x1="364" y1="232" x2="370" y2="250"/>
+    <line x1="370" y1="250" x2="378" y2="268"/>
+    <line x1="370" y1="250" x2="364" y2="268"/>
+    <line x1="366" y1="236" x2="352" y2="238"/>
+    <line x1="366" y1="240" x2="352" y2="240"/>
+  </g>
+  <rect x="360" y="232" width="8" height="14" rx="3" fill="var(--absorb)" stroke="var(--ink)" stroke-width="1.5"/>
+  <g stroke="var(--ink)" stroke-width="2" fill="none" stroke-linecap="round">
+    <circle cx="394" cy="226" r="6" fill="var(--surface)"/>
+    <line x1="394" y1="232" x2="400" y2="250"/>
+    <line x1="400" y1="250" x2="408" y2="268"/>
+    <line x1="400" y1="250" x2="394" y2="268"/>
+    <line x1="396" y1="236" x2="382" y2="238"/>
+    <line x1="396" y1="240" x2="382" y2="240"/>
+  </g>
+  <rect x="390" y="232" width="8" height="14" rx="3" fill="var(--absorb)" stroke="var(--ink)" stroke-width="1.5"/>
+  <line x1="160" y1="190" x2="70" y2="190" stroke="var(--reflect)" stroke-width="3"/>
+  <polygon points="70,190 82,184 82,196" fill="var(--reflect)"/>
+  <text x="150" y="180" font-size="13" fill="var(--reflect)" text-anchor="middle" font-family="sans-serif">300 N</text>
+  <line x1="300" y1="190" x2="420" y2="190" stroke="var(--absorb)" stroke-width="3"/>
+  <polygon points="420,190 408,184 408,196" fill="var(--absorb)"/>
+  <text x="360" y="180" font-size="13" fill="var(--absorb)" text-anchor="middle" font-family="sans-serif">400 N</text>
+  <text x="240" y="292" font-size="13" fill="var(--muted)" text-anchor="middle" font-family="sans-serif">Net force 100 N to the right, so the rope starts moving right.</text>
+</svg></div>
+      <p>In a tug of war, each team pulls the rope with a force, measured in <b>newtons (N)</b>. A force has a size and a direction, so you can add forces up. Pulls in opposite directions subtract: <b>net force = bigger pull &minus; smaller pull</b>, pointing toward the stronger team.</p>
+      <p>If both teams pull with 300 N, the net force is 0 N. The forces are <b>balanced</b>, so the rope's motion does not change. Add a fourth kid on one side and the net force is 100 N toward that team. The forces are now <b>unbalanced</b>, and the rope starts to speed up that way.</p>
+      <p class="cap"><b>Where it breaks:</b> balanced does not always mean standing still. A rope already moving at a steady speed also has balanced forces. Balanced just means the motion is not <i>changing</i>.</p>
     </article>
     <article class="aid">
       <span class="tag try">Try it</span>
@@ -352,20 +494,69 @@ footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;bo
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
-      <h3>Microscopic Velcro</h3>
-      <div class="stage"><svg viewBox="0 0 480 220" role="img" aria-label="A zoomed-in view of a rough surface with interlocking bumps, which catch on each other.">
-        <path d="M20 90 l20 -22 l20 22 l20 -22 l20 22 l20 -22 l20 22 l20 -22 l20 22 l20 -22 l20 22 l20 -22 l20 22 l20 -22 l20 22 l20 -22 l20 22" style="fill:var(--surface);stroke:var(--ink);stroke-width:3"/>
-        <path d="M20 96 l20 22 l20 -22 l20 22 l20 -22 l20 22 l20 -22 l20 22 l20 -22 l20 22 l20 -22 l20 22 l20 -22 l20 22 l20 -22 l20 22" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:3"/>
-        <line x1="60" y1="150" x2="170" y2="150" style="stroke:var(--transmit);stroke-width:7" marker-end="url(#mTransmit)"/><text x="60" y="176" font-size="15" style="fill:var(--transmit);font-weight:700">top surface slides this way</text>
-        <line x1="320" y1="150" x2="220" y2="150" style="stroke:var(--reflect);stroke-width:7" marker-end="url(#mReflect)"/><text x="230" y="176" font-size="15" style="fill:var(--reflect);font-weight:700">friction: bumps catch</text>
-        <text x="240" y="30" font-size="15" text-anchor="middle">Even smooth surfaces are bumpy up close.</text>
-      </svg></div>
-      <p>Zoom in on glass, ice, or a basketball court and you find tiny hills and valleys. Press two surfaces together and the bumps catch like the hooks and loops of Velcro. Sliding makes them snag, and the snagging pushes <b>against</b> the motion. That is friction, and it is also why rubbing makes heat.</p>
-      <p class="cap"><b>Where it breaks:</b> Velcro is built to stick, and it wears out. Friction is not a choice: it happens between every pair of surfaces that touch and slide.</p>
+      <h3>Dragging your feet on a hike</h3>
+      <div class="stage"><svg role="img" aria-label="A hiking boot drags along the ground. A zoomed-in circle shows the boot sole and the ground both have jagged edges that catch on each other, so friction pushes against the boot moving." viewBox="0 0 480 300">
+  <defs>
+    <clipPath id="zoomClip">
+      <circle cx="340" cy="130" r="100"/>
+    </clipPath>
+  </defs>
+  <text x="100" y="30" text-anchor="middle" font-size="14" style="fill: var(--ink); font-weight: 600;">Dragging your feet</text>
+  <line x1="14" y1="196" x2="186" y2="196" stroke-width="3" style="stroke: var(--muted);"/>
+  <line x1="20" y1="204" x2="180" y2="204" stroke-width="2" stroke-dasharray="6 8" style="stroke: var(--muted); opacity: 0.6;"/>
+  <path d="M 40 196 L 40 150 Q 40 138 54 138 L 78 138 Q 92 138 96 150 L 112 168 Q 128 176 150 178 L 160 180 Q 168 182 168 190 L 168 196 Z"
+        stroke-width="3" stroke-linejoin="round" style="fill: var(--surface); stroke: var(--ink);"/>
+  <rect x="38" y="188" width="132" height="9" rx="2" style="fill: var(--ink);"/>
+  <line x1="58" y1="150" x2="86" y2="150" stroke-width="2" style="stroke: var(--muted);"/>
+  <line x1="58" y1="160" x2="90" y2="160" stroke-width="2" style="stroke: var(--muted);"/>
+  <line x1="120" y1="112" x2="160" y2="112" stroke-width="3" style="stroke: var(--green);"/>
+  <path d="M 160 112 L 150 106 L 150 118 Z" style="fill: var(--green);"/>
+  <text x="140" y="102" text-anchor="middle" font-size="13" style="fill: var(--green);">moving</text>
+  <circle cx="150" cy="192" r="18" stroke-width="3" style="fill: none; stroke: var(--ink);"/>
+  <line x1="168" y1="188" x2="240" y2="150" stroke-width="1.5" style="stroke: var(--muted);"/>
+  <line x1="168" y1="196" x2="240" y2="180" stroke-width="1.5" style="stroke: var(--muted);"/>
+  <text x="340" y="18" text-anchor="middle" font-size="14" style="fill: var(--ink); font-weight: 600;">Zoomed way in</text>
+  <circle cx="340" cy="130" r="100" stroke-width="3" style="fill: var(--surface); stroke: var(--ink);"/>
+  <g clip-path="url(#zoomClip)">
+    <path d="M 240 30 L 440 30 L 440 112
+             L 427.5 124 L 415 112
+             L 402.5 124 L 390 112
+             L 377.5 124 L 365 112
+             L 352.5 124 L 340 112
+             L 327.5 124 L 315 112
+             L 302.5 124 L 290 112
+             L 277.5 124 L 265 112
+             L 252.5 124 L 240 112 Z"
+          stroke-width="3" stroke-linejoin="round" style="fill: var(--surface); stroke: var(--ink);"/>
+    <path d="M 240 230 L 440 230 L 440 124
+             L 427.5 112 L 415 124
+             L 402.5 112 L 390 124
+             L 377.5 112 L 365 124
+             L 352.5 112 L 340 124
+             L 327.5 112 L 315 124
+             L 302.5 112 L 290 124
+             L 277.5 112 L 265 124
+             L 252.5 112 L 240 124 Z"
+          stroke-width="3" stroke-linejoin="round" style="fill: var(--surface-2); stroke: var(--muted);"/>
+    <text x="340" y="62" text-anchor="middle" font-size="14" style="fill: var(--ink); font-weight: 600;">boot</text>
+    <text x="340" y="200" text-anchor="middle" font-size="14" style="fill: var(--ink); font-weight: 600;">ground</text>
+  </g>
+  <line x1="270" y1="86" x2="330" y2="86" stroke-width="3" style="stroke: var(--green);"/>
+  <path d="M 330 86 L 320 80 L 320 92 Z" style="fill: var(--green);"/>
+  <text x="300" y="78" text-anchor="middle" font-size="13" style="fill: var(--green);">boot moves</text>
+  <line x1="410" y1="172" x2="350" y2="172" stroke-width="3" style="stroke: var(--blue);"/>
+  <path d="M 350 172 L 360 166 L 360 178 Z" style="fill: var(--blue);"/>
+  <text x="380" y="164" text-anchor="middle" font-size="13" style="fill: var(--blue);">friction</text>
+  <text x="240" y="278" text-anchor="middle" font-size="14" style="fill: var(--ink);">Even “smooth” surfaces are jagged up close.</text>
+</svg></div>
+      <p>Drag your feet along a dirt path and you feel something grab them. That grab is <b>friction</b>. Even a floor that feels smooth is jagged up close: under a strong microscope it looks like a mountain range of tiny peaks and valleys. Press two surfaces together and their peaks and valleys lock into each other. To slide, you have to push the peaks past each other, and that snagging pushes <b>against</b> the motion.</p>
+      <p>The snagging also makes the tiny bumps shake. Shaking particles are thermal energy (Unit 2), which is why rubbing your hands together makes them warm.</p>
+      <p class="cap"><b>Where it breaks:</b> the real picture is more than bumps. Surfaces also stick to each other a little at the atomic level. Friction happens between every pair of surfaces that touch and slide, and you cannot turn it off.</p>
     </article>
     <article class="aid">
       <span class="tag diagram">Diagram</span>
       <h3>All the forces on a sliding book</h3>
+      <p>Start with something you know. Put a textbook on a desk and give it a shove. It slides a little way, then stops. While it slides, three forces act on the book: <b>gravity</b> pulls it down, the <b>table</b> pushes it up, and <b>friction</b> drags it backward. The picture shows all three.</p>
       <div class="stage"><svg viewBox="0 0 480 240" role="img" aria-label="A book on a table sliding right. Arrows: gravity down, table push up (equal), friction left.">
         <rect x="40" y="170" width="400" height="20" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:2"/>
         <rect x="190" y="116" width="100" height="54" rx="4" style="fill:var(--beam);stroke:var(--ink);stroke-width:3"/>
@@ -397,18 +588,46 @@ footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;bo
   <div><p class="kicker">Concept 4 · Two kinds of energy</p><h2>Stored and moving</h2></div>
   <p class="idea"><mark>Potential energy</mark> is stored energy (height makes gravitational potential energy). <mark>Kinetic energy</mark> is energy of motion. A roller coaster trades one for the other all ride long.</p>
   <div class="aids">
-    <article class="aid">
-      <span class="tag analogy">Analogy</span>
-      <h3>Savings account and spending money</h3>
-      <div class="stage"><svg viewBox="0 0 480 220" role="img" aria-label="At the top of the hill the savings jar is full and the spending jar is empty. At the bottom it is reversed.">
-        <path d="M20 40 Q200 40 240 190 T460 190" style="fill:none;stroke:var(--ink);stroke-width:4"/>
-        <circle cx="46" cy="30" r="14" style="fill:var(--beam);stroke:var(--ink);stroke-width:3"/>
-        <circle cx="260" cy="176" r="14" style="fill:var(--beam);stroke:var(--ink);stroke-width:3"/>
-        <text x="60" y="76" font-size="14" style="fill:var(--reflect);font-weight:700">top: full savings (PE)</text>
-        <text x="270" y="150" font-size="14" style="fill:var(--absorb);font-weight:700">bottom: full spending (KE)</text>
-      </svg></div>
-      <p class="cap">Total money stays the same. You just move it between "saved" and "spent". Energy works the same way.</p>
+    <article class="aid wide">
+      <span class="tag diagram">Diagram</span>
+      <h3>Stored energy and moving energy</h3>
+      <div class="stage mid"><svg role="img" aria-label="A ball on a hill at three spots. At the top the energy bar is all potential. Halfway it is half potential and half kinetic. At the bottom it is all kinetic." viewBox="0 0 480 270">
+  <path d="M 30 70 C 120 70, 180 150, 260 175 L 450 175" fill="none" style="stroke: var(--ink); stroke-width: 3; stroke-linecap: round;"/>
+  <line x1="30" y1="175" x2="450" y2="175" style="stroke: var(--ink); stroke-width: 2;"/>
+  <g style="stroke: var(--muted); stroke-width: 2; stroke-linecap: round;">
+    <line x1="330" y1="160" x2="360" y2="160"/>
+    <line x1="325" y1="168" x2="365" y2="168"/>
+    <line x1="330" y1="176" x2="360" y2="176"/>
+  </g>
+  <circle cx="55" cy="52" r="14" style="fill: var(--surface-2); stroke: var(--ink); stroke-width: 2;"/>
+  <text x="55" y="57" text-anchor="middle" font-size="14" style="fill: var(--ink);">1</text>
+  <circle cx="175" cy="143" r="14" style="fill: var(--surface-2); stroke: var(--ink); stroke-width: 2;"/>
+  <text x="175" y="148" text-anchor="middle" font-size="14" style="fill: var(--ink);">2</text>
+  <circle cx="300" cy="161" r="14" style="fill: var(--surface-2); stroke: var(--ink); stroke-width: 2;"/>
+  <text x="300" y="166" text-anchor="middle" font-size="14" style="fill: var(--ink);">3</text>
+  <rect x="300" y="18" width="14" height="14" style="fill: var(--reflect);"/>
+  <text x="320" y="30" font-size="13" style="fill: var(--ink);">potential = stored</text>
+  <rect x="300" y="40" width="14" height="14" style="fill: var(--absorb);"/>
+  <text x="320" y="52" font-size="13" style="fill: var(--ink);">kinetic = moving</text>
+  <text x="16" y="204" font-size="14" style="fill: var(--ink);">1 top</text>
+  <rect x="90" y="190" width="320" height="20" style="fill: var(--reflect);"/>
+  <text x="250" y="205" text-anchor="middle" font-size="13" style="fill: var(--surface);">100% potential</text>
+  <text x="16" y="232" font-size="14" style="fill: var(--ink);">2 halfway</text>
+  <rect x="90" y="218" width="160" height="20" style="fill: var(--reflect);"/>
+  <rect x="250" y="218" width="160" height="20" style="fill: var(--absorb);"/>
+  <text x="170" y="233" text-anchor="middle" font-size="13" style="fill: var(--surface);">50%</text>
+  <text x="330" y="233" text-anchor="middle" font-size="13" style="fill: var(--surface);">50%</text>
+  <text x="16" y="260" font-size="14" style="fill: var(--ink);">3 bottom</text>
+  <rect x="90" y="246" width="320" height="20" style="fill: var(--absorb);"/>
+  <text x="250" y="261" text-anchor="middle" font-size="13" style="fill: var(--surface);">100% kinetic</text>
+</svg></div>
+      <p><b>Potential energy</b> is stored energy that is waiting to be used. A ball at the top of a hill has it, and so do a stretched rubber band and a book on a high shelf. The higher up (or the more stretched), the more is stored.</p>
+      <p><b>Kinetic energy</b> is the energy of motion: a rolling ball, a runner, a falling book. The faster it moves, and the more mass it has, the more kinetic energy it has. As the ball rolls downhill, its stored energy turns into moving energy.</p>
     </article>
+    <div class="aid wide hl" role="group" aria-label="Roller coaster lab">
+      <p class="hlh">Roller coaster lab</p>
+      <p class="cap">Move the car along the track, or press Ride it. The bars and the chart below show how stored and moving energy trade places.</p>
+      <div class="aids">
     <article class="aid">
       <span class="tag try">Try it</span>
       <h3>Ride the coaster</h3>
@@ -417,7 +636,7 @@ footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;bo
       <div class="btnrow"><button class="btn" id="rcPlay" type="button">Ride it</button></div>
       <p class="readout" id="rcR" aria-live="polite"></p>
     </article>
-    <article class="aid wide">
+    <article class="aid">
       <span class="tag data">Data</span>
       <h3>The energy bars at this spot</h3>
       <div class="bars" id="rcBars"></div>
@@ -425,6 +644,8 @@ footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;bo
       <div class="stage"><svg id="rcChart" viewBox="0 0 640 220" role="img" aria-label="Stacked area chart of potential and kinetic energy along the track. Total stays flat."></svg></div>
       <p class="cap">500 kg car, no friction, starting at a 40 m hill. The total never changes; only the split does.</p>
     </article>
+      </div>
+    </div>
     <article class="aid wide">
       <span class="tag real">Real world</span>
       <h3>Where you've seen stored and moving energy</h3>
@@ -441,8 +662,8 @@ footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;bo
 </section>
 
 <section class="sec" id="s5">
-  <div><p class="kicker">Concept 5 · Conservation</p><h2>Energy changes form, never disappears</h2></div>
-  <p class="idea">Energy can't be created or destroyed. It <mark>changes form</mark>, and in real life some always ends up as <mark>thermal energy</mark> (heat) and sound.</p>
+  <div><p class="kicker">Concept 5 · Where energy goes</p><h2>Energy changes form</h2></div>
+  <p class="idea">When energy changes form, some of it always ends up as <mark>thermal energy</mark> (heat) and sound that we cannot easily use.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -454,7 +675,8 @@ footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;bo
         <text x="90" y="190" font-size="14" style="fill:var(--absorb);font-weight:700">heat</text><text x="360" y="190" font-size="14" style="fill:var(--absorb);font-weight:700">sound</text>
         <text x="240" y="238" font-size="14" text-anchor="middle">friction leaks</text>
       </svg></div>
-      <p class="cap">The water that leaked didn't vanish, it just went somewhere you didn't want. Wasted energy is still energy, usually heat.</p>
+      <p>The leaks are the energy you did not want to lose. Where does it go? Mostly into <b>heat</b>. When surfaces rub, the bumps snag and the particles in both surfaces start to shake more, and shaking particles are thermal energy. When a ball thuds on the floor, the ball and the floor both warm up a tiny bit. <b>Sound</b> is tiny shakes of the air that spread out and fade, and in the end they warm the air a tiny bit too.</p>
+      <p class="cap">The water that leaked did not disappear. It went somewhere you did not want it. Wasted energy is still energy, and usually it is heat.</p>
     </article>
     <article class="aid">
       <span class="tag try">Try it</span>
@@ -472,11 +694,23 @@ footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;bo
     </article>
     <article class="aid wide">
       <span class="tag diagram">Diagram</span>
-      <h3>Where does the electricity go?</h3>
-      <div class="chips" id="bulbChips" role="group" aria-label="Bulb type"><button class="chip" type="button" data-b="old" aria-pressed="true">Old incandescent bulb</button><button class="chip" type="button" data-b="led" aria-pressed="false">LED bulb</button></div>
-      <div class="stage"><svg id="bulbSvg" viewBox="0 0 640 220" role="img" aria-label="Energy flow diagram: 100 joules of electrical energy split into light and heat."></svg></div>
+      <h3>Where does the energy go?</h3>
+      <div class="chips" id="bulbChips" role="group" aria-label="Device"><button class="chip" type="button" data-b="old" aria-pressed="true">Old incandescent bulb</button><button class="chip" type="button" data-b="led" aria-pressed="false">LED bulb</button><button class="chip" type="button" data-b="ev" aria-pressed="false">Electric car</button><button class="chip" type="button" data-b="gas" aria-pressed="false">Gasoline car</button><button class="chip" type="button" data-b="body" aria-pressed="false">Your muscles</button></div>
+      <div class="stage"><svg id="bulbSvg" viewBox="0 0 640 220" role="img" aria-label="Energy flow diagram: 100 joules of energy going in, split into the useful part and heat."></svg></div>
       <p class="readout" id="bulbR"></p>
-      <p class="cap">Rounded teaching values. LED bulbs turn a much bigger share into light, which is why they run cooler and cost less to power.</p>
+      <p class="cap">Rounded teaching values. LED bulbs turn a much bigger share into light, which is why they run cooler and cost less to power. A gasoline car typically turns only about 12 to 30 of every 100 J of fuel into motion, while an electric car turns roughly 87 of every 100 J of battery energy into motion (U.S. Department of Energy). Muscles turn about a quarter of the food energy they use into motion.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>A refrigerator does not make cold, it moves heat</h3>
+      <p>A refrigerator uses electricity to pump heat out of the food box and release it into your kitchen. That is why the coils on the back feel warm. The less heat leaks in through the walls and door, and the better the pump, the less electricity it needs.</p>
+      <div class="tw"><table class="tbl">
+        <thead><tr><th>Refrigerator</th><th>Electricity it uses</th></tr></thead>
+        <tbody>
+          <tr><td><b>Typical new refrigerator sold in 2001</b></td><td>baseline (100%)</td></tr>
+          <tr><td><b>New ENERGY STAR refrigerator</b></td><td>about 40% less than that baseline (U.S. Department of Energy)</td></tr>
+        </tbody></table></div>
+      <p class="cap">Over a refrigerator's 10 or more years running day and night, that difference is a lot of energy, and a lot less heat dumped into the air.</p>
     </article>
     <article class="aid wide">
       <span class="tag real">Real world</span>
@@ -489,6 +723,7 @@ footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;bo
           <tr><td><b>Hydro dam</b></td><td>gravitational potential → kinetic → electrical</td></tr>
           <tr><td><b>Eating lunch then running</b></td><td>chemical (food) → motion + heat</td></tr>
           <tr><td><b>Solar panel</b></td><td>light → electrical</td></tr>
+          <tr><td><b>Refrigerator</b></td><td>electrical → moves heat from inside the box out through the coils on the back → warms the kitchen air a little</td></tr>
         </tbody></table></div>
     </article>
   </div>
@@ -595,7 +830,7 @@ footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;bo
     <div><dt>gravity</dt><dd>Pull between objects with mass; on Earth, it pulls things down.</dd></div>
     <div><dt>potential energy</dt><dd>Stored energy, such as from height or stretch.</dd></div>
     <div><dt>kinetic energy</dt><dd>Energy of motion.</dd></div>
-    <div><dt>conservation of energy</dt><dd>Energy changes form but the total stays the same.</dd></div>
+    <div><dt>energy transformation</dt><dd>Energy changing from one form to another, like stored energy becoming moving energy.</dd></div>
     <div><dt>Newton's third law</dt><dd>When two objects push on each other, the forces are equal in size and opposite in direction.</dd></div>
   </dl>
   <details><summary>Tutor notes: hands-on kit, misconceptions, pacing</summary><div class="in">
@@ -1055,15 +1290,16 @@ safe(()=>{
 });
 safe(()=>{
   const svg=$('#bulbSvg'), rd=$('#bulbR'), chips=$('#bulbChips');
-  const D={old:{light:5,name:'Incandescent'},led:{light:40,name:'LED'}};
+  const D={old:{light:5,name:'Incandescent bulb',inp:'electrical',use:'light'},led:{light:40,name:'LED bulb',inp:'electrical',use:'light'},ev:{light:87,name:'Electric car',inp:'battery',use:'motion'},gas:{light:25,name:'Gasoline car',inp:'gasoline',use:'motion'},body:{light:25,name:'Your muscles',inp:'food',use:'motion'}};
   function draw(k){
-    const d=D[k], heat=100-d.light, hy=(h)=>h;
-    svg.innerHTML=`<rect x="30" y="50" width="120" height="120" rx="8" style="fill:var(--beam);stroke:var(--ink);stroke-width:3"/><text x="90" y="104" font-size="16" text-anchor="middle" style="fill:var(--beam-ink);font-weight:700">100 J</text><text x="90" y="124" font-size="13" text-anchor="middle" style="fill:var(--beam-ink)">electrical</text>
-      <path d="M150 ${50} C 300 50 330 ${50} 470 50 L470 ${50+d.light*1.2} C330 ${50+d.light*1.2} 300 ${50+d.light*1.2} 150 ${50+d.light*1.2}Z" style="fill:var(--beam);opacity:.55"/>
+    const d=D[k], heat=100-d.light;
+    const hh=Math.max(24,d.light*1.2+10), by=90+d.light*1.2;
+    svg.innerHTML=`<rect x="30" y="50" width="120" height="120" rx="8" style="fill:var(--beam);stroke:var(--ink);stroke-width:3"/><text x="90" y="104" font-size="16" text-anchor="middle" style="fill:var(--beam-ink);font-weight:700">100 J</text><text x="90" y="124" font-size="13" text-anchor="middle" style="fill:var(--beam-ink)">${d.inp}</text>
+      <path d="M150 50 C 300 50 330 50 470 50 L470 ${50+d.light*1.2} C330 ${50+d.light*1.2} 300 ${50+d.light*1.2} 150 ${50+d.light*1.2}Z" style="fill:var(--beam);opacity:.55"/>
       <path d="M150 ${50+d.light*1.2} C 300 ${50+d.light*1.2} 330 ${70+d.light*1.2} 470 ${90+d.light*1.2} L470 170 C330 170 300 170 150 170Z" style="fill:var(--absorb);opacity:.55"/>
-      <rect x="470" y="40" width="130" height="${Math.max(24,d.light*1.2+10)}" rx="6" style="fill:var(--surface);stroke:var(--ink);stroke-width:2.5"/><text x="535" y="${40+Math.max(24,d.light*1.2+10)/2+5}" font-size="14" text-anchor="middle" style="font-weight:700">light ${d.light} J</text>
-      <rect x="470" y="${90+d.light*1.2}" width="130" height="${80-d.light*1.2+2}" rx="6" style="fill:var(--surface);stroke:var(--ink);stroke-width:2.5"/><text x="535" y="${90+d.light*1.2+(80-d.light*1.2)/2+5}" font-size="14" text-anchor="middle" style="font-weight:700;fill:var(--absorb)">heat ${heat} J</text>`;
-    rd.innerHTML=`<b>${d.name}:</b> ${d.light} J of every 100 J becomes light, ${heat} J becomes heat. Total: still 100 J. Energy changed form; none disappeared.`;
+      <rect x="470" y="40" width="130" height="${hh}" rx="6" style="fill:var(--surface);stroke:var(--ink);stroke-width:2.5"/><text x="535" y="${40+hh/2+5}" font-size="14" text-anchor="middle" style="font-weight:700">${d.use} ${d.light} J</text>
+      <rect x="470" y="${by}" width="130" height="${80-d.light*1.2+2}" rx="6" style="fill:var(--surface);stroke:var(--ink);stroke-width:2.5"/><text x="535" y="${by+(80-d.light*1.2)/2+5}" font-size="14" text-anchor="middle" style="font-weight:700;fill:var(--absorb)">heat ${heat} J</text>`;
+    rd.innerHTML=`<b>${d.name}:</b> of every 100 J, ${d.light} J becomes ${d.use} and ${heat} J becomes heat (and a little sound).`;
   }
   chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; setPressed(chips,b); draw(b.dataset.b); }); draw('old');
 });
@@ -1110,6 +1346,39 @@ safe(()=>{
   scene(40,'up'); rd.textContent='Pick a surface, then press Drop the egg.'; bars();
 });
 
+/* ===== hero: push a cart up a ramp ===== */
+safe(()=>{
+  const svg=$('#heroSvg'), P=$('#hp'), A=$('#ha'), pv=$('#hpv'), av=$('#hav'), rd=$('#heroR'), go=$('#heroGo'), rs=$('#heroReset');
+  const M=20, G=9.8, FR=15, LEN=8; let s=.5, v=0, anim=null;
+  function arrow(x1,y1,x2,y2,col,mk){ return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" style="stroke:var(${col});stroke-width:5" marker-end="url(#${mk})"/>`; }
+  function forces(){ const push=+P.value, th=+A.value*Math.PI/180, g=M*G*Math.sin(th), F=push-g;
+    let f; if(Math.abs(v)>.001) f=-Math.sign(v)*FR; else f=Math.abs(F)<=FR?-F:-Math.sign(F)*FR; return {push,th,g,F,f}; }
+  function draw(){
+    const {push,th,f}=forces(), L=440, x0=60, y0=214, x1=x0+L*Math.cos(th), y1=y0-L*Math.sin(th), ang=-th*180/Math.PI;
+    const cx=x0+(x1-x0)*s, cy=y0+(y1-y0)*s, k=.5;
+    const pl=push*k, fl=Math.abs(f)*k*2, fdir=Math.sign(f)||0;
+    svg.innerHTML=`<polygon points="${x0},${y0} ${x1},${y0} ${x1},${y1}" style="fill:var(--surface-2)"/><line x1="${x0}" y1="${y0}" x2="${x1}" y2="${y1}" style="stroke:var(--ink);stroke-width:4"/><line x1="10" y1="${y0}" x2="630" y2="${y0}" style="stroke:var(--ink);stroke-width:3"/>
+      <g transform="translate(${cx} ${cy}) rotate(${ang})"><rect x="-34" y="-36" width="68" height="26" rx="6" style="fill:var(--beam);stroke:var(--ink);stroke-width:3"/><circle cx="-18" cy="-6" r="7" style="fill:var(--ink)"/><circle cx="18" cy="-6" r="7" style="fill:var(--ink)"/>
+        ${pl>2?arrow(36,-23,36+pl,-23,'--transmit','mTransmit')+`<text x="${36+pl+4}" y="-38" font-size="14" style="fill:var(--transmit);font-weight:700">push</text>`:''}
+        ${fl>2?arrow(-36,-23,-36+fdir*fl,-23,'--reflect','mReflect')+`<text x="${-36+fdir*fl}" y="-40" font-size="14" text-anchor="${fdir<0?'end':'start'}" style="fill:var(--reflect);font-weight:700">friction</text>`:''}
+      </g>
+      ${arrow(cx,cy-18,cx,cy+54,'--absorb','mAbsorb')}<text x="${cx+8}" y="${cy+52}" font-size="14" style="fill:var(--absorb);font-weight:700">gravity</text>`;
+    pv.textContent=P.value; av.textContent=A.value;
+    const r=forces(); let msg;
+    if(Math.abs(v)<.001 && Math.abs(r.F)<=FR) msg='Forces are balanced (friction holds it), so the cart stays put.';
+    else msg=(r.F>0?'Net push up the ramp: ':'Net pull down the ramp: ')+Math.abs(Math.round(r.F+(r.F>0?-FR:FR)))+' N. The cart speeds up that way.';
+    rd.innerHTML='<b>'+msg+'</b> Gravity along the ramp: '+Math.round(r.g)+' N.';
+  }
+  function step(now,last){ const dt=Math.min(.03,(now-last)/1000), r=forces(); let a;
+    if(Math.abs(v)<.001 && Math.abs(r.F)<=FR){ v=0; a=0; } else a=(r.F+(Math.abs(v)>.001?-Math.sign(v)*FR:-Math.sign(r.F)*FR))/M;
+    v+=a*dt; s+=v*dt/LEN; if(s<=0){ s=0; v=0; } if(s>=1){ s=1; v=0; } draw(); }
+  function run(){ if(anim)cancelAnimationFrame(anim); let last=performance.now(); (function f(now){ step(now,last); last=now; anim=raf(f); })(last); }
+  [P,A].forEach(e=>e.addEventListener('input',()=>{ if(anim){cancelAnimationFrame(anim);anim=null;} v=0; draw(); }));
+  go.addEventListener('click',()=>{ if(reduce){ const r=forces(); s=r.F>FR?1:(r.F<-FR?0:s); v=0; draw(); return; } run(); });
+  rs.addEventListener('click',()=>{ if(anim){cancelAnimationFrame(anim);anim=null;} s=.5; v=0; draw(); });
+  draw();
+});
+
 /* ===== quiz ===== */
 safe(()=>{
   const Q=[
@@ -1118,7 +1387,7 @@ safe(()=>{
     {q:'Two teams pull a rope with 150 N each. What happens?',o:['The rope moves toward one side','Nothing, the forces are balanced','The rope speeds up'],a:1,e:'Equal opposite forces sum to zero net force.'},
     {q:'Same push on an empty cart and a full cart. Which accelerates more?',o:['The empty cart','The full cart','They are the same'],a:0,e:'a = F ÷ m, so less mass means more acceleration.'},
     {q:'At the top of a roller coaster hill, the car mostly has...',o:['Kinetic energy','Potential energy','No energy'],a:1,e:'Height means stored (potential) energy; speed is low.'},
-    {q:'A bouncing ball bounces a little lower each time. Where did the missing energy go?',o:['It vanished','It became heat and sound','It went back to the ball as height'],a:1,e:'Energy is conserved; the missing part became thermal energy and sound.'},
+    {q:'A bouncing ball bounces a little lower each time. Where did the missing energy go?',o:['It vanished','It became heat and sound','It went back to the ball as height'],a:1,e:'The missing part became thermal energy and sound.'},
     {q:'Which is harder to stop once it is rolling?',o:['An empty cart','A full cart','They are the same'],a:1,e:'More mass means more inertia, so the full cart resists stopping more.'},
     {q:'A small car and a big truck crash. Which one feels the bigger force?',o:['The car','The truck','Both feel the same force'],a:2,e:'Newton\'s third law: the pushes are equal and opposite. The car\'s motion changes more because it has less mass.'},
     {q:'Why does an airbag protect you?',o:['It makes the stop take longer, so the force is smaller','It makes you lighter','It removes the force completely'],a:0,e:'Stretching the stop over more time and distance makes the push gentler.'}
