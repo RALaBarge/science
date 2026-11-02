@@ -190,7 +190,7 @@ footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;bo
   .tally{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:420px){.brow{grid-template-columns:84px minmax(0,1fr)}.race{grid-template-columns:minmax(0,1fr)}}
-</style>
+.hero-art img,.stage img{display:block;width:100%;height:auto;border-radius:12px}.hero-art img{max-height:300px;object-fit:cover}.imgcredit{font-size:12px;color:var(--muted);margin:6px 0 0}</style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
@@ -219,15 +219,95 @@ canvas.sim{width:100%;height:240px;display:block;border-radius:12px;background:v
   <h1>Chemical Reactions &amp; Energy</h1>
   <p class="lede">In Unit 7.2 you saw that atoms rearrange in a reaction. Now follow the energy: a hand warmer gets hot, an instant cold pack gets cold, and a hotter room makes everything react faster. Then you will design your own hand warmer, the way engineers do. Use the fair-test steps from <b>Unit 0: How Science Works</b> whenever you compare designs.</p>
   <p class="bridge"><b>Where we left off:</b> Unit 7.2 showed that atoms rearrange in reactions while mass is conserved. You may already have learned that heat is thermal energy (Unit 2) and that it moves from hot to cold. This unit follows the energy in a reaction and then uses it to design a hand warmer.</p>
-  <div class="hero-art"><svg viewBox="0 0 640 190" role="img" aria-label="An energy diagram of a reaction"><g style="stroke:var(--ink);stroke-width:3;fill:none"><path d="M60 140 H200 L250 60 H400 L450 140 H580" style="stroke:var(--absorb)"/></g>
-<g font-size="13" style="font-weight:700"><text x="60" y="165">reactants</text><text x="500" y="165">products</text><text x="260" y="45">energy needed to get going</text></g></svg></div>
+  <div class="hero-art"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 250" role="img" aria-label="Reaction energy diagrams comparing exothermic and endothermic reactions">
+  <title>Exothermic and endothermic reaction energy diagrams</title>
+  <desc>Two side-by-side energy diagrams show activation energy and the energy change for an exothermic reaction that releases energy and an endothermic reaction that absorbs energy.</desc>
+  <rect x="8" y="8" width="624" height="234" rx="16" style="fill:var(--surface);stroke:var(--line);stroke-width:2"/>
+  <path d="M48 54 V202 H306" style="fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round"/>
+  <path d="M48 44 L43.6 54 L52.4 54 Z" style="fill:var(--ink)"/>
+  <path d="M316 202 L306 197.6 L306 206.4 Z" style="fill:var(--ink)"/>
+  <path d="M340 202 H608" style="fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round"/>
+  <path d="M618 202 L608 197.6 L608 206.4 Z" style="fill:var(--ink)"/>
+  <path d="M56 104 H108 C124 104 132 62 148 62 C164 62 172 168 188 168 H202" style="fill:none;stroke:var(--ink);stroke-width:3;stroke-linecap:round;stroke-linejoin:round"/>
+  <path d="M340 168 H390 C406 168 420 62 438 62 C456 62 472 104 486 104 H500" style="fill:none;stroke:var(--ink);stroke-width:3;stroke-linecap:round;stroke-linejoin:round"/>
+  <circle cx="148" cy="62" r="4.5" style="fill:var(--surface);stroke:var(--ink);stroke-width:2"/>
+  <circle cx="438" cy="62" r="4.5" style="fill:var(--surface);stroke:var(--ink);stroke-width:2"/>
+  <path d="M70 62 V104" style="fill:none;stroke:var(--muted);stroke-width:2;stroke-linecap:round"/>
+  <path d="M70 62 L65.7 71 L74.3 71 Z" style="fill:var(--muted)"/>
+  <path d="M70 104 L65.7 95 L74.3 95 Z" style="fill:var(--muted)"/>
+  <path d="M352 62 V168" style="fill:none;stroke:var(--muted);stroke-width:2;stroke-linecap:round"/>
+  <path d="M352 62 L347.7 71 L356.3 71 Z" style="fill:var(--muted)"/>
+  <path d="M352 168 L347.7 159 L356.3 159 Z" style="fill:var(--muted)"/>
+  <path d="M282 104 H300 M282 168 H300" style="fill:none;stroke:var(--absorb);stroke-width:2;stroke-linecap:round"/>
+  <path d="M292 104 V160" style="fill:none;stroke:var(--absorb);stroke-width:2;stroke-linecap:round"/>
+  <path d="M292 168 L287.7 159 L296.3 159 Z" style="fill:var(--absorb)"/>
+  <path d="M586 104 H604 M586 168 H604" style="fill:none;stroke:var(--reflect);stroke-width:2;stroke-linecap:round"/>
+  <path d="M596 168 V112" style="fill:none;stroke:var(--reflect);stroke-width:2;stroke-linecap:round"/>
+  <path d="M596 104 L591.7 113 L600.3 113 Z" style="fill:var(--reflect)"/>
+  <text x="187" y="28" text-anchor="middle" style="fill:var(--ink);font-size:14px;font-weight:700;">Exothermic (releases energy)</text>
+  <text x="479" y="28" text-anchor="middle" style="fill:var(--ink);font-size:14px;font-weight:700;">Endothermic (absorbs energy)</text>
+  <text x="26" y="123" text-anchor="middle" transform="rotate(-90 26 123)" style="fill:var(--muted);font-size:14px">energy</text>
+  <text x="70" y="50" text-anchor="start" style="fill:var(--muted);font-size:13px;">activation energy</text>
+  <text x="352" y="50" text-anchor="start" style="fill:var(--muted);font-size:13px;">activation energy</text>
+  <text x="78" y="123" text-anchor="start" style="fill:var(--muted);font-size:13px;">reactants</text>
+  <text x="194" y="187" text-anchor="start" style="fill:var(--muted);font-size:13px;">products</text>
+  <text x="360" y="187" text-anchor="start" style="fill:var(--muted);font-size:13px;">reactants</text>
+  <text x="490" y="96" text-anchor="start" style="fill:var(--muted);font-size:13px;">products</text>
+  <text x="284" y="130" text-anchor="end" style="fill:var(--absorb);font-size:13px;">energy released</text>
+  <text x="284" y="148" text-anchor="end" style="fill:var(--absorb);font-size:13px;">(often as heat)</text>
+  <text x="588" y="130" text-anchor="end" style="fill:var(--reflect);font-size:13px;">energy</text>
+  <text x="588" y="148" text-anchor="end" style="fill:var(--reflect);font-size:13px;">absorbed</text>
+  <text x="187" y="224" text-anchor="middle" style="fill:var(--muted);font-size:13px;">reaction progress</text>
+  <text x="479" y="224" text-anchor="middle" style="fill:var(--muted);font-size:13px;">reaction progress</text>
+</svg></div>
   <p class="howto">Look for the tags <span class="tag analogy">Analogy</span><span class="tag diagram">Diagram</span><span class="tag try">Try it</span><span class="tag data">Data</span><span class="tag real">Real world</span></p>
 </header>
 
 <nav class="nav" aria-label="Lesson sections"><ul><li><a href="#s1">1 Heat in, heat out</a></li><li><a href="#s2">2 Bonds</a></li><li><a href="#s3">3 Speed</a></li><li><a href="#s4">4 Design</a></li><li><a href="#s5">5 Iterate</a></li><li><a href="#s6">6 Check yourself</a></li><li><a href="#game">7 Game</a></li></ul></nav>
 
 <main>
-<section class="sec" id="s1"><div><p class="kicker">Concept 1 · Exothermic and endothermic</p><h2>Some reactions release heat, some absorb it</h2></div><p class="idea">An <mark>exothermic</mark> reaction releases energy to its surroundings (they get warmer). An <mark>endothermic</mark> reaction absorbs energy (they get colder). Energy is moved, not made.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Downhill and uphill</h3><div class="stage"><svg viewBox="0 0 480 170" role="img" aria-label="A ball rolling downhill releases energy; pushing it uphill takes energy."><g style="stroke:var(--ink);stroke-width:3;fill:none"><path d="M30 40 L200 130" style="stroke:var(--absorb)"/><path d="M280 130 L450 40" style="stroke:var(--reflect)"/></g><circle cx="50" cy="50" r="10" style="fill:var(--absorb);stroke:var(--ink);stroke-width:2"/><circle cx="430" cy="50" r="10" style="fill:var(--reflect);stroke:var(--ink);stroke-width:2"/><text x="115" y="30" font-size="12" text-anchor="middle" style="font-weight:700">exothermic: energy released</text><text x="365" y="30" font-size="12" text-anchor="middle" style="font-weight:700">endothermic: energy absorbed</text></svg></div><p class="cap">Rolling down gives off energy. Pushing up takes it in.</p></article><article class="aid"><span class="tag try">Try it</span><h3>Hot or cold?</h3><div class="items" id="hcSort"></div><p class="score" id="hcSortS">0 of 6 correct</p></article><article class="aid wide"><span class="tag data">Data</span><h3>Temperature during a reaction</h3><div class="chips" id="hcChips" role="group" aria-label="Reaction"></div><div class="stage"><svg id="hcSvg" viewBox="0 0 480 230" role="img" aria-label="Temperature over time for the chosen reaction."></svg></div><p class="readout" id="hcR" aria-live="polite"></p></article><article class="aid wide"><span class="tag real">Real world</span><h3>Everyday examples</h3><div class="tw"><table class="tbl"><thead><tr><th>Reaction</th><th>Type</th><th>You notice</th></tr></thead><tbody><tr><td>Burning wood</td><td>Exothermic</td><td>Heat and light</td></tr><tr><td>Hand warmer (iron rusting)</td><td>Exothermic</td><td>Packet heats up</td></tr><tr><td>Instant cold pack</td><td>Endothermic</td><td>Packet gets icy</td></tr><tr><td>Baking bread</td><td>Endothermic</td><td>Needs the oven constantly</td></tr><tr><td>Photosynthesis</td><td>Endothermic</td><td>Needs sunlight</td></tr></tbody></table></div></article></div></section>
+<section class="sec" id="s1"><div><p class="kicker">Concept 1 · Exothermic and endothermic</p><h2>Some reactions release heat, some absorb it</h2></div><p class="idea">An <mark>exothermic</mark> reaction releases energy to its surroundings (they get warmer). An <mark>endothermic</mark> reaction absorbs energy (they get colder). Energy is moved, not made.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Downhill and uphill</h3><div class="stage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 200" role="img" aria-label="Two equal-height hills comparing energy released rolling downhill with energy needed to push a ball uphill">
+  <title>Downhill and uphill energy analogy</title>
+  <desc>Two hills of equal height compare a ball rolling downhill, which releases energy, with a ball being pushed uphill, which needs energy.</desc>
+
+  
+  <rect x="2" y="2" width="476" height="196" rx="12" style="fill:var(--surface);stroke:var(--line);stroke-width:2"/>
+  <line x1="18" y1="158" x2="462" y2="158" style="stroke:var(--line);stroke-width:2;stroke-linecap:round"/>
+
+  
+  <line x1="100" y1="72" x2="380" y2="72" style="stroke:var(--line);stroke-width:2;stroke-linecap:round;stroke-dasharray:4 5"/>
+  <text x="240" y="62" text-anchor="middle" style="fill:var(--muted);font-size:13px">same height</text>
+  <text x="240" y="19" text-anchor="middle" style="fill:var(--muted);font-size:13px">not to scale</text>
+
+  
+  <path d="M24 158 C52 158 82 72 100 72 C118 72 148 158 184 158" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round"/>
+  <path d="M296 158 C332 158 362 72 380 72 C398 72 428 158 456 158" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round"/>
+
+  
+  <path d="M109.5 68 C121 82 142 108 169 142" style="fill:none;stroke:var(--transmit);stroke-width:2;stroke-linecap:round;stroke-linejoin:round"/>
+  <path d="M163.2 139.8 L169.8 148 L161.9 146.5" style="fill:none;stroke:var(--transmit);stroke-width:2;stroke-linecap:round;stroke-linejoin:round"/>
+  <circle cx="100" cy="60" r="9" style="fill:var(--reflect);stroke:var(--ink);stroke-width:2"/>
+
+  
+  <path d="M319 137 C331 127 344 111 353 91" style="fill:none;stroke:var(--absorb);stroke-width:2;stroke-linecap:round;stroke-linejoin:round"/>
+  <path d="M347.6 95.4 L354.1 86.6 L354.8 95.7" style="fill:none;stroke:var(--absorb);stroke-width:2;stroke-linecap:round;stroke-linejoin:round"/>
+  <circle cx="307.7" cy="144.7" r="9" style="fill:var(--reflect);stroke:var(--ink);stroke-width:2"/>
+  <g style="fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round">
+    <circle cx="281" cy="103.5" r="6.5" style="fill:var(--surface);stroke:var(--ink);stroke-width:2"/>
+    <path d="M281.8 110.2 L289 134"/>
+    <path d="M284.2 118.7 L299.2 139.3"/>
+    <path d="M283.1 121.2 L297.9 145.7"/>
+    <path d="M289 134 L278 158"/>
+    <path d="M289 134 L298 156.8"/>
+  </g>
+
+  
+  <text x="119" y="175" text-anchor="middle" style="fill:var(--ink);font-size:13px;font-weight:600">Downhill: releases energy</text>
+  <text x="119" y="191" text-anchor="middle" style="fill:var(--muted);font-size:13px;font-weight:400">(exothermic)</text>
+  <text x="361" y="175" text-anchor="middle" style="fill:var(--ink);font-size:13px;font-weight:600">Uphill: needs a push</text>
+  <text x="349" y="191" text-anchor="end" style="fill:var(--ink);font-size:13px;font-weight:600">of energy</text>
+  <text x="355" y="191" text-anchor="start" style="fill:var(--muted);font-size:13px;font-weight:400">(endothermic)</text>
+</svg></div><p class="cap">Rolling down gives off energy. Pushing up takes it in.</p></article><article class="aid"><span class="tag try">Try it</span><h3>Hot or cold?</h3><div class="items" id="hcSort"></div><p class="score" id="hcSortS">0 of 6 correct</p></article><article class="aid wide"><span class="tag data">Data</span><h3>Temperature during a reaction</h3><div class="chips" id="hcChips" role="group" aria-label="Reaction"></div><div class="stage"><svg id="hcSvg" viewBox="0 0 480 230" role="img" aria-label="Temperature over time for the chosen reaction."></svg></div><p class="readout" id="hcR" aria-live="polite"></p></article><article class="aid wide"><span class="tag real">Real world</span><h3>Everyday examples</h3><div class="tw"><table class="tbl"><thead><tr><th>Reaction</th><th>Type</th><th>You notice</th></tr></thead><tbody><tr><td>Burning wood</td><td>Exothermic</td><td>Heat and light</td></tr><tr><td>Hand warmer (iron rusting)</td><td>Exothermic</td><td>Packet heats up</td></tr><tr><td>Instant cold pack</td><td>Endothermic</td><td>Packet gets icy</td></tr><tr><td>Baking bread</td><td>Endothermic</td><td>Needs the oven constantly</td></tr><tr><td>Photosynthesis</td><td>Endothermic</td><td>Needs sunlight</td></tr></tbody></table></div></article></div></section>
 <section class="sec" id="s2"><div><p class="kicker">Concept 2 · Why energy changes</p><h2>Break bonds (costs), form bonds (pays)</h2></div><p class="idea">Breaking bonds <mark>takes energy in</mark>; forming new bonds <mark>releases energy</mark>. If more is released than was put in, the reaction is exothermic; if less, it is endothermic.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Cost and refund</h3><p class="cap">Think of breaking bonds as paying to take apart old LEGO builds, and forming bonds as getting money back for new ones. A positive balance means leftover energy, which shows up as heat.</p><p>If you pay 5 and get 8 back, you gain 3 (exothermic). If you pay 8 and get 5 back, you are down 3 (endothermic).</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Energy ledger</h3><div class="chips" id="bnChips" role="group" aria-label="Reaction"></div><div id="bnBars" class="bars"></div><p class="readout" id="bnR" aria-live="polite"></p></article><article class="aid wide"><span class="tag data">Data</span><h3>Rough bond energies</h3><div class="tw"><table class="tbl" style="min-width:340px"><thead><tr><th>Bond</th><th>Energy (kJ per mole)</th></tr></thead><tbody><tr><td>H–H</td><td>436</td></tr><tr><td>O=O</td><td>498</td></tr><tr><td>O–H</td><td>463</td></tr><tr><td>C–H</td><td>413</td></tr><tr><td>C=O</td><td>799</td></tr></tbody></table></div><p class="cap">The number is the energy needed to <b>break</b> the bond. A larger number means a stronger bond; forming that bond releases the same amount. Values rounded. A mole is a very large counting unit for atoms.</p></article></div></section>
 <section class="sec" id="s3"><div><p class="kicker">Concept 3 · Reaction rate</p><h2>Why things react faster when warm</h2></div><p class="idea">Reactions need particles to <mark>collide</mark> with enough energy. Higher <mark>temperature</mark>, more <mark>surface area</mark>, and higher <mark>concentration</mark> all mean more (and harder) collisions, so a faster <mark>reaction rate</mark>.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>A crowded dance floor</h3><p class="cap">More people and more speed means more bumps per minute. Cold, slow dancers rarely collide hard enough to matter.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Fizz tablet timer</h3><div class="ctl"><label for="rtT">Water temperature: <span id="rtTV"></span> °C</label><input id="rtT" type="range" min="0" max="80" step="5" value="20"></div><div class="chips" id="rtChips" role="group" aria-label="Tablet form"></div><div class="stage"><svg id="rtSvg" viewBox="0 0 480 210" role="img" aria-label="Time for the tablet to dissolve against temperature."></svg></div><p class="readout" id="rtR" aria-live="polite"></p></article><article class="aid wide"><span class="tag real">Real world</span><h3>Speed controls in real life</h3><div class="tw"><table class="tbl"><thead><tr><th>Goal</th><th>Control</th><th>Why</th></tr></thead><tbody><tr><td>Keep food fresh</td><td>Refrigerate</td><td>Slows spoiling reactions</td></tr><tr><td>Cook faster</td><td>Chop small</td><td>More surface area</td></tr><tr><td>Start a fire</td><td>Use kindling, not a log</td><td>More surface area</td></tr><tr><td>Bleach faster</td><td>Warm water</td><td>Faster collisions</td></tr></tbody></table></div></article></div></section>
 <section class="sec" id="s4"><div><p class="kicker">Concept 4 · Engineering a hand warmer</p><h2>Design challenge: a safe, warm hand warmer</h2></div><p class="idea">Engineers use <mark>criteria</mark> (what it must do) and <mark>constraints</mark> (limits like cost and safety). Here: warm for hours, but not hot enough to burn.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Goldilocks</h3><p class="cap">Too cold is useless, too hot is dangerous. We want "just right": about 40 to 55 °C for a few hours.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Hand warmer lab</h3><div class="ctl"><label for="hwI">Iron powder (grams): <span id="hwIV"></span> g</label><input id="hwI" type="range" min="5" max="40" step="5" value="30"></div><div class="ctl"><label for="hwS">Salt (grams): <span id="hwSV"></span> g</label><input id="hwS" type="range" min="0" max="10" step="1" value="4"></div><div class="stage"><svg id="hwSvg" viewBox="0 0 480 230" role="img" aria-label="Temperature of the hand warmer over time for your recipe."></svg></div><p class="readout" id="hwR" aria-live="polite"></p></article><article class="aid wide"><span class="tag data">Data</span><h3>Criteria and constraints</h3><div class="tw"><table class="tbl" style="min-width:480px"><thead><tr><th>Requirement</th><th>Type</th><th>Target</th></tr></thead><tbody><tr><td>Peak under 55 °C</td><td>Safety constraint</td><td>Avoid burns</td></tr><tr><td>Warm above 38 °C for 3 hours</td><td>Criterion</td><td>Useful</td></tr><tr><td>Cost under $1</td><td>Constraint</td><td>Affordable</td></tr><tr><td>Non-toxic materials</td><td>Constraint</td><td>Safe if it leaks</td></tr></tbody></table></div></article></div></section>
