@@ -187,7 +187,7 @@ footer ul{margin:0;padding-left:1.2em;display:grid;gap:3px}
 
 <nav class="nav" aria-label="Course sections">
   <ul>
-    <li><a href="#s1">1 Next word</a></li><li><a href="#s2">2 Context window</a></li><li><a href="#s3">3 Meaning as numbers</a></li><li><a href="#s4">4 Diffusion</a></li><li><a href="#s5">5 Warnings now</a></li><li><a href="#s6">6 Warnings ahead</a></li><li><a href="#wrap">7 Wrap-up</a></li>
+    <li><a href="#s1">1 Next word</a></li><li><a href="#s2">2 Context window</a></li><li><a href="#s3">3 Meaning as numbers</a></li><li><a href="#s4">4 Diffusion</a></li><li><a href="#s5">5 Warnings now</a></li><li><a href="#s6">6 Warnings ahead</a></li><li><a href="#lab">7 Verify lab</a></li><li><a href="#wrap">8 Wrap-up</a></li>
   </ul>
   <div class="meta"><span class="score" id="score" aria-live="polite" title="Multiple-choice questions answered correctly"><span class="lbl">Score </span>0/18</span><button type="button" id="themeBtn" aria-label="Switch color theme">Theme</button></div>
 </nav>
@@ -220,6 +220,20 @@ footer ul{margin:0;padding-left:1.2em;display:grid;gap:3px}
     <p class="say" id="nwSay" aria-live="polite"></p>
     <p class="cap" id="nwHist"></p>
   </article>
+  <article class="aid" id="ainot"><span class="tag try">Try it</span><h3>AI or not AI?</h3>
+    <p class="cap">Decide whether each thing uses a learned model (AI) or follows fixed rules written by a person. Tap an answer. This does not count toward your score.</p>
+    <div id="ainotBox" style="display:grid;gap:10px"></div>
+    <p class="score" id="ainotScore" aria-live="polite">0 of 6 correct</p>
+  </article>
+  <script>
+  (function(){
+    const Q=[["A calculator adding 2 + 2","n","Fixed rules: the same arithmetic every time, nothing learned from data."],["A chatbot writing a poem","a","An LLM that predicts tokens using patterns learned in training."],["A spam filter that learned from millions of emails marked as spam","a","It learned the pattern from examples instead of following a hand-written rule."],["A traffic light on a fixed 60-second timer","n","A fixed schedule, no learning involved."],["A phone that unlocks when it recognizes your face","a","Face recognition uses a model trained on many face images."],["A spreadsheet formula that totals a column","n","A rule written by a person; it does exactly what the formula says."]];
+    const box=document.getElementById("ainotBox"), sc=document.getElementById("ainotScore"); let right=0;
+    Q.forEach((q,i)=>{ const d=document.createElement("div"); d.innerHTML='<p><b>'+(i+1)+'. '+q[0]+'</b></p><div class="btnrow"><button type="button" class="btn ghost" data-v="a">AI (learned model)</button><button type="button" class="btn ghost" data-v="n">Not AI (fixed rules)</button></div><p class="cap" aria-live="polite"></p>';
+      d.addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b||b.disabled)return; const ok=b.dataset.v===q[1]; d.querySelectorAll("button").forEach(x=>x.disabled=true); if(ok)right++; d.querySelector(".cap").textContent=(ok?"Yes. ":"Not quite. ")+q[2]; sc.textContent=right+" of "+Q.length+" correct"; });
+      box.appendChild(d); });
+  })();
+  </script>
   <div class="check" id="chk-s1"></div>
 </section>
 
@@ -242,6 +256,12 @@ footer ul{margin:0;padding-left:1.2em;display:grid;gap:3px}
     <div class="meter" aria-hidden="true"><i id="cwMeter"></i></div>
     <div class="msgs" id="cwMsgs"></div>
     <p class="say" id="cwAns" aria-live="polite"></p>
+  </article>
+  <article class="aid" id="fastfacts"><span class="tag write">Write</span><h3>Fast-changing facts: date and source</h3>
+    <p class="cap">The passage says many current models have very large context windows. Numbers like that change every few months, so a claim is only useful if you know <b>when</b> it was made and <b>who</b> said it.</p>
+    <ol style="margin:0;padding-left:1.2em;display:grid;gap:4px"><li>Pick one AI model your class could use. Find its context-window size on the <b>company&rsquo;s own documentation page</b>.</li><li>Find a second claim about the same model in a news article or blog post. Compare the two.</li><li>Record: the number, the exact source, the date the page was published or updated, and the date you looked.</li><li>Decide which source you trust more and why (primary or secondhand, newer or older, vendor or independent).</li></ol>
+    <textarea rows="5" aria-label="Fast-changing facts notes" placeholder="Number, source, date published, date checked, which source you trust and why."></textarea>
+    <p class="warn">A fact with no date and no source is a rumor. For anything that changes fast, write it down as &ldquo;as of [date], according to [source].&rdquo;</p>
   </article>
   <div class="check" id="chk-s2"></div>
 </section>
@@ -268,6 +288,7 @@ footer ul{margin:0;padding-left:1.2em;display:grid;gap:3px}
     <div class="kv" id="embOut" aria-live="polite"></div>
     <p class="cap">Try this: pick <b>hungry</b> in 2D, then switch to 3D. The neighbors can change, because flattening a cloud into a map throws information away. Real systems keep all their dimensions.</p>
   </article>
+  <details class="deeper"><summary><span class="tag deep">Go deeper</span>Bias can live inside the map of meaning</summary><div class="in"><p>Embeddings are learned from human writing, so the map can pick up the stereotypes in that writing. In a well-known 2016 study, researchers found that word embeddings trained on news text completed analogies such as &ldquo;man is to computer programmer as woman is to homemaker.&rdquo; The model was not told to be biased; it copied patterns in its data. Researchers have since developed methods to reduce such bias, but they do not remove it completely.</p><p>This matters because embeddings are used for search, hiring tools, and recommendations. If the map places some groups closer to some jobs, every system built on the map can inherit that tilt. To check for it, test the same request with different names or groups and compare the results.</p></div></details>
   <div class="check" id="chk-s3"></div>
 </section>
 
@@ -299,6 +320,12 @@ footer ul{margin:0;padding-left:1.2em;display:grid;gap:3px}
 <section class="sec" id="s5">
   <div><p class="kicker">Reading 5 &middot; Warnings for today</p><h2>Where today’s AI goes wrong</h2></div>
   <p class="idea">These tools are useful <mark>and</mark> they fail in predictable ways. Knowing how they fail is part of using them well.</p>
+  <article class="aid" id="policy"><span class="tag qn">Checkpoint</span><h3>Before you read: your school&rsquo;s AI rules</h3>
+    <p>Reading 5 includes advice on privacy. Before you start, find out what <b>your school or district actually requires</b>. Look in the student handbook, the acceptable-use policy, or ask your teacher. Write down what it says in your own words. If you cannot find a written policy, ask your teacher or school office instead of guessing.</p>
+    <p>Then list <b>what you should never type into an AI tool</b>. A strong list covers at least these kinds of things:</p>
+    <ul style="margin:0;padding-left:1.2em;display:grid;gap:4px"><li>Passwords, login codes, and anything that gives access to an account.</li><li>Your full name together with your address, phone number, school, or schedule.</li><li>Other people&rsquo;s private information or photos, without their permission.</li><li>Health, financial, or government ID details.</li><li>Anything your teacher has said not to share, such as a test or someone else&rsquo;s unpublished work.</li></ul>
+    <textarea rows="4" aria-label="School AI policy notes" placeholder="What my school's rules say (or who I asked), and my own list of things I will never type into an AI tool."></textarea>
+  </article>
   <article class="aid passage" id="p5"><span class="tag read">Passage</span>
     <h3>Seven known problems</h3>
     <p>Today’s AI tools are helpful for many tasks, and they have problems that are already well documented. Each one below is labeled <span class="lab k">Well documented</span> or <span class="lab d">Still debated</span>.</p>
@@ -310,6 +337,7 @@ footer ul{margin:0;padding-left:1.2em;display:grid;gap:3px}
     <p>Anything you type may be stored, reviewed, or used to train future models, depending on the company and your settings. A good rule is to type nothing you would not want a stranger to read, such as passwords, home addresses, or other people’s private details.</p>
     <h4>4. Deepfakes and misinformation <span class="lab k">Well documented</span></h4>
     <p>AI can now make realistic fake images, voices, and video cheaply. In January 2024, voters in New Hampshire received robocalls with an AI-generated voice imitating President Biden, telling them not to vote in the primary. Cloned voices are also used in scams, such as a fake call from a “relative” asking for money.</p>
+<details class="tn"><summary>Stop and check: which two problems so far could a person spot just by looking at the output?</summary><div class="in"><p>Hallucination and bias can sometimes be spotted by a careful reader who knows the topic, but they are often hidden. Deepfakes are designed to look real, and privacy problems are not visible in the output at all. That is why checking with another source matters.</p></div></details>
     <h4>5. Over-reliance <span class="lab d">Still debated</span></h4>
     <p>If a tool does the thinking, you may not build the skill. Researchers are still studying how AI use affects learning, and results so far are mixed: used to explain or check your work it can help, and used to skip the effort it can hurt.</p>
     <h4>6. Copyright and consent <span class="lab d">Still debated</span></h4>
@@ -328,6 +356,7 @@ footer ul{margin:0;padding-left:1.2em;display:grid;gap:3px}
     <div class="btnrow"><button type="button" class="btn" id="piBtn">Show the hidden text</button></div>
     <p class="warn" id="piNote" hidden>To a person, the hidden line is invisible. To a model, it is <b>just more text in the context window</b>, and it can’t always tell which text is the user’s request and which is data. Defenses include keeping instructions and data separate, asking a human to approve risky actions, and never giving assistants secrets they don’t need.</p>
   </article>
+  <details class="deeper"><summary><span class="tag deep">Optional</span>Reading: how recommendation feeds choose what you see</summary><div class="in"><p>Video apps, music apps, and social feeds use recommendation systems. The system records signals such as what you watch, skip, replay, like, or share, and often how long you stay. It also uses embeddings: your history and each item are turned into numbers, and items close to what you already liked are ranked higher. The goal is usually to predict what will keep you engaged.</p><p>Two things are well supported: feeds are personalized, so two people can see very different results from the same app, and what gets shown is a choice made by the system. Two things are still debated: how much feeds lock people into narrow &ldquo;filter bubbles,&rdquo; and how much they affect mood and attention. Researchers have found mixed results, and findings vary by platform and by person.</p><p>Question to think about: which of your signals (watching to the end, pausing, replaying) tell the system the most, and could you change your feed on purpose by changing them?</p></div></details>
   <div class="check" id="chk-s5"></div>
 </section>
 
@@ -342,10 +371,14 @@ footer ul{margin:0;padding-left:1.2em;display:grid;gap:3px}
     <p>AI already automates some tasks, such as drafting routine emails, transcribing and translating speech, and suggesting computer code. What is debated is how many jobs will change, how fast, and whether new kinds of work will appear quickly enough to replace what is lost. Past technologies both removed and created jobs, but the transitions were hard for the people in the middle of them.</p>
     <h4>Agents</h4>
     <p>The newest tools are moving from answering questions to taking actions: browsing websites, filling out forms, running code, sending messages, even making purchases. Actions raise the stakes, because a mistake can have real consequences that cannot easily be undone. A common safeguard is requiring a person to approve actions that cost money or cannot be reversed.</p>
+<details class="tn"><summary>Stop and check: in Jobs and Agents, which statements are documented and which are debated?</summary><div class="in"><p>Documented: some tasks, such as drafting routine emails or suggesting code, are already automated, and agents already take actions. Debated: how many jobs change, how fast, and whether new work appears quickly enough.</p></div></details>
     <h4>Trust and proof</h4>
     <p>As fake images, audio, and video get cheaper to make, a second problem appears: real evidence can be dismissed as fake. Researchers call this the “liar’s dividend.” Tools such as content credentials, which attach a record of how a file was made, and watermarks can help, but none is foolproof, so careful readers rely on checking sources, not on looks alone.</p>
+    <h4>Energy, water, and hardware</h4>
+    <p>AI runs in data centres: buildings full of computers. These use a lot of electricity, both for the one-time work of training and for the everyday work of answering millions of requests, which can add up to more than training. The computers give off heat, and many data centres cool them with water or with extra electricity for air conditioning, so the water and energy used depends on the place and the design. The chips are also made from mined materials in energy-intensive factories, and old equipment becomes electronic waste. Companies publish some figures, but estimates vary widely and change quickly, so be careful with any single number you see. What is clear: the cost is real, it depends on where the power comes from, and it is a fair question to ask when deciding how much to use these tools.</p>
     <h4>Who holds the power</h4>
     <p>Training the largest models takes huge amounts of computing power, electricity, and money, so a small number of companies and countries lead the field. People debate whether that concentration is a risk, whether rules or openly shared models would help, and who should decide how these systems are used.</p>
+<details class="tn"><summary>Stop and check: does the energy question belong with evidence, debate, or prediction?</summary><div class="in"><p>The existence of high energy use is documented evidence. How big it will become, and whether efficiency gains will offset growth, is debated and partly prediction.</p></div></details>
     <h4>The biggest uncertainty</h4>
     <p>Some experts warn that future AI systems could become far more capable than today’s, and that the risks deserve serious preparation now. Others think these worries are overstated and distract from problems that exist today. Both sides can point to evidence and arguments, but no one can prove what will happen.</p>
     <h4>What a careful reader and user does</h4>
@@ -364,7 +397,27 @@ footer ul{margin:0;padding-left:1.2em;display:grid;gap:3px}
     <div class="sort" id="sortBox"></div>
     <p class="score" id="sortScore"></p>
   </article>
+  <article class="aid"><span class="tag write">Write</span><h3>What would change your mind?</h3>
+    <p>Pick one claim from this reading that you currently believe or doubt, for example &ldquo;AI will mostly help workers&rdquo; or &ldquo;the risks are overstated.&rdquo; Write two sentences: what <b>specific evidence</b> would change your mind, and where you would look for it. Then name one person who disagrees with you and say what they might point to.</p>
+    <textarea rows="4" aria-label="What would change your mind" placeholder="I currently think ... I would change my mind if ... I would look at ..."></textarea>
+  </article>
   <div class="check" id="chk-s6"></div>
+</section>
+
+<section class="sec" id="lab">
+  <div><p class="kicker">Lab &middot; Verify an AI answer</p><h2>Trust, but check</h2></div>
+  <article class="aid"><span class="tag write">Write</span><h3>Verification lab</h3>
+    <ol style="margin:0;padding-left:1.2em;display:grid;gap:6px">
+      <li><b>Ask.</b> Ask an AI tool a factual science question that has a checkable answer (for example, &ldquo;How far is the Moon from Earth?&rdquo; or &ldquo;What causes the seasons?&rdquo;). Copy the answer. Follow your school&rsquo;s rules for which tools you may use.</li>
+      <li><b>Check.</b> Verify it with <b>two independent sources</b>, such as a science agency, a university, or a textbook. Independent means they do not simply copy each other. Note each source and its date.</li>
+      <li><b>Write a short CER paragraph.</b> <b>Claim:</b> was the AI answer correct, partly correct, or wrong? <b>Evidence:</b> what do the two sources say, with names and dates? <b>Reasoning:</b> why do those sources deserve more trust than the AI alone, and what does this tell you about when to check an AI answer?</li>
+    </ol>
+    <textarea rows="8" aria-label="Verification lab CER paragraph" placeholder="Question I asked, the AI's answer, my two sources, then my Claim / Evidence / Reasoning."></textarea>
+    <details class="tn"><summary>Self-check</summary><div class="in sa"><ul>
+      <li><label><input type="checkbox"> My two sources are independent and named, with dates.</label></li>
+      <li><label><input type="checkbox"> My claim says whether the AI was correct, partly correct, or wrong.</label></li>
+      <li><label><input type="checkbox"> My reasoning explains why the sources are trustworthy.</label></li></ul></div></details>
+  </article>
 </section>
 
 <!-- ============ wrap ============ -->
@@ -384,6 +437,14 @@ footer ul{margin:0;padding-left:1.2em;display:grid;gap:3px}
       <li><label><input type="checkbox"> I named one current and one future warning, and labeled each as documented, debated, or a prediction.</label></li>
       <li><label><input type="checkbox"> I gave two specific, realistic actions, not just “be careful.”</label></li>
       <li><label><input type="checkbox"> I explained it in my own words instead of copying sentences from the readings.</label></li></ul></div></details>
+    <details class="tn"><summary>Rubric and model answer</summary><div class="in">
+      <p><b>Rubric (12 points):</b></p>
+      <ul><li><b>Explanation (4):</b> 4 = explains how the tool works accurately in own words with three or more course terms used correctly; 3 = mostly accurate, minor slips; 2 = only two terms or vague; 1 = mostly copied or inaccurate.</li>
+      <li><b>Warnings (4):</b> 4 = one current and one future warning that fit this tool, each correctly labeled documented, debated, or prediction, with a reason; 2 = warnings named but labels or fit are weak; 1 = generic.</li>
+      <li><b>Actions (2):</b> 2 = two specific, realistic actions; 1 = vague, such as &ldquo;be careful.&rdquo;</li>
+      <li><b>Clarity (2):</b> 2 = organized, 200&ndash;250 words, own voice; 1 = hard to follow or far off length.</li></ul>
+      <p><b>Model answer (about 200 words, a chatbot):</b> A chatbot is powered by a large language model that reads my message as tokens and predicts the next token, over and over, until a reply is built. It learned patterns during training, when its parameters were adjusted, and during inference the parameters stay fixed. It can only use what fits in its context window, so in a long chat it may seem to forget early messages. One current warning is hallucination, which is well documented: the model predicts plausible text and does not check facts, so it can invent sources. One future warning is that AI agents may take real actions such as buying things; how risky that becomes is a prediction, because nobody knows how widely they will be used. To use it carefully, I will check any important claim with two independent sources, and I will not type passwords or other people&rsquo;s private details into it. I will also try a problem myself first and then ask the chatbot to check my work, so I keep learning, and I will say when I used it.</p>
+    </div></details>
   </article>
   <h3 style="margin-top:8px">Words to know</h3>
   <dl class="glossary">
@@ -404,7 +465,7 @@ footer ul{margin:0;padding-left:1.2em;display:grid;gap:3px}
     <div><dt>deepfake</dt><dd>A realistic fake image, voice, or video made with AI.</dd></div>
     <div><dt>prompt injection</dt><dd>Hidden instructions in text an AI reads that trick it into obeying them.</dd></div>
     <div><dt>agent</dt><dd>An AI system that takes actions, not just answers questions.</dd></div>
-    <div><dt>liar’s dividend</dt><dd>The way real evidence can be dismissed as “probably fake.”</dd></div>
+    <div><dt>CER</dt><dd>Claim, Evidence, Reasoning: a way to structure a short argument.</dd></div><div><dt>liar’s dividend</dt><dd>The way real evidence can be dismissed as “probably fake.”</dd></div>
   </dl>
   <details class="tn"><summary>Tutor notes: pacing, discussion, misconceptions, model answers</summary><div class="in">
     <p><b>Pacing:</b> six sessions of 30&ndash;40 minutes, one reading each, plus one for the closing reflection. Have students read the passage once for the gist, once with a pencil (underline claims, circle terms), then do the Try-it and the questions.</p>
@@ -435,6 +496,7 @@ footer ul{margin:0;padding-left:1.2em;display:grid;gap:3px}
 <li>Reuters via CNBC, <a href="https://www.cnbc.com/2018/10/10/amazon-scraps-a-secret-ai-recruiting-tool-that-showed-bias-against-women.html">Amazon scraps a secret AI recruiting tool that showed bias against women</a> (2018).</li>
 <li>NBC News, <a href="https://www.nbcnews.com/tech/security/fcc-votes-unanimously-ban-unsolicited-ai-robocalls-rcna137950">FCC votes unanimously to ban unsolicited AI robocalls</a> (2024, after the New Hampshire Biden-voice calls).</li>
 <li>Brennan Center, <a href="https://www.brennancenter.org/our-work/research-reports/deepfakes-elections-and-shrinking-liars-dividend">Deepfakes, Elections, and Shrinking the Liar&rsquo;s Dividend</a> (the term comes from Chesney and Citron, 2018).</li>
+<li>Bolukbasi et al., <a href="https://arxiv.org/abs/1607.06520">Man is to Computer Programmer as Woman is to Homemaker? Debiasing Word Embeddings</a> (2016).</li>
 <li>Elhage et al., <a href="https://www.anthropic.com/research/toy-models-of-superposition">Toy Models of Superposition</a> (2022).</li>
 <li>C2PA, <a href="https://c2pa.org/public-draft/Guidance.html">Guidance for Content Credentials</a>.</li>
 </ul></div>
