@@ -1,0 +1,54 @@
+# Image credits
+
+All images are real photographs, microscope images, satellite images or simulation renders from Wikimedia Commons, resized to <=1200 px and re-encoded as WebP. Each remains under its original license.
+
+- **tree-birch** - New snow on birch crowns in Tuntorp 3.jpg - W.carter - CC BY-SA 4.0 - https://commons.wikimedia.org/wiki/File:New_snow_on_birch_crowns_in_Tuntorp_3.jpg
+  - Birch crowns frosted with new snow, seen from below. Every twig splits again and again.
+- **tree-oak** - DSCF0900 Bare winter branches silhouetted against a dusky sky with colorful carnival lights stretching from a lamp post.jpg - PattayaPatrol - CC BY-SA 4.0 - https://commons.wikimedia.org/wiki/File:DSCF0900_Bare_winter_branches_silhouetted_against_a_dusky_sky_with_colorful_carnival_lights_stretching_from_a_lamp_post.jpg
+  - A bare oak in winter: the whole branching pattern is visible against the sky.
+- **roots-datura** - Datura metel 'Fastuosa' stem base & exposed root system.jpg - Flobbadob - CC BY-SA 4.0 - https://commons.wikimedia.org/wiki/File:Datura_metel_%27Fastuosa%27_stem_base_%26_exposed_root_system.jpg
+  - The exposed root system of a plant: thick roots splitting into thinner ones, then threads.
+- **roots-tree** - 1941. Root system of Tree Number 2 washed out in September of 1941. 20 inches dbh. Class 3D, Risk 4. Klamath Basin near Bly, Oregon. (26841051128).jpg - R6, State & Private Forestry, Forest Health Protection - Public domain - https://commons.wikimedia.org/wiki/File:1941._Root_system_of_Tree_Number_2_washed_out_in_September_of_1941._20_inches_dbh._Class_3D,_Risk_4._Klamath_Basin_near_Bly,_Oregon._(26841051128).jpg
+  - Roots of a large tree washed out of the ground, 1941. Wide and branched like the crown above.
+- **leaf-thistle** - Cirsium sp. (Thistle) leaf vein sceleton, Westenschouwen, the Netherlands.jpg - Bj.schoenmakers - CC0 - https://commons.wikimedia.org/wiki/File:Cirsium_sp._(Thistle)_leaf_vein_sceleton,_Westenschouwen,_the_Netherlands.jpg
+  - A leaf with the soft tissue gone, leaving only the vein network.
+- **leaf-skeleton** - Vein skeleton of a leaf.JPG - Brocken Inaglory - CC BY-SA 3.0 - https://commons.wikimedia.org/wiki/File:Vein_skeleton_of_a_leaf.JPG
+  - Vein skeleton of a leaf: a main vein, side veins, and finer loops between them.
+- **delta-lena** - Lena River Delta - Landsat 2000.jpg - none (Landsat) - Public domain - https://commons.wikimedia.org/wiki/File:Lena_River_Delta_-_Landsat_2000.jpg
+  - The Lena River delta in Siberia from space (false color): a river splitting into hundreds of channels.
+- **lightning-nps** - Ligtning square NPS (6e73a105-7735-4428-9352-8f5aec8df3cc).jpg - NPS - Public domain - https://commons.wikimedia.org/wiki/File:Ligtning_square_NPS_(6e73a105-7735-4428-9352-8f5aec8df3cc).jpg
+  - A branching lightning bolt over a dark sky.
+- **lightning-storm** - Kazakhstan's thunderous apocalypse.jpg - Astrobond - CC BY-SA 4.0 - https://commons.wikimedia.org/wiki/File:Kazakhstan%27s_thunderous_apocalypse.jpg
+  - Many branching lightning bolts during a thunderstorm.
+- **lichtenberg-tree** - Lichtenberg figure within a acrylic block.jpg - Jan1959 - CC BY-SA 4.0 - https://commons.wikimedia.org/wiki/File:Lichtenberg_figure_within_a_acrylic_block.jpg
+  - A Lichtenberg figure: a tree-shaped path of electrical damage frozen inside a block of acrylic.
+- **lichtenberg-tri** - Lichtenberg figure.jpg - Jeff Keyzer from Austin, TX, USA - CC BY-SA 2.0 - https://commons.wikimedia.org/wiki/File:Lichtenberg_figure.jpg
+  - Another Lichtenberg figure in clear acrylic, lit from below.
+- **tesla-coil** - TeslaCoil.jpg - Marco Grünewald - CC BY-SA 3.0 - https://commons.wikimedia.org/wiki/File:TeslaCoil.jpg
+  - Streamers of electricity leaping from a Tesla coil.
+- **tesla-lab** - Nikola Tesla, with his equipment EDIT.jpg - Photographer: Dickenson V. Alley Restored by Lošmi - Public domain - https://commons.wikimedia.org/wiki/File:Nikola_Tesla,_with_his_equipment_EDIT.jpg
+  - Famous 1899 Colorado Springs photograph of huge sparks. It is a staged double exposure: the sparks were photographed first, then the man added.
+- **snowflake** - Fernlike stellar dendrite snowflake, brightfield, focus stack.jpg - Janeklass - CC BY 4.0 - https://commons.wikimedia.org/wiki/File:Fernlike_stellar_dendrite_snowflake,_brightfield,_focus_stack.jpg
+  - A fernlike stellar dendrite snowflake. Ice crystals grow branches because the tips collect water vapor fastest.
+- **copper-dendrite** - Copper coating obtained by electrodeposition using ethylenediamine dehydrochloride for modifier.png - DenisovaAG - CC BY-SA 4.0 - https://commons.wikimedia.org/wiki/File:Copper_coating_obtained_by_electrodeposition_using_ethylenediamine_dehydrochloride_for_modifier.png
+  - A copper dendrite grown by electrodeposition, seen with an electron microscope.
+- **hoarfrost** - Hoarfrost-whistler-branch.jpg - Erin Frey - CC0 - https://commons.wikimedia.org/wiki/File:Hoarfrost-whistler-branch.jpg
+  - Hoarfrost crystals growing along a twig.
+- **neuron-dev** - Neuron Heart.jpg - Piku4chemia - CC BY-SA 4.0 - https://commons.wikimedia.org/wiki/File:Neuron_Heart.jpg
+  - A developing neuron (green dye): one long axon and several branching dendrites.
+- **neuron-purkinje** - Neurons (Purkinje cells).jpg - Lennart Rikk - CC0 - https://commons.wikimedia.org/wiki/File:Neurons_(Purkinje_cells).jpg
+  - Purkinje cells from a dog cerebellum: pear-shaped cell bodies with richly branched dendrites.
+- **retina** - Fundus photograph of a healthy left eye (OS) from a myopic Asian male patient. Age 23.png - OptometrusPrime - CC BY-SA 2.0 - https://commons.wikimedia.org/wiki/File:Fundus_photograph_of_a_healthy_left_eye_(OS)_from_a_myopic_Asian_male_patient._Age_23.png
+  - Blood vessels branching across the back of a healthy human eye.
+- **mycelium** - Micelio de hongo sobre ojo compuesto SEM.jpg - Brandon Antonio Segura Torres & Priscilla Vieto Bonilla - CC BY-SA 4.0 - https://commons.wikimedia.org/wiki/File:Micelio_de_hongo_sobre_ojo_compuesto_SEM.jpg
+  - Fungal mycelium (thread-like hyphae) growing over an insect compound eye, electron microscope image.
+- **cosmic-illustris** - Illustris Dark Matter and Gas.png - Illustris Collaboration - CC BY-SA 4.0 - https://commons.wikimedia.org/wiki/File:Illustris_Dark_Matter_and_Gas.png
+  - Dark matter and gas in the Illustris simulation: filaments and knots of the computed cosmic web.
+- **cosmic-hubble** - Probing the cosmic web (opo0820b).jpg - NASA, ESA, and E. Hallman (University of Colorado, Boulder) - Public domain - https://commons.wikimedia.org/wiki/File:Probing_the_cosmic_web_(opo0820b).jpg
+  - Graphic of a slice of the cosmic web, the filament structure of matter in the universe.
+- **cosmic-filament** - Revealing a filament from the cosmic web (potw2504a).jpg - ESO/D. Tornotti et al./Hubble: M. Revalski, P. Francis et al. - CC BY 4.0 - https://commons.wikimedia.org/wiki/File:Revealing_a_filament_from_the_cosmic_web_(potw2504a).jpg
+  - A real filament of gas between galaxies (purple), imaged with ESO's Very Large Telescope over a Hubble background.
+- **cosmic-slime** - Cosmic Web and Slime Mold (2020-11-4635).png - , , and J. Burchett and O. Elek (UC Santa Cruz) - Public domain - https://commons.wikimedia.org/wiki/File:Cosmic_Web_and_Slime_Mold_(2020-11-4635).png
+  - Slime mold simulations used to trace where the cosmic web is, from NASA/ESA (Burchett and Elek).
+- **dla** - Diffusion Limited Aggregation 20200512.png - PantheraLeo1359531 - CC0 - https://commons.wikimedia.org/wiki/File:Diffusion_Limited_Aggregation_20200512.png
+  - A computer-made diffusion-limited aggregation cluster.

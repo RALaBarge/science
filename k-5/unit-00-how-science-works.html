@@ -218,6 +218,24 @@ footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;bo
 .ck{display:grid;gap:4px;font-size:.9rem}
 .ck span::before{content:"✓ ";color:var(--transmit);font-weight:700}
 </style>
+<style>
+[hidden]{display:none!important}
+.bdrow{display:flex;flex-wrap:wrap;gap:12px;align-items:end}
+.bdrow .sel{min-width:130px}
+.evlist{display:grid;gap:6px;max-height:280px;overflow:auto;padding-right:4px}
+.evrow{display:grid;grid-template-columns:128px minmax(0,1fr);gap:10px;padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);font-size:.9rem}
+.evrow.on{border-color:var(--ink);background:var(--surface-2)}
+.evrow>b{font-family:var(--font-mono);font-weight:500;font-size:.74rem;color:var(--muted)}
+.evrow .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;border:1px solid var(--ink)}
+.brow2{display:grid;grid-template-columns:130px minmax(0,1fr);gap:4px 10px;align-items:center;font-size:.9rem}
+.brow2 .trk{position:relative;height:16px;border-radius:8px;background:var(--surface-2)}
+.brow2 .trk i{position:absolute;top:0;bottom:0;border-radius:8px;background:var(--transmit)}
+.brow2 .when{grid-column:2;font-size:.8rem;color:var(--muted);margin-top:-2px}
+.pplrow{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:16px;align-items:center}
+#pplWaffle .cell:not(.r){background:var(--surface-2)}
+@media (max-width:760px){.pplrow{grid-template-columns:minmax(0,1fr)}.evrow{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:420px){.brow2{grid-template-columns:96px minmax(0,1fr)}}
+</style>
 
 <header class="hero">
   <p class="kicker">Start here · Unit 0</p>
@@ -235,8 +253,8 @@ footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;bo
 </header>
 
 <nav class="nav" aria-label="Lesson sections"><ul>
-  <li><a href="#s1">1 Origins</a></li><li><a href="#s2">2 The method</a></li><li><a href="#s3">3 Hypotheses</a></li><li><a href="#s4">4 Fair tests</a></li><li><a href="#s5">5 Data to claim</a></li><li><a href="#s6">6 Check yourself</a></li>
-  <li><a href="#game">7 Game</a></li>
+  <li><a href="#s1">1 Origins</a></li><li><a href="#s2">2 The method</a></li><li><a href="#s3">3 Hypotheses</a></li><li><a href="#s4">4 Fair tests</a></li><li><a href="#s5">5 Data to claim</a></li><li><a href="#s7">6 Starlight</a></li><li><a href="#s8">7 Deep time</a></li><li><a href="#s6">8 Check yourself</a></li>
+  <li><a href="#game">9 Game</a></li>
   </ul></nav>
 
 <main>
@@ -273,6 +291,43 @@ footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;bo
       <h3>When evidence beat tradition: handwashing, 1847</h3>
       <div class="bars" id="semBars"></div>
       <p class="cap">Dr. Ignaz Semmelweis noticed far more mothers died in the Vienna hospital ward staffed by doctors than in the ward staffed by midwives. He guessed doctors were carrying "cadaverous particles" from autopsies on their hands, made them wash with chlorine, and deaths fell sharply. The germ theory that explained why came later (Pasteur, Lister). Approximate figures. Evidence can be right before the explanation is complete.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>Who is at the center? A 1,400-year argument settled by evidence</h3>
+      <p>For most of history, almost everyone assumed the Earth sat still in the middle and the Sun, Moon, planets and stars circled it. It matches what your eyes tell you: you do not feel the ground move, and the Sun rises and sets. About 150 CE the Greek-Egyptian astronomer <b>Ptolemy</b> wrote it up as a mathematical model so good at predicting where the planets would be that it was used for well over a thousand years.</p>
+      <div class="trio" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+        <div><h4>Earth-centered (Ptolemy)</h4><p>In this model, planets ride on small circles that ride on big circles around the Earth. It works for predictions, but it needs a pile of extra circles to explain why planets sometimes seem to move backward in the sky.</p></div>
+        <div><h4>Sun-centered (Copernicus)</h4><p>In 1543 <b>Nicolaus Copernicus</b> published a model with the Sun in the middle and the Earth as one planet among several. The backward loops happen naturally: when Earth, on its faster inner track, passes a slower outer planet like Mars, that planet seems to slide backward for a while, like a car you pass on the highway. A Greek thinker, Aristarchus, had suggested something similar around 270 BCE, but there was no evidence yet.</p></div>
+      </div>
+      <p class="cap">Two ideas, both able to predict planet positions. The difference had to be settled by <b>new evidence</b>, not by which idea sounded right or which one more people believed.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>Galileo's test: what phase can Venus show?</h3>
+      <div class="chips" id="venModel" role="group" aria-label="Model"><button class="chip" type="button" data-m="0" aria-pressed="true">Sun-centered (Copernicus)</button><button class="chip" type="button" data-m="1" aria-pressed="false">Earth-centered (Ptolemy)</button></div>
+      <div class="stage"><svg id="venSvg" viewBox="0 0 480 260" role="img" aria-label="Top-down diagram of the Sun, Venus and Earth on the left, and the phase of Venus as seen from Earth on the right."></svg></div>
+      <div class="ctl"><label for="venT">Where Venus is on its path: <span id="venTV"></span>°</label><input id="venT" type="range" min="0" max="359" step="1" value="40"></div>
+      <div class="btnrow"><button class="btn ghost" type="button" id="venGal">Jump to what Galileo saw</button></div>
+      <p class="readout" id="venR" aria-live="polite"></p>
+      <p class="cap">Through the fall of 1610 <b>Galileo</b> watched Venus through his telescope. It went through <b>phases like our Moon</b>, from a thin crescent to nearly full. In Ptolemy's model Venus always stays between us and the Sun, so it can never be more than a crescent. Venus looking nearly full means it can be on the far side of the Sun, which only fits a model where Venus circles the Sun.</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Four moons that change places</h3>
+      <div class="stage"><svg id="jupSvg" viewBox="0 0 640 110" role="img" aria-label="Jupiter in the middle with four small moons that shift left and right as the nights pass."></svg></div>
+      <div class="ctl"><label for="jupD">Night: <span id="jupDV"></span></label><input id="jupD" type="range" min="0" max="16" step="0.25" value="0"></div>
+      <p class="cap">In January 1610 Galileo saw "stars" next to Jupiter that changed places from night to night. He realized they were four moons <b>orbiting Jupiter</b>. So not everything circled the Earth. (Positions here are illustrative; the orbit times are real.)</p>
+    </article>
+    <article class="aid">
+      <span class="tag data">Data</span>
+      <h3>How the evidence piled up</h3>
+      <div class="cer">
+        <div><b>Claim</b>The Earth and the other planets orbit the Sun.</div>
+        <div><b>Evidence</b>Jupiter's moons (1610). Venus's phases (1610). Planets travel in ovals called ellipses (Kepler, 1609), which fit Tycho Brahe's careful measurements.</div>
+        <div><b>Reasoning</b>Venus's phases rule out Ptolemy's model. A third model (Tycho Brahe's, where the planets circle the Sun but the Sun circles Earth) also fit them, so the case was not closed overnight. Newton's gravity (1687) explained why planets orbit the Sun, and in 1838 astronomers measured stars shifting slightly as the Earth moves (parallax), which finished it.</div>
+      </div>
+      <p class="cap">The pattern: <b>the model changed because the evidence changed</b>, even though many people did not want it to. That is science correcting itself.</p>
     </article>
   </div>
 </section>
@@ -464,13 +519,133 @@ footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;bo
   </div>
 </section>
 
+<section class="sec" id="s7">
+  <div><p class="kicker">Concept 6 · Reading light from far away</p><h2>How do we know what a star is made of?</h2></div>
+  <p class="idea">Nobody has ever visited a star, yet we know what the Sun is made of. The secret: <mark>light carries a fingerprint</mark> of whatever made it.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>A barcode made of light</h3>
+      <p>A store scanner does not taste your cereal. It reads the pattern of black and white lines on the box and knows exactly what it is.</p>
+      <p class="cap">Split light with a prism and it spreads into a rainbow, called a <b>spectrum</b>. Look closely at the light from a glowing gas and you do not see a smooth rainbow. You see a few bright colored lines. <b>Each element makes its own pattern of lines</b>, like its own barcode. Hydrogen's barcode is never the same as sodium's.</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Read an element's barcode</h3>
+      <div class="chips" id="spEl" role="group" aria-label="Element"></div>
+      <div class="stage"><svg id="spSvg" viewBox="0 0 480 90" role="img" aria-label="A spectrum from violet to red with the bright lines of the chosen element."></svg></div>
+      <p class="readout" id="spR" aria-live="polite"></p>
+      <p class="cap">These are real wavelengths of light, drawn in the colors your eyes would see. (Your screen only approximates the colors.)</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>Mystery star: what is it made of?</h3>
+      <p>A star's light passes through its own outer gases, which soak up exactly the colors those elements would give off. That leaves <b>dark lines</b> in the star's rainbow. Switch on elements below to see their bright-line barcodes lined up under the star. If they match up with the dark lines, that element is in the star.</p>
+      <div class="stage"><svg id="msSvg" viewBox="0 0 480 140" role="img" aria-label="The mystery star's spectrum with dark lines on top, and the bright lines of the elements you chose below it."></svg></div>
+      <div class="chips" id="msEl" role="group" aria-label="Elements you think are in the star"></div>
+      <div class="btnrow"><button class="btn" type="button" id="msCheck">Check my answer</button><button class="btn ghost" type="button" id="msNew">New mystery star</button></div>
+      <p class="readout" id="msR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>Helium was found on the Sun before it was found on Earth</h3>
+      <p>On August 18, 1868, during a total solar eclipse seen from India, astronomer Pierre Janssen noticed a bright yellow line in the Sun's spectrum. It sat close to the known sodium lines but did not match them. Two months later Norman Lockyer in England saw the same line. They concluded it came from an element nobody had found yet and named it <b>helium</b>, after <i>Helios</i>, the Greek word for the Sun. Helium was not found on Earth until 1895, <b>27 years later</b>.</p>
+      <p class="cap">That is the power of the method: we learned what the Sun is made of, and discovered a new element, using nothing but its light.</p>
+      <details><summary>Peek ahead: why does every element make different lines?</summary><div class="in">
+        <p>You will learn about atoms soon. Here is a teaser. Every atom has <b>electrons</b> around its center, and an electron can only sit on certain "steps," like a staircase. It cannot hover between steps. When an electron drops down a step, the atom gives off a little bit of light, and the size of the drop decides the color.</p>
+        <p>Every element has its own spacing of steps, so each one gives off its own set of colors. For example, the red line of hydrogen (at 656 nm) comes from an electron dropping from the third step to the second. That is also why starlight has dark lines: electrons in the star's outer gas <i>climb</i> those same steps by soaking up exactly those colors.</p>
+        <p>This is one of the ways chemistry and astronomy connect, and it is the beginning of the story of how scientists learned that atoms have an inside.</p>
+      </div></details>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s8">
+  <div><p class="kicker">Concept 7 · Deep time</p><h2>The whole universe in one year</h2></div>
+  <p class="idea">The universe is about 13.8 billion years old. That number is too big to feel, so let's <mark>squash all of time into one calendar year</mark> and find where your birthday lands.</p>
+  <div class="aids">
+    <article class="aid wide" id="ccIntro">
+      <span class="tag try">Try it</span>
+      <h3>Step 1: Find your birthday on the cosmic calendar</h3>
+      <p>The Big Bang is midnight at the start of January 1. Right now is the last instant of December 31. Pick your birthday (no year needed) and see what was happening in the universe that day.</p>
+      <div class="bdrow">
+        <div class="sel"><label for="bdM">Month</label><select id="bdM"></select></div>
+        <div class="sel"><label for="bdD">Day</label><select id="bdD"></select></div>
+        <button class="btn" type="button" id="bdGo">Show my day</button>
+        <button class="btn ghost" type="button" id="bdSkip">Skip (use today's date)</button>
+      </div>
+      <p class="cap">Your birthday is only used on this page to place a marker. It is not saved or sent anywhere.</p>
+      <div id="bdOut" class="card2" aria-live="polite" hidden></div>
+    </article>
+    <article class="aid wide" id="ccShow" hidden>
+      <span class="tag diagram">Diagram</span>
+      <h3>Step 2: Zoom out and watch the whole year</h3>
+      <p class="cap" id="ccScale"><b>The scale:</b> 13.8 billion years squeezed into 365 days. One cosmic day is about 38 million real years. One cosmic second is about 438 real years.</p>
+      <div class="chips" id="ccStages" role="group" aria-label="Zoom level"></div>
+      <div class="stage"><svg id="ccSvg" viewBox="0 0 640 170" role="img" aria-label="A timeline for the chosen zoom level with dots for events and a flag for your birthday."></svg></div>
+      <div class="ctl"><label for="ccScrub">Slide through time: <span id="ccScrubV"></span></label><input id="ccScrub" type="range" min="0" max="1000" step="1" value="0"></div>
+      <div class="btnrow"><button class="btn ghost" type="button" id="ccBack">Zoom out a level</button><button class="btn" type="button" id="ccNext">Zoom in a level</button></div>
+      <p class="readout" id="ccR" aria-live="polite"></p>
+      <div class="evlist" id="ccList"></div>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>When does life show up?</h3>
+      <p>You might have heard that "all of life happened in the last hour of the year." The real picture is a little different, and just as surprising:</p>
+      <div class="bars" id="ccBars"></div>
+      <p class="cap">Life starts in <b>September</b>, but for most of the year it is tiny single cells. Animals arrive in mid-December. Dinosaurs rule from about December 25 to 30. <b>Humans do not show up until roughly the last 12 minutes</b> of December 31, and everything written down in human history, from the first writing to today, fits in the <b>last 12 seconds</b>.</p>
+    </article>
+    <article class="aid">
+      <span class="tag real">Real world</span>
+      <h3>Where did this idea come from?</h3>
+      <p>Astronomer <b>Carl Sagan</b> popularized the Cosmic Calendar in his 1977 book <i>The Dragons of Eden</i> and in his 1980 TV series <i>Cosmos</i>. It came back in the 2014 series <i>Cosmos: A Spacetime Odyssey</i>, hosted by astrophysicist Neil deGrasse Tyson. Different versions place events at slightly different times because scientists keep refining the dates. Treat the times here as close estimates, not exact clock readings.</p>
+    </article>
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>How long is one cosmic second?</h3>
+      <p>About 438 real years. That means the <b>last cosmic second</b> stretches back to roughly the year 1588: Galileo's lifetime. Every telescope, every airplane, every president and every phone fit inside a single tick of the clock.</p>
+      <p class="cap">By the same scale, your whole life so far (about 12 years) is less than <b>one thirtieth of a second</b>.</p>
+    </article>
+  </div>
+
+  <div><h3 style="margin-top:14px">How many people have ever lived?</h3></div>
+  <p class="idea">Demographers estimate about <mark>117 billion people</mark> have ever been born. About 7 in every 100 of them are alive right now.</p>
+  <div class="aids">
+    <article class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>Everyone who has ever lived</h3>
+      <div class="chips" id="pplChips" role="group" aria-label="Year"></div>
+      <div class="pplrow">
+        <div class="waffle" id="pplWaffle" role="img" aria-label="One hundred squares, each one percent of everyone ever born."></div>
+        <div class="pplread" id="pplR" aria-live="polite"></div>
+      </div>
+      <p class="cap">Each square is 1% of all the people who have ever been born (about 1.2 billion people). Blue squares were born by the year you picked. The estimates come from the Population Reference Bureau and use population guesses for the distant past, so treat them as rough: they say that <b>no demographic data exist for more than 99% of the time humans have been around</b>. Earlier versions of this estimate were lower, around 108 billion in 2015, and they keep being updated as the data improves.</p>
+    </article>
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>Too many to picture? Try these</h3>
+      <div class="cer">
+        <div><b>One person per second</b>Counting one person every second, non-stop, would take about <b>3,700 years</b>.</div>
+        <div><b>Stadiums</b>A big stadium holds 100,000 people. You would need about <b>1.2 million sold-out stadiums</b>.</div>
+        <div><b>A line</b>Standing shoulder to shoulder (about half a meter each), the line would be about 58 million km long: <b>to the Moon and back about 76 times</b>.</div>
+      </div>
+    </article>
+    <article class="aid">
+      <span class="tag data">Data</span>
+      <h3>Alive today</h3>
+      <div class="waffle" id="pplNow" role="img" aria-label="One hundred squares, seven highlighted: the share of everyone ever born who is alive today."></div>
+      <p class="cap">Of every 100 people who ever lived, about <b>7 are alive right now</b> (about 8 billion people). Around 4 more babies are born every second. The other 93 are our ancestors, and every one of them was a person with a story.</p>
+    </article>
+  </div>
+</section>
+
 <section class="sec" id="s6">
   <div><p class="kicker">Check yourself</p><h2>Can you explain it?</h2></div>
   <p class="idea">A classmate says: "My plants grew taller with fertilizer, so fertilizer works!" But they used a bigger pot and a sunnier window for the fertilizer plants. What is wrong with the test, and how would you fix it?</p>
   <details><summary>Show a model answer</summary><div class="in">
     <p>The test is unfair because fertilizer wasn't the only thing that changed: the pot size and the amount of light also differed, so any of them could explain the taller plants. To fix it, keep pot, soil, water, light, and starting size identical in both groups, change only the fertilizer, include a control group with none, and grow several plants per group so the average is trustworthy.</p></div></details>
   <div class="items" id="quiz"></div>
-  <p class="score" id="quizScore">0 of 6 correct</p>
+  <p class="score" id="quizScore">0 of 9 correct</p>
   <h3 style="margin-top:8px">Words to know</h3>
   <dl class="glossary">
     <div><dt>observation</dt><dd>Information gathered with your senses or instruments.</dd></div>
@@ -483,6 +658,9 @@ footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;bo
     <div><dt>conclusion</dt><dd>What the evidence shows about the hypothesis.</dd></div>
     <div><dt>theory</dt><dd>A well-tested explanation backed by a lot of evidence.</dd></div>
     <div><dt>replication</dt><dd>Repeating a test to see if you get the same result.</dd></div>
+    <div><dt>heliocentric</dt><dd>Sun-centered. (Geocentric means Earth-centered.)</dd></div>
+    <div><dt>spectrum</dt><dd>Light spread out by color, like a rainbow. Each element makes its own pattern of lines.</dd></div>
+    <div><dt>cosmic calendar</dt><dd>The 13.8-billion-year history of the universe squeezed into one year.</dd></div>
   </dl>
   <details><summary>Tutor notes: hands-on kit, misconceptions, pacing</summary><div class="in">
     <p><b>Kit (about $8):</b> bean seeds, 6 clear cups, potting soil, a metric ruler, a stopwatch, paper clips and string, a small ramp (book + cardboard) and a toy car, graph paper.</p>
@@ -492,6 +670,8 @@ footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;bo
       <li><b>Concept 3:</b> rewrite 5 weak hypotheses into "If…then…because" form.</li>
       <li><b>Concept 4:</b> ramp and car: change only ramp height, measure distance rolled, run 5 trials per height.</li>
       <li><b>Concept 5:</b> graph the ramp data; write a CER paragraph.</li>
+      <li><b>Concept 6:</b> use a cheap diffraction-grating slide or a CD to look at a lamp and a window; compare to the elements on the page. Teaser only: atoms and electrons come later.</li>
+      <li><b>Concept 7:</b> have students enter their birthday, then write one sentence about what was happening in the universe that day. Mark the cosmic calendar on a hallway strip of paper (1 meter of paper = 1 year is easy to fold).</li>
     </ul>
     <p><b>Common misconceptions:</b></p>
     <ul>
@@ -804,7 +984,10 @@ safe(()=>{
     {y:132,l:'132 CE',n:'China: seismoscope',t:'Zhang Heng built a bronze device with dropping balls that showed the direction of distant earthquakes. Chinese scientists also gave the world the compass, paper, and detailed astronomical records.'},
     {y:500,l:'~500 CE',n:'India: numbers and astronomy',t:'Aryabhata and later scholars developed the decimal place-value system with zero, and explained eclipses and the Earth turning on its axis. These numbers are the ones we still use.'},
     {y:1011,l:'~1011',n:'Ibn al-Haytham',t:'Working in Cairo, he wrote the Book of Optics, testing how light and vision work with controlled experiments (including the camera obscura). Many historians call him a founder of the experimental method.'},
-    {y:1610,l:'1610',n:'Galileo',t:'Galileo pointed a telescope at the sky and saw moons orbiting Jupiter, evidence that not everything circles the Earth. His careful measurements of motion helped make math and experiments central to science.'},
+    {y:150,l:'~150 CE',n:'Ptolemy',t:'Ptolemy wrote down a math model with the Earth at the center and everything circling it. It predicted planet positions well enough to be used for over a thousand years, which shows that a useful model can still be wrong.'},
+    {y:1543,l:'1543',n:'Copernicus',t:'Nicolaus Copernicus published a model with the Sun at the center and the Earth as one of several planets. At first it was not clearly better at predictions. It needed evidence.'},
+    {y:1609,l:'1609',n:'Kepler',t:'Johannes Kepler used the careful measurements of Tycho Brahe to show that planets travel in ovals (ellipses), not perfect circles. His laws made the Sun-centered model work far better.'},
+    {y:1610,l:'1610',n:'Galileo',t:'Galileo pointed a telescope at the sky and saw moons orbiting Jupiter and Venus going through phases, evidence that not everything circles the Earth. His careful measurements of motion helped make math and experiments central to science.'},
     {y:1687,l:'1687',n:'Newton',t:'Isaac Newton published laws of motion and gravity that explained both falling apples and orbiting planets with the same math, a model for what a scientific theory can do.'},
     {y:1859,l:'1859',n:'Darwin and Pasteur era',t:'Darwin published a theory of evolution by natural selection, and Pasteur showed that tiny germs cause disease and spoilage. Evidence from many people built these ideas.'},
     {y:2000,l:'1900s–today',n:'Teams, tools, computers',t:'Modern science is a global team effort: Marie Curie on radioactivity, Rosalind Franklin on DNA structure, Katherine Johnson on orbit math, and thousands of researchers using computers, satellites, and telescopes.'}];
@@ -937,13 +1120,251 @@ safe(()=>{
     {q:'What is a control group?',o:['The group that gets the change','The group that is left unchanged for comparison','The group that is measured last'],a:1,e:'It shows what happens without the change.'},
     {q:'Why do scientists repeat trials?',o:['To waste time','Natural variation can mislead one trial','Their first result is always wrong'],a:1,e:'The average of many trials is more reliable.'},
     {q:'In scientific language, a theory is...',o:['A guess','A well-tested explanation supported by a lot of evidence','A made-up story'],a:1,e:'Theories like plate tectonics are strongly supported.'},
-    {q:'Ice cream sales and swimming accidents rise together. This shows...',o:['Ice cream causes accidents','Correlation does not prove causation; heat drives both','Accidents cause ice cream sales'],a:1,e:'A hidden third variable (temperature) explains both.'}
+    {q:'Ice cream sales and swimming accidents rise together. This shows...',o:['Ice cream causes accidents','Correlation does not prove causation; heat drives both','Accidents cause ice cream sales'],a:1,e:'A hidden third variable (temperature) explains both.'},
+    {q:'Why did most scientists eventually accept a Sun-centered solar system?',o:['It was the more popular idea','New evidence, like the moons of Jupiter and the phases of Venus, fit it better','The old model could not predict anything'],a:1,e:'The Ptolemy model predicted well, so it took new evidence to change minds.'},
+    {q:'How can scientists know what a star is made of without going there?',o:['They read the pattern of colored lines in its light','They guess from its size','They bring back a sample'],a:0,e:'Each element gives off or absorbs its own set of colors, like a barcode.'},
+    {q:'On the cosmic calendar (the history of the universe squeezed into one year), when do humans appear?',o:['In January','In September','In the last minutes of December 31'],a:2,e:'Life starts in September, but modern humans show up only about 12 minutes before the year ends.'}
   ];
   const box=$('#quiz'), sc=$('#quizScore'); let right=0;
   box.innerHTML=Q.map((x,i)=>`<div class="q item" data-i="${i}" style="display:grid"><h4>${i+1}. ${x.q}</h4><div class="opts">${x.o.map((t,j)=>`<button class="opt" type="button" data-j="${j}">${t}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
   box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.disabled)return; const row=b.closest('.q'), x=Q[+row.dataset.i], ok=+b.dataset.j===x.a;
     $$('.opt',row).forEach(o=>{ o.disabled=true; if(+o.dataset.j===x.a)o.classList.add('good'); }); if(!ok)b.classList.add('bad'); else right++;
     $('.fb',row).textContent=(ok?'Correct. ':'Not quite. ')+x.e; sc.textContent=`${right} of ${Q.length} correct`; });
+});
+})();
+</script>
+<script>
+(function(){
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const safe=fn=>{try{fn()}catch(e){console.error(e)}};
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const setPressed=(g,b)=>$$('button',g).forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));
+function mkChips(g,labels,sel=0){ g.innerHTML=labels.map((l,i)=>`<button class="chip" type="button" data-i="${i}" aria-pressed="${i===sel}">${l}</button>`).join(''); }
+
+/* ===== Venus: what phase can it show? ===== */
+safe(()=>{
+  const svg=$('#venSvg'), sl=$('#venT'), out=$('#venR'), chips=$('#venModel'); let model=0;
+  const angle=(ax,ay,bx,by)=>Math.acos(clamp((ax*bx+ay*by)/(Math.hypot(ax,ay)*Math.hypot(bx,by)),-1,1));
+  const geo=th=>{ const t=th*Math.PI/180;
+    if(model===0){ const S={x:150,y:130},E={x:250,y:130}; return {S,E,V:{x:S.x+72*Math.cos(t),y:S.y-72*Math.sin(t)}}; }
+    const E={x:150,y:130},S={x:260,y:130},C={x:208,y:130}; return {S,E,C,V:{x:C.x+42*Math.cos(t),y:C.y-42*Math.sin(t)}}; };
+  const lit=g=>{ const i=angle(g.S.x-g.V.x,g.S.y-g.V.y,g.E.x-g.V.x,g.E.y-g.V.y); return {i,k:(1+Math.cos(i))/2}; };
+  const scan=m=>{ const keep=model; model=m; let best={k:-1,th:0}; for(let th=0;th<360;th++){ const k=lit(geo(th)).k; if(k>best.k)best={k,th}; } model=keep; return best; };
+  const maxK=[scan(0),scan(1)];
+  const name=k=>k<.04?'new (dark)':k<.45?'a crescent':k<.56?'a half':k<.96?'gibbous (more than half lit)':'full';
+  const draw=()=>{ const th=+sl.value; $('#venTV').textContent=th; const g=geo(th), L=lit(g), pct=Math.round(L.k*100);
+    let s='';
+    if(model===0){
+      s+=`<circle cx="${g.S.x}" cy="${g.S.y}" r="100" style="fill:none;stroke:var(--line);stroke-dasharray:4 4"/><circle cx="${g.S.x}" cy="${g.S.y}" r="72" style="fill:none;stroke:var(--line);stroke-dasharray:4 4"/>`;
+    }else{
+      s+=`<circle cx="${g.E.x}" cy="${g.E.y}" r="110" style="fill:none;stroke:var(--line);stroke-dasharray:4 4"/><circle cx="${g.C.x}" cy="${g.C.y}" r="42" style="fill:none;stroke:var(--line);stroke-dasharray:4 4"/><line x1="${g.E.x}" y1="${g.E.y}" x2="${g.S.x}" y2="${g.S.y}" style="stroke:var(--line)"/>`;
+    }
+    s+=`<line x1="${g.V.x}" y1="${g.V.y}" x2="${g.E.x}" y2="${g.E.y}" style="stroke:var(--reflect);stroke-width:1.5;stroke-dasharray:3 3"/>`;
+    s+=`<circle cx="${g.S.x}" cy="${g.S.y}" r="11" style="fill:var(--beam);stroke:var(--ink);stroke-width:2"/><text x="${g.S.x}" y="${g.S.y-16}" font-size="12" text-anchor="middle">Sun</text>`;
+    s+=`<circle cx="${g.E.x}" cy="${g.E.y}" r="8" style="fill:var(--reflect);stroke:var(--ink);stroke-width:2"/><text x="${g.E.x}" y="${g.E.y+22}" font-size="12" text-anchor="middle">Earth</text>`;
+    s+=`<circle cx="${g.V.x}" cy="${g.V.y}" r="6" style="fill:var(--absorb);stroke:var(--ink);stroke-width:2"/><text x="${g.V.x+(model?0:10)}" y="${g.V.y-10}" font-size="12" text-anchor="middle">Venus</text>`;
+    const cx=395,cy=120,R=55,c=Math.cos(L.i), rx=Math.max(.01,R*Math.abs(c));
+    s+=`<circle cx="${cx}" cy="${cy}" r="${R}" style="fill:var(--shade);stroke:var(--ink);stroke-width:2"/>`;
+    if(L.k>.01) s+=`<path d="M${cx} ${cy-R} A${R} ${R} 0 0 1 ${cx} ${cy+R} A${rx} ${R} 0 0 ${c>0?1:0} ${cx} ${cy-R}z" style="fill:#F3E7BF"/>`;
+    s+=`<text x="${cx}" y="${cy+R+22}" font-size="12" text-anchor="middle">Venus as seen from Earth</text>`;
+    s+=`<text x="12" y="20" font-size="12" style="font-weight:700">${model?'Earth-centered model':'Sun-centered model'} (not to scale)</text>`;
+    svg.innerHTML=s;
+    const mx=Math.round(maxK[model].k*100);
+    out.innerHTML=`Venus looks <b>${pct}% lit</b>: ${name(L.k)}. In this model the most Venus can ever be lit is <b>${mx}%</b>.`+(model===1&&pct>mx-1?' That is the limit of this model, and Galileo saw more than that.':'');
+  };
+  sl.addEventListener('input',draw);
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; model=+b.dataset.m; setPressed(chips,b); draw(); });
+  $('#venGal').addEventListener('click',()=>{ if(model===0){ let best={d:9,th:0}; for(let th=90;th<=180;th++){ const d=Math.abs(lit(geo(th)).k-.85); if(d<best.d)best={d,th}; } sl.value=best.th; } else { sl.value=maxK[1].th; } draw(); });
+  draw();
+});
+
+/* ===== Jupiter's moons ===== */
+safe(()=>{
+  const svg=$('#jupSvg'), sl=$('#jupD');
+  const M=[{n:'Io',a:5.9,p:1.769,ph:.6,c:'#E7C14B'},{n:'Europa',a:9.4,p:3.551,ph:2.2,c:'#9FD3E8'},{n:'Ganymede',a:15,p:7.155,ph:4.1,c:'#B9A58B'},{n:'Callisto',a:26.4,p:16.69,ph:1.1,c:'#8A8F9A'}];
+  const draw=()=>{ const d=+sl.value; $('#jupDV').textContent=d.toFixed(2).replace(/\.00$/,'');
+    let s=`<line x1="10" y1="55" x2="630" y2="55" style="stroke:var(--line)"/><circle cx="320" cy="55" r="11" style="fill:#D9A46C;stroke:var(--ink);stroke-width:2"/><text x="320" y="86" font-size="12" text-anchor="middle">Jupiter</text>`;
+    M.forEach((m,i)=>{ const x=320+m.a*11*Math.sin(2*Math.PI*d/m.p+m.ph); s+=`<circle cx="${x.toFixed(1)}" cy="55" r="4.5" style="fill:${m.c};stroke:var(--ink);stroke-width:1.5"/><text x="${x.toFixed(1)}" y="${i%2?40:30}" font-size="11" text-anchor="middle">${m.n}</text>`; });
+    svg.innerHTML=s; };
+  sl.addEventListener('input',draw); draw();
+});
+
+/* ===== Spectra ===== */
+const WL0=400, WL1=700, SX0=40, SX1=460;
+const xOf=w=>SX0+(w-WL0)/(WL1-WL0)*(SX1-SX0);
+function rgb(w){ let r=0,g=0,b=0;
+  if(w<440){r=-(w-440)/60;b=1}else if(w<490){g=(w-440)/50;b=1}else if(w<510){g=1;b=-(w-510)/20}else if(w<580){r=(w-510)/70;g=1}else if(w<645){r=1;g=-(w-645)/65}else{r=1}
+  const f=w<420?.35+.65*(w-380)/40:w>680?.35+.65*(700-w)/20:1;
+  const c=v=>Math.round(255*Math.pow(clamp(v*f,0,1),.8)); return `rgb(${c(r)},${c(g)},${c(b)})`; }
+const EL={
+  H:{n:'Hydrogen',L:[[410.2,.5],[434.0,.6],[486.1,.8],[656.3,1]],t:'Four visible lines. The red one (656 nm) is why glowing clouds of hydrogen in space look pink-red.'},
+  He:{n:'Helium',L:[[447.1,.7],[471.3,.4],[492.2,.4],[501.6,.8],[587.6,1],[667.8,.6]],t:'The bright yellow line near 588 nm is the one seen in the Sun in 1868, before helium was known on Earth.'},
+  Na:{n:'Sodium',L:[[568.8,.3],[589.0,1],[589.6,1],[615.4,.3]],t:'A bright yellow pair near 589 nm. Sprinkle salt in a flame, or look at an old orange streetlight, and you see it.'},
+  Ne:{n:'Neon',L:[[540.1,.5],[585.2,.9],[594.5,.7],[603.0,.5],[614.3,.7],[621.7,.6],[626.6,.6],[640.2,1],[650.7,.7],[692.9,.5]],t:'Lots of orange and red lines, which is why neon signs glow red-orange.'},
+  Hg:{n:'Mercury',L:[[404.7,.6],[435.8,.9],[546.1,1],[577.0,.6],[579.1,.6]],t:'Violet, blue, green and yellow lines. Mercury vapor is used in some lamps for this reason.'}
+};
+const KEYS=Object.keys(EL);
+function rainbow(y,h,dim){ let s=''; for(let w=WL0;w<WL1;w+=2){ s+=`<rect x="${xOf(w).toFixed(2)}" y="${y}" width="${((SX1-SX0)/(WL1-WL0)*2+.4).toFixed(2)}" height="${h}" style="fill:${rgb(w+1)};opacity:${dim}"/>`; } return s; }
+function ticks(y){ let s=''; for(let w=400;w<=700;w+=50){ s+=`<line x1="${xOf(w)}" y1="${y}" x2="${xOf(w)}" y2="${y+5}" style="stroke:var(--ink)"/><text x="${xOf(w)}" y="${y+17}" font-size="11" text-anchor="middle">${w}</text>`; } return s+`<text x="${(SX0+SX1)/2}" y="${y+32}" font-size="11" text-anchor="middle">wavelength of light (nanometers)</text>`; }
+safe(()=>{
+  const chips=$('#spEl'), svg=$('#spSvg'), out=$('#spR'); let cur='H';
+  chips.innerHTML=KEYS.map(k=>`<button class="chip" type="button" data-k="${k}" aria-pressed="${k===cur}">${EL[k].n}</button>`).join('');
+  const draw=()=>{ let s=`<rect x="${SX0}" y="6" width="${SX1-SX0}" height="44" style="fill:#05060f"/>`;
+    EL[cur].L.forEach(([w,a])=>{ s+=`<rect x="${(xOf(w)-1.4).toFixed(2)}" y="6" width="2.8" height="44" style="fill:${rgb(w)};opacity:${(.55+.45*a).toFixed(2)}"/>`; });
+    s+=ticks(52); svg.innerHTML=s; out.innerHTML=`<b>${EL[cur].n}:</b> ${EL[cur].t}`; };
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; cur=b.dataset.k; setPressed(chips,b); draw(); }); draw();
+});
+safe(()=>{
+  const chips=$('#msEl'), svg=$('#msSvg'), out=$('#msR'); let star=new Set(), pick=new Set();
+  chips.innerHTML=KEYS.map(k=>`<button class="chip" type="button" data-k="${k}" aria-pressed="false">${EL[k].n}</button>`).join('');
+  const roll=()=>{ const n=2+(Math.random()<.4?1:0), a=[...KEYS].sort(()=>Math.random()-.5).slice(0,n); star=new Set(a); pick=new Set(); $$('button',chips).forEach(b=>b.setAttribute('aria-pressed','false')); out.textContent='Dark lines are missing colors. Which elements do they belong to?'; draw(); };
+  const draw=()=>{ let s=rainbow(6,44,1);
+    star.forEach(k=>EL[k].L.forEach(([w,a])=>{ s+=`<rect x="${(xOf(w)-1.4).toFixed(2)}" y="6" width="2.8" height="44" style="fill:#05060f;opacity:${(.6+.4*a).toFixed(2)}"/>`; }));
+    s+=`<text x="4" y="32" font-size="11">Star</text>`;
+    let y=58; [...pick].forEach(k=>{ s+=`<rect x="${SX0}" y="${y}" width="${SX1-SX0}" height="12" style="fill:#05060f"/><text x="4" y="${y+10}" font-size="11">${k}</text>`;
+      EL[k].L.forEach(([w])=>{ s+=`<rect x="${(xOf(w)-1.2).toFixed(2)}" y="${y}" width="2.4" height="12" style="fill:${rgb(w)}"/>`; }); y+=15; });
+    svg.innerHTML=s; };
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; const k=b.dataset.k; if(pick.has(k))pick.delete(k); else pick.add(k); b.setAttribute('aria-pressed',pick.has(k)); draw(); });
+  $('#msNew').addEventListener('click',roll);
+  $('#msCheck').addEventListener('click',()=>{ const miss=[...star].filter(k=>!pick.has(k)), extra=[...pick].filter(k=>!star.has(k));
+    if(!miss.length&&!extra.length) out.innerHTML=`<b>Yes!</b> This star contains ${[...star].map(k=>EL[k].n.toLowerCase()).join(' and ')}. Real stars show dozens of elements this way. It is how we know the Sun is about 73% hydrogen and 25% helium by mass.`;
+    else out.innerHTML=`<b>Not quite.</b> ${extra.length?'A bright-line barcode you switched on has no matching dark lines. ':''}${miss.length?'Some dark lines in the star still have no match. ':''}Look at where the lines line up.`; });
+  roll();
+});
+
+/* ===== Cosmic calendar ===== */
+const Y=365*86400, T0=13.8e9, NOW=new Date().getFullYear();
+const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const MONL=['January','February','March','April','May','June','July','August','September','October','November','December'];
+const CUM=[0,31,59,90,120,151,181,212,243,273,304,334,365], DIM=[31,29,31,30,31,30,31,31,30,31,30,31];
+const tOf=ya=>Math.min(Y-.001,(T0-ya)/T0*Y);
+const EV=[
+ [13.8e9,'The Big Bang','Space, time, matter and energy begin.','u'],
+ [13.8e9-380e3,'Atoms form and light can finally travel','About 380,000 years after the Big Bang. That oldest light is still around us today as the cosmic microwave background.','u'],
+ [13.65e9,'The first stars light up','About 150 million years after the Big Bang (estimate).','u'],
+ [13.51e9,'The earliest galaxies we have seen','The James Webb telescope has seen a galaxy as it was about 290 million years after the Big Bang.','u'],
+ [13e9,'The first stars of our Milky Way','Some of the oldest stars in our galaxy are about 13 billion years old (estimate).','u'],
+ [11.2e9,'Rocky planets already circle other stars','The star Kepler-444 is about 11.2 billion years old and has five small, rocky planets.','u'],
+ [10.3e9,'The universe makes stars faster than ever','Star-making peaked about 10 billion years ago and has slowed since.','u'],
+ [8.8e9,'Our galaxy\'s thin disk starts forming','The flat disk of stars where the Sun lives (estimate, scientists still refine it).','u'],
+ [6e9,'Stars keep forging the elements','Generation after generation of stars make and scatter the carbon, oxygen and iron that will end up in the Sun, Earth and you. (Ongoing, not a single moment.)','u'],
+ [5e9,'The universe\'s expansion starts speeding up','Dark energy begins to win out over gravity (about 5 billion years ago, estimate).','u'],
+ [4.57e9,'The solar system begins','The Sun and planets form from a cloud of gas and dust.','e'],
+ [4.54e9,'The Earth forms','','e'],
+ [4.5e9,'The Moon forms','Most likely from a giant collision with the young Earth.','e'],
+ [4.4e9,'The oldest known mineral grains','Tiny zircon crystals from Australia.','e'],
+ [4.0e9,'The oldest known rocks','The Acasta Gneiss in northern Canada.','e'],
+ [3.8e9,'First hints of life','Chemical signs of life in very old rocks. Scientists still debate how early life began.','l'],
+ [3.5e9,'Clear fossils of microbes','Single-celled life leaves layered mounds and microscopic fossils.','l'],
+ [2.8e9,'Oxygen-making photosynthesis is under way','Microbes start releasing oxygen (estimate; the start is debated).','l'],
+ [2.4e9,'Oxygen builds up in the air','Called the Great Oxidation Event.','l'],
+ [2.0e9,'Complex cells appear','Cells with a nucleus, the kind in plants, animals and you (estimate).','l'],
+ [1.05e9,'Early multicellular life','Red algae are among the earliest known many-celled organisms.','l'],
+ [700e6,'Snowball Earth','Ice may have covered much of the planet.','l'],
+ [575e6,'Large soft-bodied animals','The Ediacaran creatures.','l'],
+ [539e6,'The Cambrian explosion','Animals with shells, eyes and skeletons spread quickly.','l'],
+ [470e6,'Plants move onto land','','l'],
+ [385e6,'The first forests','','l'],
+ [252e6,'The biggest mass extinction','Most species on Earth die out.','l'],
+ [230e6,'Dinosaurs appear','','l'],
+ [130e6,'Flowering plants appear','','l'],
+ [66e6,'The dinosaurs (except birds) die out','An asteroid hits what is now Mexico.','l'],
+ [55e6,'The first primates','The group that includes monkeys, apes and us (estimate).','h'],
+ [7e6,'The human and chimpanzee lines split','Estimates range from about 6 to 8 million years ago.','h'],
+ [3.3e6,'The oldest known stone tools','Found in Kenya.','h'],
+ [1e6,'Early signs of fire use','From Wonderwerk Cave in South Africa. Regular use of fire came later.','h'],
+ [300e3,'Homo sapiens (modern humans) appear','The oldest known fossils, from Morocco, are about 300,000 years old. Some scientists say a bit younger.','h'],
+ [51e3,'Cave paintings','Some are at least 50,000 years old.','h'],
+ [12e3,'Farming begins','','h'],
+ [5200,'Writing is invented','Recorded history begins.','h'],
+ [4600,'The Great Pyramid is built','','h'],
+ [NOW-117,'The Roman Empire at its largest','In 117 CE.','h'],
+ [NOW-1610,'Galileo points a telescope at the sky','','h'],
+ [NOW-1969,'People walk on the Moon','In 1969.','h'],
+ [0,'Today','You are here.','h']
+].map(([ya,n,d,c])=>({ya,n,d,c,t:tOf(ya)}));
+const CAT={u:'var(--reflect)',e:'var(--absorb)',l:'var(--transmit)',h:'var(--beam)'};
+function yrsText(ya){ if(ya>=1e9)return (ya/1e9).toFixed(ya>=1e10?1:2).replace(/\.?0+$/,'')+' billion years ago'; if(ya>=1e6){ const v=ya/1e6; return (v<10?v.toFixed(1).replace(/\.0$/,''):Math.round(v).toLocaleString())+' million years ago'; } if(ya>=1000)return Math.round(ya).toLocaleString()+' years ago'; if(ya>0)return Math.round(ya)+' years ago'; return 'now'; }
+function parts(t){ t=clamp(t,0,Y-.001); const day=Math.floor(t/86400); let m=0; while(day>=CUM[m+1])m++; const rem=t-day*86400; return {m,d:day-CUM[m]+1,day,h:Math.floor(rem/3600),mi:Math.floor(rem%3600/60),s:rem%60}; }
+function clock(p,lvl){ const ap=p.h>=12?'pm':'am', h=((p.h+11)%12)+1, mm=String(p.mi).padStart(2,'0');
+  if(lvl<=1) return `${h}:${mm} ${ap}`; const ss=lvl===2?String(Math.floor(p.s)).padStart(2,'0'):p.s.toFixed(1).padStart(4,'0'); return `${h}:${mm}:${ss} ${ap}`; }
+function fmt(t,lvl){ const p=parts(t); const d=`${MON[p.m]} ${p.d}`; return lvl===0?d:lvl===1?`${d}, ${clock(p,1)}`:`${d}, ${clock(p,lvl)}`; }
+const realAgo=t=>(Y-t)/Y*T0;
+
+safe(()=>{
+  const selM=$('#bdM'), selD=$('#bdD'), out=$('#bdOut'), show=$('#ccShow');
+  selM.innerHTML=MONL.map((m,i)=>`<option value="${i}">${m}</option>`).join('');
+  const days=()=>{ const m=+selM.value, keep=+selD.value||1; selD.innerHTML=Array.from({length:DIM[m]},(_,i)=>`<option value="${i+1}">${i+1}</option>`).join(''); selD.value=Math.min(keep,DIM[m]); };
+  selM.addEventListener('change',days); days();
+  const now=new Date(); selM.value=now.getMonth(); days(); selD.value=now.getDate();
+  let bd=null; // {m,d,day,t,note}
+  const nearest=()=>{ let best=null; EV.forEach(e=>{ const de=Math.floor(e.t/86400), dist=Math.abs(de-bd.day), td=Math.abs(e.t-bd.t); if(!best||dist<best.dist||(dist===best.dist&&td<best.td))best={e,dist,td}; }); bd.near=best; bd.sameDay=EV.filter(e=>Math.floor(e.t/86400)===bd.day).length; };
+  function set(m,d){ let note=''; if(m===1&&d===29){ d=28; note='Our cosmic year has 365 days and no leap day, so February 29 is shown on February 28. '; }
+    const day=CUM[m]+d-1; bd={m,d,day,t:day*86400+43200,note}; nearest();
+    const n=bd.near, e=n.e, when=`${MON[parts(e.t).m]} ${parts(e.t).d}`;
+    let msg;
+    if(n.dist===0) msg=`On the cosmic calendar, your birthday (<b>${MON[m]} ${d}</b>) falls on the same day as <b>${e.n}</b> (${yrsText(e.ya)})${bd.sameDay>1?`, and ${bd.sameDay-1} other event${bd.sameDay>2?'s':''} on our list that day`:''}.`;
+    else msg=`The nearest thing on our calendar to your birthday (<b>${MON[m]} ${d}</b>) is <b>${e.n}</b> on ${when}, <b>${n.dist} day${n.dist>1?'s':''} ${e.t<bd.t?'before':'after'}</b> it. At about 38 million real years per cosmic day, that is roughly <b>${Math.round(n.dist*37.8)} million real years</b> ${e.t<bd.t?'earlier':'later'} (that event: ${yrsText(e.ya)}).`;
+    out.hidden=false; out.innerHTML=note+msg+(n.dist>12?' (Early and middle universe history has few events on this list, so some days are far from the nearest one.)':'');
+    show.hidden=false; window.__ccStart&&window.__ccStart(bd); }
+  $('#bdGo').addEventListener('click',()=>set(+selM.value,+selD.value));
+  $('#bdSkip').addEventListener('click',()=>{ const t=new Date(); selM.value=t.getMonth(); days(); selD.value=t.getDate(); set(t.getMonth(),t.getDate()); });
+});
+
+safe(()=>{
+  const svg=$('#ccSvg'), chips=$('#ccStages'), scrub=$('#ccScrub'), rd=$('#ccR'), list=$('#ccList'), back=$('#ccBack'), next=$('#ccNext');
+  const ST=[{k:'bday',l:'Your birthday',nx:'Pull out to the whole year'},{k:'year',l:'Whole year',nx:'Zoom into December'},{k:'dec',l:'December',nx:'Zoom into December 31'},{k:'d31',l:'Dec 31',nx:'Zoom into the last hour'},{k:'hour',l:'Last hour',nx:'Zoom into the last minute'},{k:'min',l:'Last minute',nx:'Zoom into the last 15 seconds'},{k:'s15',l:'Last 15 s',nx:null}];
+  let bd=null, si=0, cur=0, W=[0,Y];
+  const L=30,R=30,PW=640-L-R, X=t=>L+(t-W[0])/(W[1]-W[0])*PW;
+  function win(){ const k=ST[si].k;
+    if(k==='bday'){ const pad=(Math.max(bd.near.dist,2)+2)*86400; return [clamp(bd.t-pad,0,Y),clamp(bd.t+pad,0,Y)]; }
+    return {year:[0,Y],dec:[334*86400,Y],d31:[364*86400,Y],hour:[Y-3600,Y],min:[Y-60,Y],s15:[Y-15,Y]}[k]; }
+  function tickList(){ const k=ST[si].k, span=W[1]-W[0];
+    if(k==='year') return CUM.slice(0,12).map((c,i)=>({t:c*86400,l:MON[i]}));
+    const steps=[1,2,5,10,15,30,60,120,300,600,900,1800,3600,7200,10800,21600,43200,86400,2*86400,5*86400,10*86400,15*86400];
+    const st=steps.find(s=>span/s<=7)||steps[steps.length-1], out=[]; for(let t=Math.ceil(W[0]/st)*st;t<=W[1]+1e-6;t+=st){ const p=parts(Math.min(t,Y-.001)); out.push({t,l:t>=Y-1e-6?'midnight':st>=86400?`${MON[p.m]} ${p.d}`:st>=60?clock(p,1).replace(':00 ',' '):clock(p,2)}); } return out; }
+  const lvl=()=>({bday:0,year:0,dec:0,d31:1,hour:1,min:2,s15:3}[ST[si].k]);
+  function render(){ const ev=EV.filter(e=>e.t>=W[0]&&e.t<=W[1]);
+    const tc=W[0]+cur*(W[1]-W[0]); let s=`<line x1="${L}" y1="100" x2="${640-R}" y2="100" style="stroke:var(--ink);stroke-width:3"/>`;
+    tickList().forEach(tk=>{ const x=X(tk.t); if(x<L-1||x>640-R+1)return; s+=`<line x1="${x}" y1="100" x2="${x}" y2="108" style="stroke:var(--ink)"/><text x="${x}" y="124" font-size="11" text-anchor="middle">${tk.l}</text>`; });
+    ev.forEach(e=>{ s+=`<circle cx="${X(e.t).toFixed(1)}" cy="100" r="5" style="fill:${CAT[e.c]};stroke:var(--ink);stroke-width:1.5"><title>${e.n}</title></circle>`; });
+    // birthday marker (stays through every zoom stage)
+    const bx=X(bd.t);
+    if(bd.t>=W[0]&&bd.t<=W[1]) s+=`<line x1="${bx}" y1="40" x2="${bx}" y2="100" style="stroke:var(--absorb);stroke-width:2.5"/><path d="M${bx} 40 l22 7 l-22 7z" style="fill:var(--absorb)"/><text x="${bx+26}" y="52" font-size="12" style="font-weight:700">Your birthday (${MON[bd.m]} ${bd.d})</text>`;
+    else { const left=bd.t<W[0], dd=left?(W[0]-bd.t)/86400:(bd.t-W[1])/86400, tx=left?L:640-R, dir=left?-1:1;
+      s+=`<path d="M${tx} 62 l${dir*-14} -9 l0 18z" style="fill:var(--absorb)"/><text x="${tx+dir*-20}" y="66" font-size="12" text-anchor="${left?'start':'end'}" style="font-weight:700">Your birthday (${MON[bd.m]} ${bd.d}) is ${Math.round(dd).toLocaleString()} cosmic day${Math.round(dd)===1?'':'s'} ${left?'before':'after'} this view</text>`; }
+    s+=`<line x1="${X(tc)}" y1="76" x2="${X(tc)}" y2="108" style="stroke:var(--reflect);stroke-width:3"/><circle cx="${X(tc)}" cy="76" r="6" style="fill:var(--reflect);stroke:var(--ink);stroke-width:2"/>`;
+    s+=`<text x="${L}" y="20" font-size="13" style="font-weight:700">${ST[si].l}: ${fmt(W[0],lvl()===3?2:lvl())} to ${fmt(Math.min(W[1],Y-.001),lvl()===3?2:lvl())}</text>`;
+    s+=`<text x="${L}" y="152" font-size="11">Legend: </text><circle cx="78" cy="148" r="5" style="fill:var(--reflect)"/><text x="88" y="152" font-size="11">universe</text><circle cx="148" cy="148" r="5" style="fill:var(--absorb)"/><text x="158" y="152" font-size="11">Earth</text><circle cx="205" cy="148" r="5" style="fill:var(--transmit)"/><text x="215" y="152" font-size="11">life</text><circle cx="248" cy="148" r="5" style="fill:var(--beam)"/><text x="258" y="152" font-size="11">humans</text>`;
+    svg.innerHTML=s;
+    const last=[...EV].reverse().find(e=>e.t<=tc); $('#ccScrubV').textContent=fmt(tc,lvl());
+    rd.innerHTML=`<b>${fmt(tc,lvl())}</b> on the cosmic calendar = about <b>${yrsText(realAgo(tc))}</b>.${last?` Most recent event so far: <b>${last.n}</b>.`:' This is before any event on our list.'}`;
+    list.innerHTML=ev.length?ev.map(e=>`<div class="evrow${last===e?' on':''}"><b>${fmt(e.t,lvl()>1?lvl():1)}<br>${yrsText(e.ya)}</b><span><span class="dot" style="background:${CAT[e.c]}"></span><b style="font-family:var(--font-body);font-size:.95rem">${e.n}</b>${e.d?'<br>'+e.d:''}</span></div>`).join(''):'<p class="cap">No events from our list fall in this stretch. Slide or zoom out.</p>';
+    back.disabled=si===0; next.disabled=!ST[si].nx; next.textContent=ST[si].nx||'That is the end (so far)'; back.textContent=si===0?'Back':'Back: '+ST[si-1].l.toLowerCase(); setPressed(chips,$$('button',chips)[si]); }
+  function go(i,keepCur){ si=clamp(i,0,ST.length-1); W=win(); cur=ST[si].k==='bday'?clamp((bd.t-W[0])/(W[1]-W[0]),0,1):0; scrub.value=Math.round(cur*1000); render(); }
+  mkChips(chips,ST.map(s=>s.l),0);
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(b)go(+b.dataset.i); });
+  back.addEventListener('click',()=>go(si-1)); next.addEventListener('click',()=>go(si+1));
+  scrub.addEventListener('input',()=>{ cur=+scrub.value/1000; render(); });
+  window.__ccStart=b=>{ bd=b; go(0); };
+  // data bars: when do things appear?
+  const tf=n=>EV.find(e=>e.n===n||e.n.startsWith(n)).t, secs=t=>Math.round(Y-t);
+  const rows=[['Single-celled life',tf('First hints of life'),Y,`${fmt(tf('First hints of life'),0)} to today`],['Animals (Cambrian)',tf('The Cambrian explosion'),Y,`${fmt(tf('The Cambrian explosion'),0)} to today`],['Dinosaurs',tf('Dinosaurs appear'),tf('The dinosaurs'),`${fmt(tf('Dinosaurs appear'),0)} to ${fmt(tf('The dinosaurs'),0)}`],['Modern humans',tf('Homo sapiens'),Y,`${fmt(tf('Homo sapiens'),1)}`],['Recorded history',tf('Writing is invented'),Y,`the last ${secs(tf('Writing is invented'))} seconds`]];
+  $('#ccBars').innerHTML=rows.map(r=>`<div class="brow2"><span class="lab">${r[0]}</span><div class="trk"><i style="left:${(r[1]/Y*100).toFixed(3)}%;width:max(3px,${((r[2]-r[1])/Y*100).toFixed(3)}%)"></i></div><span class="when">${r[3]}</span></div>`).join('');
+});
+
+/* ===== How many people have ever lived ===== */
+safe(()=>{
+  const D=[['8000 BCE',5e6,8.99e9],['1 CE',3e8,55.02e9],['1650',5e8,94.39e9],['1750',7.95e8,97.56e9],['1850',1.265e9,101.61e9],['1900',1.656e9,104.51e9],['1950',2.499e9,107.90e9],['2000',6.149e9,113.97e9],['2022',7.9635e9,117.02e9]];
+  const TOT=117.02e9, chips=$('#pplChips'), wf=$('#pplWaffle'), out=$('#pplR');
+  const big=n=>n>=1e9?(n/1e9).toFixed(n>=1e10?1:2).replace(/\.?0+$/,'')+' billion':n>=1e6?Math.round(n/1e6)+' million':Math.round(n).toLocaleString();
+  mkChips(chips,D.map(d=>d[0]),1);
+  wf.innerHTML=Array.from({length:100},()=>'<div class="cell"></div>').join('');
+  const draw=i=>{ const d=D[i], f=Math.round(d[2]/TOT*100); $$('.cell',wf).forEach((c,j)=>{ c.className='cell'+(j<f?' r':''); });
+    out.innerHTML=`<b>${d[0]}</b><br>People alive then: about <b>${big(d[1])}</b>.<br>People ever born by then: about <b>${big(d[2])}</b>, which is <b>${Math.round(d[2]/TOT*100)}%</b> of the all-time total.`+(i===1?'<br><span class="cap">Nearly half of everyone who ever lived was born before the year 1 CE, because early centuries add up even when few people are alive at once.</span>':''); };
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; setPressed(chips,b); draw(+b.dataset.i); });
+  draw(1);
+  $('#pplNow').innerHTML=Array.from({length:100},(_,j)=>`<div class="cell${j<7?' a':''}" style="${j<7?'':'background:var(--surface-2)'}"></div>`).join('');
 });
 })();
 </script>

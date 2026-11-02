@@ -2,7 +2,7 @@
 //   - dist/<game>.html      one self-contained arcade game per game
 //   - dist/arcade.html      the arcade hub (self-contained)
 //   - dist/index.html       the lesson map / site home (already self-contained)
-//   - dist/k-5|6th|7th|8th  the lesson guides, copied as-is (games are embedded in them)
+//   - dist/k-5|6th|7th|8th|9th|extras  the lesson guides, copied as-is (games are embedded in them)
 //   - dist/design-log.html  the engineering design log
 // Run: node build.mjs
 import { readFileSync, writeFileSync, readdirSync, mkdirSync, copyFileSync, existsSync } from 'node:fs';
@@ -12,7 +12,7 @@ const root = dirname(new URL(import.meta.url).pathname);
 const out = join(root, 'dist');
 mkdirSync(out, { recursive: true });
 
-const GRADES = ['k-5', '6th', '7th', '8th'];
+const GRADES = ['k-5', '6th', '7th', '8th', '9th', 'extras'];
 
 function inline(file) {
   const dir = dirname(file);

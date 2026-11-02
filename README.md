@@ -2,7 +2,7 @@
 
 Science material for kids, all plain HTML that runs in a browser with no install, sign-in, or server. Two halves:
 
-- **Lesson guides** — 32 interactive lessons, sorted into grade folders: `k-5/`, `6th/`, `7th/`, `8th/`. Each lesson ends with a short browser game embedded in the page.
+- **Lesson guides** — 35 interactive pages, sorted into grade folders: `k-5/`, `6th/`, `7th/`, `8th/`, `9th/`, plus `extras/`. Each lesson ends with a short browser game embedded in the page.
 - **Science Arcade** — six standalone games (gravity, light, circuits, levers, states of matter, football physics) with a shared bank of 177 science questions.
 
 Open `dist/index.html` for the lesson map, or `dist/arcade.html` for the arcade. Every file in `dist/` is self-contained, so it works from GitHub Pages, a web server, a USB stick, or a `file://` link. Internet is only needed for fonts.
@@ -12,11 +12,13 @@ Open `dist/index.html` for the lesson map, or `dist/arcade.html` for the arcade.
 | Folder | Grade | Units | Count |
 | --- | --- | --- | --- |
 | `k-5/` | K–5 | How Science Works (Unit 0) — origins of science, the scientific method, hypotheses, fair tests, CER | 1 |
-| `6th/` | 6th | Units 1–13: light and matter, thermal energy, forces and motion, weather, plate tectonics, natural hazards, cells, classifying life, body systems, states of matter, Earth in space, ecosystems, energy resources | 13 |
+| `6th/` | 6th | Units 1–14: light and matter, thermal energy, forces and motion, weather, plate tectonics, natural hazards, cells, classifying life, body systems, states of matter, Earth in space, ecosystems, energy resources, and where the solar system is going in the galaxy and how it formed | 14 |
 | `7th/` | 7th | Units 7.1–7.9: matter and its properties, chemical reactions, reaction energy, metabolism, photosynthesis, ecosystems, Earth resources, EM spectrum, adaptation and Earth history | 9 |
 | `8th/` | 8th | Units 8.1–8.9: collisions, energy transformation, forces at a distance, sound, light and information, gravity and orbits, stars and galaxies, genetics, natural selection | 9 |
+| `9th/` | 9th | 9.1 How AI Works: a reading-comprehension course on language models, context windows, embeddings, diffusion, and warnings now and ahead | 1 |
+| `extras/` | any | The Same Shape Everywhere: branching patterns from trees and lightning to neurons and the cosmic web (real photos, credits in the page and `extras/CREDITS.md`) | 1 |
 
-The K–5 folder currently holds the method unit that starts the sequence; it is being fleshed out.
+The K–5 folder currently holds the method unit that starts the sequence (now with heliocentrism, spectroscopy and a Cosmic Calendar); it is being fleshed out.
 
 The map at `index.html` lists every unit in teaching order, with what each one builds on, and filters by strand (physical, Earth and space, life, method).
 

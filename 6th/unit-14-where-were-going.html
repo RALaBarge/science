@@ -1,0 +1,1175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Where We're Going</title>
+<style>
+/* One long column. Each concept opens with a one-sentence big idea, then labelled visual aids. Space scenes stay dark in both themes. */
+:root{
+  --bg:#F2F5FA; --surface:#FFFFFF; --surface-2:#E8EDF6; --ink:#12172B; --muted:#47506E; --line:#D0D8E8;
+  --sun:#F2A900; --blue:#3558D6; --teal:#0B7F70; --orange:#D6450B; --purple:#7A55C8; --red:#D93036; --green:#25904F;
+  --font-display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --font-body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+  --font-mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C1022; --surface:#151A33; --surface-2:#1D2444; --ink:#EDF0FB; --muted:#A8B1CE; --line:#2B3459;
+    --sun:#FFC93C; --blue:#7C97FF; --teal:#46D6C0; --orange:#FF8F5C; --purple:#B79CFF; --red:#FF6A70; --green:#4FCB85; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C1022; --surface:#151A33; --surface-2:#1D2444; --ink:#EDF0FB; --muted:#A8B1CE; --line:#2B3459;
+  --sun:#FFC93C; --blue:#7C97FF; --teal:#46D6C0; --orange:#FF8F5C; --purple:#B79CFF; --red:#FF6A70; --green:#4FCB85; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.55;margin:0;padding-block:0 72px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main,.hero{max-width:920px;margin:0 auto}
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance;margin:0;line-height:1.1}
+p{margin:0}
+a{color:inherit}
+button,select,input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.hero{padding-block:28px 8px;display:grid;gap:16px}
+.kicker{font-family:var(--font-mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:clamp(2.4rem,9vw,4.2rem);font-weight:800;letter-spacing:-.025em}
+.lede{font-size:clamp(1.1rem,3.4vw,1.3rem);max-width:36em;text-wrap:pretty}
+.howto{font-size:.92rem;color:var(--muted)}
+.nav{position:sticky;top:0;z-index:20;background:var(--bg);margin:18px auto 0;max-width:920px;border-bottom:1px solid var(--line)}
+.nav ul{list-style:none;margin:0;padding:8px 0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin}
+.nav a{display:block;white-space:nowrap;text-decoration:none;font-size:.9rem;padding:7px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface)}
+.nav a:hover{border-color:var(--ink)}
+.part{font-family:var(--font-mono);font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--purple);padding-top:48px}
+.sec{padding-block:18px 6px;scroll-margin-top:68px;display:grid;gap:18px}
+.sec h2{font-size:clamp(1.8rem,6vw,2.5rem);font-weight:800;letter-spacing:-.02em}
+.idea{font-family:var(--font-display);font-size:clamp(1.2rem,4.2vw,1.65rem);line-height:1.25;font-weight:700;text-wrap:balance;max-width:28em}
+.idea mark{background:linear-gradient(transparent 58%,color-mix(in srgb,var(--sun) 50%,transparent) 58%);color:inherit}
+.aids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.aid{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.aid.wide{grid-column:1/-1}
+.aid h3{font-size:1.2rem;font-weight:700}
+.aid p.cap,.cap{font-size:.95rem;color:var(--muted)}
+.aid p.cap b,.cap b{color:var(--ink)}
+.tag{align-self:flex-start;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;padding:3px 9px;border-radius:999px;
+  background:color-mix(in srgb,var(--tint) 24%,var(--surface));border:1px solid color-mix(in srgb,var(--tint) 55%,var(--line))}
+.tag.analogy{--tint:var(--sun)} .tag.diagram{--tint:var(--blue)} .tag.try{--tint:var(--teal)} .tag.data{--tint:var(--orange)} .tag.real{--tint:var(--muted)} .tag.myth{--tint:var(--red)} .tag.know{--tint:var(--green)}
+.space{display:block;width:100%;border-radius:10px;background:#04060d}
+#gv-canvas{height:min(62vw,430px);min-height:300px}
+#gv-side{height:150px}
+#fm-canvas{height:min(72vw,480px);min-height:320px}
+#hx-canvas{height:120px}
+#st-canvas{aspect-ratio:2.5/1;height:auto}
+.ctl{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center}
+.btn{font-size:.95rem;padding:8px 14px;min-height:42px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer}
+.btn:hover{border-color:var(--ink)}
+.btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}
+:root[data-theme="dark"] .btn.primary{color:#0B1020}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn.primary{color:#0B1020}}
+.btn[disabled]{opacity:.5;cursor:default}
+.sld{display:flex;align-items:center;gap:8px;font-size:.9rem;color:var(--muted)}
+.sld input[type=range]{width:150px;accent-color:var(--blue)}
+.sld select{padding:6px 8px;border-radius:8px;border:1.5px solid var(--line);background:var(--surface)}
+.readout{display:flex;flex-wrap:wrap;gap:6px 18px;font-family:var(--font-mono);font-size:.82rem;color:var(--muted)}
+.readout b{color:var(--ink);font-weight:500}
+.caption-live{font-size:.95rem;min-height:3em}
+.callout{border-left:5px solid var(--red);background:color-mix(in srgb,var(--red) 9%,var(--surface));border-radius:0 12px 12px 0;padding:14px 16px;display:grid;gap:8px}
+.callout.note{border-left-color:var(--blue);background:color-mix(in srgb,var(--blue) 8%,var(--surface))}
+.callout h3{font-size:1.1rem}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.two>div{background:var(--surface-2);border-radius:10px;padding:12px;display:grid;gap:6px;align-content:start}
+.two h4{margin:0;font-size:1rem}
+.two ul{margin:0;padding-left:1.15em;display:grid;gap:4px;font-size:.95rem}
+.phase{background:var(--surface-2);border-radius:10px;padding:10px 12px;display:grid;gap:4px}
+.phase b{font-family:var(--font-display);font-size:1.05rem}
+.prog{height:8px;border-radius:999px;background:var(--surface-2);overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--purple),var(--sun))}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.93rem}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+details+details{margin-top:10px}
+summary{cursor:pointer;font-weight:700}
+details .in{display:grid;gap:10px;padding-top:10px;font-size:.95rem}
+details ul{margin:0;padding-left:1.2em;display:grid;gap:4px}
+.deep>summary::before{content:"Go deeper \2022  ";font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--purple)}
+.quiz{display:grid;gap:16px}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:grid;gap:10px}
+.q h3{font-size:1.05rem;font-family:var(--font-body);font-weight:700;line-height:1.3}
+.opts{display:grid;gap:8px}
+.opt{text-align:left;padding:10px 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface-2);cursor:pointer;min-height:44px}
+.opt:hover:not([disabled]){border-color:var(--ink)}
+.opt.right{border-color:var(--green);background:color-mix(in srgb,var(--green) 18%,var(--surface))}
+.opt.wrong{border-color:var(--red);background:color-mix(in srgb,var(--red) 14%,var(--surface))}
+.ex{font-size:.95rem;background:var(--surface-2);border-radius:10px;padding:10px 12px}
+.ex[data-state="wrong"]{border-left:4px solid var(--red)} .ex[data-state="right"]{border-left:4px solid var(--green)}
+.ex[hidden],#fm-summary[hidden]{display:none}
+#fm-summary{background:var(--surface-2);border-radius:10px;padding:12px;display:grid;gap:10px}
+footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;border-top:1px solid var(--line);padding-top:14px}
+.sr{position:absolute;left:-9999px}
+@media (max-width:720px){
+  .aids{grid-template-columns:1fr}
+  .two{grid-template-columns:1fr}
+  .sld input[type=range]{width:110px}
+}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">Earth in space &middot; extra unit &middot; 6th grade</div>
+  <h1>Where We&rsquo;re Going</h1>
+  <p class="lede">Right now you are moving at about 230 kilometers every second. You, this room and the whole solar system are circling the center of the Milky Way. Here is what we are orbiting, how long a lap takes, and how the Sun and planets got here in the first place.</p>
+  <p class="howto">Everything here is interactive. Press <b>Speed up</b> in Part A, press <b>Play</b> in Part B, and open the <b>Go deeper</b> boxes when an analogy is not enough.</p>
+</header>
+
+<nav class="nav" aria-label="Sections"><ul>
+  <li><a href="#ride">1 &middot; The ride</a></li>
+  <li><a href="#orbit">2 &middot; What we orbit</a></li>
+  <li><a href="#helix">3 &middot; The corkscrew picture</a></li>
+  <li><a href="#formation">4 &middot; How it began</a></li>
+  <li><a href="#know">5 &middot; Known vs. debated</a></li>
+  <li><a href="#check">6 &middot; Check yourself</a></li>
+</ul></nav>
+
+<main>
+<div class="part">Part A &middot; Where we&rsquo;re going</div>
+
+<section class="sec" id="ride">
+  <h2>Concept 1 &middot; You&rsquo;re on a very long ride</h2>
+  <p class="idea">The Sun and everything near it <mark>circle the center of the Milky Way</mark>. One lap takes about 230 million years.</p>
+  <div class="aids">
+    <div class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>Speed up time</h3>
+      <canvas id="gv-canvas" class="space" role="img" aria-label="Animated view of the Sun and planets that zooms out to the Milky Way as time speeds up"></canvas>
+      <div class="ctl">
+        <button class="btn primary" id="gv-up" type="button">Speed up &#9654;&#9654;</button>
+        <button class="btn" id="gv-down" type="button">&#9664;&#9664; Slow down</button>
+        <button class="btn" id="gv-play" type="button" aria-pressed="false">Pause</button>
+        <button class="btn" id="gv-reset" type="button">Start over</button>
+      </div>
+      <div class="ctl">
+        <label class="sld">Speed <input id="gv-speed" type="range" min="0" max="1000" value="220" aria-label="Time speed"></label>
+        <label class="sld">Zoom <input id="gv-zoom" type="range" min="0" max="1000" value="0" aria-label="Zoom level"></label>
+        <label class="sld"><input id="gv-auto" type="checkbox" checked> Zoom out automatically as time speeds up</label>
+      </div>
+      <div class="readout">
+        <span>Time passed: <b id="gv-time">0 days</b></span>
+        <span>Laps so far: <b id="gv-laps">0</b></span>
+        <span><b id="gv-rate">&nbsp;</b></span>
+        <span>View is <b id="gv-width">&nbsp;</b> wide</span>
+      </div>
+      <p class="caption-live" id="gv-caption" aria-live="polite"></p>
+      <p class="cap"><b>Approximate:</b> the galaxy view is an artist-style sketch with the arms in rough positions. The sizes of the planets’ orbits are to scale and seen from above, but the planets themselves are drawn as dots much bigger than real. The stars in the middle zoom levels are drawn for effect, not real positions.</p>
+    </div>
+
+    <div class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>One lap = one day</h3>
+      <p class="cap">Pretend one galactic lap took one real day. Then all of human history, about 300,000 years, would be <b>under two minutes</b> of that day. Everything written down in history, about 5,000 years, would be <b>about two seconds</b>. The last time the Sun was at this spot in the galaxy, the first dinosaurs were just appearing.</p>
+    </div>
+
+    <div class="aid">
+      <span class="tag data">Data</span>
+      <h3>The numbers</h3>
+      <div class="tbl"><table>
+        <tbody>
+          <tr><td>Distance to the center</td><td>about 26,000 light-years (estimates run 25,800 to 27,700)</td></tr>
+          <tr><td>Our speed</td><td>about 230 km/s (about 830,000 km/h)</td></tr>
+          <tr><td>One lap</td><td>about 220 to 250 million years</td></tr>
+          <tr><td>Laps so far</td><td>about 20 (the Sun is about 4.6 billion years old)</td></tr>
+          <tr><td>Milky Way width</td><td>about 100,000 light-years</td></tr>
+          <tr><td>Our neighborhood</td><td>the Orion Arm (also called the Orion Spur), a smaller piece of an arm sitting between two bigger arms</td></tr>
+        </tbody></table></div>
+      <p class="cap">One light-year is how far light travels in a year: about 9.5 trillion kilometers.</p>
+    </div>
+
+    <div class="aid wide">
+      <span class="tag diagram">Diagram</span>
+      <h3>We also bob up and down</h3>
+      <canvas id="gv-side" class="space" role="img" aria-label="A wave showing the Sun moving up and down through the middle of the galaxy's disk over millions of years"></canvas>
+      <p class="cap">While the Sun goes around, it also drifts up and down through the flat disk, like a horse on a carousel. A full up-and-down cycle takes roughly 60 to 70 million years, and the Sun stays inside the disk the whole time. Scientists are still refining these numbers.</p>
+    </div>
+  </div>
+  <details class="deep"><summary>Why doesn&rsquo;t the Sun just fall into the center?</summary><div class="in">
+    <p>It is falling, in a way. Gravity keeps pulling the Sun toward the middle, but the Sun is also moving sideways very fast. Falling toward the center while moving sideways bends its path into a circle-like orbit, the same reason the Moon does not crash into Earth.</p>
+    <p>Move the Sun sideways more slowly and it would sink in closer. Move it faster and it would drift outward. About 230 km/s is the speed that balances gravity at our distance.</p>
+  </div></details>
+  <details class="deep"><summary>The galaxy is not a spinning record</summary><div class="in">
+    <p>On a record, every spot goes around in the same time. In a galaxy, stars farther from the center have a bigger circle to travel, so their laps take longer. Out where we are, stars move at nearly the same speed whether they are a little closer or a little farther. That surprised astronomers, because it means there is much more mass out there than we can see. Section 2 explains this.</p>
+    <p>Astronomers think the Sun orbits at close to the same pace as the spiral pattern itself (this is still debated). That is why the arms in the picture turn together with the Sun, and it is one reason the Sun crosses the arms only slowly.</p>
+  </div></details>
+  <details class="deep"><summary>How do we know any of this?</summary><div class="in">
+    <p>We cannot leave the galaxy to look back at it, so astronomers measure it from inside. They track how stars and gas move across the sky, use radio telescopes to measure the distances to star-forming regions, and watch stars orbit the black hole at the center. Different methods give slightly different answers, which is why the numbers above come as ranges.</p>
+  </div></details>
+</section>
+
+<section class="sec" id="orbit">
+  <h2>Concept 2 &middot; What are we orbiting?</h2>
+  <p class="idea">Not just the black hole in the middle. We orbit <mark>the combined pull of everything inside our orbit</mark>: stars, gas and dark matter.</p>
+  <div class="aids">
+    <div class="aid wide">
+      <span class="tag analogy">Analogy</span>
+      <h3>Weighing the galaxy</h3>
+      <canvas id="st-canvas" class="space" width="750" height="300" role="img" aria-label="A balance scale. A tiny gold dot, the black hole, sits on a high left pan. A huge pile of blue dots, everything else inside our orbit, weighs down the right pan."></canvas>
+      <p class="cap">Put the galaxy on a scale. On one side is the black hole at the center, called <b>Sagittarius A*</b>, about 4.3 million Suns of mass. On the other side is everything else inside our orbit: stars, gas, dust and dark matter, roughly 100 billion Suns. The pile outweighs the black hole about <b>25,000 to 1</b>, so the scale tips almost all the way down. The total is uncertain by a third or so, but the black hole is a tiny part either way. That is why we orbit the pull of the whole galaxy, not just the center.</p>
+    </div>
+  </div>
+  <details class="deep"><summary>How can we weigh the galaxy?</summary><div class="in">
+    <p>If you know how fast something orbits and how far away it is, you can work out how much mass is pulling on it. For the Sun, that is about 230 km/s at 26,000 light-years, which gives roughly 100 billion Suns of mass inside our orbit. (The simple formula treats the mass as if it were in a ball, so the answer is rough.)</p>
+    <p>Do the same for stars much farther out and the total keeps growing, even where there are hardly any visible stars. That unseen mass is called <b>dark matter</b>. We can measure its pull but we do not yet know what it is made of.</p>
+  </div></details>
+</section>
+
+<section class="sec" id="helix">
+  <h2>Concept 3 &middot; The corkscrew picture</h2>
+  <p class="idea">The planets do not trail behind the Sun like a tail. <mark>The whole solar system moves along together.</mark></p>
+  <div class="aids">
+    <div class="aid wide">
+      <span class="tag myth">Check the video in your head</span>
+      <div class="callout">
+        <h3>You may have seen a video with the planets spiraling behind the Sun</h3>
+        <p>That kind of animation shows something true: if you follow Earth through the whole galaxy, its path is a long, gentle wave. But it can leave three wrong ideas. <b>1.</b> It can look like the planets are being dragged behind the Sun. They are not. They are moving at the same 230 km/s as the Sun and circling it because of its gravity. <b>2.</b> The coils look tight. In real proportions they are not (try the picture below). <b>3.</b> It can look like Earth moves backward at times. It never does.</p>
+      </div>
+      <canvas id="hx-canvas" class="space" role="img" aria-label="Earth's path through the galaxy drawn to scale: a nearly straight line with a very small wiggle"></canvas>
+      <div class="ctl"><label class="sld"><input id="hx-stretch" type="checkbox"> Stretch the wiggle &times;10 so I can see it</label></div>
+      <p class="cap">In the time Earth makes one trip around the Sun, the whole solar system moves forward about <b>48.5 AU</b> (230 km/s &times; one year). Earth&rsquo;s sideways wiggle is at most <b>1 AU</b>. So the true picture is a very long, very slightly wavy line. Earth&rsquo;s speed around the Sun (30 km/s) is much smaller than the Sun&rsquo;s speed through the galaxy (230 km/s), so Earth is always moving forward through the galaxy.</p>
+    </div>
+  </div>
+  <details class="deep"><summary>Which way do the planets&rsquo; orbits face?</summary><div class="in">
+    <p>The planets orbit in almost the same flat plane, tilted at only a few degrees from each other. That plane is tilted about 60&deg; from the plane of the Milky Way&rsquo;s disk. The Sun&rsquo;s direction of travel is also not straight along the axis of the planets&rsquo; orbits. It is about 30&deg; away from it. So &ldquo;planets spiraling around a straight line behind the Sun&rdquo; is a cartoon: a useful one, but not an exact photograph.</p>
+  </div></details>
+</section>
+
+<div class="part">Part B &middot; Where we came from</div>
+
+<section class="sec" id="formation">
+  <h2>Concept 4 &middot; How the solar system began</h2>
+  <p class="idea">About 4.6 billion years ago, a cloud of gas and dust <mark>collapsed into a Sun and a spinning disk</mark>. The planets grew out of that disk.</p>
+  <div class="aids">
+    <div class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>Watch it happen (a time-lapse)</h3>
+      <canvas id="fm-canvas" class="space" role="img" aria-label="Animated model of a cloud collapsing into a disk and then planets forming from dust"></canvas>
+      <div class="prog" aria-hidden="true"><i id="fm-bar"></i></div>
+      <div class="phase"><b id="fm-phase">1. A cold cloud</b><span id="fm-phase-text"></span></div>
+      <div class="ctl">
+        <button class="btn primary" id="fm-play" type="button">Play</button>
+        <button class="btn" id="fm-step" type="button">Step</button>
+        <button class="btn" id="fm-restart" type="button">Restart</button>
+        <button class="btn" id="fm-skip" type="button">Skip to planets</button>
+        <button class="btn" id="fm-new" type="button">New random start</button>
+      </div>
+      <div class="ctl">
+        <label class="sld">Speed <input id="fm-speed" type="range" min="-300" max="200" value="-100" aria-label="Simulation speed"> <span id="fm-speed-out">&times;0.50</span></label>
+        <label class="sld">View width
+          <select id="fm-fov" aria-label="View width in AU"><option value="6">6 AU</option><option value="12" selected>12 AU</option><option value="40">40 AU</option></select></label>
+      </div>
+      <div class="readout"><span id="fm-stats"></span></div>
+      <div id="fm-summary" hidden></div>
+      <p class="cap"><b>How to read it:</b> 1 AU is the distance from Earth to the Sun. At 12 AU wide you can see the inner planets and Jupiter&rsquo;s orbit. At 6 AU you see just the rocky region. At 40 AU you can see where Neptune would be. The real disk was far bigger, about 100 AU across. This is a <b>time-lapse model</b>, not a movie of what happened: the clock is sped up and the bodies are drawn bigger than real so growth happens in minutes, not millions of years. Run it again with <b>New random start</b>. Real computer models of planet-building also give different answers each time.</p>
+    </div>
+
+    <div class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>An ice skater pulling her arms in</h3>
+      <p class="cap">A skater spinning with her arms out spins slowly. Pull her arms in and she spins faster. A collapsing cloud does the same. As it shrinks, its slow spin speeds up. Spinning stuff can fall in toward the middle along the spin axis, but sideways it keeps whirling around, so the cloud ends up as a flat disk with a Sun at the center.</p>
+    </div>
+    <div class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>Dust bunnies under a bed</h3>
+      <p class="cap">Dust and lint stick together into clumps, and bigger clumps pick up even more dust. In the disk, dust stuck into pebbles, pebbles into boulders, and boulders into mountain-sized lumps. Once a lump is big enough, its own gravity pulls in the rest.</p>
+    </div>
+    <div class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>A cold glass on a hot day</h3>
+      <p class="cap">Water vapor in the air turns to droplets on a cold glass. In the young solar system, close to the Sun it was too hot for ice. Farther out, past the <b>frost line</b>, it was cold enough for ice to form. More solid material out there let planet cores grow bigger and faster, and the biggest ones pulled in huge amounts of gas.</p>
+    </div>
+    <div class="aid">
+      <span class="tag data">Data</span>
+      <h3>Rough timeline</h3>
+      <div class="tbl"><table><tbody>
+        <tr><td>about 4.6 billion years ago</td><td>The cloud collapses</td></tr>
+        <tr><td>4.567 billion years ago</td><td>Oldest known solid grains in meteorites</td></tr>
+        <tr><td>first ~1 million years</td><td>Pebbles and small planetesimals</td></tr>
+        <tr><td>roughly 1 to 10 million years</td><td>Gas in the disk blows away; giant planets finish</td></tr>
+        <tr><td>tens of millions of years</td><td>Rocky planets finish; Earth&rsquo;s Moon forms</td></tr>
+      </tbody></table></div>
+      <p class="cap">These times are estimates and are still being refined.</p>
+    </div>
+  </div>
+  <details class="deep"><summary>When did the Sun &ldquo;turn on&rdquo;?</summary><div class="in">
+    <p>It was gradual. At first the baby Sun glowed because squeezing it made it hot, like a bicycle pump warming up. Hydrogen fusion, the Sun&rsquo;s long-term power source, needs a core of about 10 million degrees. The young Sun took tens of millions of years to shrink and settle into steady fusion. The picture shows the first glow.</p>
+  </div></details>
+  <details class="deep"><summary>Why a flat disk, and why do all the planets go the same way?</summary><div class="in">
+    <p>The cloud had a little spin to begin with. Pieces of the cloud above and below the middle fell toward the middle plane and bumped into each other, canceling their up-and-down motion. What was left was everything moving around in the same direction in a flat sheet. That is why the planets orbit in nearly the same plane and in the same direction.</p>
+  </div></details>
+  <details class="deep"><summary>What does &ldquo;sweeping the orbit clear&rdquo; mean?</summary><div class="in">
+    <p>A planet that grows big enough pulls in or flings away the smaller lumps near its path. Watch the model: once a body is large, the space around its orbit empties. Astronomers use this idea in the official definition of a planet. A planet has to be round and orbit the Sun, and it has to have cleared its neighborhood. Pluto has not, which is part of why it is a dwarf planet.</p>
+  </div></details>
+  <details class="deep"><summary>What is this model leaving out?</summary><div class="in">
+    <ul>
+      <li>It follows motion in one flat plane only.</li>
+      <li>Bodies are drawn and treated as bigger than real so they collide often enough to see growth in a few minutes.</li>
+      <li>Gas giants grab gas by a simple rule, not by real gas physics.</li>
+      <li>It does not include planets moving inward or outward over time, which many scientists think happened.</li>
+      <li>Mercury&rsquo;s region is mostly left out, since the model starts at 0.5 AU.</li>
+    </ul>
+  </div></details>
+</section>
+
+<section class="sec" id="know">
+  <h2>Concept 5 &middot; What we know, and what we are still arguing about</h2>
+  <p class="idea">Science is full of settled facts and open questions, and <mark>good scientists can tell which is which</mark>.</p>
+  <div class="aids">
+    <div class="aid wide">
+      <span class="tag know">Evidence check</span>
+      <div class="two">
+        <div>
+          <h4>Well supported</h4>
+          <ul>
+            <li>The solar system is about 4.57 billion years old (from dating meteorites).</li>
+            <li>The planets orbit in almost one flat plane, in the same direction the Sun spins.</li>
+            <li>The Sun holds about 99.8% of the solar system&rsquo;s mass.</li>
+            <li>Rocky planets are close to the Sun and giants are far out.</li>
+            <li>Young stars around the galaxy are seen with disks of gas and dust around them.</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Still debated</h4>
+          <ul>
+            <li>What pushed the cloud to collapse. A nearby exploding star is one idea; there are others.</li>
+            <li>Exactly how dust grew past the size of boulders.</li>
+            <li>How much the giant planets moved after they formed.</li>
+            <li>The exact timing of each stage.</li>
+            <li>The details of the crash that made the Moon.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="check">
+  <h2>Check yourself</h2>
+  <div class="quiz">
+    <div class="q"><h3>1. About how long does one lap of the Sun around the Milky Way take?</h3>
+      <div class="opts"><button class="opt" type="button">A year</button><button class="opt" type="button" data-ok="1">About 230 million years</button><button class="opt" type="button">About 4.6 billion years</button><button class="opt" type="button">About 5,000 years</button></div>
+      <div class="ex" hidden><b class="verdict"></b>One lap is about 230 million years. The Sun is about 4.6 billion years old, so it has made around 20 laps.</div></div>
+    <div class="q"><h3>2. What mostly provides the gravity that keeps the Sun in orbit around the galaxy?</h3>
+      <div class="opts"><button class="opt" type="button">Only the black hole at the center</button><button class="opt" type="button" data-ok="1">All the mass inside our orbit: stars, gas, dust and dark matter</button><button class="opt" type="button">The nearest star</button><button class="opt" type="button">The Moon</button></div>
+      <div class="ex" hidden><b class="verdict"></b>On the scale, the black hole is about 1 part in 25,000 of the mass inside our orbit. Everything inside our orbit adds up to the pull we feel.</div></div>
+    <div class="q"><h3>3. What is misleading about a video showing planets spiraling behind the Sun like a tail?</h3>
+      <div class="opts"><button class="opt" type="button" data-ok="1">The planets are not dragged behind. They move along with the Sun and orbit it by gravity.</button><button class="opt" type="button">The Sun is not moving at all</button><button class="opt" type="button">The planets do not orbit the Sun</button><button class="opt" type="button">Earth moves backward half the time</button></div>
+      <div class="ex" hidden><b class="verdict"></b>The planets travel with the Sun at the same 230 km/s. Seen to scale, Earth&rsquo;s path is a very long line with only a tiny wiggle.</div></div>
+    <div class="q"><h3>4. Why did the collapsing cloud flatten into a disk?</h3>
+      <div class="opts"><button class="opt" type="button">Because the Sun pushed everything flat with light</button><button class="opt" type="button" data-ok="1">Spinning material can fall in along the spin axis but keeps whirling sideways, and bumping cancels up-and-down motion</button><button class="opt" type="button">Because planets were already there</button><button class="opt" type="button">Because it was cold</button></div>
+      <div class="ex" hidden><b class="verdict"></b>Spin plus collisions. Up-and-down motion gets canceled, and what remains is a flat, spinning sheet.</div></div>
+    <div class="q"><h3>5. Why did the biggest planets form beyond the frost line?</h3>
+      <div class="opts"><button class="opt" type="button">It was warmer there</button><button class="opt" type="button" data-ok="1">Ice could form there, adding extra solid material for cores to grow, so they got big enough to hold lots of gas</button><button class="opt" type="button">There were no other planets nearby</button><button class="opt" type="button">The Sun pulled harder there</button></div>
+      <div class="ex" hidden><b class="verdict"></b>Beyond the frost line, ice added building material, so cores grew large and fast.</div></div>
+    <div class="q"><h3>Think and write</h3>
+      <p>In 3 or 4 sentences, explain to a friend why a galaxy lap takes so long even at 230 km/s. Use a number from this page.</p>
+      <details><summary>Show a model answer</summary><div class="in"><p>The galaxy is enormous. We are about 26,000 light-years from the center, so a lap is a circle around 160,000 light-years long. Light itself would take 160,000 years to go that far, and we are traveling at less than one thousandth of light speed, so it takes about 230 million years.</p></div></details>
+    </div>
+  </div>
+</section>
+</main>
+<footer>Numbers on this page are rounded and come from astronomy sources; ranges are given where measurements still differ. The galaxy picture and the planet-building model are simplified teaching tools.</footer>
+
+<script>
+/* Solar-system formation toy model. Units: AU, years, solar masses. Simplified on purpose: not research code. */
+(function (root) {
+  'use strict';
+  var G = 4 * Math.PI * Math.PI;          // AU^3 / (Msun yr^2)
+  var MEARTH = 3.003e-6;                  // Msun
+  var FROST = 4;                          // AU, frost line used here (real value ~3-5 AU)
+  var A_MIN = 0.5, A_MAX = 36, LOST_IN = 0.12, LOST_OUT = 90;
+  var T_TOTAL = 2400;                     // simulated years the planet-building stage runs
+  var DT = 0.012;
+  var Q = 0.55;                           // sticking radius = Q * a * (m/3)^(1/3): inflated so growth fits in minutes
+  var SOLIDS = 160;                       // Earth masses of solids spread over the bodies
+  var M_BIG_FACTOR = 6;
+
+  function rng(seed) {
+    var a = seed >>> 0;
+    return function () {
+      a |= 0; a = (a + 0x6D2B79F5) | 0;
+      var t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  function smooth(x) { x = x < 0 ? 0 : x > 1 ? 1 : x; return x * x * (3 - 2 * x); }
+
+  // inverse-CDF table for disk radius: weight ~ a^-0.5, x3 beyond the frost line (more solid material where ice can form)
+  function makeSampler() {
+    var n = 600, cdf = new Float64Array(n + 1), xs = new Float64Array(n + 1), acc = 0, i, a;
+    for (i = 0; i <= n; i++) {
+      a = A_MIN + (A_MAX - A_MIN) * i / n; xs[i] = a;
+      acc += Math.pow(a, -0.5) * (a > FROST ? 3 : 1); cdf[i] = acc;
+    }
+    for (i = 0; i <= n; i++) cdf[i] /= acc;
+    return function (u) {
+      var lo = 0, hi = n;
+      while (hi - lo > 1) { var mid = (lo + hi) >> 1; if (cdf[mid] < u) lo = mid; else hi = mid; }
+      return xs[lo] + (xs[hi] - xs[lo]) * ((u - cdf[lo]) / Math.max(1e-12, cdf[hi] - cdf[lo]));
+    };
+  }
+
+  function createModel(seed, nBodies, nDust) {
+    var r = rng(seed), samp = makeSampler(), M = { seed: seed };
+    nBodies = nBodies || 650; nDust = nDust || 2200;
+    M.n = nBodies; M.nd = nDust;
+    function fill(count) {
+      var o = { a: new Float32Array(count), R0: new Float32Array(count), th0: new Float32Array(count), phi: new Float32Array(count) };
+      for (var k = 0; k < count; k++) {
+        o.a[k] = samp(r());
+        o.R0[k] = o.a[k] * (110 + 130 * r());                 // the cloud is ~100-250x wider than the final orbit
+        o.th0[k] = Math.acos(1 - 2 * r());
+        o.phi[k] = r() * Math.PI * 2;
+      }
+      return o;
+    }
+    M.b = fill(nBodies); M.d = fill(nDust);
+    M.m0 = SOLIDS * MEARTH / nBodies;
+    return M;
+  }
+
+  // Stage 1 geometry (cloud -> disk). Writes 3-D positions (AU). e = collapse progress 0..1, f = flattening 0..1
+  function collapseGeom(set, e, f, out) {
+    var n = set.a.length, R, th, st;
+    for (var k = 0; k < n; k++) {
+      R = Math.exp(Math.log(set.R0[k]) * (1 - e) + Math.log(set.a[k]) * e);
+      th = Math.PI / 2 + (set.th0[k] - Math.PI / 2) * (1 - f);
+      st = Math.sin(th);
+      out.x[k] = R * st * Math.cos(set.phi[k]);
+      out.y[k] = R * st * Math.sin(set.phi[k]);
+      out.z[k] = R * Math.cos(th);
+      out.R[k] = R;
+    }
+  }
+  // spin: angular speed grows as the cloud shrinks (angular momentum is conserved)
+  function spinStep(set, e, dt, omega1) {
+    var n = set.a.length, R, a, w;
+    for (var k = 0; k < n; k++) {
+      a = set.a[k]; R = Math.exp(Math.log(set.R0[k]) * (1 - e) + Math.log(a) * e);
+      w = Math.min(0.9, omega1 * Math.pow(a, -1.5) * Math.pow(a / R, 2));  // capped so the picture never spins fast enough to strobe or make anyone dizzy
+      set.phi[k] += w * dt;
+    }
+  }
+
+  // ---- Stage 2: planet building ----
+  function startStage2(M) {
+    var r = rng(M.seed * 7 + 1), n = M.n, S = { bodies: [], t: 0, step: 0, lost: 0, hitSun: 0, merges: 0, seed: M.seed, m0: M.m0 };
+    for (var k = 0; k < n; k++) {
+      var a = M.b.a[k], phi = M.b.phi[k], e = Math.min(0.12, -0.04 * Math.log(1 - r() * 0.98) + 0.01);
+      var vc = Math.sqrt(G / a), ang = r() * Math.PI * 2;
+      var vr = e * vc * Math.cos(ang), vt = vc * (1 + e * Math.sin(ang) * 0.5);
+      var cp = Math.cos(phi), sp = Math.sin(phi);
+      S.bodies.push({
+        x: a * cp, y: a * sp, vx: vr * cp - vt * sp, vy: vr * sp + vt * cp, ax: 0, ay: 0,
+        m: M.m0, ice: a > FROST ? 1 : 0, gas: 0, id: k
+      });
+    }
+    S.mBig = M.m0 * M_BIG_FACTOR;
+    S.big = []; refreshBig(S);
+    accel(S);
+    return S;
+  }
+  function refreshBig(S) { S.big.length = 0; for (var i = 0; i < S.bodies.length; i++) if (S.bodies[i].m > S.mBig) S.big.push(S.bodies[i]); }
+  function gasLevel(S) { return Math.exp(-7 * S.t / T_TOTAL); }
+  function accel(S) {
+    var B = S.bodies, big = S.big, i, j, b, o, r2, r3, dx, dy, d2, k;
+    for (i = 0; i < B.length; i++) {
+      b = B[i]; r2 = b.x * b.x + b.y * b.y + 1e-4; r3 = r2 * Math.sqrt(r2);
+      b.ax = -G * b.x / r3; b.ay = -G * b.y / r3;
+      for (j = 0; j < big.length; j++) {
+        o = big[j]; if (o === b) continue;
+        dx = o.x - b.x; dy = o.y - b.y; d2 = dx * dx + dy * dy + 0.0016; k = G * o.m / (d2 * Math.sqrt(d2));
+        b.ax += dx * k; b.ay += dy * k;
+      }
+    }
+  }
+  function integrate(S, dt) {
+    var B = S.bodies, i, b, g = gasLevel(S), damp = 0.35 * g * dt, vc, r, tx, ty, dd;
+    for (i = 0; i < B.length; i++) { b = B[i]; b.vx += 0.5 * dt * b.ax; b.vy += 0.5 * dt * b.ay; b.x += dt * b.vx; b.y += dt * b.vy; }
+    accel(S);
+    for (i = 0; i < B.length; i++) {
+      b = B[i]; b.vx += 0.5 * dt * b.ax; b.vy += 0.5 * dt * b.ay;
+      if (damp > 0.0001) {  // gas drag pulls orbits toward circles while gas remains (weaker for big bodies)
+        r = Math.sqrt(b.x * b.x + b.y * b.y); vc = Math.sqrt(G / r); tx = -b.y / r * vc; ty = b.x / r * vc;
+        dd = damp / (1 + b.m / (S.m0 * 40));
+        b.vx -= dd * (b.vx - tx); b.vy -= dd * (b.vy - ty);
+      }
+    }
+    S.t += dt; S.step++;
+  }
+  var P = { Q: 7, ramp: 1 };
+  function rcoll(b, a) { return P.Q * P.ramp * a * Math.cbrt(b.m / 3); }
+  var CELL = 1.5, GW = 134, GRID = new Int32Array(GW * GW), NEXT = new Int32Array(4096);
+  function collide(S) {
+    var u = S.t / T_TOTAL; P.ramp = 0.3 + 0.7 * Math.pow(Math.min(1, u * 1.3), 1.2);
+    var B = S.bodies, i, j, a, b, dx, dy, d, ra, rb, ar, br, m, changed = false, cx, cy, ox, oy, c, n = B.length;
+    if (NEXT.length < n) NEXT = new Int32Array(n * 2);
+    GRID.fill(-1);
+    for (i = 0; i < n; i++) {
+      a = B[i]; cx = Math.floor(a.x / CELL) + 67; cy = Math.floor(a.y / CELL) + 67;
+      if (cx < 0 || cy < 0 || cx >= GW || cy >= GW) { a.cell = -1; continue; }
+      a.cell = cx + cy * GW; NEXT[i] = GRID[a.cell]; GRID[a.cell] = i;
+    }
+    for (i = 0; i < n; i++) {
+      a = B[i]; if (!a || a.cell < 0) continue;
+      ar = Math.sqrt(a.x * a.x + a.y * a.y); ra = rcoll(a, ar);
+      cx = a.cell % GW; cy = (a.cell - cx) / GW;
+      for (oy = -1; oy <= 1; oy++) for (ox = -1; ox <= 1; ox++) {
+        if (cx + ox < 0 || cy + oy < 0 || cx + ox >= GW || cy + oy >= GW) continue;
+        for (j = GRID[cx + ox + (cy + oy) * GW]; j >= 0; j = NEXT[j]) {
+          if (j <= i) continue;
+          b = B[j]; if (!b || !a) continue;
+          dx = a.x - b.x; dy = a.y - b.y;
+          br = Math.sqrt(b.x * b.x + b.y * b.y); rb = rcoll(b, br);
+          d = Math.sqrt(dx * dx + dy * dy);
+          if (d < ra + rb) {
+            m = a.m + b.m;
+            a.x = (a.x * a.m + b.x * b.m) / m; a.y = (a.y * a.m + b.y * b.m) / m;
+            a.vx = (a.vx * a.m + b.vx * b.m) / m; a.vy = (a.vy * a.m + b.vy * b.m) / m;
+            a.ice = (a.ice * a.m + b.ice * b.m) / m; a.gas = Math.max(a.gas, b.gas);
+            a.m = m; B[j] = null; changed = true; S.merges++;
+            ar = Math.sqrt(a.x * a.x + a.y * a.y); ra = rcoll(a, ar);
+          }
+        }
+      }
+    }
+    var out = [];
+    for (i = 0; i < B.length; i++) {
+      a = B[i]; if (!a) continue;
+      ar = Math.sqrt(a.x * a.x + a.y * a.y);
+      if (ar < LOST_IN) { S.hitSun++; changed = true; continue; }
+      if (ar > LOST_OUT) { S.lost++; changed = true; continue; }
+      out.push(a);
+    }
+    S.bodies = out;
+    if (changed) refreshBig(S);
+  }
+  function gasAccrete(S, dtYears) {
+    var g = gasLevel(S), B = S.bodies, i, b, a, cap, tau, mc = 10 * MEARTH;
+    if (g < 0.02) return;
+    for (i = 0; i < B.length; i++) {
+      b = B[i]; if (b.m < mc || b.ice < 0.5) continue;
+      a = Math.sqrt(b.x * b.x + b.y * b.y);
+      if (a < FROST * 0.7 || a > 28) continue;
+      cap = (a < 7.5 ? 320 : a < 13 ? 100 : 18) * MEARTH;
+      if (b.m >= cap) continue;
+      tau = 90 * Math.pow(Math.max(a, 2) / 5, 1.5);          // gas capture is slower farther out
+      b.m = Math.min(cap, b.m * (1 + g * dtYears / tau));
+      b.gas = Math.min(1, (b.m - mc) / (cap - mc + 1e-12));
+    }
+    refreshBig(S);
+  }
+  function advance(S, nSteps) {
+    for (var s = 0; s < nSteps; s++) {
+      integrate(S, DT);
+      if (S.step % 3 === 0) collide(S);
+      if (S.step % 20 === 0) gasAccrete(S, 20 * DT);
+      if (S.t >= T_TOTAL) { S.done = true; break; }
+    }
+  }
+  function summary(S) {
+    var B = S.bodies.slice().sort(function (p, q) { return (p.x * p.x + p.y * p.y) - (q.x * q.x + q.y * q.y); });
+    var out = { rocky: 0, giants: 0, icy: 0, list: [] };
+    B.forEach(function (b) {
+      var a = Math.sqrt(b.x * b.x + b.y * b.y), me = b.m / MEARTH;
+      if (me < 0.05) return;
+      var kind = b.gas > 0.05 && me > 40 ? 'gas giant' : b.gas > 0 && me > 10 ? 'ice giant' : (b.ice > 0.5 ? 'icy world' : 'rocky planet');
+      if (kind === 'gas giant' || kind === 'ice giant') out.giants++; else if (kind === 'icy world') out.icy++; else out.rocky++;
+      out.list.push({ a: a, mass: me, kind: kind });
+    });
+    return out;
+  }
+  root.SimCore = { P: P, G: G, MEARTH: MEARTH, FROST: FROST, T_TOTAL: T_TOTAL, createModel: createModel, collapseGeom: collapseGeom, spinStep: spinStep,
+    startStage2: startStage2, advance: advance, summary: summary, gasLevel: gasLevel, smooth: smooth, rng: rng };
+  if (typeof module !== 'undefined') module.exports = root.SimCore;
+})(typeof window !== 'undefined' ? window : globalThis);
+
+/* Milky Way sketch + helpers. Artist-style and approximate: real spiral-arm positions are still being mapped. Units: light-years. y points "up" (north on the page). */
+(function () {
+  'use strict';
+  var R_SUN = 26000, R_DISK = 50000, SPAN = 60000, PITCH = 0.30;
+  var TH_SUN0 = -Math.PI / 2;                       // Sun starts at the bottom of the picture
+  // radius at which each arm crosses the Sun's direction (approximate)
+  var ARMS = [
+    { name: 'Scutum–Centaurus Arm', rs: 13500, hue: 215 },
+    { name: 'Sagittarius Arm', rs: 20500, hue: 200 },
+    { name: 'Perseus Arm', rs: 33500, hue: 220 },
+    { name: 'Outer Arm', rs: 44500, hue: 210 }
+  ];
+  function rnd(seed) { var a = seed >>> 0; return function () { a = (a + 0x6D2B79F5) | 0; var t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+  function gauss(r) { return (r() + r() + r() + r() - 2) * 1.7; }
+  function armPoint(rs, r) { var th = TH_SUN0 + Math.log(r / rs) / PITCH; return [r * Math.cos(th), r * Math.sin(th), th]; }
+
+  function build(size) {
+    var cv = document.createElement('canvas'); cv.width = cv.height = size;
+    var c = cv.getContext('2d'), k = size / (2 * SPAN), mid = size / 2, r = rnd(42), i, j;
+    function P(x, y) { return [mid + x * k, mid - y * k]; }
+    c.globalCompositeOperation = 'lighter';
+    // soft disk glow
+    var g = c.createRadialGradient(mid, mid, 0, mid, mid, R_DISK * k);
+    g.addColorStop(0, 'rgba(255,226,170,0.9)'); g.addColorStop(0.07, 'rgba(255,215,150,0.55)');
+    g.addColorStop(0.25, 'rgba(190,175,230,0.20)'); g.addColorStop(0.7, 'rgba(110,140,235,0.10)'); g.addColorStop(1, 'rgba(90,120,230,0)');
+    c.fillStyle = g; c.beginPath(); c.arc(mid, mid, R_DISK * k, 0, 6.2832); c.fill();
+    // arms: wide glow strokes then stars
+    ARMS.forEach(function (arm, ai) {
+      var w, pts = [];
+      for (var rr = 4500; rr <= 50000; rr += 500) pts.push(armPoint(arm.rs, rr));
+      [3600, 2200, 1100].forEach(function (width, wi) {
+        c.beginPath();
+        pts.forEach(function (p, n) { var q = P(p[0], p[1]); if (n) c.lineTo(q[0], q[1]); else c.moveTo(q[0], q[1]); });
+        c.lineWidth = width * k; c.lineCap = 'round';
+        c.strokeStyle = 'hsla(' + arm.hue + ',85%,' + (62 + wi * 6) + '%,' + (0.035 + wi * 0.02) + ')'; c.stroke();
+      });
+      for (j = 0; j < 1700; j++) {
+        var rr2 = 4500 + Math.pow(r(), 1.4) * 45500, p = armPoint(arm.rs, rr2), th = p[2];
+        var off = gauss(r) * (650 + rr2 * 0.03), nx = Math.cos(th + 1.5708), ny = Math.sin(th + 1.5708);
+        var q = P(p[0] + nx * off, p[1] + ny * off);
+        var pink = r() < 0.07;
+        c.fillStyle = pink ? 'rgba(255,140,190,0.55)' : 'rgba(200,220,255,' + (0.25 + r() * 0.45) + ')';
+        c.fillRect(q[0], q[1], pink ? 1.8 : 1.2, pink ? 1.8 : 1.2);
+      }
+    });
+    // Orion Spur: a short bridge near the Sun
+    c.beginPath();
+    for (i = 0; i <= 20; i++) { var th = TH_SUN0 - 0.28 + 0.62 * i / 20, rr3 = R_SUN * Math.exp(0.2 * (th - TH_SUN0)); var q = P(rr3 * Math.cos(th), rr3 * Math.sin(th)); if (i) c.lineTo(q[0], q[1]); else c.moveTo(q[0], q[1]); }
+    c.lineWidth = 1400 * k; c.lineCap = 'round'; c.strokeStyle = 'rgba(170,205,255,0.13)'; c.stroke();
+    for (j = 0; j < 200; j++) {
+      var th2 = TH_SUN0 - 0.28 + 0.62 * r(), r4 = R_SUN * Math.exp(0.2 * (th2 - TH_SUN0)) + gauss(r) * 500, q2 = P(r4 * Math.cos(th2), r4 * Math.sin(th2));
+      c.fillStyle = 'rgba(210,228,255,' + (0.3 + r() * 0.4) + ')'; c.fillRect(q2[0], q2[1], 1.3, 1.3);
+    }
+    // bar + bulge
+    c.save(); c.translate(mid, mid); c.rotate(-0.78); c.scale(1, 0.3);
+    var gb = c.createRadialGradient(0, 0, 0, 0, 0, 9500 * k);
+    gb.addColorStop(0, 'rgba(255,225,160,0.85)'); gb.addColorStop(0.5, 'rgba(255,205,130,0.35)'); gb.addColorStop(1, 'rgba(255,190,110,0)');
+    c.fillStyle = gb; c.beginPath(); c.arc(0, 0, 9500 * k, 0, 6.2832); c.fill(); c.restore();
+    var gc = c.createRadialGradient(mid, mid, 0, mid, mid, 3000 * k);
+    gc.addColorStop(0, 'rgba(255,240,200,0.95)'); gc.addColorStop(1, 'rgba(255,210,140,0)');
+    c.fillStyle = gc; c.beginPath(); c.arc(mid, mid, 3000 * k, 0, 6.2832); c.fill();
+    // field stars
+    for (j = 0; j < 5000; j++) {
+      var rad = -Math.log(1 - r() * 0.98) * 14000, ang = r() * 6.2832; if (rad > R_DISK) continue;
+      var q3 = P(rad * Math.cos(ang), rad * Math.sin(ang)); c.fillStyle = 'rgba(255,245,230,' + (0.1 + r() * 0.3) + ')'; c.fillRect(q3[0], q3[1], 1, 1);
+    }
+    return { canvas: cv, size: size, k: k, mid: mid };
+  }
+
+  window.Galaxy = { R_SUN: R_SUN, R_DISK: R_DISK, SPAN: SPAN, TH_SUN0: TH_SUN0, ARMS: ARMS, armPoint: armPoint, build: build };
+})();
+
+/* Part A: the ride around the galaxy. */
+(function () {
+  'use strict';
+  var $ = function (s, el) { return (el || document).querySelector(s); };
+  var AU_LY = 1 / 63241.1, T_GAL = 230e6, T_Z = 64e6, A_Z = 300, Z0 = 65, R_SUN = Galaxy.R_SUN;
+  var PLANETS = [['Mercury', 0.387, 0.2408, '#b9b2a8', 0.5], ['Venus', 0.723, 0.6152, '#ecc98c', 2.0], ['Earth', 1, 1, '#4f9bff', 4.1], ['Mars', 1.524, 1.8808, '#e5693f', 1.1],
+    ['Jupiter', 5.203, 11.862, '#dfb48f', 5.5], ['Saturn', 9.537, 29.457, '#ead49b', 3.0], ['Uranus', 19.19, 84.01, '#8fe0e6', 0.7], ['Neptune', 30.07, 164.8, '#6a85ff', 2.4]];
+  function sstep(a, b, x) { x = (x - a) / (b - a); x = x < 0 ? 0 : x > 1 ? 1 : x; return x * x * (3 - 2 * x); }
+  function clamp(x, a, b) { return x < a ? a : x > b ? b : x; }
+  function fmtDur(y) {   // years -> friendly string
+    var a = Math.abs(y);
+    if (a < 1 / 365) return (y * 8766).toFixed(1) + ' hours';
+    if (a < 0.2) return (y * 365.25).toFixed(0) + ' days';
+    if (a < 1000) return (a < 10 ? y.toFixed(1) : y.toFixed(0)) + ' years';
+    if (a < 1e6) return (y / 1e3).toFixed(a < 1e4 ? 1 : 0) + ' thousand years';
+    if (a < 1e9) return (y / 1e6).toFixed(a < 1e7 ? 1 : 0) + ' million years';
+    return (y / 1e9).toFixed(2) + ' billion years';
+  }
+  function fmtDist(ly) {
+    if (ly < 0.2) { var au = ly * 63241.1; return (au < 10 ? au.toFixed(1) : au >= 1000 ? Math.round(au).toLocaleString() : au.toFixed(0)) + ' AU'; }
+    return (ly < 10 ? ly.toFixed(1) : Math.round(ly).toLocaleString()) + ' light-years';
+  }
+  function niceNum(x) { var p = Math.pow(10, Math.floor(Math.log10(x))), f = x / p; return (f < 1.5 ? 1 : f < 3.5 ? 2 : f < 7.5 ? 5 : 10) * p; }
+  function fit(cv) {
+    var d = Math.min(window.devicePixelRatio || 1, 2), w = cv.clientWidth, h = cv.clientHeight;
+    if (!w || !h) return false;
+    if (cv.width !== Math.round(w * d) || cv.height !== Math.round(h * d)) { cv.width = Math.round(w * d); cv.height = Math.round(h * d); }
+    cv.getContext('2d').setTransform(d, 0, 0, d, 0, 0); return true;
+  }
+  function hash(ix, iy, k, n) {
+    var h = Math.imul(ix, 374761393) ^ Math.imul(iy, 668265263) ^ Math.imul(k + 77, 2246822519) ^ Math.imul(n + 1, 3266489917);
+    h = Math.imul(h ^ (h >>> 15), 2246822519); h = Math.imul(h ^ (h >>> 13), 3266489917); return ((h ^ (h >>> 16)) >>> 0) / 4294967296;
+  }
+
+  var cv = $('#gv-canvas'), side = $('#gv-side');
+  if (!cv) return;
+  var ctx = cv.getContext('2d'), sctx = side.getContext('2d');
+  var gal = null;
+  var G = window.GV = { t: 0, v: 0.22, zf: 0, auto: true, running: true, ramp: 0, visible: true };
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) G.running = false;
+
+  function rate() { return Math.pow(10, -2 + 9.3 * G.v); }          // simulated years per real second
+  function zfTarget() { return clamp((Math.log10(rate()) - 0.3) / 6, 0, 1); }
+
+  function drawStarLevel(c, W, H, camx, camy, s, k, alpha) {
+    if (alpha < 0.02) return;
+    var cell = Math.pow(4, k), x0 = Math.floor((camx - W / 2 / s) / cell), x1 = Math.floor((camx + W / 2 / s) / cell),
+      y0 = Math.floor((camy - H / 2 / s) / cell), y1 = Math.floor((camy + H / 2 / s) / cell), ix, iy, n, px, py, b;
+    if ((x1 - x0 + 1) * (y1 - y0 + 1) > 4000) return;
+    for (ix = x0; ix <= x1; ix++) for (iy = y0; iy <= y1; iy++) for (n = 0; n < 2; n++) {
+      px = W / 2 + ((ix + hash(ix, iy, k, n * 3)) * cell - camx) * s; py = H / 2 - ((iy + hash(ix, iy, k, n * 3 + 1)) * cell - camy) * s;
+      b = hash(ix, iy, k, n * 3 + 2);
+      c.globalAlpha = alpha * (0.25 + 0.75 * b); c.fillStyle = b > 0.8 ? '#ffd9b0' : b > 0.3 ? '#fff' : '#bcd2ff';
+      c.fillRect(px, py, b > 0.85 ? 2.2 : 1.4, b > 0.85 ? 2.2 : 1.4);
+    }
+    c.globalAlpha = 1;
+  }
+
+  function drawMain(dtYears, dtReal) {
+    var W = cv.clientWidth, H = cv.clientHeight, m = Math.min(W, H), c = ctx;
+    var lnSs = Math.log(0.46 * m / (1.9 * AU_LY)), lnSg = Math.log(0.46 * m / 58000);
+    var s = Math.exp(lnSs + (lnSg - lnSs) * G.zf), lg = Math.log10(s);
+    var th = Galaxy.TH_SUN0 - 2 * Math.PI * G.t / T_GAL, sunx = R_SUN * Math.cos(th), suny = R_SUN * Math.sin(th);
+    var w = sstep(-1.4, -2.4, lg), camx = sunx * (1 - w), camy = suny * (1 - w);
+    function X(x) { return W / 2 + (x - camx) * s; } function Y(y) { return H / 2 - (y - camy) * s; }
+    c.fillStyle = '#04060d'; c.fillRect(0, 0, W, H);
+    // nearby-star layers (illustrative; positions are made up, not real stars)
+    var sa = sstep(-1.6, -0.6, lg) * (1 - sstep(0.4, 1.1, lg));
+    if (sa > 0.02) {
+      var px0 = 70, L = Math.log(px0 / s) / Math.log(4), k0 = Math.floor(L), f = L - k0; // cell px at level k0 is in [70,280)
+      var cellpx = Math.pow(4, k0) * s, fr = Math.log(cellpx / 70) / Math.log(4);
+      drawStarLevel(c, W, H, camx, camy, s, k0, sa * (1 - fr));
+      drawStarLevel(c, W, H, camx, camy, s, k0 - 1, sa * fr);
+    }
+    // Milky Way picture (turns with the Sun: the Sun roughly keeps pace with the spiral pattern)
+    var ga = 1 - sstep(-1.8, -0.7, lg);
+    if (ga > 0.01 && gal) {
+      c.save(); c.globalAlpha = ga; c.translate(X(0), Y(0)); c.rotate(2 * Math.PI * G.t / T_GAL);
+      var ext = Galaxy.SPAN * s; c.drawImage(gal.canvas, -ext, -ext, 2 * ext, 2 * ext); c.restore(); c.globalAlpha = 1;
+      // dashed orbit path
+      var orbA = ga * 0.7; c.strokeStyle = 'rgba(255,200,90,' + orbA + ')'; c.lineWidth = 1.2; c.setLineDash([6, 6]);
+      c.beginPath(); c.arc(X(0), Y(0), R_SUN * s, 0, 6.2832); c.stroke(); c.setLineDash([]);
+      if (ga > 0.6) {
+        c.font = '12px system-ui,sans-serif'; c.fillStyle = 'rgba(255,255,255,' + ga * 0.85 + ')'; c.textAlign = 'left';
+        c.fillText('Galactic center (a huge black hole, Sgr A*)', X(0) + 8, Y(0) - 10);
+        Galaxy.ARMS.slice(0, 3).forEach(function (a) {
+          var ang = Galaxy.TH_SUN0 - 2 * Math.PI * G.t / T_GAL + 0.9, rr = a.rs * Math.exp(0.30 * 0.9), rx = rr * Math.cos(ang), ry = rr * Math.sin(ang);
+          c.fillStyle = 'rgba(190,215,255,' + ga * 0.8 + ')'; c.fillText(a.name, X(rx) + 6, Y(ry) + 4);
+        });
+        c.fillStyle = 'rgba(255,255,255,' + ga * 0.55 + ')'; c.fillText('approximate: artist-style sketch', 10, 18);
+      }
+    }
+    // landmarks around the Sun (nearby scale)
+    function ringLabel(rly, label, col) {
+      var rp = rly * s; if (rp < 22 || rp > 1.5 * Math.max(W, H)) return;
+      var a = sstep(15, 40, rp) * (1 - sstep(0.7 * m, 1.5 * Math.max(W, H), rp));
+      c.strokeStyle = col.replace('A', (0.55 * a).toFixed(3)); c.lineWidth = 1; c.setLineDash([2, 5]);
+      c.beginPath(); c.arc(X(sunx), Y(suny), rp, 0, 6.2832); c.stroke(); c.setLineDash([]);
+      c.fillStyle = col.replace('A', (0.9 * a).toFixed(3)); c.font = '12px system-ui,sans-serif'; c.textAlign = 'center';
+      c.fillText(label, X(sunx), Y(suny) - rp - 6);
+    }
+    ringLabel(1.0, 'Comet cloud (Oort cloud): reaches out roughly 1 light-year or more (estimate)', 'rgba(170,210,255,A)');
+    var acx = X(sunx - 3.1), acy = Y(suny + 3.1), acp = 4.4 * s;
+    if (acp > 22 && acp < 3 * Math.max(W, H)) {
+      var aa = sstep(20, 45, acp) * (1 - sstep(0.8 * Math.max(W, H), 2.5 * Math.max(W, H), acp));
+      c.fillStyle = 'rgba(255,225,170,' + aa + ')'; c.beginPath(); c.arc(acx, acy, 3.2, 0, 6.2832); c.fill();
+      c.font = '12px system-ui,sans-serif'; c.textAlign = 'left'; c.fillText('Alpha Centauri system, about 4.4 light-years (direction not to scale)', acx + 8, acy + 4);
+    }
+    // planets
+    var sx = X(sunx), sy = Y(suny), ringA = 1 - sstep(2.8, 4.2, lg + 3.9 - 0.0);
+    PLANETS.forEach(function (p) {
+      var rp = p[1] * AU_LY * s; if (rp < 1.6 || rp > 6 * Math.max(W, H)) return;
+      var revPerFrame = dtYears / p[2], ph = (G.t / p[2] + p[4] / 6.2832), ang = 2 * Math.PI * ph;
+      c.strokeStyle = 'rgba(190,205,240,' + Math.min(0.45, rp / 16) + ')'; c.lineWidth = 1;
+      c.beginPath(); c.arc(sx, sy, rp, 0, 6.2832); c.stroke();
+      var r = p[0] === 'Jupiter' || p[0] === 'Saturn' ? 4.2 : p[0] === 'Uranus' || p[0] === 'Neptune' ? 3.4 : 2.8;
+      c.fillStyle = p[3]; c.strokeStyle = p[3];
+      if (revPerFrame > 0.08) {   // too fast to follow: draw a smear along the orbit
+        var span = Math.min(2 * Math.PI * revPerFrame, 3.8);
+        c.lineWidth = r * 1.4; c.globalAlpha = 0.7; c.beginPath(); c.arc(sx, sy, rp, -ang, -ang + span, false); c.stroke(); c.globalAlpha = 1;
+      } else {
+        var px = sx + rp * Math.cos(ang), py = sy - rp * Math.sin(ang);
+        c.beginPath(); c.arc(px, py, r, 0, 6.2832); c.fill();
+        if (rp > 22 && revPerFrame < 0.02) { c.fillStyle = 'rgba(230,236,255,0.85)'; c.font = '12px system-ui,sans-serif'; c.textAlign = 'left'; c.fillText(p[0], px + 7, py - 5); }
+      }
+    });
+    // Sun
+    var srad = Math.max(3.2, 0.00465 * AU_LY * s), gl = c.createRadialGradient(sx, sy, 0, sx, sy, srad * 4 + 8);
+    gl.addColorStop(0, 'rgba(255,236,170,1)'); gl.addColorStop(0.25, 'rgba(255,205,90,0.55)'); gl.addColorStop(1, 'rgba(255,190,60,0)');
+    c.fillStyle = gl; c.beginPath(); c.arc(sx, sy, srad * 4 + 8, 0, 6.2832); c.fill();
+    c.fillStyle = '#fff3c4'; c.beginPath(); c.arc(sx, sy, srad, 0, 6.2832); c.fill();
+    if (G.zf > 0.4) {
+      var ya = sstep(0.4, 0.6, G.zf); c.strokeStyle = 'rgba(255,205,90,' + ya + ')'; c.lineWidth = 1.5;
+      c.beginPath(); c.arc(sx, sy, 12 + 3 * Math.sin(performance.now() / 300), 0, 6.2832); c.stroke();
+      c.fillStyle = 'rgba(255,225,150,' + ya + ')'; c.font = 'bold 13px system-ui,sans-serif'; c.textAlign = 'left'; if (G.zf > 0.8) { c.textAlign = 'right'; c.fillText('You are here (the Sun)', sx - 18, sy + 22); } else c.fillText('You are here (the Sun)', sx + 18, sy - 14);
+    }
+    // scale bar
+    var Lly = 110 / s, bar, unit, label;
+    if (Lly < 0.2) { var au = niceNum(Lly * 63241.1); bar = au * AU_LY * s; label = au.toLocaleString() + ' AU'; }
+    else { var ly = niceNum(Lly); bar = ly * s; label = ly.toLocaleString() + ' light-year' + (ly > 1 ? 's' : ''); }
+    c.strokeStyle = 'rgba(255,255,255,0.85)'; c.lineWidth = 2; c.beginPath(); c.moveTo(12, H - 14); c.lineTo(12 + bar, H - 14); c.moveTo(12, H - 18); c.lineTo(12, H - 10); c.moveTo(12 + bar, H - 18); c.lineTo(12 + bar, H - 10); c.stroke();
+    c.fillStyle = 'rgba(255,255,255,0.9)'; c.font = '12px system-ui,sans-serif'; c.textAlign = 'left'; c.fillText(label, 16, H - 20);
+    G.widthLy = W / s;
+  }
+
+  function drawSide() {
+    var W = side.clientWidth, H = side.clientHeight, c = sctx;
+    c.fillStyle = '#060913'; c.fillRect(0, 0, W, H);
+    var span = 170e6, now = 0.64 * W, t0 = G.t - 0.64 * span, mid = H / 2, scale = (H * 0.46) / 650, phi0 = Math.asin(Z0 / A_Z);
+    c.fillStyle = 'rgba(120,150,255,0.16)'; c.fillRect(0, mid - 500 * scale, W, 1000 * scale);
+    c.fillStyle = 'rgba(200,215,255,0.8)'; c.font = '11px system-ui,sans-serif'; c.textAlign = 'left';
+    c.fillText('Milky Way disk (about 1,000 light-years thick)', 8, mid - 500 * scale + 13);
+    c.fillText('above the disk’s middle (north)', 8, 14); c.fillText('below (south)', 8, H - 6);
+    c.strokeStyle = 'rgba(255,255,255,0.25)'; c.setLineDash([3, 4]); c.beginPath(); c.moveTo(0, mid); c.lineTo(W, mid); c.stroke(); c.setLineDash([]);
+    c.strokeStyle = '#ffd36a'; c.lineWidth = 2; c.beginPath();
+    for (var x = 0; x <= W; x += 3) { var t = t0 + (x / W) * span, z = A_Z * Math.sin(2 * Math.PI * t / T_Z + phi0); var y = mid - z * scale; if (x) c.lineTo(x, y); else c.moveTo(x, y); }
+    c.stroke();
+    var zn = A_Z * Math.sin(2 * Math.PI * G.t / T_Z + phi0), yn = mid - zn * scale;
+    c.fillStyle = '#fff3c4'; c.beginPath(); c.arc(now, yn, 5.5, 0, 6.2832); c.fill();
+    c.fillStyle = '#fff'; c.textAlign = 'left'; c.fillText('now', now + 9, yn - 8);
+    c.fillStyle = 'rgba(255,255,255,0.55)'; c.textAlign = 'right'; c.fillText('time →  (this window is 170 million years wide)', W - 8, H - 6);
+  }
+
+  function readouts() {
+    var y = rate();
+    $('#gv-time').textContent = fmtDur(G.t);
+    $('#gv-laps').textContent = (G.t / T_GAL).toFixed(G.t / T_GAL < 0.1 ? 4 : 3);
+    $('#gv-rate').textContent = '1 second = ' + fmtDur(y);
+    $('#gv-width').textContent = fmtDist(G.widthLy || 0.0003);
+    var cap = G.zf < 0.12 ? 'The Sun and the inner planets, drawn to scale. Mercury, Venus, Earth and Mars are tiny dots next to the Sun.'
+      : G.zf < 0.45 ? 'Zooming out. Each step is 10 times wider than the last. The planets shrink into a single dot and the stars are light-years away.'
+      : G.zf < 0.8 ? 'Now the Sun looks like one star among many. (These nearby stars are drawn for effect, not real positions.)'
+      : 'The whole Milky Way (a rough sketch). Our Sun circles the center, 26,000 light-years out, in a short bridge of stars called the Orion Arm.';
+    $('#gv-caption').textContent = cap;
+    $('#gv-speed').value = Math.round(G.v * 1000);
+    $('#gv-zoom').value = Math.round(G.zf * 1000);
+  }
+
+  var last = performance.now(), slow = 0;
+  function frame(now) {
+    requestAnimationFrame(frame);
+    if (!G.visible) { last = now; return; }
+    var dtReal = Math.min(0.1, (now - last) / 1000); last = now;
+    if (!fit(cv) || !fit(side)) return;
+    if (G.ramp) { G.v = clamp(G.v + G.ramp * dtReal / 16, 0, 1); if (G.v >= 1 || G.v <= 0) G.ramp = 0; }
+    var dtYears = G.running ? rate() * dtReal : 0;
+    G.t += dtYears;
+    var tgt = G.auto ? zfTarget() : G.zf;
+    if (G.auto) G.zf += (tgt - G.zf) * (1 - Math.exp(-dtReal * 2.5));
+    drawMain(dtYears, dtReal); drawSide();
+    if (++slow % 6 === 0) readouts();
+  }
+
+  function build() {
+    gal = Galaxy.build(window.innerWidth < 700 ? 1024 : 1400);
+  }
+  $('#gv-play').addEventListener('click', function () { G.running = !G.running; this.textContent = G.running ? 'Pause' : 'Play'; this.setAttribute('aria-pressed', !G.running); });
+  $('#gv-up').addEventListener('click', function () { G.ramp = 1; if (!G.running) $('#gv-play').click(); });
+  $('#gv-down').addEventListener('click', function () { G.ramp = -1; });
+  $('#gv-speed').addEventListener('input', function () { G.v = +this.value / 1000; G.ramp = 0; });
+  $('#gv-zoom').addEventListener('input', function () { G.zf = +this.value / 1000; G.auto = false; $('#gv-auto').checked = false; });
+  $('#gv-auto').addEventListener('change', function () { G.auto = this.checked; });
+  $('#gv-reset').addEventListener('click', function () { G.t = 0; G.v = 0.22; G.zf = 0; G.ramp = 0; G.auto = true; $('#gv-auto').checked = true; });
+  if ('IntersectionObserver' in window) { var vis = { m: true, s: true }; var io = new IntersectionObserver(function (es) { es.forEach(function (e) { vis[e.target === cv ? 'm' : 's'] = e.isIntersecting; }); G.visible = vis.m || vis.s; }); io.observe(cv); io.observe(side); }
+  build(); readouts(); requestAnimationFrame(frame);
+  if (!G.running) $('#gv-play').textContent = 'Play';
+})();
+
+/* Part B: how the solar system formed (time-lapse toy model) + the comprehension checks. */
+(function () {
+  'use strict';
+  var $ = function (s, el) { return (el || document).querySelector(s); };
+  var $$ = function (s, el) { return Array.prototype.slice.call((el || document).querySelectorAll(s)); };
+  var SC = window.SimCore, sm = SC.smooth, G = SC.G, ME = SC.MEARTH;
+  function fit(cv) {
+    var d = Math.min(window.devicePixelRatio || 1, 2), w = cv.clientWidth, h = cv.clientHeight;
+    if (!w || !h) return false;
+    if (cv.width !== Math.round(w * d) || cv.height !== Math.round(h * d)) { cv.width = Math.round(w * d); cv.height = Math.round(h * d); }
+    cv.getContext('2d').setTransform(d, 0, 0, d, 0, 0); return true;
+  }
+  function quantile(arr, q) { var a = Array.prototype.slice.call(arr).sort(function (x, y) { return x - y; }); return a[Math.floor(q * (a.length - 1))]; }
+
+  var cv = $('#fm-canvas'); if (!cv) return;
+  var ctx = cv.getContext('2d');
+  var F = { stage: 1, p: 0, playing: false, speed: 0.5, fov: 12, seed: 7, model: null, S: null, acc: 0, visible: true, startedOnce: false, done: false, simRate: 12 };
+  var geoB, geoD, SIM_YEARS_PER_SEC = 12;
+
+  function init(seed) {
+    F.seed = seed; F.model = SC.createModel(seed, 650, 2200); F.stage = 1; F.p = 0; F.S = null; F.acc = 0; F.done = false;
+    var n = F.model.n, nd = F.model.nd;
+    geoB = { x: new Float32Array(n), y: new Float32Array(n), z: new Float32Array(n), R: new Float32Array(n) };
+    geoD = { x: new Float32Array(nd), y: new Float32Array(nd), z: new Float32Array(nd), R: new Float32Array(nd) };
+    F.R90 = quantile(F.model.b.R0, 0.9); F.a90 = quantile(F.model.b.a, 0.9);
+    $('#fm-summary').hidden = true;
+  }
+
+  function phaseText() {
+    var p = F.p, u;
+    if (F.stage === 1) {
+      if (p < 0.12) return ['1. A cold cloud', 'A huge, cold cloud of gas and dust, about 4.6 billion years ago. It is far wider than this picture can show. Hypothesis: a shockwave from a nearby exploding star may have given it a push.'];
+      if (p < 0.62) return ['2. The cloud collapses', 'Gravity pulls everything toward the center (likely 100,000 years or more). As it shrinks it spins faster and flattens, like pizza dough, into a disk.'];
+      if (p < 0.82) return ['3. A disk and a baby Sun', 'Most of the material ends up in the middle as a hot baby Sun. The rest circles it in a flat disk. The view is zooming in to a box ' + F.fov + ' AU wide.'];
+      return ['4. The Sun switches on', 'The new Sun glows, first from the heat of its own squeezing. Steady hydrogen fusion settles in over the next tens of millions of years.'];
+    }
+    u = F.S ? F.S.t / SC.T_TOTAL : 0;
+    if (F.S && F.S.done) return ['Done', 'In our real solar system, building the planets took roughly 100 million years. Your run is one possible result. Press New random start to try another.'];
+    if (u < 0.2) return ['5. Dust clumps', 'Dust sticks into pebbles, then bigger lumps called planetesimals (the first million years or so).'];
+    if (u < 0.5) return ['6. Lumps pull in lumps', 'Big lumps attract their neighbors and sweep up everything near their orbits. Beyond the frost line, ice adds more building material, so giant-planet cores grow fastest (roughly 1–5 million years).'];
+    if (u < 0.7) return ['7. The gas goes away', 'Cores that grew big enough grab gas and become giant planets. Then the leftover gas is blown away by the young Sun (within roughly 1–10 million years).'];
+    return ['8. Rocky planets settle', 'Without gas, the remaining worlds crash together and settle into stable orbits. Earth’s Moon likely formed from one such crash (tens of millions of years).'];
+  }
+
+  function stage1Step(dt) {
+    F.p = Math.min(1, F.p + dt * F.speed / 24);
+    var e = sm((F.p - 0.12) / 0.5);
+    SC.spinStep(F.model.b, e, dt * F.speed, 0.5); SC.spinStep(F.model.d, e, dt * F.speed, 0.5);
+    if (F.p >= 1) { F.stage = 2; F.S = SC.startStage2(F.model); F.acc = 0; }
+  }
+  function stage2Step(nSteps) {
+    SC.advance(F.S, nSteps);
+    if (F.S.done && !F.done) { F.done = true; showSummary(); }
+  }
+  function showSummary() {
+    var s = SC.summary(F.S), el = $('#fm-summary'), rows = s.list.filter(function (b) { return b.mass >= 0.3; }), html;
+    html = '<p><b>Your result:</b> ' + s.rocky + ' rocky planet' + (s.rocky === 1 ? '' : 's') + ', ' + s.giants + ' giant planet' + (s.giants === 1 ? '' : 's') +
+      ' and ' + F.S.bodies.length + ' bodies in all. <b>Our solar system:</b> 4 rocky planets, 2 gas giants, 2 ice giants. Every run gives a different system, and real planetary systems around other stars are different too.</p>' +
+      '<div class="tbl"><table><thead><tr><th>Distance from Sun</th><th>Mass (Earths)</th><th>Type</th></tr></thead><tbody>' +
+      rows.slice(0, 14).map(function (b) { return '<tr><td>' + b.a.toFixed(1) + ' AU</td><td>' + (b.mass < 10 ? b.mass.toFixed(1) : Math.round(b.mass)) + '</td><td>' + b.kind + '</td></tr>'; }).join('') + '</tbody></table></div>' +
+      '<p class="cap">Approximations: the model only follows motion in a flat plane, makes bodies bigger so they collide in minutes instead of millions of years, and uses simple rules for gas capture. It shows the ideas, not exact predictions.</p>';
+    el.innerHTML = html; el.hidden = false;
+  }
+
+  // ---------- drawing ----------
+  function draw(dt) {
+    var W = cv.clientWidth, H = cv.clientHeight, c = ctx, cx = W / 2, cy = H / 2, m = Math.min(W, H), i;
+    c.fillStyle = '#04060d'; c.fillRect(0, 0, W, H);
+    var M = F.model, n = M.n, nd = M.nd;
+    if (F.stage === 1) {
+      var p = F.p, e = sm((p - 0.12) / 0.5), f = sm((p - 0.2) / 0.45);
+      var tilt = 75 * (1 - sm((p - 0.45) / 0.35)) * Math.PI / 180, ct = Math.cos(tilt), st = Math.sin(tilt);
+      var base = 1.15 * Math.exp(Math.log(F.R90) * (1 - e) + Math.log(F.a90) * e), zin = sm((p - 0.62) / 0.2);
+      var Rv = Math.exp(Math.log(base) * (1 - zin) + Math.log(F.fov / 2) * zin), ppa = (m / 2) / Rv;
+      F.ppa = ppa; F.Rv = Rv;
+      // cloud glow
+      var gr = Math.min(base * ppa * 0.9, W * 2), gg = c.createRadialGradient(cx, cy, 0, cx, cy, gr);
+      var ga = 0.30 * (1 - 0.7 * f) * (1 - 0.8 * zin);
+      gg.addColorStop(0, 'rgba(150,120,210,' + ga + ')'); gg.addColorStop(0.6, 'rgba(90,100,190,' + ga * 0.4 + ')'); gg.addColorStop(1, 'rgba(60,80,170,0)');
+      c.fillStyle = gg; c.fillRect(0, 0, W, H);
+      SC.collapseGeom(M.d, e, f, geoD); SC.collapseGeom(M.b, e, f, geoB);
+      var k, X, Y;
+      c.globalAlpha = 0.5;
+      for (k = 0; k < nd; k++) {
+        X = cx + geoD.x[k] * ppa; Y = cy + (geoD.y[k] * ct + geoD.z[k] * st) * ppa;
+        if (X < 0 || Y < 0 || X > W || Y > H) continue;
+        c.fillStyle = M.d.a[k] > SC.FROST ? '#a9c8ff' : '#e6c9a0'; c.fillRect(X, Y, 1.2, 1.2);
+      }
+      c.globalAlpha = 0.9;
+      for (k = 0; k < n; k++) {
+        X = cx + geoB.x[k] * ppa; Y = cy + (geoB.y[k] * ct + geoB.z[k] * st) * ppa;
+        if (X < 0 || Y < 0 || X > W || Y > H) continue;
+        c.fillStyle = M.b.a[k] > SC.FROST ? '#cfe3ff' : '#f0d9b0'; c.fillRect(X, Y, 1.8, 1.8);
+      }
+      c.globalAlpha = 1;
+      // shockwave hint (hypothesis)
+      if (p < 0.2) {
+        var sx = -0.2 * W + (p / 0.2) * 1.1 * W, sa = Math.sin(Math.min(1, p / 0.2) * Math.PI) * 0.5;
+        var sg = c.createLinearGradient(sx - 60, 0, sx + 20, 0); sg.addColorStop(0, 'rgba(255,170,90,0)'); sg.addColorStop(0.8, 'rgba(255,170,90,' + sa + ')'); sg.addColorStop(1, 'rgba(255,170,90,0)');
+        c.fillStyle = sg; c.fillRect(sx - 60, 0, 80, H);
+        c.fillStyle = 'rgba(255,200,140,' + (sa * 1.6) + ')'; c.font = '12px system-ui,sans-serif'; c.textAlign = 'left'; c.fillText('hypothesis: shockwave from a nearby supernova', 10, 20);
+      }
+      // protostar
+      var sr = 3 + 16 * e + (p > 0.8 ? 8 * Math.min(1, (p - 0.8) / 0.1) : 0), sg2 = c.createRadialGradient(cx, cy, 0, cx, cy, sr * 2.5);
+      var heat = Math.min(1, 0.25 + e);
+      sg2.addColorStop(0, 'rgba(255,245,200,' + heat + ')'); sg2.addColorStop(0.3, 'rgba(255,190,90,' + 0.7 * heat + ')'); sg2.addColorStop(1, 'rgba(255,150,60,0)');
+      c.fillStyle = sg2; c.beginPath(); c.arc(cx, cy, sr * 2.5, 0, 6.2832); c.fill();
+      if (p > 0.78) { // ignition pulse
+        var q = Math.min(1, (p - 0.78) / 0.18); c.strokeStyle = 'rgba(255,230,160,' + (1 - q) * 0.8 + ')'; c.lineWidth = 3; c.beginPath(); c.arc(cx, cy, 10 + q * m * 0.4, 0, 6.2832); c.stroke();
+      }
+      // scale text
+      c.fillStyle = 'rgba(255,255,255,0.9)'; c.font = '12px system-ui,sans-serif'; c.textAlign = 'right';
+      var wAU = 2 * Rv; c.fillText('view width: ' + (wAU >= 1000 ? Math.round(wAU).toLocaleString() : wAU >= 100 ? Math.round(wAU) : wAU.toFixed(1)) + ' AU', W - 10, H - 10);
+    } else {
+      var S = F.S, g = SC.gasLevel(S), ppa2 = (m / 2) / (F.fov / 2), B = S.bodies;
+      F.ppa = ppa2;
+      var yrsFrame = F.playing ? SIM_YEARS_PER_SEC * F.speed * dt : 0;
+      // gas disk glow
+      var rg = 38 * ppa2, gg2 = c.createRadialGradient(cx, cy, 0, cx, cy, rg);
+      gg2.addColorStop(0, 'rgba(160,130,210,' + 0.34 * g + ')'); gg2.addColorStop(0.5, 'rgba(100,110,200,' + 0.16 * g + ')'); gg2.addColorStop(1, 'rgba(70,90,180,0)');
+      c.fillStyle = gg2; c.fillRect(0, 0, W, H);
+      // frost line
+      var fr = SC.FROST * ppa2; c.strokeStyle = 'rgba(170,210,255,0.45)'; c.setLineDash([3, 6]); c.lineWidth = 1; c.beginPath(); c.arc(cx, cy, fr, 0, 6.2832); c.stroke(); c.setLineDash([]);
+      if (fr < m) { c.fillStyle = 'rgba(190,220,255,0.85)'; c.font = '12px system-ui,sans-serif'; c.textAlign = 'center'; c.fillText('frost line (ice can form beyond this)', cx, cy - fr - 6); }
+      // dust specks follow Kepler orbits and fade with the gas
+      var d = M.d, k, a, ang, X, Y, w;
+      c.globalAlpha = 0.5 * g;
+      for (k = 0; k < nd; k++) {
+        a = d.a[k]; w = Math.min(0.5, 0.9 / Math.pow(a, 0.5)); if (F.playing) d.phi[k] += w * Math.min(dt, 0.05) * F.speed;  // display-only: a calm, speed-capped swirl
+        X = cx + a * Math.cos(d.phi[k]) * ppa2; Y = cy + a * Math.sin(d.phi[k]) * ppa2;
+        if (X < 0 || Y < 0 || X > W || Y > H) continue;
+        c.fillStyle = a > SC.FROST ? '#a9c8ff' : '#e6c9a0'; c.fillRect(X, Y, 1.1, 1.1);
+      }
+      c.globalAlpha = 1;
+      // bodies
+      var r, b, px, dth, kind, col;
+      for (i = 0; i < B.length; i++) {
+        b = B[i]; r = Math.sqrt(b.x * b.x + b.y * b.y); if (r * ppa2 > m * 1.5) continue;
+        px = 1.5 + 1.9 * Math.cbrt(b.m / ME); if (b.gas > 0.05 && b.m / ME > 40) px = Math.min(px, 15);
+        col = (b.gas > 0.05 && b.m / ME > 40) ? '#e6c08f' : (b.gas > 0 && b.m / ME > 10) ? '#79cfe0' : b.ice > 0.5 ? '#d5e9ff' : '#cfa57c';
+        X = cx + b.x * ppa2; Y = cy + b.y * ppa2; ang = Math.atan2(b.y, b.x);
+        dth = 2 * Math.PI / Math.pow(Math.max(r, 0.2), 1.5) * yrsFrame;
+        c.fillStyle = col; c.strokeStyle = col;
+        if (dth > 0.14) { c.lineWidth = px * 1.5; c.globalAlpha = 0.75; c.beginPath(); c.arc(cx, cy, r * ppa2, ang - Math.min(dth, 3.2), ang, false); c.stroke(); c.globalAlpha = 1; }
+        else { c.beginPath(); c.arc(X, Y, px, 0, 6.2832); c.fill(); }
+      }
+      // Sun
+      var sg3 = c.createRadialGradient(cx, cy, 0, cx, cy, 30);
+      sg3.addColorStop(0, 'rgba(255,248,210,1)'); sg3.addColorStop(0.25, 'rgba(255,205,100,0.7)'); sg3.addColorStop(1, 'rgba(255,170,60,0)');
+      c.fillStyle = sg3; c.beginPath(); c.arc(cx, cy, 30, 0, 6.2832); c.fill();
+      c.fillStyle = 'rgba(255,255,255,0.9)'; c.font = '12px system-ui,sans-serif'; c.textAlign = 'right'; c.fillText('view width: ' + F.fov + ' AU  (Earth is 1 AU from the Sun)', W - 10, H - 10);
+    }
+  }
+
+  function readouts() {
+    var ph = phaseText();
+    $('#fm-phase').textContent = ph[0]; $('#fm-phase-text').textContent = ph[1];
+    var prog = F.stage === 1 ? F.p * 0.35 : 0.35 + 0.65 * Math.min(1, F.S.t / SC.T_TOTAL);
+    $('#fm-bar').style.width = (prog * 100).toFixed(1) + '%';
+    var st;
+    if (F.stage === 2) {
+      var B = F.S.bodies, big = 0, i; for (i = 0; i < B.length; i++) if (B[i].m > big) big = B[i].m;
+      st = 'Lumps left: ' + B.length + '  ·  Collisions: ' + F.S.merges + '  ·  Biggest: ' + Math.round(big / ME) + ' Earth-masses';
+    } else st = 'Cloud stage: gravity and spin only (no collisions yet)';
+    $('#fm-stats').textContent = st;
+    $('#fm-play').textContent = F.playing ? 'Pause' : (F.stage === 2 && F.S.done ? 'Finished' : 'Play');
+  }
+
+  var last = performance.now(), n = 0;
+  function frame(now) {
+    requestAnimationFrame(frame);
+    if (!F.visible) { last = now; return; }
+    var dt = Math.min(0.1, (now - last) / 1000); last = now;
+    if (!fit(cv)) return;
+    if (F.playing) {
+      if (F.stage === 1) stage1Step(dt);
+      else if (!F.S.done) {
+        F.acc += SIM_YEARS_PER_SEC * F.speed * dt / 0.012;
+        var ns = Math.min(Math.floor(F.acc), 90); F.acc -= Math.floor(F.acc); stage2Step(ns);
+        if (F.S.done) F.playing = false;
+      }
+    }
+    if (F.stage === 2 && F.S.done && !F.done) { F.done = true; F.playing = false; showSummary(); }
+    draw(dt);
+    if (++n % 5 === 0) readouts();
+  }
+
+  function setFov(v) { F.fov = +v; }
+  $('#fm-play').addEventListener('click', function () {
+    if (F.stage === 2 && F.S.done) return;
+    F.playing = !F.playing; F.startedOnce = true; readouts();
+  });
+  $('#fm-step').addEventListener('click', function () {
+    F.playing = false;
+    if (F.stage === 1) stage1Step(0.4); else if (!F.S.done) stage2Step(120);
+    readouts();
+  });
+  $('#fm-restart').addEventListener('click', function () { init(F.seed); F.playing = true; readouts(); });
+  $('#fm-new').addEventListener('click', function () { init(Math.floor(Math.random() * 90000) + 2); F.playing = true; readouts(); });
+  $('#fm-skip').addEventListener('click', function () {
+    if (F.stage === 1) { var e; while (F.p < 1) { F.p = Math.min(1, F.p + 0.02); SC.spinStep(F.model.b, sm((F.p - 0.12) / 0.5), 0.5, 3); SC.spinStep(F.model.d, sm((F.p - 0.12) / 0.5), 0.5, 3); } F.stage = 2; F.S = SC.startStage2(F.model); }
+    F.playing = true; readouts();
+  });
+  $('#fm-speed').addEventListener('input', function () { F.speed = Math.pow(2, (+this.value) / 100); $('#fm-speed-out').textContent = '×' + F.speed.toFixed(F.speed < 1 ? 2 : 1); });
+  $('#fm-fov').addEventListener('change', function () { setFov(this.value); });
+  if ('IntersectionObserver' in window) new IntersectionObserver(function (e) {
+    F.visible = e[0].isIntersecting;
+    if (F.visible && !F.startedOnce && !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) { F.startedOnce = true; F.playing = true; }
+  }, { threshold: 0.4 }).observe(cv);
+  window.FM = F;
+  init(7); readouts(); requestAnimationFrame(frame);
+
+  /* ---------- comprehension checks ---------- */
+  $$('.quiz .q').forEach(function (q) {
+    var ex = $('.ex', q);
+    $$('.opt', q).forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (q.dataset.done) return;
+        var ok = btn.dataset.ok === '1'; btn.classList.add(ok ? 'right' : 'wrong');
+        if (ok) { q.dataset.done = '1'; $$('.opt', q).forEach(function (o) { o.disabled = true; }); }
+        ex.hidden = false; ex.dataset.state = ok ? 'right' : 'wrong';
+        $('.verdict', ex).textContent = ok ? 'Right. ' : 'Not quite. ';
+      });
+    });
+  });
+})();
+
+/* Small visuals: to-scale "corkscrew" check, and the balance-scale comparison. */
+(function () {
+  'use strict';
+  var $ = function (s) { return document.querySelector(s); };
+  function fit(cv) {
+    var d = Math.min(window.devicePixelRatio || 1, 2), w = cv.clientWidth, h = cv.clientHeight;
+    if (!w || !h) return false;
+    if (cv.width !== Math.round(w * d) || cv.height !== Math.round(h * d)) { cv.width = Math.round(w * d); cv.height = Math.round(h * d); }
+    cv.getContext('2d').setTransform(d, 0, 0, d, 0, 0); return true;
+  }
+  // --- Earth's path through the galaxy, to scale: forward 48.5 AU per orbit, sideways wiggle at most 1 AU ---
+  var hc = $('#hx-canvas'), stretch = $('#hx-stretch'), visible = true, t0 = performance.now();
+  if (hc) {
+    var hctx = hc.getContext('2d');
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { visible = e[0].isIntersecting; }).observe(hc);
+    (function loop(now) {
+      requestAnimationFrame(loop);
+      if (!visible || !fit(hc)) return;
+      var W = hc.clientWidth, H = hc.clientHeight, c = hctx, orbits = 3, pxPerAU = (W - 40) / (48.5 * orbits), amp = 1 * pxPerAU * (stretch.checked ? 10 : 1);
+      c.fillStyle = '#060913'; c.fillRect(0, 0, W, H);
+      var mid = H / 2, ph = ((now - t0) / 1000 / 7) % 1;                     // one full lap of the picture every 7 s
+      c.strokeStyle = 'rgba(255,255,255,0.18)'; c.setLineDash([4, 5]); c.beginPath(); c.moveTo(20, mid); c.lineTo(W - 20, mid); c.stroke(); c.setLineDash([]);
+      c.strokeStyle = '#6aa7ff'; c.lineWidth = 2; c.beginPath();
+      for (var x = 0; x <= W - 40; x += 2) { var a = x / pxPerAU / 48.5 * 2 * Math.PI; c.lineTo(20 + x, mid - amp * Math.sin(a)); }
+      c.stroke();
+      var xs = ph * (W - 40), ang = xs / pxPerAU / 48.5 * 2 * Math.PI;
+      c.fillStyle = '#ffe08a'; c.beginPath(); c.arc(20 + xs, mid, 6, 0, 6.2832); c.fill();      // Sun on the straight line
+      c.fillStyle = '#6aa7ff'; c.beginPath(); c.arc(20 + xs, mid - amp * Math.sin(ang), 3.2, 0, 6.2832); c.fill(); // Earth
+      c.fillStyle = 'rgba(255,255,255,0.85)'; c.font = '12px system-ui,sans-serif'; c.textAlign = 'left';
+      c.fillText('Sun (straight line)', 24, 16); c.fillStyle = '#9cc4ff'; c.fillText('Earth’s path', 24, H - 8);
+      c.textAlign = 'right'; c.fillStyle = 'rgba(255,255,255,0.7)';
+      c.fillText(stretch.checked ? 'wiggle stretched ×10 so you can see it' : 'true proportions: 1 wide, 48.5 long', W - 10, H - 8);
+    })(performance.now());
+  }
+  // --- balance scale: black hole vs everything else inside our orbit ---
+  var sc = $('#st-canvas');
+  if (sc) {
+    var c2 = sc.getContext('2d'), W2 = sc.width, H2 = sc.height, px = W2 / 2, py = 205, tilt = 0.2, L = 250, k, rr;
+    c2.fillStyle = '#060913'; c2.fillRect(0, 0, W2, H2);
+    // stand
+    c2.strokeStyle = '#8a93b8'; c2.lineWidth = 6; c2.lineCap = 'round';
+    c2.beginPath(); c2.moveTo(px, py); c2.lineTo(px, H2 - 22); c2.moveTo(px - 60, H2 - 22); c2.lineTo(px + 60, H2 - 22); c2.stroke();
+    // beam tipped down on the right
+    var lx = px - L * Math.cos(tilt), ly = py - L * Math.sin(tilt), rx = px + L * Math.cos(tilt), ry = py + L * Math.sin(tilt);
+    c2.lineWidth = 7; c2.beginPath(); c2.moveTo(lx, ly); c2.lineTo(rx, ry); c2.stroke();
+    c2.fillStyle = '#8a93b8'; c2.beginPath(); c2.arc(px, py, 9, 0, 6.2832); c2.fill();
+    // pans
+    function pan(x, y, w) { c2.strokeStyle = '#8a93b8'; c2.lineWidth = 2; c2.beginPath(); c2.moveTo(x, y); c2.lineTo(x - w / 2, y + 40); c2.moveTo(x, y); c2.lineTo(x + w / 2, y + 40); c2.stroke(); c2.fillStyle = '#8a93b8'; c2.fillRect(x - w / 2, y + 40, w, 6); }
+    pan(lx, ly, 90); pan(rx, ry, 170);
+    // black hole: one gold dot
+    c2.fillStyle = '#ffd36a'; c2.beginPath(); c2.arc(lx, ly + 34, 4, 0, 6.2832); c2.fill();
+    c2.strokeStyle = '#ffd36a'; c2.lineWidth = 2; c2.beginPath(); c2.arc(lx, ly + 34, 11, 0, 6.2832); c2.stroke();
+    // pile of blue dots on the right pan (a mound)
+    var seed = 7; function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+    for (k = 0; k < 700; k++) {
+      var u = rnd() * 2 - 1, h = (1 - u * u) * 60 * rnd();
+      c2.fillStyle = 'rgba(130,165,255,' + (0.45 + 0.4 * rnd()) + ')';
+      c2.beginPath(); c2.arc(rx + u * 80, ry + 38 - h, 2.2, 0, 6.2832); c2.fill();
+    }
+    c2.font = 'bold 15px system-ui,sans-serif'; c2.textAlign = 'center';
+    c2.fillStyle = '#ffd36a'; c2.fillText('Black hole: 4.3 million Suns', lx, ly - 22);
+    c2.fillStyle = '#b9ccff'; c2.fillText('Everything else inside our orbit', rx, ry - 70); c2.fillText('about 100 billion Suns', rx, ry - 50);
+    c2.fillStyle = '#e8ecff'; c2.font = 'bold 22px system-ui,sans-serif'; c2.fillText('about 25,000 : 1', px, 40);
+  }
+})();
+
+</script>
+</body>
+</html>

@@ -37,8 +37,10 @@ const count = (grade) => readdirSync(path.join(ROOT, grade)).filter((f) => f.end
 check('site home exists', existsSync(path.join(ROOT, 'index.html')));
 check('arcade hub exists', existsSync(path.join(ROOT, 'arcade.html')));
 check('k-5 has 1 lesson', count('k-5') === 1, String(count('k-5')));
-check('6th has 13 lessons', count('6th') === 13, String(count('6th')));
+check('6th has 14 lessons', count('6th') === 14, String(count('6th')));
 check('7th has 9 lessons', count('7th') === 9, String(count('7th')));
 check('8th has 9 lessons', count('8th') === 9, String(count('8th')));
+check('9th has 1 lesson', count('9th') === 1, String(count('9th')));
+check('extras has 1 page', count('extras') === 1, String(count('extras')));
 check('design log published', existsSync(path.join(ROOT, 'design-log.html')));
 check(`${checked} relative links resolve`, problems.length === 0, problems.slice(0, 8).join(' | '));
