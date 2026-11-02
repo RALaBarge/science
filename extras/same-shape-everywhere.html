@@ -142,12 +142,12 @@ footer{max-width:940px;margin:40px auto 0;color:var(--muted);font-size:.86rem}
   <h1>The Same Shape Everywhere</h1>
   <p class="lede">A tree, a lightning bolt, the wiring inside your brain, the veins in a leaf, and the structure of the whole universe all look like branches. Why? And how far should we trust a resemblance?</p>
   <div class="mosaic" aria-label="Six branching things: an oak, lightning, brain cells, a river delta, a computer simulation of the universe, and roots">
-    <figure><img data-use="tree-oak" alt="Bare oak tree against the sky"><span>tree</span></figure>
-    <figure><img data-use="lightning-nps" alt="Branching lightning bolt"><span>lightning</span></figure>
-    <figure><img data-use="neuron-purkinje" alt="Brain cells with branching dendrites"><span>brain cells</span></figure>
-    <figure><img data-use="delta-lena" alt="River delta from space"><span>river delta</span></figure>
-    <figure><img data-use="cosmic-illustris" alt="Simulated cosmic web"><span>the universe (simulated)</span></figure>
-    <figure><img data-use="roots-datura" alt="Plant root system"><span>roots</span></figure>
+    <figure><img data-use="tree-oak" alt="Bare oak tree against the sky" loading="lazy"><span>tree</span></figure>
+    <figure><img data-use="lightning-nps" alt="Branching lightning bolt" loading="lazy"><span>lightning</span></figure>
+    <figure><img data-use="neuron-purkinje" alt="Brain cells with branching dendrites" loading="lazy"><span>brain cells</span></figure>
+    <figure><img data-use="delta-lena" alt="River delta from space" loading="lazy"><span>river delta</span></figure>
+    <figure><img data-use="cosmic-illustris" alt="Simulated cosmic web" loading="lazy"><span>the universe (simulated)</span></figure>
+    <figure><img data-use="roots-datura" alt="Plant root system" loading="lazy"><span>roots</span></figure>
   </div>
   <div class="howto">
     <span>Scroll, drag the sliders, press the buttons. Every picture is a real photo, microscope or satellite image, or a scientific simulation or graphic, credited at the bottom.</span>
@@ -156,7 +156,7 @@ footer{max-width:940px;margin:40px auto 0;color:var(--muted);font-size:.86rem}
 </header>
 
 <nav class="nav" aria-label="Sections">
-  <a href="#look">1 Look</a><a href="#fractal">2 Zoom</a><a href="#why">3 Why branch</a><a href="#two">4 Two ways</a><a href="#brain">5 Brain vs. universe</a><a href="#credits">Credits</a>
+  <a href="#look">1 Look</a><a href="#fractal">2 Zoom</a><a href="#why">3 Why branch</a><a href="#two">4 Two ways</a><a href="#brain">5 Brain vs. universe</a><a href="#related">Related</a><a href="#credits">Credits</a>
 </nav>
 
 <main>
@@ -167,6 +167,14 @@ footer{max-width:940px;margin:40px auto 0;color:var(--muted);font-size:.86rem}
   <h2>Look closely</h2>
   <p class="big">Many very different things split, and split again, and split again. Start by just noticing.</p>
   <div class="grid">
+    <div class="card honest wide" id="caution">
+      <div class="tag">Honest note</div>
+      <h3>Looks alike does not mean works alike</h3>
+      <p><b>What is solid:</b> the shapes really can be compared with numbers, and some numbers match.</p>
+      <p><b>What is limited:</b> it was a small pilot study. It compared sections of brain tissue with one simulation, and the neuron "network" was approximated from where cells sit, not from mapping which cells actually connect.</p>
+      <p><b>Different causes:</b> neurons are living cells that grow, make connections and get pruned. The cosmic web came from gravity pulling matter toward tiny differences in density left over from the very early universe. Those are not the same process.</p>
+      <p><b>Where the comparison breaks:</b> neurons carry signals and filaments of the cosmic web do not. Nothing in the universe "thinks" or "computes" because of its shape. Whether the similarity is a deep clue about how networks form or a fun coincidence is not settled.</p>
+    </div>
     <div class="card wide">
       <div class="tag">Look</div>
       <div class="chips" role="group" aria-label="Filter pictures">
@@ -219,6 +227,7 @@ footer{max-width:940px;margin:40px auto 0;color:var(--muted);font-size:.86rem}
     <details class="deeper wide">
       <summary>Go deeper: how do you measure how "branchy" something is?</summary>
       <p>A line has dimension 1. A filled square has dimension 2. A branching pattern drawn on a flat surface fills space somewhere in between, so mathematicians give it a fractional dimension. The cluster in the diffusion-limited aggregation simulation later on this page has a dimension of about 1.7. A smooth curve is closer to 1; a pattern that nearly fills the page is closer to 2. The number tells you how fast the pattern fills space as you zoom out.</p>
+      <p><b>Fractal dimension is a model.</b> The number depends on how you measure it: the range of sizes you use, how a picture is cleaned up, and the method you pick can all change the result. Real branching things are not perfect fractals, so a dimension like 1.7 is a useful summary of how a pattern fills space, not a fixed property of the object.</p>
     </details>
   </div>
 </section>
@@ -336,8 +345,8 @@ footer{max-width:940px;margin:40px auto 0;color:var(--muted);font-size:.86rem}
     <div class="card">
       <div class="tag">Look</div>
       <div class="pair">
-        <figure><img data-use="neuron-purkinje" alt="Purkinje brain cells"><figcaption>Brain cells (Purkinje cells). Tenths of a millimeter across.</figcaption></figure>
-        <figure><img data-use="cosmic-illustris" alt="Simulation of the cosmic web"><figcaption>A computer simulation of the universe's matter. Millions of light-years across or more.</figcaption></figure>
+        <figure><img data-use="neuron-purkinje" alt="Purkinje brain cells" loading="lazy"><figcaption>Brain cells (Purkinje cells). Tenths of a millimeter across.</figcaption></figure>
+        <figure><img data-use="cosmic-illustris" alt="Simulation of the cosmic web" loading="lazy"><figcaption>A computer simulation of the universe's matter. Millions of light-years across or more.</figcaption></figure>
       </div>
       <p>The second picture is not a photo. It is a simulation: scientists start with a smooth early universe, let gravity run on a supercomputer, and filaments, clumps and voids appear.</p>
     </div>
@@ -347,19 +356,11 @@ footer{max-width:940px;margin:40px auto 0;color:var(--muted);font-size:.86rem}
       <p>Astrophysicist Franco Vazza and neurosurgeon Alberto Feletti compared samples of brain tissue with a simulation of the cosmic web. They measured how clumpy the structure is at different sizes (from about 1 micrometre to 0.1 millimetres in the brain, and from about 5 million to 500 million light-years in the simulation) and how the "nodes" connect. Some of those measurements came out strikingly similar, even though the two systems differ in size by more than twenty powers of ten.</p>
       <p>Their conclusion was careful: both might be shaped by similar principles of how networks grow and organize themselves.</p>
     </div>
-    <div class="card honest wide">
-      <div class="tag">Honest note</div>
-      <h3>Looks alike does not mean works alike</h3>
-      <p><b>What is solid:</b> the shapes really can be compared with numbers, and some numbers match.</p>
-      <p><b>What is limited:</b> it was a small pilot study. It compared sections of brain tissue with one simulation, and the neuron "network" was approximated from where cells sit, not from mapping which cells actually connect.</p>
-      <p><b>Different causes:</b> neurons are living cells that grow, make connections and get pruned. The cosmic web came from gravity pulling matter toward tiny differences in density left over from the very early universe. Those are not the same process.</p>
-      <p><b>Where the comparison breaks:</b> neurons carry signals and filaments of the cosmic web do not. Nothing in the universe "thinks" or "computes" because of its shape. Whether the similarity is a deep clue about how networks form or a fun coincidence is not settled.</p>
-    </div>
     <div class="card">
       <div class="tag">Real world</div>
       <h3>Slime mold maps the universe</h3>
       <p>In 2020 astronomers used a computer program inspired by slime mold (the same kind of organism as the Tokyo experiment) to trace where filaments of the cosmic web should be, starting from the positions of about 37,000 galaxies. Hubble Space Telescope observations of gas in those directions then fit the map. This is an example of a tool borrowed because the shapes are similar, which is a good reason to take the similarity seriously.</p>
-      <figure class="shot"><img data-use="cosmic-slime" alt="Slime mold simulation tracing the cosmic web"><figcaption>NASA/ESA image of the slime-mold method tracing the cosmic web. Public domain.</figcaption></figure>
+      <figure class="shot"><img data-use="cosmic-slime" alt="Slime mold simulation tracing the cosmic web" loading="lazy"><figcaption>NASA/ESA image of the slime-mold method tracing the cosmic web. Public domain.</figcaption></figure>
     </div>
     <div class="card try">
       <div class="tag">Try it</div>
@@ -369,6 +370,13 @@ footer{max-width:940px;margin:40px auto 0;color:var(--muted);font-size:.86rem}
       <p class="fb" id="z-fb" hidden></p>
       <div class="btns"><button class="btn main" id="z-next" type="button" hidden>Next</button></div>
       <div class="stat"><span>Round <b id="z-r">1</b> / <b id="z-t"></b></span><span>Score <b id="z-s">0</b></span></div>
+    </div>
+    <div class="card wide try">
+      <div class="tag">Write</div>
+      <h3>Claim, Evidence, Reasoning</h3>
+      <p class="q" style="font-weight:700">Is the cosmic web like a brain? Use evidence from the page and say where the analogy breaks.</p>
+      <p class="small">Claim: your answer in one sentence. Evidence: at least two facts from this page (for example, what Vazza and Feletti measured, or how the two systems formed). Reasoning: explain why that evidence supports your claim, and name one place the analogy breaks. Look back at <a href="#caution">the caution at the top of the page</a>.</p>
+      <textarea rows="6" aria-label="Claim, evidence, reasoning response" style="width:100%" placeholder="Claim... Evidence... Reasoning (and where the analogy breaks)..."></textarea>
     </div>
     <div class="card check" data-id="c5"></div>
     <details class="deeper">
@@ -392,9 +400,24 @@ footer{max-width:940px;margin:40px auto 0;color:var(--muted);font-size:.86rem}
   </div>
 </section>
 
+<section class="concept" id="related">
+  <div class="num">Related</div>
+  <h2>Related lessons</h2>
+  <div class="card">
+    <ul>
+      <li><a href="../6th/unit-05-plate-tectonics-and-rocks.html">6th grade, Unit 5: Plate Tectonics and Rocks</a> (river deltas, cracks, and other patterns that form from physics)</li>
+      <li><a href="../6th/unit-07-cells.html">6th grade, Unit 7: Cells</a> (the cells, including neurons, that branch)</li>
+      <li><a href="../8th/unit-8.7-stars-galaxies-and-the-universe.html">8th grade, Unit 8.7: Stars, Galaxies and the Universe</a> (the large-scale structure of the universe)</li>
+      <li><a href="../8th/unit-8.9-natural-selection-and-common-ancestry.html">8th grade, Unit 8.9: Natural Selection and Common Ancestry</a> (the &ldquo;many tries plus selection&rdquo; recipe, and the tree of life)</li>
+    </ul>
+  </div>
+</section>
+
 <section class="concept" id="credits">
   <div class="num">Credits</div>
   <h2>Pictures and sources</h2>
+  <details class="deeper wide">
+    <summary>Show picture credits and sources</summary>
   <p class="big">Every picture is a real photograph, microscope image, satellite image, or scientific simulation or graphic from Wikimedia Commons, resized for this page. Each keeps its own license, listed here.</p>
   <div class="card" style="margin-top:20px">
     <ol class="credits"><li><b>New snow on birch crowns in Tuntorp 3.jpg</b> by W.carter. CC BY-SA 4.0. <a href="https://commons.wikimedia.org/wiki/File:New_snow_on_birch_crowns_in_Tuntorp_3.jpg" rel="noopener">https://commons.wikimedia.org/wiki/File:New_snow_on_birch_crowns_in_Tuntorp_3.jpg</a></li><li><b>DSCF0900 Bare winter branches silhouetted against a dusky sky with colorful carnival lights stretching from a lamp post.jpg</b> by PattayaPatrol. CC BY-SA 4.0. <a href="https://commons.wikimedia.org/wiki/File:DSCF0900_Bare_winter_branches_silhouetted_against_a_dusky_sky_with_colorful_carnival_lights_stretching_from_a_lamp_post.jpg" rel="noopener">https://commons.wikimedia.org/wiki/File:DSCF0900_Bare_winter_branches_silhouetted_against_a_dusky_sky_with_colorful_carnival_lights_stretching_from_a_lamp_post.jpg</a></li><li><b>Datura metel &#x27;Fastuosa&#x27; stem base &amp; exposed root system.jpg</b> by Flobbadob. CC BY-SA 4.0. <a href="https://commons.wikimedia.org/wiki/File:Datura_metel_%27Fastuosa%27_stem_base_%26_exposed_root_system.jpg" rel="noopener">https://commons.wikimedia.org/wiki/File:Datura_metel_%27Fastuosa%27_stem_base_%26_exposed_root_system.jpg</a></li><li><b>1941. Root system of Tree Number 2 washed out in September of 1941. 20 inches dbh. Class 3D, Risk 4. Klamath Basin near Bly, Oregon. (26841051128).jpg</b> by R6, State &amp; Private Forestry, Forest Health Protection. Public domain. <a href="https://commons.wikimedia.org/wiki/File:1941._Root_system_of_Tree_Number_2_washed_out_in_September_of_1941._20_inches_dbh._Class_3D,_Risk_4._Klamath_Basin_near_Bly,_Oregon._(26841051128).jpg" rel="noopener">https://commons.wikimedia.org/wiki/File:1941._Root_system_of_Tree_Number_2_washed_out_in_September_of_1941._20_inches_dbh._Class_3D,_Risk_4._Klamath_Basin_near_Bly,_Oregon._(26841051128).jpg</a></li><li><b>Cirsium sp. (Thistle) leaf vein sceleton, Westenschouwen, the Netherlands.jpg</b> by Bj.schoenmakers. CC0. <a href="https://commons.wikimedia.org/wiki/File:Cirsium_sp._(Thistle)_leaf_vein_sceleton,_Westenschouwen,_the_Netherlands.jpg" rel="noopener">https://commons.wikimedia.org/wiki/File:Cirsium_sp._(Thistle)_leaf_vein_sceleton,_Westenschouwen,_the_Netherlands.jpg</a></li><li><b>Vein skeleton of a leaf.JPG</b> by Brocken Inaglory. CC BY-SA 3.0. <a href="https://commons.wikimedia.org/wiki/File:Vein_skeleton_of_a_leaf.JPG" rel="noopener">https://commons.wikimedia.org/wiki/File:Vein_skeleton_of_a_leaf.JPG</a></li><li><b>Lena River Delta - Landsat 2000.jpg</b> by none (Landsat). Public domain. <a href="https://commons.wikimedia.org/wiki/File:Lena_River_Delta_-_Landsat_2000.jpg" rel="noopener">https://commons.wikimedia.org/wiki/File:Lena_River_Delta_-_Landsat_2000.jpg</a></li><li><b>Ligtning square NPS (6e73a105-7735-4428-9352-8f5aec8df3cc).jpg</b> by NPS. Public domain. <a href="https://commons.wikimedia.org/wiki/File:Ligtning_square_NPS_(6e73a105-7735-4428-9352-8f5aec8df3cc).jpg" rel="noopener">https://commons.wikimedia.org/wiki/File:Ligtning_square_NPS_(6e73a105-7735-4428-9352-8f5aec8df3cc).jpg</a></li><li><b>Kazakhstan&#x27;s thunderous apocalypse.jpg</b> by Astrobond. CC BY-SA 4.0. <a href="https://commons.wikimedia.org/wiki/File:Kazakhstan%27s_thunderous_apocalypse.jpg" rel="noopener">https://commons.wikimedia.org/wiki/File:Kazakhstan%27s_thunderous_apocalypse.jpg</a></li><li><b>Lichtenberg figure within a acrylic block.jpg</b> by Jan1959. CC BY-SA 4.0. <a href="https://commons.wikimedia.org/wiki/File:Lichtenberg_figure_within_a_acrylic_block.jpg" rel="noopener">https://commons.wikimedia.org/wiki/File:Lichtenberg_figure_within_a_acrylic_block.jpg</a></li><li><b>Lichtenberg figure.jpg</b> by Jeff Keyzer from Austin, TX, USA. CC BY-SA 2.0. <a href="https://commons.wikimedia.org/wiki/File:Lichtenberg_figure.jpg" rel="noopener">https://commons.wikimedia.org/wiki/File:Lichtenberg_figure.jpg</a></li><li><b>TeslaCoil.jpg</b> by Marco Grünewald. CC BY-SA 3.0. <a href="https://commons.wikimedia.org/wiki/File:TeslaCoil.jpg" rel="noopener">https://commons.wikimedia.org/wiki/File:TeslaCoil.jpg</a></li><li><b>Nikola Tesla, with his equipment EDIT.jpg</b> by Photographer: Dickenson V. Alley Restored by Lošmi. Public domain. <a href="https://commons.wikimedia.org/wiki/File:Nikola_Tesla,_with_his_equipment_EDIT.jpg" rel="noopener">https://commons.wikimedia.org/wiki/File:Nikola_Tesla,_with_his_equipment_EDIT.jpg</a></li><li><b>Fernlike stellar dendrite snowflake, brightfield, focus stack.jpg</b> by Janeklass. CC BY 4.0. <a href="https://commons.wikimedia.org/wiki/File:Fernlike_stellar_dendrite_snowflake,_brightfield,_focus_stack.jpg" rel="noopener">https://commons.wikimedia.org/wiki/File:Fernlike_stellar_dendrite_snowflake,_brightfield,_focus_stack.jpg</a></li><li><b>Copper coating obtained by electrodeposition using ethylenediamine dehydrochloride for modifier.png</b> by DenisovaAG. CC BY-SA 4.0. <a href="https://commons.wikimedia.org/wiki/File:Copper_coating_obtained_by_electrodeposition_using_ethylenediamine_dehydrochloride_for_modifier.png" rel="noopener">https://commons.wikimedia.org/wiki/File:Copper_coating_obtained_by_electrodeposition_using_ethylenediamine_dehydrochloride_for_modifier.png</a></li><li><b>Hoarfrost-whistler-branch.jpg</b> by Erin Frey. CC0. <a href="https://commons.wikimedia.org/wiki/File:Hoarfrost-whistler-branch.jpg" rel="noopener">https://commons.wikimedia.org/wiki/File:Hoarfrost-whistler-branch.jpg</a></li><li><b>Neuron Heart.jpg</b> by Piku4chemia. CC BY-SA 4.0. <a href="https://commons.wikimedia.org/wiki/File:Neuron_Heart.jpg" rel="noopener">https://commons.wikimedia.org/wiki/File:Neuron_Heart.jpg</a></li><li><b>Neurons (Purkinje cells).jpg</b> by Lennart Rikk. CC0. <a href="https://commons.wikimedia.org/wiki/File:Neurons_(Purkinje_cells).jpg" rel="noopener">https://commons.wikimedia.org/wiki/File:Neurons_(Purkinje_cells).jpg</a></li><li><b>Fundus photograph of a healthy left eye (OS) from a myopic Asian male patient. Age 23.png</b> by OptometrusPrime. CC BY-SA 2.0. <a href="https://commons.wikimedia.org/wiki/File:Fundus_photograph_of_a_healthy_left_eye_(OS)_from_a_myopic_Asian_male_patient._Age_23.png" rel="noopener">https://commons.wikimedia.org/wiki/File:Fundus_photograph_of_a_healthy_left_eye_(OS)_from_a_myopic_Asian_male_patient._Age_23.png</a></li><li><b>Micelio de hongo sobre ojo compuesto SEM.jpg</b> by Brandon Antonio Segura Torres &amp; Priscilla Vieto Bonilla. CC BY-SA 4.0. <a href="https://commons.wikimedia.org/wiki/File:Micelio_de_hongo_sobre_ojo_compuesto_SEM.jpg" rel="noopener">https://commons.wikimedia.org/wiki/File:Micelio_de_hongo_sobre_ojo_compuesto_SEM.jpg</a></li><li><b>Illustris Dark Matter and Gas.png</b> by Illustris Collaboration. CC BY-SA 4.0. <a href="https://commons.wikimedia.org/wiki/File:Illustris_Dark_Matter_and_Gas.png" rel="noopener">https://commons.wikimedia.org/wiki/File:Illustris_Dark_Matter_and_Gas.png</a></li><li><b>Probing the cosmic web (opo0820b).jpg</b> by NASA, ESA, and E. Hallman (University of Colorado, Boulder). Public domain. <a href="https://commons.wikimedia.org/wiki/File:Probing_the_cosmic_web_(opo0820b).jpg" rel="noopener">https://commons.wikimedia.org/wiki/File:Probing_the_cosmic_web_(opo0820b).jpg</a></li><li><b>Revealing a filament from the cosmic web (potw2504a).jpg</b> by ESO/D. Tornotti et al./Hubble: M. Revalski, P. Francis et al.. CC BY 4.0. <a href="https://commons.wikimedia.org/wiki/File:Revealing_a_filament_from_the_cosmic_web_(potw2504a).jpg" rel="noopener">https://commons.wikimedia.org/wiki/File:Revealing_a_filament_from_the_cosmic_web_(potw2504a).jpg</a></li><li><b>Cosmic Web and Slime Mold (2020-11-4635).png</b> by , , and J. Burchett and O. Elek (UC Santa Cruz). Public domain. <a href="https://commons.wikimedia.org/wiki/File:Cosmic_Web_and_Slime_Mold_(2020-11-4635).png" rel="noopener">https://commons.wikimedia.org/wiki/File:Cosmic_Web_and_Slime_Mold_(2020-11-4635).png</a></li><li><b>Diffusion Limited Aggregation 20200512.png</b> by PantheraLeo1359531. CC0. <a href="https://commons.wikimedia.org/wiki/File:Diffusion_Limited_Aggregation_20200512.png" rel="noopener">https://commons.wikimedia.org/wiki/File:Diffusion_Limited_Aggregation_20200512.png</a></li></ol>
@@ -411,6 +434,7 @@ footer{max-width:940px;margin:40px auto 0;color:var(--muted);font-size:.86rem}
       <li>Weibel, E. (1963), the airway branching model; Murray, C. (1926), the law of vessel branching; Libbrecht, K., snow crystal growth (snowcrystals.com and published reviews).</li>
     </ul>
   </div>
+  </details>
 </section>
 </main>
 <footer>Built for classroom use. No accounts, no tracking, runs offline except for the fonts.</footer>
