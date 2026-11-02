@@ -190,7 +190,7 @@ footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;bo
   .tally{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:420px){.brow{grid-template-columns:84px minmax(0,1fr)}.race{grid-template-columns:minmax(0,1fr)}}
-</style>
+.hero-art img,.stage img{display:block;width:100%;height:auto;border-radius:12px}.hero-art img{max-height:300px;object-fit:cover}.imgcredit{font-size:12px;color:var(--muted);margin:6px 0 0}</style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
@@ -219,9 +219,143 @@ canvas.sim{width:100%;height:240px;display:block;border-radius:12px;background:v
   <h1>Genetics &amp; Heredity</h1>
   <p class="lede">Why do you look like your parents but not exactly like them? In <b>Unit 7: Cells</b> you met the nucleus; in <b>Unit 8: Classifying Life</b> you grouped organisms by shared traits; in <b>Unit 7.9</b> you saw that traits can be passed on. Now we open the instruction manual: DNA, genes, and the math of inheritance. Use <b>Unit 0: How Science Works</b>: Mendel did it with peas, patience, and counting.</p>
   <p class="bridge"><b>Where we left off:</b> Unit 7 introduced cells and their nuclei, Unit 8 sorted living things by traits, and Unit 7.9 showed that traits matter for survival. You may already have learned that offspring resemble their parents. This unit explains how: DNA, genes, and the math of inheritance.</p>
-  <div class="hero-art"><svg viewBox="0 0 640 190" role="img" aria-label="A DNA double helix"><g style="fill:none;stroke-width:5"><path d="M210 20 C260 60 340 60 390 100 C340 140 260 140 210 180" style="stroke:var(--absorb)"/><path d="M390 20 C340 60 260 60 210 100 C260 140 340 140 390 180" style="stroke:var(--reflect)"/></g>
-<g style="stroke:var(--ink);stroke-width:3"><path d="M255 48 H345 M230 80 H370 M240 120 H360 M265 152 H335" /></g>
-<g font-size="14" style="font-weight:700"><text x="40" y="95">A code of four letters:</text><text x="430" y="85" style="fill:var(--ink)">A · T · C · G</text></g></svg></div>
+  <div class="hero-art"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 260" role="img" aria-label="DNA double helix with two sugar-phosphate backbones and colour-coded base pairs">
+<title>DNA double helix</title>
+<desc>A right-handed DNA double helix shows two sugar-phosphate backbones joined by colour-coded A-T and C-G base pairs.</desc>
+<rect x="8" y="8" width="624" height="244" rx="16" style="fill:var(--surface);stroke:var(--line);stroke-width:2"/>
+<g style="fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:3">
+<path d="M58 169 L71.1 166.7 L84.2 160 L97.3 149.6 L110.4 136.5 L123.5 122 L136.6 107.5 L149.7 94.4 L162.8 84 L175.9 77.3 L189 75" style="stroke:var(--reflect)"/>
+<path d="M189 169 L202.1 166.7 L215.2 160 L228.3 149.6 L241.4 136.5 L254.5 122 L267.6 107.5 L280.7 94.4 L293.8 84 L306.9 77.3 L320 75" style="stroke:var(--ink)"/>
+<path d="M320 169 L333.1 166.7 L346.2 160 L359.3 149.6 L372.4 136.5 L385.5 122 L398.6 107.5 L411.7 94.4 L424.8 84 L437.9 77.3 L451 75" style="stroke:var(--reflect)"/>
+<path d="M451 169 L464.1 166.7 L477.2 160 L490.3 149.6 L503.4 136.5 L516.5 122 L529.6 107.5 L542.7 94.4 L555.8 84 L568.9 77.3 L582 75" style="stroke:var(--ink)"/>
+</g>
+<circle cx="123.5" cy="122" r="4.2" style="fill:var(--surface)"/>
+<circle cx="254.5" cy="122" r="4.2" style="fill:var(--surface)"/>
+<circle cx="385.5" cy="122" r="4.2" style="fill:var(--surface)"/>
+<circle cx="516.5" cy="122" r="4.2" style="fill:var(--surface)"/>
+<g style="stroke-linecap:round">
+<line x1="58" y1="75" x2="58" y2="114" style="stroke:var(--green);stroke-width:3"/>
+<line x1="58" y1="130" x2="58" y2="169" style="stroke:var(--red);stroke-width:3"/>
+<line x1="53.5" y1="116" x2="62.5" y2="116" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="53.5" y1="128" x2="62.5" y2="128" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="84.2" y1="83.98" x2="84.2" y2="114" style="stroke:var(--red);stroke-width:3"/>
+<line x1="84.2" y1="130" x2="84.2" y2="160.02" style="stroke:var(--green);stroke-width:3"/>
+<line x1="79.7" y1="116" x2="88.7" y2="116" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="79.7" y1="128" x2="88.7" y2="128" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="110.4" y1="107.48" x2="110.4" y2="114" style="stroke:var(--absorb);stroke-width:3"/>
+<line x1="110.4" y1="130" x2="110.4" y2="136.52" style="stroke:var(--transmit);stroke-width:3"/>
+<line x1="105.9" y1="116" x2="114.9" y2="116" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="105.9" y1="122" x2="114.9" y2="122" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="105.9" y1="128" x2="114.9" y2="128" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="136.6" y1="107.48" x2="136.6" y2="114" style="stroke:var(--absorb);stroke-width:3"/>
+<line x1="136.6" y1="130" x2="136.6" y2="136.52" style="stroke:var(--transmit);stroke-width:3"/>
+<line x1="132.1" y1="116" x2="141.1" y2="116" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="132.1" y1="122" x2="141.1" y2="122" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="132.1" y1="128" x2="141.1" y2="128" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="162.8" y1="83.98" x2="162.8" y2="114" style="stroke:var(--red);stroke-width:3"/>
+<line x1="162.8" y1="130" x2="162.8" y2="160.02" style="stroke:var(--green);stroke-width:3"/>
+<line x1="158.3" y1="116" x2="167.3" y2="116" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="158.3" y1="128" x2="167.3" y2="128" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="189" y1="75" x2="189" y2="114" style="stroke:var(--green);stroke-width:3"/>
+<line x1="189" y1="130" x2="189" y2="169" style="stroke:var(--red);stroke-width:3"/>
+<line x1="184.5" y1="116" x2="193.5" y2="116" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="184.5" y1="128" x2="193.5" y2="128" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="215.2" y1="83.98" x2="215.2" y2="114" style="stroke:var(--green);stroke-width:3"/>
+<line x1="215.2" y1="130" x2="215.2" y2="160.02" style="stroke:var(--red);stroke-width:3"/>
+<line x1="210.7" y1="116" x2="219.7" y2="116" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="210.7" y1="128" x2="219.7" y2="128" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="241.4" y1="107.48" x2="241.4" y2="114" style="stroke:var(--transmit);stroke-width:3"/>
+<line x1="241.4" y1="130" x2="241.4" y2="136.52" style="stroke:var(--absorb);stroke-width:3"/>
+<line x1="236.9" y1="116" x2="245.9" y2="116" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="236.9" y1="122" x2="245.9" y2="122" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="236.9" y1="128" x2="245.9" y2="128" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="267.6" y1="107.48" x2="267.6" y2="114" style="stroke:var(--transmit);stroke-width:3"/>
+<line x1="267.6" y1="130" x2="267.6" y2="136.52" style="stroke:var(--absorb);stroke-width:3"/>
+<line x1="263.1" y1="116" x2="272.1" y2="116" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="263.1" y1="122" x2="272.1" y2="122" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="263.1" y1="128" x2="272.1" y2="128" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="293.8" y1="83.98" x2="293.8" y2="114" style="stroke:var(--green);stroke-width:3"/>
+<line x1="293.8" y1="130" x2="293.8" y2="160.02" style="stroke:var(--red);stroke-width:3"/>
+<line x1="289.3" y1="116" x2="298.3" y2="116" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="289.3" y1="128" x2="298.3" y2="128" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="320" y1="75" x2="320" y2="114" style="stroke:var(--absorb);stroke-width:3"/>
+<line x1="320" y1="130" x2="320" y2="169" style="stroke:var(--transmit);stroke-width:3"/>
+<line x1="315.5" y1="116" x2="324.5" y2="116" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="315.5" y1="122" x2="324.5" y2="122" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="315.5" y1="128" x2="324.5" y2="128" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="346.2" y1="83.98" x2="346.2" y2="114" style="stroke:var(--absorb);stroke-width:3"/>
+<line x1="346.2" y1="130" x2="346.2" y2="160.02" style="stroke:var(--transmit);stroke-width:3"/>
+<line x1="341.7" y1="116" x2="350.7" y2="116" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="341.7" y1="122" x2="350.7" y2="122" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="341.7" y1="128" x2="350.7" y2="128" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="372.4" y1="107.48" x2="372.4" y2="114" style="stroke:var(--red);stroke-width:3"/>
+<line x1="372.4" y1="130" x2="372.4" y2="136.52" style="stroke:var(--green);stroke-width:3"/>
+<line x1="367.9" y1="116" x2="376.9" y2="116" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="367.9" y1="128" x2="376.9" y2="128" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="398.6" y1="107.48" x2="398.6" y2="114" style="stroke:var(--absorb);stroke-width:3"/>
+<line x1="398.6" y1="130" x2="398.6" y2="136.52" style="stroke:var(--transmit);stroke-width:3"/>
+<line x1="394.1" y1="116" x2="403.1" y2="116" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="394.1" y1="122" x2="403.1" y2="122" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="394.1" y1="128" x2="403.1" y2="128" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="424.8" y1="83.98" x2="424.8" y2="114" style="stroke:var(--red);stroke-width:3"/>
+<line x1="424.8" y1="130" x2="424.8" y2="160.02" style="stroke:var(--green);stroke-width:3"/>
+<line x1="420.3" y1="116" x2="429.3" y2="116" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="420.3" y1="128" x2="429.3" y2="128" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="451" y1="75" x2="451" y2="114" style="stroke:var(--red);stroke-width:3"/>
+<line x1="451" y1="130" x2="451" y2="169" style="stroke:var(--green);stroke-width:3"/>
+<line x1="446.5" y1="116" x2="455.5" y2="116" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="446.5" y1="128" x2="455.5" y2="128" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="477.2" y1="83.98" x2="477.2" y2="114" style="stroke:var(--green);stroke-width:3"/>
+<line x1="477.2" y1="130" x2="477.2" y2="160.02" style="stroke:var(--red);stroke-width:3"/>
+<line x1="472.7" y1="116" x2="481.7" y2="116" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="472.7" y1="128" x2="481.7" y2="128" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="503.4" y1="107.48" x2="503.4" y2="114" style="stroke:var(--absorb);stroke-width:3"/>
+<line x1="503.4" y1="130" x2="503.4" y2="136.52" style="stroke:var(--transmit);stroke-width:3"/>
+<line x1="498.9" y1="116" x2="507.9" y2="116" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="498.9" y1="122" x2="507.9" y2="122" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="498.9" y1="128" x2="507.9" y2="128" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="529.6" y1="107.48" x2="529.6" y2="114" style="stroke:var(--absorb);stroke-width:3"/>
+<line x1="529.6" y1="130" x2="529.6" y2="136.52" style="stroke:var(--transmit);stroke-width:3"/>
+<line x1="525.1" y1="116" x2="534.1" y2="116" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="525.1" y1="122" x2="534.1" y2="122" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="525.1" y1="128" x2="534.1" y2="128" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="555.8" y1="83.98" x2="555.8" y2="114" style="stroke:var(--transmit);stroke-width:3"/>
+<line x1="555.8" y1="130" x2="555.8" y2="160.02" style="stroke:var(--absorb);stroke-width:3"/>
+<line x1="551.3" y1="116" x2="560.3" y2="116" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="551.3" y1="122" x2="560.3" y2="122" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="551.3" y1="128" x2="560.3" y2="128" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="582" y1="75" x2="582" y2="114" style="stroke:var(--absorb);stroke-width:3"/>
+<line x1="582" y1="130" x2="582" y2="169" style="stroke:var(--transmit);stroke-width:3"/>
+<line x1="577.5" y1="116" x2="586.5" y2="116" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="577.5" y1="122" x2="586.5" y2="122" style="stroke:var(--muted);stroke-width:2"/>
+<line x1="577.5" y1="128" x2="586.5" y2="128" style="stroke:var(--muted);stroke-width:2"/>
+</g>
+<g style="fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:3">
+<path d="M58 75 L71.1 77.3 L84.2 84 L97.3 94.4 L110.4 107.5 L123.5 122 L136.6 136.5 L149.7 149.6 L162.8 160 L175.9 166.7 L189 169" style="stroke:var(--ink)"/>
+<path d="M189 75 L202.1 77.3 L215.2 84 L228.3 94.4 L241.4 107.5 L254.5 122 L267.6 136.5 L280.7 149.6 L293.8 160 L306.9 166.7 L320 169" style="stroke:var(--reflect)"/>
+<path d="M320 75 L333.1 77.3 L346.2 84 L359.3 94.4 L372.4 107.5 L385.5 122 L398.6 136.5 L411.7 149.6 L424.8 160 L437.9 166.7 L451 169" style="stroke:var(--ink)"/>
+<path d="M451 75 L464.1 77.3 L477.2 84 L490.3 94.4 L503.4 107.5 L516.5 122 L529.6 136.5 L542.7 149.6 L555.8 160 L568.9 166.7 L582 169" style="stroke:var(--reflect)"/>
+</g>
+<text x="24" y="31" style="fill:var(--ink);font-size:18px;font-weight:700">DNA: the double helix</text>
+<text x="616" y="31" style="fill:var(--muted);font-size:13px;text-anchor:end">right-handed helix · not to scale</text>
+<path d="M156 69 V65 H236 V69" style="fill:none;stroke:var(--line);stroke-width:2;stroke-linecap:round;stroke-linejoin:round"/>
+<text x="196" y="58" style="fill:var(--ink);font-size:13px;text-anchor:middle">base pairs</text>
+<path d="M600 64 L585 74" style="fill:none;stroke:var(--muted);stroke-width:2;stroke-linecap:round"/>
+<circle cx="582" cy="75" r="2.5" style="fill:var(--muted)"/>
+<text x="616" y="58" style="fill:var(--ink);font-size:13px;text-anchor:end">sugar-phosphate backbone</text>
+<text x="24" y="200" style="fill:var(--muted);font-size:13px">Bases</text>
+<circle cx="80" cy="195.5" r="4.5" style="fill:var(--green)"/>
+<text x="88" y="200" style="fill:var(--ink);font-size:13px;font-weight:700">A</text>
+<circle cx="112" cy="195.5" r="4.5" style="fill:var(--red)"/>
+<text x="120" y="200" style="fill:var(--ink);font-size:13px;font-weight:700">T</text>
+<circle cx="143" cy="195.5" r="4.5" style="fill:var(--transmit)"/>
+<text x="151" y="200" style="fill:var(--ink);font-size:13px;font-weight:700">C</text>
+<circle cx="174" cy="195.5" r="4.5" style="fill:var(--absorb)"/>
+<text x="182" y="200" style="fill:var(--ink);font-size:13px;font-weight:700">G</text>
+<text x="24" y="230" style="fill:var(--muted);font-size:13px">A&#8211;T: 2 bonds · C&#8211;G: 3 bonds</text>
+<text x="616" y="200" style="fill:var(--ink);font-size:14px;font-weight:700;text-anchor:end">A pairs with T, C pairs with G</text>
+<text x="616" y="230" style="fill:var(--ink);font-size:14px;font-weight:700;text-anchor:end">the order of bases is the code</text>
+</svg></div>
   <p class="howto">Look for the tags <span class="tag analogy">Analogy</span><span class="tag diagram">Diagram</span><span class="tag try">Try it</span><span class="tag data">Data</span><span class="tag real">Real world</span></p>
 </header>
 

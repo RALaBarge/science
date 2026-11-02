@@ -190,7 +190,7 @@ footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;bo
   .tally{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:420px){.brow{grid-template-columns:84px minmax(0,1fr)}.race{grid-template-columns:minmax(0,1fr)}}
-</style>
+.hero-art img,.stage img{display:block;width:100%;height:auto;border-radius:12px}.hero-art img{max-height:300px;object-fit:cover}.imgcredit{font-size:12px;color:var(--muted);margin:6px 0 0}</style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
@@ -219,7 +219,51 @@ canvas.sim{width:100%;height:240px;display:block;border-radius:12px;background:v
   <h1>Metabolic Reactions &amp; the Body</h1>
   <p class="lede">Your body is a chemistry lab with trillions of tiny reactors. Last year you met cells and body systems (Units 7 and 9); in 7.2 you learned that atoms rearrange in reactions. Now we connect them: how a sandwich becomes you. Use the evidence steps from <b>Unit 0: How Science Works</b> when we read the data.</p>
   <p class="bridge"><b>Where we left off:</b> Unit 7.2 and 7.3 showed that reactions rearrange atoms and release or absorb energy. You may already have learned about cells (Unit 7) and body systems (Unit 9). Now we see that your body runs thousands of those chemical reactions, and that digestion and cellular respiration are how food becomes matter and energy for you.</p>
-  <div class="hero-art"><svg viewBox="0 0 640 190" role="img" aria-label="Food and oxygen go into a cell and carbon dioxide, water and energy come out"><g font-size="15" text-anchor="middle" style="font-weight:700"><rect x="40" y="55" width="130" height="60" rx="14" style="fill:var(--beam);fill-opacity:.35;stroke:var(--ink);stroke-width:3"/><text x="105" y="90">food + O₂</text><path d="M180 85 H260" style="stroke:var(--ink);stroke-width:3" marker-end="url(#mInk)"/><rect x="270" y="45" width="100" height="80" rx="40" style="fill:var(--absorb);fill-opacity:.35;stroke:var(--ink);stroke-width:3"/><text x="320" y="92">cell</text><path d="M380 85 H460" style="stroke:var(--ink);stroke-width:3" marker-end="url(#mInk)"/><rect x="470" y="55" width="140" height="60" rx="14" style="fill:var(--transmit);fill-opacity:.35;stroke:var(--ink);stroke-width:3"/><text x="540" y="90">CO₂ + H₂O + energy</text></g></svg></div>
+  <div class="hero-art"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 240" role="img" aria-label="Cellular respiration: a cell takes in glucose and oxygen and releases carbon dioxide, water and energy.">
+  <title>Cellular respiration</title>
+  <desc>A cell takes in glucose and oxygen, releases carbon dioxide, water and energy, and carries out the first step in the cytoplasm and the main energy release in a mitochondrion.</desc>
+
+  <rect x="4" y="4" width="632" height="232" rx="18" style="fill:var(--surface);stroke:var(--line);stroke-width:2"/>
+
+  <text x="320" y="22" style="fill:var(--ink);font-size:19px;font-weight:700;text-anchor:middle">Cells burn food with oxygen to release energy</text>
+
+  <ellipse cx="320" cy="106" rx="126" ry="70" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:3"/>
+
+  <text x="320" y="68" style="fill:var(--muted);font-size:13px;text-anchor:middle">cytoplasm: first step</text>
+
+  <circle cx="262" cy="97" r="21" style="fill:var(--surface);stroke:var(--line);stroke-width:2"/>
+  <text x="262" y="129" style="fill:var(--muted);font-size:13px;text-anchor:middle">nucleus</text>
+
+  <path d="M 336 153 C 326 145 327 128 339 119 C 348 112 359 113 366 118 C 371 122 376 123 381 120 C 389 114 399 116 404 123 C 412 133 408 149 395 156 C 380 164 357 163 344 158 C 340 157 338 155 336 153 Z" style="fill:var(--absorb);fill-opacity:0.22;stroke:var(--absorb);stroke-width:3;stroke-linejoin:round"/>
+  <path d="M 345 148 C 352 143 346 136 353 130 C 358 126 355 124 356 123" style="fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round"/>
+  <path d="M 368 154 C 375 148 369 141 376 135 C 382 131 378 128 379 127" style="fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round"/>
+  <path d="M 389 151 C 396 146 391 139 397 134 C 401 131 398 129 399 128" style="fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round"/>
+  <text x="369" y="101" style="fill:var(--ink);font-size:13px;font-weight:700;text-anchor:middle">mitochondrion</text>
+
+  <line x1="104" y1="78" x2="201" y2="78" style="stroke:var(--green);stroke-width:3;stroke-linecap:round"/>
+  <path d="M 211 78 L 200 72.5 L 200 83.5 Z" style="fill:var(--green);stroke:none"/>
+  <text x="196" y="64" style="fill:var(--ink);font-size:13px;text-anchor:end">food (glucose)</text>
+
+  <line x1="154" y1="151" x2="219" y2="151" style="stroke:var(--blue);stroke-width:3;stroke-linecap:round"/>
+  <path d="M 229 151 L 218 145.5 L 218 156.5 Z" style="fill:var(--blue);stroke:none"/>
+  <text x="196" y="137" style="fill:var(--ink);font-size:13px;text-anchor:end">oxygen</text>
+
+  <line x1="437" y1="78" x2="550" y2="78" style="stroke:var(--transmit);stroke-width:3;stroke-linecap:round"/>
+  <path d="M 560 78 L 549 72.5 L 549 83.5 Z" style="fill:var(--transmit);stroke:none"/>
+  <text x="505" y="64" style="fill:var(--ink);font-size:13px;text-anchor:middle">carbon dioxide</text>
+
+  <line x1="425" y1="146" x2="550" y2="146" style="stroke:var(--transmit);stroke-width:3;stroke-linecap:round"/>
+  <path d="M 560 146 L 549 140.5 L 549 151.5 Z" style="fill:var(--transmit);stroke:none"/>
+  <text x="500" y="132" style="fill:var(--ink);font-size:13px;text-anchor:middle">water</text>
+
+  <line x1="369" y1="158" x2="369" y2="184" style="stroke:var(--absorb);stroke-width:3;stroke-linecap:round"/>
+  <path d="M 369 194 L 363.5 183 L 374.5 183 Z" style="fill:var(--absorb);stroke:none"/>
+  <text x="381" y="196" style="fill:var(--ink);font-size:13px;text-anchor:start">energy for the cell (and heat)</text>
+
+  <text x="320" y="214" style="fill:var(--ink);font-size:14px;text-anchor:middle">glucose + oxygen → carbon dioxide + water + energy</text>
+  <text x="320" y="231" style="fill:var(--muted);font-size:13px;text-anchor:middle">C₆H₁₂O₆ + 6 O₂ → 6 CO₂ + 6 H₂O</text>
+  <text x="627" y="231" style="fill:var(--muted);font-size:13px;text-anchor:end">not to scale</text>
+</svg></div>
   <p class="howto">Look for the tags <span class="tag analogy">Analogy</span><span class="tag diagram">Diagram</span><span class="tag try">Try it</span><span class="tag data">Data</span><span class="tag real">Real world</span></p>
 </header>
 

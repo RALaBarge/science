@@ -190,7 +190,7 @@ footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;bo
   .tally{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:420px){.brow{grid-template-columns:84px minmax(0,1fr)}.race{grid-template-columns:minmax(0,1fr)}}
-</style>
+.hero-art img,.stage img{display:block;width:100%;height:auto;border-radius:12px}.hero-art img{max-height:300px;object-fit:cover}.imgcredit{font-size:12px;color:var(--muted);margin:6px 0 0}</style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
@@ -219,9 +219,84 @@ canvas.sim{width:100%;height:240px;display:block;border-radius:12px;background:v
   <h1>Light &amp; the Electromagnetic Spectrum</h1>
   <p class="lede">In <b>Unit 1: Light and Matter</b> you learned what light does when it meets objects. Now zoom out: the light you see is a tiny slice of a huge family of waves that includes radio, microwaves, and X-rays. All of them are the same kind of thing, with different <b>wavelength</b> and <b>energy</b>. As in <b>Unit 0: How Science Works</b>, we describe each wave with measurements, not just words.</p>
   <p class="bridge"><b>Where we left off:</b> Unit 1 taught reflect, absorb, and transmit for visible light. You may already have learned that colors come from reflected wavelengths. This bridge unit shows that visible light is just a thin slice of the electromagnetic spectrum, and prepares you for waves in Grade 8.</p>
-  <div class="hero-art"><svg viewBox="0 0 640 190" role="img" aria-label="The electromagnetic spectrum with visible light as a narrow band"><defs><linearGradient id="spec" x1="0" x2="1"><stop offset="0" stop-color="#d33"/><stop offset=".2" stop-color="#e90"/><stop offset=".4" stop-color="#ee3"/><stop offset=".6" stop-color="#3b5"/><stop offset=".8" stop-color="#36e"/><stop offset="1" stop-color="#82c"/></linearGradient></defs>
-<rect x="190" y="70" width="260" height="34" rx="6" fill="url(#spec)" style="stroke:var(--ink);stroke-width:3"/>
-<g font-size="13" style="font-weight:700" text-anchor="middle"><text x="95" y="92">radio · microwave · infrared</text><text x="320" y="130">visible light: a sliver!</text><text x="545" y="92">UV · X-ray · gamma</text></g></svg></div>
+  <div class="hero-art"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 260" role="img" aria-label="The electromagnetic spectrum from long-wavelength radio waves on the left to short-wavelength gamma rays on the right.">
+<title>The electromagnetic spectrum</title>
+<desc>A log-scale banner orders the electromagnetic spectrum from radio waves on the left to gamma rays on the right, with an enlarged visible-light rainbow and everyday examples below.</desc>
+<defs>
+<clipPath id="barclip"><rect x="20" y="57" width="600" height="52" rx="8"/></clipPath>
+<linearGradient id="vis" gradientUnits="userSpaceOnUse" x1="292.97" y1="0" x2="452.97" y2="0">
+<stop offset="0" style="stop-color:#8b5cf6"/>
+<stop offset="0.18" style="stop-color:#3b82f6"/>
+<stop offset="0.35" style="stop-color:#06b6d4"/>
+<stop offset="0.5" style="stop-color:#22c55e"/>
+<stop offset="0.65" style="stop-color:#facc15"/>
+<stop offset="0.82" style="stop-color:#fb923c"/>
+<stop offset="1" style="stop-color:#ef4444"/>
+</linearGradient>
+</defs>
+<text x="20" y="25" style="fill:var(--ink);font-size:19px;font-weight:700">The electromagnetic spectrum</text>
+<text x="620" y="25" text-anchor="end" style="fill:var(--muted);font-size:13px">log scale · not to scale</text>
+<text x="79.63" y="49" text-anchor="middle" style="fill:var(--ink);font-size:13px">radio</text>
+<text x="169.08" y="49" text-anchor="middle" style="fill:var(--ink);font-size:13px">microwave</text>
+<text x="245.93" y="49" text-anchor="middle" style="fill:var(--ink);font-size:13px">infrared</text>
+<text x="368" y="49" text-anchor="middle" style="fill:var(--ink);font-size:13px">visible light, enlarged</text>
+<text x="482" y="49" text-anchor="middle" style="fill:var(--ink);font-size:13px">ultraviolet</text>
+<text x="540" y="49" text-anchor="middle" style="fill:var(--ink);font-size:13px">X-ray</text>
+<text x="620" y="49" text-anchor="end" style="fill:var(--ink);font-size:13px">gamma</text>
+<g clip-path="url(#barclip)">
+<rect x="20" y="57" width="600" height="52" style="fill:var(--surface-2)"/>
+<rect x="20" y="57" width="119.27" height="52" style="fill:var(--blue);fill-opacity:.2"/>
+<rect x="139.27" y="57" width="59.63" height="52" style="fill:var(--transmit);fill-opacity:.2"/>
+<rect x="198.9" y="57" width="94.07" height="52" style="fill:var(--absorb);fill-opacity:.2"/>
+<rect x="292.97" y="57" width="160" height="52" style="fill:url(#vis)"/>
+<rect x="452.97" y="57" width="47.77" height="52" style="fill:var(--reflect);fill-opacity:.2"/>
+<rect x="500.73" y="57" width="89.45" height="52" style="fill:var(--muted);fill-opacity:.18"/>
+<rect x="590.18" y="57" width="29.82" height="52" style="fill:var(--red);fill-opacity:.2"/>
+<path d="M 139.27 59 L 139.27 107" style="fill:none;stroke:var(--line);stroke-width:2;stroke-linecap:round"/>
+<path d="M 198.9 59 L 198.9 107" style="fill:none;stroke:var(--line);stroke-width:2;stroke-linecap:round"/>
+<path d="M 292.97 59 L 292.97 107" style="fill:none;stroke:var(--line);stroke-width:2;stroke-linecap:round"/>
+<path d="M 452.97 59 L 452.97 107" style="fill:none;stroke:var(--line);stroke-width:2;stroke-linecap:round"/>
+<path d="M 500.73 59 L 500.73 107" style="fill:none;stroke:var(--line);stroke-width:2;stroke-linecap:round"/>
+<path d="M 590.18 59 L 590.18 107" style="fill:none;stroke:var(--line);stroke-width:2;stroke-linecap:round"/>
+</g>
+<rect x="20" y="57" width="600" height="52" rx="8" style="fill:none;stroke:var(--line);stroke-width:2;stroke-linejoin:round"/>
+<path d="M 20 109 L 20 116" style="fill:none;stroke:var(--line);stroke-width:2;stroke-linecap:round"/>
+<text x="20" y="129" text-anchor="start" style="fill:var(--muted);font-size:13px">1 km</text>
+<path d="M 109.45 109 L 109.45 116" style="fill:none;stroke:var(--line);stroke-width:2;stroke-linecap:round"/>
+<text x="109.45" y="129" text-anchor="middle" style="fill:var(--muted);font-size:13px">1 m</text>
+<path d="M 198.9 109 L 198.9 116" style="fill:none;stroke:var(--line);stroke-width:2;stroke-linecap:round"/>
+<text x="198.9" y="129" text-anchor="middle" style="fill:var(--muted);font-size:13px">1 mm</text>
+<path d="M 288.35 109 L 288.35 116" style="fill:none;stroke:var(--line);stroke-width:2;stroke-linecap:round"/>
+<text x="288.35" y="129" text-anchor="middle" style="fill:var(--muted);font-size:13px">1 µm</text>
+<path d="M 530.55 109 L 530.55 116" style="fill:none;stroke:var(--line);stroke-width:2;stroke-linecap:round"/>
+<text x="530.55" y="129" text-anchor="middle" style="fill:var(--muted);font-size:13px">1 nm</text>
+<path d="M 620 109 L 620 116" style="fill:none;stroke:var(--line);stroke-width:2;stroke-linecap:round"/>
+<text x="620" y="129" text-anchor="end" style="fill:var(--muted);font-size:13px">1 pm</text>
+<g>
+<circle cx="74.0" cy="150.0" r="2.5" style="fill:var(--reflect)"/><path d="M 76.5 145.67 A 5 5 0 0 1 76.5 154.33 M 78 143.07 A 8 8 0 0 1 78 156.93 M 79.5 140.47 A 11 11 0 0 1 79.5 159.53" style="fill:none;stroke:var(--reflect);stroke-width:2;stroke-linecap:round"/>
+<rect x="152" y="140" width="34" height="20" rx="3" style="fill:var(--surface);stroke:var(--transmit);stroke-width:2"/><rect x="156" y="144" width="18" height="12" rx="2" style="fill:var(--surface-2);stroke:var(--line);stroke-width:2"/><circle cx="179.5" cy="146" r="2" style="fill:var(--absorb)"/><path d="M 177 152 L 182 152 M 177 156 L 182 156" style="fill:none;stroke:var(--line);stroke-width:2;stroke-linecap:round"/>
+<rect x="238" y="140" width="16" height="20" rx="4" style="fill:var(--surface);stroke:var(--absorb);stroke-width:2"/><circle cx="246" cy="145.5" r="2" style="fill:var(--absorb)"/><path d="M 242 151 L 250 151 M 242 156 L 250 156" style="fill:none;stroke:var(--line);stroke-width:2;stroke-linecap:round"/><path d="M 254 144 L 259 141 M 255 148 L 261 148 M 254 152 L 259 155" style="fill:none;stroke:var(--absorb);stroke-width:2;stroke-linecap:round"/>
+<path d="M 353 160 A 20 20 0 0 1 393 160" style="fill:none;stroke:#ef4444;stroke-width:2;stroke-linecap:round"/><path d="M 357 160 A 16 16 0 0 1 389 160" style="fill:none;stroke:#f97316;stroke-width:2;stroke-linecap:round"/><path d="M 361 160 A 12 12 0 0 1 385 160" style="fill:none;stroke:#eab308;stroke-width:2;stroke-linecap:round"/><path d="M 365 160 A 8 8 0 0 1 381 160" style="fill:none;stroke:#22c55e;stroke-width:2;stroke-linecap:round"/><path d="M 369 160 A 4 4 0 0 1 377 160" style="fill:none;stroke:#3b82f6;stroke-width:2;stroke-linecap:round"/>
+<circle cx="477" cy="150" r="6" style="fill:var(--beam);stroke:var(--absorb);stroke-width:2"/><path d="M 485 150 L 488.5 150 M 482.66 155.66 L 485.13 158.13 M 477 158 L 477 161.5 M 471.34 155.66 L 468.87 158.13 M 469 150 L 465.5 150 M 471.34 144.34 L 468.87 141.87 M 477 142 L 477 138.5 M 482.66 144.34 L 485.13 141.87" style="fill:none;stroke:var(--absorb);stroke-width:2;stroke-linecap:round"/>
+<rect x="522" y="140" width="28" height="20" rx="3" style="fill:var(--surface);stroke:var(--muted);stroke-width:2"/><path d="M 536 144 L 536 156 M 536 144 C 532 144 529 146 529 149 M 536 149 C 532 149 530 151 530 154 M 536 144 C 540 144 543 146 543 149 M 536 149 C 540 149 542 151 542 154" style="fill:none;stroke:var(--reflect);stroke-width:2;stroke-linecap:round"/>
+<rect x="592.5" y="141" width="5" height="18" rx="2.5" style="fill:var(--red)"/><rect x="588" y="147.5" width="14" height="5" rx="2.5" style="fill:var(--red)"/><path d="M 601 144 L 605 141 M 603 149 L 608 149 M 601 154 L 605 157" style="fill:none;stroke:var(--absorb);stroke-width:2;stroke-linecap:round"/>
+<text x="79.63" y="176" text-anchor="middle" style="fill:var(--ink);font-size:13px">radio waves</text>
+<text x="169.08" y="176" text-anchor="middle" style="fill:var(--ink);font-size:13px">microwave</text>
+<text x="169.08" y="191" text-anchor="middle" style="fill:var(--ink);font-size:13px">oven</text>
+<text x="245.93" y="176" text-anchor="middle" style="fill:var(--ink);font-size:13px">remote</text>
+<text x="245.93" y="191" text-anchor="middle" style="fill:var(--ink);font-size:13px">control</text>
+<text x="372.97" y="176" text-anchor="middle" style="fill:var(--ink);font-size:13px">rainbow</text>
+<text x="476.85" y="176" text-anchor="middle" style="fill:var(--ink);font-size:13px">sunburn</text>
+<text x="536" y="176" text-anchor="middle" style="fill:var(--ink);font-size:13px">X-ray</text>
+<text x="536" y="191" text-anchor="middle" style="fill:var(--ink);font-size:13px">image</text>
+<text x="595" y="176" text-anchor="middle" style="fill:var(--ink);font-size:13px">medical</text>
+<text x="595" y="191" text-anchor="middle" style="fill:var(--ink);font-size:13px">gamma</text>
+</g>
+<path d="M 23 208 L 617 208" style="fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round"/>
+<path d="M 20 208 L 30 203.5 M 20 208 L 30 212.5 M 620 208 L 610 203.5 M 620 208 L 610 212.5" style="fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round"/>
+<text x="20" y="224" style="fill:var(--muted);font-size:13px">longer wavelength, lower energy</text>
+<text x="620" y="224" text-anchor="end" style="fill:var(--muted);font-size:13px">shorter wavelength, higher energy</text>
+</svg></div>
   <p class="howto">Look for the tags <span class="tag analogy">Analogy</span><span class="tag diagram">Diagram</span><span class="tag try">Try it</span><span class="tag data">Data</span><span class="tag real">Real world</span></p>
 </header>
 

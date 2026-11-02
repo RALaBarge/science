@@ -190,7 +190,7 @@ footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;bo
   .tally{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:420px){.brow{grid-template-columns:84px minmax(0,1fr)}.race{grid-template-columns:minmax(0,1fr)}}
-</style>
+.hero-art img,.stage img{display:block;width:100%;height:auto;border-radius:12px}.hero-art img{max-height:300px;object-fit:cover}.imgcredit{font-size:12px;color:var(--muted);margin:6px 0 0}</style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
@@ -219,9 +219,64 @@ canvas.sim{width:100%;height:240px;display:block;border-radius:12px;background:v
   <h1>Natural Selection &amp; Common Ancestry</h1>
   <p class="lede">You may already have learned in <b>Unit 7.9</b> that helpful traits spread, and in <b>Unit 8.8</b> how traits are inherited and mutate. Now put them together: variation + inheritance + selection = <b>evolution</b>, the idea that explains the diversity of life and its relatedness. Darwin spent twenty years collecting evidence before publishing. Check how he did it using <b>Unit 0: How Science Works</b>.</p>
   <p class="bridge"><b>Where we left off:</b> Unit 8.8 showed how traits are inherited and how mutations create new ones, and Unit 7.9 introduced adaptation and fossils. You may already have learned that helpful traits spread. Now we assemble the full theory of natural selection and common ancestry with several lines of evidence.</p>
-  <div class="hero-art"><svg viewBox="0 0 640 190" role="img" aria-label="A branching family tree of life with a common ancestor at the bottom"><g style="fill:none;stroke:var(--ink);stroke-width:4"><path d="M320 170 V110 M320 110 L220 60 M320 110 L420 60 M220 60 L160 20 M220 60 L260 20 M420 60 L380 20 M420 60 L480 20"/></g>
-<g style="fill:var(--transmit);stroke:var(--ink);stroke-width:2"><circle cx="320" cy="170" r="8"/><circle cx="220" cy="60" r="7"/><circle cx="420" cy="60" r="7"/></g>
-<g font-size="13" style="font-weight:700"><text x="40" y="95">one family tree</text><text x="40" y="115">for all life</text><text x="480" y="165">common ancestor</text></g></svg></div>
+  <div class="hero-art"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 260" role="img" aria-label="Simplified tree of life showing Bacteria, Archaea, Eukarya and example species">
+  <title>Tree of life from the common ancestor</title>
+  <desc>A simplified family tree of life: the first split separates Bacteria from the Archaea–Eukarya lineage, plants branch before the animal–fungus pair, example species sit at the tips, and closer branches share a more recent ancestor.</desc>
+  <rect x="2" y="2" width="636" height="256" rx="16" style="fill:var(--surface);stroke:var(--line);stroke-width:2"/>
+  <g style="fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:3">
+    <path d="M320 232V208" style="stroke:var(--ink)"/>
+    <path d="M320 208L350 185" style="stroke:var(--ink)"/>
+    <path d="M320 208L88 76" style="stroke:var(--absorb)"/>
+    <path d="M350 185L218 76" style="stroke:var(--transmit)"/>
+    <path d="M350 185L385 158" style="stroke:var(--reflect)"/>
+    <path d="M385 158L322 76" style="stroke:var(--reflect)"/>
+    <path d="M385 158L470 132" style="stroke:var(--reflect)"/>
+    <path d="M470 132L410 76" style="stroke:var(--reflect)"/>
+    <path d="M470 132L515 108" style="stroke:var(--reflect)"/>
+    <path d="M515 108L485 76" style="stroke:var(--reflect)"/>
+    <path d="M515 108L565 90" style="stroke:var(--reflect)"/>
+    <path d="M565 90L548 76" style="stroke:var(--reflect)"/>
+    <path d="M565 90L606 76" style="stroke:var(--reflect)"/>
+  </g>
+  <g>
+    <circle cx="320" cy="232" r="4.5" style="fill:var(--ink)"/>
+    <circle cx="88" cy="76" r="3" style="fill:var(--absorb)"/>
+    <circle cx="218" cy="76" r="3" style="fill:var(--transmit)"/>
+    <circle cx="322" cy="76" r="3" style="fill:var(--reflect)"/>
+    <circle cx="410" cy="76" r="3" style="fill:var(--reflect)"/>
+    <circle cx="485" cy="76" r="3" style="fill:var(--reflect)"/>
+    <circle cx="548" cy="76" r="3" style="fill:var(--reflect)"/>
+    <circle cx="606" cy="76" r="3" style="fill:var(--reflect)"/>
+  </g>
+  <g style="fill:var(--ink);font-size:14px;text-anchor:middle">
+    <text x="88" y="48" style="font-style:italic">E. coli</text>
+    <text x="214" y="48">salt-loving microbes</text>
+    <text x="326" y="48">oak tree</text>
+    <text x="410" y="48">mushroom</text>
+    <text x="485" y="48">fish</text>
+    <text x="548" y="48">bird</text>
+    <text x="604" y="48">human</text>
+  </g>
+  <g style="fill:var(--muted);font-size:13px;text-anchor:middle">
+    <text x="338" y="124" style="text-anchor:end">plants</text>
+    <text x="459" y="108" style="text-anchor:start">fungi</text>
+    <text x="535" y="134">animals</text>
+  </g>
+  <g style="font-size:13px;font-weight:700">
+    <text x="148" y="152" style="fill:var(--absorb);text-anchor:middle">Bacteria</text>
+    <text x="250" y="125" style="fill:var(--transmit);text-anchor:end">Archaea</text>
+    <text x="435" y="165" style="fill:var(--reflect);text-anchor:start">Eukarya</text>
+  </g>
+  <text x="320" y="24" style="fill:var(--ink);font-size:17px;font-weight:700;text-anchor:middle">Tree of life</text>
+  <text x="306" y="230" style="fill:var(--ink);font-size:14px;font-weight:600;text-anchor:end">common ancestor of all life</text>
+  <text x="620" y="212" style="fill:var(--muted);font-size:13px;text-anchor:end">closer branches share<tspan x="620" y="229"> a more recent ancestor</tspan></text>
+  <text x="620" y="246" style="fill:var(--muted);font-size:13px;text-anchor:end">simplified, not to scale</text>
+  <g style="fill:none;stroke:var(--muted);stroke-width:2;stroke-linecap:round;stroke-linejoin:round">
+    <path d="M24 238V56"/>
+    <path d="M17 63L24 54L31 63"/>
+  </g>
+  <text x="24" y="42" style="fill:var(--muted);font-size:13px;text-anchor:middle">time</text>
+</svg></div>
   <p class="howto">Look for the tags <span class="tag analogy">Analogy</span><span class="tag diagram">Diagram</span><span class="tag try">Try it</span><span class="tag data">Data</span><span class="tag real">Real world</span></p>
 </header>
 
