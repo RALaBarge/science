@@ -190,7 +190,7 @@ footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;bo
   .tally{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:420px){.brow{grid-template-columns:84px minmax(0,1fr)}.race{grid-template-columns:minmax(0,1fr)}}
-</style>
+.hero-art img,.stage img{display:block;width:100%;height:auto;border-radius:12px}.hero-art img{max-height:300px;object-fit:cover}.imgcredit{font-size:12px;color:var(--muted);margin:6px 0 0}</style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
@@ -219,8 +219,34 @@ canvas.sim{width:100%;height:240px;display:block;border-radius:12px;background:v
   <h1>Contact Forces &amp; Collisions</h1>
   <p class="lede">Sixth grade (<b>Unit 3: Forces, Motion and Energy</b>) showed you that forces change motion. Now we get exact: how does a push turn into acceleration, why do two colliding objects push on each other equally, and how can engineers design cars so passengers survive crashes? Use <b>Unit 0: How Science Works</b>: we will predict, test, and compare.</p>
   <p class="bridge"><b>Where we left off:</b> in Unit 3 you learned that forces change motion and that energy transforms. You may already have learned that pushing something harder speeds it up. Now we get quantitative: how force, mass, and acceleration are connected, why forces come in pairs, and how engineers design for collisions.</p>
-  <div class="hero-art"><svg viewBox="0 0 640 190" role="img" aria-label="Two carts about to collide with arrows showing equal and opposite forces"><g style="stroke:var(--ink);stroke-width:3"><rect x="90" y="85" width="90" height="50" rx="8" style="fill:var(--absorb);fill-opacity:.5"/><rect x="460" y="85" width="90" height="50" rx="8" style="fill:var(--reflect);fill-opacity:.5"/><circle cx="110" cy="145" r="10" style="fill:var(--ink)"/><circle cx="160" cy="145" r="10" style="fill:var(--ink)"/><circle cx="480" cy="145" r="10" style="fill:var(--ink)"/><circle cx="530" cy="145" r="10" style="fill:var(--ink)"/></g>
-<path d="M190 105 H290" style="stroke:var(--absorb);stroke-width:5" marker-end="url(#mBeam)"/><path d="M450 105 H350" style="stroke:var(--reflect);stroke-width:5" marker-end="url(#mReflect)"/><text x="320" y="55" font-size="14" text-anchor="middle" style="font-weight:700">Equal and opposite on impact</text></svg></div>
+  <div class="hero-art"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 240" role="img" aria-label="Two carts touching at the moment of collision with equal and opposite force arrows"><title>Newton's third law</title><desc>Cart A pushes on cart B and cart B pushes back on cart A with a force of the same size in the opposite direction.</desc>
+<defs>
+<marker id="ah1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--ink)"/></marker>
+</defs>
+<text x="320" y="30" text-anchor="middle" font-size="20" style="fill:var(--ink);font-weight:700">Forces come in pairs</text>
+<g font-size="13" style="fill:var(--muted)" text-anchor="middle">
+<text x="320" y="52">At the instant of collision, each cart pushes on the other</text>
+</g>
+
+<line x1="40" y1="196" x2="600" y2="196" style="stroke:var(--line);stroke-width:3" stroke-linecap="round"/>
+
+<rect x="160" y="136" width="160" height="42" rx="8" style="fill:var(--reflect);fill-opacity:.25;stroke:var(--reflect);stroke-width:3"/>
+<circle cx="195" cy="184" r="12" style="fill:var(--surface);stroke:var(--ink);stroke-width:3"/>
+<circle cx="285" cy="184" r="12" style="fill:var(--surface);stroke:var(--ink);stroke-width:3"/>
+<text x="240" y="164" text-anchor="middle" font-size="18" style="fill:var(--ink);font-weight:700">A</text>
+
+<rect x="320" y="136" width="160" height="42" rx="8" style="fill:var(--absorb);fill-opacity:.25;stroke:var(--absorb);stroke-width:3"/>
+<circle cx="355" cy="184" r="12" style="fill:var(--surface);stroke:var(--ink);stroke-width:3"/>
+<circle cx="445" cy="184" r="12" style="fill:var(--surface);stroke:var(--ink);stroke-width:3"/>
+<text x="400" y="164" text-anchor="middle" font-size="18" style="fill:var(--ink);font-weight:700">B</text>
+
+<line x1="322" y1="112" x2="430" y2="112" style="stroke:var(--reflect);stroke-width:4" stroke-linecap="round" marker-end="url(#ah1)"/>
+<text x="376" y="100" text-anchor="middle" font-size="14" style="fill:var(--ink);font-weight:700">force of A on B</text>
+
+<line x1="318" y1="112" x2="210" y2="112" style="stroke:var(--absorb);stroke-width:4" stroke-linecap="round" marker-end="url(#ah1)"/>
+<text x="264" y="100" text-anchor="middle" font-size="14" style="fill:var(--ink);font-weight:700">force of B on A</text>
+<text x="320" y="224" text-anchor="middle" font-size="14" style="fill:var(--muted)">equal in size, opposite in direction</text>
+</svg></div>
   <p class="howto">Look for the tags <span class="tag analogy">Analogy</span><span class="tag diagram">Diagram</span><span class="tag try">Try it</span><span class="tag data">Data</span><span class="tag real">Real world</span></p>
 </header>
 

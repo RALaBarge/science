@@ -190,7 +190,7 @@ footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;bo
   .tally{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:420px){.brow{grid-template-columns:84px minmax(0,1fr)}.race{grid-template-columns:minmax(0,1fr)}}
-</style>
+.hero-art img,.stage img{display:block;width:100%;height:auto;border-radius:12px}.hero-art img{max-height:300px;object-fit:cover}.imgcredit{font-size:12px;color:var(--muted);margin:6px 0 0}</style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
@@ -219,9 +219,42 @@ canvas.sim{width:100%;height:240px;display:block;border-radius:12px;background:v
   <h1>Light, Waves &amp; Information</h1>
   <p class="lede">Every video call, every streamed song, and every text message is a pattern carried by waves. Building on <b>Unit 1: Light and Matter</b>, <b>Unit 7.8: The Electromagnetic Spectrum</b>, and <b>Unit 8.4: Sound Waves</b>, this unit asks: how do waves bend and bounce, and how do we use them to store and send information? Collect measurements and compare them with predictions as in <b>Unit 0: How Science Works</b>.</p>
   <p class="bridge"><b>Where we left off:</b> Units 7.8 and 8.4 described light and sound as waves. You may already have learned how light reflects and is absorbed (Unit 1). Now we see how waves bend, how fiber optics trap light, and how waves carry information as digital data.</p>
-  <div class="hero-art"><svg viewBox="0 0 640 190" role="img" aria-label="A light ray bending into a glass fiber"><g style="fill:none;stroke-width:5"><path d="M40 150 L200 100 L330 100 L600 40" style="stroke:var(--beam)" marker-end="url(#mBeam)"/></g>
-<g style="stroke:var(--ink);stroke-width:3;fill:var(--transmit);fill-opacity:.2"><rect x="200" y="85" width="130" height="30" rx="15"/></g>
-<g font-size="14" style="font-weight:700"><text x="40" y="55">Light bends, bounces,</text><text x="40" y="78">and carries data in glass.</text></g></svg></div>
+  <div class="hero-art"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 240" role="img" aria-label="Light travelling through an optical fibre by total internal reflection">
+  <title>Light trapped in an optical fibre</title>
+  <desc>A yellow ray enters a glass core, reflects at equal angles from the core-cladding boundary, and leaves the far end.</desc>
+
+  <rect x="16" y="12" width="608" height="216" rx="20" style="fill:var(--surface);stroke:var(--line);stroke-width:2"/>
+  <text x="38" y="43" style="fill:var(--ink);font-size:18px;font-weight:700">Light in an optical fibre</text>
+  <text x="38" y="64" style="fill:var(--muted);font-size:13px">total internal reflection: light stays trapped</text>
+  <text x="602" y="43" style="fill:var(--muted);font-size:13px;text-anchor:end">not to scale</text>
+
+  <rect x="58" y="112" width="524" height="64" rx="10" style="fill:var(--surface-2);stroke:var(--line);stroke-width:2"/>
+  <rect x="58" y="122" width="524" height="44" style="fill:var(--surface);stroke:var(--line);stroke-width:2"/>
+  <rect x="58" y="122" width="524" height="44" style="fill:var(--transmit);fill-opacity:0.08"/>
+
+  <path d="M58 144 L123.5 166 L254.5 122 L385.5 166 L516.5 122 L582 144" style="fill:none;stroke:var(--beam);stroke-width:3;stroke-linecap:round;stroke-linejoin:round"/>
+  <path d="M33 130.41 L58 144" style="fill:none;stroke:var(--beam);stroke-width:3;stroke-linecap:round"/>
+  <path d="M582 144 L610 159.22" style="fill:none;stroke:var(--beam);stroke-width:3;stroke-linecap:round"/>
+  <path d="M58 144 L47.07 143.18 L51.36 135.27 Z" style="fill:var(--beam)"/>
+  <path d="M610 159.22 L599.07 158.4 L603.36 150.49 Z" style="fill:var(--beam)"/>
+
+  <path d="M254.5 95 L254.5 151" style="fill:none;stroke:var(--muted);stroke-width:2;stroke-linecap:round;stroke-dasharray:5 5"/>
+  <path d="M254.5 141 A19 19 0 0 1 236.49 128.05" style="fill:none;stroke:var(--reflect);stroke-width:2;stroke-linecap:round"/>
+  <path d="M272.51 128.05 A19 19 0 0 1 254.5 141" style="fill:none;stroke:var(--reflect);stroke-width:2;stroke-linecap:round"/>
+  <text x="236" y="152" style="fill:var(--ink);font-size:13px;text-anchor:middle">θ</text>
+  <text x="273" y="152" style="fill:var(--ink);font-size:13px;text-anchor:middle">θ</text>
+
+  <path d="M140 105 L140 131" style="fill:none;stroke:var(--muted);stroke-width:2;stroke-linecap:round"/>
+  <circle cx="140" cy="133" r="2.5" style="fill:var(--muted)"/>
+  <path d="M574 190 L574 172" style="fill:none;stroke:var(--muted);stroke-width:2;stroke-linecap:round"/>
+  <circle cx="574" cy="170" r="2.5" style="fill:var(--muted)"/>
+
+  <text x="43" y="100" style="fill:var(--muted);font-size:13px;text-anchor:middle">light in</text>
+  <text x="94" y="100" style="fill:var(--muted);font-size:13px">glass core</text>
+  <text x="264" y="96" style="fill:var(--muted);font-size:13px">normal</text>
+  <text x="592" y="100" style="fill:var(--muted);font-size:13px;text-anchor:middle">light out</text>
+  <text x="452" y="198" style="fill:var(--muted);font-size:13px">cladding (lower n)</text>
+</svg></div>
   <p class="howto">Look for the tags <span class="tag analogy">Analogy</span><span class="tag diagram">Diagram</span><span class="tag try">Try it</span><span class="tag data">Data</span><span class="tag real">Real world</span></p>
 </header>
 
