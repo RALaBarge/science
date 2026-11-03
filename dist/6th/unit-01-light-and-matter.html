@@ -295,8 +295,9 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
     <li><a href="#s3">3 See-through?</a></li>
     <li><a href="#s4">4 Color</a></li>
     <li><a href="#s5">5 Heat</a></li>
-    <li><a href="#s6">6 Check yourself</a></li>
-    <li><a href="#game">7 Game</a></li>
+    <li><a href="#s6">6 Starlight</a></li>
+    <li><a href="#s7">7 Check yourself</a></li>
+    <li><a href="#game">8 Game</a></li>
   </ul>
 </nav>
 
@@ -642,6 +643,48 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
 
 <!-- =============== 6 =============== -->
 <section class="sec" id="s6">
+  <div><p class="kicker">Concept 6 · Reading light from far away</p><h2>How do we know what a star is made of?</h2></div>
+  <p class="idea">Nobody has ever visited a star, yet we know what the Sun is made of. The secret: <mark>light carries a fingerprint</mark> of whatever made it.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>A barcode made of light</h3>
+      <p>A store scanner does not taste your cereal. It reads the pattern of black and white lines on the box and knows exactly what it is.</p>
+      <p class="cap">Split light with a prism and it spreads into a rainbow, called a <b>spectrum</b>. Look closely at the light from a glowing gas and you do not see a smooth rainbow. You see a few bright colored lines. <b>Each element makes its own pattern of lines</b>, like its own barcode. Hydrogen's barcode is never the same as sodium's.</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Read an element's barcode</h3>
+      <div class="chips" id="spEl" role="group" aria-label="Element"></div>
+      <div class="stage"><svg id="spSvg" viewBox="0 0 480 90" role="img" aria-label="A spectrum from violet to red with the bright lines of the chosen element."></svg></div>
+      <p class="readout" id="spR" aria-live="polite"></p>
+      <p class="cap">These are real wavelengths of light, drawn in the colors your eyes would see. (Your screen only approximates the colors.)</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>Mystery star: what is it made of?</h3>
+      <p>A star's light passes through its own outer gases, which soak up exactly the colors those elements would give off. That leaves <b>dark lines</b> in the star's rainbow. Switch on elements below to see their bright-line barcodes lined up under the star. If they match up with the dark lines, that element is in the star.</p>
+      <div class="stage"><svg id="msSvg" viewBox="0 0 480 140" role="img" aria-label="The mystery star's spectrum with dark lines on top, and the bright lines of the elements you chose below it."></svg></div>
+      <div class="chips" id="msEl" role="group" aria-label="Elements you think are in the star"></div>
+      <div class="btnrow"><button class="btn" type="button" id="msCheck">Check my answer</button><button class="btn ghost" type="button" id="msNew">New mystery star</button></div>
+      <p class="readout" id="msR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>Helium was found on the Sun before it was found on Earth</h3>
+      <p>On August 18, 1868, during a total solar eclipse seen from India, astronomer Pierre Janssen noticed a bright yellow line in the Sun's spectrum. It sat close to the known sodium lines but did not match them. Two months later Norman Lockyer in England saw the same line. They concluded it came from an element nobody had found yet and named it <b>helium</b>, after <i>Helios</i>, the Greek word for the Sun. Helium was not found on Earth until 1895, <b>27 years later</b>.</p>
+      <p class="cap">That is the power of the method: we learned what the Sun is made of, and discovered a new element, using nothing but its light.</p>
+      <details><summary>Peek ahead: why does every element make different lines?</summary><div class="in">
+        <p>You will learn about atoms soon. Here is a teaser. Every atom has <b>electrons</b> around its center, and an electron can only sit on certain "steps," like a staircase. It cannot hover between steps. When an electron drops down a step, the atom gives off a little bit of light, and the size of the drop decides the color.</p>
+        <p>Every element has its own spacing of steps, so each one gives off its own set of colors. For example, the red line of hydrogen (at 656 nm) comes from an electron dropping from the third step to the second. That is also why starlight has dark lines: electrons in the star's outer gas <i>climb</i> those same steps by soaking up exactly those colors.</p>
+        <p>This is one of the ways chemistry and astronomy connect, and it is the beginning of the story of how scientists learned that atoms have an inside.</p>
+      </div></details>
+    </article>
+  </div>
+</section>
+
+<!-- =============== 7 =============== -->
+<section class="sec" id="s7">
   <div>
     <p class="kicker">Check yourself</p>
     <h2>Can you explain it?</h2>
@@ -655,7 +698,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
     </div>
   </details>
   <div class="items" id="quiz"></div>
-  <p class="score" id="quizScore">0 of 6 correct</p>
+  <p class="score" id="quizScore">0 of 7 correct</p>
   <h3 style="margin-top:8px">Words to know</h3>
   <dl class="glossary">
     <div><dt>ray</dt><dd>A straight line showing the path light takes.</dd></div>
@@ -666,7 +709,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
     <div><dt>translucent</dt><dd>Lets some light through but scatters it. Images look blurry.</dd></div>
     <div><dt>opaque</dt><dd>Lets no light through.</dd></div>
     <div><dt>scatter</dt><dd>Light is bounced in many directions.</dd></div>
-    <div><dt>spectrum</dt><dd>The rainbow of colors that makes up white light.</dd></div>
+    <div><dt>spectrum</dt><dd>Light spread out by color, like a rainbow. Each element makes its own pattern of lines.</dd></div>
     <div><dt>thermal energy</dt><dd>The energy of moving particles. More of it means a higher temperature.</dd></div>
   </dl>
   <details>
@@ -679,6 +722,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
         <li><b>Concept 3:</b> layer wax paper over printed text, one sheet at a time, like the slider.</li>
         <li><b>Concept 4:</b> view colored objects through red, green, and blue plastic.</li>
         <li><b>Concept 5:</b> put identical ice cubes on black and white paper in a sunny window. Time them. Then run the sun shade challenge (about 30 minutes including the 10-minute test).</li>
+        <li><b>Concept 6:</b> use a cheap diffraction-grating slide or a CD to look at a lamp and a window; compare to the elements on the page. Teaser only: atoms and electrons come later.</li>
       </ul>
       <p><b>Common misconceptions to listen for:</b></p>
       <ul>
@@ -688,7 +732,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
         <li>"Black reflects black." Black objects reflect almost nothing, which is why they look dark.</li>
         <li>"A shadow is a thing." A shadow is just the place the rays could not reach.</li>
       </ul>
-      <p><b>Pacing:</b> about five 30-minute sessions, one per concept, with the check-yourself questions at the start of the next session as a warm-up.</p>
+      <p><b>Pacing:</b> about six 30-minute sessions, one per concept, with the check-yourself questions at the start of the next session as a warm-up.</p>
       <p><b>Ask these out loud:</b> What would change if the glass were thicker? Why is the inside of a car hotter than the outside? What color would the apple look under blue light, and why?</p>
     </div>
   </details>
@@ -1613,7 +1657,50 @@ safe(()=>{
   apply(); rd.textContent='Two identical ice cubes. Press the button to see which melts faster.';
 });
 
-/* ===== 6. quiz ===== */
+/* ===== Spectra ===== */
+const WL0=400, WL1=700, SX0=40, SX1=460;
+const xOf=w=>SX0+(w-WL0)/(WL1-WL0)*(SX1-SX0);
+function rgb(w){ let r=0,g=0,b=0;
+  if(w<440){r=-(w-440)/60;b=1}else if(w<490){g=(w-440)/50;b=1}else if(w<510){g=1;b=-(w-510)/20}else if(w<580){r=(w-510)/70;g=1}else if(w<645){r=1;g=-(w-645)/65}else{r=1}
+  const f=w<420?.35+.65*(w-380)/40:w>680?.35+.65*(700-w)/20:1;
+  const c=v=>Math.round(255*Math.pow(clamp(v*f,0,1),.8)); return `rgb(${c(r)},${c(g)},${c(b)})`; }
+const EL={
+  H:{n:'Hydrogen',L:[[410.2,.5],[434.0,.6],[486.1,.8],[656.3,1]],t:'Four visible lines. The red one (656 nm) is why glowing clouds of hydrogen in space look pink-red.'},
+  He:{n:'Helium',L:[[447.1,.7],[471.3,.4],[492.2,.4],[501.6,.8],[587.6,1],[667.8,.6]],t:'The bright yellow line near 588 nm is the one seen in the Sun in 1868, before helium was known on Earth.'},
+  Na:{n:'Sodium',L:[[568.8,.3],[589.0,1],[589.6,1],[615.4,.3]],t:'A bright yellow pair near 589 nm. Sprinkle salt in a flame, or look at an old orange streetlight, and you see it.'},
+  Ne:{n:'Neon',L:[[540.1,.5],[585.2,.9],[594.5,.7],[603.0,.5],[614.3,.7],[621.7,.6],[626.6,.6],[640.2,1],[650.7,.7],[692.9,.5]],t:'Lots of orange and red lines, which is why neon signs glow red-orange.'},
+  Hg:{n:'Mercury',L:[[404.7,.6],[435.8,.9],[546.1,1],[577.0,.6],[579.1,.6]],t:'Violet, blue, green and yellow lines. Mercury vapor is used in some lamps for this reason.'}
+};
+const KEYS=Object.keys(EL);
+function rainbow(y,h,dim){ let s=''; for(let w=WL0;w<WL1;w+=2){ s+=`<rect x="${xOf(w).toFixed(2)}" y="${y}" width="${((SX1-SX0)/(WL1-WL0)*2+.4).toFixed(2)}" height="${h}" style="fill:${rgb(w+1)};opacity:${dim}"/>`; } return s; }
+function ticks(y){ let s=''; for(let w=400;w<=700;w+=50){ s+=`<line x1="${xOf(w)}" y1="${y}" x2="${xOf(w)}" y2="${y+5}" style="stroke:var(--ink)"/><text x="${xOf(w)}" y="${y+17}" font-size="11" text-anchor="middle">${w}</text>`; } return s+`<text x="${(SX0+SX1)/2}" y="${y+32}" font-size="11" text-anchor="middle">wavelength of light (nanometers)</text>`; }
+safe(()=>{
+  const chips=$('#spEl'), svg=$('#spSvg'), out=$('#spR'); let cur='H';
+  chips.innerHTML=KEYS.map(k=>`<button class="chip" type="button" data-k="${k}" aria-pressed="${k===cur}">${EL[k].n}</button>`).join('');
+  const draw=()=>{ let s=`<rect x="${SX0}" y="6" width="${SX1-SX0}" height="44" style="fill:#05060f"/>`;
+    EL[cur].L.forEach(([w,a])=>{ s+=`<rect x="${(xOf(w)-1.4).toFixed(2)}" y="6" width="2.8" height="44" style="fill:${rgb(w)};opacity:${(.55+.45*a).toFixed(2)}"/>`; });
+    s+=ticks(52); svg.innerHTML=s; out.innerHTML=`<b>${EL[cur].n}:</b> ${EL[cur].t}`; };
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; cur=b.dataset.k; setPressed(chips,b); draw(); }); draw();
+});
+safe(()=>{
+  const chips=$('#msEl'), svg=$('#msSvg'), out=$('#msR'); let star=new Set(), pick=new Set();
+  chips.innerHTML=KEYS.map(k=>`<button class="chip" type="button" data-k="${k}" aria-pressed="false">${EL[k].n}</button>`).join('');
+  const roll=()=>{ const n=2+(Math.random()<.4?1:0), a=[...KEYS].sort(()=>Math.random()-.5).slice(0,n); star=new Set(a); pick=new Set(); $$('button',chips).forEach(b=>b.setAttribute('aria-pressed','false')); out.textContent='Dark lines are missing colors. Which elements do they belong to?'; draw(); };
+  const draw=()=>{ let s=rainbow(6,44,1);
+    star.forEach(k=>EL[k].L.forEach(([w,a])=>{ s+=`<rect x="${(xOf(w)-1.4).toFixed(2)}" y="6" width="2.8" height="44" style="fill:#05060f;opacity:${(.6+.4*a).toFixed(2)}"/>`; }));
+    s+=`<text x="4" y="32" font-size="11">Star</text>`;
+    let y=58; [...pick].forEach(k=>{ s+=`<rect x="${SX0}" y="${y}" width="${SX1-SX0}" height="12" style="fill:#05060f"/><text x="4" y="${y+10}" font-size="11">${k}</text>`;
+      EL[k].L.forEach(([w])=>{ s+=`<rect x="${(xOf(w)-1.2).toFixed(2)}" y="${y}" width="2.4" height="12" style="fill:${rgb(w)}"/>`; }); y+=15; });
+    svg.innerHTML=s; };
+  chips.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; const k=b.dataset.k; if(pick.has(k))pick.delete(k); else pick.add(k); b.setAttribute('aria-pressed',pick.has(k)); draw(); });
+  $('#msNew').addEventListener('click',roll);
+  $('#msCheck').addEventListener('click',()=>{ const miss=[...star].filter(k=>!pick.has(k)), extra=[...pick].filter(k=>!star.has(k));
+    if(!miss.length&&!extra.length) out.innerHTML=`<b>Yes!</b> This star contains ${[...star].map(k=>EL[k].n.toLowerCase()).join(' and ')}. Real stars show dozens of elements this way. It is how we know the Sun is about 73% hydrogen and 25% helium by mass.`;
+    else out.innerHTML=`<b>Not quite.</b> ${extra.length?'A bright-line barcode you switched on has no matching dark lines. ':''}${miss.length?'Some dark lines in the star still have no match. ':''}Look at where the lines line up.`; });
+  roll();
+});
+
+/* ===== 7. quiz ===== */
 safe(()=>{
   const Q=[
     {q:'A mirror is mostly doing which thing to light?',o:['Reflecting it','Absorbing it','Letting it through'],a:0,e:'A mirror sends about 90% of the light back in one neat direction.'},
@@ -1621,6 +1708,7 @@ safe(()=>{
     {q:'Why does a black shirt feel hotter in the sun than a white one?',o:['It reflects more light','It absorbs more light, and that energy becomes heat','Black makes its own heat'],a:1,e:'Absorbed light energy turns into thermal energy. White reflects most of it away.'},
     {q:'A banana looks yellow under white light because it...',o:['makes yellow light','absorbs yellow and reflects the rest','reflects yellow and absorbs most other colors'],a:2,e:'Only the colors it reflects reach your eye.'},
     {q:'You move a lamp closer to an object. What happens to the shadow on the wall?',o:['It gets bigger','It gets smaller','It stays the same'],a:0,e:'Rays spread out more from a close lamp, so the blocked area grows.'},
+    {q:'How can scientists know what a star is made of without going there?',o:['They read the pattern of colored lines in its light','They guess from its size','They bring back a sample'],a:0,e:'Each element gives off or absorbs its own set of colors, like a barcode.'},
     {q:'A red apple sits under pure blue light. What does it look like?',o:['Bright red','Very dark, almost black','Blue'],a:1,e:'The apple reflects red, but there is no red in blue light. Nothing is reflected back.'}
   ];
   const box=$('#quiz'), sc=$('#quizScore'); let right=0;
