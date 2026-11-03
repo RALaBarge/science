@@ -393,7 +393,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
     </article>
     <article class="aid">
       <span class="tag data">Data</span>
-      <h3>Resource chart</h3><p>table with Resource, Where found, How used, Effect.</p><p class="tip">“Natural gas is found underground. Wind and sunlight are found above ground. Coal and metals are mined. We use them, and using them changes land, air, or water.”</p>
+      <h3>Resource chart</h3><p>table with Resource, Where found, How used, Effect.</p><p class="tip">“Natural gas is found underground. Burning it makes heat and puts gases in the air. Coal is mined, and mining changes the land. Wind turbines use moving air and need open land; they can disturb birds. Solar panels use sunlight and need space. Every energy source changes land, air, or water in some way.”</p>
     </article>
     <article class="aid">
       <span class="tag diagram">Diagram</span>
@@ -436,7 +436,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
     <article class="aid"><span class="tag try">Try it</span><h3>What you need</h3><p>cups, sand/soil/pebbles, shallow tray, straw, magnifier, sugar cubes or chalk, water, cardboard, foil, tape, craft sticks, paper, pencil, provided map cards, provided energy-resource cards.</p><p class="cap"><b>Safety:</b> wash hands after soil/sand trays; wipe water spills; keep soil away from Chromebooks.</p></article>
     <article class="aid"><span class="tag try">Try it</span><h3>What you do</h3><p>Sort soil. Shake weathering models. Run water-tray erosion and measure sediment. Build a layer cup. Analyze map patterns. Combine energy-resource cards into a chart. Design and compare shoreline or slope barriers.</p></article>
   </div>
-  <details class="deep"><summary>No time or no good weather? Use this data</summary><div class="in"><p>erosion sediment no barrier 12 spoons, grass 5 spoons, wall 7 spoons; map patterns mountains in long ranges, plains broad, Great Lakes connected; energy cards natural gas, Thumb wind, solar, legacy coal.</p></div></details>
+  <details class="deep"><summary>No time or no good weather? Use this data</summary><div class="in"><p class="cap">This data is a backup. It lets you practice reading evidence, but the standard expects you to collect your own when you can.</p><p>erosion sediment no barrier 12 spoons, grass 5 spoons, wall 7 spoons; map patterns mountains in long ranges, plains broad, Great Lakes connected; energy cards natural gas, Thumb wind, solar, legacy coal.</p></div></details>
   <p class="cap"><b>Near you:</b> Great Lakes shoreline erosion, Sleeping Bear Dunes, Petoskey stones, and copper mining show Earth materials and change. Michigan’s Thumb wind turbines, natural gas storage fields, and shift from legacy coal toward gas and solar show how resources are used and affect the environment.</p>
 </section>
 
@@ -462,7 +462,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
 <script>
 (function(){
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
-const Q=[{"q": "Weathering:", "o": ["breaks rock", "never changes rock", "moves pieces"], "a": 0, "e": "Weathering breaks material down."}, {"q": "Erosion:", "o": ["never happens", "moves pieces", "is the same as weathering"], "a": 1, "e": "Erosion transports material."}, {"q": "Shell fossils in a Michigan quarry are evidence that the area was once:", "o": ["a sea", "a place that never changed", "always the same land"], "a": 0, "e": "Fossils show past environments."}, {"q": "Most water on Earth is:", "o": ["liquid fresh water", "ice", "salty ocean water"], "a": 2, "e": "Most Earth water is ocean salt water."}];
+const Q=[{"q": "Weathering:", "o": ["breaks rock", "never changes rock", "moves pieces"], "a": 0, "e": "Weathering breaks material down."}, {"q": "Erosion:", "o": ["never happens", "moves pieces", "is the same as weathering"], "a": 1, "e": "Erosion transports material."}, {"q": "Shell fossils in a Michigan quarry are evidence that the area was once:", "o": ["a sea", "a place that never changed", "always the same land"], "a": 0, "e": "Fossils show past environments."}, {"q": "Which sentence about energy sources is true?", "o": ["Wind and sunlight have no effect on the environment at all", "Fuels are made new each day", "Using natural gas, coal, wind, or sun changes the land, air, or water in some way"], "a": 2, "e": "Every energy source has some effect, and the effects are different."}];
 const box=$('#quiz'), sc=$('#quizScore'); let right=0;
 box.innerHTML=Q.map((x,i)=>`<div class="q item" data-i="${i}" style="display:grid"><h4>${i+1}. ${x.q}</h4><div class="opts">${x.o.map((t,j)=>`<button class="opt" type="button" data-j="${j}">${t}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
 box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.disabled)return; const row=b.closest('.q'), x=Q[+row.dataset.i], ok=+b.dataset.j===x.a;
