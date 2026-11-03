@@ -14,3 +14,10 @@ Scope to cover on every lesson page, the lesson map, and the arcade:
 - Test with NVDA and VoiceOver, and record what was checked.
 
 Plan: one lead agent splits the work by grade folder, one sub-agent per folder, then rebuilds `dist/` and runs `node tests/links.test.js`.
+
+## K-5 units (added 2026-11-03)
+
+- Verify every K-5 footer standard against the Michigan Department of Education Science Standards document (codes follow NGSS and are expected to match, not yet checked).
+- The 23 new units have no embedded game and no custom SVG illustrations. Add per-unit games (ideas are in the tutor-note text of the source write-ups) and diagrams.
+- Quizzes are generated from model-written questions: read each for a single defensible answer and add misconception-based distractors where they are weak.
+- K-B (weather calendar), 1-C (daylight log) and 2-B (bean plants) need weeks of lead time; each page offers a provided dataset instead.

@@ -36,7 +36,7 @@ for (const file of walk(ROOT)) {
 const count = (grade) => readdirSync(path.join(ROOT, grade)).filter((f) => f.endsWith('.html')).length;
 check('site home exists', existsSync(path.join(ROOT, 'index.html')));
 check('arcade hub exists', existsSync(path.join(ROOT, 'arcade.html')));
-check('k-5 has 1 lesson', count('k-5') === 1, String(count('k-5')));
+check('k-5 has 24 lessons', count('k-5') === 24, String(count('k-5')));
 check('6th has 14 lessons', count('6th') === 14, String(count('6th')));
 check('7th has 9 lessons', count('7th') === 9, String(count('7th')));
 check('8th has 9 lessons', count('8th') === 9, String(count('8th')));
