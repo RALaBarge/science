@@ -5,7 +5,7 @@ Science material for kids, all plain HTML that runs in a browser with no install
 - **Lesson guides** — 35 interactive pages, sorted into grade folders: `k-5/`, `6th/`, `7th/`, `8th/`, `9th/`, plus `extras/`. Each lesson ends with a short browser game embedded in the page.
 - **Science Arcade** — six standalone games (gravity, light, circuits, levers, states of matter, football physics) with a shared bank of 177 science questions.
 
-Open `dist/index.html` for the lesson map, or `dist/arcade.html` for the arcade. Every file in `dist/` is self-contained, so it works from GitHub Pages, a web server, a USB stick, or a `file://` link. Fonts load from Google Fonts, so with no internet the text falls back to system fonts.
+Open `dist/index.html` for the lesson map, or `dist/arcade.html` for the arcade. Every file in `dist/` is self-contained, so it works from GitHub Pages, a web server, a USB stick, or a `file://` link. No font is fetched from the network: Atkinson Hyperlegible is embedded in each lesson page.
 
 ## Lessons by grade
 
@@ -92,7 +92,7 @@ tests/               Playwright tests, link check, and benchmarks
 Every lesson page has a **Style: Classic / Retro space** switch at the top. The choice lives in the URL as `?style=retro` (Classic is the default and adds nothing), so a link shares the style and a reload keeps it.
 
 - **Params pass through.** On every lesson page and on the lesson map, links to other pages in the site get the page's whole query string appended, not just `style`. Any other parameter you add (for example `?style=retro&kid=ava`) travels with the reader from page to page, so it can be used later for per-reader settings. Links to other sites and `#anchor` links are left alone.
-- **Fonts:** headings and body text are Atkinson Hyperlegible (chosen for legibility); small labels, tags and numeric readouts are DM Mono. Key terms in the big sentences are bold and colored, with no highlighter background.
+- **Fonts:** headings and body text are Atkinson Hyperlegible (chosen for legibility), embedded in each page as a base64 `@font-face` (Latin subset, regular and bold). Small labels, tags and numeric readouts use the device's own monospace font (`ui-monospace`, Cascadia Mono, SF Mono, Menlo, Consolas). Key terms in the big sentences are bold and colored, with no highlighter background.
 - **Where it lives:** each lesson page carries one `<style id="v2">` block and one script just above `<header class="hero">`. The retro palette is a set of overrides under `html[data-style="retro"]`. The arcade games have their own look and are not part of this.
 - **Not yet:** the 9th-grade course and the extras page have their own light/dark toggle, which may conflict with the retro theme once used (untested). The arcade games ignore `style`.
 
