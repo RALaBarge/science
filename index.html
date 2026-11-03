@@ -46,3 +46,10 @@ footer{margin-top:2em;color:var(--muted);font-size:.9rem}
  F.forEach(function(x,i){ const b=document.createElement('button'); b.className='chip'; b.type='button'; b.innerHTML=x[1]; b.setAttribute('aria-pressed',i===0?'true':'false'); b.onclick=function(){ box.querySelectorAll('.chip').forEach(function(c){c.setAttribute('aria-pressed','false')}); b.setAttribute('aria-pressed','true'); document.querySelectorAll('.u').forEach(function(u){ u.hidden=!(x[0]==='all'||u.dataset.s===x[0]); }); }; box.appendChild(b); });
 })();
 </script>
+<script>
+/* Keep every URL param (e.g. ?style=retro) on links to the lessons. */
+(function(){var p=new URLSearchParams(location.search);if(![...p.keys()].length)return;
+document.querySelectorAll('a[href]').forEach(function(a){var raw=a.getAttribute('href');if(!raw||raw[0]==='#'||/^(mailto|tel|javascript):/i.test(raw))return;
+var u;try{u=new URL(raw,location.href);}catch(e){return;}if(u.protocol!==location.protocol||u.host!==location.host)return;
+var q=new URLSearchParams(u.search);p.forEach(function(v,k){q.set(k,v);});u.search=q.toString();a.setAttribute('href',raw.split(/[?#]/)[0]+u.search+u.hash);});})();
+</script>

@@ -7,8 +7,9 @@
 // Run: node build.mjs
 import { readFileSync, writeFileSync, readdirSync, mkdirSync, copyFileSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const root = dirname(new URL(import.meta.url).pathname);
+const root = dirname(fileURLToPath(import.meta.url));
 const out = join(root, 'dist');
 mkdirSync(out, { recursive: true });
 

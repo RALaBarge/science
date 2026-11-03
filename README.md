@@ -5,20 +5,22 @@ Science material for kids, all plain HTML that runs in a browser with no install
 - **Lesson guides** — 35 interactive pages, sorted into grade folders: `k-5/`, `6th/`, `7th/`, `8th/`, `9th/`, plus `extras/`. Each lesson ends with a short browser game embedded in the page.
 - **Science Arcade** — six standalone games (gravity, light, circuits, levers, states of matter, football physics) with a shared bank of 177 science questions.
 
-Open `dist/index.html` for the lesson map, or `dist/arcade.html` for the arcade. Every file in `dist/` is self-contained, so it works from GitHub Pages, a web server, a USB stick, or a `file://` link. Internet is only needed for fonts.
+Open `dist/index.html` for the lesson map, or `dist/arcade.html` for the arcade. Every file in `dist/` is self-contained, so it works from GitHub Pages, a web server, a USB stick, or a `file://` link. The heading font is embedded in each lesson page; the body and tag fonts still load from Google Fonts, so with no internet the text falls back to system fonts.
 
 ## Lessons by grade
 
 | Folder | Grade | Units | Count |
 | --- | --- | --- | --- |
-| `k-5/` | K–5 | How Science Works (Unit 0) — origins of science, the scientific method, hypotheses, fair tests, CER | 1 |
+| `k-5/` | K–5 | How Science Works (Unit 0) — origins of science (with the heliocentrism case), the scientific method, hypotheses, fair tests, a data toolbox, reading starlight (spectroscopy), the Cosmic Calendar, CER | 1 |
 | `6th/` | 6th | Units 1–14: light and matter, thermal energy, forces and motion, weather, plate tectonics, natural hazards, cells, classifying life, body systems, states of matter, Earth in space, ecosystems, energy resources, and where the solar system is going in the galaxy and how it formed | 14 |
 | `7th/` | 7th | Units 7.1–7.9: matter and its properties, chemical reactions, reaction energy, metabolism, photosynthesis, ecosystems, Earth resources, EM spectrum, adaptation and Earth history | 9 |
-| `8th/` | 8th | Units 8.1–8.9: collisions, energy transformation, forces at a distance, sound, light and information, gravity and orbits, stars and galaxies, genetics, natural selection | 9 |
+| `8th/` | 8th | Units 8.1–8.9: collisions, energy transformation, forces at a distance (including simple circuits), sound, light and information, gravity and orbits, stars and galaxies, genetics, natural selection | 9 |
 | `9th/` | 9th | 9.1 How AI Works: a reading-comprehension course on language models, context windows, embeddings, diffusion, and warnings now and ahead | 1 |
 | `extras/` | any | The Same Shape Everywhere: branching patterns from trees and lightning to neurons and the cosmic web (real photos, credits in the page and `extras/CREDITS.md`) | 1 |
 
-The K–5 folder currently holds the method unit that starts the sequence (now with heliocentrism, spectroscopy and a Cosmic Calendar); it is being fleshed out.
+The K–5 folder currently holds the method unit that starts the sequence; it is being fleshed out.
+
+Since the first release the lessons have grown: the 9th-grade AI course, Unit 14 (the solar system's motion), and the branching-patterns extra were added; Unit 0 was expanded; the 7th- and 8th-grade static figures were replaced with new SVG diagrams, photos and a Hubble image; 6th-grade Units 2–6 and 10 got new interactives, photos and data charts; and wording was revised after a claim-by-claim fact-check triage and an outside review.
 
 The map at `index.html` lists every unit in teaching order, with what each one builds on, and filters by strand (physical, Earth and space, life, method).
 
@@ -68,9 +70,12 @@ index.html           lesson map / site home (links every unit and the arcade)
 design-log.html      engineering design log for the lessons
 arcade.html          Science Arcade hub (self-contained once built)
 k-5/                 1 lesson  (Unit 0, How Science Works)
-6th/                 13 lessons (Units 1–13)
+6th/                 14 lessons (Units 1–14)
 7th/                 9 lessons (Units 7.1–7.9)
 8th/                 9 lessons (Units 8.1–8.9)
+9th/                 1 lesson  (9.1, How AI Works)
+extras/              1 page    (The Same Shape Everywhere)
+dist/                built site (committed); regenerate with node build.mjs
 games/<name>.html    arcade page markup (links the shared files)
 games/<name>.js      arcade game logic
 shared/core.css      look and layout for every arcade game
@@ -81,6 +86,15 @@ shared/facts.js      the fact decks
 build.mjs            inlines the arcade and copies the lessons into dist/
 tests/               Playwright tests, link check, and benchmarks
 ```
+
+## Page style and URL parameters
+
+Every lesson page has a **Style: Classic / Retro space** switch at the top. The choice lives in the URL as `?style=retro` (Classic is the default and adds nothing), so a link shares the style and a reload keeps it.
+
+- **Params pass through.** On every lesson page and on the lesson map, links to other pages in the site get the page's whole query string appended, not just `style`. Any other parameter you add (for example `?style=retro&kid=ava`) travels with the reader from page to page, so it can be used later for per-reader settings. Links to other sites and `#anchor` links are left alone.
+- **Headings** use the Fraunces font, embedded in each page as a base64 `@font-face` (Latin subset, variable weight 600–900). Key terms in the big sentences are bold and colored, with no highlighter background.
+- **Where it lives:** each lesson page carries one `<style id="v2">` block and one script just above `<header class="hero">`. The retro palette is a set of overrides under `html[data-style="retro"]`. The arcade games have their own look and are not part of this.
+- **Not yet:** the 9th-grade course and the extras page have their own light/dark toggle, which may conflict with the retro theme once used (untested). The arcade games ignore `style`.
 
 ## Editing content
 
@@ -94,7 +108,7 @@ Every quiz answer is recorded in `Arcade.answers` with the game, topic and wheth
 
 ## Working on the code
 
-- Develop by editing `games/`, `shared/`, or the grade folders, then `node build.mjs`. The build writes `dist/` (committed so Pages and local links work without a build step).
+- Develop by editing `games/`, `shared/`, or the grade folders, then `node build.mjs` (works on Windows, macOS and Linux). The build writes `dist/` (committed so Pages and local links work without a build step).
 - Tests: `./tests/run-all.sh` (needs Node and Playwright with Chromium). Benchmarks: `node tests/bench-all.js`.
 - Tests open pages with `?test`, which exposes internal state as `window.__s`. Nothing else changes.
 - **Determinism:** anything that decides an outcome uses only `+ − × ÷` and `Math.sqrt`, which JavaScript guarantees are identical in every browser. Use `Arcade.sincos` and `Arcade.dist` instead of `Math.sin`, `Math.cos`, `Math.hypot` or `**`. This is what makes map codes and replays match across machines.
