@@ -3,8 +3,8 @@
  "engine": "pusharena",
  "title": "Force Track: Push, Roll, Pull",
  "intro": "Push a box, track a rolling ball, and test a magnet that never touches anything. Change one thing, predict, release.",
- "note": "This is a model that uses the lesson's backup dot table. The real ramp, rolling-ball, and magnet tests in the lesson still count. Keep real magnets away from Chromebooks.",
- "summary": "Equal pushes canceled and the box stayed still; unequal pushes moved it the way the bigger push points. The model ball kept even gaps (0, 10, 20, 30 cm), so the next dot was 40 cm: a pattern that predicts. The magnet pulled iron and steel without touching, but not the penny or foil. Magnets do not pull all metals.",
+ "note": "This is a model that uses the lesson's backup dot table. The real ramp, rolling-ball, and magnet tests in the lesson still count. Keep real magnets away from Chromebooks. Use only large ceramic or ferrite magnets and keep every magnet out of mouths.",
+ "summary": "Equal pushes canceled and the box stayed still; unequal pushes moved it the way the bigger push points. The model ball kept even gaps (0, 10, 20, 30 cm gave 40 cm; 0, 8, 16, 24 cm gave 32 cm), so the next dot could be predicted from the pattern. The magnet pulled iron and steel without touching, but not the penny or foil. Magnets do not pull all metals.",
  "rounds": [
   {
    "question": "Two forces act on one box, one pushing each way. When does the box move?",
@@ -35,7 +35,7 @@
     {
      "id": "eq",
      "icon": "📦",
-     "label": "Equal pushes",
+     "label": "Left 2, right 2",
      "hint": "compare the two arrows. Same size or different?",
      "answer": "stays",
      "result": {
@@ -50,7 +50,7 @@
     {
      "id": "rhard",
      "icon": "📦",
-     "label": "Bigger push to the right",
+     "label": "Left 1, right 3",
      "hint": "the bigger arrow wins. Which way does it point?",
      "answer": "right",
      "result": {
@@ -65,7 +65,7 @@
     {
      "id": "lhard",
      "icon": "📦",
-     "label": "Bigger push to the left",
+     "label": "Left 3, right 1",
      "hint": "the bigger arrow wins. Which way does it point?",
      "answer": "left",
      "result": {
@@ -324,7 +324,7 @@
       {
        "label": "Magnets pull iron and some steels, not every metal",
        "ok": true,
-       "why": "Yes. The iron and steel pieces moved; the other metals did not."
+       "why": "Yes. The iron pieces moved; the other metals did not."
       },
       {
        "label": "Magnets pull all metals",
@@ -418,7 +418,7 @@
       }
      }
     ],
-    "finding": "The magnet pulled the steel screw and the iron key without touching them. The can, button, and penny did not move."
+    "finding": "The magnet pulled the iron bolt and the iron nail without touching them. The can, button, and penny did not move."
    }
   }
  ],
@@ -442,7 +442,7 @@
    "lead": "A motion pattern",
    "choices": [
     {
-     "label": "let us predict the next dot: 0, 10, 20, 30, so 40 cm.",
+     "label": "let us predict the next dot: the gaps stay the same, so the next dot is one more gap along.",
      "ok": true,
      "why": "Even gaps, same step, next point predicted."
     },

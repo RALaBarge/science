@@ -441,7 +441,7 @@
      "deg": 180,
      "choices": [
       {
-       "label": "Toward the center of Earth",
+       "label": "Toward the middle of the globe, even at the bottom",
        "ok": true,
        "why": "Yes. At the bottom of the globe, down still means toward Earth's center. People there do not fall off."
       },
@@ -463,7 +463,7 @@
      "deg": 90,
      "choices": [
       {
-       "label": "Toward the center of Earth",
+       "label": "Straight in, toward the center of Earth",
        "ok": true,
        "why": "Yes. Every arrow points to the center. That is what down means."
       },

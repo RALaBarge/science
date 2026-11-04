@@ -2,7 +2,7 @@
  "id": "5-1-sort",
  "title": "Matter, Mixtures, and Changes Sort",
  "intro": "Sort how materials act, what kind of change you see, and what the mass evidence shows.",
- "note": "This is a sorting model, and the real hands-on job of separating sand, salt, and iron filings still counts.",
+ "note": "This is a sorting model, and the real hands-on job of separating sand, salt, and iron filings still counts. Keep magnets away from Chromebooks in the real job.",
  "summary": "Matter is made of tiny particles and can be solid, liquid, or gas, including air you cannot see. A change can keep the same substance or make a new one, but the total matter stays the same unless something leaks out.",
  "stages": [
   {
@@ -32,14 +32,6 @@
      "bin": "solid",
      "why": "A solid keeps its own shape, and ice is solid water.",
      "hint": "Does it keep its own shape, or flow and spread?"
-    },
-    {
-     "id": "michigan-snow",
-     "icon": "❄️",
-     "label": "Snow piled in a Michigan yard",
-     "bin": "solid",
-     "why": "Snow is solid water and holds a pile until it warms.",
-     "hint": "While it is still snow, does the pile hold a shape?"
     },
     {
      "id": "cup-water",
@@ -194,14 +186,6 @@
      "bin": "stayed",
      "why": "Dissolved salt is still there as tiny particles. It did not disappear.",
      "hint": "Does 'cannot see it' mean it left, or that the pieces are tiny?"
-    },
-    {
-     "id": "dried-plate",
-     "icon": "🍽️",
-     "label": "Salt comes back on the dry plate",
-     "bin": "stayed",
-     "why": "The salt was in the water the whole time. Drying shows it is still there.",
-     "hint": "What shows up again when the salty water dries?"
     },
     {
      "id": "open-bag",

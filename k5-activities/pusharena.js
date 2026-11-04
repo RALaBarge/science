@@ -3,7 +3,7 @@
    Round: {question, change, held:[strings], predictAfter?, predict:{q, choices:[{id,label,value?}]},
            options:[{id,icon,label,hint,answer,result}], reads:[{q,choices:[{label,ok,why}]}], finding, alt?}
    `answer` names a predict choice id. `result` is a table, not a simulation; numbers come from the unit's own data:
-     travel:  {kind:"travel", value, unit, max, dir?}  car moves value units (dir -1 = toward you, 1 = away, unset = from the line)
+     travel:  {kind:"travel", value, unit, max, dir?, noValue?}   noValue: show only the direction (the unit gives no number)  car moves value units (dir -1 = toward you, 1 = away, unset = from the line)
      tries:   {kind:"tries", outcomes:["stop"|"past",...]}  one run per try against a stopper at the line
      dots:    {kind:"dots", positions:[...], unit, max}  even-gap dot pattern; child predicts the next dot (needs predictAfter)
      balance: {kind:"balance", arrows:{left,right}, move}  two pushes on a box: `left` is a push toward the left, `right` a push toward the right; move: -1 left, 0 stays, 1 right
@@ -251,7 +251,7 @@ function k5PushArena(host, cfg) {
     const res = o.result, t = trackBase();
     const centered = res.dir === 1 || res.dir === -1;
     const span = centered ? 42 : 90, start = centered ? 48 : 4;
-    for (let i = 0; i <= res.max; i++) {
+    for (let i = 0; i <= res.max && !res.noValue; i++) {
       [start + (i / res.max) * span, start - (i / res.max) * span].forEach((x, side) => {
         if (side === 1 && (!centered || i === 0)) return;
         const tk = document.createElement('span'); tk.className = 'tick'; tk.style.left = x + '%'; tk.textContent = i; t.appendChild(tk);
@@ -260,8 +260,9 @@ function k5PushArena(host, cfg) {
     const obj = document.createElement('div'); obj.className = 'obj'; obj.textContent = o.icon || '🚗'; obj.style.left = start + '%'; t.appendChild(obj);
     const target = start + (res.dir || 1) * (res.value / res.max) * span;
     setTimeout(() => place(obj, target, 900, () => {
-      const m = document.createElement('span'); m.className = 'tick mark'; m.style.left = target + '%'; m.textContent = res.value + ' ' + res.unit; t.appendChild(m);
       const side = res.dir === -1 ? ' toward you' : res.dir === 1 ? ' away from you' : '';
+      if (res.noValue) { dataRow(o.icon, o.label, 'Went' + side, 100); doneFn(o.label + ': the car went' + side + '.'); return; }
+      const m = document.createElement('span'); m.className = 'tick mark'; m.style.left = target + '%'; m.textContent = res.value + ' ' + res.unit; t.appendChild(m);
       dataRow(o.icon, o.label, res.value + ' ' + res.unit + side, (res.value / res.max) * 100);
       doneFn(o.label + ' went ' + res.value + ' ' + res.unit + side + '.');
     }), reduce ? 0 : 150);
@@ -370,7 +371,7 @@ function k5PushArena(host, cfg) {
     const box = document.createElement('div'); box.className = 'stage2';
     const s = document.createElement('p'); s.className = 'step'; s.textContent = x.q; box.appendChild(s);
     const row = document.createElement('div'); row.className = 'row'; box.appendChild(row);
-    x.choices.forEach((c) => row.appendChild(btn('opt', esc(c.label), (e) => {
+    shuffle(x.choices.slice(), cfg.id + ':r:' + ri + ':' + i + ':' + replay).forEach((c) => row.appendChild(btn('opt', esc(c.label), (e) => {
       if (!c.ok) { slips++; say('bad', c.why); return; }
       row.querySelectorAll('button').forEach((b) => { b.disabled = true; });
       e.currentTarget.classList.add('right');
@@ -400,7 +401,7 @@ function k5PushArena(host, cfg) {
     const box = document.createElement('div'); box.className = 'stage2';
     const s = document.createElement('p'); s.className = 'step'; s.textContent = x.lead + ' ...'; box.appendChild(s);
     const row = document.createElement('div'); row.className = 'row'; box.appendChild(row);
-    x.choices.forEach((c) => row.appendChild(btn('opt', esc(c.label), (e) => {
+    shuffle(x.choices.slice(), cfg.id + ':c:' + i + ':' + replay).forEach((c) => row.appendChild(btn('opt', esc(c.label), (e) => {
       if (!c.ok) { slips++; say('bad', c.why); return; }
       row.querySelectorAll('button').forEach((b) => { b.disabled = true; });
       e.currentTarget.classList.add('right');

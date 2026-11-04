@@ -168,7 +168,7 @@ function k5SceneWeb(host, cfg) {
     });
     buildTally();
     q('.prog').textContent = 'Notice: 0 of ' + items.length;
-    say('', 'Tap things in the picture. Say what you see.');
+    say('', 'Tap each thing under the picture. Say what you see.');
     if (round > 1) { const f0 = root.querySelector('.it'); if (f0) f0.focus(); }
   }
 

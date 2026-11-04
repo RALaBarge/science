@@ -98,8 +98,8 @@
      "icon": "📆",
      "label": "July, 83°F",
      "bin": "warm",
-     "why": "83°F is the highest typical monthly high in the Detroit table.",
-     "hint": "Compare this temperature with the lowest months in the table."
+     "why": "83°F is the highest typical monthly high for Detroit.",
+     "hint": "Compare this temperature with the coldest months."
     },
     {
      "id": "august",
@@ -107,7 +107,7 @@
      "label": "August, 81°F",
      "bin": "warm",
      "why": "81°F is next to July's high and is one of the tall summer bars.",
-     "hint": "Is this near the highest temperatures in the table, or the lowest?"
+     "hint": "Is this near the highest temperatures in Detroit, or the lowest?"
     },
     {
      "id": "june",
@@ -115,15 +115,15 @@
      "label": "June, 79°F",
      "bin": "warm",
      "why": "79°F groups with the high summer months, not the low winter ones.",
-     "hint": "Which end of the table is 79°F closer to?"
+     "hint": "Which end of Detroit is 79°F closer to?"
     },
     {
      "id": "january",
      "icon": "🗓️",
      "label": "January, 32°F",
      "bin": "cold",
-     "why": "32°F is the lowest typical monthly high in the Detroit table.",
-     "hint": "Compare this temperature with July in the same table."
+     "why": "32°F is the lowest typical monthly high for Detroit.",
+     "hint": "Compare this temperature with July for Detroit."
     },
     {
      "id": "february",
@@ -139,12 +139,12 @@
      "label": "December, 38°F",
      "bin": "cold",
      "why": "38°F groups with the low winter months, not the high summer ones.",
-     "hint": "Which months in the table have highs this low?"
+     "hint": "Which months in Detroit have highs this low?"
     }
    ]
   },
   {
-   "prompt": "Does this reduce harm from a weather hazard, or only measure the weather?",
+   "prompt": "Slope test: with no barrier, 8 spoonfuls of sediment moved. Does each card reduce hazard harm, or only report or measure the weather?",
    "bins": [
     {
      "id": "reduces",

@@ -26,7 +26,7 @@
     {
      "id": "lakes",
      "icon": "🔵",
-     "label": "Lakes and rivers, a tiny dot"
+     "label": "Surface fresh water, a tiny dot"
     }
    ],
    "cards": [
@@ -172,7 +172,7 @@
    ]
   },
   {
-   "prompt": "Did more sediment or runoff move, or less?",
+   "prompt": "Compare each card with the other test in its pair. Did more or less move?",
    "bins": [
     {
      "id": "more",
@@ -189,7 +189,7 @@
     {
      "id": "no-plants",
      "icon": "🏜️",
-     "label": "No plants: 12 spoonfuls",
+     "label": "No plants: 12 spoonfuls (grass: 4)",
      "bin": "more",
      "why": "Twelve spoonfuls is the most sediment moved in the stream-tray tests.",
      "hint": "How does 12 compare with 4 and 7 in that table?"
@@ -197,7 +197,7 @@
     {
      "id": "grass-model",
      "icon": "🌱",
-     "label": "Grass model: 4 spoonfuls",
+     "label": "Grass model: 4 spoonfuls (no plants: 12)",
      "bin": "less",
      "why": "Grass moved 4 spoonfuls, less than 12 with no plants. Water still moved some soil.",
      "hint": "How does 4 compare with 12 in the same table?"
@@ -205,7 +205,7 @@
     {
      "id": "parking-lot",
      "icon": "🅿️",
-     "label": "Parking lot runoff: 10 buckets",
+     "label": "Parking lot runoff: 10 buckets (rain garden: 6)",
      "bin": "more",
      "why": "The parking lot had 10 buckets of runoff, more than the rain garden.",
      "hint": "How does 10 compare with the other bucket count?"
@@ -213,7 +213,7 @@
     {
      "id": "rain-garden",
      "icon": "🌷",
-     "label": "Rain garden runoff: 6 buckets",
+     "label": "Rain garden runoff: 6 buckets (parking lot: 10)",
      "bin": "less",
      "why": "The rain garden had 6 buckets, less than 10. It slowed runoff but did not stop all water problems.",
      "hint": "How does 6 compare with the parking lot's bucket count?"

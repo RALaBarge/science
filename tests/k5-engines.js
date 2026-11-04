@@ -39,7 +39,7 @@ FACTS['unit-5-2-gravity-stars-and-sky-patterns.json'] = (cfg, ok, f) => {
   const sh = cfg.rounds.find((r) => r.kind === 'shadow'), stars = cfg.rounds.find((r) => r.kind === 'stars'), g = cfg.rounds.find((r) => r.kind === 'gravity');
   ok(sh.rows.map((x) => x.time + ' ' + x.len + ' ' + x.dir).join('|') === '8:30 am 34 W|10:00 am 20 NW|12:00 pm 9 N|2:00 pm 18 NE|3:30 pm 30 E', f + ' shadow table matches the unit');
   ok(stars.cards.map((x) => x.name + ' ' + x.season).join() === 'Orion winter,Leo spring,Scorpius summer,Cygnus fall', f + ' constellation chart matches the unit');
-  ok(g.spots.every((x) => x.choices.find((c) => c.ok).label.includes('center of Earth')), f + ' every gravity key points to the center');
+  ok(g.spots.every((x) => /center|middle of the globe/.test(x.choices.find((c) => c.ok).label)), f + ' every gravity key points to the center');
 };
 
 /* ---- pathsignal: an independent oracle for series loops, compared with the engine's solver on every layout a child can build ---- */
@@ -128,6 +128,7 @@ function checkPathSignalValidators(ok) {
   ok(bad((c) => { c.rounds[0].slots = 2; }, 'slots must be'), 'pathsignal validator catches a loop that is too small');
   ok(bad((c) => { c.rounds[3].pieces.push({ id: 'mot', kind: 'motor', label: 'Motor' }); c.rounds[3].lit = ['led', 'buzz', 'mot']; c.rounds[3].slots = 3; }, 'no way'), 'pathsignal validator catches a round that cannot be solved');
   ok(bad((c) => { c.rounds[0].pieces.push({ id: 'x', kind: 'battery', label: 'x' }); }, 'unknown kind'), 'pathsignal validator catches an unknown piece kind');
+  ok(bad((c) => { c.rounds[1].need = ['nope']; }, 'need names unknown'), 'pathsignal validator catches a need that names a missing piece');
   ok(bad((c) => { delete c.note; }, 'saying it is a model'), 'pathsignal validator catches a missing model note');
   checkPathSignalLogic(ok, 'pathsignal engine', good, ps);
 }
@@ -300,11 +301,11 @@ const PLAY = {
           if (row !== (m.conducts ? 'Yes' : 'No')) problems.push('tester row for ' + m.id + ' says ' + row);
           const mm = await msg();
           const lastOne = m === r.materials[r.materials.length - 1];   // the last test shows the round's closing line instead
-          if (mm.t.length < 10 || (lastOne ? !mm.t.endsWith(r.done) : (m.conducts ? mm.k.indexOf('ok') < 0 : mm.k.indexOf('bad') < 0))) problems.push('tester message for ' + m.id);
+          if (mm.t.length < 10 || (lastOne ? !mm.t.endsWith(r.done) : (m.conducts ? mm.k.indexOf('ok') < 0 : mm.k.indexOf('ok') >= 0 || mm.k.indexOf('bad') >= 0))) problems.push('tester message for ' + m.id);
         }
       } else {
         // right pieces: the cell, then the loads that must run, then the rest that conduct
-        const good = r.pieces.filter((p) => p.kind === 'cell').concat(r.pieces.filter((p) => r.lit.indexOf(p.id) >= 0), r.pieces.filter((p) => p.kind !== 'cell' && p.kind !== 'insulator' && r.lit.indexOf(p.id) < 0)).slice(0, r.slots);
+        const good = r.pieces.filter((p) => p.kind === 'cell').concat(r.pieces.filter((p) => r.lit.indexOf(p.id) >= 0), r.pieces.filter((p) => (r.need || []).indexOf(p.id) >= 0 && r.lit.indexOf(p.id) < 0), r.pieces.filter((p) => p.kind !== 'cell' && p.kind !== 'insulator' && r.lit.indexOf(p.id) < 0 && (r.need || []).indexOf(p.id) < 0)).slice(0, r.slots);
         // a wrong first try: swap one piece for something that does not belong (an insulator, or a spare wire instead of a load)
         const ins = r.pieces.find((p) => p.kind === 'insulator'), spare = r.pieces.find((p) => p.kind === 'wire' && good.indexOf(p) < 0);
         const wrongAt = good.findIndex((p) => p.kind === 'wire');
@@ -335,6 +336,18 @@ const PLAY = {
       ok(await next.count() === 1, f + ' ' + r.id + ' finishes with the right loop');
       await next.click();
     }
+    // a loop that lights but leaves out the piece the round is about (the switch) is not accepted
+    await page.evaluate((c) => { const d = document.createElement('div'); d.id = 'solo'; document.body.appendChild(d); k5PathSignal(d, c); }, Object.assign(clone(cfg), { rounds: [clone(cfg.rounds.find((r) => r.need))] }));
+    const r2 = clone(cfg.rounds.find((r) => r.need));
+    const S = '#solo';
+    const solo = page;
+    const sl = (i) => solo.locator(S + ' .slot[data-slot="' + i + '"]');
+    const noSw = r2.pieces.filter((p) => r2.need.indexOf(p.id) < 0 && p.kind !== 'insulator').slice(0, r2.slots).map((p) => p.id);
+    for (let i = 0; i < r2.slots; i++) { await solo.locator(S + ' .tray .pc[data-pid="' + noSw[i] + '"]').click(); await sl(i).click(); }
+    const ledAt = noSw.indexOf(r2.lit[0]);
+    for (let g = 0; g < 2 && /LED/.test(await solo.locator(S + ' .msg').textContent()); g++) await sl(ledAt).click();
+    ok(/this round is about/i.test(await solo.locator(S + ' .msg').textContent()) && (await solo.locator(S + ' .end .btn').count()) === 0, f + ' a loop that lights without the switch is not accepted');
+    await page.evaluate(() => document.getElementById('solo').remove());
     await page.locator(A + ' .donebox').waitFor();
     ok(await byName(page, 'Copy what you found').count() === 1, f + ' end screen has a Copy button');
     const txt = await page.locator(A + ' .donebox').textContent();
@@ -462,7 +475,7 @@ const PLAY = {
 
 async function play(ok, f, cfg, page, errors) {
   try { await PLAY[cfg.engine](ok, f, cfg, page, errors); }
-  catch (e) { ok(false, f + ' play-through threw: ' + String(e.message).split('\n')[0]); }
+  catch (e) { ok(false, f + ' play-through threw: ' + String(e.message).split('\n')[0]); if (process.env.K5_DEBUG) console.log(e.stack); }
 }
 
 module.exports = { engines, checkValidators, checkConfig, play };

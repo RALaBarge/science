@@ -67,13 +67,13 @@
     "say": "A lake-smooth stone. Smooth!"
    },
    {
-    "id": "leaf",
-    "icon": "🍁",
-    "label": "Maple leaf",
+    "id": "driftwood",
+    "icon": "🪵",
+    "label": "Wave-smooth driftwood",
     "notices": {
      "feel": "smooth"
     },
-    "say": "A maple leaf. It feels smooth."
+    "say": "Driftwood the waves smoothed. Smooth!"
    },
    {
     "id": "acorn",

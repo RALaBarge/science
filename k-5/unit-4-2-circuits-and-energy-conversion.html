@@ -480,6 +480,10 @@ figure.k5i details.k5i-alt summary{cursor:pointer;padding:2px 0}
 
 
 
+
+
+
+
 <!--k5-activity-start-->
 <section class="sec lesson-game-sec" id="activity"><div><p class="kicker">After the lesson · Activity</p><h2>Play: Circuit Builder</h2></div><p class="idea">Build a closed loop with a cell, wires, a switch and an LED. Then test materials in a gap, and run light and sound at once.</p><div id="k5-activity"></div>
 <script>
@@ -487,7 +491,7 @@ figure.k5i details.k5i-alt summary{cursor:pointer;padding:2px 0}
    Path & Signal: build a closed loop with a cell, wires, a switch and a load (LED, buzzer, motor).
    One config drives one activity; rounds run in order.
    Round: {id, goal, slots, pieces:[{id,kind,icon,label}], locked:{slotIndex:pieceId},
-           lit:[pieceId], type:"test", materials:[{id,icon,label,conducts}], done}
+           lit:[pieceId], need?:[pieceId that must be in the loop], type:"test", materials:[{id,icon,label,conducts}], done}
    kinds: cell, wire, led, buzzer, motor, switch, insulator. The loop is one series path:
    current leaves the cell and walks the slots in order; an empty slot, an insulator, an open
    switch or a backward LED stops it; a closed loop with no load is a short circuit (a stop with
@@ -550,6 +554,7 @@ function k5PathSignalValidate(cfg) {
     } else {
       const lit = Array.isArray(r.lit) ? r.lit : [];
       if (!lit.length) errs.push(tag + ': a build round needs lit, the load(s) that must run');
+      (r.need || []).forEach((id) => { if (!ids.has(id)) errs.push(tag + ': need names unknown piece ' + id); });
       lit.forEach((id) => {
         const p = pieces.find((x) => x.id === id);
         if (!p) errs.push(tag + ': lit names unknown piece ' + id);
@@ -558,7 +563,7 @@ function k5PathSignalValidate(cfg) {
       if (pieces.length < r.slots) errs.push(tag + ': fewer pieces than slots, so the loop can never be filled');
       if (pieces.filter((p) => p.kind !== 'insulator').length < r.slots) errs.push(tag + ': not enough conducting pieces to fill the loop, so there is no way to succeed');
       else {
-        const solved = pieces.filter((p) => p.kind === 'cell').concat(pieces.filter((p) => lit.indexOf(p.id) >= 0), pieces.filter((p) => p.kind !== 'cell' && p.kind !== 'insulator' && lit.indexOf(p.id) < 0)).slice(0, r.slots);
+        const solved = pieces.filter((p) => p.kind === 'cell').concat(pieces.filter((p) => lit.indexOf(p.id) >= 0), pieces.filter((p) => (r.need || []).indexOf(p.id) >= 0 && lit.indexOf(p.id) < 0), pieces.filter((p) => p.kind !== 'cell' && p.kind !== 'insulator' && lit.indexOf(p.id) < 0 && (r.need || []).indexOf(p.id) < 0)).slice(0, r.slots);
         const lock = {}; const sw = {};
         solved.forEach((p) => { if (p.kind === 'switch') sw[p.id] = false; });
         const res = k5PathSignalCheck(r, solved.map((p) => p.id), { open: sw, flip: {} });
@@ -643,7 +648,7 @@ function k5PathSignal(host, cfg) {
     '.tab{border-collapse:collapse;margin:8px 0;font-size:.95rem}' +
     '.tab caption{text-align:left;margin-bottom:4px}' +
     '.tab th,.tab td{border:1.5px solid var(--line, #bbb);padding:4px 10px;text-align:left}' +
-    '.tab .y{color:var(--green, #25904f);font-weight:700}.tab .n{color:var(--red, #d93036);font-weight:700}' +
+    '.tab .y{color:var(--green, #25904f);font-weight:700}.tab .n{color:var(--muted, #555);font-weight:700}' +
     '.msg{margin-top:12px;min-height:2.6em;padding:8px 12px;border-radius:10px;background:var(--surface-2, #eef0f3);font-size:1rem}' +
     '.msg.ok{border-left:5px solid var(--green, #25904f)}.msg.bad{border-left:5px solid var(--red, #d93036)}' +
     '.btn{font:inherit;font-weight:700;padding:9px 16px;min-height:44px;border-radius:10px;border:0;background:var(--beam, #f2a900);color:var(--beam-ink, #1a1400);cursor:pointer;margin-top:10px}' +
@@ -807,6 +812,11 @@ function k5PathSignal(host, cfg) {
 
   function judgeBuild(res) {
     const r = cfg.rounds[ri];
+    const missing = (r.need || []).filter((id) => placed.indexOf(id) < 0);
+    if (res.status === 'lit' && r.lit.every((id) => res.lit.indexOf(id) >= 0) && missing.length) {
+      say('', 'It lights, but this round is about the ' + missing.map((id) => byId(id).label.toLowerCase()).join(' and ') + '. Build the loop with it in.');
+      return;
+    }
     if (res.status === 'lit' && r.lit.every((id) => res.lit.indexOf(id) >= 0)) {
       succeeded = true;
       found.push(r.done);
@@ -862,7 +872,7 @@ function k5PathSignal(host, cfg) {
     paint(res); fillTable();
     const m = r.materials.find((x) => x.id === mid);
     if (res.status === 'lit') say('ok', 'The LED lights — the ' + m.label.toLowerCase() + ' is a conductor. Metal lets the current through.');
-    else say('bad', 'No light — the ' + m.label.toLowerCase() + ' is an insulator. It blocks the current.');
+    else say('', 'No light — the ' + m.label.toLowerCase() + ' is an insulator. It blocks the current.');
     if (r.materials.every((x) => tested[x.id])) {
       succeeded = true;
       const yes = r.materials.filter((x) => x.conducts).map((x) => x.label.toLowerCase());
@@ -964,7 +974,7 @@ function k5PathSignal(host, cfg) {
 }
 
 
-k5PathSignal(document.getElementById("k5-activity"), {"id":"4-2-circuit-builder","engine":"pathsignal","title":"Circuit Builder","intro":"Build a closed loop with a cell, wires, a switch and an LED. Then test materials in a gap, and run light and sound at once.","note":"This is a model of the lesson's circuits that uses the lesson's own tester data. The real build in the lesson (foil path, LED, paper-clip switch, light-up card) still counts, and an adult hands out and collects the cells.","summary":"Current flows only in a closed loop. A gap, an open switch or an insulator breaks the path; metals conduct; an LED lights only one way. In every working circuit, electrical energy changes into something useful — light, a little heat, or sound.","rounds":[{"id":"light-the-led","goal":"Make the LED light. Fill every slot so the loop has no gaps. One piece in the tray does not belong.","slots":4,"pieces":[{"id":"cell","kind":"cell","icon":"🔋","label":"Cell"},{"id":"led","kind":"led","icon":"💡","label":"LED"},{"id":"w1","kind":"wire","icon":"➿","label":"Wire"},{"id":"w2","kind":"wire","icon":"➿","label":"Wire"},{"id":"plastic","kind":"insulator","icon":"🧴","label":"Plastic piece"}],"lit":["led"],"done":"The LED lights: electrical energy changed into light and a little heat."},{"id":"add-a-switch","goal":"Build the loop with the switch. The switch starts open, and there is a spare wire. Find out what the switch does.","slots":5,"pieces":[{"id":"cell","kind":"cell","icon":"🔋","label":"Cell"},{"id":"led","kind":"led","icon":"💡","label":"LED"},{"id":"sw","kind":"switch","icon":"🔘","label":"Switch"},{"id":"w1","kind":"wire","icon":"➿","label":"Wire"},{"id":"w2","kind":"wire","icon":"➿","label":"Wire"},{"id":"w3","kind":"wire","icon":"➿","label":"Wire"}],"lit":["led"],"done":"Switch closed: the path is complete and the LED lights. Switch open: the path is broken. A flashlight works exactly this way."},{"id":"material-tester","type":"test","goal":"One slot is a test gap. Put each material in the gap and watch the LED. Test all five.","slots":5,"pieces":[{"id":"cell","kind":"cell","icon":"🔋","label":"Cell"},{"id":"w1","kind":"wire","icon":"➿","label":"Wire"},{"id":"led","kind":"led","icon":"💡","label":"LED"},{"id":"w2","kind":"wire","icon":"➿","label":"Wire"}],"locked":{"0":"cell","1":"w1","2":"led","3":"w2"},"materials":[{"id":"clip","icon":"📎","label":"Paper clip","conducts":true},{"id":"foil","icon":"🥈","label":"Foil","conducts":true},{"id":"string","icon":"🧵","label":"String","conducts":false},{"id":"plastic","icon":"🧴","label":"Plastic","conducts":false},{"id":"wood","icon":"🪵","label":"Wood","conducts":false}],"done":"The metals conducted — the paper clip and the foil lit the LED. String, plastic and wood are insulators. That is why a wire is metal inside a plastic coat."},{"id":"light-and-sound","goal":"Run the LED and the doorbell at the same time. There are two switches, and not every piece belongs in the loop.","slots":6,"pieces":[{"id":"cell","kind":"cell","icon":"🔋","label":"Cell"},{"id":"led","kind":"led","icon":"💡","label":"LED"},{"id":"buzz","kind":"buzzer","icon":"🔔","label":"Doorbell"},{"id":"sw1","kind":"switch","icon":"🔘","label":"Switch"},{"id":"sw2","kind":"switch","icon":"🔘","label":"Switch"},{"id":"w1","kind":"wire","icon":"➿","label":"Wire"},{"id":"wood","kind":"insulator","icon":"🪵","label":"Wood piece"}],"lit":["led","buzz"],"done":"The LED lights and the doorbell rings: electrical energy changed into light and sound at the same time. Both switches had to be closed."}]});
+k5PathSignal(document.getElementById("k5-activity"), {"id":"4-2-circuit-builder","engine":"pathsignal","title":"Circuit Builder","intro":"Build a closed loop with a cell, wires, a switch and an LED. Then test materials in a gap, and run light and sound at once.","note":"This is a model of the lesson's circuits that uses the lesson's own tester data; it skips how much energy one cell has, so the LED and doorbell run from one cell. The real build in the lesson (foil path, LED, paper-clip switch, light-up card) still counts. Safety in the real build: an adult hands out and collects every cell, tape cells when stored, a swallowed coin cell is a medical emergency, never use wall electricity, and unhook anything that feels warm.","summary":"Current flows only in a closed loop. A gap, an open switch or an insulator breaks the path; metals conduct; an LED lights only one way. In every working circuit, electrical energy changes into something useful — light, a little heat, or sound.","rounds":[{"id":"light-the-led","goal":"Make the LED light. Fill every slot so the loop has no gaps. One piece in the tray does not belong.","slots":4,"pieces":[{"id":"cell","kind":"cell","icon":"🔋","label":"Cell"},{"id":"led","kind":"led","icon":"💡","label":"LED"},{"id":"w1","kind":"wire","icon":"➿","label":"Wire"},{"id":"w2","kind":"wire","icon":"➿","label":"Wire"},{"id":"plastic","kind":"insulator","icon":"🧴","label":"Plastic piece"}],"lit":["led"],"done":"The LED lights: electrical energy changed into light and a little heat."},{"id":"add-a-switch","goal":"Build the loop with the switch. The switch starts open, and there is a spare wire. Find out what the switch does.","slots":5,"pieces":[{"id":"cell","kind":"cell","icon":"🔋","label":"Cell"},{"id":"led","kind":"led","icon":"💡","label":"LED"},{"id":"sw","kind":"switch","icon":"🔘","label":"Switch"},{"id":"w1","kind":"wire","icon":"➿","label":"Wire"},{"id":"w2","kind":"wire","icon":"➿","label":"Wire"},{"id":"w3","kind":"wire","icon":"➿","label":"Wire"}],"lit":["led"],"done":"Switch closed: the path is complete and the LED lights. Switch open: the path is broken. A flashlight works exactly this way.","need":["sw"]},{"id":"material-tester","type":"test","goal":"One slot is a test gap. Put each material in the gap and watch the LED. Test all five.","slots":5,"pieces":[{"id":"cell","kind":"cell","icon":"🔋","label":"Cell"},{"id":"w1","kind":"wire","icon":"➿","label":"Wire"},{"id":"led","kind":"led","icon":"💡","label":"LED"},{"id":"w2","kind":"wire","icon":"➿","label":"Wire"}],"locked":{"0":"cell","1":"w1","2":"led","3":"w2"},"materials":[{"id":"clip","icon":"📎","label":"Paper clip","conducts":true},{"id":"foil","icon":"🥈","label":"Foil","conducts":true},{"id":"string","icon":"🧵","label":"String","conducts":false},{"id":"plastic","icon":"🧴","label":"Plastic","conducts":false},{"id":"wood","icon":"🪵","label":"Wood","conducts":false}],"done":"The metals conducted — the paper clip and the foil lit the LED. String, plastic and wood are insulators. That is why a wire is metal inside a plastic coat."},{"id":"light-and-sound","goal":"Run the LED and the doorbell at the same time. There are two switches, and not every piece belongs in the loop.","slots":6,"pieces":[{"id":"cell","kind":"cell","icon":"🔋","label":"Cell"},{"id":"led","kind":"led","icon":"💡","label":"LED"},{"id":"buzz","kind":"buzzer","icon":"🔔","label":"Doorbell"},{"id":"sw1","kind":"switch","icon":"🔘","label":"Switch"},{"id":"sw2","kind":"switch","icon":"🔘","label":"Switch"},{"id":"w1","kind":"wire","icon":"➿","label":"Wire"},{"id":"wood","kind":"insulator","icon":"🪵","label":"Wood piece"}],"lit":["led","buzz"],"done":"The LED lights and the doorbell rings: electrical energy changed into light and sound at the same time. Both switches had to be closed."}]});
 </script>
 </section>
 <!--k5-activity-end-->

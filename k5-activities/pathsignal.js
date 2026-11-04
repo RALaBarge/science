@@ -2,7 +2,7 @@
    Path & Signal: build a closed loop with a cell, wires, a switch and a load (LED, buzzer, motor).
    One config drives one activity; rounds run in order.
    Round: {id, goal, slots, pieces:[{id,kind,icon,label}], locked:{slotIndex:pieceId},
-           lit:[pieceId], type:"test", materials:[{id,icon,label,conducts}], done}
+           lit:[pieceId], need?:[pieceId that must be in the loop], type:"test", materials:[{id,icon,label,conducts}], done}
    kinds: cell, wire, led, buzzer, motor, switch, insulator. The loop is one series path:
    current leaves the cell and walks the slots in order; an empty slot, an insulator, an open
    switch or a backward LED stops it; a closed loop with no load is a short circuit (a stop with
@@ -65,6 +65,7 @@ function k5PathSignalValidate(cfg) {
     } else {
       const lit = Array.isArray(r.lit) ? r.lit : [];
       if (!lit.length) errs.push(tag + ': a build round needs lit, the load(s) that must run');
+      (r.need || []).forEach((id) => { if (!ids.has(id)) errs.push(tag + ': need names unknown piece ' + id); });
       lit.forEach((id) => {
         const p = pieces.find((x) => x.id === id);
         if (!p) errs.push(tag + ': lit names unknown piece ' + id);
@@ -73,7 +74,7 @@ function k5PathSignalValidate(cfg) {
       if (pieces.length < r.slots) errs.push(tag + ': fewer pieces than slots, so the loop can never be filled');
       if (pieces.filter((p) => p.kind !== 'insulator').length < r.slots) errs.push(tag + ': not enough conducting pieces to fill the loop, so there is no way to succeed');
       else {
-        const solved = pieces.filter((p) => p.kind === 'cell').concat(pieces.filter((p) => lit.indexOf(p.id) >= 0), pieces.filter((p) => p.kind !== 'cell' && p.kind !== 'insulator' && lit.indexOf(p.id) < 0)).slice(0, r.slots);
+        const solved = pieces.filter((p) => p.kind === 'cell').concat(pieces.filter((p) => lit.indexOf(p.id) >= 0), pieces.filter((p) => (r.need || []).indexOf(p.id) >= 0 && lit.indexOf(p.id) < 0), pieces.filter((p) => p.kind !== 'cell' && p.kind !== 'insulator' && lit.indexOf(p.id) < 0 && (r.need || []).indexOf(p.id) < 0)).slice(0, r.slots);
         const lock = {}; const sw = {};
         solved.forEach((p) => { if (p.kind === 'switch') sw[p.id] = false; });
         const res = k5PathSignalCheck(r, solved.map((p) => p.id), { open: sw, flip: {} });
@@ -158,7 +159,7 @@ function k5PathSignal(host, cfg) {
     '.tab{border-collapse:collapse;margin:8px 0;font-size:.95rem}' +
     '.tab caption{text-align:left;margin-bottom:4px}' +
     '.tab th,.tab td{border:1.5px solid var(--line, #bbb);padding:4px 10px;text-align:left}' +
-    '.tab .y{color:var(--green, #25904f);font-weight:700}.tab .n{color:var(--red, #d93036);font-weight:700}' +
+    '.tab .y{color:var(--green, #25904f);font-weight:700}.tab .n{color:var(--muted, #555);font-weight:700}' +
     '.msg{margin-top:12px;min-height:2.6em;padding:8px 12px;border-radius:10px;background:var(--surface-2, #eef0f3);font-size:1rem}' +
     '.msg.ok{border-left:5px solid var(--green, #25904f)}.msg.bad{border-left:5px solid var(--red, #d93036)}' +
     '.btn{font:inherit;font-weight:700;padding:9px 16px;min-height:44px;border-radius:10px;border:0;background:var(--beam, #f2a900);color:var(--beam-ink, #1a1400);cursor:pointer;margin-top:10px}' +
@@ -322,6 +323,11 @@ function k5PathSignal(host, cfg) {
 
   function judgeBuild(res) {
     const r = cfg.rounds[ri];
+    const missing = (r.need || []).filter((id) => placed.indexOf(id) < 0);
+    if (res.status === 'lit' && r.lit.every((id) => res.lit.indexOf(id) >= 0) && missing.length) {
+      say('', 'It lights, but this round is about the ' + missing.map((id) => byId(id).label.toLowerCase()).join(' and ') + '. Build the loop with it in.');
+      return;
+    }
     if (res.status === 'lit' && r.lit.every((id) => res.lit.indexOf(id) >= 0)) {
       succeeded = true;
       found.push(r.done);
@@ -377,7 +383,7 @@ function k5PathSignal(host, cfg) {
     paint(res); fillTable();
     const m = r.materials.find((x) => x.id === mid);
     if (res.status === 'lit') say('ok', 'The LED lights — the ' + m.label.toLowerCase() + ' is a conductor. Metal lets the current through.');
-    else say('bad', 'No light — the ' + m.label.toLowerCase() + ' is an insulator. It blocks the current.');
+    else say('', 'No light — the ' + m.label.toLowerCase() + ' is an insulator. It blocks the current.');
     if (r.materials.every((x) => tested[x.id])) {
       succeeded = true;
       const yes = r.materials.filter((x) => x.conducts).map((x) => x.label.toLowerCase());

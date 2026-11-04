@@ -3,7 +3,7 @@
  "engine": "pusharena",
  "title": "Push-Pull Test Track",
  "intro": "Same car, same floor. Change one thing, predict what happens, release, and read the data.",
- "note": "This is a model that uses the lesson's backup numbers. The real gentle-and-strong push test and the stopper build with a toy car still count. The lesson gives no numbers for push versus pull, so that round only shows the direction.",
+ "note": "This is a model that uses the lesson's backup numbers. The real gentle-and-strong push test and the stopper build with a toy car still count. The lesson gives no numbers for push versus pull, so that round only shows the direction. Read aloud: a push moves it away from you, a pull moves it toward you.",
  "summary": "A push or pull can start, stop, or turn motion. A strong push sent the car 6 tiles, a soft push 2 tiles. A pull brought the car toward you. Foam stopped the car 3 of 3 tries and cardboard 1 of 3, so the evidence picks foam.",
  "rounds": [
   {
@@ -88,7 +88,7 @@
    "change": "Push or pull (direction)",
    "held": [
     "Same toy car",
-    "Same medium push",
+    "Same strength of push or pull",
     "Same smooth floor",
     "Same starting spot"
    ],
@@ -121,7 +121,8 @@
       "value": 3,
       "unit": "tiles",
       "max": 4,
-      "dir": 1
+      "dir": 1,
+      "noValue": true
      }
     },
     {
@@ -135,7 +136,8 @@
       "value": 3,
       "unit": "tiles",
       "max": 4,
-      "dir": -1
+      "dir": -1,
+      "noValue": true
      }
     }
    ],

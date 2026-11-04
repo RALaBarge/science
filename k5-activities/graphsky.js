@@ -230,8 +230,10 @@ function k5GraphSky(host, cfg) {
       if (seen.has(st.id)) { say('', st.label + ' is already in the log.'); return; }
       seen.add(st.id);
       const tr = document.createElement('tr');
+      tr.dataset.i = i;
       tr.innerHTML = '<td>' + esc(st.label) + '</td><td>Sun ' + st.sun + '</td><td>Stars ' + st.stars + '</td>';
-      log.appendChild(tr);
+      const after = [...log.querySelectorAll('tr[data-i]')].find((x) => +x.dataset.i > i);   /* keep the log in time order */
+      if (after) log.insertBefore(tr, after); else log.appendChild(tr);
       if (seen.size === n) {
         arts.push('Sky log - ' + stops.map((s2) => s2.label + ': Sun ' + s2.sun + ', stars ' + s2.stars).join('; ') + '.');
         say('ok', 'The log is full. Day and night repeat, and the stars are still there in the daytime.');
@@ -254,7 +256,7 @@ function k5GraphSky(host, cfg) {
   function moon(r, onDone) {
     const cards = r.cards.slice().sort((a, b) => a.order - b.order);
     let next = 0;
-    say('', 'Tap the Moon shapes in the order they come, from a thin curve to a round Moon.');
+    say('', r.start || 'Tap the Moon shapes in the order they come.');
     const seq = document.createElement('div'); seq.className = 'row'; main.appendChild(seq);
     const tray = document.createElement('div'); tray.className = 'row'; main.appendChild(tray);
     k5SkyOrder(cards.map((c) => c.id), seed()).forEach((id) => {
@@ -346,7 +348,7 @@ function k5GraphSky(host, cfg) {
       fillHTML: (t, it) => '<div class="row" style="justify-content:center">' + starSVG(it.dots) + '<span>' + esc(it.name) + '</span></div>',
       placedMsg: (it) => 'Yes. ' + it.why,
       hintMsg: (it) => 'Not that season. ' + it.hint,
-      artifact: () => 'Star chart - ' + r.seasons.map((s2) => { const it = r.cards.find((x) => x.season === s2.id); return s2.label + ' (' + s2.months + '): ' + it.name; }).join('; ') + '.'
+      artifact: () => 'Star chart - ' + r.seasons.map((s2) => { const it = r.cards.find((x) => x.season === s2.id); return s2.label + ' (' + s2.months + '): ' + r.cards.filter((x) => x.season === s2.id).map((x) => x.name).join(', '); }).join('; ') + '.'
     });
   }
 
@@ -388,8 +390,10 @@ function k5GraphSky(host, cfg) {
       if (seen.has(row.id)) { say('', row.time + ' is already in the table.'); return; }
       seen.add(row.id);
       const tr = document.createElement('tr');
+      tr.dataset.i = rows.indexOf(row);
       tr.innerHTML = '<td>' + esc(row.time) + '</td><td>' + row.len + ' cm</td><td>' + DIRW[row.dir] + '</td>';
-      log.appendChild(tr);
+      const after = [...log.querySelectorAll('tr[data-i]')].find((x) => +x.dataset.i > rows.indexOf(row));   /* keep the table in time order */
+      if (after) log.insertBefore(tr, after); else log.appendChild(tr);
       if (seen.size === rows.length) {
         arts.push('Shadow table - ' + rows.map((x) => x.time + ': ' + x.len + ' cm ' + DIRW[x.dir]).join('; ') + '.');
         say('ok', 'All shadows are recorded. Long, shorter, shortest, longer, long - and always away from the Sun.');

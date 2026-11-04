@@ -15,7 +15,7 @@
      "label": "Morning",
      "sun": "up",
      "stars": "hidden",
-     "tone": "sunset"
+     "tone": "day"
     },
     {
      "id": "noon",
@@ -223,7 +223,8 @@
       }
      ]
     }
-   ]
+   ],
+   "start": "Tap the Moon shapes in the order they come. This row shows the growing part of the pattern."
   },
   {
    "kind": "strips",

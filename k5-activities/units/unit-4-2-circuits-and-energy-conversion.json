@@ -3,7 +3,7 @@
  "engine": "pathsignal",
  "title": "Circuit Builder",
  "intro": "Build a closed loop with a cell, wires, a switch and an LED. Then test materials in a gap, and run light and sound at once.",
- "note": "This is a model of the lesson's circuits that uses the lesson's own tester data. The real build in the lesson (foil path, LED, paper-clip switch, light-up card) still counts, and an adult hands out and collects the cells.",
+ "note": "This is a model of the lesson's circuits that uses the lesson's own tester data; it skips how much energy one cell has, so the LED and doorbell run from one cell. The real build in the lesson (foil path, LED, paper-clip switch, light-up card) still counts. Safety in the real build: an adult hands out and collects every cell, tape cells when stored, a swallowed coin cell is a medical emergency, never use wall electricity, and unhook anything that feels warm.",
  "summary": "Current flows only in a closed loop. A gap, an open switch or an insulator breaks the path; metals conduct; an LED lights only one way. In every working circuit, electrical energy changes into something useful — light, a little heat, or sound.",
  "rounds": [
   {
@@ -92,7 +92,10 @@
    "lit": [
     "led"
    ],
-   "done": "Switch closed: the path is complete and the LED lights. Switch open: the path is broken. A flashlight works exactly this way."
+   "done": "Switch closed: the path is complete and the LED lights. Switch open: the path is broken. A flashlight works exactly this way.",
+   "need": [
+    "sw"
+   ]
   },
   {
    "id": "material-tester",
