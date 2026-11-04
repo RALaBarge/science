@@ -15,6 +15,7 @@ const ENGINES = {
   pusharena: ['pusharena.js', 'k5PushArena'],
   graphsky: ['graphsky.js', 'k5GraphSky'],
   pathsignal: ['pathsignal.js', 'k5PathSignal'],
+  sceneweb: ['sceneweb.js', 'k5SceneWeb'],
 };
 const source = {};
 for (const [name, [file]] of Object.entries(ENGINES)) {

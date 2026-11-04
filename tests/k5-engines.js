@@ -132,6 +132,32 @@ function checkPathSignalValidators(ok) {
   checkPathSignalLogic(ok, 'pathsignal engine', good, ps);
 }
 
+FACTS['unit-k2-0-science-noticing-and-asking.json'] = (cfg, ok, f) => {
+  const t = engines.sceneweb.k5SceneTally(cfg);
+  ok(t.feel.smooth === 4 && t.feel.bumpy === 5, f + ' tally is 4 smooth, 5 bumpy (unit data)');
+  const all = JSON.stringify(cfg);
+  ok(all.includes('Towel A held 5 drops, Towel B held 8 drops'), f + ' towel data is 5 and 8 drops (unit data)');
+  ok(cfg.questions.every((q) => q.choices.filter((c) => c.ok).length === 1), f + ' each question has one testable choice');
+};
+
+function checkSceneWebValidators(ok) {
+  const sw = engines.sceneweb;
+  if (!sw) return;
+  const good = unitCfg('unit-k2-0-science-noticing-and-asking.json');
+  const bad = (mut, word) => { const c = clone(good); mut(c); return sw.k5SceneWebValidate(c).some((x) => x.includes(word)); };
+  ok(sw.k5SceneWebValidate(good).length === 0, 'sceneweb: good config validates');
+  ok(bad((c) => { delete c.scene.items[0].say; }, 'needs label and say'), 'sceneweb validator catches a missing observation line');
+  ok(bad((c) => { c.scene.items[0].notices.feel = 'smoth'; }, 'unknown bin'), 'sceneweb validator catches a notice that names a missing bin');
+  ok(bad((c) => { c.scene.items[1].id = c.scene.items[0].id; }, 'duplicate item'), 'sceneweb validator catches a duplicate item id');
+  ok(bad((c) => { c.questions[0].choices[1].ok = true; }, 'exactly one testable'), 'sceneweb validator catches a question with two testable answers');
+  ok(bad((c) => { c.noticeGroups = []; }, 'noticeGroups'), 'sceneweb validator catches empty notice groups');
+  ok(bad((c) => { c.scene.items = c.scene.items.filter((i) => i.notices.feel !== 'bumpy'); }, 'has no items'), 'sceneweb validator catches a bin nothing falls in');
+  ok(bad((c) => { delete c.note; }, 'needs a note'), 'sceneweb validator catches a missing model note');
+  ok(JSON.stringify(sw.k5SceneOrder(['a', 'b', 'c'], 's:1')) === JSON.stringify(sw.k5SceneOrder(['a', 'b', 'c'], 's:1')), 'sceneweb order is repeatable');
+  const wrongTally = clone(good); wrongTally.scene.items[0].notices.feel = 'bumpy';
+  ok(sw.k5SceneTally(wrongTally).feel.smooth === 3, 'sceneweb tally follows the config');
+}
+
 function checkGraphSkyValidators(ok) {
   const g = engines.graphsky;
   if (!g) return;
@@ -152,6 +178,7 @@ function checkGraphSkyValidators(ok) {
 }
 
 function checkValidators(ok) {
+  checkSceneWebValidators(ok);
   checkGraphSkyValidators(ok);
   checkPathSignalValidators(ok);
   const p = engines.pusharena;
@@ -210,6 +237,40 @@ async function rowWrongRight(page, step, out, what) {
 const DIRDEG = { N: 0, NE: 45, E: 90, SE: 135, S: 180, SW: 225, W: 270, NW: 315 };
 
 const PLAY = {
+  async sceneweb(ok, f, cfg, page, errors) {
+    const problems = [];
+    const items = cfg.scene.items;
+    for (const it of items) await byName(page, 'Notice: ' + it.label).click();
+    const tally = await page.locator(A + ' .tally').textContent();
+    ok(/Smooth\D*4/.test(tally) && /Bumpy\D*5/.test(tally), f + ' the on-screen tally reads 4 smooth, 5 bumpy');
+    // every wrong question choice shows a reason and changes nothing; then the right one
+    const left = cfg.questions.map((q, i) => i);
+    for (let step = 0; step < cfg.questions.length; step++) {
+      let qi = -1;
+      for (const i of left) { if (await page.locator(A + ' .ask .opt', { hasText: cfg.questions[i].choices.find((c) => c.ok).label }).count()) { qi = i; break; } }
+      if (qi < 0) { problems.push('no question on screen at step ' + step); break; }
+      left.splice(left.indexOf(qi), 1);
+      for (const c of cfg.questions[qi].choices.filter((x) => !x.ok)) {
+        await page.locator(A + ' .ask .opt', { hasText: c.label }).first().click();
+        const txt = await page.locator(A + ' .msg').textContent();
+        if ((await msgKind(page)).indexOf('bad') < 0 || txt !== c.why) problems.push('wrong choice shows its own reason: ' + c.label);
+      }
+      await page.locator(A + ' .ask .opt', { hasText: cfg.questions[qi].choices.find((c) => c.ok).label }).first().click();
+    }
+    await page.locator(A + ' .done').waitFor();
+    const txt = await page.locator(A + ' .done').textContent();
+    ok(txt.includes(cfg.summary.slice(0, 30)), f + ' plays through to the summary');
+    ok(/Smooth: 4/.test(txt) && /Bumpy: 5/.test(txt), f + ' the summary repeats the tally (4 smooth, 5 bumpy)');
+    ok(problems.length === 0, f + ' wrong choices show their reason' + (problems.length ? ': ' + problems.join('; ') : ''));
+    ok(await page.evaluate(() => document.documentElement.scrollWidth <= 420), f + ' fits 420px wide');
+    // every item is a real, big-enough button at 420px
+    await byName(page, 'Play again').click();
+    const sizes = await page.locator(A + ' .it').evaluateAll((bs) => bs.map((b) => { const r = b.getBoundingClientRect(); return Math.min(r.width, r.height); }));
+    ok(sizes.length === items.length && sizes.every((x) => x >= 44), f + ' every thing to tap is at least 44px at 420px wide');
+    ok((await page.locator(A + ' .tally').textContent()).indexOf('4') < 0, f + ' play again clears the tally');
+    ok(errors.length === 0, f + ' no page errors' + (errors.length ? ': ' + errors.join('; ') : ''));
+  },
+
   async pathsignal(ok, f, cfg, page, errors) {
     const problems = [];
     const slot = (i) => page.locator(A + ' .slot[data-slot="' + i + '"]');
