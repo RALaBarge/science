@@ -1,0 +1,301 @@
+{
+ "id": "k-a-push-arena",
+ "engine": "pusharena",
+ "title": "Push-Pull Test Track",
+ "intro": "Same car, same floor. Change one thing, predict what happens, release, and read the data.",
+ "note": "This is a model that uses the lesson's backup numbers. The real gentle-and-strong push test and the stopper build with a toy car still count. The lesson gives no numbers for push versus pull, so that round only shows the direction.",
+ "summary": "A push or pull can start, stop, or turn motion. A strong push sent the car 6 tiles, a soft push 2 tiles. A pull brought the car toward you. Foam stopped the car 3 of 3 tries and cardboard 1 of 3, so the evidence picks foam.",
+ "rounds": [
+  {
+   "question": "Same car, same floor, same starting line. How far does a push send the car?",
+   "change": "Push strength",
+   "held": [
+    "Same toy car",
+    "Same smooth floor",
+    "Same starting line"
+   ],
+   "predict": {
+    "q": "How many tiles will it go?",
+    "choices": [
+     {
+      "id": "t0",
+      "label": "It will not move"
+     },
+     {
+      "id": "t2",
+      "label": "2 tiles"
+     },
+     {
+      "id": "t6",
+      "label": "6 tiles"
+     }
+    ]
+   },
+   "options": [
+    {
+     "id": "soft",
+     "icon": "🚗",
+     "label": "Soft push",
+     "hint": "a soft push gives the car a little motion, not a lot.",
+     "answer": "t2",
+     "result": {
+      "kind": "travel",
+      "value": 2,
+      "unit": "tiles",
+      "max": 8
+     }
+    },
+    {
+     "id": "strong",
+     "icon": "🚗💨",
+     "label": "Strong push",
+     "hint": "a strong push gives more motion than a soft push did.",
+     "answer": "t6",
+     "result": {
+      "kind": "travel",
+      "value": 6,
+      "unit": "tiles",
+      "max": 8
+     }
+    }
+   ],
+   "reads": [
+    {
+     "q": "What did changing the push strength do?",
+     "choices": [
+      {
+       "label": "The strong push sent the car farther.",
+       "ok": true,
+       "why": "Yes. Soft went 2 tiles, strong went 6 tiles."
+      },
+      {
+       "label": "Both pushes went the same distance.",
+       "ok": false,
+       "why": "Look at the marks: 2 tiles and 6 tiles are not the same."
+      },
+      {
+       "label": "The soft push went farther.",
+       "ok": false,
+       "why": "Soft went 2 tiles and strong went 6 tiles. 6 is more than 2."
+      }
+     ]
+    }
+   ],
+   "finding": "Soft push: 2 tiles. Strong push: 6 tiles. A stronger push changed the motion more."
+  },
+  {
+   "question": "Now change the direction. Which way does the car go?",
+   "change": "Push or pull (direction)",
+   "held": [
+    "Same toy car",
+    "Same medium push",
+    "Same smooth floor",
+    "Same starting spot"
+   ],
+   "predict": {
+    "q": "Which way will the car go?",
+    "choices": [
+     {
+      "id": "away",
+      "label": "Away from you"
+     },
+     {
+      "id": "toward",
+      "label": "Toward you"
+     },
+     {
+      "id": "still",
+      "label": "It will not move"
+     }
+    ]
+   },
+   "options": [
+    {
+     "id": "push",
+     "icon": "🚗",
+     "label": "Push it",
+     "hint": "a push moves something away from you.",
+     "answer": "away",
+     "result": {
+      "kind": "travel",
+      "value": 3,
+      "unit": "tiles",
+      "max": 4,
+      "dir": 1
+     }
+    },
+    {
+     "id": "pull",
+     "icon": "🚗",
+     "label": "Pull it",
+     "hint": "a pull moves something toward you.",
+     "answer": "toward",
+     "result": {
+      "kind": "travel",
+      "value": 3,
+      "unit": "tiles",
+      "max": 4,
+      "dir": -1
+     }
+    }
+   ],
+   "reads": [
+    {
+     "q": "Which one is a pull?",
+     "choices": [
+      {
+       "label": "Moving a wagon toward you",
+       "ok": true,
+       "why": "Yes. A pull moves something toward you."
+      },
+      {
+       "label": "Kicking a ball away from you",
+       "ok": false,
+       "why": "Kicking sends the ball away. That is a push."
+      },
+      {
+       "label": "Letting the car sit still",
+       "ok": false,
+       "why": "No push or pull means no change in motion."
+      }
+     ]
+    }
+   ],
+   "finding": "A push moved the car away from you. A pull moved it toward you. Same strength, opposite directions."
+  },
+  {
+   "question": "The car rolls too far past the line. Which stopper stops it?",
+   "change": "Stopper material",
+   "held": [
+    "Same toy car",
+    "Same ramp",
+    "Same push",
+    "3 tries for each stopper"
+   ],
+   "predict": {
+    "q": "Out of 3 tries, how many times will it stop the car?",
+    "choices": [
+     {
+      "id": "s3",
+      "label": "Stopped all 3"
+     },
+     {
+      "id": "s1",
+      "label": "Stopped 1 of 3"
+     },
+     {
+      "id": "s0",
+      "label": "Stopped 0 of 3"
+     }
+    ]
+   },
+   "options": [
+    {
+     "id": "foam",
+     "icon": "🧽",
+     "label": "Foam stopper",
+     "hint": "foam is soft and squeezes; it can grab the car.",
+     "answer": "s3",
+     "result": {
+      "kind": "tries",
+      "outcomes": [
+       "stop",
+       "stop",
+       "stop"
+      ]
+     }
+    },
+    {
+     "id": "card",
+     "icon": "📦",
+     "label": "Cardboard stopper",
+     "hint": "thin cardboard can bend and let the car roll past.",
+     "answer": "s1",
+     "result": {
+      "kind": "tries",
+      "outcomes": [
+       "stop",
+       "past",
+       "past"
+      ]
+     }
+    }
+   ],
+   "reads": [
+    {
+     "q": "Which stopper is the better design, and how do you know?",
+     "choices": [
+      {
+       "label": "Foam — it stopped the car 3 of 3 tries.",
+       "ok": true,
+       "why": "Yes. The evidence is 3 of 3 for foam against 1 of 3 for cardboard."
+      },
+      {
+       "label": "Cardboard — it is stiffer.",
+       "ok": false,
+       "why": "Stiff is not the goal. The goal is stopping the car, and cardboard only stopped it 1 of 3."
+      },
+      {
+       "label": "They are the same — both are stoppers.",
+       "ok": false,
+       "why": "The data is not the same: 3 of 3 against 1 of 3."
+      }
+     ]
+    }
+   ],
+   "finding": "Foam stopped the car 3 of 3 tries. Cardboard stopped it 1 of 3. Evidence picks foam."
+  }
+ ],
+ "claim": [
+  {
+   "lead": "We changed",
+   "choices": [
+    {
+     "label": "one thing at a time.",
+     "ok": true,
+     "why": "Right. Everything else stayed the same, so we know what caused each change."
+    },
+    {
+     "label": "everything at once, to finish faster.",
+     "ok": false,
+     "why": "Then we could not tell what caused each change. A fair test changes one thing."
+    }
+   ]
+  },
+  {
+   "lead": "The data says",
+   "choices": [
+    {
+     "label": "strong went 6 tiles, soft 2. Foam stopped 3 of 3.",
+     "ok": true,
+     "why": "That matches every row of our data."
+    },
+    {
+     "label": "the car stopped because it ran out of push.",
+     "ok": false,
+     "why": "Something else slowed it: rubbing on the floor, or the stopper. Cars do not run out of push."
+    },
+    {
+     "label": "one try is enough to be sure.",
+     "ok": false,
+     "why": "We used 3 tries for each stopper to be more sure."
+    }
+   ]
+  },
+  {
+   "lead": "So",
+   "choices": [
+    {
+     "label": "pushes and pulls change motion. Evidence picks the better stopper.",
+     "ok": true,
+     "why": "Yes. That is the whole investigation in one line."
+    },
+    {
+     "label": "only hands can push or pull.",
+     "ok": false,
+     "why": "Wind pushes sailboats and snowplows push snow. Pushes and pulls come from many things."
+    }
+   ]
+  }
+ ]
+}

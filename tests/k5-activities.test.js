@@ -4,13 +4,16 @@ const fs = require('fs');
 const path = require('path');
 const { k5Validate, k5Order } = require('../k5-activities/bigsort.js');
 const { k5FairValidate, k5FairBest } = require('../k5-activities/fairtest.js');
+const NEWENG = require('./k5-engines.js');   // validators, bad-config checks and browser drivers for the newer engines
 const dir = path.join(__dirname, '..', 'k5-activities', 'units');
 let fail = 0;
 const ok = (c, m) => { console.log((c ? 'PASS ' : 'FAIL ') + m); if (!c) fail = 1; };
 
 const files = fs.readdirSync(dir).filter((f) => f.endsWith('.json'));
+NEWENG.checkValidators(ok);
 for (const f of files) {
   const cfg = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
+  if (NEWENG.engines[cfg.engine]) { NEWENG.checkConfig(ok, f, cfg, dir); continue; }
   const fair = cfg.engine === 'fairtest';
   const errs = fair ? k5FairValidate(cfg) : k5Validate(cfg);
   ok(errs.length === 0, f + ' config valid' + (errs.length ? ': ' + errs.join('; ') : ''));
@@ -44,10 +47,15 @@ for (const f of files) {
   const browser = await chromium.launch(process.env.K5_CHROME ? { executablePath: process.env.K5_CHROME } : {});
   for (const f of files) {
     const cfg = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
-    const page = await browser.newPage({ viewport: { width: 420, height: 900 } });
+    const page = await browser.newPage({ viewport: { width: 420, height: 900 }, reducedMotion: 'reduce' });
     const errors = [];
     page.on('pageerror', (e) => errors.push(e.message));
     await page.goto('file://' + path.join(__dirname, '..', 'dist', 'k-5', f.replace('.json', '.html')));
+    if (NEWENG.engines[cfg.engine]) {
+      await NEWENG.play(ok, f, cfg, page, errors);
+      await page.close();
+      continue;
+    }
     if (cfg.engine === 'fairtest') {
       const r = await page.evaluate((cfg) => {
         const root = document.getElementById('k5-activity').shadowRoot;

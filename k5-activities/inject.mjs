@@ -12,6 +12,7 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const ENGINES = {
   bigsort: ['bigsort.js', 'k5BigSort'],
   fairtest: ['fairtest.js', 'k5FairTest'],
+  pusharena: ['pusharena.js', 'k5PushArena'],
 };
 const source = {};
 for (const [name, [file]] of Object.entries(ENGINES)) {
