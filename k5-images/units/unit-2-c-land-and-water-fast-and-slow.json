@@ -26,6 +26,14 @@
    "caption": "The Erosion Guard tray before the test: sand, two guards (grass and stones) and water to pour."
   },
   {
+   "id": "2c-lab",
+   "after": "kit",
+   "kind": "image",
+   "file": "2c-lab.webp",
+   "alt": "Illustration of three students at a classroom table with a sand erosion tray: a girl pours water from a cup, a boy checks the sand with his finger and a third student writes down the result.",
+   "caption": "Teams share the jobs in the Erosion Guard test: pour the same amount each time, measure the sand that moved, and record it."
+  },
+  {
    "id": "g-2c-guard",
    "after": "kit",
    "kind": "svg",

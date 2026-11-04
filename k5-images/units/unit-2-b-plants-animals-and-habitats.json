@@ -34,6 +34,14 @@
    "caption": "A forest has many kinds of living things. Count the kinds you can see."
   },
   {
+   "id": "2b-meadow",
+   "after": "s2",
+   "kind": "image",
+   "file": "2b-meadow.webp",
+   "alt": "Illustration of a grandfather in a sun hat and two children looking at a bumblebee on a purple coneflower in a meadow, one child pointing at the bee.",
+   "caption": "Bees visit flowers for nectar and carry pollen along, so plants can make seeds."
+  },
+  {
    "id": "g-2b-beans",
    "after": "s1",
    "kind": "svg",

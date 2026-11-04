@@ -26,6 +26,14 @@
    "caption": "A model shoreline: test a barrier with the same amount of water each time and compare the sediment lost."
   },
   {
+   "id": "45-lab",
+   "after": "kit",
+   "kind": "image",
+   "file": "45-lab.webp",
+   "alt": "Illustration of three people around a plastic shoreline tray: one pours water from a measuring cup, one holds a spoon to measure the sediment and one writes notes.",
+   "caption": "A shoreline test with the jobs split up: same amount of water every time, then compare the sediment lost."
+  },
+  {
    "id": "g-45-sediment",
    "after": "kit",
    "kind": "svg",

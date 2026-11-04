@@ -1448,6 +1448,228 @@
     }
    ],
    "bytes": 25606
+  },
+  {
+   "id": "2c-lab",
+   "unit": "2-c",
+   "prompt": "modern editorial illustration, flat vector shapes, muted sophisticated palette, subtle paper texture, realistic proportions, simple faces, three students around a classroom table with a sand and grass erosion tray: a white girl with red hair and freckles pouring water from a cup, a Black boy with dark brown skin and short twists measuring the sand with his finger, and a Latina girl with brown skin and glasses writing on paper, no text visible",
+   "seed": 72068686,
+   "candidate": "2c-lab-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "mixed group at an erosion tray: pouring, measuring, recording",
+   "people": [
+    {
+     "description": "girl, red hair, freckles, light skin, pours water",
+     "group": "White"
+    },
+    {
+     "description": "boy, short twists, dark brown skin, measures sand",
+     "group": "Black"
+    },
+    {
+     "description": "girl, glasses, brown skin, records",
+     "group": "Latino/a"
+    }
+   ],
+   "rejected": [
+    {
+     "candidate": "2c-lab-1",
+     "seed": 7227382,
+     "reason": "second pick"
+    },
+    {
+     "candidate": "2c-lab-2",
+     "seed": 958051291,
+     "reason": "second pick"
+    }
+   ],
+   "bytes": 14896
+  },
+  {
+   "id": "33-lab",
+   "unit": "3-3",
+   "prompt": "modern editorial illustration, flat vector shapes, muted sophisticated palette, subtle paper texture, realistic proportions, simple faces, a classroom bean experiment: a Black woman teacher with dark brown skin and short natural hair crouching beside a white boy with blond hair and an East Asian girl with light tan skin and straight black hair, looking together at two bean seedlings in clear cups on a windowsill, one short and sturdy, one tall and pale",
+   "seed": 34980092,
+   "candidate": "33-lab-1",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "teacher and two kids comparing a sturdy and a pale bean seedling",
+   "people": [
+    {
+     "description": "woman teacher, natural hair, dark brown skin",
+     "group": "Black"
+    },
+    {
+     "description": "boy, blond hair, light skin",
+     "group": "White"
+    },
+    {
+     "description": "girl, straight black hair, light tan skin",
+     "group": "East/Southeast Asian"
+    }
+   ],
+   "rejected": [
+    {
+     "candidate": "33-lab-0",
+     "seed": 1169914706,
+     "reason": "second pick"
+    },
+    {
+     "candidate": "33-lab-2",
+     "seed": 589210197,
+     "reason": "second pick"
+    }
+   ],
+   "bytes": 12374
+  },
+  {
+   "id": "45-lab",
+   "unit": "4-5",
+   "prompt": "modern editorial illustration, flat vector shapes, muted sophisticated palette, subtle paper texture, realistic proportions, simple faces, three people at a classroom table with a plastic shoreline tray of sand and stones: a white woman with brown hair tied back and safety glasses pouring water, a South Asian man with brown skin and a beard holding a measuring spoon, and a Native American teenage girl with copper-brown skin and long black hair watching and taking notes",
+   "seed": 1381620292,
+   "candidate": "45-lab-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "three adults and teens running a shoreline-tray test",
+   "people": [
+    {
+     "description": "woman scientist, brown hair, safety glasses, pours water",
+     "group": "White"
+    },
+    {
+     "description": "man, beard, brown skin, measures",
+     "group": "South Asian"
+    },
+    {
+     "description": "teen girl, long black hair, copper-brown skin, takes notes",
+     "group": "Native American"
+    }
+   ],
+   "rejected": [
+    {
+     "candidate": "45-lab-1",
+     "seed": 676974822,
+     "reason": "second pick"
+    },
+    {
+     "candidate": "45-lab-2",
+     "seed": 1005415890,
+     "reason": "second pick"
+    }
+   ],
+   "bytes": 15530
+  },
+  {
+   "id": "51-lab",
+   "unit": "5-1",
+   "prompt": "modern editorial illustration, flat vector shapes, muted sophisticated palette, subtle paper texture, realistic proportions, simple faces, three people at a science table separating a mixture with a magnet, a funnel and a cup: an older white man with gray hair and glasses holding a magnet in a plastic bag, a Latina teenage girl with brown skin and a ponytail pouring water, and an Arab teenage boy with olive-brown skin and dark curly hair holding the funnel steady",
+   "seed": 964235162,
+   "candidate": "51-lab-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "separating a mixture: magnet in a bag, pouring, steadying the funnel",
+   "people": [
+    {
+     "description": "older man, gray hair, glasses, magnet",
+     "group": "White"
+    },
+    {
+     "description": "teen girl, ponytail, brown skin, pours",
+     "group": "Latino/a"
+    },
+    {
+     "description": "teen boy, dark curly hair, olive-brown skin, holds funnel",
+     "group": "Arab/Middle Eastern"
+    }
+   ],
+   "rejected": [
+    {
+     "candidate": "51-lab-1",
+     "seed": 1942089087,
+     "reason": "second pick"
+    },
+    {
+     "candidate": "51-lab-2",
+     "seed": 1817497600,
+     "reason": "second pick"
+    }
+   ],
+   "bytes": 14604
+  },
+  {
+   "id": "2b-meadow",
+   "unit": "2-b",
+   "prompt": "modern editorial illustration, flat vector shapes, muted sophisticated palette, subtle paper texture, realistic proportions, simple faces, a grandfather and two children looking at a bumblebee on a purple coneflower in a Michigan meadow: a white grandfather with a gray beard and sun hat, a Black girl with dark brown skin and puffy hair buns pointing at the bee, and a Latino boy with brown skin and a green cap, wildflowers all around",
+   "seed": 187076105,
+   "candidate": "2b-meadow-1",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "three people watching a bumblebee on a coneflower",
+   "people": [
+    {
+     "description": "grandfather, gray beard, sun hat, light skin",
+     "group": "White"
+    },
+    {
+     "description": "girl, hair buns, dark brown skin, points at the bee",
+     "group": "Black"
+    },
+    {
+     "description": "boy, green cap, light skin (rendered lighter than prompted)",
+     "group": "White"
+    }
+   ],
+   "rejected": [
+    {
+     "candidate": "2b-meadow-0",
+     "seed": 247980145,
+     "reason": "second pick"
+    },
+    {
+     "candidate": "2b-meadow-2",
+     "seed": 1253317321,
+     "reason": "second pick"
+    }
+   ],
+   "bytes": 16894
+  },
+  {
+   "id": "32-lab",
+   "unit": "3-2",
+   "prompt": "modern editorial illustration, flat vector shapes, muted sophisticated palette, subtle paper texture, realistic proportions, simple faces, students testing a flood barrier model on a tray with a soil slope and grass strip: a white teenage boy with short brown hair pouring water, an East Asian teenage girl with black hair in a bob taking notes, and a Black man teacher with dark brown skin and glasses watching, classroom",
+   "seed": 949025220,
+   "candidate": "32-lab-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "flood-barrier tray test: one pours, one records, a teacher watches",
+   "people": [
+    {
+     "description": "teen boy, brown hair, light skin, pours water",
+     "group": "White"
+    },
+    {
+     "description": "teen girl, black bob, light tan skin, takes notes",
+     "group": "East/Southeast Asian"
+    },
+    {
+     "description": "man teacher, glasses, dark brown skin",
+     "group": "Black"
+    }
+   ],
+   "rejected": [
+    {
+     "candidate": "32-lab-1",
+     "seed": 586896195,
+     "reason": "second pick"
+    },
+    {
+     "candidate": "32-lab-2",
+     "seed": 960381315,
+     "reason": "second pick"
+    }
+   ],
+   "bytes": 14600
   }
  ],
  "no_image": [
@@ -1468,13 +1690,13 @@
   }
  ],
  "tally": {
-  "Black": 10,
-  "South Asian": 4,
-  "Latino/a": 4,
-  "Arab/Middle Eastern": 4,
-  "Native American": 4,
-  "East/Southeast Asian": 2,
+  "Black": 14,
+  "South Asian": 5,
+  "Latino/a": 6,
+  "Arab/Middle Eastern": 5,
+  "Native American": 5,
+  "East/Southeast Asian": 4,
   "unclear": 1,
-  "White": 1
+  "White": 8
  }
 }

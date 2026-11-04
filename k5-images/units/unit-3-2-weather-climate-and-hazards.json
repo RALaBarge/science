@@ -34,6 +34,14 @@
    "caption": "A flood-barrier test: same amount of water each time, then compare how much soil moves."
   },
   {
+   "id": "32-lab",
+   "after": "kit",
+   "kind": "image",
+   "file": "32-lab.webp",
+   "alt": "Illustration of a classroom flood-barrier test: a student pours water onto a soil slope with a grass strip while another records results and a teacher watches.",
+   "caption": "Testing a barrier: the same amount of water each time, then compare how much soil moves."
+  },
+  {
    "id": "g-32-temp",
    "after": "s3",
    "kind": "svg",

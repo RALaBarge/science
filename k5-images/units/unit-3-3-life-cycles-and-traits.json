@@ -18,6 +18,14 @@
    "caption": "The same kind of bean looks different in sun and in shade. Environment changes how a trait shows up."
   },
   {
+   "id": "33-lab",
+   "after": "kit",
+   "kind": "image",
+   "file": "33-lab.webp",
+   "alt": "Illustration of a teacher and two students looking at two bean seedlings in clear cups on a windowsill, one short and green and one paler and taller.",
+   "caption": "Comparing the bean seedlings: only the light changed, so differences are evidence about light."
+  },
+  {
    "id": "g-33-parents",
    "after": "s2",
    "kind": "svg",

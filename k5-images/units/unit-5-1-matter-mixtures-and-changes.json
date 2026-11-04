@@ -18,6 +18,14 @@
    "caption": "The separation kit: magnet for iron, water and a filter for sand, and drying to get the salt back."
   },
   {
+   "id": "51-lab",
+   "after": "kit",
+   "kind": "image",
+   "file": "51-lab.webp",
+   "alt": "Illustration of three people at a science table separating a mixture: one holds a magnet in a plastic bag, one pours water and one holds a funnel steady over a cup.",
+   "caption": "Separating a mixture takes steps: magnet for iron, water to dissolve the salt, a filter for the sand."
+  },
+  {
    "id": "g-51-mass",
    "after": "s5",
    "kind": "svg",
