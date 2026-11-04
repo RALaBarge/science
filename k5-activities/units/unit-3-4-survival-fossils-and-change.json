@@ -55,7 +55,7 @@
      "label": "Fish fossil",
      "bin": "ancient-water",
      "why": "A fish needed water, but this fossil does not tell us if it was a lake or a sea.",
-     "hint": "Does the clue show water, and does it say which kind?"
+     "hint": "what does a fish need, and does the fossil say more?"
     }
    ]
   },
@@ -80,7 +80,7 @@
      "label": "Frog in a pond",
      "bin": "survives-well",
      "why": "A frog survives well in a pond because it needs water.",
-     "hint": "Does this place provide the water this animal needs?"
+     "hint": "does this place give the animal what it needs?"
     },
     {
      "id": "deer-forest",

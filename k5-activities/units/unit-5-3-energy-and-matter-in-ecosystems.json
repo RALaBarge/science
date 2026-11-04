@@ -71,7 +71,7 @@
     {
      "id": "run",
      "icon": "🏃",
-     "label": "A deer running",
+     "label": "The deer's running motion",
      "bin": "energy",
      "why": "Motion uses energy from food. The deer's body is matter, but the motion is energy.",
      "hint": "is this the stuff, or the moving?"
@@ -144,7 +144,7 @@
      "label": "Mushroom on a dead log",
      "bin": "decomposer",
      "why": "A mushroom breaks down dead matter and returns it to the soil.",
-     "hint": "what is it breaking down?"
+     "hint": "does it use light, eat other animals, or feed on something dead?"
     },
     {
      "id": "soilbug",
@@ -152,7 +152,7 @@
      "label": "Microbes in the soil",
      "bin": "decomposer",
      "why": "Microbes break down dead matter. That returns matter to soil and air.",
-     "hint": "what is it breaking down?"
+     "hint": "does it use light, eat other animals, or feed on something dead?"
     }
    ]
   },
@@ -209,7 +209,7 @@
      "label": "Refrigerator",
      "bin": "holds",
      "why": "A refrigerator only keeps food cold. It does not make food energy.",
-     "hint": "does it capture sunlight, or only keep food?"
+     "hint": "did it make the food energy?"
     },
     {
      "id": "package",
@@ -217,7 +217,7 @@
      "label": "Store package",
      "bin": "holds",
      "why": "A package only holds food. Food energy started as sunlight.",
-     "hint": "does it capture sunlight, or only hold food?"
+     "hint": "did it make the food energy?"
     }
    ]
   },
@@ -271,7 +271,7 @@
     {
      "id": "foxrun",
      "icon": "🏃",
-     "label": "A fox running",
+     "label": "The fox's running motion",
      "bin": "ends",
      "why": "Motion is where food energy ends up. It is not reused like matter.",
      "hint": "is this stuff, or the ability to cause change?"

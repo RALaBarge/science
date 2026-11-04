@@ -181,8 +181,8 @@
      "icon": "📃",
      "label": "Wax paper",
      "bin": "blurry",
-     "why": "Wax paper lets some light through, but it looks blurry.",
-     "hint": "Look at how cloudy this material is."
+     "why": "Wax paper makes the beam look cloudy and blurry.",
+     "hint": "look at how the beam looks after it passes."
     },
     {
      "id": "cardboard",

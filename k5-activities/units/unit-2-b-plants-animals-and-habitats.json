@@ -39,7 +39,7 @@
      "label": "9 clips tall, strong",
      "bin": "sun-water",
      "why": "The beans with sun and water reached 9 paper clips on day 14 and stayed green.",
-     "hint": "did this plant get everything it needs?"
+     "hint": "does it look tall and healthy?"
     },
     {
      "id": "pale",
@@ -47,7 +47,7 @@
      "label": "Pale yellow, thin",
      "bin": "dark-water",
      "why": "Without sun the beans still grew, but they were pale yellow and thin.",
-     "hint": "a plant can grow and still look unhealthy. What is missing?"
+     "hint": "what does a pale yellow, thin plant tell you?"
     },
     {
      "id": "flop",
@@ -55,23 +55,23 @@
      "label": "Flops over, 2 leaves",
      "bin": "dark-water",
      "why": "The beans grown in the dark flopped over and had only 2 leaves.",
-     "hint": "which plant looks weak but still grew?"
+     "hint": "look at the leaves and how the plant stands."
     },
     {
      "id": "one",
      "icon": "🔹",
-     "label": "Stayed 1 clip tall",
+     "label": "In the sun, stayed 1 clip",
      "bin": "sun-dry",
      "why": "With no water the beans stayed 1 paper clip tall.",
-     "hint": "did this plant grow at all? What could it not drink?"
+     "hint": "did this plant grow at all?"
     },
     {
      "id": "brown",
      "icon": "🟤",
-     "label": "Dry brown",
+     "label": "In the sun, dry brown",
      "bin": "sun-dry",
      "why": "Without water the beans dried out and turned brown.",
-     "hint": "what does a dry brown plant not have?"
+     "hint": "look at the color and how dry it is."
     }
    ]
   },

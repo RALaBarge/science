@@ -83,22 +83,22 @@
    ],
    "reads": [
     {
-     "q": "Which one kept the sand from moving the most?",
+     "q": "Which guard let the least sand move?",
      "choices": [
       {
        "label": "Stones",
        "ok": false,
-       "why": "Look again at the bars. Stones moved the sand 1 to 2 finger widths. Is there a guard with smaller bars?"
+       "why": "Add up the three trials. Stones moved sand 2, 1 and 2 finger widths, 5 in all. Is there a guard with a smaller total?"
       },
       {
        "label": "Grass",
        "ok": true,
-       "why": "Grass moved the sand only 1 to 2 finger widths, the smallest bars of all. No guard moved it 4 to 5."
+       "why": "Grass moved sand 1, 1 and 2 finger widths, only 4 in all, the smallest total. The no-guard tray moved sand 4 to 5 finger widths each time."
       },
       {
        "label": "Paper barrier",
        "ok": false,
-       "why": "The paper barrier moved the sand 2 to 3 finger widths. Look for the smallest bars."
+       "why": "The paper barrier moved sand 3, 3 and 2, 8 in all. Look for the smallest total."
       }
      ]
     },
@@ -111,7 +111,7 @@
        "why": "Trials are not for using things up. Think about what one lucky or unlucky try could look like."
       },
       {
-       "label": "One try can be a fluke; three show what usually happens",
+       "label": "One try can be an accident; three show what usually happens",
        "ok": true,
        "why": "Yes. Stones moved sand 2, 1 and 2 finger widths. The tries are close, so we can trust the pattern."
       },
@@ -145,17 +145,17 @@
       {
        "label": "no guard moved the least sand.",
        "ok": false,
-       "why": "No guard moved the sand 4 to 5 finger widths, the most."
+       "why": "The no-guard tray moved the most sand, 13 finger widths in all."
       },
       {
-       "label": "grass moved the least sand, 1 to 2 finger widths.",
+       "label": "grass moved the least sand, 4 finger widths in all 3 trials.",
        "ok": true,
-       "why": "Yes. That matches the grass bars."
+       "why": "Yes. Grass 4, stones 5, paper barrier 8, no guard 13."
       },
       {
        "label": "paper barrier moved the least sand.",
        "ok": false,
-       "why": "The paper barrier moved the sand 2 to 3 finger widths. Another guard moved less."
+       "why": "The paper barrier moved sand 8 finger widths in all. Another guard moved less."
       }
      ]
     },
@@ -170,7 +170,7 @@
       {
        "label": "stones do nothing.",
        "ok": false,
-       "why": "Stones moved the sand less than no guard did, so they helped some."
+       "why": "Stones moved sand 5 in all against 13 with no guard, so they helped some."
       },
       {
        "label": "sand never moves.",
