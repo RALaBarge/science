@@ -1,6 +1,6 @@
 # K–5 activities: design
 
-Status (2026-11-04): two engines built, Big Sort and Fair Test Lab. 17 of 23 units have an activity. Big Sort: K-B, K-C, 1-A, 1-B, 2-B, 3.2, 3.3, 3.4, 4.3, 4.4, 5.1, 5.3, 5.4. Fair Test Lab (backup data from the page, one or more rounds): 2-A, 2-C, 4.1, 4.5. No activity yet: K2.0, K-A, 1-C, 3.1, 4.2, 5.2. Push Arena, Path & Signal, Graph & Sky and Scene & Web are not built, and further games are on hold until the existing ones get a check that kids find them fun. Units 1-A, 2-B, 3.2, 3.4, 4.3, 4.4, 5.1, 5.3 and 5.4 use Big Sort where the table below names another engine; they are stand-ins until a richer game is decided.
+Status (2026-11-04): all 23 units have an activity, on six engines. Big Sort: K-B, K-C, 1-A, 1-B, 2-B, 3.2, 3.3, 3.4, 4.3, 4.4, 5.1, 5.3, 5.4. Fair Test Lab (the page's backup data): 2-A, 2-C, 4.1, 4.5. Push Arena: K-A, 3.1. Graph & Sky: 1-C, 5.2. Path & Signal: 4.2. Scene & Web: K2.0 (a notice-and-ask activity; the engine does not yet build a web). Engines and configs for the last six were drafted by Kimi and corrected; tests play every one in a browser at 420px. Weakest: K2.0 (thin), the Big Sort units the table below gave to other engines (1-A, 2-B, 3.2, 3.4, 4.3, 4.4, 5.1, 5.3, 5.4 use Big Sort as a stand-in), and the 5.2 gravity round. Not yet checked: whether kids find them fun, and the second-reader review of the reasoning lines.
 
 ## Goal
 

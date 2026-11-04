@@ -523,6 +523,8 @@ figure.k5i details.k5i-alt summary{cursor:pointer;padding:2px 0}
 
 
 
+
+
 <!--k5-activity-start-->
 <section class="sec lesson-game-sec" id="activity"><div><p class="kicker">After the lesson · Activity</p><h2>Play: Weather, Climate, and Hazards Sort</h2></div><p class="idea">Sort short-term weather, long-term climate, and what reduces hazard harm.</p><div id="k5-activity"></div>
 <script>
@@ -575,28 +577,29 @@ function k5BigSort(host, cfg) {
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   root.innerHTML = '<style>' +
     ':host{display:block}' +
-    '.box{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:16px;color:var(--ink);font-family:var(--font-body,system-ui,sans-serif)}' +
+    '.box{background:var(--surface, #fff);border:1.5px solid var(--line, #bbb);border-radius:14px;padding:16px;color:var(--ink, #111);font-family:var(--font-body,system-ui,sans-serif)}' +
     '.top{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;justify-content:space-between;margin-bottom:6px}' +
-    '.top b{font-size:1.05rem}.prog{color:var(--muted);font-size:.9rem}' +
+    '.top b{font-size:1.05rem}.prog{color:var(--muted, #555);font-size:.9rem}' +
     '.prompt{margin:4px 0 12px;font-size:1.05rem}' +
-    '.tray{display:flex;flex-wrap:wrap;gap:8px;min-height:56px;margin-bottom:12px;padding:10px;border-radius:10px;background:var(--surface-2)}' +
-    '.card{font:inherit;color:inherit;display:flex;align-items:center;gap:8px;padding:8px 12px;min-height:44px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);cursor:grab;text-align:left}' +
+    '.tray{display:flex;flex-wrap:wrap;gap:8px;min-height:56px;margin-bottom:12px;padding:10px;border-radius:10px;background:var(--surface-2, #eef0f3)}' +
+    '.card{font:inherit;color:inherit;display:flex;align-items:center;gap:8px;padding:8px 12px;min-height:44px;border-radius:10px;border:1.5px solid var(--line, #bbb);background:var(--surface, #fff);cursor:grab;text-align:left}' +
     '.card .ic{font-size:1.5rem;line-height:1}' +
-    '.card[aria-pressed="true"]{outline:3px solid var(--beam);outline-offset:1px}' +
-    '.card.nope{border-color:var(--red)}' +
+    '.card[aria-pressed="true"]{outline:3px solid var(--beam, #f2a900);outline-offset:1px}' +
+    '.card.nope{border-color:var(--red, #d93036)}' +
     '.card.nope:not(.still){animation:sh .3s}' +
     '@keyframes sh{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}' +
     '.bins{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}' +
-    '.bin{font:inherit;color:inherit;text-align:left;border:2px dashed var(--line);border-radius:12px;padding:10px;min-height:96px;background:var(--surface);cursor:pointer}' +
-    '.bin:hover,.bin.over{border-color:var(--beam);background:var(--surface-2)}' +
+    '.bin{text-align:left;border:2px dashed var(--line, #bbb);border-radius:12px;padding:10px;min-height:96px;background:var(--surface, #fff);cursor:pointer}' +
+    '.put{font:inherit;color:inherit;margin-top:8px;padding:8px 12px;min-height:44px;border-radius:10px;border:1.5px solid var(--line, #bbb);background:var(--surface-2, #eef0f3);cursor:pointer}' +
+    '.bin:hover,.bin.over{border-color:var(--beam, #f2a900);background:var(--surface-2, #eef0f3)}' +
     '.bin h4{margin:0 0 6px;font-size:1rem}' +
     '.bin ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}' +
-    '.bin li{background:var(--surface-2);border-radius:8px;padding:3px 8px;font-size:.92rem;border:1.5px solid var(--green)}' +
-    '.msg{margin-top:12px;min-height:2.6em;padding:8px 12px;border-radius:10px;background:var(--surface-2);font-size:1rem}' +
-    '.msg.ok{border-left:5px solid var(--green)}.msg.bad{border-left:5px solid var(--red)}' +
-    '.btn{font:inherit;font-weight:700;padding:9px 16px;min-height:44px;border-radius:10px;border:0;background:var(--beam);color:var(--beam-ink);cursor:pointer;margin-top:10px}' +
-    '.done{margin-top:12px;padding:12px;border-radius:10px;border:1.5px solid var(--green)}' +
-    '.done p{margin:6px 0}.note{color:var(--muted);font-size:.88rem;margin-top:10px}' +
+    '.bin li{background:var(--surface-2, #eef0f3);border-radius:8px;padding:3px 8px;font-size:.92rem;border:1.5px solid var(--green, #25904f)}' +
+    '.msg{margin-top:12px;min-height:2.6em;padding:8px 12px;border-radius:10px;background:var(--surface-2, #eef0f3);font-size:1rem}' +
+    '.msg.ok{border-left:5px solid var(--green, #25904f)}.msg.bad{border-left:5px solid var(--red, #d93036)}' +
+    '.btn{font:inherit;font-weight:700;padding:9px 16px;min-height:44px;border-radius:10px;border:0;background:var(--beam, #f2a900);color:var(--beam-ink, #1a1400);cursor:pointer;margin-top:10px}' +
+    '.done{margin-top:12px;padding:12px;border-radius:10px;border:1.5px solid var(--green, #25904f)}' +
+    '.done p{margin:6px 0}.note{color:var(--muted, #555);font-size:.88rem;margin-top:10px}' +
     '@media (prefers-reduced-motion:reduce){.card.nope{animation:none}}' +
     '</style><div class="box"><div class="top"><b></b><span class="prog" aria-live="polite"></span></div>' +
     '<p class="prompt"></p><div class="tray" role="group" aria-label="Cards to sort"></div>' +
@@ -606,6 +609,16 @@ function k5BigSort(host, cfg) {
   q('.top b').textContent = cfg.title;
   q('.note').textContent = cfg.note || '';
 
+  /* "Copy what you found": puts the text on the clipboard, or shows it selected if the browser refuses. */
+  function copyBtn(text) {
+    const wrap = document.createElement('span');
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = 'Copy what you found';
+    b.addEventListener('click', () => {
+      const fallback = () => { const t = document.createElement('textarea'); t.value = text; t.readOnly = true; t.setAttribute('aria-label', 'What you found, to copy'); t.style.cssText = 'display:block;width:100%;margin-top:8px;min-height:5em'; wrap.appendChild(t); t.focus(); t.select(); };
+      try { navigator.clipboard.writeText(text).then(() => { b.textContent = 'Copied'; }, fallback); } catch (e) { fallback(); }
+    });
+    wrap.appendChild(b); return wrap;
+  }
   let round = 0, stage = 0, picked = null, misses = {}, rec = [];
   const placed = {};
 
@@ -622,6 +635,7 @@ function k5BigSort(host, cfg) {
     q('.prompt').textContent = st.prompt;
     q('.msg').className = 'msg'; q('.msg').textContent = 'Tap a card, then tap its bin.';
     const order = k5Order(st.cards.map((c) => c.id), cfg.id + ':' + stage + ':' + round);
+    const refocus = round > 1 || stage > 0;   /* after Next round or Play again, move focus to the first new control */
     const tray = q('.tray'); tray.innerHTML = '';
     order.forEach((id) => {
       const c = st.cards.find((x) => x.id === id);
@@ -635,15 +649,17 @@ function k5BigSort(host, cfg) {
     });
     const bins = q('.bins'); bins.innerHTML = '';
     st.bins.forEach((bn) => {
-      const el = document.createElement('button');
-      el.type = 'button'; el.className = 'bin'; el.dataset.bin = bn.id;
-      el.innerHTML = '<h4>' + esc((bn.icon ? bn.icon + ' ' : '') + bn.label) + '</h4><ul></ul>';
-      el.addEventListener('click', () => drop(bn.id));
+      const el = document.createElement('div');
+      el.className = 'bin'; el.dataset.bin = bn.id;
+      el.setAttribute('role', 'group'); el.setAttribute('aria-labelledby', 'bh-' + stage + '-' + bn.id);
+      el.innerHTML = '<h4 id="bh-' + stage + '-' + bn.id + '">' + esc((bn.icon ? bn.icon + ' ' : '') + bn.label) + '</h4><ul aria-live="off"></ul><button type="button" class="put">Put card here</button>';
+      el.addEventListener('click', () => drop(bn.id));   /* the whole box and its button both work; the button is the keyboard route */
       el.addEventListener('dragover', (e) => { e.preventDefault(); el.classList.add('over'); });
       el.addEventListener('dragleave', () => el.classList.remove('over'));
       el.addEventListener('drop', (e) => { e.preventDefault(); el.classList.remove('over'); drop(bn.id); });
       bins.appendChild(el);
     });
+    if (refocus) { const c0 = root.querySelector('.card'); if (c0) c0.focus(); }
   }
   function pick(id) {
     picked = id;
@@ -684,6 +700,7 @@ function k5BigSort(host, cfg) {
     const b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = 'Play again';
     b.addEventListener('click', () => start());
     d.appendChild(b);
+    d.appendChild(copyBtn(cfg.title + ': ' + cfg.summary + (hard.length ? ' Worth a second look: ' + hard.join('; ') + '.' : '')));
     q('.end').innerHTML = ''; q('.end').appendChild(d);
     q('.prog').textContent = 'Done';
   }
@@ -691,7 +708,7 @@ function k5BigSort(host, cfg) {
 }
 
 
-k5BigSort(document.getElementById("k5-activity"), {"id":"3-2-sort","title":"Weather, Climate, and Hazards Sort","intro":"Sort short-term weather, long-term climate, and what reduces hazard harm.","note":"This is a sorting model, and the real rain gauge, wind vane, graph, and flood-barrier test still count.","summary":"Weather is short-term and climate is the long-term pattern, including Detroit's cold winters, warm summers, and Great Lakes effects. A flood barrier can reduce harm, but it cannot remove all risk.","stages":[{"prompt":"Is this one short-term weather event, or a long-term climate pattern?","bins":[{"id":"weather","icon":"🌦️","label":"Weather (short-term)"},{"id":"climate","icon":"📅","label":"Climate (long-term)"}],"cards":[{"id":"afternoon-rain","icon":"🌧️","label":"This afternoon's rain-gauge reading","bin":"weather","why":"One rain-gauge reading is weather from a short time, not many years.","hint":"Is this one measurement, or a pattern over many years?"},{"id":"one-cold-day","icon":"🥶","label":"One cold day in July","bin":"weather","why":"One day is weather. One cold day does not tell you the climate.","hint":"Can one day show what is typical over many years?"},{"id":"wind-today","icon":"🧭","label":"The wind vane's direction today","bin":"weather","why":"Today's wind is a short-term condition of the air.","hint":"Is this about today, or about many years?"},{"id":"lake-effect-today","icon":"🌨️","label":"Heavy lake-effect snow falling today","bin":"weather","why":"Snow falling today is weather, even when the Great Lakes help cause it.","hint":"Is this snow happening now, or the usual pattern over many years?"},{"id":"july-typical","icon":"📊","label":"Detroit's typical July high, 83°F","bin":"climate","why":"83°F is the many-year typical July high, so it describes climate.","hint":"Does 'typical' here mean one day, or many years?"},{"id":"january-typical","icon":"🗓️","label":"Detroit's typical January high, 32°F","bin":"climate","why":"The typical January high over many years is climate, not one day's weather.","hint":"Is a many-year typical high one day's weather?"},{"id":"lakes-usual","icon":"🏞️","label":"Great Lakes shores milder most years","bin":"climate","why":"Milder conditions near the lakes, most years, are a long-term climate pattern.","hint":"Does 'most years' mean one storm, or a long pattern?"}]},{"prompt":"Use Detroit's typical daily high temperatures. Is this a warm-season month or a cold-season month?","bins":[{"id":"warm","icon":"☀️","label":"Warm-season month"},{"id":"cold","icon":"❄️","label":"Cold-season month"}],"cards":[{"id":"july","icon":"📆","label":"July, 83°F","bin":"warm","why":"83°F is the highest typical monthly high in the Detroit table.","hint":"Compare this temperature with the lowest months in the table."},{"id":"august","icon":"📆","label":"August, 81°F","bin":"warm","why":"81°F is next to July's high and is one of the tall summer bars.","hint":"Is this near the highest temperatures in the table, or the lowest?"},{"id":"june","icon":"📆","label":"June, 79°F","bin":"warm","why":"79°F groups with the high summer months, not the low winter ones.","hint":"Which end of the table is 79°F closer to?"},{"id":"january","icon":"🗓️","label":"January, 32°F","bin":"cold","why":"32°F is the lowest typical monthly high in the Detroit table.","hint":"Compare this temperature with July in the same table."},{"id":"february","icon":"🗓️","label":"February, 35°F","bin":"cold","why":"35°F is close to January and is one of the short winter bars.","hint":"Is 35°F near the lowest highs, or near 83°F?"},{"id":"december","icon":"🗓️","label":"December, 38°F","bin":"cold","why":"38°F groups with the low winter months, not the high summer ones.","hint":"Which months in the table have highs this low?"}]},{"prompt":"Does this reduce harm from a weather hazard, or only measure the weather?","bins":[{"id":"reduces","icon":"🛡️","label":"Reduces hazard harm"},{"id":"measures","icon":"📏","label":"Measures weather"}],"cards":[{"id":"grass-model","icon":"🌱","label":"Grass model: 2 spoonfuls moved","bin":"reduces","why":"Two spoonfuls is less than 8 with no barrier, so the grass model reduced harm.","hint":"What was this grass for in the slope test?"},{"id":"cardboard-fence","icon":"🧱","label":"Cardboard fence: 5 spoonfuls moved","bin":"reduces","why":"Five spoonfuls is less than 8 with no barrier, so the fence reduced harm. Some soil still moved.","hint":"Compare these spoonfuls with the no-barrier test."},{"id":"rain-gauge","icon":"🥤","label":"A cup rain gauge","bin":"measures","why":"A rain gauge measures how deep the rainwater is. It does not block a flood.","hint":"Does this cup record rain, or block flood water?"},{"id":"wind-vane","icon":"🚩","label":"A paper wind vane","bin":"measures","why":"A wind vane points into the wind and shows where the wind comes from.","hint":"Does this arrow record wind, or block a storm?"},{"id":"thermometer","icon":"🌡️","label":"A thermometer reading","bin":"measures","why":"Temperature is a weather measurement, not a flood barrier.","hint":"Does this tool record hot and cold, or slow flood water?"},{"id":"weather-map","icon":"🗺️","label":"A weather-map symbol for snow","bin":"measures","why":"Map symbols report weather such as snow. They do not hold soil in place.","hint":"Do these symbols record conditions, or slow flood water?"}]}]});
+k5BigSort(document.getElementById("k5-activity"), {"id":"3-2-sort","title":"Weather, Climate, and Hazards Sort","intro":"Sort short-term weather, long-term climate, and what reduces hazard harm.","note":"This is a sorting model, and the real rain gauge, wind vane, graph, and flood-barrier test still count.","summary":"Weather is short-term and climate is the long-term pattern, including Detroit's cold winters, warm summers, and Great Lakes effects. A flood barrier can reduce harm, but it cannot remove all risk.","stages":[{"prompt":"Is this one short-term weather event, or a long-term climate pattern?","bins":[{"id":"weather","icon":"🌦️","label":"Weather (short-term)"},{"id":"climate","icon":"📅","label":"Climate (long-term)"}],"cards":[{"id":"afternoon-rain","icon":"🌧️","label":"This afternoon's rain-gauge reading","bin":"weather","why":"One rain-gauge reading is weather from a short time, not many years.","hint":"Is this one measurement, or a pattern over many years?"},{"id":"one-cold-day","icon":"🥶","label":"One cold day in July","bin":"weather","why":"One day is weather. One cold day does not tell you the climate.","hint":"Can one day show what is typical over many years?"},{"id":"wind-today","icon":"🧭","label":"The wind vane's direction today","bin":"weather","why":"Today's wind is a short-term condition of the air.","hint":"Is this about today, or about many years?"},{"id":"lake-effect-today","icon":"🌨️","label":"Heavy lake-effect snow falling today","bin":"weather","why":"Snow falling today is weather, even when the Great Lakes help cause it.","hint":"Is this snow happening now, or the usual pattern over many years?"},{"id":"july-typical","icon":"📊","label":"Detroit's typical July high, 83°F","bin":"climate","why":"83°F is the many-year typical July high, so it describes climate.","hint":"Does 'typical' here mean one day, or many years?"},{"id":"january-typical","icon":"🗓️","label":"Detroit's typical January high, 32°F","bin":"climate","why":"The typical January high over many years is climate, not one day's weather.","hint":"Is a many-year typical high one day's weather?"},{"id":"lakes-usual","icon":"🏞️","label":"Great Lakes shores milder most years","bin":"climate","why":"Milder conditions near the lakes, most years, are a long-term climate pattern.","hint":"Does 'most years' mean one storm, or a long pattern?"}]},{"prompt":"Use Detroit's typical daily high temperatures. Is this a warm-season month or a cold-season month?","bins":[{"id":"warm","icon":"☀️","label":"Warm-season month"},{"id":"cold","icon":"❄️","label":"Cold-season month"}],"cards":[{"id":"july","icon":"📆","label":"July, 83°F","bin":"warm","why":"83°F is the highest typical monthly high in the Detroit table.","hint":"Compare this temperature with the lowest months in the table."},{"id":"august","icon":"📆","label":"August, 81°F","bin":"warm","why":"81°F is next to July's high and is one of the tall summer bars.","hint":"Is this near the highest temperatures in the table, or the lowest?"},{"id":"june","icon":"📆","label":"June, 79°F","bin":"warm","why":"79°F groups with the high summer months, not the low winter ones.","hint":"Which end of the table is 79°F closer to?"},{"id":"january","icon":"🗓️","label":"January, 32°F","bin":"cold","why":"32°F is the lowest typical monthly high in the Detroit table.","hint":"Compare this temperature with July in the same table."},{"id":"february","icon":"🗓️","label":"February, 35°F","bin":"cold","why":"35°F is close to January and is one of the short winter bars.","hint":"Is 35°F near the lowest highs, or near 83°F?"},{"id":"december","icon":"🗓️","label":"December, 38°F","bin":"cold","why":"38°F groups with the low winter months, not the high summer ones.","hint":"Which months in the table have highs this low?"}]},{"prompt":"Does this reduce harm from a weather hazard, or only measure the weather?","bins":[{"id":"reduces","icon":"🛡️","label":"Reduces hazard harm"},{"id":"measures","icon":"📏","label":"Reports or measures weather"}],"cards":[{"id":"grass-model","icon":"🌱","label":"Grass model: 2 spoonfuls moved","bin":"reduces","why":"Two spoonfuls is less than 8 with no barrier, so the grass model reduced harm.","hint":"What was this grass for in the slope test?"},{"id":"cardboard-fence","icon":"🧱","label":"Cardboard fence: 5 spoonfuls moved","bin":"reduces","why":"Five spoonfuls is less than 8 with no barrier, so the fence reduced harm. Some soil still moved.","hint":"Compare these spoonfuls with the no-barrier test."},{"id":"rain-gauge","icon":"🥤","label":"A cup rain gauge","bin":"measures","why":"A rain gauge measures how deep the rainwater is. It does not block a flood.","hint":"Does this cup record rain, or block flood water?"},{"id":"wind-vane","icon":"🚩","label":"A paper wind vane","bin":"measures","why":"A wind vane points into the wind and shows where the wind comes from.","hint":"Does this arrow record wind, or block a storm?"},{"id":"thermometer","icon":"🌡️","label":"A thermometer reading","bin":"measures","why":"Temperature is a weather measurement, not a flood barrier.","hint":"Does this tool record hot and cold, or slow flood water?"},{"id":"weather-map","icon":"🗺️","label":"A weather-map symbol for snow","bin":"measures","why":"Map symbols report weather such as snow. They do not hold soil in place.","hint":"Do these symbols record conditions, or slow flood water?"}]}]});
 </script>
 </section>
 <!--k5-activity-end-->

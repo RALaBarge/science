@@ -94,39 +94,39 @@ function k5PushArena(host, cfg) {
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   root.innerHTML = '<style>' +
     ':host{display:block}' +
-    '.box{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:16px;color:var(--ink);font-family:var(--font-body,system-ui,sans-serif)}' +
+    '.box{background:var(--surface, #fff);border:1.5px solid var(--line, #bbb);border-radius:14px;padding:16px;color:var(--ink, #111);font-family:var(--font-body,system-ui,sans-serif)}' +
     '.top{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;justify-content:space-between;margin-bottom:6px}' +
-    '.top b{font-size:1.05rem}.prog{color:var(--muted);font-size:.9rem}' +
+    '.top b{font-size:1.05rem}.prog{color:var(--muted, #555);font-size:.9rem}' +
     '.q{margin:4px 0 8px;font-size:1.05rem;font-weight:700}' +
-    '.held{margin:6px 0 8px;padding:8px 12px;border-radius:10px;background:var(--surface-2);font-size:.92rem}' +
-    '.track{position:relative;height:74px;margin:16px 0 28px;border-bottom:3px solid var(--line)}' +
+    '.held{margin:6px 0 8px;padding:8px 12px;border-radius:10px;background:var(--surface-2, #eef0f3);font-size:.92rem}' +
+    '.track{position:relative;height:74px;margin:16px 0 28px;border-bottom:3px solid var(--line, #bbb)}' +
     '.obj{position:absolute;bottom:6px;transform:translateX(-50%);font-size:1.7rem;line-height:1;transition:left .8s ease-in-out}' +
-    '.tick{position:absolute;bottom:-20px;transform:translateX(-50%);font-size:.72rem;color:var(--muted)}' +
-    '.tick.mark{color:var(--ink);font-weight:700}' +
-    '.dot{position:absolute;bottom:4px;width:9px;height:9px;border-radius:50%;background:var(--beam);transform:translateX(-50%)}' +
-    '.dot.new{background:var(--green)}' +
-    '.stopline{position:absolute;bottom:0;height:100%;border-left:3px dashed var(--red)}' +
+    '.tick{position:absolute;bottom:-20px;transform:translateX(-50%);font-size:.72rem;color:var(--muted, #555)}' +
+    '.tick.mark{color:var(--ink, #111);font-weight:700}' +
+    '.dot{position:absolute;bottom:4px;width:9px;height:9px;border-radius:50%;background:var(--beam, #f2a900);transform:translateX(-50%)}' +
+    '.dot.new{background:var(--green, #25904f)}' +
+    '.stopline{position:absolute;bottom:0;height:100%;border-left:3px dashed var(--red, #d93036)}' +
     '.stopper{position:absolute;bottom:6px;transform:translateX(-50%);font-size:1.5rem}' +
-    '.farrow{position:absolute;bottom:10px;color:var(--beam);font-weight:700;line-height:1}' +
+    '.farrow{position:absolute;bottom:10px;color:var(--beam, #f2a900);font-weight:700;line-height:1}' +
     '.farrow.l{right:53%;transform:scaleX(-1)}.farrow.r{left:53%}' +
     '.row{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}' +
     '.step{margin:10px 0 6px;font-weight:700}' +
-    '.opt{font:inherit;color:inherit;display:flex;align-items:center;gap:8px;padding:8px 12px;min-height:44px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;text-align:left}' +
-    '.opt:hover{border-color:var(--beam)}.opt .ic{font-size:1.4rem;line-height:1}' +
-    '.opt[disabled]{opacity:.65;cursor:default}.opt.right{border-color:var(--green)}.opt[aria-pressed="true"]{outline:3px solid var(--beam);outline-offset:1px}' +
+    '.opt{font:inherit;color:inherit;display:flex;align-items:center;gap:8px;padding:8px 12px;min-height:44px;border-radius:10px;border:1.5px solid var(--line, #bbb);background:var(--surface, #fff);cursor:pointer;text-align:left}' +
+    '.opt:hover{border-color:var(--beam, #f2a900)}.opt .ic{font-size:1.4rem;line-height:1}' +
+    '.opt[disabled]{opacity:.65;cursor:default}.opt.right{border-color:var(--green, #25904f)}.opt[aria-pressed="true"]{outline:3px solid var(--beam, #f2a900);outline-offset:1px}' +
     '.data{margin:6px 0}' +
-    '.row2{display:flex;align-items:center;gap:8px;margin:4px 0;padding:5px 10px;border-radius:8px;background:var(--surface-2);font-size:.95rem}' +
-    '.rl{flex:1}.bar{height:14px;min-width:4px;border-radius:4px;background:var(--beam)}.val{font-weight:700}' +
+    '.row2{display:flex;align-items:center;gap:8px;margin:4px 0;padding:5px 10px;border-radius:8px;background:var(--surface-2, #eef0f3);font-size:.95rem}' +
+    '.rl{flex:1}.bar{height:14px;min-width:4px;border-radius:4px;background:var(--beam, #f2a900)}.val{font-weight:700}' +
     '.chips{display:flex;flex-wrap:wrap;gap:4px}' +
-    '.chip{padding:1px 8px;border-radius:999px;border:1.5px solid var(--line);font-size:.85rem;font-weight:700}' +
-    '.chip.g{border-color:var(--green)}.chip.x{border-color:var(--red)}' +
-    '.finding{margin:8px 0;padding:8px 12px;border-left:5px solid var(--green);background:var(--surface-2);border-radius:8px;font-size:.95rem}' +
-    '.msg{margin-top:12px;min-height:2.6em;padding:8px 12px;border-radius:10px;background:var(--surface-2);font-size:1rem}' +
-    '.msg.ok{border-left:5px solid var(--green)}.msg.bad{border-left:5px solid var(--red)}' +
-    '.btn{font:inherit;font-weight:700;padding:9px 16px;min-height:44px;border-radius:10px;border:0;background:var(--beam);color:var(--beam-ink);cursor:pointer;margin:10px 10px 0 0}' +
-    '.done{margin-top:12px;padding:12px;border-radius:10px;border:1.5px solid var(--green)}' +
+    '.chip{padding:1px 8px;border-radius:999px;border:1.5px solid var(--line, #bbb);font-size:.85rem;font-weight:700}' +
+    '.chip.g{border-color:var(--green, #25904f)}.chip.x{border-color:var(--red, #d93036)}' +
+    '.finding{margin:8px 0;padding:8px 12px;border-left:5px solid var(--green, #25904f);background:var(--surface-2, #eef0f3);border-radius:8px;font-size:.95rem}' +
+    '.msg{margin-top:12px;min-height:2.6em;padding:8px 12px;border-radius:10px;background:var(--surface-2, #eef0f3);font-size:1rem}' +
+    '.msg.ok{border-left:5px solid var(--green, #25904f)}.msg.bad{border-left:5px solid var(--red, #d93036)}' +
+    '.btn{font:inherit;font-weight:700;padding:9px 16px;min-height:44px;border-radius:10px;border:0;background:var(--beam, #f2a900);color:var(--beam-ink, #1a1400);cursor:pointer;margin:10px 10px 0 0}' +
+    '.done{margin-top:12px;padding:12px;border-radius:10px;border:1.5px solid var(--green, #25904f)}' +
     '.done p{margin:6px 0}.claimline{font-weight:700}' +
-    '.note{color:var(--muted);font-size:.88rem;margin-top:10px}' +
+    '.note{color:var(--muted, #555);font-size:.88rem;margin-top:10px}' +
     '@media (prefers-reduced-motion:reduce){.obj{transition:none!important}}' +
     '</style><div class="box"><div class="top"><b></b><span class="prog" aria-live="polite"></span></div>' +
     '<p class="q"></p><div class="held"></div><div class="track" aria-hidden="true"></div>' +
@@ -146,7 +146,17 @@ function k5PushArena(host, cfg) {
     return a;
   };
 
-  let ri = 0, replay = 0, slips = 0, done = {}, busy = false;
+  /* "Copy what you found": puts the text on the clipboard, or shows it selected if the browser refuses. */
+  function copyBtn(text) {
+    const wrap = document.createElement('span');
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = 'Copy what you found';
+    b.addEventListener('click', () => {
+      const fallback = () => { const t = document.createElement('textarea'); t.value = text; t.readOnly = true; t.setAttribute('aria-label', 'What you found, to copy'); t.style.cssText = 'display:block;width:100%;margin-top:8px;min-height:5em'; wrap.appendChild(t); t.focus(); t.select(); };
+      try { navigator.clipboard.writeText(text).then(() => { b.textContent = 'Copied'; }, fallback); } catch (e) { fallback(); }
+    });
+    wrap.appendChild(b); return wrap;
+  }
+  let ri = 0, replay = 0, slips = 0, done = {}, busy = false, started = false;
   const found = [];
 
   const effRound = () => { const r = cfg.rounds[ri]; return (replay % 2 === 1 && r.alt) ? Object.assign({}, r, r.alt) : r; };
@@ -183,6 +193,8 @@ function k5PushArena(host, cfg) {
       b.dataset.oid = o.id; b.setAttribute('aria-pressed', 'false');
       row.appendChild(b);
     });
+    if (started) { const o0 = row.querySelector('.opt'); if (o0) o0.focus(); }
+    started = true;
   }
 
   function select(r, o, b) {
@@ -211,6 +223,7 @@ function k5PushArena(host, cfg) {
       }));
     });
     main.appendChild(box);
+    if (row.firstChild) row.firstChild.focus();
   }
 
   function releaseBtn(r, o) {
@@ -365,6 +378,7 @@ function k5PushArena(host, cfg) {
       stepRead(r, i + 1);
     })));
     main.appendChild(box);
+    if (row.firstChild) row.firstChild.focus();
   }
 
   function endRound(r) {
@@ -395,6 +409,7 @@ function k5PushArena(host, cfg) {
       claimPart(i + 1, parts);
     })));
     main.appendChild(box);
+    if (row.firstChild) row.firstChild.focus();
   }
 
   function donePanel(parts) {
@@ -403,6 +418,7 @@ function k5PushArena(host, cfg) {
     d.innerHTML = '<b>What you found</b>' + found.map((f) => '<p>' + esc(f) + '</p>').join('') +
       '<p class="claimline">' + esc(parts.join('. ') + '.') + '</p><p>' + esc(cfg.summary) + '</p>' +
       (slips ? '<p>Worth a second look: ' + slips + ' choice' + (slips > 1 ? 's' : '') + ' needed another try.</p>' : '<p>Every prediction and choice was right on the first try.</p>');
+    d.appendChild(copyBtn(found.join(' ') + ' ' + parts.join('. ') + '. ' + cfg.summary));
     d.appendChild(btn('btn', 'Play again', () => { replay++; ri = 0; slips = 0; found.length = 0; round(); }));
     q('.end').appendChild(d);
     q('.prog').textContent = 'Done';

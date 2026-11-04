@@ -84,17 +84,17 @@
    ]
   },
   {
-   "prompt": "Did this stay the same substance, or did a new substance form?",
+   "prompt": "Did a new substance form, or is every substance still what it was?",
    "bins": [
     {
      "id": "same-substance",
      "icon": "🔁",
-     "label": "Same substance"
+     "label": "No new substance"
     },
     {
      "id": "new-substance",
      "icon": "✨",
-     "label": "New substance"
+     "label": "A new substance formed"
     }
    ],
    "cards": [
@@ -133,10 +133,10 @@
     {
      "id": "trail-mix",
      "icon": "🥜",
-     "label": "Trail mix picked apart",
+     "label": "Picking trail mix apart",
      "bin": "same-substance",
-     "why": "The pieces stay themselves. They do not become one new substance.",
-     "hint": "Do the pieces turn into a new material, or stay what they were?"
+     "why": "Trail mix is a mixture. Picking it apart does not make a new substance; each piece is still what it was.",
+     "hint": "does each piece change into something else, or stay what it was?"
     },
     {
      "id": "fizz-bag",

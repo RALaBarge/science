@@ -35,6 +35,21 @@ function k5FairValidate(cfg) {
     const numeric = o.every((x) => (x.trials || []).every((t) => typeof t === 'number'));
     if (!numeric && !(r.good && r.good.length)) errs.push(tag + ': word results need a good list');
     (r.reads || []).forEach((x, j) => choicesOk(x.choices, tag + ' read ' + (j + 1)));
+    // answer keys against the data: when one option clearly wins, no correct choice may name a different option without naming the winner
+    if (o.length >= 2 && o.every((x) => Array.isArray(x.trials) && x.trials.length)) {
+      const best = k5FairBest(r);
+      if (best.length === 1) {
+        const win = o.find((x) => x.id === best[0]).label.toLowerCase();
+        const steps = (r.reads || []).concat(r.claim || []);
+        steps.forEach((st, j) => (st.choices || []).forEach((c) => {
+          if (!c.ok || !c.label) return;
+          const t = c.label.toLowerCase();
+          const other = o.find((x) => x.id !== best[0] && t.includes(x.label.toLowerCase()));
+          if (other && !t.includes(win)) errs.push(tag + ': a correct choice names "' + other.label + '" but the data picks "' + o.find((x) => x.id === best[0]).label + '" (' + (j < (r.reads || []).length ? 'read ' + (j + 1) : 'claim ' + (j - (r.reads || []).length + 1)) + ')');
+        }));
+        if (!steps.some((st) => (st.choices || []).some((c) => c.ok && c.label && c.label.toLowerCase().includes(win)))) errs.push(tag + ': no correct choice names the winner "' + win + '"');
+      }
+    }
     if (!(r.reads || []).length) errs.push(tag + ': needs at least one read question');
     if ((r.claim || []).length < 3) errs.push(tag + ': claim needs 3 parts');
     (r.claim || []).forEach((x, j) => choicesOk(x.choices, tag + ' claim ' + (j + 1)));
@@ -62,30 +77,30 @@ function k5FairTest(host, cfg) {
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   root.innerHTML = '<style>' +
     ':host{display:block}' +
-    '.box{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:16px;color:var(--ink);font-family:var(--font-body,system-ui,sans-serif)}' +
+    '.box{background:var(--surface, #fff);border:1.5px solid var(--line, #bbb);border-radius:14px;padding:16px;color:var(--ink, #111);font-family:var(--font-body,system-ui,sans-serif)}' +
     '.top{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;justify-content:space-between;margin-bottom:6px}' +
-    '.top b{font-size:1.05rem}.prog{color:var(--muted);font-size:.9rem}' +
+    '.top b{font-size:1.05rem}.prog{color:var(--muted, #555);font-size:.9rem}' +
     '.q{margin:4px 0 10px;font-size:1.05rem;font-weight:700}.step{margin:10px 0 6px;font-weight:700}' +
     '.row{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}' +
-    '.opt{font:inherit;color:inherit;display:flex;align-items:center;gap:8px;padding:8px 12px;min-height:44px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;text-align:left}' +
-    '.opt:hover{border-color:var(--beam)}.opt .ic{font-size:1.4rem;line-height:1}' +
-    '.opt[disabled]{opacity:.6;cursor:default}.opt.right{border-color:var(--green)}' +
-    '.held{margin:6px 0;padding:8px 12px;border-radius:10px;background:var(--surface-2);font-size:.95rem}' +
+    '.opt{font:inherit;color:inherit;display:flex;align-items:center;gap:8px;padding:8px 12px;min-height:44px;border-radius:10px;border:1.5px solid var(--line, #bbb);background:var(--surface, #fff);cursor:pointer;text-align:left}' +
+    '.opt:hover{border-color:var(--beam, #f2a900)}.opt .ic{font-size:1.4rem;line-height:1}' +
+    '.opt[disabled]{opacity:.6;cursor:default}.opt.right{border-color:var(--green, #25904f)}' +
+    '.held{margin:6px 0;padding:8px 12px;border-radius:10px;background:var(--surface-2, #eef0f3);font-size:.95rem}' +
     '.held div{margin:2px 0}' +
-    '.lab{border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;margin:8px 0}' +
+    '.lab{border:1.5px solid var(--line, #bbb);border-radius:10px;padding:8px 10px;margin:8px 0}' +
     '.lab h4{margin:0 0 6px;font-size:1rem}' +
     '.trial{display:flex;align-items:center;gap:8px;margin:4px 0;font-size:.92rem}' +
-    '.trial .n{width:4.2em;color:var(--muted);flex:none}' +
-    '.bar{height:20px;border-radius:5px;background:var(--beam);min-width:6px;transition:width .35s}' +
+    '.trial .n{width:4.2em;color:var(--muted, #555);flex:none}' +
+    '.bar{height:20px;border-radius:5px;background:var(--beam, #f2a900);min-width:6px;transition:width .35s}' +
     '.val{font-weight:700;min-width:2em}' +
-    '.chip{padding:2px 10px;border-radius:999px;border:1.5px solid var(--line);font-weight:700}' +
-    '.chip.g{border-color:var(--green)}.chip.x{border-color:var(--red)}' +
-    '.msg{margin-top:12px;min-height:2.6em;padding:8px 12px;border-radius:10px;background:var(--surface-2);font-size:1rem}' +
-    '.msg.ok{border-left:5px solid var(--green)}.msg.bad{border-left:5px solid var(--red)}' +
-    '.claim{margin:8px 0;padding:10px 12px;border-radius:10px;border:1.5px dashed var(--line);font-size:1.02rem}' +
-    '.btn{font:inherit;font-weight:700;padding:9px 16px;min-height:44px;border-radius:10px;border:0;background:var(--beam);color:var(--beam-ink);cursor:pointer;margin-top:10px}' +
-    '.done{margin-top:12px;padding:12px;border-radius:10px;border:1.5px solid var(--green)}' +
-    '.done p{margin:6px 0}.note{color:var(--muted);font-size:.88rem;margin-top:10px}' +
+    '.chip{padding:2px 10px;border-radius:999px;border:1.5px solid var(--line, #bbb);font-weight:700}' +
+    '.chip.g{border-color:var(--green, #25904f)}.chip.x{border-color:var(--red, #d93036)}' +
+    '.msg{margin-top:12px;min-height:2.6em;padding:8px 12px;border-radius:10px;background:var(--surface-2, #eef0f3);font-size:1rem}' +
+    '.msg.ok{border-left:5px solid var(--green, #25904f)}.msg.bad{border-left:5px solid var(--red, #d93036)}' +
+    '.claim{margin:8px 0;padding:10px 12px;border-radius:10px;border:1.5px dashed var(--line, #bbb);font-size:1.02rem}' +
+    '.btn{font:inherit;font-weight:700;padding:9px 16px;min-height:44px;border-radius:10px;border:0;background:var(--beam, #f2a900);color:var(--beam-ink, #1a1400);cursor:pointer;margin-top:10px}' +
+    '.done{margin-top:12px;padding:12px;border-radius:10px;border:1.5px solid var(--green, #25904f)}' +
+    '.done p{margin:6px 0}.note{color:var(--muted, #555);font-size:.88rem;margin-top:10px}' +
     '@media (prefers-reduced-motion:reduce){.bar{transition:none}}' +
     '</style><div class="box"><div class="top"><b></b><span class="prog" aria-live="polite"></span></div>' +
     '<div class="main"></div><div class="msg" role="status" aria-live="polite"></div><div class="end"></div>' +
@@ -97,7 +112,17 @@ function k5FairTest(host, cfg) {
   const say = (kind, text) => { const m = q('.msg'); m.className = 'msg ' + kind; m.textContent = text; };
   const btn = (cls, html, fn) => { const b = document.createElement('button'); b.type = 'button'; b.className = cls; b.innerHTML = html; b.addEventListener('click', fn); return b; };
 
-  let ri = 0, slips = 0;
+  /* "Copy what you found": puts the text on the clipboard, or shows it selected if the browser refuses. */
+  function copyBtn(text) {
+    const wrap = document.createElement('span');
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = 'Copy what you found';
+    b.addEventListener('click', () => {
+      const fallback = () => { const t = document.createElement('textarea'); t.value = text; t.readOnly = true; t.setAttribute('aria-label', 'What you found, to copy'); t.style.cssText = 'display:block;width:100%;margin-top:8px;min-height:5em'; wrap.appendChild(t); t.focus(); t.select(); };
+      try { navigator.clipboard.writeText(text).then(() => { b.textContent = 'Copied'; }, fallback); } catch (e) { fallback(); }
+    });
+    wrap.appendChild(b); return wrap;
+  }
+  let ri = 0, slips = 0, started = false;
   const found = [];
 
   function round() {
@@ -108,6 +133,8 @@ function k5FairTest(host, cfg) {
     const head = document.createElement('p'); head.className = 'q'; head.textContent = r.question; main.appendChild(head);
     say('', 'Step 1. A fair test changes just ONE thing.');
     stepPick(r);
+    if (started) { const f0 = main.querySelector('.opt'); if (f0) f0.focus(); }
+    started = true;
   }
 
   function stepPick(r) {
@@ -154,6 +181,7 @@ function k5FairTest(host, cfg) {
       box.appendChild(go);
       main.appendChild(box);
     });
+    const g0 = main.querySelector('.lab button'); if (g0) g0.focus();
   }
 
   function choose(list, lead, onRight) {
@@ -168,6 +196,7 @@ function k5FairTest(host, cfg) {
         onRight(c);
       }));
     });
+    if (row.firstChild) row.firstChild.focus();
   }
 
   function stepRead(r, i) {
@@ -197,6 +226,7 @@ function k5FairTest(host, cfg) {
     d.innerHTML = '<b>What you found</b>' + found.map((f) => '<p>' + esc(f) + '</p>').join('') + '<p>' + esc(cfg.summary) + '</p>' +
       (slips ? '<p>Worth a second look: ' + slips + ' choice' + (slips > 1 ? 's' : '') + ' needed another try.</p>' : '<p>Every choice was right on the first try.</p>');
     d.appendChild(btn('btn', 'Play again', () => { ri = 0; slips = 0; found.length = 0; round(); }));
+    d.appendChild(copyBtn(found.join(' ') + ' ' + cfg.summary));
     q('.end').appendChild(d);
     q('.prog').textContent = 'Done';
   }

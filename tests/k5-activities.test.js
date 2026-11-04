@@ -85,6 +85,7 @@ for (const f of files) {
         return out;
       }, cfg);
       ok(r.wrongBlocked, f + ' wrong choices show a reason and do not advance');
+      ok(await page.evaluate(() => [...document.getElementById('k5-activity').shadowRoot.querySelectorAll('.done button')].some((b) => b.textContent === 'Copy what you found')), f + ' end screen has a Copy button');
       ok(r.finished && r.summary.includes(cfg.summary.slice(0, 30)), f + ' plays through to the summary (' + r.trials + ' trials)');
       ok(errors.length === 0, f + ' no page errors' + (errors.length ? ': ' + errors.join('; ') : ''));
       await page.close();
@@ -110,8 +111,11 @@ for (const f of files) {
       }
       out.finished = !!root.querySelector('.done');
       out.summary = root.querySelector('.done') ? root.querySelector('.done').textContent : '';
+      out.copy = !!([...root.querySelectorAll('.done button')].find((b) => b.textContent === 'Copy what you found'));
       return out;
     }, cfg);
+    ok(result.copy, f + ' end screen has a Copy button');
+    ok(await page.evaluate(() => { const r = document.getElementById('k5-activity').shadowRoot; return r.querySelectorAll('button .bin, button h4').length === 0; }), f + ' no heading or list inside a button');
     ok(result.wrongKeepsCard, f + ' wrong bin leaves the card in the tray');
     ok(result.finished && result.summary.includes(cfg.summary.slice(0, 30)), f + ' plays through to the summary');
     ok(errors.length === 0, f + ' no page errors' + (errors.length ? ': ' + errors.join('; ') : ''));

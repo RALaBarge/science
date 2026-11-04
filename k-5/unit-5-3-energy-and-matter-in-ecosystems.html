@@ -496,6 +496,8 @@ figure.k5i details.k5i-alt summary{cursor:pointer;padding:2px 0}
 
 
 
+
+
 <!--k5-activity-start-->
 <section class="sec lesson-game-sec" id="activity"><div><p class="kicker">After the lesson · Activity</p><h2>Play: Energy and Matter Sort</h2></div><p class="idea">Sort where plant mass comes from, where food energy started, and which way a food-web arrow points.</p><div id="k5-activity"></div>
 <script>
@@ -548,28 +550,29 @@ function k5BigSort(host, cfg) {
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   root.innerHTML = '<style>' +
     ':host{display:block}' +
-    '.box{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:16px;color:var(--ink);font-family:var(--font-body,system-ui,sans-serif)}' +
+    '.box{background:var(--surface, #fff);border:1.5px solid var(--line, #bbb);border-radius:14px;padding:16px;color:var(--ink, #111);font-family:var(--font-body,system-ui,sans-serif)}' +
     '.top{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;justify-content:space-between;margin-bottom:6px}' +
-    '.top b{font-size:1.05rem}.prog{color:var(--muted);font-size:.9rem}' +
+    '.top b{font-size:1.05rem}.prog{color:var(--muted, #555);font-size:.9rem}' +
     '.prompt{margin:4px 0 12px;font-size:1.05rem}' +
-    '.tray{display:flex;flex-wrap:wrap;gap:8px;min-height:56px;margin-bottom:12px;padding:10px;border-radius:10px;background:var(--surface-2)}' +
-    '.card{font:inherit;color:inherit;display:flex;align-items:center;gap:8px;padding:8px 12px;min-height:44px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);cursor:grab;text-align:left}' +
+    '.tray{display:flex;flex-wrap:wrap;gap:8px;min-height:56px;margin-bottom:12px;padding:10px;border-radius:10px;background:var(--surface-2, #eef0f3)}' +
+    '.card{font:inherit;color:inherit;display:flex;align-items:center;gap:8px;padding:8px 12px;min-height:44px;border-radius:10px;border:1.5px solid var(--line, #bbb);background:var(--surface, #fff);cursor:grab;text-align:left}' +
     '.card .ic{font-size:1.5rem;line-height:1}' +
-    '.card[aria-pressed="true"]{outline:3px solid var(--beam);outline-offset:1px}' +
-    '.card.nope{border-color:var(--red)}' +
+    '.card[aria-pressed="true"]{outline:3px solid var(--beam, #f2a900);outline-offset:1px}' +
+    '.card.nope{border-color:var(--red, #d93036)}' +
     '.card.nope:not(.still){animation:sh .3s}' +
     '@keyframes sh{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}' +
     '.bins{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}' +
-    '.bin{font:inherit;color:inherit;text-align:left;border:2px dashed var(--line);border-radius:12px;padding:10px;min-height:96px;background:var(--surface);cursor:pointer}' +
-    '.bin:hover,.bin.over{border-color:var(--beam);background:var(--surface-2)}' +
+    '.bin{text-align:left;border:2px dashed var(--line, #bbb);border-radius:12px;padding:10px;min-height:96px;background:var(--surface, #fff);cursor:pointer}' +
+    '.put{font:inherit;color:inherit;margin-top:8px;padding:8px 12px;min-height:44px;border-radius:10px;border:1.5px solid var(--line, #bbb);background:var(--surface-2, #eef0f3);cursor:pointer}' +
+    '.bin:hover,.bin.over{border-color:var(--beam, #f2a900);background:var(--surface-2, #eef0f3)}' +
     '.bin h4{margin:0 0 6px;font-size:1rem}' +
     '.bin ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}' +
-    '.bin li{background:var(--surface-2);border-radius:8px;padding:3px 8px;font-size:.92rem;border:1.5px solid var(--green)}' +
-    '.msg{margin-top:12px;min-height:2.6em;padding:8px 12px;border-radius:10px;background:var(--surface-2);font-size:1rem}' +
-    '.msg.ok{border-left:5px solid var(--green)}.msg.bad{border-left:5px solid var(--red)}' +
-    '.btn{font:inherit;font-weight:700;padding:9px 16px;min-height:44px;border-radius:10px;border:0;background:var(--beam);color:var(--beam-ink);cursor:pointer;margin-top:10px}' +
-    '.done{margin-top:12px;padding:12px;border-radius:10px;border:1.5px solid var(--green)}' +
-    '.done p{margin:6px 0}.note{color:var(--muted);font-size:.88rem;margin-top:10px}' +
+    '.bin li{background:var(--surface-2, #eef0f3);border-radius:8px;padding:3px 8px;font-size:.92rem;border:1.5px solid var(--green, #25904f)}' +
+    '.msg{margin-top:12px;min-height:2.6em;padding:8px 12px;border-radius:10px;background:var(--surface-2, #eef0f3);font-size:1rem}' +
+    '.msg.ok{border-left:5px solid var(--green, #25904f)}.msg.bad{border-left:5px solid var(--red, #d93036)}' +
+    '.btn{font:inherit;font-weight:700;padding:9px 16px;min-height:44px;border-radius:10px;border:0;background:var(--beam, #f2a900);color:var(--beam-ink, #1a1400);cursor:pointer;margin-top:10px}' +
+    '.done{margin-top:12px;padding:12px;border-radius:10px;border:1.5px solid var(--green, #25904f)}' +
+    '.done p{margin:6px 0}.note{color:var(--muted, #555);font-size:.88rem;margin-top:10px}' +
     '@media (prefers-reduced-motion:reduce){.card.nope{animation:none}}' +
     '</style><div class="box"><div class="top"><b></b><span class="prog" aria-live="polite"></span></div>' +
     '<p class="prompt"></p><div class="tray" role="group" aria-label="Cards to sort"></div>' +
@@ -579,6 +582,16 @@ function k5BigSort(host, cfg) {
   q('.top b').textContent = cfg.title;
   q('.note').textContent = cfg.note || '';
 
+  /* "Copy what you found": puts the text on the clipboard, or shows it selected if the browser refuses. */
+  function copyBtn(text) {
+    const wrap = document.createElement('span');
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = 'Copy what you found';
+    b.addEventListener('click', () => {
+      const fallback = () => { const t = document.createElement('textarea'); t.value = text; t.readOnly = true; t.setAttribute('aria-label', 'What you found, to copy'); t.style.cssText = 'display:block;width:100%;margin-top:8px;min-height:5em'; wrap.appendChild(t); t.focus(); t.select(); };
+      try { navigator.clipboard.writeText(text).then(() => { b.textContent = 'Copied'; }, fallback); } catch (e) { fallback(); }
+    });
+    wrap.appendChild(b); return wrap;
+  }
   let round = 0, stage = 0, picked = null, misses = {}, rec = [];
   const placed = {};
 
@@ -595,6 +608,7 @@ function k5BigSort(host, cfg) {
     q('.prompt').textContent = st.prompt;
     q('.msg').className = 'msg'; q('.msg').textContent = 'Tap a card, then tap its bin.';
     const order = k5Order(st.cards.map((c) => c.id), cfg.id + ':' + stage + ':' + round);
+    const refocus = round > 1 || stage > 0;   /* after Next round or Play again, move focus to the first new control */
     const tray = q('.tray'); tray.innerHTML = '';
     order.forEach((id) => {
       const c = st.cards.find((x) => x.id === id);
@@ -608,15 +622,17 @@ function k5BigSort(host, cfg) {
     });
     const bins = q('.bins'); bins.innerHTML = '';
     st.bins.forEach((bn) => {
-      const el = document.createElement('button');
-      el.type = 'button'; el.className = 'bin'; el.dataset.bin = bn.id;
-      el.innerHTML = '<h4>' + esc((bn.icon ? bn.icon + ' ' : '') + bn.label) + '</h4><ul></ul>';
-      el.addEventListener('click', () => drop(bn.id));
+      const el = document.createElement('div');
+      el.className = 'bin'; el.dataset.bin = bn.id;
+      el.setAttribute('role', 'group'); el.setAttribute('aria-labelledby', 'bh-' + stage + '-' + bn.id);
+      el.innerHTML = '<h4 id="bh-' + stage + '-' + bn.id + '">' + esc((bn.icon ? bn.icon + ' ' : '') + bn.label) + '</h4><ul aria-live="off"></ul><button type="button" class="put">Put card here</button>';
+      el.addEventListener('click', () => drop(bn.id));   /* the whole box and its button both work; the button is the keyboard route */
       el.addEventListener('dragover', (e) => { e.preventDefault(); el.classList.add('over'); });
       el.addEventListener('dragleave', () => el.classList.remove('over'));
       el.addEventListener('drop', (e) => { e.preventDefault(); el.classList.remove('over'); drop(bn.id); });
       bins.appendChild(el);
     });
+    if (refocus) { const c0 = root.querySelector('.card'); if (c0) c0.focus(); }
   }
   function pick(id) {
     picked = id;
@@ -657,6 +673,7 @@ function k5BigSort(host, cfg) {
     const b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = 'Play again';
     b.addEventListener('click', () => start());
     d.appendChild(b);
+    d.appendChild(copyBtn(cfg.title + ': ' + cfg.summary + (hard.length ? ' Worth a second look: ' + hard.join('; ') + '.' : '')));
     q('.end').innerHTML = ''; q('.end').appendChild(d);
     q('.prog').textContent = 'Done';
   }
@@ -664,7 +681,7 @@ function k5BigSort(host, cfg) {
 }
 
 
-k5BigSort(document.getElementById("k5-activity"), {"id":"5-3-ecosystem-sort","title":"Energy and Matter Sort","intro":"Sort where plant mass comes from, where food energy started, and which way a food-web arrow points.","note":"This is a sorting game model. The real bean light-and-dark fair test and the string food web in the lesson still count.","summary":"Matter (water, air, soil, dead leaves) has mass and takes up space; energy (sunlight, heat, motion) does not. Plants build their mass mostly from air and water, and food energy started as sunlight. Producers make food, consumers eat, decomposers break down dead matter. Matter is reused, and 100 g of dead leaves became 35 g of pieces, 55 g of richer soil and about 10 g of gas. Energy ends up as heat and motion.","stages":[{"prompt":"Matter has mass and takes up space. Energy is the ability to cause change. Which is it?","bins":[{"id":"matter","icon":"🧱","label":"Matter"},{"id":"energy","icon":"⚡","label":"Energy"}],"cards":[{"id":"water","icon":"💧","label":"Water the plant takes in","bin":"matter","why":"Water has mass and takes up space. Plants build most of their mass from water and air.","hint":"does it have mass and take up space?"},{"id":"air","icon":"🌬️","label":"Air the plant takes in","bin":"matter","why":"Air is matter. Plants get most of their growth material from air and water.","hint":"does it have mass and take up space, even if you cannot see it?"},{"id":"leaves","icon":"🍂","label":"Dead leaves","bin":"matter","why":"Dead leaves are matter. Decomposers break them down and the matter goes back to soil and air.","hint":"does it have mass and take up space?"},{"id":"soil","icon":"🟤","label":"Soil in the pot","bin":"matter","why":"Soil is matter. In the tree argument it barely changed, from 100 kg to 99.9 kg.","hint":"does it have mass and take up space?"},{"id":"sun","icon":"☀️","label":"Sunlight on a leaf","bin":"energy","why":"Sunlight is energy, not matter. The plant uses it to make food.","hint":"can you weigh it, or does it make things happen?"},{"id":"heat","icon":"🔥","label":"Heat from a deer's body","bin":"energy","why":"Heat is energy. Food energy ends up as heat and motion.","hint":"can you weigh it, or is it what lets things change?"},{"id":"run","icon":"🏃","label":"The deer's running motion","bin":"energy","why":"Motion uses energy from food. The deer's body is matter, but the motion is energy.","hint":"is this the stuff, or the moving?"}]},{"prompt":"How does each living thing get its food?","bins":[{"id":"producer","icon":"🌿","label":"Producer: makes food"},{"id":"consumer","icon":"🍽️","label":"Consumer: eats others"},{"id":"decomposer","icon":"🍄","label":"Decomposer: breaks down dead matter"}],"cards":[{"id":"maple","icon":"🍁","label":"Maple tree","bin":"producer","why":"A maple tree uses light to make its own food, so it is a producer.","hint":"does it eat anything, or use light to make food?"},{"id":"algae","icon":"🟢","label":"Algae in Lake Michigan","bin":"producer","why":"Algae make food from light, like plants.","hint":"does it eat anything, or use light to make food?"},{"id":"rabbit","icon":"🐇","label":"Rabbit","bin":"consumer","why":"A rabbit eats plants, so it is a consumer.","hint":"how does it get its food?"},{"id":"fox","icon":"🦊","label":"Fox","bin":"consumer","why":"A fox eats other animals, so it is a consumer.","hint":"how does it get its food?"},{"id":"smallfish","icon":"🐟","label":"Small fish in a lake","bin":"consumer","why":"Small fish eat other living things, so they are consumers.","hint":"how does it get its food?"},{"id":"mushroom","icon":"🍄","label":"Mushroom on a dead log","bin":"decomposer","why":"A mushroom breaks down dead matter and returns it to the soil.","hint":"does it use light, eat other animals, or feed on something dead?"},{"id":"soilbug","icon":"🦠","label":"Microbes in the soil","bin":"decomposer","why":"Microbes break down dead matter. That returns matter to soil and air.","hint":"does it use light, eat other animals, or feed on something dead?"}]},{"prompt":"Where did the energy in this food first come from?","bins":[{"id":"sun","icon":"☀️","label":"Sunlight, captured by plants"},{"id":"holds","icon":"🧊","label":"Only holds the food"}],"cards":[{"id":"apple","icon":"🍎","label":"Michigan apple","bin":"sun","why":"An apple tree captured sunlight. The apple has food energy.","hint":"what did the tree capture to make it?"},{"id":"corn","icon":"🌽","label":"Ear of corn","bin":"sun","why":"The corn plant captured sunlight to make food.","hint":"what did the plant capture to make it?"},{"id":"chicken","icon":"🍗","label":"Chicken that ate corn","bin":"sun","why":"The chicken ate corn, and the corn got its energy from the Sun.","hint":"what did its food get from the Sun?"},{"id":"sandwich","icon":"🥪","label":"Sandwich","bin":"sun","why":"Food is stored Sun energy, captured first by plants.","hint":"where did the plants in it get their energy?"},{"id":"fridge","icon":"🧊","label":"Refrigerator","bin":"holds","why":"A refrigerator only keeps food cold. It does not make food energy.","hint":"did it make the food energy?"},{"id":"package","icon":"📦","label":"Store package","bin":"holds","why":"A package only holds food. Food energy started as sunlight.","hint":"did it make the food energy?"}]},{"prompt":"Dead leaves broke down. Is this matter that gets reused, or energy that ends up as heat and motion?","bins":[{"id":"reused","icon":"♻️","label":"Matter, reused"},{"id":"ends","icon":"🔥","label":"Energy that ends as heat and motion"}],"cards":[{"id":"pieces","icon":"🍂","label":"35 g of leaf pieces","bin":"reused","why":"Of 100 g of dead leaves, 35 g stayed as pieces. The matter did not disappear.","hint":"is this stuff you could weigh?"},{"id":"richsoil","icon":"🟤","label":"55 g became richer soil","bin":"reused","why":"55 g of the leaves became richer soil. Matter returns to the soil.","hint":"is this stuff you could weigh?"},{"id":"gas","icon":"💨","label":"About 10 g went into the air as gas","bin":"reused","why":"About 10 g went into the air as gas. Matter returns to soil and air.","hint":"is this stuff you could weigh?"},{"id":"foxheat","icon":"🔥","label":"Heat from a fox's body","bin":"ends","why":"Food energy ends up as heat and motion.","hint":"is this stuff, or the ability to cause change?"},{"id":"foxrun","icon":"🏃","label":"The fox's running motion","bin":"ends","why":"Motion is where food energy ends up. It is not reused like matter.","hint":"is this stuff, or the ability to cause change?"}]}]});
+k5BigSort(document.getElementById("k5-activity"), {"id":"5-3-ecosystem-sort","title":"Energy and Matter Sort","intro":"Sort where plant mass comes from, where food energy started, and which way a food-web arrow points.","note":"This is a sorting game model. The real bean light-and-dark fair test and the string food web in the lesson still count.","summary":"Matter (water, air, soil, dead leaves) has mass and takes up space; energy (sunlight, heat, motion) does not. Plants build their mass mostly from air and water, and food energy started as sunlight. Producers make food, consumers eat, decomposers break down dead matter. Matter is reused, and 100 g of dead leaves became 35 g of pieces, 55 g of richer soil and about 10 g of gas. Energy ends up as heat and motion.","stages":[{"prompt":"Matter has mass and takes up space. Energy is the ability to cause change. Which is it?","bins":[{"id":"matter","icon":"🧱","label":"Matter"},{"id":"energy","icon":"⚡","label":"Energy"}],"cards":[{"id":"water","icon":"💧","label":"Water the plant takes in","bin":"matter","why":"Water has mass and takes up space. Plants build most of their mass from water and air.","hint":"does it have mass and take up space?"},{"id":"air","icon":"🌬️","label":"Air the plant takes in","bin":"matter","why":"Air is matter. Plants get most of their growth material from air and water.","hint":"does it have mass and take up space, even if you cannot see it?"},{"id":"leaves","icon":"🍂","label":"Dead leaves","bin":"matter","why":"Dead leaves are matter. Decomposers break them down and the matter goes back to soil and air.","hint":"does it have mass and take up space?"},{"id":"soil","icon":"🟤","label":"Soil in the pot","bin":"matter","why":"Soil is matter. In the tree argument it barely changed, from 100 kg to 99.9 kg.","hint":"does it have mass and take up space?"},{"id":"sun","icon":"☀️","label":"Sunlight on a leaf","bin":"energy","why":"Sunlight is energy, not matter. The plant uses it to make food.","hint":"can you weigh it, or does it make things happen?"},{"id":"heat","icon":"🔥","label":"Heat from a deer's body","bin":"energy","why":"Heat is energy. Food energy ends up as heat and motion.","hint":"can you weigh it, or is it what lets things change?"},{"id":"run","icon":"🏃","label":"The energy of a deer running","bin":"energy","why":"Running uses energy from food. The deer's body is matter, but the energy of its motion is energy.","hint":"is this the stuff, or the moving?"}]},{"prompt":"How does each living thing get its food?","bins":[{"id":"producer","icon":"🌿","label":"Producer: makes food"},{"id":"consumer","icon":"🍽️","label":"Consumer: eats others"},{"id":"decomposer","icon":"🍄","label":"Decomposer: breaks down dead matter"}],"cards":[{"id":"maple","icon":"🍁","label":"Maple tree","bin":"producer","why":"A maple tree uses light to make its own food, so it is a producer.","hint":"does it eat anything, or use light to make food?"},{"id":"algae","icon":"🟢","label":"Algae in Lake Michigan","bin":"producer","why":"Algae make food from light, like plants.","hint":"does it eat anything, or use light to make food?"},{"id":"rabbit","icon":"🐇","label":"Rabbit","bin":"consumer","why":"A rabbit eats plants, so it is a consumer.","hint":"how does it get its food?"},{"id":"fox","icon":"🦊","label":"Fox","bin":"consumer","why":"A fox eats other animals, so it is a consumer.","hint":"how does it get its food?"},{"id":"smallfish","icon":"🐟","label":"Small fish in a lake","bin":"consumer","why":"Small fish eat other living things, so they are consumers.","hint":"how does it get its food?"},{"id":"mushroom","icon":"🍄","label":"Mushroom on a dead log","bin":"decomposer","why":"A mushroom breaks down dead matter and returns it to the soil.","hint":"does it use light, eat other animals, or feed on something dead?"},{"id":"soilbug","icon":"🦠","label":"Microbes in the soil","bin":"decomposer","why":"Microbes break down dead matter. That returns matter to soil and air.","hint":"does it use light, eat other animals, or feed on something dead?"}]},{"prompt":"Where did the energy in this food first come from?","bins":[{"id":"sun","icon":"☀️","label":"Sunlight, captured by plants"},{"id":"holds","icon":"🧊","label":"Only holds the food"}],"cards":[{"id":"apple","icon":"🍎","label":"Michigan apple","bin":"sun","why":"An apple tree captured sunlight. The apple has food energy.","hint":"what did the tree capture to make it?"},{"id":"corn","icon":"🌽","label":"Ear of corn","bin":"sun","why":"The corn plant captured sunlight to make food.","hint":"what did the plant capture to make it?"},{"id":"chicken","icon":"🍗","label":"Chicken that ate corn","bin":"sun","why":"The chicken ate corn, and the corn got its energy from the Sun.","hint":"what did its food get from the Sun?"},{"id":"sandwich","icon":"🥪","label":"Sandwich","bin":"sun","why":"Food is stored Sun energy, captured first by plants.","hint":"where did the plants in it get their energy?"},{"id":"fridge","icon":"🧊","label":"Refrigerator","bin":"holds","why":"A refrigerator only keeps food cold. It does not make food energy.","hint":"did it make the food energy?"},{"id":"package","icon":"📦","label":"Store package","bin":"holds","why":"A package only holds food. Food energy started as sunlight.","hint":"did it make the food energy?"}]},{"prompt":"Dead leaves broke down. Is this matter that gets reused, or energy that ends up as heat and motion?","bins":[{"id":"reused","icon":"♻️","label":"Matter, reused"},{"id":"ends","icon":"🔥","label":"Energy that ends as heat and motion"}],"cards":[{"id":"pieces","icon":"🍂","label":"35 g of leaf pieces","bin":"reused","why":"Of 100 g of dead leaves, 35 g stayed as pieces. The matter did not disappear.","hint":"is this stuff you could weigh?"},{"id":"richsoil","icon":"🟤","label":"55 g became richer soil","bin":"reused","why":"55 g of the leaves became richer soil. Matter returns to the soil.","hint":"is this stuff you could weigh?"},{"id":"gas","icon":"💨","label":"About 10 g went into the air as gas","bin":"reused","why":"About 10 g went into the air as gas. Matter returns to soil and air.","hint":"is this stuff you could weigh?"},{"id":"foxheat","icon":"🔥","label":"Heat from a fox's body","bin":"ends","why":"Food energy ends up as heat and motion.","hint":"is this stuff, or the ability to cause change?"},{"id":"foxrun","icon":"🏃","label":"The energy of a fox running","bin":"ends","why":"Running is where food energy ends up. It is energy, not matter, and it is not reused like matter.","hint":"is this stuff, or the ability to cause change?"}]}]});
 </script>
 </section>
 <!--k5-activity-end-->

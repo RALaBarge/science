@@ -448,6 +448,8 @@ figure.k5i details.k5i-alt summary{cursor:pointer;padding:2px 0}
     <p><b>Connections:</b> - Builds on: Nothing in K–2; connects to Unit 0: How Science Works if that unit is used. - Builds toward: K-A Pushes and Pulls, K-B Sunlight, Weather, and Staying Safe, K-C Living Things and Their Homes, 3.1 Forces, Motion, and Magnets, 3.2 Weather, Climate, and Hazards, and 6 Unit 1: Light &amp; Matter.</p></div></details>
 </section>
 
+
+
 <!--k5-activity-start-->
 <section class="sec lesson-game-sec" id="activity"><div><p class="kicker">After the lesson · Activity</p><h2>Play: Notice Walk Detective</h2></div><p class="idea">Look around a Michigan backyard. Tap what you notice, then pick the questions we can test.</p><div id="k5-activity"></div>
 <script>
@@ -554,30 +556,30 @@ function k5SceneWeb(host, cfg) {
   const W = cfg.scene.w, H = cfg.scene.h, groups = cfg.noticeGroups, items = cfg.scene.items;
   root.innerHTML = '<style>' +
     ':host{display:block}' +
-    '.box{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:16px;color:var(--ink);font-family:var(--font-body,system-ui,sans-serif)}' +
+    '.box{background:var(--surface, #fff);border:1.5px solid var(--line, #bbb);border-radius:14px;padding:16px;color:var(--ink, #111);font-family:var(--font-body,system-ui,sans-serif)}' +
     '.top{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;justify-content:space-between;margin-bottom:6px}' +
-    '.top b{font-size:1.05rem}.prog{color:var(--muted);font-size:.9rem}' +
-    '.scene{border:1.5px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:10px}.items{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}' +
+    '.top b{font-size:1.05rem}.prog{color:var(--muted, #555);font-size:.9rem}' +
+    '.scene{border:1.5px solid var(--line, #bbb);border-radius:12px;overflow:hidden;margin-bottom:10px}.items{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}' +
     '.scene svg{display:block;width:100%;height:auto}' +
-    '.it{font:inherit;color:inherit;display:flex;flex-direction:column;align-items:center;gap:1px;padding:6px 8px;min-width:76px;min-height:60px;border-radius:12px;border:2px solid var(--line);background:var(--surface);cursor:pointer}' +
+    '.it{font:inherit;color:inherit;display:flex;flex-direction:column;align-items:center;gap:1px;padding:6px 8px;min-width:76px;min-height:60px;border-radius:12px;border:2px solid var(--line, #bbb);background:var(--surface, #fff);cursor:pointer}' +
     '.it .ic{font-size:1.5rem;line-height:1.1}.it .lb{font-size:.8rem;line-height:1.15;text-align:center}' +
-    '.it:hover{border-color:var(--beam)}.it.seen{border-color:var(--green);background:var(--surface-2)}' +
+    '.it:hover{border-color:var(--beam, #f2a900)}.it.seen{border-color:var(--green, #25904f);background:var(--surface-2, #eef0f3)}' +
     '.tally{display:flex;flex-direction:column;gap:6px;margin:4px 0}' +
     '.tg{display:flex;flex-wrap:wrap;gap:6px;align-items:center}' +
     '.tgl{font-weight:700;font-size:.92rem;margin-right:2px}' +
-    '.tc{border:1.5px solid var(--line);border-radius:10px;padding:5px 10px;background:var(--surface-2);font-size:.95rem}' +
-    '.marks{color:var(--beam);letter-spacing:2px}' +
+    '.tc{border:1.5px solid var(--line, #bbb);border-radius:10px;padding:5px 10px;background:var(--surface-2, #eef0f3);font-size:.95rem}' +
+    '.marks{color:var(--beam, #f2a900);letter-spacing:2px}' +
     '.q{margin:10px 0 6px;font-size:1.05rem;font-weight:700}' +
     '.row{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}' +
-    '.opt{font:inherit;color:inherit;padding:9px 14px;min-height:44px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;text-align:left}' +
-    '.opt:hover{border-color:var(--beam)}.opt[disabled]{opacity:.65;cursor:default}.opt.right{border-color:var(--green)}' +
-    '.msg{margin-top:12px;min-height:2.6em;padding:8px 12px;border-radius:10px;background:var(--surface-2);font-size:1rem}' +
-    '.msg.ok{border-left:5px solid var(--green)}.msg.bad{border-left:5px solid var(--red)}' +
-    '.btn{font:inherit;font-weight:700;padding:9px 16px;min-height:44px;border-radius:10px;border:0;background:var(--beam);color:var(--beam-ink);cursor:pointer;margin-top:10px}' +
-    '.done{margin-top:12px;padding:12px;border-radius:10px;border:1.5px solid var(--green)}' +
-    '.done p{margin:6px 0}.done ul{margin:6px 0;padding-left:1.3em}.note{color:var(--muted);font-size:.88rem;margin-top:10px}' +
+    '.opt{font:inherit;color:inherit;padding:9px 14px;min-height:44px;border-radius:10px;border:1.5px solid var(--line, #bbb);background:var(--surface, #fff);cursor:pointer;text-align:left}' +
+    '.opt:hover{border-color:var(--beam, #f2a900)}.opt[disabled]{opacity:.65;cursor:default}.opt.right{border-color:var(--green, #25904f)}' +
+    '.msg{margin-top:12px;min-height:2.6em;padding:8px 12px;border-radius:10px;background:var(--surface-2, #eef0f3);font-size:1rem}' +
+    '.msg.ok{border-left:5px solid var(--green, #25904f)}.msg.bad{border-left:5px solid var(--red, #d93036)}' +
+    '.btn{font:inherit;font-weight:700;padding:9px 16px;min-height:44px;border-radius:10px;border:0;background:var(--beam, #f2a900);color:var(--beam-ink, #1a1400);cursor:pointer;margin-top:10px}' +
+    '.done{margin-top:12px;padding:12px;border-radius:10px;border:1.5px solid var(--green, #25904f)}' +
+    '.done p{margin:6px 0}.done ul{margin:6px 0;padding-left:1.3em}.note{color:var(--muted, #555);font-size:.88rem;margin-top:10px}' +
     '.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}' +
-    '.it:focus-visible,.opt:focus-visible,.btn:focus-visible{outline:3px solid var(--beam);outline-offset:2px}' +
+    '.it:focus-visible,.opt:focus-visible,.btn:focus-visible{outline:3px solid var(--beam, #f2a900);outline-offset:2px}' +
     '</style><div class="box"><div class="top"><b></b><span class="prog" aria-live="polite"></span></div>' +
     '<div class="scene"></div><div class="items" role="group" aria-label="Things to notice"></div><div class="tally"></div><div class="ask"></div>' +
     '<div class="msg" role="status" aria-live="polite"></div><div class="end"></div><p class="note"></p></div>';
@@ -592,6 +594,16 @@ function k5SceneWeb(host, cfg) {
       : '<ellipse cx="' + s.cx + '" cy="' + s.cy + '" rx="' + s.rx + '" ry="' + s.ry + '" fill="' + esc(s.fill) + '"/>';
   const svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" aria-hidden="true" focusable="false">' + (cfg.scene.shapes || []).map(shapeSvg).join('') + '</svg>';
 
+  /* "Copy what you found": puts the text on the clipboard, or shows it selected if the browser refuses. */
+  function copyBtn(text) {
+    const wrap = document.createElement('span');
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = 'Copy what you found';
+    b.addEventListener('click', () => {
+      const fallback = () => { const t = document.createElement('textarea'); t.value = text; t.readOnly = true; t.setAttribute('aria-label', 'What you found, to copy'); t.style.cssText = 'display:block;width:100%;margin-top:8px;min-height:5em'; wrap.appendChild(t); t.focus(); t.select(); };
+      try { navigator.clipboard.writeText(text).then(() => { b.textContent = 'Copied'; }, fallback); } catch (e) { fallback(); }
+    });
+    wrap.appendChild(b); return wrap;
+  }
   let round = 0, misses = 0, noticed, counts, found, qOrder;
   const freshCounts = () => { const c = {}; groups.forEach((g) => { c[g.id] = {}; g.bins.forEach((b) => { c[g.id][b.id] = 0; }); }); return c; };
 
@@ -612,6 +624,7 @@ function k5SceneWeb(host, cfg) {
     buildTally();
     q('.prog').textContent = 'Notice: 0 of ' + items.length;
     say('', 'Tap things in the picture. Say what you see.');
+    if (round > 1) { const f0 = root.querySelector('.it'); if (f0) f0.focus(); }
   }
 
   function notice(it, btn) {
@@ -667,6 +680,7 @@ function k5SceneWeb(host, cfg) {
       });
       row.appendChild(b);
     });
+    if (row.firstChild) row.firstChild.focus();
   }
 
   function finish() {
@@ -683,6 +697,7 @@ function k5SceneWeb(host, cfg) {
     const b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = 'Play again';
     b.addEventListener('click', run);
     d.appendChild(b);
+    d.appendChild(copyBtn(d.textContent.replace('Play again', '')));
     q('.end').appendChild(d);
   }
   run();

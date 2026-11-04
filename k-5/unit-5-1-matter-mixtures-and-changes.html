@@ -521,6 +521,8 @@ figure.k5i details.k5i-alt summary{cursor:pointer;padding:2px 0}
 
 
 
+
+
 <!--k5-activity-start-->
 <section class="sec lesson-game-sec" id="activity"><div><p class="kicker">After the lesson · Activity</p><h2>Play: Matter, Mixtures, and Changes Sort</h2></div><p class="idea">Sort how materials act, what kind of change you see, and what the mass evidence shows.</p><div id="k5-activity"></div>
 <script>
@@ -573,28 +575,29 @@ function k5BigSort(host, cfg) {
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   root.innerHTML = '<style>' +
     ':host{display:block}' +
-    '.box{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:16px;color:var(--ink);font-family:var(--font-body,system-ui,sans-serif)}' +
+    '.box{background:var(--surface, #fff);border:1.5px solid var(--line, #bbb);border-radius:14px;padding:16px;color:var(--ink, #111);font-family:var(--font-body,system-ui,sans-serif)}' +
     '.top{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;justify-content:space-between;margin-bottom:6px}' +
-    '.top b{font-size:1.05rem}.prog{color:var(--muted);font-size:.9rem}' +
+    '.top b{font-size:1.05rem}.prog{color:var(--muted, #555);font-size:.9rem}' +
     '.prompt{margin:4px 0 12px;font-size:1.05rem}' +
-    '.tray{display:flex;flex-wrap:wrap;gap:8px;min-height:56px;margin-bottom:12px;padding:10px;border-radius:10px;background:var(--surface-2)}' +
-    '.card{font:inherit;color:inherit;display:flex;align-items:center;gap:8px;padding:8px 12px;min-height:44px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);cursor:grab;text-align:left}' +
+    '.tray{display:flex;flex-wrap:wrap;gap:8px;min-height:56px;margin-bottom:12px;padding:10px;border-radius:10px;background:var(--surface-2, #eef0f3)}' +
+    '.card{font:inherit;color:inherit;display:flex;align-items:center;gap:8px;padding:8px 12px;min-height:44px;border-radius:10px;border:1.5px solid var(--line, #bbb);background:var(--surface, #fff);cursor:grab;text-align:left}' +
     '.card .ic{font-size:1.5rem;line-height:1}' +
-    '.card[aria-pressed="true"]{outline:3px solid var(--beam);outline-offset:1px}' +
-    '.card.nope{border-color:var(--red)}' +
+    '.card[aria-pressed="true"]{outline:3px solid var(--beam, #f2a900);outline-offset:1px}' +
+    '.card.nope{border-color:var(--red, #d93036)}' +
     '.card.nope:not(.still){animation:sh .3s}' +
     '@keyframes sh{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}' +
     '.bins{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}' +
-    '.bin{font:inherit;color:inherit;text-align:left;border:2px dashed var(--line);border-radius:12px;padding:10px;min-height:96px;background:var(--surface);cursor:pointer}' +
-    '.bin:hover,.bin.over{border-color:var(--beam);background:var(--surface-2)}' +
+    '.bin{text-align:left;border:2px dashed var(--line, #bbb);border-radius:12px;padding:10px;min-height:96px;background:var(--surface, #fff);cursor:pointer}' +
+    '.put{font:inherit;color:inherit;margin-top:8px;padding:8px 12px;min-height:44px;border-radius:10px;border:1.5px solid var(--line, #bbb);background:var(--surface-2, #eef0f3);cursor:pointer}' +
+    '.bin:hover,.bin.over{border-color:var(--beam, #f2a900);background:var(--surface-2, #eef0f3)}' +
     '.bin h4{margin:0 0 6px;font-size:1rem}' +
     '.bin ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}' +
-    '.bin li{background:var(--surface-2);border-radius:8px;padding:3px 8px;font-size:.92rem;border:1.5px solid var(--green)}' +
-    '.msg{margin-top:12px;min-height:2.6em;padding:8px 12px;border-radius:10px;background:var(--surface-2);font-size:1rem}' +
-    '.msg.ok{border-left:5px solid var(--green)}.msg.bad{border-left:5px solid var(--red)}' +
-    '.btn{font:inherit;font-weight:700;padding:9px 16px;min-height:44px;border-radius:10px;border:0;background:var(--beam);color:var(--beam-ink);cursor:pointer;margin-top:10px}' +
-    '.done{margin-top:12px;padding:12px;border-radius:10px;border:1.5px solid var(--green)}' +
-    '.done p{margin:6px 0}.note{color:var(--muted);font-size:.88rem;margin-top:10px}' +
+    '.bin li{background:var(--surface-2, #eef0f3);border-radius:8px;padding:3px 8px;font-size:.92rem;border:1.5px solid var(--green, #25904f)}' +
+    '.msg{margin-top:12px;min-height:2.6em;padding:8px 12px;border-radius:10px;background:var(--surface-2, #eef0f3);font-size:1rem}' +
+    '.msg.ok{border-left:5px solid var(--green, #25904f)}.msg.bad{border-left:5px solid var(--red, #d93036)}' +
+    '.btn{font:inherit;font-weight:700;padding:9px 16px;min-height:44px;border-radius:10px;border:0;background:var(--beam, #f2a900);color:var(--beam-ink, #1a1400);cursor:pointer;margin-top:10px}' +
+    '.done{margin-top:12px;padding:12px;border-radius:10px;border:1.5px solid var(--green, #25904f)}' +
+    '.done p{margin:6px 0}.note{color:var(--muted, #555);font-size:.88rem;margin-top:10px}' +
     '@media (prefers-reduced-motion:reduce){.card.nope{animation:none}}' +
     '</style><div class="box"><div class="top"><b></b><span class="prog" aria-live="polite"></span></div>' +
     '<p class="prompt"></p><div class="tray" role="group" aria-label="Cards to sort"></div>' +
@@ -604,6 +607,16 @@ function k5BigSort(host, cfg) {
   q('.top b').textContent = cfg.title;
   q('.note').textContent = cfg.note || '';
 
+  /* "Copy what you found": puts the text on the clipboard, or shows it selected if the browser refuses. */
+  function copyBtn(text) {
+    const wrap = document.createElement('span');
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = 'Copy what you found';
+    b.addEventListener('click', () => {
+      const fallback = () => { const t = document.createElement('textarea'); t.value = text; t.readOnly = true; t.setAttribute('aria-label', 'What you found, to copy'); t.style.cssText = 'display:block;width:100%;margin-top:8px;min-height:5em'; wrap.appendChild(t); t.focus(); t.select(); };
+      try { navigator.clipboard.writeText(text).then(() => { b.textContent = 'Copied'; }, fallback); } catch (e) { fallback(); }
+    });
+    wrap.appendChild(b); return wrap;
+  }
   let round = 0, stage = 0, picked = null, misses = {}, rec = [];
   const placed = {};
 
@@ -620,6 +633,7 @@ function k5BigSort(host, cfg) {
     q('.prompt').textContent = st.prompt;
     q('.msg').className = 'msg'; q('.msg').textContent = 'Tap a card, then tap its bin.';
     const order = k5Order(st.cards.map((c) => c.id), cfg.id + ':' + stage + ':' + round);
+    const refocus = round > 1 || stage > 0;   /* after Next round or Play again, move focus to the first new control */
     const tray = q('.tray'); tray.innerHTML = '';
     order.forEach((id) => {
       const c = st.cards.find((x) => x.id === id);
@@ -633,15 +647,17 @@ function k5BigSort(host, cfg) {
     });
     const bins = q('.bins'); bins.innerHTML = '';
     st.bins.forEach((bn) => {
-      const el = document.createElement('button');
-      el.type = 'button'; el.className = 'bin'; el.dataset.bin = bn.id;
-      el.innerHTML = '<h4>' + esc((bn.icon ? bn.icon + ' ' : '') + bn.label) + '</h4><ul></ul>';
-      el.addEventListener('click', () => drop(bn.id));
+      const el = document.createElement('div');
+      el.className = 'bin'; el.dataset.bin = bn.id;
+      el.setAttribute('role', 'group'); el.setAttribute('aria-labelledby', 'bh-' + stage + '-' + bn.id);
+      el.innerHTML = '<h4 id="bh-' + stage + '-' + bn.id + '">' + esc((bn.icon ? bn.icon + ' ' : '') + bn.label) + '</h4><ul aria-live="off"></ul><button type="button" class="put">Put card here</button>';
+      el.addEventListener('click', () => drop(bn.id));   /* the whole box and its button both work; the button is the keyboard route */
       el.addEventListener('dragover', (e) => { e.preventDefault(); el.classList.add('over'); });
       el.addEventListener('dragleave', () => el.classList.remove('over'));
       el.addEventListener('drop', (e) => { e.preventDefault(); el.classList.remove('over'); drop(bn.id); });
       bins.appendChild(el);
     });
+    if (refocus) { const c0 = root.querySelector('.card'); if (c0) c0.focus(); }
   }
   function pick(id) {
     picked = id;
@@ -682,6 +698,7 @@ function k5BigSort(host, cfg) {
     const b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = 'Play again';
     b.addEventListener('click', () => start());
     d.appendChild(b);
+    d.appendChild(copyBtn(cfg.title + ': ' + cfg.summary + (hard.length ? ' Worth a second look: ' + hard.join('; ') + '.' : '')));
     q('.end').innerHTML = ''; q('.end').appendChild(d);
     q('.prog').textContent = 'Done';
   }
@@ -689,7 +706,7 @@ function k5BigSort(host, cfg) {
 }
 
 
-k5BigSort(document.getElementById("k5-activity"), {"id":"5-1-sort","title":"Matter, Mixtures, and Changes Sort","intro":"Sort how materials act, what kind of change you see, and what the mass evidence shows.","note":"This is a sorting model, and the real hands-on job of separating sand, salt, and iron filings still counts.","summary":"Matter is made of tiny particles and can be solid, liquid, or gas, including air you cannot see. A change can keep the same substance or make a new one, but the total matter stays the same unless something leaks out.","stages":[{"prompt":"Use how it acts. Which state of matter is this?","bins":[{"id":"solid","icon":"🧊","label":"Solid"},{"id":"liquid","icon":"💧","label":"Liquid"},{"id":"gas","icon":"💨","label":"Gas"}],"cards":[{"id":"ice-cube","icon":"🧊","label":"Ice cube keeps its shape","bin":"solid","why":"A solid keeps its own shape, and ice is solid water.","hint":"Does it keep its own shape, or flow and spread?"},{"id":"michigan-snow","icon":"❄️","label":"Snow piled in a Michigan yard","bin":"solid","why":"Snow is solid water and holds a pile until it warms.","hint":"While it is still snow, does the pile hold a shape?"},{"id":"cup-water","icon":"🥤","label":"Water matching the cup's shape","bin":"liquid","why":"A liquid flows and takes the shape of its container.","hint":"Does it keep a shape of its own, or match the cup?"},{"id":"kettle-cloud","icon":"☁️","label":"White cloud over a kettle","bin":"liquid","why":"That white cloud is tiny droplets, not the invisible gas.","hint":"is it a see-through gas, or tiny drops you can see?"},{"id":"water-vapor","icon":"🌫️","label":"Invisible water vapor spreading out","bin":"gas","why":"Water vapor is an invisible gas, so it spreads out to fill space.","hint":"Can you see it, and does it stay in one place?"},{"id":"sealed-air","icon":"👜","label":"Air sealed in a zip bag","bin":"gas","why":"Air is a gas that takes space. It is matter even though you cannot see it.","hint":"Does the air in the sealed bag take up space?"},{"id":"salt-water","icon":"🧂","label":"Salt water sitting in a cup","bin":"liquid","why":"Salty water still flows and takes the cup's shape.","hint":"What shape does the water in the cup take?"}]},{"prompt":"Did this stay the same substance, or did a new substance form?","bins":[{"id":"same-substance","icon":"🔁","label":"Same substance"},{"id":"new-substance","icon":"✨","label":"New substance"}],"cards":[{"id":"melting-ice","icon":"🧊","label":"Ice melting into water","bin":"same-substance","why":"Melting is still water. It does not make a new substance.","hint":"Does melting turn the water into a different material?"},{"id":"melting-snow","icon":"❄️","label":"Michigan snow warming into water","bin":"same-substance","why":"Warm snow becomes liquid water, but it is still water.","hint":"Did the snow become a new material, or only change state?"},{"id":"dissolved-salt","icon":"🧂","label":"Salt dissolved so you cannot see it","bin":"same-substance","why":"Dissolved salt is still salt in tiny pieces. It did not become a new substance.","hint":"when salt dissolves, is it gone, or just in tiny pieces?"},{"id":"dried-salt","icon":"🍽️","label":"Salt left after salty water dries","bin":"same-substance","why":"The salt was still in the water. Drying lets you see the same salt again.","hint":"If salt shows up after drying, think about whether it had become something else."},{"id":"trail-mix","icon":"🥜","label":"Trail mix picked apart","bin":"same-substance","why":"The pieces stay themselves. They do not become one new substance.","hint":"Do the pieces turn into a new material, or stay what they were?"},{"id":"fizz-bag","icon":"🧴","label":"Vinegar and baking soda fizzing","bin":"new-substance","why":"The fizz can make a new gas, so a new substance formed.","hint":"Does the fizz only change a shape, or make something that was not there before?"},{"id":"rusty-bike","icon":"🚲","label":"Iron on a bike turning to rust","bin":"new-substance","why":"Iron changes into rust, and rust is a new substance.","hint":"is the red-brown rust the same stuff as the shiny iron?"}]},{"prompt":"What does the evidence show about the matter in the container?","bins":[{"id":"stayed","icon":"⚖️","label":"Total stayed the same"},{"id":"left","icon":"🚪","label":"Matter left the container"}],"cards":[{"id":"sealed-ice","icon":"🧊","label":"Sealed ice cup: 82 g, then 82 g","bin":"stayed","why":"The numbers stay the same. Melting did not make matter disappear.","hint":"Do the before and after numbers match?"},{"id":"sealed-fizz","icon":"⚖️","label":"Sealed fizzing bag: 45 g, then 45 g","bin":"stayed","why":"The gas stays in the sealed bag and has mass, so the total stays 45 g.","hint":"Can the new gas get out if the bag is sealed?"},{"id":"unseen-salt","icon":"🔍","label":"Salt you cannot see in the water","bin":"stayed","why":"Dissolved salt is still there as tiny particles. It did not disappear.","hint":"Does 'cannot see it' mean it left, or that the pieces are tiny?"},{"id":"dried-plate","icon":"🍽️","label":"Salt comes back on the dry plate","bin":"stayed","why":"The salt was in the water the whole time. Drying shows it is still there.","hint":"What shows up again when the salty water dries?"},{"id":"open-bag","icon":"💨","label":"Open bag: gas escapes and mass drops","bin":"left","why":"An open bag lets gas escape, so the mass drops. That is a leak, not proof that gas has no mass.","hint":"Where does the gas go if the bag is not sealed?"}]}]});
+k5BigSort(document.getElementById("k5-activity"), {"id":"5-1-sort","title":"Matter, Mixtures, and Changes Sort","intro":"Sort how materials act, what kind of change you see, and what the mass evidence shows.","note":"This is a sorting model, and the real hands-on job of separating sand, salt, and iron filings still counts.","summary":"Matter is made of tiny particles and can be solid, liquid, or gas, including air you cannot see. A change can keep the same substance or make a new one, but the total matter stays the same unless something leaks out.","stages":[{"prompt":"Use how it acts. Which state of matter is this?","bins":[{"id":"solid","icon":"🧊","label":"Solid"},{"id":"liquid","icon":"💧","label":"Liquid"},{"id":"gas","icon":"💨","label":"Gas"}],"cards":[{"id":"ice-cube","icon":"🧊","label":"Ice cube keeps its shape","bin":"solid","why":"A solid keeps its own shape, and ice is solid water.","hint":"Does it keep its own shape, or flow and spread?"},{"id":"michigan-snow","icon":"❄️","label":"Snow piled in a Michigan yard","bin":"solid","why":"Snow is solid water and holds a pile until it warms.","hint":"While it is still snow, does the pile hold a shape?"},{"id":"cup-water","icon":"🥤","label":"Water matching the cup's shape","bin":"liquid","why":"A liquid flows and takes the shape of its container.","hint":"Does it keep a shape of its own, or match the cup?"},{"id":"kettle-cloud","icon":"☁️","label":"White cloud over a kettle","bin":"liquid","why":"That white cloud is tiny droplets, not the invisible gas.","hint":"is it a see-through gas, or tiny drops you can see?"},{"id":"water-vapor","icon":"🌫️","label":"Invisible water vapor spreading out","bin":"gas","why":"Water vapor is an invisible gas, so it spreads out to fill space.","hint":"Can you see it, and does it stay in one place?"},{"id":"sealed-air","icon":"👜","label":"Air sealed in a zip bag","bin":"gas","why":"Air is a gas that takes space. It is matter even though you cannot see it.","hint":"Does the air in the sealed bag take up space?"},{"id":"salt-water","icon":"🧂","label":"Salt water sitting in a cup","bin":"liquid","why":"Salty water still flows and takes the cup's shape.","hint":"What shape does the water in the cup take?"}]},{"prompt":"Did a new substance form, or is every substance still what it was?","bins":[{"id":"same-substance","icon":"🔁","label":"No new substance"},{"id":"new-substance","icon":"✨","label":"A new substance formed"}],"cards":[{"id":"melting-ice","icon":"🧊","label":"Ice melting into water","bin":"same-substance","why":"Melting is still water. It does not make a new substance.","hint":"Does melting turn the water into a different material?"},{"id":"melting-snow","icon":"❄️","label":"Michigan snow warming into water","bin":"same-substance","why":"Warm snow becomes liquid water, but it is still water.","hint":"Did the snow become a new material, or only change state?"},{"id":"dissolved-salt","icon":"🧂","label":"Salt dissolved so you cannot see it","bin":"same-substance","why":"Dissolved salt is still salt in tiny pieces. It did not become a new substance.","hint":"when salt dissolves, is it gone, or just in tiny pieces?"},{"id":"dried-salt","icon":"🍽️","label":"Salt left after salty water dries","bin":"same-substance","why":"The salt was still in the water. Drying lets you see the same salt again.","hint":"If salt shows up after drying, think about whether it had become something else."},{"id":"trail-mix","icon":"🥜","label":"Picking trail mix apart","bin":"same-substance","why":"Trail mix is a mixture. Picking it apart does not make a new substance; each piece is still what it was.","hint":"does each piece change into something else, or stay what it was?"},{"id":"fizz-bag","icon":"🧴","label":"Vinegar and baking soda fizzing","bin":"new-substance","why":"The fizz can make a new gas, so a new substance formed.","hint":"Does the fizz only change a shape, or make something that was not there before?"},{"id":"rusty-bike","icon":"🚲","label":"Iron on a bike turning to rust","bin":"new-substance","why":"Iron changes into rust, and rust is a new substance.","hint":"is the red-brown rust the same stuff as the shiny iron?"}]},{"prompt":"What does the evidence show about the matter in the container?","bins":[{"id":"stayed","icon":"⚖️","label":"Total stayed the same"},{"id":"left","icon":"🚪","label":"Matter left the container"}],"cards":[{"id":"sealed-ice","icon":"🧊","label":"Sealed ice cup: 82 g, then 82 g","bin":"stayed","why":"The numbers stay the same. Melting did not make matter disappear.","hint":"Do the before and after numbers match?"},{"id":"sealed-fizz","icon":"⚖️","label":"Sealed fizzing bag: 45 g, then 45 g","bin":"stayed","why":"The gas stays in the sealed bag and has mass, so the total stays 45 g.","hint":"Can the new gas get out if the bag is sealed?"},{"id":"unseen-salt","icon":"🔍","label":"Salt you cannot see in the water","bin":"stayed","why":"Dissolved salt is still there as tiny particles. It did not disappear.","hint":"Does 'cannot see it' mean it left, or that the pieces are tiny?"},{"id":"dried-plate","icon":"🍽️","label":"Salt comes back on the dry plate","bin":"stayed","why":"The salt was in the water the whole time. Drying shows it is still there.","hint":"What shows up again when the salty water dries?"},{"id":"open-bag","icon":"💨","label":"Open bag: gas escapes and mass drops","bin":"left","why":"An open bag lets gas escape, so the mass drops. That is a leak, not proof that gas has no mass.","hint":"Where does the gas go if the bag is not sealed?"}]}]});
 </script>
 </section>
 <!--k5-activity-end-->

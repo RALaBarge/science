@@ -71,9 +71,9 @@
     {
      "id": "run",
      "icon": "🏃",
-     "label": "The deer's running motion",
+     "label": "The energy of a deer running",
      "bin": "energy",
-     "why": "Motion uses energy from food. The deer's body is matter, but the motion is energy.",
+     "why": "Running uses energy from food. The deer's body is matter, but the energy of its motion is energy.",
      "hint": "is this the stuff, or the moving?"
     }
    ]
@@ -271,9 +271,9 @@
     {
      "id": "foxrun",
      "icon": "🏃",
-     "label": "The fox's running motion",
+     "label": "The energy of a fox running",
      "bin": "ends",
-     "why": "Motion is where food energy ends up. It is not reused like matter.",
+     "why": "Running is where food energy ends up. It is energy, not matter, and it is not reused like matter.",
      "hint": "is this stuff, or the ability to cause change?"
     }
    ]

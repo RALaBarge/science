@@ -177,7 +177,20 @@ function checkGraphSkyValidators(ok) {
   ok(JSON.stringify(a) === JSON.stringify(g.k5SkyOrder(['a', 'b', 'c', 'd', 'e'], 'x:1:0')), 'graphsky order is repeatable');
 }
 
+function checkFairValidators(ok) {
+  const F = require('../k5-activities/fairtest.js');
+  const good = unitCfg('unit-2-c-land-and-water-fast-and-slow.json');
+  ok(F.k5FairValidate(good).length === 0, 'fairtest: good config validates');
+  const m1 = clone(good); m1.rounds[0].reads[0].choices.forEach((x) => { x.ok = x.label === 'Stones'; });
+  ok(F.k5FairValidate(m1).some((e) => e.includes('data picks')), 'fairtest validator catches a read key that names the wrong winner');
+  const m2 = clone(good); m2.rounds[0].claim[1].choices.forEach((x) => { x.ok = /paper barrier/.test(x.label); });
+  ok(F.k5FairValidate(m2).some((e) => e.includes('data picks')), 'fairtest validator catches a claim key that names the wrong winner');
+  const m3 = clone(good); m3.rounds[0].options[1].trials = [9, 9, 9];
+  ok(F.k5FairValidate(m3).some((e) => e.includes('data picks') || e.includes('no correct choice')), 'fairtest validator catches data that no longer supports the key');
+}
+
 function checkValidators(ok) {
+  checkFairValidators(ok);
   checkSceneWebValidators(ok);
   checkGraphSkyValidators(ok);
   checkPathSignalValidators(ok);
@@ -258,6 +271,7 @@ const PLAY = {
       await page.locator(A + ' .ask .opt', { hasText: cfg.questions[qi].choices.find((c) => c.ok).label }).first().click();
     }
     await page.locator(A + ' .done').waitFor();
+    ok(await byName(page, 'Copy what you found').count() === 1, f + ' end screen has a Copy button');
     const txt = await page.locator(A + ' .done').textContent();
     ok(txt.includes(cfg.summary.slice(0, 30)), f + ' plays through to the summary');
     ok(/Smooth: 4/.test(txt) && /Bumpy: 5/.test(txt), f + ' the summary repeats the tally (4 smooth, 5 bumpy)');
@@ -322,6 +336,7 @@ const PLAY = {
       await next.click();
     }
     await page.locator(A + ' .donebox').waitFor();
+    ok(await byName(page, 'Copy what you found').count() === 1, f + ' end screen has a Copy button');
     const txt = await page.locator(A + ' .donebox').textContent();
     ok(txt.includes(cfg.summary.slice(0, 30)), f + ' plays through to the summary');
     ok(/paper clip.*foil.*conducted/i.test(txt), f + ' summary reports which materials conducted');
@@ -390,6 +405,7 @@ const PLAY = {
       if (ri + 1 < cfg.rounds.length) await byName(page, 'Next sky').click();
     }
     await page.locator(A + ' .done').waitFor();
+    ok(await byName(page, 'Copy what you found').count() === 1, f + ' end screen has a Copy button');
     const txt = await page.locator(A + ' .done').textContent();
     ok(txt.includes(cfg.summary.slice(0, 30)), f + ' plays through to the summary');
     ok(cfg.rounds.every((r) => !r.rows || r.rows.every((x) => txt.includes(x.len + ' cm'))), f + ' summary shows every shadow length');
@@ -431,6 +447,7 @@ const PLAY = {
       await wrongThenRight(page, bad.label, good.label, problems, 'claim part');
     }
     await page.locator(A + ' .done').waitFor();
+    ok(await byName(page, 'Copy what you found').count() === 1, f + ' end screen has a Copy button');
     const txt = await page.locator(A + ' .done').textContent();
     ok(txt.includes(cfg.summary.slice(0, 30)), f + ' plays through to the summary');
     ok(cfg.rounds.every((r) => txt.includes(r.finding.slice(0, 25))), f + ' summary lists every finding');

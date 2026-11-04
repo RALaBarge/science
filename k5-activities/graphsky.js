@@ -146,30 +146,30 @@ function k5GraphSky(host, cfg) {
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   root.innerHTML = '<style>' +
     ':host{display:block}' +
-    '.box{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:16px;color:var(--ink);font-family:var(--font-body,system-ui,sans-serif)}' +
+    '.box{background:var(--surface, #fff);border:1.5px solid var(--line, #bbb);border-radius:14px;padding:16px;color:var(--ink, #111);font-family:var(--font-body,system-ui,sans-serif)}' +
     '.top{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;justify-content:space-between;margin-bottom:6px}' +
-    '.top b{font-size:1.05rem}.prog{color:var(--muted);font-size:.9rem}' +
+    '.top b{font-size:1.05rem}.prog{color:var(--muted, #555);font-size:.9rem}' +
     '.q{margin:4px 0 10px;font-size:1.05rem;font-weight:700}.step{margin:10px 0 6px;font-weight:700}' +
     '.row{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0;align-items:center}' +
-    '.opt{font:inherit;color:inherit;display:flex;align-items:center;gap:8px;padding:8px 12px;min-height:44px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;text-align:left}' +
-    '.opt:hover{border-color:var(--beam)}.opt[disabled]{opacity:.65;cursor:default}.opt.right{border-color:var(--green)}' +
-    '.opt[aria-pressed="true"]{outline:3px solid var(--beam);outline-offset:1px}.opt.nope{border-color:var(--red)}' +
-    'button:focus-visible{outline:3px solid var(--beam);outline-offset:2px}' +
-    '.scene{margin:8px 0}.scene svg{display:block;width:100%;max-width:360px;height:auto;border:1.5px solid var(--line);border-radius:12px;background:var(--surface-2)}' +
-    '.log{border-collapse:collapse;margin:8px 0;font-size:.95rem}.log th,.log td{border:1.5px solid var(--line);padding:4px 10px;text-align:left}' +
+    '.opt{font:inherit;color:inherit;display:flex;align-items:center;gap:8px;padding:8px 12px;min-height:44px;border-radius:10px;border:1.5px solid var(--line, #bbb);background:var(--surface, #fff);cursor:pointer;text-align:left}' +
+    '.opt:hover{border-color:var(--beam, #f2a900)}.opt[disabled]{opacity:.65;cursor:default}.opt.right{border-color:var(--green, #25904f)}' +
+    '.opt[aria-pressed="true"]{outline:3px solid var(--beam, #f2a900);outline-offset:1px}.opt.nope{border-color:var(--red, #d93036)}' +
+    'button:focus-visible{outline:3px solid var(--beam, #f2a900);outline-offset:2px}' +
+    '.scene{margin:8px 0}.scene svg{display:block;width:100%;max-width:360px;height:auto;border:1.5px solid var(--line, #bbb);border-radius:12px;background:var(--surface-2, #eef0f3)}' +
+    '.log{border-collapse:collapse;margin:8px 0;font-size:.95rem}.log th,.log td{border:1.5px solid var(--line, #bbb);padding:4px 10px;text-align:left}' +
     '.slots{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:8px 0}' +
-    '.slot{font:inherit;color:inherit;border:2px dashed var(--line);border-radius:12px;padding:10px;min-height:84px;background:var(--surface);cursor:pointer;text-align:center}' +
-    '.slot:hover{border-color:var(--beam);background:var(--surface-2)}.slot.full{border-style:solid;border-color:var(--green)}' +
+    '.slot{font:inherit;color:inherit;border:2px dashed var(--line, #bbb);border-radius:12px;padding:10px;min-height:84px;background:var(--surface, #fff);cursor:pointer;text-align:center}' +
+    '.slot:hover{border-color:var(--beam, #f2a900);background:var(--surface-2, #eef0f3)}.slot.full{border-style:solid;border-color:var(--green, #25904f)}' +
     '.bar{display:flex;flex-direction:column-reverse;gap:2px;align-items:center;margin:6px auto 2px;width:max-content}' +
-    '.sq{width:14px;height:9px;border-radius:2px;background:var(--beam)}' +
-    '.sqrow{display:flex;gap:2px;flex-wrap:wrap;max-width:120px}.sqrow i{width:9px;height:9px;border-radius:2px;background:var(--beam)}' +
-    '.msg{margin-top:12px;min-height:2.6em;padding:8px 12px;border-radius:10px;background:var(--surface-2);font-size:1rem}' +
-    '.msg.ok{border-left:5px solid var(--green)}.msg.bad{border-left:5px solid var(--red)}' +
-    '.claim{margin:8px 0;padding:10px 12px;border-radius:10px;border:1.5px dashed var(--line);font-size:1.02rem}' +
-    '.btn{font:inherit;font-weight:700;padding:9px 16px;min-height:44px;border-radius:10px;border:0;background:var(--beam);color:var(--beam-ink);cursor:pointer;margin-top:10px}' +
+    '.sq{width:14px;height:9px;border-radius:2px;background:var(--beam, #f2a900)}' +
+    '.sqrow{display:flex;gap:2px;flex-wrap:wrap;max-width:120px}.sqrow i{width:9px;height:9px;border-radius:2px;background:var(--beam, #f2a900)}' +
+    '.msg{margin-top:12px;min-height:2.6em;padding:8px 12px;border-radius:10px;background:var(--surface-2, #eef0f3);font-size:1rem}' +
+    '.msg.ok{border-left:5px solid var(--green, #25904f)}.msg.bad{border-left:5px solid var(--red, #d93036)}' +
+    '.claim{margin:8px 0;padding:10px 12px;border-radius:10px;border:1.5px dashed var(--line, #bbb);font-size:1.02rem}' +
+    '.btn{font:inherit;font-weight:700;padding:9px 16px;min-height:44px;border-radius:10px;border:0;background:var(--beam, #f2a900);color:var(--beam-ink, #1a1400);cursor:pointer;margin-top:10px}' +
     '.btn[disabled]{opacity:.65;cursor:default}' +
-    '.done{margin-top:12px;padding:12px;border-radius:10px;border:1.5px solid var(--green)}.done p{margin:6px 0}' +
-    '.note{color:var(--muted);font-size:.88rem;margin-top:10px}' +
+    '.done{margin-top:12px;padding:12px;border-radius:10px;border:1.5px solid var(--green, #25904f)}.done p{margin:6px 0}' +
+    '.note{color:var(--muted, #555);font-size:.88rem;margin-top:10px}' +
     '</style>' +
     '<div class="box"><div class="top"><b></b><span class="prog" aria-live="polite"></span></div>' +
     '<div class="main"></div><div class="msg" role="status" aria-live="polite"></div><div class="end"></div><p class="note"></p></div>';
@@ -184,7 +184,17 @@ function k5GraphSky(host, cfg) {
   const STARPTS = [[28, 18], [64, 40], [104, 14], [150, 32], [196, 16], [238, 44], [292, 20], [128, 58], [212, 64], [56, 66], [260, 84], [20, 90]];
   const SUNC = '#f2b01e', SUNS = '#c9820a', NIGHT = '#152238';
 
-  let ri = 0, plays = 0, slips = 0;
+  /* "Copy what you found": puts the text on the clipboard, or shows it selected if the browser refuses. */
+  function copyBtn(text) {
+    const wrap = document.createElement('span');
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = 'Copy what you found';
+    b.addEventListener('click', () => {
+      const fallback = () => { const t = document.createElement('textarea'); t.value = text; t.readOnly = true; t.setAttribute('aria-label', 'What you found, to copy'); t.style.cssText = 'display:block;width:100%;margin-top:8px;min-height:5em'; wrap.appendChild(t); t.focus(); t.select(); };
+      try { navigator.clipboard.writeText(text).then(() => { b.textContent = 'Copied'; }, fallback); } catch (e) { fallback(); }
+    });
+    wrap.appendChild(b); return wrap;
+  }
+  let ri = 0, plays = 0, slips = 0, started = false;
   const found = [], arts = [];
   const seed = () => cfg.id + ':' + ri + ':' + plays;
   const sceneBox = () => { const d = document.createElement('div'); d.className = 'scene'; main.appendChild(d); return d; };
@@ -208,11 +218,11 @@ function k5GraphSky(host, cfg) {
       const ups = stops.map((s2, j) => (s2.sun === 'up' ? j : -1)).filter((j) => j >= 0);
       const f = ups.length > 1 ? ups.indexOf(i) / (ups.length - 1) : 0.5;
       let s = '<svg viewBox="0 0 320 170" role="img" aria-label="Sky at ' + esc(st.label) + ': the Sun is ' + st.sun + '; the stars are ' + st.stars + '.">';
-      s += '<rect width="320" height="122" fill="' + sky + '"/><rect y="122" width="320" height="48" fill="var(--surface-2)"/><line x1="0" y1="122" x2="320" y2="122" stroke="var(--line)"/>';
+      s += '<rect width="320" height="122" fill="' + sky + '"/><rect y="122" width="320" height="48" fill="var(--surface-2, #eef0f3)"/><line x1="0" y1="122" x2="320" y2="122" stroke="var(--line, #bbb)"/>';
       if (st.stars === 'out') s += STARPTS.map((p) => '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="1.6" fill="#fff"/>').join('');
       if (st.sun === 'up') s += '<circle cx="' + (50 + f * 220) + '" cy="' + (108 - Math.sin(Math.PI * f) * 78) + '" r="14" fill="' + SUNC + '" stroke="' + SUNS + '" stroke-width="2"/>';
       const rad = ((i / n) * 360 - 90) * Math.PI / 180, gx = 278, gy = 34, gr = 20;
-      s += '<circle cx="' + gx + '" cy="' + gy + '" r="' + gr + '" fill="#5b93c9" stroke="var(--line)"/>' +
+      s += '<circle cx="' + gx + '" cy="' + gy + '" r="' + gr + '" fill="#5b93c9" stroke="var(--line, #bbb)"/>' +
         '<path d="M ' + gx + ' ' + (gy - gr) + ' A ' + gr + ' ' + gr + ' 0 0 1 ' + gx + ' ' + (gy + gr) + ' Z" fill="#bcd9ef"/>' +
         '<circle cx="' + (gx + 12 * Math.cos(rad)) + '" cy="' + (gy + 12 * Math.sin(rad)) + '" r="3.4" fill="' + (tone === 'night' ? '#ffd75e' : '#c62f2f') + '"/>' +
         '<text x="' + gx + '" y="' + (gy + gr + 12) + '" font-size="9" text-anchor="middle" fill="' + (tone === 'night' ? '#dfe8f2' : '#17324a') + '">you on Earth</text>';
@@ -234,11 +244,11 @@ function k5GraphSky(host, cfg) {
 
   function moonSVG(shape) {
     let over = '';
-    if (shape === 'new') over = '<circle cx="12" cy="12" r="9.4" fill="var(--surface)"/>';
-    if (shape === 'crescent') over = '<circle cx="7.2" cy="12" r="9" fill="var(--surface)"/>';
-    if (shape === 'half') over = '<rect x="0" y="0" width="12" height="24" fill="var(--surface)"/>';
-    if (shape === 'gibbous') over = '<circle cx="4.6" cy="12" r="8.8" fill="var(--surface)"/>';
-    return '<svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#e6dfc3"/>' + over + '<circle cx="12" cy="12" r="10" fill="none" stroke="var(--line)" stroke-width="1.5"/></svg>';
+    if (shape === 'new') over = '<circle cx="12" cy="12" r="9.4" fill="var(--surface, #fff)"/>';
+    if (shape === 'crescent') over = '<circle cx="7.2" cy="12" r="9" fill="var(--surface, #fff)"/>';
+    if (shape === 'half') over = '<rect x="0" y="0" width="12" height="24" fill="var(--surface, #fff)"/>';
+    if (shape === 'gibbous') over = '<circle cx="4.6" cy="12" r="8.8" fill="var(--surface, #fff)"/>';
+    return '<svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#e6dfc3"/>' + over + '<circle cx="12" cy="12" r="10" fill="none" stroke="var(--line, #bbb)" stroke-width="1.5"/></svg>';
   }
 
   function moon(r, onDone) {
@@ -359,21 +369,21 @@ function k5GraphSky(host, cfg) {
       const sw = row.sun.x < 0.45 ? 1 : row.sun.x > 0.55 ? -1 : 0;   /* side view: the shadow points away from the Sun; at midday it points at you */
       const sl = 6 + (row.len / max) * 40;
       let s = '<svg viewBox="0 0 340 170" role="img" aria-label="At ' + esc(row.time) + ' the shadow is ' + row.len + ' cm, pointing ' + DIRW[row.dir] + '.">';
-      s += '<rect x="4" y="4" width="150" height="118" rx="8" fill="#8ecfe8"/><rect x="4" y="122" width="150" height="30" fill="var(--surface-2)"/>' +
+      s += '<rect x="4" y="4" width="150" height="118" rx="8" fill="#8ecfe8"/><rect x="4" y="122" width="150" height="30" fill="var(--surface-2, #eef0f3)"/>' +
         '<circle cx="' + sx + '" cy="' + sy + '" r="10" fill="' + SUNC + '" stroke="' + SUNS + '" stroke-width="2"/>' +
-        '<line x1="79" y1="122" x2="79" y2="96" stroke="var(--ink)" stroke-width="3"/>' +
-        '<line x1="79" y1="122" x2="' + (79 + sw * sl) + '" y2="' + (122 + (sw ? 0 : sl * 0.55)) + '" stroke="var(--ink)" stroke-width="3" opacity=".45"/>' +
-        '<text x="79" y="166" font-size="9" text-anchor="middle" fill="var(--ink)">sky, looking south</text>';
-      s += '<circle cx="' + cx + '" cy="' + cy + '" r="' + cr + '" fill="var(--surface)" stroke="var(--line)"/>' +
-        '<text x="' + cx + '" y="20" font-size="10" text-anchor="middle" fill="var(--ink)">N</text>' +
-        '<text x="' + (cx + 64) + '" y="' + (cy + 4) + '" font-size="10" text-anchor="middle" fill="var(--ink)">E</text>' +
-        '<text x="' + cx + '" y="' + (cy + 66) + '" font-size="10" text-anchor="middle" fill="var(--ink)">S</text>' +
-        '<text x="' + (cx - 64) + '" y="' + (cy + 4) + '" font-size="10" text-anchor="middle" fill="var(--ink)">W</text>' +
-        '<line x1="' + cx + '" y1="' + cy + '" x2="' + (cx + L * Math.sin(d)) + '" y2="' + (cy - L * Math.cos(d)) + '" stroke="var(--ink)" stroke-width="4" opacity=".5"/>' +
+        '<line x1="79" y1="122" x2="79" y2="96" stroke="var(--ink, #111)" stroke-width="3"/>' +
+        '<line x1="79" y1="122" x2="' + (79 + sw * sl) + '" y2="' + (122 + (sw ? 0 : sl * 0.55)) + '" stroke="var(--ink, #111)" stroke-width="3" opacity=".45"/>' +
+        '<text x="79" y="166" font-size="9" text-anchor="middle" fill="var(--ink, #111)">sky, looking south</text>';
+      s += '<circle cx="' + cx + '" cy="' + cy + '" r="' + cr + '" fill="var(--surface, #fff)" stroke="var(--line, #bbb)"/>' +
+        '<text x="' + cx + '" y="20" font-size="10" text-anchor="middle" fill="var(--ink, #111)">N</text>' +
+        '<text x="' + (cx + 64) + '" y="' + (cy + 4) + '" font-size="10" text-anchor="middle" fill="var(--ink, #111)">E</text>' +
+        '<text x="' + cx + '" y="' + (cy + 66) + '" font-size="10" text-anchor="middle" fill="var(--ink, #111)">S</text>' +
+        '<text x="' + (cx - 64) + '" y="' + (cy + 4) + '" font-size="10" text-anchor="middle" fill="var(--ink, #111)">W</text>' +
+        '<line x1="' + cx + '" y1="' + cy + '" x2="' + (cx + L * Math.sin(d)) + '" y2="' + (cy - L * Math.cos(d)) + '" stroke="var(--ink, #111)" stroke-width="4" opacity=".5"/>' +
         '<circle cx="' + (cx + 62 * Math.sin(sd)) + '" cy="' + (cy - 62 * Math.cos(sd)) + '" r="8" fill="' + SUNC + '" stroke="' + SUNS + '" stroke-width="2"/>' +
-        '<circle cx="' + cx + '" cy="' + cy + '" r="4" fill="var(--ink)"/>' +
-        '<text x="' + cx + '" y="' + (cy + 24) + '" font-size="10" text-anchor="middle" fill="var(--ink)">shadow ' + row.len + ' cm</text>' +
-        '<text x="' + cx + '" y="166" font-size="9" text-anchor="middle" fill="var(--ink)">shadow map, looking down</text>';
+        '<circle cx="' + cx + '" cy="' + cy + '" r="4" fill="var(--ink, #111)"/>' +
+        '<text x="' + cx + '" y="' + (cy + 24) + '" font-size="10" text-anchor="middle" fill="var(--ink, #111)">shadow ' + row.len + ' cm</text>' +
+        '<text x="' + cx + '" y="166" font-size="9" text-anchor="middle" fill="var(--ink, #111)">shadow map, looking down</text>';
       box.innerHTML = s + '</svg>';
       if (seen.has(row.id)) { say('', row.time + ' is already in the table.'); return; }
       seen.add(row.id);
@@ -394,16 +404,16 @@ function k5GraphSky(host, cfg) {
     let done = 0;
     const box = sceneBox();
     let s = '<svg viewBox="0 0 340 190" role="img" aria-label="A globe with spots on it. At each spot, pick which way down points.">';
-    s += '<defs><marker id="ah" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="var(--beam)"/></marker></defs>';
-    s += '<circle cx="' + cx + '" cy="' + cy + '" r="' + gr + '" fill="#5b93c9" stroke="var(--line)" stroke-width="2"/>' +
+    s += '<defs><marker id="ah" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="var(--beam, #f2a900)"/></marker></defs>';
+    s += '<circle cx="' + cx + '" cy="' + cy + '" r="' + gr + '" fill="#5b93c9" stroke="var(--line, #bbb)" stroke-width="2"/>' +
       '<ellipse cx="' + cx + '" cy="' + cy + '" rx="' + gr + '" ry="' + gr * 0.42 + '" fill="none" stroke="#bcd9ef" opacity=".7"/>' +
       '<ellipse cx="' + cx + '" cy="' + cy + '" rx="' + gr * 0.42 + '" ry="' + gr + '" fill="none" stroke="#bcd9ef" opacity=".7"/>';
     r.spots.forEach((sp, i) => {
       const a = sp.deg * Math.PI / 180;
       const x = cx + gr * Math.sin(a), y = cy - gr * Math.cos(a);
-      s += '<circle id="sp' + i + '" cx="' + x + '" cy="' + y + '" r="5.5" fill="#ffd75e" stroke="var(--ink)" stroke-width="1.5"/>' +
-        '<line id="ar' + i + '" x1="' + x + '" y1="' + y + '" x2="' + x + '" y2="' + y + '" stroke="var(--beam)" stroke-width="3" marker-end="url(#ah)" opacity="0"/>' +
-        '<text x="' + (cx + mr * Math.sin(a)) + '" y="' + (cy - mr * Math.cos(a) + 4) + '" font-size="11" font-weight="700" text-anchor="middle" fill="var(--ink)">' + (i + 1) + '</text>';
+      s += '<circle id="sp' + i + '" cx="' + x + '" cy="' + y + '" r="5.5" fill="#ffd75e" stroke="var(--ink, #111)" stroke-width="1.5"/>' +
+        '<line id="ar' + i + '" x1="' + x + '" y1="' + y + '" x2="' + x + '" y2="' + y + '" stroke="var(--beam, #f2a900)" stroke-width="3" marker-end="url(#ah)" opacity="0"/>' +
+        '<text x="' + (cx + mr * Math.sin(a)) + '" y="' + (cy - mr * Math.cos(a) + 4) + '" font-size="11" font-weight="700" text-anchor="middle" fill="var(--ink, #111)">' + (i + 1) + '</text>';
     });
     box.innerHTML = s + '</svg>';
     say('', 'At each numbered spot, pick the arrow that shows down.');
@@ -421,11 +431,11 @@ function k5GraphSky(host, cfg) {
           arts.push('Gravity arrows - at all ' + r.spots.length + ' spots, down points toward the center of Earth.');
           onDone();
         }
-      });
+      }, true);
     });
   }
 
-  function choose(list, lead, onRight) {
+  function choose(list, lead, onRight, noFocus) {
     const s = document.createElement('p'); s.className = 'step'; s.textContent = lead; main.appendChild(s);
     const row = document.createElement('div'); row.className = 'row'; main.appendChild(row);
     list.forEach((c) => {
@@ -437,6 +447,7 @@ function k5GraphSky(host, cfg) {
         onRight(c, e);
       }));
     });
+    if (!noFocus && row.firstChild) row.firstChild.focus();
   }
 
   function stepRead(r, i, onDone) {
@@ -469,6 +480,8 @@ function k5GraphSky(host, cfg) {
     else if (r.kind === 'shadow') shadow(r, after);
     else if (r.kind === 'stars') stars(r, after);
     else gravity(r, after);
+    if (started) { const f0 = main.querySelector('.opt, .slot, .btn'); if (f0) f0.focus(); }
+    started = true;
   }
 
   function finishRound(parts) {
@@ -483,6 +496,7 @@ function k5GraphSky(host, cfg) {
       found.map((f) => '<p>' + esc(f) + '</p>').join('') +
       '<p>' + esc(cfg.summary) + '</p>' +
       (slips ? '<p>Worth a second look: ' + slips + ' choice' + (slips > 1 ? 's' : '') + ' needed another try.</p>' : '<p>Every choice was right on the first try.</p>');
+    d.appendChild(copyBtn(arts.concat(found).join(' ') + ' ' + cfg.summary));
     d.appendChild(btn('btn', 'Play again', () => { plays++; ri = 0; slips = 0; found.length = 0; arts.length = 0; round(); }));
     q('.end').appendChild(d);
     q('.prog').textContent = 'Done';

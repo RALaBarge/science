@@ -135,36 +135,36 @@ function k5PathSignal(host, cfg) {
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   root.innerHTML = '<style>' +
     ':host{display:block}' +
-    '.box{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:16px;color:var(--ink);font-family:var(--font-body,system-ui,sans-serif)}' +
+    '.box{background:var(--surface, #fff);border:1.5px solid var(--line, #bbb);border-radius:14px;padding:16px;color:var(--ink, #111);font-family:var(--font-body,system-ui,sans-serif)}' +
     '.top{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;justify-content:space-between;margin-bottom:6px}' +
-    '.top b{font-size:1.05rem}.prog{color:var(--muted);font-size:.9rem}' +
+    '.top b{font-size:1.05rem}.prog{color:var(--muted, #555);font-size:.9rem}' +
     '.goal{margin:4px 0 10px;font-size:1.05rem;font-weight:700}' +
     '.board{position:relative;width:100%;max-width:440px;margin:4px auto;aspect-ratio:4/3}' +
-    '.loop{position:absolute;inset:13% 11%;border:3px solid var(--line);border-radius:50%}' +
-    '.loop.on{border-color:var(--green)}.loop.hot{border-color:var(--red);border-style:dashed}' +
-    '.slot{position:absolute;width:54px;height:54px;transform:translate(-50%,-50%);border-radius:50%;border:2px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-size:1.4rem;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0;line-height:1}' +
-    '.slot.empty{border-style:dashed;background:var(--surface-2);color:var(--muted);font-size:.68rem}' +
-    '.slot.fix{cursor:default}.slot.over{border-color:var(--beam)}' +
-    '.slot.glow{border-color:var(--green);box-shadow:0 0 12px 2px var(--beam)}' +
-    '.slot.warm{border-color:var(--red)}' +
-    '.slot .bd{font-size:.58rem;color:var(--muted);margin-top:2px}' +
-    '.slot .bd.on{color:var(--green)}.slot .bd.off{color:var(--red);font-weight:700}' +
-    '.state{font-size:.9rem;color:var(--muted);margin:6px 0;min-height:2.4em}' +
-    '.tray{display:flex;flex-wrap:wrap;gap:8px;min-height:56px;padding:10px;border-radius:10px;background:var(--surface-2)}' +
-    '.pc{font:inherit;color:inherit;display:flex;align-items:center;gap:8px;padding:8px 12px;min-height:44px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);cursor:grab;text-align:left}' +
+    '.loop{position:absolute;inset:13% 11%;border:3px solid var(--line, #bbb);border-radius:50%}' +
+    '.loop.on{border-color:var(--green, #25904f)}.loop.hot{border-color:var(--red, #d93036);border-style:dashed}' +
+    '.slot{position:absolute;width:54px;height:54px;transform:translate(-50%,-50%);border-radius:50%;border:2px solid var(--line, #bbb);background:var(--surface, #fff);color:var(--ink, #111);font:inherit;font-size:1.4rem;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0;line-height:1}' +
+    '.slot.empty{border-style:dashed;background:var(--surface-2, #eef0f3);color:var(--muted, #555);font-size:.68rem}' +
+    '.slot.fix{cursor:default}.slot.over{border-color:var(--beam, #f2a900)}' +
+    '.slot.glow{border-color:var(--green, #25904f);box-shadow:0 0 12px 2px var(--beam, #f2a900)}' +
+    '.slot.warm{border-color:var(--red, #d93036)}' +
+    '.slot .bd{font-size:.58rem;color:var(--muted, #555);margin-top:2px}' +
+    '.slot .bd.on{color:var(--green, #25904f)}.slot .bd.off{color:var(--red, #d93036);font-weight:700}' +
+    '.state{font-size:.9rem;color:var(--muted, #555);margin:6px 0;min-height:2.4em}' +
+    '.tray{display:flex;flex-wrap:wrap;gap:8px;min-height:56px;padding:10px;border-radius:10px;background:var(--surface-2, #eef0f3)}' +
+    '.pc{font:inherit;color:inherit;display:flex;align-items:center;gap:8px;padding:8px 12px;min-height:44px;border-radius:10px;border:1.5px solid var(--line, #bbb);background:var(--surface, #fff);cursor:grab;text-align:left}' +
     '.pc .ic{font-size:1.4rem;line-height:1}' +
-    '.pc[aria-pressed="true"]{outline:3px solid var(--beam);outline-offset:1px}' +
-    '.mut{color:var(--muted);font-size:.9rem}' +
+    '.pc[aria-pressed="true"]{outline:3px solid var(--beam, #f2a900);outline-offset:1px}' +
+    '.mut{color:var(--muted, #555);font-size:.9rem}' +
     '.tab{border-collapse:collapse;margin:8px 0;font-size:.95rem}' +
     '.tab caption{text-align:left;margin-bottom:4px}' +
-    '.tab th,.tab td{border:1.5px solid var(--line);padding:4px 10px;text-align:left}' +
-    '.tab .y{color:var(--green);font-weight:700}.tab .n{color:var(--red);font-weight:700}' +
-    '.msg{margin-top:12px;min-height:2.6em;padding:8px 12px;border-radius:10px;background:var(--surface-2);font-size:1rem}' +
-    '.msg.ok{border-left:5px solid var(--green)}.msg.bad{border-left:5px solid var(--red)}' +
-    '.btn{font:inherit;font-weight:700;padding:9px 16px;min-height:44px;border-radius:10px;border:0;background:var(--beam);color:var(--beam-ink);cursor:pointer;margin-top:10px}' +
-    '.donebox{margin-top:12px;padding:12px;border-radius:10px;border:1.5px solid var(--green)}' +
-    '.donebox p{margin:6px 0}.note{color:var(--muted);font-size:.88rem;margin-top:10px}' +
-    'button:focus-visible{outline:3px solid var(--beam);outline-offset:2px}' +
+    '.tab th,.tab td{border:1.5px solid var(--line, #bbb);padding:4px 10px;text-align:left}' +
+    '.tab .y{color:var(--green, #25904f);font-weight:700}.tab .n{color:var(--red, #d93036);font-weight:700}' +
+    '.msg{margin-top:12px;min-height:2.6em;padding:8px 12px;border-radius:10px;background:var(--surface-2, #eef0f3);font-size:1rem}' +
+    '.msg.ok{border-left:5px solid var(--green, #25904f)}.msg.bad{border-left:5px solid var(--red, #d93036)}' +
+    '.btn{font:inherit;font-weight:700;padding:9px 16px;min-height:44px;border-radius:10px;border:0;background:var(--beam, #f2a900);color:var(--beam-ink, #1a1400);cursor:pointer;margin-top:10px}' +
+    '.donebox{margin-top:12px;padding:12px;border-radius:10px;border:1.5px solid var(--green, #25904f)}' +
+    '.donebox p{margin:6px 0}.note{color:var(--muted, #555);font-size:.88rem;margin-top:10px}' +
+    'button:focus-visible{outline:3px solid var(--beam, #f2a900);outline-offset:2px}' +
     '@media (prefers-reduced-motion:reduce){.slot.glow{box-shadow:none}}' +
     '</style><div class="box"><div class="top"><b></b><span class="prog" aria-live="polite"></span></div>' +
     '<p class="goal"></p><div class="board"><div class="loop"></div></div>' +
@@ -188,6 +188,17 @@ function k5PathSignal(host, cfg) {
     buzzer: 'The doorbell rings',
     motor: 'The motor spins'
   };
+  /* "Copy what you found": puts the text on the clipboard, or shows it selected if the browser refuses. */
+  function copyBtn(text) {
+    const wrap = document.createElement('span');
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = 'Copy what you found';
+    b.addEventListener('click', () => {
+      const fallback = () => { const t = document.createElement('textarea'); t.value = text; t.readOnly = true; t.setAttribute('aria-label', 'What you found, to copy'); t.style.cssText = 'display:block;width:100%;margin-top:8px;min-height:5em'; wrap.appendChild(t); t.focus(); t.select(); };
+      try { navigator.clipboard.writeText(text).then(() => { b.textContent = 'Copied'; }, fallback); } catch (e) { fallback(); }
+    });
+    wrap.appendChild(b); return wrap;
+  }
+  let started = false;
   let ri = 0, play = 0, sel = null, placed = [], open = {}, flip = {}, tested = {}, results = {}, lockedMap = {};
   let attempts = 0, succeeded = false;
   const found = [], seen = [];
@@ -218,6 +229,8 @@ function k5PathSignal(host, cfg) {
     if (r.type === 'test') buildTable();
     paint(k5PathSignalCheck(r, placed, { open: open, flip: flip }));
     say('', r.type === 'test' ? 'Tap a material to put it in the test gap.' : 'Tap a piece, then tap a slot. Fill every slot so the loop has no gaps.');
+    if (started) { const f0 = root.querySelector('.tray .pc') || root.querySelector('.slot'); if (f0) f0.focus(); }
+    started = true;
   }
 
   function buildSlots() {
@@ -458,6 +471,7 @@ function k5PathSignal(host, cfg) {
     b.type = 'button'; b.className = 'btn'; b.textContent = 'Play again';
     b.addEventListener('click', () => { play++; ri = 0; attempts = 0; found.length = 0; seen.length = 0; setup(); });
     d.appendChild(b);
+    d.appendChild(copyBtn(found.join(' ') + ' ' + cfg.summary));
     const end = q('.end'); end.innerHTML = ''; end.appendChild(d);
     say('ok', 'All rounds done. Read what you found below.');
   }

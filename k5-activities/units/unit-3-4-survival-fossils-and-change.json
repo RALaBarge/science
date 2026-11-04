@@ -68,6 +68,11 @@
      "label": "Survives well"
     },
     {
+     "id": "survives-less",
+     "icon": "🟡",
+     "label": "Survives less well"
+    },
+    {
      "id": "cannot-survive",
      "icon": "❌",
      "label": "Cannot survive"
@@ -105,6 +110,22 @@
      "bin": "cannot-survive",
      "why": "A fish cannot survive on land because its gills only work in water.",
      "hint": "What do gills need in order to work?"
+    },
+    {
+     "id": "deer-dune",
+     "icon": "🦌",
+     "label": "Deer on a bare sand dune",
+     "bin": "survives-less",
+     "why": "A bare dune has little of the food and cover a deer needs, so it survives less well there than in a forest.",
+     "hint": "how much of the food and cover it needs does this place give?"
+    },
+    {
+     "id": "grass-shade",
+     "icon": "🌾",
+     "label": "Beach grass in a shady forest",
+     "bin": "survives-less",
+     "why": "Beach grass fits sunny, sandy dunes. In a shady forest it gets less of what it needs, so it survives less well.",
+     "hint": "does this place give the plant the light and sand it fits?"
     }
    ]
   },
