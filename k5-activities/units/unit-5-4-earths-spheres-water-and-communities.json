@@ -1,0 +1,240 @@
+{
+ "id": "5-4-sort",
+ "title": "Earth's Spheres and Water Sort",
+ "intro": "Sort Earth's water, the four spheres, and which tests let less soil or runoff move.",
+ "note": "This is a sorting model, and the real slope or shoreline protection test still counts.",
+ "summary": "Earth's geosphere, hydrosphere, atmosphere, and biosphere interact, and most Earth water is salty while much fresh water is ice or underground. Community solutions can reduce harm to land and water, but they cannot remove all risk.",
+ "stages": [
+  {
+   "prompt": "On the 100-squares Earth-water graph, which part is this?",
+   "bins": [
+    {
+     "id": "salty",
+     "icon": "🌊",
+     "label": "Salty ocean, about 97"
+    },
+    {
+     "id": "frozen",
+     "icon": "🧊",
+     "label": "Frozen fresh water, about 2"
+    },
+    {
+     "id": "underground",
+     "icon": "🕳️",
+     "label": "Underground fresh water, about 1"
+    },
+    {
+     "id": "lakes",
+     "icon": "🔵",
+     "label": "Lakes and rivers, a tiny dot"
+    }
+   ],
+   "cards": [
+    {
+     "id": "ocean",
+     "icon": "🌊",
+     "label": "Ocean water",
+     "bin": "salty",
+     "why": "About 97 of 100 squares are salty ocean water. Most Earth water is salty.",
+     "hint": "Is this water salty or fresh, and is there a lot of it on Earth?"
+    },
+    {
+     "id": "glacier-ice",
+     "icon": "🧊",
+     "label": "Frozen fresh water in ice",
+     "bin": "frozen",
+     "why": "About 2 squares are frozen fresh water. Most fresh water is ice.",
+     "hint": "Is this fresh water liquid, or locked up as ice?"
+    },
+    {
+     "id": "groundwater",
+     "icon": "💧",
+     "label": "Fresh water under the ground",
+     "bin": "underground",
+     "why": "About 1 square is fresh water underground.",
+     "hint": "Is this water in a lake, in ice, or below the ground?"
+    },
+    {
+     "id": "great-lakes",
+     "icon": "🏞️",
+     "label": "The Great Lakes",
+     "bin": "lakes",
+     "why": "The Great Lakes hold a lot of fresh water for us, but lakes and rivers are still less than one square of all Earth's water.",
+     "hint": "This graph is about all Earth's water, not how big a local lake feels."
+    },
+    {
+     "id": "a-river",
+     "icon": "🏞️",
+     "label": "Water in a river",
+     "bin": "lakes",
+     "why": "Rivers belong with lakes and rivers, the tiny dot on the graph.",
+     "hint": "How does the graph treat water you can see in rivers?"
+    },
+    {
+     "id": "inland-lake",
+     "icon": "🚤",
+     "label": "A Michigan inland lake",
+     "bin": "lakes",
+     "why": "A lake is surface fresh water, which is only a tiny part of all Earth's water.",
+     "hint": "Check how the graph marks water sitting in lakes, not in the ocean."
+    }
+   ]
+  },
+  {
+   "prompt": "A rainstorm hits a Michigan hill. Which sphere is this part?",
+   "bins": [
+    {
+     "id": "geosphere",
+     "icon": "🪨",
+     "label": "Geosphere (rock and soil)"
+    },
+    {
+     "id": "hydrosphere",
+     "icon": "💧",
+     "label": "Hydrosphere (water)"
+    },
+    {
+     "id": "atmosphere",
+     "icon": "💨",
+     "label": "Atmosphere (air)"
+    },
+    {
+     "id": "biosphere",
+     "icon": "🌱",
+     "label": "Biosphere (living things)"
+    }
+   ],
+   "cards": [
+    {
+     "id": "hill-soil",
+     "icon": "⛰️",
+     "label": "Rock and soil of the hill",
+     "bin": "geosphere",
+     "why": "Rock and soil are the geosphere, the part rain can move.",
+     "hint": "Is this the ground itself, the water, the air, or something alive?"
+    },
+    {
+     "id": "dune-sand",
+     "icon": "🏖️",
+     "label": "Sand at Sleeping Bear Dunes",
+     "bin": "geosphere",
+     "why": "Sand is Earth material, so it is part of the geosphere.",
+     "hint": "Is sand rock material, water, air, or alive?"
+    },
+    {
+     "id": "rainwater",
+     "icon": "🌧️",
+     "label": "Rainwater cutting a channel",
+     "bin": "hydrosphere",
+     "why": "Rainwater is part of the hydrosphere, and it can erode the slope.",
+     "hint": "What is doing the cutting in the stream tray?"
+    },
+    {
+     "id": "lakes-water",
+     "icon": "🌊",
+     "label": "Water in the Great Lakes",
+     "bin": "hydrosphere",
+     "why": "The Great Lakes are part of Earth's water, the hydrosphere.",
+     "hint": "Is this water, air, rock, or alive?"
+    },
+    {
+     "id": "storm-air",
+     "icon": "💨",
+     "label": "Air in the rainstorm",
+     "bin": "atmosphere",
+     "why": "The air is the atmosphere. In a rainstorm it works with water on the land.",
+     "hint": "Which part of the storm is not the water and not the ground?"
+    },
+    {
+     "id": "grass-roots",
+     "icon": "🌿",
+     "label": "The grass roots",
+     "bin": "biosphere",
+     "why": "Roots are living things. They help hold soil while water moves some of it.",
+     "hint": "Do roots belong to a living plant, or to the rock?"
+    },
+    {
+     "id": "dune-grass",
+     "icon": "🌾",
+     "label": "Dune grass at Sleeping Bear",
+     "bin": "biosphere",
+     "why": "Dune grass is alive. People plant it so roots can hold sand.",
+     "hint": "Is the grass a living thing or a kind of rock?"
+    },
+    {
+     "id": "people-planting",
+     "icon": "🧑‍🌾",
+     "label": "People planting dune grass",
+     "bin": "biosphere",
+     "why": "People are living things, and living things can change Earth's surface.",
+     "hint": "Are people part of Earth's living things?"
+    }
+   ]
+  },
+  {
+   "prompt": "Did more sediment or runoff move, or less?",
+   "bins": [
+    {
+     "id": "more",
+     "icon": "⬆️",
+     "label": "More moved"
+    },
+    {
+     "id": "less",
+     "icon": "⬇️",
+     "label": "Less moved"
+    }
+   ],
+   "cards": [
+    {
+     "id": "no-plants",
+     "icon": "🏜️",
+     "label": "No plants: 12 spoonfuls",
+     "bin": "more",
+     "why": "Twelve spoonfuls is the most sediment moved in the stream-tray tests.",
+     "hint": "How does 12 compare with 4 and 7 in that table?"
+    },
+    {
+     "id": "grass-model",
+     "icon": "🌱",
+     "label": "Grass model: 4 spoonfuls",
+     "bin": "less",
+     "why": "Grass moved 4 spoonfuls, less than 12 with no plants. Water still moved some soil.",
+     "hint": "How does 4 compare with 12 in the same table?"
+    },
+    {
+     "id": "parking-lot",
+     "icon": "🅿️",
+     "label": "Parking lot runoff: 10 buckets",
+     "bin": "more",
+     "why": "The parking lot had 10 buckets of runoff, more than the rain garden.",
+     "hint": "How does 10 compare with the other bucket count?"
+    },
+    {
+     "id": "rain-garden",
+     "icon": "🌷",
+     "label": "Rain garden runoff: 6 buckets",
+     "bin": "less",
+     "why": "The rain garden had 6 buckets, less than 10. It slowed runoff but did not stop all water problems.",
+     "hint": "How does 6 compare with the parking lot's bucket count?"
+    },
+    {
+     "id": "bare-hill",
+     "icon": "🌧️",
+     "label": "Rain on a bare Michigan hill",
+     "bin": "more",
+     "why": "Rain moves soil when roots are not there to hold it.",
+     "hint": "What does rain do to soil that has no roots?"
+    },
+    {
+     "id": "roots-help",
+     "icon": "🌿",
+     "label": "Roots in the hill soil",
+     "bin": "less",
+     "why": "Roots help hold soil, so less sediment moves. They do not stop every bit.",
+     "hint": "What do roots do for soil during a rain?"
+    }
+   ]
+  }
+ ]
+}

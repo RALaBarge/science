@@ -413,6 +413,179 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
     <p><b>Connections:</b> Builds on: 5.1 Matter, Mixtures, and Changes; 2-B Plants, Animals, and Habitats; K-C Living Things and Their Homes; K–5 Unit 0: How Science Works. Builds toward: Unit 12 Ecosystems &amp; Food Webs; 7.5 Photosynthesis &amp; Matter Cycling.</p></div></details>
 </section>
 
+<!--k5-activity-start-->
+<section class="sec lesson-game-sec" id="activity"><div><p class="kicker">After the lesson · Activity</p><h2>Play: Energy and Matter Sort</h2></div><p class="idea">Sort where plant mass comes from, where food energy started, and which way a food-web arrow points.</p><div id="k5-activity"></div>
+<script>
+/* Big Sort: tap (or drag) each card into the bin where it belongs.
+   One config drives one activity. Stages run in order; each stage is a set of cards and bins.
+   Cards: {id, icon, label, bin, why, hint}. Bins: {id, icon, label}.
+   Pure helpers (k5Validate, k5Order) are separate from the DOM code so tests can run them in Node. */
+
+function k5Validate(cfg) {
+  const errs = [];
+  if (!cfg || !cfg.id) errs.push('config needs an id');
+  if (!cfg.title || !cfg.intro) errs.push('config needs title and intro');
+  if (!Array.isArray(cfg.stages) || !cfg.stages.length) { errs.push('config needs stages'); return errs; }
+  cfg.stages.forEach((st, si) => {
+    const tag = 'stage ' + (si + 1);
+    const binIds = new Set((st.bins || []).map((b) => b.id));
+    if (!st.prompt) errs.push(tag + ': missing prompt');
+    if ((st.bins || []).length < 2) errs.push(tag + ': needs at least 2 bins');
+    if (binIds.size !== (st.bins || []).length) errs.push(tag + ': duplicate bin ids');
+    const seen = new Set();
+    const per = {};
+    (st.cards || []).forEach((c) => {
+      if (seen.has(c.id)) errs.push(tag + ': duplicate card id ' + c.id);
+      seen.add(c.id);
+      if (!binIds.has(c.bin)) errs.push(tag + ': card ' + c.id + ' names unknown bin ' + c.bin);
+      if (!c.label || !c.why || !c.hint) errs.push(tag + ': card ' + c.id + ' needs label, why and hint');
+      per[c.bin] = (per[c.bin] || 0) + 1;
+    });
+    (st.bins || []).forEach((b) => { if ((per[b.id] || 0) < 1) errs.push(tag + ': bin ' + b.id + ' has no cards'); });
+    if ((st.cards || []).length < 4) errs.push(tag + ': needs at least 4 cards');
+  });
+  if (!cfg.summary) errs.push('config needs a summary');
+  return errs;
+}
+
+/* Deterministic order for a stage, from a text seed. Returns card ids. */
+function k5Order(ids, seed) {
+  let h = 2166136261;
+  for (const ch of String(seed)) { h ^= ch.charCodeAt(0); h = Math.imul(h, 16777619); }
+  const rnd = () => { h = (h + 0x6D2B79F5) | 0; let t = Math.imul(h ^ (h >>> 15), 1 | h); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+  const a = ids.slice();
+  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+  return a;
+}
+
+function k5BigSort(host, cfg) {
+  if (!host || host.shadowRoot) return;
+  const root = host.attachShadow({ mode: 'open' });
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  root.innerHTML = '<style>' +
+    ':host{display:block}' +
+    '.box{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:16px;color:var(--ink);font-family:var(--font-body,system-ui,sans-serif)}' +
+    '.top{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;justify-content:space-between;margin-bottom:6px}' +
+    '.top b{font-size:1.05rem}.prog{color:var(--muted);font-size:.9rem}' +
+    '.prompt{margin:4px 0 12px;font-size:1.05rem}' +
+    '.tray{display:flex;flex-wrap:wrap;gap:8px;min-height:56px;margin-bottom:12px;padding:10px;border-radius:10px;background:var(--surface-2)}' +
+    '.card{font:inherit;color:inherit;display:flex;align-items:center;gap:8px;padding:8px 12px;min-height:44px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);cursor:grab;text-align:left}' +
+    '.card .ic{font-size:1.5rem;line-height:1}' +
+    '.card[aria-pressed="true"]{outline:3px solid var(--beam);outline-offset:1px}' +
+    '.card.nope{border-color:var(--red)}' +
+    '.card.nope:not(.still){animation:sh .3s}' +
+    '@keyframes sh{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}' +
+    '.bins{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}' +
+    '.bin{font:inherit;color:inherit;text-align:left;border:2px dashed var(--line);border-radius:12px;padding:10px;min-height:96px;background:var(--surface);cursor:pointer}' +
+    '.bin:hover,.bin.over{border-color:var(--beam);background:var(--surface-2)}' +
+    '.bin h4{margin:0 0 6px;font-size:1rem}' +
+    '.bin ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}' +
+    '.bin li{background:var(--surface-2);border-radius:8px;padding:3px 8px;font-size:.92rem;border:1.5px solid var(--green)}' +
+    '.msg{margin-top:12px;min-height:2.6em;padding:8px 12px;border-radius:10px;background:var(--surface-2);font-size:1rem}' +
+    '.msg.ok{border-left:5px solid var(--green)}.msg.bad{border-left:5px solid var(--red)}' +
+    '.btn{font:inherit;font-weight:700;padding:9px 16px;min-height:44px;border-radius:10px;border:0;background:var(--beam);color:var(--beam-ink);cursor:pointer;margin-top:10px}' +
+    '.done{margin-top:12px;padding:12px;border-radius:10px;border:1.5px solid var(--green)}' +
+    '.done p{margin:6px 0}.note{color:var(--muted);font-size:.88rem;margin-top:10px}' +
+    '@media (prefers-reduced-motion:reduce){.card.nope{animation:none}}' +
+    '</style><div class="box"><div class="top"><b></b><span class="prog" aria-live="polite"></span></div>' +
+    '<p class="prompt"></p><div class="tray" role="group" aria-label="Cards to sort"></div>' +
+    '<div class="bins"></div><div class="msg" role="status" aria-live="polite"></div><div class="end"></div>' +
+    '<p class="note"></p></div>';
+  const q = (s) => root.querySelector(s);
+  q('.top b').textContent = cfg.title;
+  q('.note').textContent = cfg.note || '';
+
+  let round = 0, stage = 0, picked = null, misses = {}, rec = [];
+  const placed = {};
+
+  function start(seedExtra) {
+    stage = 0; picked = null; misses = {}; rec = []; round++;
+    q('.end').innerHTML = '';
+    begin(seedExtra);
+  }
+  function begin() {
+    const st = cfg.stages[stage];
+    for (const k in placed) delete placed[k];
+    picked = null;
+    q('.prog').textContent = 'Round ' + (stage + 1) + ' of ' + cfg.stages.length;
+    q('.prompt').textContent = st.prompt;
+    q('.msg').className = 'msg'; q('.msg').textContent = 'Tap a card, then tap its bin.';
+    const order = k5Order(st.cards.map((c) => c.id), cfg.id + ':' + stage + ':' + round);
+    const tray = q('.tray'); tray.innerHTML = '';
+    order.forEach((id) => {
+      const c = st.cards.find((x) => x.id === id);
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'card'; b.draggable = true; b.dataset.id = id;
+      b.setAttribute('aria-pressed', 'false');
+      b.innerHTML = '<span class="ic" aria-hidden="true">' + esc(c.icon || '') + '</span><span>' + esc(c.label) + '</span>';
+      b.addEventListener('click', () => pick(id));
+      b.addEventListener('dragstart', (e) => { pick(id); try { e.dataTransfer.setData('text/plain', id); } catch (x) {} });
+      tray.appendChild(b);
+    });
+    const bins = q('.bins'); bins.innerHTML = '';
+    st.bins.forEach((bn) => {
+      const el = document.createElement('button');
+      el.type = 'button'; el.className = 'bin'; el.dataset.bin = bn.id;
+      el.innerHTML = '<h4>' + esc((bn.icon ? bn.icon + ' ' : '') + bn.label) + '</h4><ul></ul>';
+      el.addEventListener('click', () => drop(bn.id));
+      el.addEventListener('dragover', (e) => { e.preventDefault(); el.classList.add('over'); });
+      el.addEventListener('dragleave', () => el.classList.remove('over'));
+      el.addEventListener('drop', (e) => { e.preventDefault(); el.classList.remove('over'); drop(bn.id); });
+      bins.appendChild(el);
+    });
+  }
+  function pick(id) {
+    picked = id;
+    root.querySelectorAll('.card').forEach((c) => c.setAttribute('aria-pressed', String(c.dataset.id === id)));
+  }
+  function say(kind, text) { const m = q('.msg'); m.className = 'msg ' + kind; m.textContent = text; }
+  function drop(binId) {
+    if (!picked) { say('', 'Tap a card first.'); return; }
+    const st = cfg.stages[stage];
+    const c = st.cards.find((x) => x.id === picked);
+    const el = root.querySelector('.card[data-id="' + picked + '"]');
+    if (c.bin === binId) {
+      const li = document.createElement('li'); li.textContent = (c.icon ? c.icon + ' ' : '') + c.label;
+      root.querySelector('.bin[data-bin="' + binId + '"] ul').appendChild(li);
+      el.remove(); placed[c.id] = binId;
+      rec.push({ stage, id: c.id, tries: (misses[stage + ':' + c.id] || 0) + 1 });
+      say('ok', 'Yes. ' + c.why);
+      picked = null;
+      if (Object.keys(placed).length === st.cards.length) finishStage();
+    } else {
+      misses[stage + ':' + c.id] = (misses[stage + ':' + c.id] || 0) + 1;
+      el.classList.add('nope'); if (reduce) el.classList.add('still');
+      setTimeout(() => el.classList.remove('nope'), 900);
+      say('bad', 'Not that bin. Think about this: ' + c.hint);
+    }
+  }
+  function finishStage() {
+    if (stage + 1 < cfg.stages.length) {
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = 'Next round';
+      b.addEventListener('click', () => { stage++; q('.end').innerHTML = ''; begin(); });
+      q('.end').innerHTML = ''; q('.end').appendChild(b);
+      return;
+    }
+    const hard = rec.filter((r) => r.tries > 1).map((r) => cfg.stages[r.stage].cards.find((c) => c.id === r.id).label);
+    const d = document.createElement('div'); d.className = 'done';
+    d.innerHTML = '<b>What you found</b><p>' + esc(cfg.summary) + '</p>' +
+      (hard.length ? '<p>Worth a second look: ' + esc(hard.join('; ')) + '.</p>' : '<p>Every card went in the right bin on the first try.</p>');
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = 'Play again';
+    b.addEventListener('click', () => start());
+    d.appendChild(b);
+    q('.end').innerHTML = ''; q('.end').appendChild(d);
+    q('.prog').textContent = 'Done';
+  }
+  start();
+}
+
+
+k5BigSort(document.getElementById("k5-activity"), {"id":"5-3-ecosystem-sort","title":"Energy and Matter Sort","intro":"Sort where plant mass comes from, where food energy started, and which way a food-web arrow points.","note":"This is a sorting game model. The real bean light-and-dark fair test and the string food web in the lesson still count.","summary":"Matter (water, air, soil, dead leaves) has mass and takes up space; energy (sunlight, heat, motion) does not. Plants build their mass mostly from air and water, and food energy started as sunlight. Producers make food, consumers eat, decomposers break down dead matter. Matter is reused, and 100 g of dead leaves became 35 g of pieces, 55 g of richer soil and about 10 g of gas. Energy ends up as heat and motion.","stages":[{"prompt":"Matter has mass and takes up space. Energy is the ability to cause change. Which is it?","bins":[{"id":"matter","icon":"🧱","label":"Matter"},{"id":"energy","icon":"⚡","label":"Energy"}],"cards":[{"id":"water","icon":"💧","label":"Water the plant takes in","bin":"matter","why":"Water has mass and takes up space. Plants build most of their mass from water and air.","hint":"does it have mass and take up space?"},{"id":"air","icon":"🌬️","label":"Air the plant takes in","bin":"matter","why":"Air is matter. Plants get most of their growth material from air and water.","hint":"does it have mass and take up space, even if you cannot see it?"},{"id":"leaves","icon":"🍂","label":"Dead leaves","bin":"matter","why":"Dead leaves are matter. Decomposers break them down and the matter goes back to soil and air.","hint":"does it have mass and take up space?"},{"id":"soil","icon":"🟤","label":"Soil in the pot","bin":"matter","why":"Soil is matter. In the tree argument it barely changed, from 100 kg to 99.9 kg.","hint":"does it have mass and take up space?"},{"id":"sun","icon":"☀️","label":"Sunlight on a leaf","bin":"energy","why":"Sunlight is energy, not matter. The plant uses it to make food.","hint":"can you weigh it, or does it make things happen?"},{"id":"heat","icon":"🔥","label":"Heat from a deer's body","bin":"energy","why":"Heat is energy. Food energy ends up as heat and motion.","hint":"can you weigh it, or is it what lets things change?"},{"id":"run","icon":"🏃","label":"A deer running","bin":"energy","why":"Motion uses energy from food. The deer's body is matter, but the motion is energy.","hint":"is this the stuff, or the moving?"}]},{"prompt":"How does each living thing get its food?","bins":[{"id":"producer","icon":"🌿","label":"Producer: makes food"},{"id":"consumer","icon":"🍽️","label":"Consumer: eats others"},{"id":"decomposer","icon":"🍄","label":"Decomposer: breaks down dead matter"}],"cards":[{"id":"maple","icon":"🍁","label":"Maple tree","bin":"producer","why":"A maple tree uses light to make its own food, so it is a producer.","hint":"does it eat anything, or use light to make food?"},{"id":"algae","icon":"🟢","label":"Algae in Lake Michigan","bin":"producer","why":"Algae make food from light, like plants.","hint":"does it eat anything, or use light to make food?"},{"id":"rabbit","icon":"🐇","label":"Rabbit","bin":"consumer","why":"A rabbit eats plants, so it is a consumer.","hint":"how does it get its food?"},{"id":"fox","icon":"🦊","label":"Fox","bin":"consumer","why":"A fox eats other animals, so it is a consumer.","hint":"how does it get its food?"},{"id":"smallfish","icon":"🐟","label":"Small fish in a lake","bin":"consumer","why":"Small fish eat other living things, so they are consumers.","hint":"how does it get its food?"},{"id":"mushroom","icon":"🍄","label":"Mushroom on a dead log","bin":"decomposer","why":"A mushroom breaks down dead matter and returns it to the soil.","hint":"what is it breaking down?"},{"id":"soilbug","icon":"🦠","label":"Microbes in the soil","bin":"decomposer","why":"Microbes break down dead matter. That returns matter to soil and air.","hint":"what is it breaking down?"}]},{"prompt":"Where did the energy in this food first come from?","bins":[{"id":"sun","icon":"☀️","label":"Sunlight, captured by plants"},{"id":"holds","icon":"🧊","label":"Only holds the food"}],"cards":[{"id":"apple","icon":"🍎","label":"Michigan apple","bin":"sun","why":"An apple tree captured sunlight. The apple has food energy.","hint":"what did the tree capture to make it?"},{"id":"corn","icon":"🌽","label":"Ear of corn","bin":"sun","why":"The corn plant captured sunlight to make food.","hint":"what did the plant capture to make it?"},{"id":"chicken","icon":"🍗","label":"Chicken that ate corn","bin":"sun","why":"The chicken ate corn, and the corn got its energy from the Sun.","hint":"what did its food get from the Sun?"},{"id":"sandwich","icon":"🥪","label":"Sandwich","bin":"sun","why":"Food is stored Sun energy, captured first by plants.","hint":"where did the plants in it get their energy?"},{"id":"fridge","icon":"🧊","label":"Refrigerator","bin":"holds","why":"A refrigerator only keeps food cold. It does not make food energy.","hint":"does it capture sunlight, or only keep food?"},{"id":"package","icon":"📦","label":"Store package","bin":"holds","why":"A package only holds food. Food energy started as sunlight.","hint":"does it capture sunlight, or only hold food?"}]},{"prompt":"Dead leaves broke down. Is this matter that gets reused, or energy that ends up as heat and motion?","bins":[{"id":"reused","icon":"♻️","label":"Matter, reused"},{"id":"ends","icon":"🔥","label":"Energy that ends as heat and motion"}],"cards":[{"id":"pieces","icon":"🍂","label":"35 g of leaf pieces","bin":"reused","why":"Of 100 g of dead leaves, 35 g stayed as pieces. The matter did not disappear.","hint":"is this stuff you could weigh?"},{"id":"richsoil","icon":"🟤","label":"55 g became richer soil","bin":"reused","why":"55 g of the leaves became richer soil. Matter returns to the soil.","hint":"is this stuff you could weigh?"},{"id":"gas","icon":"💨","label":"About 10 g went into the air as gas","bin":"reused","why":"About 10 g went into the air as gas. Matter returns to soil and air.","hint":"is this stuff you could weigh?"},{"id":"foxheat","icon":"🔥","label":"Heat from a fox's body","bin":"ends","why":"Food energy ends up as heat and motion.","hint":"is this stuff, or the ability to cause change?"},{"id":"foxrun","icon":"🏃","label":"A fox running","bin":"ends","why":"Motion is where food energy ends up. It is not reused like matter.","hint":"is this stuff, or the ability to cause change?"}]}]});
+</script>
+</section>
+<!--k5-activity-end-->
+
 <section class="sec related" id="more"><div><p class="kicker">Keep exploring</p><h2>More lessons</h2></div><p class="idea">Before this: <a href="unit-5-2-gravity-stars-and-sky-patterns.html">5.2 Gravity, Stars, and Sky Patterns</a>. Up next: <a href="unit-5-4-earths-spheres-water-and-communities.html">5.4 Earth's Spheres, Water, and Communities</a>. <a href="unit-00-how-science-works.html">Unit 0: How Science Works</a> explains the method every Try it uses.</p></section>
 </main>
 

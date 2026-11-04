@@ -1,0 +1,230 @@
+{
+ "id": "4-3-sort",
+ "title": "Waves, Light, and Information Sort",
+ "intro": "Sort wave clues, how seeing works, and which patterns send a message.",
+ "note": "This is a sorting model, and the real rope-wave test, light-path drawing, and two-signal comparison still count.",
+ "summary": "Waves have amplitude and wavelength, and a larger wave can move a small object farther than a small one. We see when reflected light enters the eye, and light or sound patterns can carry information.",
+ "stages": [
+  {
+   "prompt": "Which wave clue is this?",
+   "bins": [
+    {
+     "id": "big-amp",
+     "icon": "📈",
+     "label": "Big amplitude"
+    },
+    {
+     "id": "small-amp",
+     "icon": "📉",
+     "label": "Small amplitude"
+    },
+    {
+     "id": "short-wave",
+     "icon": "📏",
+     "label": "Short wavelength"
+    },
+    {
+     "id": "long-wave",
+     "icon": "↔️",
+     "label": "Long wavelength"
+    }
+   ],
+   "cards": [
+    {
+     "id": "tall-rope",
+     "icon": "〰️",
+     "label": "A tall wave in the rope",
+     "bin": "big-amp",
+     "why": "Tall waves have big amplitude.",
+     "hint": "Is this clue about height, or about how close the repeats are?"
+    },
+    {
+     "id": "gentle-rope",
+     "icon": "🧵",
+     "label": "A small, gentle wave in the rope",
+     "bin": "small-amp",
+     "why": "A smaller wave has smaller amplitude.",
+     "hint": "Is this a high wave or a gentle one?"
+    },
+    {
+     "id": "close-repeats",
+     "icon": "🔁",
+     "label": "Wave repeats packed close together",
+     "bin": "short-wave",
+     "why": "Close repeats mean a short wavelength.",
+     "hint": "Is this about height, or about the gap between repeats?"
+    },
+    {
+     "id": "far-repeats",
+     "icon": "📐",
+     "label": "Wave repeats spaced far apart",
+     "bin": "long-wave",
+     "why": "Far-apart repeats mean a long wavelength.",
+     "hint": "Are the repeats close together, or spread out?"
+    },
+    {
+     "id": "cork-3cm",
+     "icon": "🪵",
+     "label": "Larger wave moves a cork 3 cm",
+     "bin": "big-amp",
+     "why": "The larger wave moved the cork farther, 3 cm, which goes with bigger amplitude.",
+     "hint": "Is the 3 cm about how far the cork moved, or about spacing?"
+    },
+    {
+     "id": "cork-1cm",
+     "icon": "📄",
+     "label": "Small wave moves a cork 1 cm",
+     "bin": "small-amp",
+     "why": "The small wave moved the cork only 1 cm, which goes with smaller amplitude.",
+     "hint": "Compare this movement with the larger wave's 3 cm movement."
+    }
+   ]
+  },
+  {
+   "prompt": "Does this make its own light, or do we see it by reflected light?",
+   "bins": [
+    {
+     "id": "own-light",
+     "icon": "💡",
+     "label": "Makes its own light"
+    },
+    {
+     "id": "reflects",
+     "icon": "🪞",
+     "label": "Seen by reflected light"
+    }
+   ],
+   "cards": [
+    {
+     "id": "lamp",
+     "icon": "💡",
+     "label": "A lamp in the seeing diagram",
+     "bin": "own-light",
+     "why": "The lamp is a source. Light goes from it to the object, then to the eye.",
+     "hint": "Does this produce the light in the diagram, or only bounce it?"
+    },
+    {
+     "id": "flashlight",
+     "icon": "🔦",
+     "label": "A flashlight used to make a flash",
+     "bin": "own-light",
+     "why": "The flashlight produces the light. Do not aim it at anyone's eyes.",
+     "hint": "Does this make the flash, or only bounce it?"
+    },
+    {
+     "id": "lighthouse",
+     "icon": "🗼",
+     "label": "A Great Lakes lighthouse lamp",
+     "bin": "own-light",
+     "why": "The lighthouse lamp produces the light ships can see.",
+     "hint": "Does the lamp produce light, or only bounce it?"
+    },
+    {
+     "id": "traffic-lamp",
+     "icon": "🚦",
+     "label": "A traffic signal's colored lamps",
+     "bin": "own-light",
+     "why": "Those lamps produce their own red, yellow, or green light.",
+     "hint": "Do the colored lamps produce light, or only bounce it?"
+    },
+    {
+     "id": "apple",
+     "icon": "🍎",
+     "label": "An apple you can see",
+     "bin": "reflects",
+     "why": "Light hits the apple and some bounces into your eye. Light does not come out of your eye.",
+     "hint": "Does the apple produce the light, or does light bounce off it?"
+    },
+    {
+     "id": "moon",
+     "icon": "🌙",
+     "label": "The Moon at night",
+     "bin": "reflects",
+     "why": "The Moon does not make its own light. It reflects sunlight.",
+     "hint": "Does the Moon produce the light, or send light that started somewhere else?"
+    },
+    {
+     "id": "mirror",
+     "icon": "🪞",
+     "label": "A mirror in the light path",
+     "bin": "reflects",
+     "why": "The mirror reflects the light and changes its direction.",
+     "hint": "Does a mirror create the light, or change its path?"
+    }
+   ]
+  },
+  {
+   "prompt": "Is this pattern sending information, or is a wave moving an object?",
+   "bins": [
+    {
+     "id": "message",
+     "icon": "📨",
+     "label": "Sends information"
+    },
+    {
+     "id": "moves",
+     "icon": "🏓",
+     "label": "Wave energy moving an object"
+    }
+   ],
+   "cards": [
+    {
+     "id": "flash-code",
+     "icon": "🔦",
+     "label": "Short and long flashes with a pattern key",
+     "bin": "message",
+     "why": "A pattern of flashes can stand for a message.",
+     "hint": "Is the pattern key for sharing a meaning, or for pushing an object?"
+    },
+    {
+     "id": "traffic-light",
+     "icon": "🚦",
+     "label": "Red, yellow, and green traffic lights",
+     "bin": "message",
+     "why": "Those color patterns tell drivers what to do.",
+     "hint": "Why are these colors placed where drivers can see them?"
+    },
+    {
+     "id": "fog-signal",
+     "icon": "🌫️",
+     "label": "A Great Lakes fog signal",
+     "bin": "message",
+     "why": "Fog signals use sound patterns so ships get information.",
+     "hint": "Is this pattern meant for ships to notice, or is it pushing a cork?"
+    },
+    {
+     "id": "lighthouse-pattern",
+     "icon": "🗼",
+     "label": "A lighthouse blinking a set pattern",
+     "bin": "message",
+     "why": "A light pattern can carry information across the water.",
+     "hint": "Who uses this blink pattern, and for what?"
+    },
+    {
+     "id": "drum-note",
+     "icon": "🥁",
+     "label": "Drum taps a partner must decode",
+     "bin": "message",
+     "why": "A tap pattern can carry the same kind of message as a light code.",
+     "hint": "Is a partner supposed to understand the taps, or is an object just bouncing?"
+    },
+    {
+     "id": "cork-bob",
+     "icon": "🪵",
+     "label": "A cork bobbing on a water wave",
+     "bin": "moves",
+     "why": "The water wave transfers energy and moves the cork. It is not a code.",
+     "hint": "Is the cork getting a code, or being pushed by the water?"
+    },
+    {
+     "id": "rice-jump",
+     "icon": "🍚",
+     "label": "Rice jumping on plastic wrap",
+     "bin": "moves",
+     "why": "The vibration moves the rice. That shows energy, not a message code.",
+     "hint": "Is the rice reading a code, or being shaken by the wave?"
+    }
+   ]
+  }
+ ]
+}

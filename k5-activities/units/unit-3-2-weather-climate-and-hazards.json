@@ -1,0 +1,212 @@
+{
+ "id": "3-2-sort",
+ "title": "Weather, Climate, and Hazards Sort",
+ "intro": "Sort short-term weather, long-term climate, and what reduces hazard harm.",
+ "note": "This is a sorting model, and the real rain gauge, wind vane, graph, and flood-barrier test still count.",
+ "summary": "Weather is short-term and climate is the long-term pattern, including Detroit's cold winters, warm summers, and Great Lakes effects. A flood barrier can reduce harm, but it cannot remove all risk.",
+ "stages": [
+  {
+   "prompt": "Is this one short-term weather event, or a long-term climate pattern?",
+   "bins": [
+    {
+     "id": "weather",
+     "icon": "🌦️",
+     "label": "Weather (short-term)"
+    },
+    {
+     "id": "climate",
+     "icon": "📅",
+     "label": "Climate (long-term)"
+    }
+   ],
+   "cards": [
+    {
+     "id": "afternoon-rain",
+     "icon": "🌧️",
+     "label": "This afternoon's rain-gauge reading",
+     "bin": "weather",
+     "why": "One rain-gauge reading is weather from a short time, not many years.",
+     "hint": "Is this one measurement, or a pattern over many years?"
+    },
+    {
+     "id": "one-cold-day",
+     "icon": "🥶",
+     "label": "One cold day in July",
+     "bin": "weather",
+     "why": "One day is weather. One cold day does not tell you the climate.",
+     "hint": "Can one day show what is typical over many years?"
+    },
+    {
+     "id": "wind-today",
+     "icon": "🧭",
+     "label": "The wind vane's direction today",
+     "bin": "weather",
+     "why": "Today's wind is a short-term condition of the air.",
+     "hint": "Is this about today, or about many years?"
+    },
+    {
+     "id": "lake-effect-today",
+     "icon": "🌨️",
+     "label": "Heavy lake-effect snow falling today",
+     "bin": "weather",
+     "why": "Snow falling today is weather, even when the Great Lakes help cause it.",
+     "hint": "Is this snow happening now, or the usual pattern over many years?"
+    },
+    {
+     "id": "july-typical",
+     "icon": "📊",
+     "label": "Detroit's typical July high, 83°F",
+     "bin": "climate",
+     "why": "83°F is the many-year typical July high, so it describes climate.",
+     "hint": "Does 'typical' here mean one day, or many years?"
+    },
+    {
+     "id": "january-typical",
+     "icon": "🗓️",
+     "label": "Detroit's typical January high, 32°F",
+     "bin": "climate",
+     "why": "The typical January high over many years is climate, not one day's weather.",
+     "hint": "Is a many-year typical high one day's weather?"
+    },
+    {
+     "id": "lakes-usual",
+     "icon": "🏞️",
+     "label": "Great Lakes shores milder most years",
+     "bin": "climate",
+     "why": "Milder conditions near the lakes, most years, are a long-term climate pattern.",
+     "hint": "Does 'most years' mean one storm, or a long pattern?"
+    }
+   ]
+  },
+  {
+   "prompt": "Use Detroit's typical daily high temperatures. Is this a warm-season month or a cold-season month?",
+   "bins": [
+    {
+     "id": "warm",
+     "icon": "☀️",
+     "label": "Warm-season month"
+    },
+    {
+     "id": "cold",
+     "icon": "❄️",
+     "label": "Cold-season month"
+    }
+   ],
+   "cards": [
+    {
+     "id": "july",
+     "icon": "📆",
+     "label": "July, 83°F",
+     "bin": "warm",
+     "why": "83°F is the highest typical monthly high in the Detroit table.",
+     "hint": "Compare this temperature with the lowest months in the table."
+    },
+    {
+     "id": "august",
+     "icon": "📆",
+     "label": "August, 81°F",
+     "bin": "warm",
+     "why": "81°F is next to July's high and is one of the tall summer bars.",
+     "hint": "Is this near the highest temperatures in the table, or the lowest?"
+    },
+    {
+     "id": "june",
+     "icon": "📆",
+     "label": "June, 79°F",
+     "bin": "warm",
+     "why": "79°F groups with the high summer months, not the low winter ones.",
+     "hint": "Which end of the table is 79°F closer to?"
+    },
+    {
+     "id": "january",
+     "icon": "🗓️",
+     "label": "January, 32°F",
+     "bin": "cold",
+     "why": "32°F is the lowest typical monthly high in the Detroit table.",
+     "hint": "Compare this temperature with July in the same table."
+    },
+    {
+     "id": "february",
+     "icon": "🗓️",
+     "label": "February, 35°F",
+     "bin": "cold",
+     "why": "35°F is close to January and is one of the short winter bars.",
+     "hint": "Is 35°F near the lowest highs, or near 83°F?"
+    },
+    {
+     "id": "december",
+     "icon": "🗓️",
+     "label": "December, 38°F",
+     "bin": "cold",
+     "why": "38°F groups with the low winter months, not the high summer ones.",
+     "hint": "Which months in the table have highs this low?"
+    }
+   ]
+  },
+  {
+   "prompt": "Does this reduce harm from a weather hazard, or only measure the weather?",
+   "bins": [
+    {
+     "id": "reduces",
+     "icon": "🛡️",
+     "label": "Reduces hazard harm"
+    },
+    {
+     "id": "measures",
+     "icon": "📏",
+     "label": "Measures weather"
+    }
+   ],
+   "cards": [
+    {
+     "id": "grass-model",
+     "icon": "🌱",
+     "label": "Grass model: 2 spoonfuls moved",
+     "bin": "reduces",
+     "why": "Two spoonfuls is less than 8 with no barrier, so the grass model reduced harm.",
+     "hint": "What was this grass for in the slope test?"
+    },
+    {
+     "id": "cardboard-fence",
+     "icon": "🧱",
+     "label": "Cardboard fence: 5 spoonfuls moved",
+     "bin": "reduces",
+     "why": "Five spoonfuls is less than 8 with no barrier, so the fence reduced harm. Some soil still moved.",
+     "hint": "Compare these spoonfuls with the no-barrier test."
+    },
+    {
+     "id": "rain-gauge",
+     "icon": "🥤",
+     "label": "A cup rain gauge",
+     "bin": "measures",
+     "why": "A rain gauge measures how deep the rainwater is. It does not block a flood.",
+     "hint": "Does this cup record rain, or block flood water?"
+    },
+    {
+     "id": "wind-vane",
+     "icon": "🚩",
+     "label": "A paper wind vane",
+     "bin": "measures",
+     "why": "A wind vane points into the wind and shows where the wind comes from.",
+     "hint": "Does this arrow record wind, or block a storm?"
+    },
+    {
+     "id": "thermometer",
+     "icon": "🌡️",
+     "label": "A thermometer reading",
+     "bin": "measures",
+     "why": "Temperature is a weather measurement, not a flood barrier.",
+     "hint": "Does this tool record hot and cold, or slow flood water?"
+    },
+    {
+     "id": "weather-map",
+     "icon": "🗺️",
+     "label": "A weather-map symbol for snow",
+     "bin": "measures",
+     "why": "Map symbols report weather such as snow. They do not hold soil in place.",
+     "hint": "Do these symbols record conditions, or slow flood water?"
+    }
+   ]
+  }
+ ]
+}

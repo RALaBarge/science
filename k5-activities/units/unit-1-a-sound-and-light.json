@@ -1,0 +1,206 @@
+{
+ "id": "1-a-sound-light-sort",
+ "title": "Sound and Light",
+ "intro": "Sort shake and sound, what you can see, and what a light beam does.",
+ "note": "This is a sorting game model, and the real vibrating-sound, mystery-box, light-beam, and Signal Device Challenge activities still count.",
+ "summary": "Sound comes from vibrations, and we see things only when light reaches our eyes. A material can let a light beam through, make it blurry, block it, or bounce it, and a flash pattern, like a Michigan lighthouse, can send a message.",
+ "stages": [
+  {
+   "prompt": "Where do shake and sound happen together, and where is it quiet and still?",
+   "bins": [
+    {
+     "id": "shake-sound",
+     "icon": "🥁",
+     "label": "Shake and sound"
+    },
+    {
+     "id": "quiet-still",
+     "icon": "🤫",
+     "label": "Quiet and still"
+    }
+   ],
+   "cards": [
+    {
+     "id": "rubber-band",
+     "icon": "🎵",
+     "label": "Plucked rubber band",
+     "bin": "shake-sound",
+     "why": "The band shakes back and forth, and you hear sound.",
+     "hint": "Is the band shaking, or is it still?"
+    },
+    {
+     "id": "drum-rice",
+     "icon": "🥁",
+     "label": "Tapped drum and rice",
+     "bin": "shake-sound",
+     "why": "The tap makes sound, and the rice shakes.",
+     "hint": "Did something shake when there was a sound?"
+    },
+    {
+     "id": "hum-throat",
+     "icon": "🗣️",
+     "label": "Humming throat",
+     "bin": "shake-sound",
+     "why": "You feel a buzz in your throat when you hum.",
+     "hint": "Do you feel a shake when the sound happens?"
+    },
+    {
+     "id": "shaking-ruler",
+     "icon": "📏",
+     "label": "Shaking table ruler",
+     "bin": "shake-sound",
+     "why": "The ruler shakes, and your ear hears sound.",
+     "hint": "Is the ruler moving back and forth?"
+    },
+    {
+     "id": "still-cup",
+     "icon": "🥤",
+     "label": "Untouched still cup",
+     "bin": "quiet-still",
+     "why": "Nothing is shaking, so the cup stays quiet.",
+     "hint": "Is anything shaking?"
+    },
+    {
+     "id": "still-drum",
+     "icon": "🔕",
+     "label": "Untapped still drum",
+     "bin": "quiet-still",
+     "why": "Nobody tapped it, so it is still and quiet.",
+     "hint": "Did anything make it shake?"
+    }
+   ]
+  },
+  {
+   "prompt": "Can you see it, or is there no light to see by?",
+   "bins": [
+    {
+     "id": "can-see",
+     "icon": "👀",
+     "label": "Can see it"
+    },
+    {
+     "id": "cannot-see",
+     "icon": "🌑",
+     "label": "Cannot see it"
+    }
+   ],
+   "cards": [
+    {
+     "id": "box-lit",
+     "icon": "📦",
+     "label": "Mystery box lit",
+     "bin": "can-see",
+     "why": "The light is on, so you can see inside.",
+     "hint": "Is the inside lit, or is it dark?"
+    },
+    {
+     "id": "box-dark",
+     "icon": "🌑",
+     "label": "Mystery box dark",
+     "bin": "cannot-see",
+     "why": "No light means you cannot see inside.",
+     "hint": "Is the inside lit, or is it dark?"
+    },
+    {
+     "id": "lamp-toy",
+     "icon": "🧸",
+     "label": "Toy by a lamp",
+     "bin": "can-see",
+     "why": "Light from the lamp reaches the toy and your eye.",
+     "hint": "Is light shining on the toy?"
+    },
+    {
+     "id": "dark-toy",
+     "icon": "🚪",
+     "label": "Toy in dark room",
+     "bin": "cannot-see",
+     "why": "The room is dark, so you cannot see the toy.",
+     "hint": "Is light shining on the toy?"
+    },
+    {
+     "id": "lamp-on",
+     "icon": "💡",
+     "label": "Lamp turned on",
+     "bin": "can-see",
+     "why": "A lamp makes its own light, so you can see it.",
+     "hint": "Is it making light, or is the room dark?"
+    },
+    {
+     "id": "lamp-off",
+     "icon": "🔌",
+     "label": "Lamp off in dark",
+     "bin": "cannot-see",
+     "why": "The lamp is off and the room is dark, so you cannot see it.",
+     "hint": "Is there any light to see by?"
+    }
+   ]
+  },
+  {
+   "prompt": "What does this material do to a flashlight beam?",
+   "bins": [
+    {
+     "id": "through",
+     "icon": "🪟",
+     "label": "Light goes through"
+    },
+    {
+     "id": "blurry",
+     "icon": "🌫️",
+     "label": "Light looks blurry"
+    },
+    {
+     "id": "blocked",
+     "icon": "🛑",
+     "label": "Light is blocked"
+    },
+    {
+     "id": "bounce",
+     "icon": "✨",
+     "label": "Light bounces"
+    }
+   ],
+   "cards": [
+    {
+     "id": "clear-plastic",
+     "icon": "🔹",
+     "label": "Clear plastic",
+     "bin": "through",
+     "why": "Clear plastic lets the light beam go through.",
+     "hint": "Look at how clear this material is."
+    },
+    {
+     "id": "clear-window",
+     "icon": "🪟",
+     "label": "Clear window",
+     "bin": "through",
+     "why": "A window lets light into the room.",
+     "hint": "Look at how clear this material is."
+    },
+    {
+     "id": "wax-paper",
+     "icon": "📃",
+     "label": "Wax paper",
+     "bin": "blurry",
+     "why": "Wax paper lets some light through, but it looks blurry.",
+     "hint": "Look at how cloudy this material is."
+    },
+    {
+     "id": "cardboard",
+     "icon": "📦",
+     "label": "Cardboard sheet",
+     "bin": "blocked",
+     "why": "Cardboard stops the light beam.",
+     "hint": "Look at how thick and solid this material is."
+    },
+    {
+     "id": "shiny-foil",
+     "icon": "✨",
+     "label": "Shiny foil",
+     "bin": "bounce",
+     "why": "Foil makes the light bounce away.",
+     "hint": "Look at how shiny this material is."
+    }
+   ]
+  }
+ ]
+}

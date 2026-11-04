@@ -408,6 +408,179 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
     <p><b>Connections:</b> - Builds on: K-C *Living Things and Their Homes*; K-B *Sunlight, Weather, and Staying Safe*; 1-B *Parts, Parents, and Young*. - Builds toward: 3.3 *Life Cycles and Traits*; 3.4 *Survival, Fossils, and Change*; 5.3 *Energy and Matter in Ecosystems*; Unit 8: *Classifying Life*; Unit 12: *Ecosystems &amp; Food Webs*; 7.5 *Photosynthesis &amp; Matter Cycling*.</p></div></details>
 </section>
 
+<!--k5-activity-start-->
+<section class="sec lesson-game-sec" id="activity"><div><p class="kicker">After the lesson · Activity</p><h2>Play: Plants, Animals, and Habitats</h2></div><p class="idea">Sort bean evidence, pollen and seed helpers, and habitat picture sets.</p><div id="k5-activity"></div>
+<script>
+/* Big Sort: tap (or drag) each card into the bin where it belongs.
+   One config drives one activity. Stages run in order; each stage is a set of cards and bins.
+   Cards: {id, icon, label, bin, why, hint}. Bins: {id, icon, label}.
+   Pure helpers (k5Validate, k5Order) are separate from the DOM code so tests can run them in Node. */
+
+function k5Validate(cfg) {
+  const errs = [];
+  if (!cfg || !cfg.id) errs.push('config needs an id');
+  if (!cfg.title || !cfg.intro) errs.push('config needs title and intro');
+  if (!Array.isArray(cfg.stages) || !cfg.stages.length) { errs.push('config needs stages'); return errs; }
+  cfg.stages.forEach((st, si) => {
+    const tag = 'stage ' + (si + 1);
+    const binIds = new Set((st.bins || []).map((b) => b.id));
+    if (!st.prompt) errs.push(tag + ': missing prompt');
+    if ((st.bins || []).length < 2) errs.push(tag + ': needs at least 2 bins');
+    if (binIds.size !== (st.bins || []).length) errs.push(tag + ': duplicate bin ids');
+    const seen = new Set();
+    const per = {};
+    (st.cards || []).forEach((c) => {
+      if (seen.has(c.id)) errs.push(tag + ': duplicate card id ' + c.id);
+      seen.add(c.id);
+      if (!binIds.has(c.bin)) errs.push(tag + ': card ' + c.id + ' names unknown bin ' + c.bin);
+      if (!c.label || !c.why || !c.hint) errs.push(tag + ': card ' + c.id + ' needs label, why and hint');
+      per[c.bin] = (per[c.bin] || 0) + 1;
+    });
+    (st.bins || []).forEach((b) => { if ((per[b.id] || 0) < 1) errs.push(tag + ': bin ' + b.id + ' has no cards'); });
+    if ((st.cards || []).length < 4) errs.push(tag + ': needs at least 4 cards');
+  });
+  if (!cfg.summary) errs.push('config needs a summary');
+  return errs;
+}
+
+/* Deterministic order for a stage, from a text seed. Returns card ids. */
+function k5Order(ids, seed) {
+  let h = 2166136261;
+  for (const ch of String(seed)) { h ^= ch.charCodeAt(0); h = Math.imul(h, 16777619); }
+  const rnd = () => { h = (h + 0x6D2B79F5) | 0; let t = Math.imul(h ^ (h >>> 15), 1 | h); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+  const a = ids.slice();
+  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+  return a;
+}
+
+function k5BigSort(host, cfg) {
+  if (!host || host.shadowRoot) return;
+  const root = host.attachShadow({ mode: 'open' });
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  root.innerHTML = '<style>' +
+    ':host{display:block}' +
+    '.box{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:16px;color:var(--ink);font-family:var(--font-body,system-ui,sans-serif)}' +
+    '.top{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;justify-content:space-between;margin-bottom:6px}' +
+    '.top b{font-size:1.05rem}.prog{color:var(--muted);font-size:.9rem}' +
+    '.prompt{margin:4px 0 12px;font-size:1.05rem}' +
+    '.tray{display:flex;flex-wrap:wrap;gap:8px;min-height:56px;margin-bottom:12px;padding:10px;border-radius:10px;background:var(--surface-2)}' +
+    '.card{font:inherit;color:inherit;display:flex;align-items:center;gap:8px;padding:8px 12px;min-height:44px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);cursor:grab;text-align:left}' +
+    '.card .ic{font-size:1.5rem;line-height:1}' +
+    '.card[aria-pressed="true"]{outline:3px solid var(--beam);outline-offset:1px}' +
+    '.card.nope{border-color:var(--red)}' +
+    '.card.nope:not(.still){animation:sh .3s}' +
+    '@keyframes sh{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}' +
+    '.bins{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}' +
+    '.bin{font:inherit;color:inherit;text-align:left;border:2px dashed var(--line);border-radius:12px;padding:10px;min-height:96px;background:var(--surface);cursor:pointer}' +
+    '.bin:hover,.bin.over{border-color:var(--beam);background:var(--surface-2)}' +
+    '.bin h4{margin:0 0 6px;font-size:1rem}' +
+    '.bin ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}' +
+    '.bin li{background:var(--surface-2);border-radius:8px;padding:3px 8px;font-size:.92rem;border:1.5px solid var(--green)}' +
+    '.msg{margin-top:12px;min-height:2.6em;padding:8px 12px;border-radius:10px;background:var(--surface-2);font-size:1rem}' +
+    '.msg.ok{border-left:5px solid var(--green)}.msg.bad{border-left:5px solid var(--red)}' +
+    '.btn{font:inherit;font-weight:700;padding:9px 16px;min-height:44px;border-radius:10px;border:0;background:var(--beam);color:var(--beam-ink);cursor:pointer;margin-top:10px}' +
+    '.done{margin-top:12px;padding:12px;border-radius:10px;border:1.5px solid var(--green)}' +
+    '.done p{margin:6px 0}.note{color:var(--muted);font-size:.88rem;margin-top:10px}' +
+    '@media (prefers-reduced-motion:reduce){.card.nope{animation:none}}' +
+    '</style><div class="box"><div class="top"><b></b><span class="prog" aria-live="polite"></span></div>' +
+    '<p class="prompt"></p><div class="tray" role="group" aria-label="Cards to sort"></div>' +
+    '<div class="bins"></div><div class="msg" role="status" aria-live="polite"></div><div class="end"></div>' +
+    '<p class="note"></p></div>';
+  const q = (s) => root.querySelector(s);
+  q('.top b').textContent = cfg.title;
+  q('.note').textContent = cfg.note || '';
+
+  let round = 0, stage = 0, picked = null, misses = {}, rec = [];
+  const placed = {};
+
+  function start(seedExtra) {
+    stage = 0; picked = null; misses = {}; rec = []; round++;
+    q('.end').innerHTML = '';
+    begin(seedExtra);
+  }
+  function begin() {
+    const st = cfg.stages[stage];
+    for (const k in placed) delete placed[k];
+    picked = null;
+    q('.prog').textContent = 'Round ' + (stage + 1) + ' of ' + cfg.stages.length;
+    q('.prompt').textContent = st.prompt;
+    q('.msg').className = 'msg'; q('.msg').textContent = 'Tap a card, then tap its bin.';
+    const order = k5Order(st.cards.map((c) => c.id), cfg.id + ':' + stage + ':' + round);
+    const tray = q('.tray'); tray.innerHTML = '';
+    order.forEach((id) => {
+      const c = st.cards.find((x) => x.id === id);
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'card'; b.draggable = true; b.dataset.id = id;
+      b.setAttribute('aria-pressed', 'false');
+      b.innerHTML = '<span class="ic" aria-hidden="true">' + esc(c.icon || '') + '</span><span>' + esc(c.label) + '</span>';
+      b.addEventListener('click', () => pick(id));
+      b.addEventListener('dragstart', (e) => { pick(id); try { e.dataTransfer.setData('text/plain', id); } catch (x) {} });
+      tray.appendChild(b);
+    });
+    const bins = q('.bins'); bins.innerHTML = '';
+    st.bins.forEach((bn) => {
+      const el = document.createElement('button');
+      el.type = 'button'; el.className = 'bin'; el.dataset.bin = bn.id;
+      el.innerHTML = '<h4>' + esc((bn.icon ? bn.icon + ' ' : '') + bn.label) + '</h4><ul></ul>';
+      el.addEventListener('click', () => drop(bn.id));
+      el.addEventListener('dragover', (e) => { e.preventDefault(); el.classList.add('over'); });
+      el.addEventListener('dragleave', () => el.classList.remove('over'));
+      el.addEventListener('drop', (e) => { e.preventDefault(); el.classList.remove('over'); drop(bn.id); });
+      bins.appendChild(el);
+    });
+  }
+  function pick(id) {
+    picked = id;
+    root.querySelectorAll('.card').forEach((c) => c.setAttribute('aria-pressed', String(c.dataset.id === id)));
+  }
+  function say(kind, text) { const m = q('.msg'); m.className = 'msg ' + kind; m.textContent = text; }
+  function drop(binId) {
+    if (!picked) { say('', 'Tap a card first.'); return; }
+    const st = cfg.stages[stage];
+    const c = st.cards.find((x) => x.id === picked);
+    const el = root.querySelector('.card[data-id="' + picked + '"]');
+    if (c.bin === binId) {
+      const li = document.createElement('li'); li.textContent = (c.icon ? c.icon + ' ' : '') + c.label;
+      root.querySelector('.bin[data-bin="' + binId + '"] ul').appendChild(li);
+      el.remove(); placed[c.id] = binId;
+      rec.push({ stage, id: c.id, tries: (misses[stage + ':' + c.id] || 0) + 1 });
+      say('ok', 'Yes. ' + c.why);
+      picked = null;
+      if (Object.keys(placed).length === st.cards.length) finishStage();
+    } else {
+      misses[stage + ':' + c.id] = (misses[stage + ':' + c.id] || 0) + 1;
+      el.classList.add('nope'); if (reduce) el.classList.add('still');
+      setTimeout(() => el.classList.remove('nope'), 900);
+      say('bad', 'Not that bin. Think about this: ' + c.hint);
+    }
+  }
+  function finishStage() {
+    if (stage + 1 < cfg.stages.length) {
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = 'Next round';
+      b.addEventListener('click', () => { stage++; q('.end').innerHTML = ''; begin(); });
+      q('.end').innerHTML = ''; q('.end').appendChild(b);
+      return;
+    }
+    const hard = rec.filter((r) => r.tries > 1).map((r) => cfg.stages[r.stage].cards.find((c) => c.id === r.id).label);
+    const d = document.createElement('div'); d.className = 'done';
+    d.innerHTML = '<b>What you found</b><p>' + esc(cfg.summary) + '</p>' +
+      (hard.length ? '<p>Worth a second look: ' + esc(hard.join('; ')) + '.</p>' : '<p>Every card went in the right bin on the first try.</p>');
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = 'Play again';
+    b.addEventListener('click', () => start());
+    d.appendChild(b);
+    q('.end').innerHTML = ''; q('.end').appendChild(d);
+    q('.prog').textContent = 'Done';
+  }
+  start();
+}
+
+
+k5BigSort(document.getElementById("k5-activity"), {"id":"2-b-habitats-sort","title":"Plants, Animals, and Habitats","intro":"Sort bean evidence, pollen and seed helpers, and habitat picture sets.","note":"This is a sorting game model that uses the lesson's backup data. The real bean investigation and the Seed or Pollen Mover Model still count.","summary":"Beans with sunlight and water grew green and sturdy. Without sunlight they were pale, thin and flopped over, and without water they stayed small and dry. Bees and other animals can move pollen, and animals and burrs can move seeds. The forest picture set had 6 kinds of living things and the dune set had 3.","stages":[{"prompt":"Bean plants grew for 14 days. Which plants had which results?","bins":[{"id":"sun-water","icon":"☀️💧","label":"Sun and water"},{"id":"dark-water","icon":"🌑💧","label":"Dark and water"},{"id":"sun-dry","icon":"☀️🏜️","label":"Sun, no water"}],"cards":[{"id":"green","icon":"🌱","label":"Green, 4 leaves","bin":"sun-water","why":"With sun and water the beans were green with 4 leaves and grew to 9 paper clips by day 14.","hint":"what do the color and the number of leaves tell you the plant got?"},{"id":"nine","icon":"📏","label":"9 clips tall, strong","bin":"sun-water","why":"The beans with sun and water reached 9 paper clips on day 14 and stayed green.","hint":"did this plant get everything it needs?"},{"id":"pale","icon":"🟡","label":"Pale yellow, thin","bin":"dark-water","why":"Without sun the beans still grew, but they were pale yellow and thin.","hint":"a plant can grow and still look unhealthy. What is missing?"},{"id":"flop","icon":"🥀","label":"Flops over, 2 leaves","bin":"dark-water","why":"The beans grown in the dark flopped over and had only 2 leaves.","hint":"which plant looks weak but still grew?"},{"id":"one","icon":"🔹","label":"Stayed 1 clip tall","bin":"sun-dry","why":"With no water the beans stayed 1 paper clip tall.","hint":"did this plant grow at all? What could it not drink?"},{"id":"brown","icon":"🟤","label":"Dry brown","bin":"sun-dry","why":"Without water the beans dried out and turned brown.","hint":"what does a dry brown plant not have?"}]},{"prompt":"Does this move pollen, or does it move seeds?","bins":[{"id":"moves-pollen","icon":"🌼","label":"Moves pollen"},{"id":"moves-seeds","icon":"🌱","label":"Moves seeds"}],"cards":[{"id":"bee","icon":"🐝","label":"Bee on a flower","bin":"moves-pollen","why":"A bee carries pollen from flower to flower.","hint":"Is it flower powder, or a seed taking a ride?"},{"id":"yellow-powder","icon":"🌼","label":"Yellow cornmeal moved","bin":"moves-pollen","why":"In the model, cornmeal moves from flower to flower like pollen.","hint":"is this flower powder, or a seed taking a ride?"},{"id":"bird-berry","icon":"🐦","label":"Bird with a berry","bin":"moves-seeds","why":"A bird carries seeds to a new place.","hint":"Is it flower powder, or a seed taking a ride?"},{"id":"burr-sock","icon":"🧦","label":"Burrs on a sock","bin":"moves-seeds","why":"The hooks stuck, so seeds can be carried away.","hint":"Did hooks stick and give something a ride?"}]},{"prompt":"Which picture set counted this living thing? (Forest set: 6 kinds. Dune set: 3 kinds.)","bins":[{"id":"forest-set","icon":"🌲","label":"Forest set"},{"id":"dune-set","icon":"🏜️","label":"Dune set"}],"cards":[{"id":"deer","icon":"🦌","label":"White-tailed deer","bin":"forest-set","why":"The forest picture set counted the white-tailed deer.","hint":"Check which habitat count listed it."},{"id":"robin","icon":"🐦","label":"Robin","bin":"forest-set","why":"The forest picture set counted the robin.","hint":"Check which habitat count listed it."},{"id":"maple","icon":"🍁","label":"Maple tree","bin":"forest-set","why":"The forest picture set counted the maple tree.","hint":"Check which habitat count listed it."},{"id":"squirrel","icon":"🐿️","label":"Squirrel","bin":"forest-set","why":"The forest picture set counted the squirrel.","hint":"Check which habitat count listed it."},{"id":"beetle","icon":"🪲","label":"Beetle","bin":"forest-set","why":"The forest picture set counted the beetle.","hint":"Check which habitat count listed it."},{"id":"mushroom","icon":"🍄","label":"Mushroom","bin":"forest-set","why":"The forest picture set counted the mushroom.","hint":"Check which habitat count listed it."},{"id":"beach-grass","icon":"🌾","label":"Beach grass","bin":"dune-set","why":"The dune picture set counted beach grass.","hint":"Check which habitat count listed it."},{"id":"gull","icon":"🪶","label":"Gull","bin":"dune-set","why":"The dune picture set counted the gull.","hint":"Check which habitat count listed it."},{"id":"insect","icon":"🐞","label":"Insect","bin":"dune-set","why":"The dune picture set counted an insect, so it had 3 kinds in all.","hint":"check which habitat count listed it."}]}]});
+</script>
+</section>
+<!--k5-activity-end-->
+
 <section class="sec related" id="more"><div><p class="kicker">Keep exploring</p><h2>More lessons</h2></div><p class="idea">Before this: <a href="unit-2-a-materials-and-their-uses.html">2-A Materials and Their Uses</a>. Up next: <a href="unit-2-c-land-and-water-fast-and-slow.html">2-C Land and Water, Fast and Slow</a>. <a href="unit-00-how-science-works.html">Unit 0: How Science Works</a> explains the method every Try it uses.</p></section>
 </main>
 
