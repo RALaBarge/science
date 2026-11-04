@@ -1,0 +1,223 @@
+{
+ "id": "4-2-circuit-builder",
+ "engine": "pathsignal",
+ "title": "Circuit Builder",
+ "intro": "Build a closed loop with a cell, wires, a switch and an LED. Then test materials in a gap, and run light and sound at once.",
+ "note": "This is a model of the lesson's circuits that uses the lesson's own tester data. The real build in the lesson (foil path, LED, paper-clip switch, light-up card) still counts, and an adult hands out and collects the cells.",
+ "summary": "Current flows only in a closed loop. A gap, an open switch or an insulator breaks the path; metals conduct; an LED lights only one way. In every working circuit, electrical energy changes into something useful — light, a little heat, or sound.",
+ "rounds": [
+  {
+   "id": "light-the-led",
+   "goal": "Make the LED light. Fill every slot so the loop has no gaps. One piece in the tray does not belong.",
+   "slots": 4,
+   "pieces": [
+    {
+     "id": "cell",
+     "kind": "cell",
+     "icon": "🔋",
+     "label": "Cell"
+    },
+    {
+     "id": "led",
+     "kind": "led",
+     "icon": "💡",
+     "label": "LED"
+    },
+    {
+     "id": "w1",
+     "kind": "wire",
+     "icon": "➿",
+     "label": "Wire"
+    },
+    {
+     "id": "w2",
+     "kind": "wire",
+     "icon": "➿",
+     "label": "Wire"
+    },
+    {
+     "id": "plastic",
+     "kind": "insulator",
+     "icon": "🧴",
+     "label": "Plastic piece"
+    }
+   ],
+   "lit": [
+    "led"
+   ],
+   "done": "The LED lights: electrical energy changed into light and a little heat."
+  },
+  {
+   "id": "add-a-switch",
+   "goal": "Build the loop with the switch. The switch starts open, and there is a spare wire. Find out what the switch does.",
+   "slots": 5,
+   "pieces": [
+    {
+     "id": "cell",
+     "kind": "cell",
+     "icon": "🔋",
+     "label": "Cell"
+    },
+    {
+     "id": "led",
+     "kind": "led",
+     "icon": "💡",
+     "label": "LED"
+    },
+    {
+     "id": "sw",
+     "kind": "switch",
+     "icon": "🔘",
+     "label": "Switch"
+    },
+    {
+     "id": "w1",
+     "kind": "wire",
+     "icon": "➿",
+     "label": "Wire"
+    },
+    {
+     "id": "w2",
+     "kind": "wire",
+     "icon": "➿",
+     "label": "Wire"
+    },
+    {
+     "id": "w3",
+     "kind": "wire",
+     "icon": "➿",
+     "label": "Wire"
+    }
+   ],
+   "lit": [
+    "led"
+   ],
+   "done": "Switch closed: the path is complete and the LED lights. Switch open: the path is broken. A flashlight works exactly this way."
+  },
+  {
+   "id": "material-tester",
+   "type": "test",
+   "goal": "One slot is a test gap. Put each material in the gap and watch the LED. Test all five.",
+   "slots": 5,
+   "pieces": [
+    {
+     "id": "cell",
+     "kind": "cell",
+     "icon": "🔋",
+     "label": "Cell"
+    },
+    {
+     "id": "w1",
+     "kind": "wire",
+     "icon": "➿",
+     "label": "Wire"
+    },
+    {
+     "id": "led",
+     "kind": "led",
+     "icon": "💡",
+     "label": "LED"
+    },
+    {
+     "id": "w2",
+     "kind": "wire",
+     "icon": "➿",
+     "label": "Wire"
+    }
+   ],
+   "locked": {
+    "0": "cell",
+    "1": "w1",
+    "2": "led",
+    "3": "w2"
+   },
+   "materials": [
+    {
+     "id": "clip",
+     "icon": "📎",
+     "label": "Paper clip",
+     "conducts": true
+    },
+    {
+     "id": "foil",
+     "icon": "🥈",
+     "label": "Foil",
+     "conducts": true
+    },
+    {
+     "id": "string",
+     "icon": "🧵",
+     "label": "String",
+     "conducts": false
+    },
+    {
+     "id": "plastic",
+     "icon": "🧴",
+     "label": "Plastic",
+     "conducts": false
+    },
+    {
+     "id": "wood",
+     "icon": "🪵",
+     "label": "Wood",
+     "conducts": false
+    }
+   ],
+   "done": "The metals conducted — the paper clip and the foil lit the LED. String, plastic and wood are insulators. That is why a wire is metal inside a plastic coat."
+  },
+  {
+   "id": "light-and-sound",
+   "goal": "Run the LED and the doorbell at the same time. There are two switches, and not every piece belongs in the loop.",
+   "slots": 6,
+   "pieces": [
+    {
+     "id": "cell",
+     "kind": "cell",
+     "icon": "🔋",
+     "label": "Cell"
+    },
+    {
+     "id": "led",
+     "kind": "led",
+     "icon": "💡",
+     "label": "LED"
+    },
+    {
+     "id": "buzz",
+     "kind": "buzzer",
+     "icon": "🔔",
+     "label": "Doorbell"
+    },
+    {
+     "id": "sw1",
+     "kind": "switch",
+     "icon": "🔘",
+     "label": "Switch"
+    },
+    {
+     "id": "sw2",
+     "kind": "switch",
+     "icon": "🔘",
+     "label": "Switch"
+    },
+    {
+     "id": "w1",
+     "kind": "wire",
+     "icon": "➿",
+     "label": "Wire"
+    },
+    {
+     "id": "wood",
+     "kind": "insulator",
+     "icon": "🪵",
+     "label": "Wood piece"
+    }
+   ],
+   "lit": [
+    "led",
+    "buzz"
+   ],
+   "done": "The LED lights and the doorbell rings: electrical energy changed into light and sound at the same time. Both switches had to be closed."
+  }
+ ]
+}

@@ -42,6 +42,96 @@ FACTS['unit-5-2-gravity-stars-and-sky-patterns.json'] = (cfg, ok, f) => {
   ok(g.spots.every((x) => x.choices.find((c) => c.ok).label.includes('center of Earth')), f + ' every gravity key points to the center');
 };
 
+/* ---- pathsignal: an independent oracle for series loops, compared with the engine's solver on every layout a child can build ---- */
+function oracle(round, arr, open, flip) {
+  const byId = {};
+  round.pieces.forEach((p) => { byId[p.id] = p; });
+  const els = arr.map((id) => (id ? byId[id] : null));
+  if (!els.some((e) => e && e.kind === 'cell')) return { status: 'nocell', breaks: [], lit: [] };
+  const breaks = [];
+  els.forEach((e) => {
+    if (!e) breaks.push('gap');
+    else if (e.kind === 'insulator') breaks.push('insulator');
+    else if (e.kind === 'switch' && open[e.id]) breaks.push('switch');
+    else if (e.kind === 'led' && flip[e.id]) breaks.push('led');
+  });
+  const loads = els.filter((e) => e && (e.kind === 'led' || e.kind === 'buzzer' || e.kind === 'motor')).map((e) => e.id).sort();
+  if (breaks.length) return { status: 'open', breaks, lit: [] };
+  if (!loads.length) return { status: 'short', breaks: [], lit: [] };
+  return { status: 'lit', breaks: [], lit: loads };
+}
+function checkPathSignalLogic(ok, f, cfg, ps) {
+  const seenWhy = new Set();
+  let mismatches = 0, cases = 0;
+  cfg.rounds.forEach((r) => {
+    if (r.type === 'test') return;
+    const ids = r.pieces.map((p) => p.id);
+    const sws = r.pieces.filter((p) => p.kind === 'switch').map((p) => p.id), leds = r.pieces.filter((p) => p.kind === 'led').map((p) => p.id);
+    const states = [];
+    for (let m = 0; m < (1 << sws.length); m++) for (let n = 0; n < (1 << leds.length); n++) {
+      const open = {}, flip = {};
+      sws.forEach((id, i) => { open[id] = !!(m & (1 << i)); });
+      leds.forEach((id, i) => { flip[id] = !!(n & (1 << i)); });
+      states.push([open, flip]);
+    }
+    const full = r.slots > 5;   /* big rounds: only completely filled loops; small rounds: every partial fill too */
+    const arr = new Array(r.slots).fill(null), used = new Set();
+    const rec = (i) => {
+      if (i === r.slots) {
+        states.forEach(([open, flip]) => {
+          const a = ps.k5PathSignalCheck(r, arr.slice(), { open, flip }), b = oracle(r, arr, open, flip);
+          cases++;
+          const sameLit = JSON.stringify(a.lit.slice().sort()) === JSON.stringify(b.lit);
+          const whyOk = a.status !== 'open' || b.breaks.includes(a.why);
+          if (a.status !== b.status || !sameLit || !whyOk) mismatches++;
+          if (a.status === 'open') seenWhy.add(a.why); else seenWhy.add(a.status);
+        });
+        return;
+      }
+      for (const id of full ? ids : ids.concat([null])) {
+        if (id && used.has(id)) continue;
+        if (id) used.add(id);
+        arr[i] = id; rec(i + 1);
+        if (id) used.delete(id);
+      }
+    };
+    rec(0);
+  });
+  ok(cases > 1000 && mismatches === 0, f + ' solver agrees with the independent circuit oracle on ' + cases + ' layouts (' + mismatches + ' differences)');
+  ['gap', 'insulator', 'switch', 'led', 'short', 'lit', 'nocell'].forEach((w) => ok(seenWhy.has(w), f + ' a child can reach the "' + w + '" state'));
+  // the unit's tester data
+  const t = cfg.rounds.find((r) => r.type === 'test');
+  const data = { clip: true, foil: true, string: false, plastic: false, wood: false };
+  ok(t.materials.length === 5 && t.materials.every((m) => data[m.id] === m.conducts), f + ' material tester matches the unit data (clip yes, foil yes, string no, plastic no, wood no)');
+  const lockedIds = Object.values(t.locked);
+  const results = t.materials.map((m) => {
+    const arr = new Array(t.slots).fill(null);
+    Object.entries(t.locked).forEach(([k, v]) => { arr[+k] = v; });
+    arr[arr.findIndex((x) => x === null)] = 'mat:' + m.id;
+    return ps.k5PathSignalCheck(t, arr, { open: {}, flip: {} }).status === 'lit';
+  });
+  ok(results.every((x, i) => x === t.materials[i].conducts) && lockedIds.length === t.slots - 1, f + ' the solver lights the LED for exactly the conductors');
+}
+
+function checkPathSignalValidators(ok) {
+  const ps = engines.pathsignal;
+  if (!ps) return;
+  const good = unitCfg('unit-4-2-circuits-and-energy-conversion.json');
+  const bad = (mut, word) => { const c = clone(good); mut(c); return ps.k5PathSignalValidate(c).some((x) => x.includes(word)); };
+  ok(ps.k5PathSignalValidate(good).length === 0, 'pathsignal: good config validates');
+  ok(bad((c) => { c.rounds[0].pieces = c.rounds[0].pieces.filter((p) => p.kind !== 'cell'); }, 'exactly one cell'), 'pathsignal validator catches a round with no cell');
+  ok(bad((c) => { c.rounds[0].lit = ['w1']; }, 'not a load'), 'pathsignal validator catches a wire named as the load');
+  ok(bad((c) => { c.rounds[0].pieces[2].id = 'cell'; }, 'duplicate piece id'), 'pathsignal validator catches a duplicate piece id');
+  ok(bad((c) => { c.rounds[0].pieces = c.rounds[0].pieces.filter((p) => p.id !== 'w2'); }, 'not enough conducting'), 'pathsignal validator catches too few conducting pieces');
+  ok(bad((c) => { c.rounds[2].locked['3'] = 'w1'; }, 'locked into two slots'), 'pathsignal validator catches a piece locked twice');
+  ok(bad((c) => { c.rounds[2].materials.forEach((m) => { m.conducts = true; }); }, 'one conductor and one insulator'), 'pathsignal validator catches a tester with no insulator');
+  ok(bad((c) => { c.rounds[0].slots = 2; }, 'slots must be'), 'pathsignal validator catches a loop that is too small');
+  ok(bad((c) => { c.rounds[3].pieces.push({ id: 'mot', kind: 'motor', label: 'Motor' }); c.rounds[3].lit = ['led', 'buzz', 'mot']; c.rounds[3].slots = 3; }, 'no way'), 'pathsignal validator catches a round that cannot be solved');
+  ok(bad((c) => { c.rounds[0].pieces.push({ id: 'x', kind: 'battery', label: 'x' }); }, 'unknown kind'), 'pathsignal validator catches an unknown piece kind');
+  ok(bad((c) => { delete c.note; }, 'saying it is a model'), 'pathsignal validator catches a missing model note');
+  checkPathSignalLogic(ok, 'pathsignal engine', good, ps);
+}
+
 function checkGraphSkyValidators(ok) {
   const g = engines.graphsky;
   if (!g) return;
@@ -63,6 +153,7 @@ function checkGraphSkyValidators(ok) {
 
 function checkValidators(ok) {
   checkGraphSkyValidators(ok);
+  checkPathSignalValidators(ok);
   const p = engines.pusharena;
   if (p) {
     const good = unitCfg('unit-3-1-forces-motion-and-magnets.json');
@@ -119,6 +210,67 @@ async function rowWrongRight(page, step, out, what) {
 const DIRDEG = { N: 0, NE: 45, E: 90, SE: 135, S: 180, SW: 225, W: 270, NW: 315 };
 
 const PLAY = {
+  async pathsignal(ok, f, cfg, page, errors) {
+    const problems = [];
+    const slot = (i) => page.locator(A + ' .slot[data-slot="' + i + '"]');
+    const piece = (id) => page.locator(A + ' .tray .pc[data-pid="' + id + '"]');
+    const next = page.locator(A + ' .end .btn');
+    const msg = async () => ({ k: await msgKind(page), t: await page.locator(A + ' .msg').textContent() });
+    for (let ri = 0; ri < cfg.rounds.length; ri++) {
+      const r = cfg.rounds[ri];
+      if (r.type === 'test') {
+        for (const m of r.materials) {
+          await page.locator(A + ' .tray .pc[data-mid="' + m.id + '"]').click();
+          const row = await page.locator(A + ' .tab tr[data-mid="' + m.id + '"] .r').textContent();
+          if (row !== (m.conducts ? 'Yes' : 'No')) problems.push('tester row for ' + m.id + ' says ' + row);
+          const mm = await msg();
+          const lastOne = m === r.materials[r.materials.length - 1];   // the last test shows the round's closing line instead
+          if (mm.t.length < 10 || (lastOne ? !mm.t.endsWith(r.done) : (m.conducts ? mm.k.indexOf('ok') < 0 : mm.k.indexOf('bad') < 0))) problems.push('tester message for ' + m.id);
+        }
+      } else {
+        // right pieces: the cell, then the loads that must run, then the rest that conduct
+        const good = r.pieces.filter((p) => p.kind === 'cell').concat(r.pieces.filter((p) => r.lit.indexOf(p.id) >= 0), r.pieces.filter((p) => p.kind !== 'cell' && p.kind !== 'insulator' && r.lit.indexOf(p.id) < 0)).slice(0, r.slots);
+        // a wrong first try: swap one piece for something that does not belong (an insulator, or a spare wire instead of a load)
+        const ins = r.pieces.find((p) => p.kind === 'insulator'), spare = r.pieces.find((p) => p.kind === 'wire' && good.indexOf(p) < 0);
+        const wrongAt = good.findIndex((p) => p.kind === 'wire');
+        const first = good.slice();
+        if (ins && wrongAt >= 0) first[wrongAt] = ins; else if (spare) first[good.findIndex((p) => r.lit.indexOf(p.id) >= 0)] = spare;
+        for (let i = 0; i < r.slots; i++) { await piece(first[i].id).click(); await slot(i).click(); }
+        let mm = await msg();
+        if (mm.k.indexOf('bad') < 0 || mm.t.length < 20) problems.push(r.id + ': a wrong loop shows no reason (' + mm.t + ')');
+        if (await next.count()) problems.push(r.id + ': a wrong loop was accepted');
+        // a closed switch with nothing to use the energy is a short circuit with its own reason
+        if (!ins && spare) {
+          const swAt = first.findIndex((p) => p.kind === 'switch');
+          await slot(swAt).click();
+          mm = await msg();
+          ok(/short circuit/i.test(mm.t) && /hot/i.test(mm.t), f + ' ' + r.id + ' a closed loop with no load is called a short circuit that gets hot');
+        }
+        // fix it: pick up the wrong piece and put the right one in
+        for (let i = 0; i < r.slots; i++) {
+          if (first[i] !== good[i]) { await slot(i).click(); await piece(good[i].id).click(); await slot(i).click(); }
+        }
+        // close every open switch and turn every LED the working way (read from each slot's label)
+        for (let i = 0; i < r.slots; i++) {
+          if (good[i].kind !== 'switch' && good[i].kind !== 'led') continue;
+          const lab = await slot(i).getAttribute('aria-label');
+          if ((good[i].kind === 'switch' && /open/.test(lab)) || (good[i].kind === 'led' && /←/.test(lab))) await slot(i).click();
+        }
+      }
+      ok(await next.count() === 1, f + ' ' + r.id + ' finishes with the right loop');
+      await next.click();
+    }
+    await page.locator(A + ' .donebox').waitFor();
+    const txt = await page.locator(A + ' .donebox').textContent();
+    ok(txt.includes(cfg.summary.slice(0, 30)), f + ' plays through to the summary');
+    ok(/paper clip.*foil.*conducted/i.test(txt), f + ' summary reports which materials conducted');
+    ok(problems.length === 0, f + ' wrong loops and tester rows show reasons' + (problems.length ? ': ' + problems.join('; ') : ''));
+    ok(await page.evaluate(() => document.documentElement.scrollWidth <= 420), f + ' fits 420px wide');
+    await byName(page, 'Play again').click();
+    ok(await page.locator(A + ' .slot').count() === cfg.rounds[0].slots, f + ' play again restarts');
+    ok(errors.length === 0, f + ' no page errors' + (errors.length ? ': ' + errors.join('; ') : ''));
+  },
+
   async graphsky(ok, f, cfg, page, errors) {
     const problems = [];
     for (let ri = 0; ri < cfg.rounds.length; ri++) {
