@@ -24,11 +24,12 @@ Plan: one lead agent splits the work by grade folder, one sub-agent per folder, 
 
 ### Grok review of the K-5 units (2026-11-03): what is left
 
-Text fixes from the review were applied (5.3 matter vs energy, 5.4 water reservoirs, 1-C seasons wording and quiz, 5.1 sealed-bag safety and salt recovery, no button cells in K-2, 4.5 energy effects, 3.2 wind vane and temperature label, 4.3 wave wording, 4.2 short-circuit warning, false "returns" lines, 2-C glossary and straws, backup-data caveat). Still open from that review:
+The full review is saved in `reviews/k5-grok-review-2026-11-03.md` (section 1 content, sections 2-4 games/diagrams/build order). Text fixes from sections 1 were applied in two passes (all high items and most medium/low). Still open:
 
-- 3.1: the frictionless dot table is now labeled as a model; add a moving-object balanced-forces activity.
-- 4.5: the map-pattern data still hands over the answer; 4.4 ruler drop needs "farther down = slower" on the scale; 5.2 needs shadow direction, not only length, and a "toward Earth's center" globe diagram; 2-B Concept 3 uses a picture-card count as habitat evidence.
-- K-B Concept 3 (lake-effect) is beyond kindergarten; K-C "plants make food" is ahead of the evidence.
-- K-2 quiz distractors still restate the misconception.
+- Standards footers are not checked against the Michigan Department of Education document; backup-data paths do not fully earn the verbs for 2-LS2-1, K-ESS2-1, 1-ESS1-1/2, 2-LS4-1 (the pages say the data is a backup).
+- K-2 quiz distractors still restate the misconception; 2-A quiz does not check 2-PS1-2 or 2-PS1-3.
+- 2-B Concept 1: the dark-box row changes temperature as well as light.
+- Beans (2-LS2-1, 3-LS3-2, 5-LS1-1) and erosion spoon counts (2-C, 3.2, 4.5, 5.4) recur with different numbers; each page should say what is new so one messy trial is not treated as the finding.
+- 4.4 sound-cue ruler drop is a weaker fair test than the visual drop; 4.5 is five PEs in six sessions.
 
 Game plan (six shared engines, build in this order): Big Sort (tap-bin, match, order), Push Arena (one-variable motion, not a duel), Path & Signal (port Laser Bounce and Short Circuit), Fair Test Lab (copy Mystery Machine), Graph & Sky, Scene & Web. Do not reskin Gravity, Football or Balance Duel for these units. First eight builds: Big Sort with K-B and 2-C skins; 1-C day/night spin with stars under the sky wash; K-A Push Pit; light-into-the-eye path plus four materials in a beam; Fair Test Lab with Dry Note and Guard the Sand; 5.3 two-rail matter/energy board; 4.1 heat-arrow-and-coat diagram; Short Circuit skin for 4.2 (polarity, insulator gap, hot-short stop). Ten highest-value diagrams: 5.3 matter vs energy board, 5.3 matter cycle vs one-way energy, 4.3 light into the eye, 1-C day/night spin, 5.4 water reservoirs (ocean, ice, underground, a dot for lakes and rivers), 3.1 balanced forces on a moving object, 4.2 closed loop, 5.1 dissolve and count, 5.2 shadow length and direction, 4.1 heat arrow and coat.
