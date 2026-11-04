@@ -43,7 +43,7 @@ for (const f of readdirSync(join(root, 'k5-activities', 'units')).filter((x) => 
   const crlf = html.includes('\r\n');
   html = html.replace(/\r\n/g, '\n');
   const a = html.indexOf(START), b = html.indexOf(END);
-  if (a >= 0 && b > a) html = html.slice(0, a) + html.slice(b + END.length + 1);
+  if (a >= 0 && b > a) html = html.slice(0, a) + html.slice(b + END.length).replace(/^\n\n?/, '');
   const at = html.indexOf(MORE);
   if (at < 0) { console.error('no "more" section in ' + f); process.exitCode = 1; continue; }
   html = html.slice(0, at) + block + '\n' + html.slice(at);
