@@ -1,0 +1,29 @@
+{
+ "page": "unit-k2-0-science-noticing-and-asking",
+ "figures": [
+  {
+   "id": "k20-hero",
+   "after": "hero",
+   "kind": "image",
+   "file": "k20-hero.webp",
+   "alt": "Illustration of two children crouching in a backyard with a magnifying glass, looking closely at a green leaf on the grass while a robin watches.",
+   "caption": "Scientists start by looking closely at what is really there."
+  },
+  {
+   "id": "k20-towels",
+   "after": "kit",
+   "kind": "image",
+   "file": "k20-towels.webp",
+   "alt": "Photo of two paper towels side by side on a tray. A dropper over each towel has just released one blue drop, so both towels get the same test.",
+   "caption": "A fair comparison: same dropper, same drop, two different towels. Only the towel is different."
+  },
+  {
+   "id": "g-k20-towels",
+   "after": "kit",
+   "kind": "svg",
+   "file": "g-k20-towels.svg",
+   "alt": "Bar graph, Drops each towel held. Towel A 5 drops, Towel B 8 drops.",
+   "caption": "Towel A held 5 drops and Towel B held 8 drops. Same dropper, same amount: the towels are what is different."
+  }
+ ]
+}

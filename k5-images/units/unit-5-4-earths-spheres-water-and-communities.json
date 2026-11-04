@@ -1,0 +1,53 @@
+{
+ "page": "unit-5-4-earths-spheres-water-and-communities",
+ "figures": [
+  {
+   "id": "54-hero",
+   "after": "hero",
+   "kind": "image",
+   "file": "54-hero.webp",
+   "alt": "Photo of a forest hillside in rain with a muddy brown stream cutting a bank held together by tree roots.",
+   "caption": "Water moves soil downhill while roots hold some of it in place."
+  },
+  {
+   "id": "54-raingarden",
+   "after": "s3",
+   "kind": "image",
+   "file": "54-raingarden.webp",
+   "alt": "Illustration of two adults in everyday jackets looking at a rain garden of native plants in a strip next to a parking lot, in light rain.",
+   "caption": "A rain garden soaks up some runoff. It helps, but it does not stop all flooding."
+  },
+  {
+   "id": "54-stream",
+   "after": "kit",
+   "kind": "image",
+   "file": "54-stream.webp",
+   "alt": "Photo of a sloped plastic tray with a sand channel and grass along one bank while water is poured at the top and carries sand down the channel.",
+   "caption": "The stream tray: compare how much sediment moves with and without plants or stones."
+  },
+  {
+   "id": "g-54-sediment",
+   "after": "kit",
+   "kind": "svg",
+   "file": "g-54-sediment.svg",
+   "alt": "Bar graph, Sediment moved in the stream tray. No plants 12 spoonfuls, Stones model 7 spoonfuls, Grass model 4 spoonfuls.",
+   "caption": "Stream-tray test, sediment moved: no plants 12 spoonfuls, stones model 7, grass model 4."
+  },
+  {
+   "id": "g-54-water",
+   "after": "s2",
+   "kind": "svg",
+   "file": "g-54-water.svg",
+   "alt": "A grid of 100 squares. 97 are blue for salty ocean water, 2 are yellow for frozen fresh water, 1 is green for fresh water underground. Lakes and rivers are less than one square, shown as a tiny dot.",
+   "caption": "If all of Earth’s water were 100 squares: about 97 are salty ocean, 2 are frozen fresh water, about 1 is fresh water underground, and lakes and rivers are less than one square, a tiny dot. Almost no liquid fresh water is easy to reach."
+  },
+  {
+   "id": "g-54-garden",
+   "after": "kit",
+   "kind": "svg",
+   "file": "g-54-garden.svg",
+   "alt": "Bar graph, Runoff after a storm. Parking lot 10 buckets, Rain garden 6 buckets.",
+   "caption": "Runoff after a storm: parking lot 10 buckets, rain garden 6 buckets. A rain garden reduces runoff but does not stop all of it."
+  }
+ ]
+}

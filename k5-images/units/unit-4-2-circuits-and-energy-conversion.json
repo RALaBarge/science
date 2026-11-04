@@ -1,0 +1,29 @@
+{
+ "page": "unit-4-2-circuits-and-energy-conversion",
+ "figures": [
+  {
+   "id": "42-hero",
+   "after": "hero",
+   "kind": "image",
+   "file": "42-hero.webp",
+   "alt": "Photo of a house in a snowy Michigan neighborhood at dusk with warm light glowing in the windows.",
+   "caption": "Electricity makes lights glow, but only when the circuit is a complete loop."
+  },
+  {
+   "id": "d-42-loop",
+   "after": "s1",
+   "kind": "svg",
+   "file": "d-42-loop.svg",
+   "alt": "Two circuits made of a battery, a bulb and wire. Top: the loop has a gap on the right, so the bulb is off. Bottom: the loop is complete, orange arrows show charges moving around the whole loop together, and the bulb glows with rays around it.",
+   "caption": "The bulb lights only when the loop is closed all the way around. A gap anywhere stops the current in the whole loop."
+  },
+  {
+   "id": "g-42-tester",
+   "after": "kit",
+   "kind": "svg",
+   "file": "g-42-tester.svg",
+   "alt": "Table drawn with dots. Bulb lit with paper clip: yes. Foil: yes. String: no. Plastic: no. Wood: no. Switch closed: yes. Switch open: no.",
+   "caption": "Material tester: paper clip and foil let the bulb light. String, plastic and wood did not. The switch closed lit the bulb and open did not."
+  }
+ ]
+}

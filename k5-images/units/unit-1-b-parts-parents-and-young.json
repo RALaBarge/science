@@ -1,0 +1,29 @@
+{
+ "page": "unit-1-b-parts-parents-and-young",
+ "figures": [
+  {
+   "id": "1b-hero",
+   "after": "hero",
+   "kind": "image",
+   "file": "1b-hero.webp",
+   "alt": "Photo of a mother deer and her spotted fawn standing among ferns in a forest.",
+   "caption": "A fawn looks like its mother, but it has spots she does not have."
+  },
+  {
+   "id": "1b-burr",
+   "after": "s2",
+   "kind": "image",
+   "file": "1b-burr.webp",
+   "alt": "Close photo of a spiky burr stuck to a gray wool sock, with its tiny hooks caught in the knit.",
+   "caption": "A burr has tiny hooks that grab fabric. People copied that idea to make hook-and-loop fasteners."
+  },
+  {
+   "id": "1b-duck",
+   "after": "s3",
+   "kind": "image",
+   "file": "1b-duck.webp",
+   "alt": "Photo of a mother duck walking at a pond edge followed by four ducklings in a line.",
+   "caption": "Some animal parents guide their young. The ducklings follow their mother."
+  }
+ ]
+}

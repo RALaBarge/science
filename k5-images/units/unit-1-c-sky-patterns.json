@@ -1,0 +1,53 @@
+{
+ "page": "unit-1-c-sky-patterns",
+ "figures": [
+  {
+   "id": "1c-hero",
+   "after": "hero",
+   "kind": "image",
+   "file": "1c-hero.webp",
+   "alt": "Photo of a calm Michigan lake at night under a crescent moon and stars, with pine trees along the shore.",
+   "caption": "The Moon and the stars show up at night. In the day the bright sky hides the stars."
+  },
+  {
+   "id": "1c-summer",
+   "after": "s3",
+   "kind": "image",
+   "file": "1c-summer.webp",
+   "alt": "Illustration of a father with a child on his shoulders and a grandmother in a park on a long summer evening with the sun still high.",
+   "caption": "In Michigan summer there is daylight late into the evening."
+  },
+  {
+   "id": "1c-winter",
+   "after": "s3",
+   "kind": "image",
+   "file": "1c-winter.webp",
+   "alt": "Illustration of a girl pulling a sled across a snowy park as a low orange sun sets behind bare trees.",
+   "caption": "In winter the Sun sets early, so there is less daylight."
+  },
+  {
+   "id": "1c-sundial",
+   "after": "kit",
+   "kind": "image",
+   "file": "1c-sundial.webp",
+   "alt": "Photo of a paper plate with a straw standing in its center on a sunny sidewalk. The straw shadow falls across the plate, away from the Sun.",
+   "caption": "Paper-plate sundial: the shadow points away from the Sun, and it moves as the day goes on."
+  },
+  {
+   "id": "d-1c-spin",
+   "after": "s1",
+   "kind": "svg",
+   "file": "d-1c-spin.svg",
+   "alt": "Two pictures of the Sun on the left and Earth in the middle. The Sun lights the half of Earth that faces it. Top picture: a red dot for your place is on the lit side, so it is day. After Earth spins half way, the bottom picture shows the red dot on the dark side, so it is night. The Sun did not turn off, your place turned away from it.",
+   "caption": "The Sun stays put and Earth spins. A place facing the Sun has day. When Earth turns that place away, it has night."
+  },
+  {
+   "id": "g-1c-daylight",
+   "after": "s3",
+   "kind": "svg",
+   "file": "g-1c-daylight.svg",
+   "alt": "Bar graph, About how much daylight (squares of light). December 9 squares, March 12 squares, June 15 squares.",
+   "caption": "Michigan daylight strips, about 9 squares of light in December, 12 in March and 15 in June. Summer days have more daylight."
+  }
+ ]
+}

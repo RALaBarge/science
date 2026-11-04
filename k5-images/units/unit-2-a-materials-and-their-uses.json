@@ -1,0 +1,29 @@
+{
+ "page": "unit-2-a-materials-and-their-uses",
+ "figures": [
+  {
+   "id": "2a-hero",
+   "after": "hero",
+   "kind": "image",
+   "file": "2a-hero.webp",
+   "alt": "Illustration of a boy in a yellow raincoat and rain boots with an umbrella, walking past a puddle on a rainy street.",
+   "caption": "We pick rain gear because of what it does: it keeps water out."
+  },
+  {
+   "id": "2a-ice",
+   "after": "s4",
+   "kind": "image",
+   "file": "2a-ice.webp",
+   "alt": "Photo of ice cubes melting in a glass bowl with a puddle of water, and a pat of butter softening in a pan.",
+   "caption": "Warming melts ice and butter. These changes can be undone by cooling."
+  },
+  {
+   "id": "g-2a-rainproof",
+   "after": "kit",
+   "kind": "svg",
+   "file": "g-2a-rainproof.svg",
+   "alt": "Table drawn with colored dots. Plastic wrap: dry, dry, dry. Foil: dry, dry, dry. Cloth: damp, wet, wet. Paper: wet, wet, wet.",
+   "caption": "Rainproof Note backup data. Plastic wrap and foil stayed dry all 3 tries; cloth got damp then wet; paper was wet every time."
+  }
+ ]
+}

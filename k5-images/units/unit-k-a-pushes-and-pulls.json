@@ -1,0 +1,37 @@
+{
+ "page": "unit-k-a-pushes-and-pulls",
+ "figures": [
+  {
+   "id": "ka-hero",
+   "after": "hero",
+   "kind": "image",
+   "file": "ka-hero.webp",
+   "alt": "Illustration of a girl pushing a red wagon away from her while a boy pulls a blue wagon toward himself on a playground.",
+   "caption": "A push sends something away from you. A pull brings it toward you."
+  },
+  {
+   "id": "ka-stopper",
+   "after": "kit",
+   "kind": "image",
+   "file": "ka-stopper.webp",
+   "alt": "Photo of a toy car on a cardboard ramp on a tile floor, with soft foam blocks placed as stoppers at the end of the ramp.",
+   "caption": "What a finished Safe Stopper test can look like: a ramp, a car, and a foam stopper."
+  },
+  {
+   "id": "g-ka-push",
+   "after": "kit",
+   "kind": "svg",
+   "file": "g-ka-push.svg",
+   "alt": "Bar graph, How far the car rolled. Soft push 2 floor tiles, Strong push 6 floor tiles.",
+   "caption": "A soft push sent the car 2 floor tiles. A strong push sent it 6 tiles."
+  },
+  {
+   "id": "g-ka-stopper",
+   "after": "kit",
+   "kind": "svg",
+   "file": "g-ka-stopper.svg",
+   "alt": "Bar graph, Times the car was stopped (3 tries). Foam stopper 3 stops out of 3 tries, Cardboard stopper 1 stops out of 3 tries.",
+   "caption": "The foam stopper stopped the car 3 times out of 3. The cardboard stopper stopped it 1 time out of 3."
+  }
+ ]
+}

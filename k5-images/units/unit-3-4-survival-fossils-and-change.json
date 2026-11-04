@@ -1,0 +1,37 @@
+{
+ "page": "unit-3-4-survival-fossils-and-change",
+ "figures": [
+  {
+   "id": "34-hero",
+   "after": "hero",
+   "kind": "image",
+   "file": "34-hero.webp",
+   "alt": "Photo of a pack of gray wolves walking together through snow in a forest.",
+   "caption": "Wolves hunt in packs. Groups can help members survive."
+  },
+  {
+   "id": "34-petoskey",
+   "after": "s2",
+   "kind": "image",
+   "file": "34-petoskey.webp",
+   "alt": "Photo of a gray Petoskey stone with a honeycomb pattern, wet on a beach of pebbles.",
+   "caption": "A Petoskey stone is fossil coral. It is evidence that this place was once a warm shallow sea."
+  },
+  {
+   "id": "34-wetland",
+   "after": "s5",
+   "kind": "image",
+   "file": "34-wetland.webp",
+   "alt": "Photo of a wetland with cattails, still water, a frog on a log and ducks.",
+   "caption": "A wetland is a habitat. Filling it in changes who can live there."
+  },
+  {
+   "id": "g-34-fur",
+   "after": "kit",
+   "kind": "svg",
+   "file": "g-34-fur.svg",
+   "alt": "Bar graph, Model herd: how many survived. Thick fur 8 survived, Thin fur 2 survived.",
+   "caption": "In a model herd, 8 animals with thick fur survived and 2 animals with thin fur survived. It is a made-up model, not wildlife data."
+  }
+ ]
+}

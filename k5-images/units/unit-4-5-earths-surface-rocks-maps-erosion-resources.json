@@ -1,0 +1,37 @@
+{
+ "page": "unit-4-5-earths-surface-rocks-maps-erosion-resources",
+ "figures": [
+  {
+   "id": "45-hero",
+   "after": "hero",
+   "kind": "image",
+   "file": "45-hero.webp",
+   "alt": "Photo of an eroding sandy bluff on Lake Michigan with fallen trees at its base and waves washing the shore.",
+   "caption": "Waves and wind wear the shore away. Erosion moves the pieces."
+  },
+  {
+   "id": "45-layers",
+   "after": "s2",
+   "kind": "image",
+   "file": "45-layers.webp",
+   "alt": "Photo of a cliff with horizontal layers of tan and gray rock and a small shell in one layer.",
+   "caption": "Rock layers build up over time, usually older at the bottom. A shell fossil is evidence of a past environment."
+  },
+  {
+   "id": "45-tray",
+   "after": "kit",
+   "kind": "image",
+   "file": "45-tray.webp",
+   "alt": "Photo of a plastic tray with a sand shoreline, a row of stones along part of the shore and a cup of water.",
+   "caption": "A model shoreline: test a barrier with the same amount of water each time and compare the sediment lost."
+  },
+  {
+   "id": "g-45-sediment",
+   "after": "kit",
+   "kind": "svg",
+   "file": "g-45-sediment.svg",
+   "alt": "Bar graph, Sediment moved by waves. No barrier 12 spoonfuls, Wall 7 spoonfuls, Grass 5 spoonfuls.",
+   "caption": "Sediment lost in the shoreline tray: no barrier 12 spoons, wall 7 spoons, grass 5 spoons."
+  }
+ ]
+}

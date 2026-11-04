@@ -1,0 +1,45 @@
+{
+ "page": "unit-4-3-waves-light-and-information",
+ "figures": [
+  {
+   "id": "43-hero",
+   "after": "hero",
+   "kind": "image",
+   "file": "43-hero.webp",
+   "alt": "Photo of a lighthouse on a Lake Michigan breakwater at dusk with a bright beam of light sweeping over the water.",
+   "caption": "A lighthouse sends a pattern of light so sailors far away can read the signal."
+  },
+  {
+   "id": "43-waves",
+   "after": "s1",
+   "kind": "image",
+   "file": "43-waves.webp",
+   "alt": "Photo of a yellow rubber duck riding gentle waves on a lake.",
+   "caption": "A wave moves forward, but the duck mostly moves up and down."
+  },
+  {
+   "id": "d-43-eye",
+   "after": "s2",
+   "kind": "svg",
+   "file": "d-43-eye.svg",
+   "alt": "Diagram of a lamp on the left, an apple in the middle and an eye on the right. Arrow 1 goes from the lamp to the apple. Arrow 2 goes from the apple into the eye. No arrow leaves the eye. Light from the lamp bounces off the apple and enters the eye, which is how we see it.",
+   "caption": "We see an object when light reflects from it and enters our eyes. The eye only receives light. The apple does not make its own light."
+  },
+  {
+   "id": "g-43-wave",
+   "after": "s1",
+   "kind": "svg",
+   "file": "g-43-wave.svg",
+   "alt": "Bar graph, How far a wave moved an object. Small wave 1 cm, Large wave 3 cm.",
+   "caption": "A small wave moved the floating object 1 cm. A large wave moved it 3 cm. Bigger waves carry more energy."
+  },
+  {
+   "id": "g-43-signal",
+   "after": "kit",
+   "kind": "svg",
+   "file": "g-43-signal.svg",
+   "alt": "Bar graph, Signal accuracy at 3 meters. Flashlight code 4 out of 5, Drum code 3 out of 5.",
+   "caption": "Messages decoded correctly out of 5 tries: flashlight code 4, drum code 3."
+  }
+ ]
+}

@@ -1,0 +1,45 @@
+{
+ "page": "unit-k-b-sunlight-weather-and-staying-safe",
+ "figures": [
+  {
+   "id": "kb-hero",
+   "after": "hero",
+   "kind": "image",
+   "file": "kb-hero.webp",
+   "alt": "Illustration of a grandmother and a child sitting in the shade of a striped beach umbrella on a sandy lake beach.",
+   "caption": "A beach umbrella makes shade, so the sand under it stays cooler."
+  },
+  {
+   "id": "kb-snow",
+   "after": "s3",
+   "kind": "image",
+   "file": "kb-snow.webp",
+   "alt": "Illustration of two children in winter coats and boots building a snowman in a snowy front yard, away from the street, while snow falls.",
+   "caption": "Snow falls in Michigan winters. We dress warm and play away from the road."
+  },
+  {
+   "id": "kb-shade",
+   "after": "kit",
+   "kind": "image",
+   "file": "kb-shade.webp",
+   "alt": "Photo of two ice cubes in small metal trays on a sunny windowsill. One has a small paper shade held up by a craft stick. The other is uncovered.",
+   "caption": "The finished Sun-Safe Beach Helper test: one shaded ice cube, one uncovered control, same window."
+  },
+  {
+   "id": "g-kb-weather",
+   "after": "s3",
+   "kind": "svg",
+   "file": "g-kb-weather.svg",
+   "alt": "Bar graph, Weather over 20 days (Michigan fall sample). Sunny 8 days, Cloudy 6 days, Rainy 4 days, Snowy 2 days.",
+   "caption": "A 20-day Michigan fall sample: 8 sunny, 6 cloudy, 4 rainy and 2 snowy days. Sunny days were the most common."
+  },
+  {
+   "id": "g-kb-melt",
+   "after": "kit",
+   "kind": "svg",
+   "file": "g-kb-melt.svg",
+   "alt": "Bar graph, Melt drops after the same time. Shaded ice 5 drops, Uncovered ice 12 drops.",
+   "caption": "The ice cube in the shade left 5 drops of melt. The ice cube in the sun left 12 drops."
+  }
+ ]
+}

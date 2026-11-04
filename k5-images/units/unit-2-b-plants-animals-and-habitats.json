@@ -1,0 +1,53 @@
+{
+ "page": "unit-2-b-plants-animals-and-habitats",
+ "figures": [
+  {
+   "id": "2b-hero",
+   "after": "hero",
+   "kind": "image",
+   "file": "2b-hero.webp",
+   "alt": "Photo of a bumblebee on a purple coneflower with pollen on its body.",
+   "caption": "Bees get nectar from flowers and move pollen from flower to flower."
+  },
+  {
+   "id": "2b-beans",
+   "after": "s1",
+   "kind": "image",
+   "file": "2b-beans.webp",
+   "alt": "Photo of three clear cups on a windowsill, each with a bean seedling: one tall and green, one thin and weak, one a dry brown stem.",
+   "caption": "An example of what bean cups can look like after two weeks: strong, weak, and dead."
+  },
+  {
+   "id": "2b-berry",
+   "after": "s2",
+   "kind": "image",
+   "file": "2b-berry.webp",
+   "alt": "Photo of a robin perched on a branch with a red berry in its beak.",
+   "caption": "Birds eat berries and carry the seeds to new places. The berry is food for the bird."
+  },
+  {
+   "id": "2b-forest",
+   "after": "s3",
+   "kind": "image",
+   "file": "2b-forest.webp",
+   "alt": "Photo of a forest floor with a deer, a squirrel on a branch, mushrooms and a beetle.",
+   "caption": "A forest has many kinds of living things. Count the kinds you can see."
+  },
+  {
+   "id": "g-2b-beans",
+   "after": "s1",
+   "kind": "svg",
+   "file": "g-2b-beans.svg",
+   "alt": "Grouped bar graph of bean height in paper clips. Sun and water: 4 on day 7, 9 on day 14. No sun, water: 4 and 7. Sun, no water: 1 and 1. No sun, no water: 1 and 1.",
+   "caption": "Bean heights in paper clips on day 7 and day 14. Sun + water grew most (9). No sun + water grew to 7 but was pale yellow and floppy. Without water the beans stayed at 1."
+  },
+  {
+   "id": "g-2b-habitats",
+   "after": "s3",
+   "kind": "svg",
+   "file": "g-2b-habitats.svg",
+   "alt": "Bar graph, Kinds of living things counted. Forest 6 kinds, Dune 3 kinds.",
+   "caption": "The forest picture set had 6 kinds of living things. The dune picture set had 3 kinds."
+  }
+ ]
+}

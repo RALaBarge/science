@@ -1,0 +1,37 @@
+{
+ "page": "unit-2-c-land-and-water-fast-and-slow",
+ "figures": [
+  {
+   "id": "2c-hero",
+   "after": "hero",
+   "kind": "image",
+   "file": "2c-hero.webp",
+   "alt": "Photo of wind-bent beach grass on a rippled sand dune under a blue sky.",
+   "caption": "Wind moves sand a little at a time. Grass roots hold it in place."
+  },
+  {
+   "id": "2c-pictured",
+   "after": "s1",
+   "kind": "image",
+   "file": "2c-pictured.webp",
+   "alt": "Photo of tall sandstone cliffs with orange, tan and green streaks above a lake, with pine forest on top.",
+   "caption": "Water and ice have worn these cliffs over a very long time. Some changes are slow."
+  },
+  {
+   "id": "2c-tray",
+   "after": "kit",
+   "kind": "image",
+   "file": "2c-tray.webp",
+   "alt": "Photo of a plastic tray holding a sand slope, a patch of grass on one side, a few stones on the other and a small cup of water.",
+   "caption": "The Erosion Guard tray before the test: sand, two guards (grass and stones) and water to pour."
+  },
+  {
+   "id": "g-2c-guard",
+   "after": "kit",
+   "kind": "svg",
+   "file": "g-2c-guard.svg",
+   "alt": "Grouped bar graph of sand moved in finger widths over 3 tries. No guard: 4, 5, 4. Grass: 1, 1, 2. Stones: 2, 1, 2. Paper barrier: 3, 3, 2.",
+   "caption": "Sand moved in 3 tries for each guard. Grass moved the least sand. With no guard the sand moved 4 to 5 finger widths."
+  }
+ ]
+}

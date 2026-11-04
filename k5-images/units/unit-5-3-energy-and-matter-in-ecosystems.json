@@ -1,0 +1,45 @@
+{
+ "page": "unit-5-3-energy-and-matter-in-ecosystems",
+ "figures": [
+  {
+   "id": "53-hero",
+   "after": "hero",
+   "kind": "image",
+   "file": "53-hero.webp",
+   "alt": "Photo of a fallen decomposing log on a forest floor with mushrooms, a beetle and ferns.",
+   "caption": "Decomposers break down dead wood and return matter to the soil and air."
+  },
+  {
+   "id": "53-beans",
+   "after": "kit",
+   "kind": "image",
+   "file": "53-beans.webp",
+   "alt": "Photo of two beds of bean sprouts. The left sprouts are short, green and sturdy. The right sprouts are tall, pale and thin.",
+   "caption": "What the bean test can look like: light-grown sprouts (left) and dark-grown sprouts (right)."
+  },
+  {
+   "id": "d-53-matter-energy",
+   "after": "s3",
+   "kind": "svg",
+   "file": "d-53-matter-energy.svg",
+   "alt": "Two diagrams. Top: matter moves in a loop. Soil and air give air, water and minerals to plants, plants are eaten by animals, animals die or make waste for decomposers, and decomposers break it down into soil and air again. Matter is reused, not used up. Bottom: energy moves one way. Sunlight goes to plants, plants to animals, and heat leaves from the plant and the animal at every step. Energy does not come back around.",
+   "caption": "Matter cycles: plants, animals and decomposers pass it on and it returns to soil and air. Energy does not cycle: it flows from the Sun through the food chain and leaves as heat."
+  },
+  {
+   "id": "g-53-beans",
+   "after": "kit",
+   "kind": "svg",
+   "file": "g-53-beans.svg",
+   "alt": "Bar graph of bean height after 10 days. Plant A, light: 12 cm, green and sturdy. Plant B, light: 11 cm. Plant C, dark: 14 cm, pale and thin. Plant D, dark: 13 cm, pale and thin.",
+   "caption": "Height after 10 days. The two light plants (A, B) were 12 and 11 cm, green and sturdy. The two dark plants (C, D) were 14 and 13 cm, pale and thin. Light matters for energy; this graph does not show where the plant’s mass comes from."
+  },
+  {
+   "id": "g-53-treesoil",
+   "after": "s1",
+   "kind": "svg",
+   "file": "g-53-treesoil.svg",
+   "alt": "Grouped bar graph of mass in kilograms. Tree: 2 at the start, 50 later. Soil: 100 at the start, 99.9 later. The tree bar grows a lot; the soil bars look the same height.",
+   "caption": "A tree grew from 2 kg to 50 kg. The soil went from 100 kg to 99.9 kg. The plant changed a lot and the soil barely changed, so the tree’s matter did not come mostly from the soil."
+  }
+ ]
+}

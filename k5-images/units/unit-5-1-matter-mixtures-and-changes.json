@@ -1,0 +1,29 @@
+{
+ "page": "unit-5-1-matter-mixtures-and-changes",
+ "figures": [
+  {
+   "id": "51-hero",
+   "after": "hero",
+   "kind": "image",
+   "file": "51-hero.webp",
+   "alt": "Photo of a sugar cube dissolving in a glass of clear water with grains swirling off it.",
+   "caption": "Sugar spreads out into the water. It is still there, in tiny pieces too small to see."
+  },
+  {
+   "id": "51-sep",
+   "after": "kit",
+   "kind": "image",
+   "file": "51-sep.webp",
+   "alt": "Photo of a science table with sand mixed with iron filings in a bowl, a magnet in a plastic bag pulling up the filings, a funnel with filter paper over a cup and a dark plate with white salt crystals.",
+   "caption": "The separation kit: magnet for iron, water and a filter for sand, and drying to get the salt back."
+  },
+  {
+   "id": "g-51-mass",
+   "after": "s5",
+   "kind": "svg",
+   "file": "g-51-mass.svg",
+   "alt": "Grouped bar graph of mass in grams. Sealed cup of ice melting: 82 before, 82 after. Sealed bag with baking soda and vinegar: 45 before, 45 after. Each pair is the same height.",
+   "caption": "Mass before and after. The sealed cup of melting ice stays 82 g. The sealed bag with baking soda and vinegar stays 45 g. Each pair of bars is the same height: matter did not disappear."
+  }
+ ]
+}

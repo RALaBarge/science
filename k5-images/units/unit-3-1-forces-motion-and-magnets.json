@@ -1,0 +1,53 @@
+{
+ "page": "unit-3-1-forces-motion-and-magnets",
+ "figures": [
+  {
+   "id": "31-hero",
+   "after": "hero",
+   "kind": "image",
+   "file": "31-hero.webp",
+   "alt": "Illustration of two teams of teenagers pulling on a rope in a tug of war. The red ribbon at the middle of the rope has not moved from the center.",
+   "caption": "Equal pulls in opposite directions are balanced. The rope does not change its motion."
+  },
+  {
+   "id": "31-magnets",
+   "after": "s3",
+   "kind": "image",
+   "file": "31-magnets.webp",
+   "alt": "Photo of a red horseshoe magnet holding two steel paper clips. A penny and a piece of aluminum foil lie beside it, not touching it.",
+   "caption": "A magnet pulls steel paper clips. The penny and the foil do not stick."
+  },
+  {
+   "id": "d-31-forces",
+   "after": "s1",
+   "kind": "svg",
+   "file": "d-31-forces.svg",
+   "alt": "Two pictures of an object with force arrows. Top: a push forward and friction backward are the same length, so the forces are balanced and the object keeps moving at the same steady speed. Bottom: the push forward is longer than the friction arrow, so the forces are unbalanced and the object speeds up.",
+   "caption": "Balanced forces do not change motion. An object can be moving and still have balanced forces. Unbalanced forces change the motion."
+  },
+  {
+   "id": "d-31-clip",
+   "after": "kit",
+   "kind": "svg",
+   "file": "d-31-clip.svg",
+   "alt": "Side view. A cardboard sheet rests like a bridge on two stacks of books. A paper clip sits on top of the cardboard at the start line. A magnet is held under the cardboard and moved along, and the clip follows it toward the finish line, at least 20 centimeters away. Nobody touches the clip.",
+   "caption": "What the paper-clip mover kit looks like from the side."
+  },
+  {
+   "id": "g-31-dots-a",
+   "after": "s2",
+   "kind": "svg",
+   "file": "g-31-dots-a.svg",
+   "alt": "Line graph of a model ball with no friction. Position is 0 cm at 0 s, 10 at 1 s, 20 at 2 s, 30 at 3 s, in a straight line. The prediction for 4 s is 40 cm, shown as an open dot.",
+   "caption": "Backup set 1 for a model ball with no friction: 0, 10, 20 and 30 cm at 0, 1, 2 and 3 seconds. The open dot is the prediction, 40 cm at 4 seconds. A real ball on a floor slows down, so its dots would bunch closer."
+  },
+  {
+   "id": "g-31-dots-b",
+   "after": "s2",
+   "kind": "svg",
+   "file": "g-31-dots-b.svg",
+   "alt": "Line graph. Position is 0 cm at 0 s, 8 at 1 s, 16 at 2 s, 24 at 3 s, in a straight line. The prediction for 4 s is 32 cm, shown as an open dot.",
+   "caption": "Backup set 2: 0, 8, 16 and 24 cm at 0, 1, 2 and 3 seconds. The open dot predicts 32 cm at 4 seconds."
+  }
+ ]
+}

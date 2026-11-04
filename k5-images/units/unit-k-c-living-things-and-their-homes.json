@@ -1,0 +1,53 @@
+{
+ "page": "unit-k-c-living-things-and-their-homes",
+ "figures": [
+  {
+   "id": "kc-hero",
+   "after": "hero",
+   "kind": "image",
+   "file": "kc-hero.webp",
+   "alt": "Photo of a beaver swimming beside its lodge of sticks in a calm pond with cattails.",
+   "caption": "A beaver builds a home from sticks. It changes its place to meet its needs."
+  },
+  {
+   "id": "kc-deer",
+   "after": "s1",
+   "kind": "image",
+   "file": "kc-deer.webp",
+   "alt": "Photo of a brown deer drinking at a forest stream surrounded by ferns and trees.",
+   "caption": "A deer needs water, food, air and space. A forest stream gives it water."
+  },
+  {
+   "id": "kc-dune",
+   "after": "s2",
+   "kind": "image",
+   "file": "kc-dune.webp",
+   "alt": "Photo of a sand dune on Lake Michigan with beach grass and a gull flying over the blue lake.",
+   "caption": "A sand dune is a different habitat. Beach grass and gulls live here, not the same living things as a forest."
+  },
+  {
+   "id": "kc-plant",
+   "after": "kit",
+   "kind": "image",
+   "file": "kc-plant.webp",
+   "alt": "Illustration of three people planting native wildflowers in a raised garden bed with trowels, one of them using a wheelchair, with bees nearby.",
+   "caption": "A real action that helps a habitat: planting native flowers for pollinators."
+  },
+  {
+   "id": "g-kc-habitats",
+   "after": "kit",
+   "kind": "svg",
+   "file": "g-kc-habitats.svg",
+   "alt": "Bar graph, Kinds of living things in each habitat. Pond 4 kinds, Forest 6 kinds, Sand dune 3 kinds.",
+   "caption": "Picture counts: the pond had 4 kinds of living things, the forest 6 and the sand dune 3."
+  },
+  {
+   "id": "g-kc-litter",
+   "after": "kit",
+   "kind": "svg",
+   "file": "g-kc-litter.svg",
+   "alt": "Bar graph, Litter pieces before and after. Before 10 pieces, After 0 pieces.",
+   "caption": "Litter pieces before the clean-up: 10. After: 0."
+  }
+ ]
+}

@@ -1,0 +1,37 @@
+{
+ "page": "unit-4-4-structures-senses-and-responses",
+ "figures": [
+  {
+   "id": "44-hero",
+   "after": "hero",
+   "kind": "image",
+   "file": "44-hero.webp",
+   "alt": "Photo of a brown deer in a forest with its ears turned forward and head up, listening and looking.",
+   "caption": "Sense organs collect information. The brain uses it to decide how to respond."
+  },
+  {
+   "id": "44-plant",
+   "after": "s1",
+   "kind": "image",
+   "file": "44-plant.webp",
+   "alt": "Photo of one bean seedling in a clear jar of water with the white roots, green stem and leaves all showing.",
+   "caption": "Roots take in water, the stem carries it, and the leaves catch light. Each part has a job."
+  },
+  {
+   "id": "44-ruler",
+   "after": "kit",
+   "kind": "image",
+   "file": "44-ruler.webp",
+   "alt": "Illustration of two students in a classroom. One holds a plain wooden stick up and the other has an open hand ready to catch it as it falls.",
+   "caption": "The ruler-drop test: the farther the stick falls before it is caught, the slower the response."
+  },
+  {
+   "id": "g-44-reaction",
+   "after": "kit",
+   "kind": "svg",
+   "file": "g-44-reaction.svg",
+   "alt": "Grouped bar graph of how far the ruler fell in cm. Sight: 12, 10, 9. Sound cue: 14, 12, 13. Farther means a slower reaction.",
+   "caption": "Distance the ruler fell before it was caught. Farther down means slower. Sight: 12, 10, 9 cm. Sound cue: 14, 12, 13 cm."
+  }
+ ]
+}
