@@ -1,0 +1,1480 @@
+{
+ "model": "z_image_turbo_int8_convrot (ComfyUI, 8 steps, cfg 1.0, res_multistep, 1024x576)",
+ "images": [
+  {
+   "id": "k20-hero",
+   "unit": "k2-0",
+   "prompt": "modern editorial illustration, flat vector shapes, muted sophisticated palette, subtle paper texture, realistic proportions, simple faces, a Black girl with braids and a South Asian boy with glasses crouching in a Michigan backyard looking closely at a leaf with a magnifying glass, maple trees, a robin on the grass, sunny",
+   "seed": 328815056,
+   "candidate": "k20-hero-1",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "two kids looking closely at a leaf, one lens, Michigan maples and robin",
+   "people": [
+    {
+     "description": "girl, braids, deep brown skin",
+     "group": "Black"
+    },
+    {
+     "description": "boy, glasses, brown skin",
+     "group": "South Asian"
+    }
+   ],
+   "rejected": [
+    {
+     "candidate": "k20-hero-0",
+     "seed": 1046299604,
+     "reason": "fine but second pick; leaf off-center"
+    }
+   ],
+   "bytes": 18472
+  },
+  {
+   "id": "k20-towels",
+   "unit": "k2-0",
+   "prompt": "realistic photograph, natural light, sharp detail, top view of two paper towels side by side on a tray, a plastic dropper over each, one blue drop falling from each dropper, tidy classroom table",
+   "seed": 1430592645,
+   "candidate": "k20-towels-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "two identical towels, one dropper each, one drop each: a fair-test setup",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "k20-towels-1",
+     "seed": 1775631423,
+     "reason": "dropper tip crops off frame"
+    }
+   ],
+   "bytes": 31804
+  },
+  {
+   "id": "ka-hero",
+   "unit": "k-a",
+   "prompt": "modern editorial illustration, flat vector shapes, muted sophisticated palette, subtle paper texture, realistic proportions, simple faces, a Latina girl with medium-brown skin and a long black braid pushing a red wagon away from her and an Arab boy with olive-brown skin and dark curly hair in a green hoodie pulling a blue wagon toward himself on a sunny playground, grass and swings behind",
+   "seed": 375783010,
+   "candidate": "ka-hero-10",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "girl pushes the red wagon away, boy pulls the blue one toward himself",
+   "people": [
+    {
+     "description": "girl, long braid, medium-brown skin",
+     "group": "Latino/a"
+    },
+    {
+     "description": "boy, curly hair, brown skin, green hoodie",
+     "group": "Arab/Middle Eastern"
+    }
+   ],
+   "rejected": [
+    {
+     "candidate": "ka-hero-0",
+     "seed": 346162949,
+     "reason": "both kids rendered light-skinned (diversity brief)"
+    },
+    {
+     "candidate": "ka-hero-1",
+     "seed": 1927227006,
+     "reason": "both kids rendered light-skinned (diversity brief)"
+    },
+    {
+     "candidate": "ka-hero-11",
+     "seed": 380117495,
+     "reason": "boy pulls the same wagon the girl pushes, confusing"
+    },
+    {
+     "candidate": "ka-hero-12",
+     "seed": 1623470455,
+     "reason": "boy pulls the same wagon the girl pushes, confusing"
+    }
+   ],
+   "bytes": 16346
+  },
+  {
+   "id": "ka-stopper",
+   "unit": "k-a",
+   "prompt": "realistic photograph, natural light, sharp detail, a small toy car rolling down a cardboard ramp on a classroom floor toward a soft foam block stopper, tile floor",
+   "seed": 960917649,
+   "candidate": "ka-stopper-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "toy car on cardboard ramp with foam stoppers, safe floor setup",
+   "people": [],
+   "rejected": [],
+   "bytes": 13236
+  },
+  {
+   "id": "kb-hero",
+   "unit": "k-b",
+   "prompt": "modern editorial illustration, flat vector shapes, muted sophisticated palette, subtle paper texture, realistic proportions, simple faces, sunny day at a Michigan beach on Lake Michigan, a striped beach umbrella with a Black grandmother with deep brown skin and gray locs and a Native American boy with copper-brown skin and straight black hair sitting in its shade, sand and blue lake, no palm trees",
+   "seed": 823261176,
+   "candidate": "kb-hero-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "umbrella shade at a lake beach, no palms, two people in the shade",
+   "people": [
+    {
+     "description": "grandmother, gray hair, deep brown skin",
+     "group": "Black"
+    },
+    {
+     "description": "child, copper-brown skin, black hair",
+     "group": "Native American"
+    }
+   ],
+   "rejected": [
+    {
+     "candidate": "kb-hero-1",
+     "seed": 1216160792,
+     "reason": "child shown from behind, less clear"
+    }
+   ],
+   "bytes": 9302
+  },
+  {
+   "id": "kb-shade",
+   "unit": "k-b",
+   "prompt": "realistic photograph, natural light, sharp detail, on a sunny windowsill two ice cubes in small trays, one ice cube covered by a small paper shade held up by craft sticks, the other uncovered in the sun with more melted water around it",
+   "seed": 1936502515,
+   "candidate": "kb-shade-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "left ice cube under a paper shade on craft stick, right cube uncovered, same windowsill",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "kb-shade-1",
+     "seed": 1901359618,
+     "reason": "shade and sun patches overlap, less clear"
+    }
+   ],
+   "bytes": 14390
+  },
+  {
+   "id": "kb-snow",
+   "unit": "k-b",
+   "prompt": "modern editorial illustration, flat vector shapes, muted sophisticated palette, subtle paper texture, realistic proportions, simple faces, a snowy Michigan neighborhood, an Arab girl with olive-brown skin in a hijab and winter coat and a Black boy with dark brown skin in a puffy jacket and hat building a snowman in a front yard, snowflakes falling, pine trees",
+   "seed": 132111449,
+   "candidate": "kb-snow-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "Michigan street in snow, kids in coats and boots in a yard away from the road",
+   "people": [
+    {
+     "description": "girl in hijab, light olive skin",
+     "group": "Arab/Middle Eastern"
+    },
+    {
+     "description": "boy, hat and puffy jacket, dark brown skin",
+     "group": "Black"
+    }
+   ],
+   "rejected": [
+    {
+     "candidate": "kb-snow-1",
+     "seed": 1120924485,
+     "reason": "hijab girl rendered pale, fewer cues"
+    }
+   ],
+   "bytes": 17696
+  },
+  {
+   "id": "kc-hero",
+   "unit": "k-c",
+   "prompt": "realistic photograph, natural light, sharp detail, a beaver swimming near its lodge made of sticks in a calm Michigan pond, cattails and green trees, morning light",
+   "seed": 551635746,
+   "candidate": "kc-hero-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "beaver at its stick lodge in a pond with cattails",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "kc-hero-1",
+     "seed": 1453956516,
+     "reason": "beaver half hidden"
+    }
+   ],
+   "bytes": 61644
+  },
+  {
+   "id": "kc-dune",
+   "unit": "k-c",
+   "prompt": "realistic photograph, natural light, sharp detail, a sand dune on the shore of Lake Michigan with beach grass, a gull flying, blue lake, sunny",
+   "seed": 488889878,
+   "candidate": "kc-dune-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "Lake Michigan dune with beach grass and gull",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "kc-dune-1",
+     "seed": 848498665,
+     "reason": "no strong dune slope"
+    }
+   ],
+   "bytes": 49852
+  },
+  {
+   "id": "kc-deer",
+   "unit": "k-c",
+   "prompt": "realistic photograph, natural light, sharp detail, a typical brown white-tailed deer with a reddish-brown summer coat and white tail underside drinking from a forest stream, tall maple and pine trees and ferns around it",
+   "seed": 1661847587,
+   "candidate": "kc-deer-10",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "brown white-tailed deer drinking at a forest stream",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "kc-deer-0",
+     "seed": 1888070656,
+     "reason": "deer rendered white (not a typical white-tailed coat)"
+    },
+    {
+     "candidate": "kc-deer-1",
+     "seed": 603224666,
+     "reason": "deer rendered white (not a typical white-tailed coat)"
+    },
+    {
+     "candidate": "kc-deer-11",
+     "seed": 544197676,
+     "reason": "second pick"
+    },
+    {
+     "candidate": "kc-deer-12",
+     "seed": 763853193,
+     "reason": "second pick"
+    }
+   ],
+   "bytes": 63262
+  },
+  {
+   "id": "kc-plant",
+   "unit": "k-c",
+   "prompt": "modern editorial illustration, flat vector shapes, muted sophisticated palette, subtle paper texture, realistic proportions, simple faces, a Filipina woman with tan-brown skin, a Black boy with dark brown skin and a Latino man with brown skin in a wheelchair planting native wildflowers in a school garden bed with trowels, bees and butterflies, sunny",
+   "seed": 1803427203,
+   "candidate": "kc-plant-11",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "three people planting native flowers in a raised bed, bees, one in a wheelchair",
+   "people": [
+    {
+     "description": "woman, light skin, dark hair",
+     "group": "East/Southeast Asian"
+    },
+    {
+     "description": "boy, curly hair, dark brown skin",
+     "group": "Black"
+    },
+    {
+     "description": "man in wheelchair, tan skin",
+     "group": "Latino/a"
+    }
+   ],
+   "rejected": [
+    {
+     "candidate": "kc-plant-0",
+     "seed": 1527780793,
+     "reason": "man and woman both light-skinned, brief asks for more variety"
+    },
+    {
+     "candidate": "kc-plant-1",
+     "seed": 473808245,
+     "reason": "man and woman both light-skinned"
+    },
+    {
+     "candidate": "kc-plant-10",
+     "seed": 933345851,
+     "reason": "man rendered light-skinned"
+    },
+    {
+     "candidate": "kc-plant-12",
+     "seed": 1778779142,
+     "reason": "second pick"
+    }
+   ],
+   "bytes": 20696
+  },
+  {
+   "id": "1a-hero",
+   "unit": "1-a",
+   "prompt": "modern editorial illustration, flat vector shapes, muted sophisticated palette, subtle paper texture, realistic proportions, simple faces, a Native American girl with copper-brown skin and long black hair in a dim classroom shining a flashlight across the room to a friend, a South Asian girl with brown skin and glasses waiting at the other side, a beam of light crossing the room",
+   "seed": 979389365,
+   "candidate": "1a-hero-11",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "flashlight beam crossing a dim classroom from one student to another",
+   "people": [
+    {
+     "description": "girl, long black hair, copper-brown skin",
+     "group": "Native American"
+    },
+    {
+     "description": "girl, glasses, brown skin",
+     "group": "South Asian"
+    }
+   ],
+   "rejected": [
+    {
+     "candidate": "1a-hero-0",
+     "seed": 490280558,
+     "reason": "girl rendered light-skinned, not the person described"
+    },
+    {
+     "candidate": "1a-hero-1",
+     "seed": 1808038978,
+     "reason": "girl rendered light-skinned"
+    },
+    {
+     "candidate": "1a-hero-10",
+     "seed": 151945949,
+     "reason": "second pick"
+    },
+    {
+     "candidate": "1a-hero-12",
+     "seed": 1490004744,
+     "reason": "second pick"
+    }
+   ],
+   "bytes": 10802
+  },
+  {
+   "id": "1a-drum",
+   "unit": "1-a",
+   "prompt": "realistic photograph, natural light, sharp detail, a small drum with grains of rice bouncing above the drum skin, a wooden spoon resting by it, close up",
+   "seed": 81825748,
+   "candidate": "1a-drum-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "drum with rice on the skin: the setup before tapping (rice is at rest)",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "1a-drum-1",
+     "seed": 2032086203,
+     "reason": "same as accepted; rice rests (did not bounce)"
+    }
+   ],
+   "bytes": 24368
+  },
+  {
+   "id": "1b-hero",
+   "unit": "1-b",
+   "prompt": "realistic photograph, natural light, sharp detail, a mother deer and her spotted fawn standing in a Michigan forest clearing, ferns and maple trees, soft light",
+   "seed": 1798892669,
+   "candidate": "1b-hero-1",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "doe and spotted fawn in a forest, correct legs and spots",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "1b-hero-0",
+     "seed": 1245860445,
+     "reason": "fawn leg overlaps doe; second pick"
+    }
+   ],
+   "bytes": 59292
+  },
+  {
+   "id": "1b-duck",
+   "unit": "1-b",
+   "prompt": "realistic photograph, natural light, sharp detail, a mother duck followed by a line of four ducklings walking at the edge of a pond, webbed orange feet visible, reeds",
+   "seed": 1276372048,
+   "candidate": "1b-duck-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "mother mallard with four ducklings, webbed orange feet visible",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "1b-duck-1",
+     "seed": 186204092,
+     "reason": "duckling count unclear"
+    }
+   ],
+   "bytes": 43582
+  },
+  {
+   "id": "1b-burr",
+   "unit": "1-b",
+   "prompt": "realistic photograph, natural light, sharp detail, a close photo of a spiky burdock burr stuck to a knitted wool sock, the tiny hooks of the burr visible, autumn field",
+   "seed": 1966157470,
+   "candidate": "1b-burr-1",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "burr with spines stuck to a wool sock",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "1b-burr-0",
+     "seed": 1955774087,
+     "reason": "stem looks like a plant on a stalk, hooks unclear"
+    }
+   ],
+   "bytes": 58958
+  },
+  {
+   "id": "1c-hero",
+   "unit": "1-c",
+   "prompt": "realistic photograph, natural light, sharp detail, night sky with a crescent moon and many stars over a calm Michigan lake with pine trees along the shore",
+   "seed": 551437098,
+   "candidate": "1c-hero-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "crescent moon and stars over a Michigan lake with pines",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "1c-hero-1",
+     "seed": 335133671,
+     "reason": "moon is a bare dot, not a crescent"
+    }
+   ],
+   "bytes": 17176
+  },
+  {
+   "id": "1c-sundial",
+   "unit": "1-c",
+   "prompt": "realistic photograph, natural light, sharp detail, a paper plate with a straw standing upright in its center resting on a sunny sidewalk, strong sunlight from the upper left, the straw casts a shadow falling toward the lower right across the plate, with crayon dots marking shadow tips",
+   "seed": 799196645,
+   "candidate": "1c-sundial-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "straw in a paper plate, shadows fall to the lower right, away from the sun",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "1c-sundial-1",
+     "seed": 1908312362,
+     "reason": "straw cropped at top"
+    }
+   ],
+   "bytes": 41144
+  },
+  {
+   "id": "1c-summer",
+   "unit": "1-c",
+   "prompt": "modern editorial illustration, flat vector shapes, muted sophisticated palette, subtle paper texture, realistic proportions, simple faces, a long bright summer evening at a Michigan park, a Black father with dark brown skin carrying a child on his shoulders and a Native American grandmother with copper-brown skin and a long gray braid, the sun still high and warm, green trees",
+   "seed": 129646548,
+   "candidate": "1c-summer-12",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "long bright evening, sun high, family in a Michigan park",
+   "people": [
+    {
+     "description": "father, beard, deep brown skin",
+     "group": "Black"
+    },
+    {
+     "description": "child on shoulders, brown skin",
+     "group": "Black"
+    },
+    {
+     "description": "grandmother, long gray braid, copper-brown skin",
+     "group": "Native American"
+    }
+   ],
+   "rejected": [
+    {
+     "candidate": "1c-summer-0",
+     "seed": 1607256977,
+     "reason": "men in thobes, no women, light skin, reads as stereotype"
+    },
+    {
+     "candidate": "1c-summer-1",
+     "seed": 2081268643,
+     "reason": "men in thobes, no women, light skin, reads as stereotype"
+    },
+    {
+     "candidate": "1c-summer-10",
+     "seed": 815501511,
+     "reason": "second pick"
+    },
+    {
+     "candidate": "1c-summer-11",
+     "seed": 317077564,
+     "reason": "second pick"
+    }
+   ],
+   "bytes": 13308
+  },
+  {
+   "id": "1c-winter",
+   "unit": "1-c",
+   "prompt": "modern editorial illustration, flat vector shapes, muted sophisticated palette, subtle paper texture, realistic proportions, simple faces, a short winter day in Michigan, low orange sun setting early behind bare trees over a snowy park, a Black girl with dark brown skin and puffy twist hair in a coat pulling a sled",
+   "seed": 1990184024,
+   "candidate": "1c-winter-1",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "low orange winter sun setting early over a snowy park, bare trees",
+   "people": [
+    {
+     "description": "girl, dark brown skin, coat",
+     "group": "Black"
+    },
+    {
+     "description": "child lying on the sled, not distinct",
+     "group": "unclear"
+    }
+   ],
+   "rejected": [
+    {
+     "candidate": "1c-winter-0",
+     "seed": 1429618433,
+     "reason": "child on sled looks like a lying figure, unclear"
+    }
+   ],
+   "bytes": 26832
+  },
+  {
+   "id": "2a-hero",
+   "unit": "2-a",
+   "prompt": "modern editorial illustration, flat vector shapes, muted sophisticated palette, subtle paper texture, realistic proportions, simple faces, a Latino boy with brown skin and dark hair in a yellow raincoat and rain boots holding an umbrella walking past a puddle on a rainy street in a small Michigan town",
+   "seed": 1287861739,
+   "candidate": "2a-hero-1",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "boy in rain gear and boots with umbrella beside a puddle",
+   "people": [
+    {
+     "description": "boy, brown skin, dark hair",
+     "group": "Latino/a"
+    }
+   ],
+   "rejected": [
+    {
+     "candidate": "2a-hero-0",
+     "seed": 1859654956,
+     "reason": "no puddle shown with the boy, second pick"
+    }
+   ],
+   "bytes": 15638
+  },
+  {
+   "id": "2a-ice",
+   "unit": "2-a",
+   "prompt": "realistic photograph, natural light, sharp detail, a melting ice cube in a bowl with a puddle of water around it, a pat of butter softening in a warm pan nearby on a kitchen counter",
+   "seed": 1831361107,
+   "candidate": "2a-ice-1",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "ice melting in a bowl, butter softening in a pan: changes from heating",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "2a-ice-0",
+     "seed": 2027975844,
+     "reason": "less clear melt puddle"
+    }
+   ],
+   "bytes": 15460
+  },
+  {
+   "id": "2b-hero",
+   "unit": "2-b",
+   "prompt": "realistic photograph, natural light, sharp detail, a bumblebee on a purple coneflower in a Michigan meadow, pollen on its legs, more wildflowers behind",
+   "seed": 188724926,
+   "candidate": "2b-hero-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "bumblebee on a purple coneflower with pollen",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "2b-hero-1",
+     "seed": 1869004276,
+     "reason": "second pick"
+    }
+   ],
+   "bytes": 24288
+  },
+  {
+   "id": "2b-beans",
+   "unit": "2-b",
+   "prompt": "realistic photograph, natural light, sharp detail, three clear plastic cups of soil on a windowsill, each with a bean seedling: the left one tall healthy and green with leaves, the middle one thin and pale yellow flopping over, the right one a dry brown dead stem",
+   "seed": 686016008,
+   "candidate": "2b-beans-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "three cups: tall green, thin weak, dry brown dead stem",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "2b-beans-1",
+     "seed": 1441750611,
+     "reason": "middle seedling is a sprouting seed, does not show the pale weak plant"
+    }
+   ],
+   "bytes": 25882
+  },
+  {
+   "id": "2b-berry",
+   "unit": "2-b",
+   "prompt": "realistic photograph, natural light, sharp detail, a robin perched on a bush eating a red berry, more red berries on the branch",
+   "seed": 193686226,
+   "candidate": "2b-berry-1",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "robin with a red berry in its beak",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "2b-berry-0",
+     "seed": 1284883081,
+     "reason": "second pick"
+    }
+   ],
+   "bytes": 13288
+  },
+  {
+   "id": "2b-forest",
+   "unit": "2-b",
+   "prompt": "realistic photograph, natural light, sharp detail, a Michigan forest scene with a deer, a squirrel on a maple tree, a robin, mushrooms and a beetle on the ground",
+   "seed": 1554646739,
+   "candidate": "2b-forest-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "forest with deer, squirrel, mushrooms and beetle",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "2b-forest-1",
+     "seed": 731435171,
+     "reason": "two deer, no mushrooms"
+    }
+   ],
+   "bytes": 46500
+  },
+  {
+   "id": "2c-hero",
+   "unit": "2-c",
+   "prompt": "realistic photograph, natural light, sharp detail, wind blowing sand across a Lake Michigan dune, beach grass bending, ripples in the sand, blue sky",
+   "seed": 444967751,
+   "candidate": "2c-hero-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "wind-bent grass on a rippled sand dune",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "2c-hero-1",
+     "seed": 2047560654,
+     "reason": "second pick"
+    }
+   ],
+   "bytes": 38086
+  },
+  {
+   "id": "2c-pictured",
+   "unit": "2-c",
+   "prompt": "realistic photograph, natural light, sharp detail, tall colorful sandstone cliffs with streaks of orange, tan and green rising from a blue lake, Pictured Rocks on Lake Superior, pine forest on top",
+   "seed": 97740981,
+   "candidate": "2c-pictured-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "Pictured Rocks style colorful cliffs above a lake",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "2c-pictured-1",
+     "seed": 999486534,
+     "reason": "second pick"
+    }
+   ],
+   "bytes": 64912
+  },
+  {
+   "id": "2c-tray",
+   "unit": "2-c",
+   "prompt": "realistic photograph, natural light, sharp detail, a plastic tray of sand shaped into a slope with a patch of green grass on one side and a few small stones on the other, a small cup of water beside it, tidy classroom table",
+   "seed": 524064400,
+   "candidate": "2c-tray-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "sand slope with grass patch, stones and a cup of water",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "2c-tray-1",
+     "seed": 414669643,
+     "reason": "sand not clearly a slope"
+    }
+   ],
+   "bytes": 35142
+  },
+  {
+   "id": "31-hero",
+   "unit": "3-1",
+   "prompt": "modern editorial illustration, flat vector shapes, muted sophisticated palette, subtle paper texture, realistic proportions, simple faces, a tug-of-war in a school field, two evenly matched teams of teenagers with a mix of dark brown, brown, tan and light skin: a Black girl, a Latino boy, a South Asian boy, an East Asian girl, a girl in a hijab and a boy in a wheelchair pulling a rope, the red ribbon in the middle of the rope exactly centered, nobody moving",
+   "seed": 1640945618,
+   "candidate": "31-hero-1",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "evenly matched tug of war, ribbon centered, nobody moving",
+   "people": [
+    {
+     "description": "boy, curly hair, dark brown skin",
+     "group": "Black"
+    },
+    {
+     "description": "girl in hijab, tan skin",
+     "group": "Arab/Middle Eastern"
+    },
+    {
+     "description": "boy, light skin, light hair",
+     "group": "White"
+    },
+    {
+     "description": "man or teen, brown skin",
+     "group": "South Asian"
+    },
+    {
+     "description": "girl in wheelchair, tan skin",
+     "group": "East/Southeast Asian"
+    }
+   ],
+   "rejected": [
+    {
+     "candidate": "31-hero-0",
+     "seed": 1337666614,
+     "reason": "ribbon off center, wheelchair user shown pushed by others"
+    }
+   ],
+   "bytes": 19364
+  },
+  {
+   "id": "31-magnets",
+   "unit": "3-1",
+   "prompt": "realistic photograph, natural light, sharp detail, a red and silver horseshoe magnet holding a chain of steel paper clips, and on the white table beside it a crumpled piece of aluminum foil and a copper penny, separate and not touching the magnet",
+   "seed": 1218122114,
+   "candidate": "31-magnets-12",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "horseshoe magnet holding two paper clips; penny and foil set apart, untouched",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "31-magnets-0",
+     "seed": 1106331030,
+     "reason": "penny hanging from the clip (would suggest a penny is attracted)"
+    },
+    {
+     "candidate": "31-magnets-1",
+     "seed": 1018212554,
+     "reason": "penny held by clip (misleading)"
+    },
+    {
+     "candidate": "31-magnets-10",
+     "seed": 1534892469,
+     "reason": "clips attached oddly to the magnet ends, hard to read"
+    },
+    {
+     "candidate": "31-magnets-11",
+     "seed": 873463678,
+     "reason": "second pick"
+    }
+   ],
+   "bytes": 17770
+  },
+  {
+   "id": "32-hero",
+   "unit": "3-2",
+   "prompt": "realistic photograph, natural light, sharp detail, dark thunderstorm clouds over Lake Michigan with a sandy shoreline and rain on the horizon, dramatic light",
+   "seed": 893138088,
+   "candidate": "32-hero-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "storm clouds with rain shaft over a Lake Michigan beach",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "32-hero-1",
+     "seed": 212065107,
+     "reason": "second pick"
+    }
+   ],
+   "bytes": 19712
+  },
+  {
+   "id": "32-summer",
+   "unit": "3-2",
+   "prompt": "realistic photograph, natural light, sharp detail, a sunny Michigan lakeside park in July, green trees, blue sky, a few distant people at a beach",
+   "seed": 263406671,
+   "candidate": "32-summer-1",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "July lakeside park, leafy trees, bench",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "32-summer-0",
+     "seed": 140215134,
+     "reason": "second pick"
+    }
+   ],
+   "bytes": 60288
+  },
+  {
+   "id": "32-winter",
+   "unit": "3-2",
+   "prompt": "realistic photograph, natural light, sharp detail, a snowy Michigan lakeside park in January, snow-covered trees and frozen shoreline, gray sky",
+   "seed": 978394815,
+   "candidate": "32-winter-1",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "January lakeside park, snow and ice, bare trees",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "32-winter-0",
+     "seed": 1620042570,
+     "reason": "second pick"
+    }
+   ],
+   "bytes": 46572
+  },
+  {
+   "id": "32-barrier",
+   "unit": "3-2",
+   "prompt": "realistic photograph, natural light, sharp detail, a model flood barrier test: a plastic tray with a soil slope, a strip of grass sod at the base, a cup of water being poured gently from the top, classroom table",
+   "seed": 789355840,
+   "candidate": "32-barrier-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "tray with soil slope, grass strip at the base, water poured from a cup",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "32-barrier-1",
+     "seed": 1716632388,
+     "reason": "second pick"
+    }
+   ],
+   "bytes": 27080
+  },
+  {
+   "id": "33-hero",
+   "unit": "3-3",
+   "prompt": "realistic photograph, natural light, sharp detail, a green frog on a lily pad with a tadpole and a small froglet with legs in the clear pond water below, macro photo",
+   "seed": 1019398749,
+   "candidate": "33-hero-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "frog on a lily pad with a tadpole beneath",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "33-hero-1",
+     "seed": 1413822221,
+     "reason": "frog only, no tadpole"
+    }
+   ],
+   "bytes": 22896
+  },
+  {
+   "id": "33-bean",
+   "unit": "3-3",
+   "prompt": "realistic photograph, natural light, sharp detail, two bean plants in clear cups on a table: the left one short with a thick green stem and wide leaves grown in sunlight, the right one slightly taller but thin and pale with small leaves grown in shade",
+   "seed": 2006901022,
+   "candidate": "33-bean-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "left plant short with thick stem and wide leaves, right taller and thinner",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "33-bean-1",
+     "seed": 19224062,
+     "reason": "leaf shapes not bean-like"
+    }
+   ],
+   "bytes": 18102
+  },
+  {
+   "id": "34-hero",
+   "unit": "3-4",
+   "prompt": "realistic photograph, natural light, sharp detail, a pack of gray wolves walking together through a snowy Michigan forest",
+   "seed": 656364513,
+   "candidate": "34-hero-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "gray wolves walking as a pack in snow",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "34-hero-1",
+     "seed": 501626212,
+     "reason": "second pick"
+    }
+   ],
+   "bytes": 35174
+  },
+  {
+   "id": "34-petoskey",
+   "unit": "3-4",
+   "prompt": "realistic photograph, natural light, sharp detail, a Petoskey stone, a gray fossil coral stone with a honeycomb hexagon pattern, wet on the pebbles of a Lake Michigan beach",
+   "seed": 2101414585,
+   "candidate": "34-petoskey-1",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "honeycomb coral pattern on a wet beach stone",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "34-petoskey-0",
+     "seed": 317794709,
+     "reason": "pattern mixed circles, not hexagons"
+    }
+   ],
+   "bytes": 40554
+  },
+  {
+   "id": "34-wetland",
+   "unit": "3-4",
+   "prompt": "realistic photograph, natural light, sharp detail, a Michigan wetland with cattails, still water, a green frog on a log and ducks, soft morning light",
+   "seed": 684908469,
+   "candidate": "34-wetland-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "cattail wetland with frog and ducks",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "34-wetland-1",
+     "seed": 1487633109,
+     "reason": "second pick"
+    }
+   ],
+   "bytes": 39334
+  },
+  {
+   "id": "41-hero",
+   "unit": "4-1",
+   "prompt": "modern editorial illustration, flat vector shapes, muted sophisticated palette, subtle paper texture, realistic proportions, simple faces, a Black teenage girl with dark brown skin and locs and a South Asian teenage boy with brown skin on a sled racing fast down a snowy Michigan hill, motion lines, bright winter day",
+   "seed": 43148345,
+   "candidate": "41-hero-10",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "two teens on a sled speeding downhill, motion lines",
+   "people": [
+    {
+     "description": "girl, locs, dark brown skin",
+     "group": "Black"
+    },
+    {
+     "description": "boy, black hair, brown skin",
+     "group": "South Asian"
+    }
+   ],
+   "rejected": [
+    {
+     "candidate": "41-hero-0",
+     "seed": 1665902682,
+     "reason": "second boy rendered light-skinned (diversity brief)"
+    },
+    {
+     "candidate": "41-hero-1",
+     "seed": 1040689391,
+     "reason": "second pick"
+    },
+    {
+     "candidate": "41-hero-11",
+     "seed": 709583958,
+     "reason": "second pick"
+    },
+    {
+     "candidate": "41-hero-12",
+     "seed": 562747966,
+     "reason": "second pick"
+    }
+   ],
+   "bytes": 13784
+  },
+  {
+   "id": "41-ramp",
+   "unit": "4-1",
+   "prompt": "realistic photograph, natural light, sharp detail, a wooden board ramp propped on a stack of books, a marble at the top of the ramp, a small paper cup lying on its side on the floor at the bottom as a target, a strip of masking tape on the floor with plain evenly spaced pencil tick marks, no numbers, classroom",
+   "seed": 1090205322,
+   "candidate": "41-ramp-12",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "board ramp on books, marble at top, paper-cup target, tape with unnumbered ticks",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "41-ramp-0",
+     "seed": 668088406,
+     "reason": "ruler with number glyphs, marble ended up at the bottom"
+    },
+    {
+     "candidate": "41-ramp-1",
+     "seed": 496598819,
+     "reason": "ruler with number glyphs"
+    },
+    {
+     "candidate": "41-ramp-10",
+     "seed": 167869791,
+     "reason": "tick marks like partial numerals"
+    },
+    {
+     "candidate": "41-ramp-11",
+     "seed": 805312169,
+     "reason": "second pick"
+    }
+   ],
+   "bytes": 13572
+  },
+  {
+   "id": "42-hero",
+   "unit": "4-2",
+   "prompt": "realistic photograph, natural light, sharp detail, a cozy house in a snowy Michigan town at dusk with warm glowing lights in the windows",
+   "seed": 2057655163,
+   "candidate": "42-hero-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "house with warm lit windows at dusk in snow",
+   "people": [],
+   "rejected": [],
+   "bytes": 42922
+  },
+  {
+   "id": "43-hero",
+   "unit": "4-3",
+   "prompt": "realistic photograph, natural light, sharp detail, a lighthouse on Lake Michigan at dusk with a bright beam of light sweeping across the water",
+   "seed": 1031850460,
+   "candidate": "43-hero-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "lighthouse beam sweeping over Lake Michigan at dusk",
+   "people": [],
+   "rejected": [],
+   "bytes": 9736
+  },
+  {
+   "id": "43-waves",
+   "unit": "4-3",
+   "prompt": "realistic photograph, natural light, sharp detail, a yellow rubber duck floating on gentle repeating lake waves, side view, calm blue water",
+   "seed": 1273888934,
+   "candidate": "43-waves-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "rubber duck riding repeating waves",
+   "people": [],
+   "rejected": [],
+   "bytes": 14560
+  },
+  {
+   "id": "44-hero",
+   "unit": "4-4",
+   "prompt": "realistic photograph, natural light, sharp detail, a typical brown white-tailed deer with a reddish-brown coat in a forest, ears turned forward and head raised, alert, listening and looking",
+   "seed": 693756050,
+   "candidate": "44-hero-11",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "brown deer with ears forward, alert",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "44-hero-0",
+     "seed": 979868767,
+     "reason": "deer rendered white"
+    },
+    {
+     "candidate": "44-hero-1",
+     "seed": 811270614,
+     "reason": "deer rendered white"
+    },
+    {
+     "candidate": "44-hero-10",
+     "seed": 405283051,
+     "reason": "second pick"
+    },
+    {
+     "candidate": "44-hero-12",
+     "seed": 300652185,
+     "reason": "second pick"
+    }
+   ],
+   "bytes": 20166
+  },
+  {
+   "id": "44-ruler",
+   "unit": "4-4",
+   "prompt": "modern editorial illustration, flat vector shapes, muted sophisticated palette, subtle paper texture, realistic proportions, simple faces, a reaction test in a bright classroom: a Latina teenage girl with brown skin holding a plain wooden stick vertically and a Black teenage boy with dark brown skin and glasses with his open hand ready to catch it",
+   "seed": 298391551,
+   "candidate": "44-ruler-11",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "ruler-drop reaction test: stick mid-fall, catching hand ready",
+   "people": [
+    {
+     "description": "boy, glasses, curly hair, dark brown skin",
+     "group": "Black"
+    },
+    {
+     "description": "girl, long dark hair, light tan skin",
+     "group": "Latino/a"
+    }
+   ],
+   "rejected": [
+    {
+     "candidate": "44-ruler-0",
+     "seed": 914965761,
+     "reason": "girl light-skinned and stick falls wrong way"
+    },
+    {
+     "candidate": "44-ruler-1",
+     "seed": 1403278002,
+     "reason": "girl light-skinned"
+    },
+    {
+     "candidate": "44-ruler-10",
+     "seed": 1702276795,
+     "reason": "no catching hand"
+    },
+    {
+     "candidate": "44-ruler-12",
+     "seed": 1009663416,
+     "reason": "second pick"
+    }
+   ],
+   "bytes": 11764
+  },
+  {
+   "id": "44-plant",
+   "unit": "4-4",
+   "prompt": "realistic photograph, natural light, sharp detail, a whole bean seedling growing in a clear glass jar of water, the white roots, the stem and all the green leaves fully visible with empty space above the leaves, plain light background",
+   "seed": 215661267,
+   "candidate": "44-plant-11",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "bean seedling in jar showing roots, stem and leaves",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "44-plant-0",
+     "seed": 1813028977,
+     "reason": "leaves cut off at top"
+    },
+    {
+     "candidate": "44-plant-1",
+     "seed": 416511661,
+     "reason": "leaves cut off at top"
+    },
+    {
+     "candidate": "44-plant-10",
+     "seed": 1967637312,
+     "reason": "many sprouts, not a single plant"
+    },
+    {
+     "candidate": "44-plant-12",
+     "seed": 92730571,
+     "reason": "many sprouts, not a single plant"
+    }
+   ],
+   "bytes": 7800
+  },
+  {
+   "id": "45-hero",
+   "unit": "4-5",
+   "prompt": "realistic photograph, natural light, sharp detail, an eroding sandy bluff along Lake Michigan with fallen trees at the base and waves hitting the shore",
+   "seed": 1972620668,
+   "candidate": "45-hero-1",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "eroding sand bluff with fallen trees and waves",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "45-hero-0",
+     "seed": 160560540,
+     "reason": "second pick"
+    }
+   ],
+   "bytes": 41988
+  },
+  {
+   "id": "45-layers",
+   "unit": "4-5",
+   "prompt": "realistic photograph, natural light, sharp detail, a road cut showing clear horizontal layers of sedimentary rock in tan and gray, a small shell fossil visible in one layer",
+   "seed": 1220306797,
+   "candidate": "45-layers-1",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "horizontal rock layers with a small shell",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "45-layers-0",
+     "seed": 1421735364,
+     "reason": "no clear fossil"
+    }
+   ],
+   "bytes": 61886
+  },
+  {
+   "id": "45-tray",
+   "unit": "4-5",
+   "prompt": "realistic photograph, natural light, sharp detail, a model shoreline in a plastic tray: sand slope into a pool of water, a row of small stones at the base of the slope on one half and bare sand on the other half, cup of water, classroom table",
+   "seed": 769899203,
+   "candidate": "45-tray-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "sand shoreline with a row of stones on one part, cup of water",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "45-tray-1",
+     "seed": 511465380,
+     "reason": "second pick"
+    }
+   ],
+   "bytes": 36344
+  },
+  {
+   "id": "51-hero",
+   "unit": "5-1",
+   "prompt": "realistic photograph, natural light, sharp detail, a sugar cube dissolving in a clear glass of water, swirls of sugar rising, dark background, macro",
+   "seed": 1249778937,
+   "candidate": "51-hero-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "sugar cube dissolving, grains swirling off",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "51-hero-1",
+     "seed": 832798849,
+     "reason": "cube mostly dissolved, less clear"
+    }
+   ],
+   "bytes": 17010
+  },
+  {
+   "id": "51-sep",
+   "unit": "5-1",
+   "prompt": "realistic photograph, natural light, sharp detail, a science table with a bowl of sand and iron filings, a magnet inside a plastic bag lifting black iron filings, a funnel with filter paper in a clear cup, and a dark plate with white salt crystals drying",
+   "seed": 1474685932,
+   "candidate": "51-sep-1",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "magnet in bag lifting filings from sand, funnel with filter, plate of salt",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "51-sep-0",
+     "seed": 818278989,
+     "reason": "filings inside the bag only, sand pile unclear"
+    }
+   ],
+   "bytes": 24310
+  },
+  {
+   "id": "52-hero",
+   "unit": "5-2",
+   "prompt": "realistic photograph, natural light, sharp detail, early morning sun low on the horizon over a Michigan field, long thin shadows of trees stretching away from the sun across the grass",
+   "seed": 1531401771,
+   "candidate": "52-hero-1",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "low sun, shadows of trees point away from the sun toward the viewer",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "52-hero-0",
+     "seed": 837414534,
+     "reason": "second pick"
+    }
+   ],
+   "bytes": 57874
+  },
+  {
+   "id": "52-stick",
+   "unit": "5-2",
+   "prompt": "realistic photograph, natural light, sharp detail, a pencil standing in a lump of clay on a white sheet of paper outdoors, strong afternoon sunlight, a long shadow of the pencil falling across the paper with pencil marks at the shadow tips",
+   "seed": 708808616,
+   "candidate": "52-stick-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "pencil in clay on paper, shadow falls away from the sun",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "52-stick-1",
+     "seed": 1850363174,
+     "reason": "pencil base shadow reads wrongly (shadow starts from clay side)"
+    }
+   ],
+   "bytes": 9056
+  },
+  {
+   "id": "52-stars",
+   "unit": "5-2",
+   "prompt": "realistic photograph, natural light, sharp detail, the Milky Way and many stars over a dark Michigan lakeshore at night, pine tree silhouettes",
+   "seed": 515143603,
+   "candidate": "52-stars-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "Milky Way over a dark Michigan shore",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "52-stars-1",
+     "seed": 488940831,
+     "reason": "second pick"
+    }
+   ],
+   "bytes": 22502
+  },
+  {
+   "id": "53-hero",
+   "unit": "5-3",
+   "prompt": "realistic photograph, natural light, sharp detail, a Michigan forest floor with a fallen decomposing log, mushrooms, ferns and a beetle, rich soil, dappled sunlight",
+   "seed": 371631040,
+   "candidate": "53-hero-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "decomposing log with mushrooms, beetle and ferns",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "53-hero-1",
+     "seed": 803861927,
+     "reason": "second pick"
+    }
+   ],
+   "bytes": 67804
+  },
+  {
+   "id": "53-beans",
+   "unit": "5-3",
+   "prompt": "realistic photograph, natural light, sharp detail, two sets of bean sprouts on a table: the left set grown in light, short, green and sturdy; the right set grown in the dark, taller, pale white-yellow and thin and floppy",
+   "seed": 2093645823,
+   "candidate": "53-beans-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "left sprouts short, green and sturdy; right tall, pale and thin",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "53-beans-1",
+     "seed": 11685917,
+     "reason": "dark sprouts look tangled"
+    }
+   ],
+   "bytes": 48714
+  },
+  {
+   "id": "54-hero",
+   "unit": "5-4",
+   "prompt": "realistic photograph, natural light, sharp detail, rain falling on a forested hillside in Michigan with a muddy brown stream running down carrying soil, roots of trees holding the bank",
+   "seed": 1303215810,
+   "candidate": "54-hero-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "muddy stream cutting a bank held by tree roots",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "54-hero-1",
+     "seed": 1983133745,
+     "reason": "second pick"
+    }
+   ],
+   "bytes": 69772
+  },
+  {
+   "id": "54-stream",
+   "unit": "5-4",
+   "prompt": "realistic photograph, natural light, sharp detail, a sloped plastic stream tray with a channel in sand, a strip of grass on one bank, water being poured at the top, brown sediment moving down, classroom table",
+   "seed": 1941574213,
+   "candidate": "54-stream-0",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "stream tray with grass on one bank, poured water carrying sand",
+   "people": [],
+   "rejected": [
+    {
+     "candidate": "54-stream-1",
+     "seed": 1450191956,
+     "reason": "second pick"
+    }
+   ],
+   "bytes": 34488
+  },
+  {
+   "id": "54-raingarden",
+   "unit": "5-4",
+   "prompt": "modern editorial illustration, flat vector shapes, muted sophisticated palette, subtle paper texture, realistic proportions, simple faces, a rain garden of native flowers and grasses in a low planted strip next to a parking lot with a curb, after rain, two adults in everyday rain jackets and jeans looking at the plants: a Native American woman with copper-brown skin and a long black braid and an Arab man with olive-brown skin and a trimmed beard, sunny",
+   "seed": 892219981,
+   "candidate": "54-raingarden-12",
+   "model": "z-image-turbo",
+   "accepted": true,
+   "reason": "rain garden beside a parking lot, two adults in everyday jackets",
+   "people": [
+    {
+     "description": "woman, long black braid, copper-brown skin",
+     "group": "Native American"
+    },
+    {
+     "description": "man, beard, brown skin",
+     "group": "Arab/Middle Eastern"
+    }
+   ],
+   "rejected": [
+    {
+     "candidate": "54-raingarden-0",
+     "seed": 645125707,
+     "reason": "Native American woman in brown dress and Arab man in thobe: stereotyped dress"
+    },
+    {
+     "candidate": "54-raingarden-1",
+     "seed": 444892579,
+     "reason": "same stereotyped dress"
+    },
+    {
+     "candidate": "54-raingarden-10",
+     "seed": 1844813397,
+     "reason": "man in keffiyeh, second pick"
+    },
+    {
+     "candidate": "54-raingarden-11",
+     "seed": 588222459,
+     "reason": "man in keffiyeh, second pick"
+    }
+   ],
+   "bytes": 25606
+  }
+ ],
+ "no_image": [
+  {
+   "id": "1a-beam",
+   "accepted": false,
+   "reason": "all candidates showed beams ending on cardboard without clearly different through/blur/stop/bounce; SVG diagram used instead"
+  },
+  {
+   "id": "2a-materials",
+   "accepted": false,
+   "reason": "clear plastic wrap rendered as foil in every candidate, so the four samples could not be told apart"
+  },
+  {
+   "id": "31-clip",
+   "accepted": false,
+   "reason": "magnet drawn on top of the card (not below), rulers carried number glyphs; side-view SVG used instead"
+  }
+ ],
+ "tally": {
+  "Black": 10,
+  "South Asian": 4,
+  "Latino/a": 4,
+  "Arab/Middle Eastern": 4,
+  "Native American": 4,
+  "East/Southeast Asian": 2,
+  "unclear": 1,
+  "White": 1
+ }
+}
