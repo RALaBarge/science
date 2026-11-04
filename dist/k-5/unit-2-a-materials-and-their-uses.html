@@ -423,6 +423,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
     <p><b>Connections:</b> - Builds on: K2.0 *Science Noticing and Asking* (optional), K-A *Pushes and Pulls*, 1-A *Sound and Light*. - Builds toward: 5.1 *Matter, Mixtures, and Changes*; 4.5 *Earth’s Surface: Rocks, Maps, Erosion, Resources*; Unit 2: *Thermal Energy*; Unit 10: *States of Matter*; 7.1 *Structure &amp; Properties of Matter*; 7.2 *Chemical Reactions &amp; Matter*.</p></div></details>
 </section>
 
+
 <!--k5-activity-start-->
 <section class="sec lesson-game-sec" id="activity"><div><p class="kicker">After the lesson · Activity</p><h2>Play: Rainproof Note</h2></div><p class="idea">A paper note must stay dry. Which cover works? Run a fair test and read the results.</p><div id="k5-activity"></div>
 <script>
@@ -456,7 +457,7 @@ function k5FairValidate(cfg) {
     const o = r.options || [];
     if (o.length < 2) errs.push(tag + ': needs at least 2 options');
     o.forEach((x) => {
-      if (!x.label || !Array.isArray(x.trials) || x.trials.length < 2) errs.push(tag + ': option ' + x.id + ' needs label and 2+ trials');
+      if (!x.label || !Array.isArray(x.trials) || x.trials.length < 1) errs.push(tag + ': option ' + x.id + ' needs label and 1+ trials');
       if (x.trials && x.trials.length !== o[0].trials.length) errs.push(tag + ': options need the same number of trials');
     });
     if (r.better !== 'low' && r.better !== 'high') errs.push(tag + ': better must be low or high');

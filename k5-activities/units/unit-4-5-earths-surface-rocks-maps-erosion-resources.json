@@ -1,0 +1,169 @@
+{
+ "id": "4-5-shoreline-guard",
+ "engine": "fairtest",
+ "title": "Shoreline Guard",
+ "intro": "Water carries soil down a slope the way waves and rain wear down a Michigan shoreline. Test two barriers against no barrier.",
+ "note": "This is a model that uses the lesson's backup numbers, one trial each. Your own water-tray trials in the lesson still count, and repeating them makes the evidence stronger.",
+ "summary": "A fair test changes only the barrier and uses the same slope and the same water. Grass let 5 spoons of sediment move and the wall 7, against 12 with no barrier, so both helped and grass helped more. One trial each is a start; repeating the test makes the claim stronger.",
+ "rounds": [
+  {
+   "question": "Water runs down a soil slope and carries sediment away. Which barrier reduces erosion more?",
+   "factors": [
+    {
+     "id": "barrier",
+     "icon": "🌿",
+     "label": "The barrier"
+    },
+    {
+     "id": "water",
+     "icon": "💧",
+     "label": "Amount of water poured",
+     "held": "The same amount of water each time",
+     "why": "If some tests get more water, the water could cause the difference, not the barrier."
+    },
+    {
+     "id": "slope",
+     "icon": "⛰️",
+     "label": "Steepness of the slope",
+     "held": "The same slope and the same amount of soil",
+     "why": "If the slope changes, the slope could cause the difference, not the barrier."
+    },
+    {
+     "id": "pour",
+     "icon": "🥤",
+     "label": "How you pour",
+     "held": "The same pour, from the same spot",
+     "why": "If the pouring changes, the pouring could cause the difference, not the barrier."
+    }
+   ],
+   "change": "barrier",
+   "measure": "Sediment that moved, in spoonfuls (fewer means the barrier helped)",
+   "better": "low",
+   "options": [
+    {
+     "id": "none",
+     "icon": "🟫",
+     "label": "No barrier",
+     "trials": [
+      12
+     ]
+    },
+    {
+     "id": "grass",
+     "icon": "🌿",
+     "label": "Grass",
+     "trials": [
+      5
+     ]
+    },
+    {
+     "id": "wall",
+     "icon": "🧱",
+     "label": "Wall",
+     "trials": [
+      7
+     ]
+    }
+   ],
+   "reads": [
+    {
+     "q": "Which test let the least sediment move?",
+     "choices": [
+      {
+       "label": "Wall",
+       "ok": false,
+       "why": "The wall let 7 spoons move. Another test let fewer move."
+      },
+      {
+       "label": "Grass",
+       "ok": true,
+       "why": "Grass let 5 spoons move, the fewest. No barrier let 12 move."
+      },
+      {
+       "label": "No barrier",
+       "ok": false,
+       "why": "No barrier let the most sediment move, 12 spoons."
+      }
+     ]
+    },
+    {
+     "q": "Each barrier was tested once. What would make the evidence stronger?",
+     "choices": [
+      {
+       "label": "Pour more water on the grass only",
+       "ok": false,
+       "why": "That would make the test unfair. The water must stay the same for every barrier."
+      },
+      {
+       "label": "Repeat each test and compare the results",
+       "ok": true,
+       "why": "Yes. One trial can be a messy one. Repeats show whether the pattern holds."
+      },
+      {
+       "label": "Stop, because one test is always enough",
+       "ok": false,
+       "why": "One trial can be a fluke. Think about how to check it."
+      }
+     ]
+    }
+   ],
+   "claim": [
+    {
+     "lead": "I claim",
+     "choices": [
+      {
+       "label": "grass reduces more harm than the wall.",
+       "ok": true,
+       "why": "Yes. Both helped, and grass let less sediment move."
+      },
+      {
+       "label": "the wall reduces more harm than grass.",
+       "ok": false,
+       "why": "The wall let 7 spoons move and grass let 5. Check which number is smaller."
+      },
+      {
+       "label": "barriers do not help.",
+       "ok": false,
+       "why": "Both barriers let less sediment move than no barrier."
+      }
+     ]
+    },
+    {
+     "lead": "harm from",
+     "choices": [
+      {
+       "label": "erosion of the slope by moving water.",
+       "ok": true,
+       "why": "Yes. Moving water carries soil away."
+      },
+      {
+       "label": "the Sun drying the soil.",
+       "ok": false,
+       "why": "The Sun is not part of this test. Think about what carries the soil down the slope."
+      }
+     ]
+    },
+    {
+     "lead": "because our data show",
+     "choices": [
+      {
+       "label": "5 spoons moved with grass, 7 with the wall and 12 with no barrier.",
+       "ok": true,
+       "why": "Yes. That matches the three results."
+      },
+      {
+       "label": "12 spoons moved with grass.",
+       "ok": false,
+       "why": "Twelve spoons moved with no barrier."
+      },
+      {
+       "label": "5 spoons moved with no barrier.",
+       "ok": false,
+       "why": "Five spoons moved with grass."
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

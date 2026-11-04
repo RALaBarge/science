@@ -28,7 +28,7 @@ function k5FairValidate(cfg) {
     const o = r.options || [];
     if (o.length < 2) errs.push(tag + ': needs at least 2 options');
     o.forEach((x) => {
-      if (!x.label || !Array.isArray(x.trials) || x.trials.length < 2) errs.push(tag + ': option ' + x.id + ' needs label and 2+ trials');
+      if (!x.label || !Array.isArray(x.trials) || x.trials.length < 1) errs.push(tag + ': option ' + x.id + ' needs label and 1+ trials');
       if (x.trials && x.trials.length !== o[0].trials.length) errs.push(tag + ': options need the same number of trials');
     });
     if (r.better !== 'low' && r.better !== 'high') errs.push(tag + ': better must be low or high');
