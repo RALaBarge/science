@@ -1,0 +1,36 @@
+{
+  "id": "k-c-sort",
+  "title": "Habitat Helper",
+  "intro": "Find each living thing's home, then see what the home gives it.",
+  "note": "This is a model. Visit a real place near school and count the living things you find.",
+  "summary": "A habitat gives a living thing food, water, shelter and space. Different habitats, like a pond, a forest and a sand dune, have different living things because they give different things.",
+  "stages": [
+    {
+      "prompt": "Where does each living thing live in Michigan?",
+      "bins": [{"id":"pond","icon":"💧","label":"Pond"},{"id":"forest","icon":"🌲","label":"Forest"},{"id":"dune","icon":"🏖️","label":"Sand dune"}],
+      "cards": [
+        {"id":"frog","icon":"🐸","label":"Green frog","bin":"pond","why":"A frog lives in and near water, where it finds insects and cool, wet places.","hint":"it needs lots of water close by."},
+        {"id":"beaver","icon":"🦫","label":"Beaver","bin":"pond","why":"A beaver lives in the water and uses sticks to build a lodge.","hint":"it builds a home in water with sticks."},
+        {"id":"cattail","icon":"🌾","label":"Cattail plant","bin":"pond","why":"Cattails grow with their roots in wet mud at the edge of a pond.","hint":"its roots like to stay very wet."},
+        {"id":"deer","icon":"🦌","label":"White-tailed deer","bin":"forest","why":"A forest gives deer leaves to eat and trees to hide among.","hint":"it eats leaves and hides among trees."},
+        {"id":"squirrel","icon":"🐿️","label":"Squirrel","bin":"forest","why":"Squirrels eat acorns and live in tall trees.","hint":"it eats acorns and climbs tall trees."},
+        {"id":"plover","icon":"🐦","label":"Piping plover","bin":"dune","why":"Piping plovers nest on open sandy beaches near the dunes.","hint":"it nests on open, sandy ground."},
+        {"id":"dunegrass","icon":"🌿","label":"Dune grass","bin":"dune","why":"Dune grass has long roots that grow in sand and hold the dune in place.","hint":"its long roots grow in sand."}
+      ]
+    },
+    {
+      "prompt": "What does each thing give a living thing? Pick the need it meets.",
+      "bins": [{"id":"food","icon":"🍎","label":"Food"},{"id":"water","icon":"💧","label":"Water"},{"id":"shelter","icon":"🏠","label":"Shelter"},{"id":"space","icon":"↔️","label":"Space"}],
+      "cards": [
+        {"id":"acorns","icon":"🌰","label":"Acorns under an oak","bin":"food","why":"Acorns are food for squirrels and deer.","hint":"can an animal eat it?"},
+        {"id":"berries","icon":"🫐","label":"Berries on a bush","bin":"food","why":"Berries are food for birds and other animals.","hint":"can an animal eat it?"},
+        {"id":"stream","icon":"🏞️","label":"A clean stream","bin":"water","why":"A stream gives animals water to drink.","hint":"is it something to drink?"},
+        {"id":"puddle","icon":"💧","label":"A pond edge to drink from","bin":"water","why":"Animals drink at the pond edge.","hint":"is it something to drink?"},
+        {"id":"log","icon":"🪵","label":"A hollow log","bin":"shelter","why":"A hollow log gives animals a safe place to hide or sleep.","hint":"is it a safe place to hide?"},
+        {"id":"bush","icon":"🌳","label":"A thick bush","bin":"shelter","why":"A thick bush gives animals shelter from wind and from other animals.","hint":"is it a safe place to hide?"},
+        {"id":"meadow","icon":"🌼","label":"A wide open meadow","bin":"space","why":"A big open place gives animals room to move and find what they need.","hint":"is it about having room to move?"},
+        {"id":"forestfloor","icon":"🍂","label":"Room between the trees to run","bin":"space","why":"Room to run and move is space.","hint":"is it about having room to move?"}
+      ]
+    }
+  ]
+}

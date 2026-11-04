@@ -1,0 +1,33 @@
+{
+  "id": "1-b-sort",
+  "title": "Part Match Safari",
+  "intro": "Match animal parts to their jobs, then see how parents help their young.",
+  "note": "This is a model. Look at real animal photos and compare an adult with its young.",
+  "summary": "Outside parts have jobs that help animals survive: finding food, staying safe and moving. Parents also help their young by feeding them, protecting them and showing the way.",
+  "stages": [
+    {
+      "prompt": "What job does each animal part do?",
+      "bins": [{"id":"food","icon":"🍽️","label":"Helps find or eat food"},{"id":"safe","icon":"🛡️","label":"Helps stay safe"},{"id":"move","icon":"🏃","label":"Helps move around"}],
+      "cards": [
+        {"id":"robin-beak","icon":"🐦","label":"Robin's beak","bin":"food","why":"A robin's beak picks up worms and seeds.","hint":"what does the robin pick up with it?"},
+        {"id":"woodpecker","icon":"🪵","label":"Woodpecker's strong beak","bin":"food","why":"A woodpecker taps into wood to find insects to eat.","hint":"what does it find inside the tree?"},
+        {"id":"deer-ears","icon":"🦌","label":"Deer's big ears","bin":"safe","why":"Big ears hear danger early so the deer can run.","hint":"what do ears warn the deer about?"},
+        {"id":"fawn-spots","icon":"🦌","label":"Fawn's spots","bin":"safe","why":"Spots help a fawn blend in with the forest floor so it is hard to see.","hint":"how does it hide in the leaves?"},
+        {"id":"duck-feet","icon":"🦆","label":"Duck's webbed feet","bin":"move","why":"Webbed feet push against water like paddles, so a duck can swim.","hint":"what do paddle feet help it do in water?"},
+        {"id":"squirrel-claws","icon":"🐿️","label":"Squirrel's sharp claws","bin":"move","why":"Sharp claws grip bark, so a squirrel can climb.","hint":"what do claws help it do on a tree?"}
+      ]
+    },
+    {
+      "prompt": "How is the parent helping its young?",
+      "bins": [{"id":"feeds","icon":"🍽️","label":"Feeds"},{"id":"protects","icon":"🛡️","label":"Protects"},{"id":"leads","icon":"👣","label":"Shows the way"}],
+      "cards": [
+        {"id":"robin-worm","icon":"🐦","label":"A robin brings worms to her chicks","bin":"feeds","why":"Baby robins cannot find food yet, so the parent brings it.","hint":"what is she carrying to the nest?"},
+        {"id":"mother-bird-seeds","icon":"🐤","label":"A parent bird feeds seeds to its babies","bin":"feeds","why":"The parent brings food so the young can grow.","hint":"what is the parent putting in their beaks?"},
+        {"id":"deer-hide","icon":"🦌","label":"A mother deer hides her fawn in tall grass","bin":"protects","why":"Hiding keeps the fawn safe from danger.","hint":"what is the fawn safe from?"},
+        {"id":"bird-wing","icon":"🦅","label":"A parent bird spreads its wings over the nest","bin":"protects","why":"Covering the nest keeps the young warm and safe.","hint":"what is covering the nest?"},
+        {"id":"ducklings","icon":"🦆","label":"Ducklings follow their mother to the pond","bin":"leads","why":"Ducklings follow their mother to places that have food and water.","hint":"who are the ducklings following?"},
+        {"id":"geese-walk","icon":"🦢","label":"A goose leads her goslings across the grass","bin":"leads","why":"The young learn where to go by following the parent.","hint":"who is going in front?"}
+      ]
+    }
+  ]
+}

@@ -2,7 +2,7 @@
 
 Science material for kids, all plain HTML that runs in a browser with no install, sign-in, or server. Two halves:
 
-- **Lesson guides** — 58 pages, sorted into grade folders: `k-5/`, `6th/`, `7th/`, `8th/`, `9th/`, plus `extras/`. Most lessons end with a short browser game embedded in the page; the new K–5 units do not have one yet.
+- **Lesson guides** — 58 pages, sorted into grade folders: `k-5/`, `6th/`, `7th/`, `8th/`, `9th/`, plus `extras/`. Most lessons end with a short browser game embedded in the page; the K–5 units are getting one each (5 of 23 so far: K-B, K-C, 1-B, 3.3, 4.4).
 - **Science Arcade** — six standalone games (gravity, light, circuits, levers, states of matter, football physics) with a shared bank of 177 science questions.
 
 Open `dist/index.html` for the lesson map, or `dist/arcade.html` for the arcade. Every file in `dist/` is self-contained, so it works from GitHub Pages, a web server, a USB stick, or a `file://` link. No font is fetched from the network: Atkinson Hyperlegible is embedded in each lesson page.
@@ -18,7 +18,7 @@ Open `dist/index.html` for the lesson map, or `dist/arcade.html` for the arcade.
 | `9th/` | 9th | 9.1 How AI Works: a reading-comprehension course on language models, context windows, embeddings, diffusion, and warnings now and ahead | 1 |
 | `extras/` | any | The Same Shape Everywhere: branching patterns from trees and lightning to neurons and the cosmic web (real photos, credits in the page and `extras/CREDITS.md`) | 1 |
 
-The K–5 folder holds the method unit and 23 grade-tagged units (K–2: K2.0 optional plus K-A to 2-C; grades 3–5: 3.1 to 5.4). They are text-first lessons: concept cards, a hands-on kit, a check-yourself quiz, vocabulary and tutor notes. They have no embedded game or custom illustrations yet.
+The K–5 folder holds the method unit and 23 grade-tagged units (K–2: K2.0 optional plus K-A to 2-C; grades 3–5: 3.1 to 5.4). They are text-first lessons: concept cards, a hands-on kit, a check-yourself quiz, vocabulary and tutor notes. Five have a Big Sort activity so far (see `docs/k5-activities-design.md`); none have custom illustrations yet.
 
 Since the first release the lessons have grown: the 9th-grade AI course, Unit 14 (the solar system's motion), and the branching-patterns extra were added; Unit 0 was expanded; the 7th- and 8th-grade static figures were replaced with new SVG diagrams, photos and a Hubble image; 6th-grade Units 2–6 and 10 got new interactives, photos and data charts; and wording was revised after a claim-by-claim fact-check triage and an outside review.
 

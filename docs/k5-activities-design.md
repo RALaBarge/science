@@ -1,6 +1,6 @@
 # K–5 activities: design
 
-Status: proposal, nothing built. Date: 2026-11-04.
+Status: Big Sort engine built and used in K-B, K-C, 1-B, 3.3, 4.4; the other five engines are not built. Date: 2026-11-04.
 
 ## Goal
 

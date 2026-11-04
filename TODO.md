@@ -18,7 +18,7 @@ Plan: one lead agent splits the work by grade folder, one sub-agent per folder, 
 ## K-5 units (added 2026-11-03)
 
 - Verify every K-5 footer standard against the Michigan Department of Education Science Standards document (codes follow NGSS and are expected to match, not yet checked).
-- The 23 new units have no embedded game and no custom SVG illustrations. Add per-unit games (ideas are in the tutor-note text of the source write-ups) and diagrams.
+- Activities: Big Sort is built and in K-B, K-C, 1-B, 3.3, 4.4 (`k5-activities/`; after regenerating pages run `node k5-activities/inject.mjs` then `node build.mjs`). 18 units still need one (see docs/k5-activities-design.md), and none have custom SVG diagrams. Add per-unit games (ideas are in the tutor-note text of the source write-ups) and diagrams.
 - Quizzes are generated from model-written questions: read each for a single defensible answer and add misconception-based distractors where they are weak.
 - K-B (weather calendar), 1-C (daylight log) and 2-B (bean plants) need weeks of lead time; each page offers a provided dataset instead.
 

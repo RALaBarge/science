@@ -1,0 +1,23 @@
+{
+  "id": "3-3-sort",
+  "title": "Trait Family",
+  "intro": "Some traits come from parents. Others change because of where and how a living thing lives. Which is which?",
+  "note": "This is a model. A real plant grown in the sun and one in the shade give you evidence of your own.",
+  "summary": "Traits like eye color and leaf shape are inherited from parents. Other traits, such as scars, tans and a pale thin stem grown in the dark, come from the environment or from experience.",
+  "stages": [
+    {
+      "prompt": "Is this trait inherited from parents, or did the environment or experience change it?",
+      "bins": [{"id":"inherited","icon":"🧬","label":"Inherited from parents"},{"id":"env","icon":"🌦️","label":"Changed by environment or experience"}],
+      "cards": [
+        {"id":"eyes","icon":"👁️","label":"A child's eye color","bin":"inherited","why":"Eye color is passed from parents to their children.","hint":"was the child born with it, from the parents?"},
+        {"id":"oak","icon":"🍃","label":"The shape of an oak leaf","bin":"inherited","why":"Every oak tree gets its leaf shape from its parent trees.","hint":"do all oak trees have it, no matter where they grow?"},
+        {"id":"violet","icon":"💜","label":"A violet's flower color","bin":"inherited","why":"Flower color is passed from parent plants to their seeds.","hint":"does the plant get it from its parent plants?"},
+        {"id":"tabby","icon":"🐱","label":"A kitten's striped fur","bin":"inherited","why":"Fur pattern is inherited from the kitten's parents.","hint":"was the kitten born with it?"},
+        {"id":"scar","icon":"🩹","label":"A scar on a dog's leg","bin":"env","why":"A scar comes from an injury, not from the parents.","hint":"did something happen to the dog after it was born?"},
+        {"id":"pale-bean","icon":"🌱","label":"A bean grown in the dark is pale and thin","bin":"env","why":"A bean plant grown without light is pale and weak. The same kind of bean in the sun is green and sturdy.","hint":"what was different about where the bean grew?"},
+        {"id":"tan","icon":"🌞","label":"A tan from being in the sun","bin":"env","why":"A tan comes from time in the sun, not from the parents.","hint":"what did the person spend time doing?"},
+        {"id":"sit","icon":"🐕","label":"A dog that learned to sit","bin":"env","why":"Learning to sit comes from practice and training.","hint":"how did the dog learn it?"}
+      ]
+    }
+  ]
+}
