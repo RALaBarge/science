@@ -1,0 +1,165 @@
+{
+ "id": "4-1-ramp-test",
+ "engine": "fairtest",
+ "title": "Ramp and Block",
+ "intro": "A toy car rolls down a ramp and bumps a block. Does the height of the ramp change how far the block moves?",
+ "note": "This is a model that uses the lesson's backup numbers. Your own ramp trials in the lesson still count.",
+ "summary": "A faster car moved the block farther: the low ramp moved it 2 to 3 cm and the high ramp 7 to 8 cm. The car's energy of motion moved to the block when they hit. Changing one thing at a time, and testing three times, made the result trustworthy.",
+ "rounds": [
+  {
+   "question": "Which ramp makes the toy car move the block farther?",
+   "factors": [
+    {
+     "id": "height",
+     "icon": "📐",
+     "label": "The height of the ramp"
+    },
+    {
+     "id": "car",
+     "icon": "🚗",
+     "label": "The toy car",
+     "held": "The same toy car each time",
+     "why": "If the car changes, the car could cause the difference, not the ramp height."
+    },
+    {
+     "id": "block",
+     "icon": "🧱",
+     "label": "The block target",
+     "held": "The same block, in the same spot",
+     "why": "If the block changes, the block could cause the difference, not the ramp height."
+    },
+    {
+     "id": "release",
+     "icon": "🤚",
+     "label": "How you let go",
+     "held": "Let the car go without pushing it",
+     "why": "If you push the car some times, your push could cause the difference, not the ramp."
+    }
+   ],
+   "change": "height",
+   "measure": "How far did the block move? (cm; bigger means more energy reached the block)",
+   "better": "high",
+   "options": [
+    {
+     "id": "low",
+     "icon": "⬇️",
+     "label": "Low ramp",
+     "trials": [
+      2,
+      2,
+      3
+     ]
+    },
+    {
+     "id": "high",
+     "icon": "⬆️",
+     "label": "High ramp",
+     "trials": [
+      7,
+      8,
+      8
+     ]
+    }
+   ],
+   "reads": [
+    {
+     "q": "Which ramp moved the block farther?",
+     "choices": [
+      {
+       "label": "The low ramp",
+       "ok": false,
+       "why": "Compare the bars. The low ramp moved the block 2 to 3 cm. Is there a ramp with longer bars?"
+      },
+      {
+       "label": "The high ramp",
+       "ok": true,
+       "why": "The high ramp moved the block 7 to 8 cm. The car was faster, so it pushed the block farther."
+      },
+      {
+       "label": "They were the same",
+       "ok": false,
+       "why": "The bars are not the same height. Look again."
+      }
+     ]
+    },
+    {
+     "q": "When the car hits the block, what happens to the car's energy of motion?",
+     "choices": [
+      {
+       "label": "Some of it moves to the block",
+       "ok": true,
+       "why": "Yes. Before: the car moves. After: the block moves. Energy changed places."
+      },
+      {
+       "label": "It disappears",
+       "ok": false,
+       "why": "Energy does not just vanish. The block started to move, so where did that motion come from?"
+      },
+      {
+       "label": "The block makes new energy",
+       "ok": false,
+       "why": "The block was still. It moved because the car hit it."
+      }
+     ]
+    }
+   ],
+   "claim": [
+    {
+     "lead": "We changed",
+     "choices": [
+      {
+       "label": "the height of the ramp.",
+       "ok": true,
+       "why": "Right. The ramp height was the one thing we changed."
+      },
+      {
+       "label": "the size of the block.",
+       "ok": false,
+       "why": "The block was held the same."
+      }
+     ]
+    },
+    {
+     "lead": "Then",
+     "choices": [
+      {
+       "label": "the low ramp moved the block 7 to 8 cm.",
+       "ok": false,
+       "why": "The low ramp moved it 2 to 3 cm."
+      },
+      {
+       "label": "the high ramp moved the block 7 to 8 cm.",
+       "ok": true,
+       "why": "Yes. That matches the high-ramp bars."
+      },
+      {
+       "label": "the high ramp moved the block 2 to 3 cm.",
+       "ok": false,
+       "why": "That was the low ramp."
+      }
+     ]
+    },
+    {
+     "lead": "So",
+     "choices": [
+      {
+       "label": "a higher ramp makes the car faster, so it moves the block farther.",
+       "ok": true,
+       "why": "Yes. A faster car carries more energy to the block."
+      },
+      {
+       "label": "ramp height does not matter.",
+       "ok": false,
+       "why": "The results are very different, so it matters."
+      },
+      {
+       "label": "a lower ramp is faster.",
+       "ok": false,
+       "why": "The low ramp moved the block less, so the car had less energy."
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

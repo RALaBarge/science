@@ -18,7 +18,7 @@ Open `dist/index.html` for the lesson map, or `dist/arcade.html` for the arcade.
 | `9th/` | 9th | 9.1 How AI Works: a reading-comprehension course on language models, context windows, embeddings, diffusion, and warnings now and ahead | 1 |
 | `extras/` | any | The Same Shape Everywhere: branching patterns from trees and lightning to neurons and the cosmic web (real photos, credits in the page and `extras/CREDITS.md`) | 1 |
 
-The K–5 folder holds the method unit and 23 grade-tagged units (K–2: K2.0 optional plus K-A to 2-C; grades 3–5: 3.1 to 5.4). They are text-first lessons: concept cards, a hands-on kit, a check-yourself quiz, vocabulary and tutor notes. Five have a Big Sort activity so far (see `docs/k5-activities-design.md`); none have custom illustrations yet.
+The K–5 folder holds the method unit and 23 grade-tagged units (K–2: K2.0 optional plus K-A to 2-C; grades 3–5: 3.1 to 5.4). They are text-first lessons: concept cards, a hands-on kit, a check-yourself quiz, vocabulary and tutor notes. 17 of the 23 have an activity (13 Big Sort, 4 Fair Test Lab); K2.0, K-A, 1-C, 3.1, 4.2 and 5.2 do not, and further games are on hold until the existing ones get a fun check (see `docs/k5-activities-design.md`). None have custom illustrations yet.
 
 Since the first release the lessons have grown: the 9th-grade AI course, Unit 14 (the solar system's motion), and the branching-patterns extra were added; Unit 0 was expanded; the 7th- and 8th-grade static figures were replaced with new SVG diagrams, photos and a Hubble image; 6th-grade Units 2–6 and 10 got new interactives, photos and data charts; and wording was revised after a claim-by-claim fact-check triage and an outside review.
 
