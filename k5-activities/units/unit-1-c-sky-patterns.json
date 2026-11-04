@@ -1,0 +1,339 @@
+{
+ "id": "1-c-graphsky",
+ "engine": "graphsky",
+ "title": "Sky Patterns",
+ "intro": "Turn Earth to make day and night, put the Moon shapes in order, and match daylight strips to the months. Then read the patterns you just built.",
+ "note": "This is a model that uses the lesson's backup data (December about 9 squares, March about 12, June about 15). The real lamp-and-ball model and your daylight strip log still count.",
+ "summary": "Earth spins, so your side faces the Sun for day and turns away for night. The Moon's lit part grows night by night, and the Moon does not make its own light. Stars are still there in the daytime; the bright sky hides them. In Michigan, summer days have more daylight and winter days have less.",
+ "rounds": [
+  {
+   "kind": "sunpath",
+   "question": "What makes day and night?",
+   "stops": [
+    {
+     "id": "morning",
+     "label": "Morning",
+     "sun": "up",
+     "stars": "hidden",
+     "tone": "sunset"
+    },
+    {
+     "id": "noon",
+     "label": "Noon",
+     "sun": "up",
+     "stars": "hidden",
+     "tone": "day"
+    },
+    {
+     "id": "evening",
+     "label": "Evening",
+     "sun": "up",
+     "stars": "hidden",
+     "tone": "sunset"
+    },
+    {
+     "id": "midnight",
+     "label": "Midnight",
+     "sun": "down",
+     "stars": "out",
+     "tone": "night"
+    }
+   ],
+   "reads": [
+    {
+     "q": "Look at the sky log. What makes day and night?",
+     "choices": [
+      {
+       "label": "Earth spins, so your side faces the Sun and then turns away",
+       "ok": true,
+       "why": "Yes. The dot on the globe turned from light to dark."
+      },
+      {
+       "label": "The Sun turns off at night",
+       "ok": false,
+       "why": "The Sun keeps shining. Look at the globe: at midnight your side faces away from the Sun."
+      },
+      {
+       "label": "The Sun goes around Earth",
+       "ok": false,
+       "why": "Watch the globe: it is Earth that turns, so the Sun only seems to move."
+      }
+     ]
+    },
+    {
+     "q": "The log says Stars hidden at noon. Where are the stars in the daytime?",
+     "choices": [
+      {
+       "label": "Still in the sky, but the bright sky hides them",
+       "ok": true,
+       "why": "Yes. Stars are faraway suns and they stay there all day."
+      },
+      {
+       "label": "They disappear until night",
+       "ok": false,
+       "why": "They do not disappear. At noon the sky is too bright to see them."
+      },
+      {
+       "label": "They move behind the Moon",
+       "ok": false,
+       "why": "The Moon is not in front of the stars. The bright sky hides them."
+      }
+     ]
+    }
+   ],
+   "claim": [
+    {
+     "lead": "We turned",
+     "choices": [
+      {
+       "label": "Earth, so each side faces the Sun and then turns away",
+       "ok": true,
+       "why": "Right. That is what the spinning dot on the globe showed."
+      },
+      {
+       "label": "the Sun around Earth",
+       "ok": false,
+       "why": "In this model Earth turned. The Sun stayed still."
+      }
+     ]
+    },
+    {
+     "lead": "Then",
+     "choices": [
+      {
+       "label": "day and night repeated, and the stars were still there in the daytime",
+       "ok": true,
+       "why": "Yes. The log shows the Sun up, up, up, down, and stars hidden in the daytime."
+      },
+      {
+       "label": "the Sun turned off and the stars disappeared",
+       "ok": false,
+       "why": "The log says Sun down at midnight and stars hidden at noon. Nothing turned off or disappeared."
+      }
+     ]
+    },
+    {
+     "lead": "So",
+     "choices": [
+      {
+       "label": "Earth's spin makes day and night, and the bright daytime sky hides the stars",
+       "ok": true,
+       "why": "Yes. That is the pattern in the sky log."
+      },
+      {
+       "label": "the Sun moving around Earth makes day and night",
+       "ok": false,
+       "why": "It is Earth's spin. The Sun only seems to move across the sky."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "moon",
+   "question": "The Moon looks different after a few days. What is the pattern?",
+   "cards": [
+    {
+     "id": "crescent",
+     "label": "Thin curve",
+     "shape": "crescent",
+     "order": 0,
+     "hint": "the lit part starts as a thin curve."
+    },
+    {
+     "id": "half",
+     "label": "Half",
+     "shape": "half",
+     "order": 1,
+     "hint": "after the thin curve, more of the lit side shows."
+    },
+    {
+     "id": "full",
+     "label": "Round",
+     "shape": "full",
+     "order": 2,
+     "hint": "the round Moon comes last, after half."
+    }
+   ],
+   "reads": [
+    {
+     "q": "Where does the Moon's light come from?",
+     "choices": [
+      {
+       "label": "The Moon reflects sunlight",
+       "ok": true,
+       "why": "Yes. The Sun lights one side of the Moon, and we see different amounts of the lit side."
+      },
+      {
+       "label": "The Moon makes its own light",
+       "ok": false,
+       "why": "The Moon does not make its own light. We see the sunlit side."
+      },
+      {
+       "label": "The Moon is a faraway star",
+       "ok": false,
+       "why": "Stars make their own light. The Moon only shines because sunlight lands on it."
+      }
+     ]
+    }
+   ],
+   "claim": [
+    {
+     "lead": "We put the Moon shapes",
+     "choices": [
+      {
+       "label": "in order, from a thin curve to a round Moon",
+       "ok": true,
+       "why": "Right. Thin curve, half, round."
+      },
+      {
+       "label": "in any order we liked",
+       "ok": false,
+       "why": "The order matters. The lit part grows night by night."
+      }
+     ]
+    },
+    {
+     "lead": "Then we saw",
+     "choices": [
+      {
+       "label": "the lit part grows, from a thin curve to a round Moon",
+       "ok": true,
+       "why": "Yes. That is the pattern in the row of Moons."
+      },
+      {
+       "label": "the Moon making its own light",
+       "ok": false,
+       "why": "The Moon reflects sunlight. It does not make its own light."
+      }
+     ]
+    },
+    {
+     "lead": "So",
+     "choices": [
+      {
+       "label": "the Moon's shape seems to change in a pattern that repeats",
+       "ok": true,
+       "why": "Yes. That is why a Moon calendar can predict it."
+      },
+      {
+       "label": "the Moon changes shape by luck",
+       "ok": false,
+       "why": "It is a pattern, not luck. The lit part grows in the same order each time."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "strips",
+   "question": "How does daylight change through the year in Michigan?",
+   "slots": [
+    {
+     "id": "dec",
+     "label": "December"
+    },
+    {
+     "id": "mar",
+     "label": "March"
+    },
+    {
+     "id": "jun",
+     "label": "June"
+    }
+   ],
+   "strips": [
+    {
+     "id": "s9",
+     "slot": "dec",
+     "squares": 9,
+     "hint": "in Michigan, winter afternoons get dark early. Which month has the least daylight?",
+     "fact": "Yes. December: about 9 squares of daylight, the shortest of the three."
+    },
+    {
+     "id": "s12",
+     "slot": "mar",
+     "squares": 12,
+     "hint": "one month is in between, not the shortest and not the longest.",
+     "fact": "Yes. March: about 12 squares of daylight, in between."
+    },
+    {
+     "id": "s15",
+     "slot": "jun",
+     "squares": 15,
+     "hint": "in Michigan, summer evenings stay light late. Which month has the most daylight?",
+     "fact": "Yes. June: about 15 squares of daylight, the longest of the three."
+    }
+   ],
+   "reads": [
+    {
+     "q": "Look at the strips. Which is true for Michigan?",
+     "choices": [
+      {
+       "label": "Summer has the most daylight and winter has the least",
+       "ok": true,
+       "why": "Yes. June is the longest strip and December is the shortest."
+      },
+      {
+       "label": "Every month has the same daylight",
+       "ok": false,
+       "why": "Count the squares. The strips are not the same length."
+      },
+      {
+       "label": "Winter has the most daylight",
+       "ok": false,
+       "why": "December has the shortest strip. Look again at June."
+      }
+     ]
+    }
+   ],
+   "claim": [
+    {
+     "lead": "We matched",
+     "choices": [
+      {
+       "label": "daylight strips to December, March and June",
+       "ok": true,
+       "why": "Right. About 9, 12 and 15 squares."
+      },
+      {
+       "label": "the same strip to every month",
+       "ok": false,
+       "why": "Each month got a different strip. Daylight is not the same all year."
+      }
+     ]
+    },
+    {
+     "lead": "Then we saw",
+     "choices": [
+      {
+       "label": "the June strip is longest and the December strip is shortest",
+       "ok": true,
+       "why": "Yes. That is what the bars show."
+      },
+      {
+       "label": "all the strips are the same length",
+       "ok": false,
+       "why": "They are not. 9, 12 and 15 squares are different."
+      }
+     ]
+    },
+    {
+     "lead": "So",
+     "choices": [
+      {
+       "label": "in Michigan, summer days have more daylight and winter days have less",
+       "ok": true,
+       "why": "Yes. That is the pattern, and it repeats every year."
+      },
+      {
+       "label": "day length is the same in every season",
+       "ok": false,
+       "why": "The strips say otherwise. Daylight changes with the season."
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

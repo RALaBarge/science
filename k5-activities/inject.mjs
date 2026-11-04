@@ -13,6 +13,7 @@ const ENGINES = {
   bigsort: ['bigsort.js', 'k5BigSort'],
   fairtest: ['fairtest.js', 'k5FairTest'],
   pusharena: ['pusharena.js', 'k5PushArena'],
+  graphsky: ['graphsky.js', 'k5GraphSky'],
 };
 const source = {};
 for (const [name, [file]] of Object.entries(ENGINES)) {
