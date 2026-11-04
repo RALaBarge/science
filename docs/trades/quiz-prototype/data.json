@@ -1,0 +1,8651 @@
+[
+ {
+  "soc": "29-1141",
+  "name": "Registered nurses",
+  "family": "Health technicians and care",
+  "blurb": "Assesses patients, gives medicine, coordinates care, and helps doctors plan treatment in clinics or hospitals.",
+  "tags": {
+   "setting": "indoors",
+   "social": "public",
+   "physical": "moderate",
+   "focus": [
+    "care"
+   ],
+   "brain": [
+    "detail",
+    "judgment",
+    "math"
+   ],
+   "cond": [
+    "irregular-hours"
+   ]
+  },
+  "path": "college",
+  "miWorkers": 104950.0,
+  "wage": 94300.0,
+  "growth": 5.6,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "53-7062",
+  "name": "Laborers and freight, stock, and material movers, hand",
+  "family": "Driving and transportation",
+  "blurb": "Moves freight, stock, and materials by hand in warehouses, yards, or loading areas.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "operate"
+   ],
+   "brain": [],
+   "cond": [
+    "noise",
+    "hot-cold",
+    "dirty"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 79410.0,
+  "wage": 38860.0,
+  "growth": 1.8,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "53-7065",
+  "name": "Stockers and order fillers",
+  "family": "Driving and transportation",
+  "blurb": "Fills customer orders, stocks shelves, moves goods, and keeps storage areas organized.",
+  "tags": {
+   "setting": "indoors",
+   "social": "solo",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "inspect"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 82730.0,
+  "wage": 35930.0,
+  "growth": 8.9,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "53-3032",
+  "name": "Heavy and tractor-trailer truck drivers",
+  "family": "Driving and transportation",
+  "blurb": "Drives a large truck to haul goods, checks loads, and follows safety rules.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "solo",
+   "physical": "moderate",
+   "focus": [
+    "operate"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "danger",
+    "travel",
+    "irregular-hours"
+   ]
+  },
+  "path": "certificate",
+  "miWorkers": 60800.0,
+  "wage": 57180.0,
+  "growth": 3.8,
+  "ai": "medium",
+  "deepDive": true
+ },
+ {
+  "soc": "49-9071",
+  "name": "Maintenance and repair workers, general",
+  "family": "Industrial and machine maintenance",
+  "blurb": "Fixes and maintains building equipment, tools, and systems to keep facilities working safely.",
+  "tags": {
+   "setting": "mixed",
+   "social": "solo",
+   "physical": "moderate",
+   "focus": [
+    "fix",
+    "inspect"
+   ],
+   "brain": [
+    "troubleshoot",
+    "math"
+   ],
+   "cond": [
+    "tight-spaces",
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 39490.0,
+  "wage": 47580.0,
+  "growth": 4.2,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "31-1131",
+  "name": "Nursing assistants",
+  "family": "Health technicians and care",
+  "blurb": "Helps patients with daily needs, checks vital signs, and supports nursing staff.",
+  "tags": {
+   "setting": "indoors",
+   "social": "public",
+   "physical": "heavy",
+   "focus": [
+    "care"
+   ],
+   "brain": [
+    "detail",
+    "judgment"
+   ],
+   "cond": [
+    "irregular-hours"
+   ]
+  },
+  "path": "certificate",
+  "miWorkers": 43290.0,
+  "wage": 39570.0,
+  "growth": 2.6,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "35-2014",
+  "name": "Cooks, restaurant",
+  "family": "Food and hospitality",
+  "blurb": "Prepares meals in a restaurant kitchen, cooks food, and keeps work areas clean.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "serve"
+   ],
+   "brain": [
+    "detail",
+    "creative"
+   ],
+   "cond": [
+    "hot-cold",
+    "noise",
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 39100.0,
+  "wage": 36980.0,
+  "growth": 12.1,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "51-2090",
+  "name": "Miscellaneous assemblers and fabricators",
+  "family": "Production and assembly",
+  "blurb": "Puts together parts or products using hand tools, machines, and written instructions.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "inspect"
+   ],
+   "brain": [
+    "detail",
+    "math"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 112310.0,
+  "wage": 44690.0,
+  "growth": 1.1,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "47-2061",
+  "name": "Construction laborers",
+  "family": "Building trades",
+  "blurb": "Performs basic construction tasks on job sites, carries materials, cleans areas, and helps trades workers.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "build"
+   ],
+   "brain": [],
+   "cond": [
+    "danger",
+    "noise",
+    "hot-cold",
+    "dirty"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 28490.0,
+  "wage": 49590.0,
+  "growth": 7.3,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "53-3033",
+  "name": "Light truck drivers",
+  "family": "Driving and transportation",
+  "blurb": "Drives a light truck to deliver goods, loads cargo, and keeps delivery records.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "solo",
+   "physical": "moderate",
+   "focus": [
+    "operate"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "danger",
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 26160.0,
+  "wage": 43000.0,
+  "growth": 6.3,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "37-3011",
+  "name": "Landscaping and groundskeeping workers",
+  "family": "Land, farm and trees",
+  "blurb": "Mows grass, trims shrubs, plants flowers, and keeps outdoor grounds neat and safe.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "grow"
+   ],
+   "brain": [],
+   "cond": [
+    "hot-cold",
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 32330.0,
+  "wage": 38120.0,
+  "growth": 4.7,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "47-1011",
+  "name": "First-line supervisors of construction trades and extraction workers",
+  "family": "Building trades",
+  "blurb": "Directs construction crews, assigns tasks, checks work quality, and keeps job sites safe.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "build",
+    "inspect"
+   ],
+   "brain": [
+    "math",
+    "judgment",
+    "detail"
+   ],
+   "cond": [
+    "danger",
+    "noise",
+    "hot-cold"
+   ]
+  },
+  "path": "onjob-long",
+  "miWorkers": 16660.0,
+  "wage": 78180.0,
+  "growth": 5.0,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "53-7051",
+  "name": "Industrial truck and tractor operators",
+  "family": "Driving and transportation",
+  "blurb": "Operates forklifts or tractors to move materials safely in warehouses, yards, or plants.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "noise",
+    "danger"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 23470.0,
+  "wage": 45220.0,
+  "growth": 1.5,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "47-2111",
+  "name": "Electricians",
+  "family": "Electrical and power",
+  "blurb": "Installs, repairs, and maintains electrical wiring, fixtures, and control systems in buildings safely.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "build",
+    "fix"
+   ],
+   "brain": [
+    "math",
+    "troubleshoot",
+    "detail"
+   ],
+   "cond": [
+    "danger",
+    "tight-spaces",
+    "heights",
+    "noise"
+   ]
+  },
+  "path": "apprenticeship",
+  "miWorkers": 23530.0,
+  "wage": 76270.0,
+  "growth": 9.2,
+  "ai": "low",
+  "deepDive": true
+ },
+ {
+  "soc": "49-3023",
+  "name": "Automotive service technicians and mechanics",
+  "family": "Vehicle and equipment repair",
+  "blurb": "Diagnoses car problems, repairs engines, brakes, and electrical systems, and performs routine maintenance.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "fix"
+   ],
+   "brain": [
+    "troubleshoot",
+    "tech"
+   ],
+   "cond": [
+    "dirty",
+    "noise",
+    "tight-spaces"
+   ]
+  },
+  "path": "certificate",
+  "miWorkers": 22280.0,
+  "wage": 54120.0,
+  "growth": 5.0,
+  "ai": "low",
+  "deepDive": true
+ },
+ {
+  "soc": "51-1011",
+  "name": "First-line supervisors of production and operating workers",
+  "family": "Production and assembly",
+  "blurb": "Directs production workers, schedules tasks, checks output, and keeps the work area safe.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "inspect"
+   ],
+   "brain": [
+    "math",
+    "judgment",
+    "detail"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-long",
+  "miWorkers": 26650.0,
+  "wage": 72170.0,
+  "growth": 1.8,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "33-3051",
+  "name": "Police and sheriff's patrol officers",
+  "family": "Public safety",
+  "blurb": "Patrols assigned areas, responds to calls, enforces laws, and protects people and property.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "public",
+   "physical": "moderate",
+   "focus": [
+    "care"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "danger",
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 16750.0,
+  "wage": 73730.0,
+  "growth": 3.5,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "47-2031",
+  "name": "Carpenters",
+  "family": "Building trades",
+  "blurb": "Builds, installs, and repairs wooden structures, frames, cabinets, and fixtures on construction sites.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "build",
+    "fix"
+   ],
+   "brain": [
+    "math",
+    "detail"
+   ],
+   "cond": [
+    "danger",
+    "noise"
+   ]
+  },
+  "path": "apprenticeship",
+  "miWorkers": 18590.0,
+  "wage": 61680.0,
+  "growth": 3.9,
+  "ai": "low",
+  "deepDive": true
+ },
+ {
+  "soc": "29-2061",
+  "name": "Licensed practical and licensed vocational nurses",
+  "family": "Health technicians and care",
+  "blurb": "Provides basic nursing care, gives medicine, checks patients, and reports changes to nurses.",
+  "tags": {
+   "setting": "indoors",
+   "social": "public",
+   "physical": "moderate",
+   "focus": [
+    "care"
+   ],
+   "brain": [
+    "detail",
+    "judgment"
+   ],
+   "cond": [
+    "irregular-hours"
+   ]
+  },
+  "path": "certificate",
+  "miWorkers": 10880.0,
+  "wage": 65460.0,
+  "growth": 3.0,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "53-1047",
+  "name": "First-line supervisors of transportation and material moving workers, except aircraft cargo handling supervisors",
+  "family": "Driving and transportation",
+  "blurb": "Directs drivers and material movers, checks schedules, solves problems, and keeps operations moving.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "inspect"
+   ],
+   "brain": [
+    "judgment",
+    "math"
+   ],
+   "cond": [
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-long",
+  "miWorkers": 14600.0,
+  "wage": 60280.0,
+  "growth": 3.0,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "49-1011",
+  "name": "First-line supervisors of mechanics, installers, and repairers",
+  "family": "Installation and repair (other)",
+  "blurb": "Directs repair and installation crews, assigns work, checks safety, and tracks job progress.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "fix",
+    "inspect"
+   ],
+   "brain": [
+    "judgment",
+    "math"
+   ],
+   "cond": [
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-long",
+  "miWorkers": 15740.0,
+  "wage": 77810.0,
+  "growth": 4.1,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-9061",
+  "name": "Inspectors, testers, sorters, samplers, and weighers",
+  "family": "Production and assembly",
+  "blurb": "Checks products and materials, measures parts, records results, and removes items with defects.",
+  "tags": {
+   "setting": "indoors",
+   "social": "solo",
+   "physical": "light",
+   "focus": [
+    "inspect"
+   ],
+   "brain": [
+    "detail",
+    "math"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 27980.0,
+  "wage": 44490.0,
+  "growth": 2.5,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "53-7064",
+  "name": "Packers and packagers, hand",
+  "family": "Driving and transportation",
+  "blurb": "Packs goods into boxes, labels packages, checks orders, and prepares shipments for delivery.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "inspect"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 15590.0,
+  "wage": 35340.0,
+  "growth": -5.0,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "47-2073",
+  "name": "Operating engineers and other construction equipment operators",
+  "family": "Building trades",
+  "blurb": "Operates heavy equipment to move earth, materials, or supplies safely on construction sites.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate"
+   ],
+   "brain": [
+    "judgment",
+    "detail"
+   ],
+   "cond": [
+    "danger",
+    "noise",
+    "hot-cold",
+    "dirty"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 9500.0,
+  "wage": 62690.0,
+  "growth": 4.6,
+  "ai": "low",
+  "deepDive": true
+ },
+ {
+  "soc": "47-2152",
+  "name": "Plumbers, pipefitters, and steamfitters",
+  "family": "Plumbing, HVAC and pipe",
+  "blurb": "Installs and repairs water, gas, and waste pipes in homes and buildings safely.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "build",
+    "fix"
+   ],
+   "brain": [
+    "math",
+    "troubleshoot"
+   ],
+   "cond": [
+    "tight-spaces",
+    "dirty",
+    "danger",
+    "noise"
+   ]
+  },
+  "path": "apprenticeship",
+  "miWorkers": 14120.0,
+  "wage": 80190.0,
+  "growth": 6.8,
+  "ai": "low",
+  "deepDive": true
+ },
+ {
+  "soc": "49-9041",
+  "name": "Industrial machinery mechanics",
+  "family": "Industrial and machine maintenance",
+  "blurb": "Repairs and maintains factory machines, replaces parts, and keeps equipment running safely.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "fix"
+   ],
+   "brain": [
+    "troubleshoot",
+    "math",
+    "tech"
+   ],
+   "cond": [
+    "noise",
+    "dirty",
+    "tight-spaces",
+    "danger"
+   ]
+  },
+  "path": "onjob-long",
+  "miWorkers": 17310.0,
+  "wage": 64250.0,
+  "growth": 17.8,
+  "ai": "low",
+  "deepDive": true
+ },
+ {
+  "soc": "51-4121",
+  "name": "Welders, cutters, solderers, and brazers",
+  "family": "Metalworking and manufacturing",
+  "blurb": "Joins metal parts using welding equipment, reads plans, and checks finished joints for strength.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "build"
+   ],
+   "brain": [
+    "math",
+    "detail"
+   ],
+   "cond": [
+    "hot-cold",
+    "noise",
+    "danger"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 13330.0,
+  "wage": 49990.0,
+  "growth": 2.4,
+  "ai": "low",
+  "deepDive": true
+ },
+ {
+  "soc": "49-9021",
+  "name": "Heating, air conditioning, and refrigeration mechanics and installers",
+  "family": "Plumbing, HVAC and pipe",
+  "blurb": "Installs and services heating, cooling, and refrigeration systems, and checks airflow and leaks.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "build",
+    "fix"
+   ],
+   "brain": [
+    "troubleshoot",
+    "math",
+    "tech"
+   ],
+   "cond": [
+    "tight-spaces",
+    "hot-cold",
+    "danger",
+    "noise"
+   ]
+  },
+  "path": "certificate",
+  "miWorkers": 12590.0,
+  "wage": 60850.0,
+  "growth": 10.9,
+  "ai": "low",
+  "deepDive": true
+ },
+ {
+  "soc": "53-3031",
+  "name": "Driver/sales workers",
+  "family": "Driving and transportation",
+  "blurb": "Drives a route to deliver or sell products, loads goods, and collects payments.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "public",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "serve"
+   ],
+   "brain": [
+    "math",
+    "judgment"
+   ],
+   "cond": [
+    "danger",
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 15490.0,
+  "wage": 39610.0,
+  "growth": 7.9,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "53-3051",
+  "name": "Bus drivers, school",
+  "family": "Driving and transportation",
+  "blurb": "Drives a bus on set routes, picks up riders, and keeps passengers safe.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "public",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "care"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "danger",
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 8780.0,
+  "wage": 46380.0,
+  "growth": 0.7,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "31-9091",
+  "name": "Dental assistants",
+  "family": "Health technicians and care",
+  "blurb": "Prepares patients for dental work, hands tools to dentists, and keeps records updated.",
+  "tags": {
+   "setting": "indoors",
+   "social": "public",
+   "physical": "light",
+   "focus": [
+    "care"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": []
+  },
+  "path": "certificate",
+  "miWorkers": 11990.0,
+  "wage": 48820.0,
+  "growth": 7.4,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "33-3012",
+  "name": "Correctional officers and jailers",
+  "family": "Public safety",
+  "blurb": "Supervises people in jail, checks cells, enforces rules, and keeps the facility secure.",
+  "tags": {
+   "setting": "indoors",
+   "social": "public",
+   "physical": "moderate",
+   "focus": [
+    "care"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "danger",
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 8220.0,
+  "wage": 64020.0,
+  "growth": -7.4,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "53-7061",
+  "name": "Cleaners of vehicles and equipment",
+  "family": "Other",
+  "blurb": "Cleans vehicles and equipment inside and out, removes trash, and maintains supplies.",
+  "tags": {
+   "setting": "mixed",
+   "social": "solo",
+   "physical": "moderate",
+   "focus": [
+    "serve"
+   ],
+   "brain": [],
+   "cond": [
+    "dirty",
+    "hot-cold"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 10320.0,
+  "wage": 33890.0,
+  "growth": 3.9,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-9111",
+  "name": "Packaging and filling machine operators and tenders",
+  "family": "Production and assembly",
+  "blurb": "Runs machines that fill, wrap, label, and seal products for shipment safely and correctly.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 10940.0,
+  "wage": 41690.0,
+  "growth": 4.1,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "33-2011",
+  "name": "Firefighters",
+  "family": "Public safety",
+  "blurb": "Fights fires, rescues people, responds to emergencies, and checks fire safety equipment regularly.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "care"
+   ],
+   "brain": [
+    "judgment",
+    "troubleshoot"
+   ],
+   "cond": [
+    "danger",
+    "hot-cold",
+    "noise",
+    "irregular-hours"
+   ]
+  },
+  "path": "certificate",
+  "miWorkers": 6610.0,
+  "wage": 54640.0,
+  "growth": 3.7,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "39-5012",
+  "name": "Hairdressers, hairstylists, and cosmetologists",
+  "family": "Personal care and service",
+  "blurb": "Cuts, styles, colors, and treats hair while talking with clients about daily care.",
+  "tags": {
+   "setting": "indoors",
+   "social": "public",
+   "physical": "light",
+   "focus": [
+    "serve"
+   ],
+   "brain": [
+    "creative",
+    "detail"
+   ],
+   "cond": []
+  },
+  "path": "certificate",
+  "miWorkers": 8970.0,
+  "wage": 34820.0,
+  "growth": 7.7,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "49-3031",
+  "name": "Bus and truck mechanics and diesel engine specialists",
+  "family": "Vehicle and equipment repair",
+  "blurb": "Repairs buses and trucks, checks diesel engines, and performs scheduled maintenance safely.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "fix"
+   ],
+   "brain": [
+    "troubleshoot",
+    "tech"
+   ],
+   "cond": [
+    "dirty",
+    "noise",
+    "tight-spaces"
+   ]
+  },
+  "path": "onjob-long",
+  "miWorkers": 9020.0,
+  "wage": 61420.0,
+  "growth": 3.6,
+  "ai": "low",
+  "deepDive": true
+ },
+ {
+  "soc": "51-4041",
+  "name": "Machinists",
+  "family": "Metalworking and manufacturing",
+  "blurb": "Sets up and runs machine tools to make precise metal or plastic parts.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "operate"
+   ],
+   "brain": [
+    "math",
+    "detail"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-long",
+  "miWorkers": 20350.0,
+  "wage": 52360.0,
+  "growth": 1.0,
+  "ai": "low",
+  "deepDive": true
+ },
+ {
+  "soc": "29-1123",
+  "name": "Physical therapists",
+  "family": "Health technicians and care",
+  "blurb": "Helps patients recover movement, reduces pain, and plans exercises after injury or illness.",
+  "tags": {
+   "setting": "indoors",
+   "social": "public",
+   "physical": "moderate",
+   "focus": [
+    "care"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": []
+  },
+  "path": "college",
+  "miWorkers": 8630.0,
+  "wage": 100900.0,
+  "growth": 11.9,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-9199",
+  "name": "Production workers, all other",
+  "family": "Production and assembly",
+  "blurb": "Works on a production line, operates equipment, moves materials, and checks product quality.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "operate"
+   ],
+   "brain": [],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 14690.0,
+  "wage": 37950.0,
+  "growth": 0.8,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "53-3053",
+  "name": "Shuttle drivers and chauffeurs",
+  "family": "Driving and transportation",
+  "blurb": "Drives passengers to destinations, checks vehicle condition, and keeps routes safe at all times.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "public",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "serve"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 5870.0,
+  "wage": 36330.0,
+  "growth": 7.1,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "51-2028",
+  "name": "Electrical, electronic, and electromechanical assemblers, except coil winders, tapers, and finishers",
+  "family": "Electrical and power",
+  "blurb": "Assembles electrical parts, wires components, checks connections, and tests finished products for quality.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "light",
+   "focus": [
+    "make",
+    "inspect"
+   ],
+   "brain": [
+    "detail",
+    "tech"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 7270.0,
+  "wage": 44350.0,
+  "growth": 5.0,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "51-3011",
+  "name": "Bakers",
+  "family": "Food and hospitality",
+  "blurb": "Mixes dough, bakes breads and pastries, checks oven temperatures, and decorates goods.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "make"
+   ],
+   "brain": [
+    "math",
+    "detail"
+   ],
+   "cond": [
+    "hot-cold",
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 7290.0,
+  "wage": 35830.0,
+  "growth": 5.5,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "29-2034",
+  "name": "Radiologic technologists and technicians",
+  "family": "Health technicians and care",
+  "blurb": "Takes medical images, positions patients, operates imaging machines, and follows safety rules.",
+  "tags": {
+   "setting": "indoors",
+   "social": "public",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "inspect"
+   ],
+   "brain": [
+    "tech",
+    "detail"
+   ],
+   "cond": []
+  },
+  "path": "associate",
+  "miWorkers": 7220.0,
+  "wage": 76420.0,
+  "growth": 5.0,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "47-2141",
+  "name": "Painters, construction and maintenance",
+  "family": "Building trades",
+  "blurb": "Prepares surfaces, applies paint or coatings, and protects areas around work sites.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "build"
+   ],
+   "brain": [
+    "creative",
+    "detail"
+   ],
+   "cond": [
+    "hot-cold",
+    "dirty",
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 4920.0,
+  "wage": 50650.0,
+  "growth": 3.0,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "29-1292",
+  "name": "Dental hygienists",
+  "family": "Health technicians and care",
+  "blurb": "Cleans teeth, checks gums, takes dental images, and teaches patients about care.",
+  "tags": {
+   "setting": "indoors",
+   "social": "public",
+   "physical": "light",
+   "focus": [
+    "care"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": []
+  },
+  "path": "associate",
+  "miWorkers": 8640.0,
+  "wage": 83790.0,
+  "growth": 8.0,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "47-2051",
+  "name": "Cement masons and concrete finishers",
+  "family": "Building trades",
+  "blurb": "Pours, levels, and finishes concrete safely for sidewalks, floors, walls, and foundations.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "build"
+   ],
+   "brain": [
+    "math",
+    "detail"
+   ],
+   "cond": [
+    "hot-cold",
+    "danger",
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 6350.0,
+  "wage": 59860.0,
+  "growth": 1.6,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "35-1011",
+  "name": "Chefs and head cooks",
+  "family": "Food and hospitality",
+  "blurb": "Plans menus, cooks meals, directs kitchen staff, and checks food quality daily.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "serve"
+   ],
+   "brain": [
+    "creative",
+    "judgment",
+    "detail"
+   ],
+   "cond": [
+    "hot-cold",
+    "noise",
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-long",
+  "miWorkers": 5360.0,
+  "wage": 60070.0,
+  "growth": 6.6,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-6011",
+  "name": "Laundry and dry-cleaning workers",
+  "family": "Personal care and service",
+  "blurb": "Washes, dries, presses, and folds clothing or linens in a laundry facility.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "serve"
+   ],
+   "brain": [],
+   "cond": [
+    "hot-cold",
+    "noise"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 4970.0,
+  "wage": 35100.0,
+  "growth": 4.3,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "29-2042",
+  "name": "Emergency medical technicians",
+  "family": "Health technicians and care",
+  "blurb": "Responds to emergencies, gives basic medical care, and transports patients to hospitals.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "public",
+   "physical": "heavy",
+   "focus": [
+    "care"
+   ],
+   "brain": [
+    "judgment",
+    "troubleshoot"
+   ],
+   "cond": [
+    "danger",
+    "irregular-hours"
+   ]
+  },
+  "path": "certificate",
+  "miWorkers": 4230.0,
+  "wage": 39870.0,
+  "growth": 5.8,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "49-3042",
+  "name": "Mobile heavy equipment mechanics, except engines",
+  "family": "Vehicle and equipment repair",
+  "blurb": "Repairs construction and farming equipment, checks hydraulic systems, and replaces worn parts.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "fix"
+   ],
+   "brain": [
+    "troubleshoot",
+    "tech"
+   ],
+   "cond": [
+    "dirty",
+    "noise",
+    "hot-cold",
+    "tight-spaces"
+   ]
+  },
+  "path": "onjob-long",
+  "miWorkers": 3860.0,
+  "wage": 66680.0,
+  "growth": 6.7,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "49-9099",
+  "name": "Installation, maintenance, and repair workers, all other",
+  "family": "Installation and repair (other)",
+  "blurb": "Installs, fixes, and maintains many types of equipment at homes or businesses.",
+  "tags": {
+   "setting": "mixed",
+   "social": "public",
+   "physical": "moderate",
+   "focus": [
+    "fix",
+    "build"
+   ],
+   "brain": [
+    "troubleshoot",
+    "tech"
+   ],
+   "cond": [
+    "tight-spaces",
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 5800.0,
+  "wage": 47470.0,
+  "growth": 2.6,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-3092",
+  "name": "Food batchmakers",
+  "family": "Food and hospitality",
+  "blurb": "Mixes ingredients according to recipes, operates mixing machines, and checks food quality.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "operate"
+   ],
+   "brain": [
+    "math",
+    "detail"
+   ],
+   "cond": [
+    "hot-cold",
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 5130.0,
+  "wage": 40160.0,
+  "growth": 6.5,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "51-4031",
+  "name": "Cutting, punching, and press machine setters, operators, and tenders, metal and plastic",
+  "family": "Metalworking and manufacturing",
+  "blurb": "Sets up and runs machines that cut, punch, or press metal and plastic.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "math",
+    "detail"
+   ],
+   "cond": [
+    "noise",
+    "danger"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 22060.0,
+  "wage": 46120.0,
+  "growth": -10.5,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "51-9161",
+  "name": "Computer numerically controlled tool operators",
+  "family": "Metalworking and manufacturing",
+  "blurb": "Runs computer controlled machines that shape parts, loads materials, and checks finished work.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "math",
+    "tech",
+    "detail"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 7330.0,
+  "wage": 47250.0,
+  "growth": -9.4,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "51-9198",
+  "name": "Helpers--production workers",
+  "family": "Production and assembly",
+  "blurb": "Helps production workers by moving materials, feeding machines, cleaning areas, and packing products.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "make",
+    "operate"
+   ],
+   "brain": [],
+   "cond": [
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 3610.0,
+  "wage": 41660.0,
+  "growth": -8.2,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "29-1122",
+  "name": "Occupational therapists",
+  "family": "Health technicians and care",
+  "blurb": "Helps patients do everyday tasks after injury, illness, or disability through planned activities.",
+  "tags": {
+   "setting": "indoors",
+   "social": "public",
+   "physical": "moderate",
+   "focus": [
+    "care"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": []
+  },
+  "path": "college",
+  "miWorkers": 5120.0,
+  "wage": 89910.0,
+  "growth": 14.8,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "53-3052",
+  "name": "Bus drivers, transit and intercity",
+  "family": "Driving and transportation",
+  "blurb": "Drives a bus on public routes, collects fares, and keeps riders safe.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "public",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "care"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "danger",
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 3620.0,
+  "wage": 47660.0,
+  "growth": 4.1,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "51-9124",
+  "name": "Coating, painting, and spraying machine setters, operators, and tenders",
+  "family": "Production and assembly",
+  "blurb": "Runs machines that spray or coat products, mixes finishes, and checks surfaces.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 7050.0,
+  "wage": 44670.0,
+  "growth": 2.5,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "47-4051",
+  "name": "Highway maintenance workers",
+  "family": "Building trades",
+  "blurb": "Repairs roads, clears debris, maintains signs, and keeps highways safe for traffic.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "fix",
+    "operate"
+   ],
+   "brain": [],
+   "cond": [
+    "danger",
+    "noise",
+    "hot-cold",
+    "dirty"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 5230.0,
+  "wage": 53750.0,
+  "growth": 3.4,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-4072",
+  "name": "Molding, coremaking, and casting machine setters, operators, and tenders, metal and plastic",
+  "family": "Metalworking and manufacturing",
+  "blurb": "Runs machines that make molds or castings, checks parts, and removes defects.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "hot-cold",
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 13550.0,
+  "wage": 39490.0,
+  "growth": -3.4,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "49-3021",
+  "name": "Automotive body and related repairers",
+  "family": "Vehicle and equipment repair",
+  "blurb": "Repairs vehicle bodies, removes dents, replaces panels, and prepares surfaces for painting.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "fix",
+    "make"
+   ],
+   "brain": [
+    "detail",
+    "creative"
+   ],
+   "cond": [
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-long",
+  "miWorkers": 5010.0,
+  "wage": 56880.0,
+  "growth": 3.7,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "53-7081",
+  "name": "Refuse and recyclable material collectors",
+  "family": "Driving and transportation",
+  "blurb": "Drives or rides on a truck to collect trash and recyclable materials.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "operate"
+   ],
+   "brain": [],
+   "cond": [
+    "danger",
+    "dirty",
+    "hot-cold",
+    "noise"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 4020.0,
+  "wage": 51030.0,
+  "growth": 2.1,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "47-4011",
+  "name": "Construction and building inspectors",
+  "family": "Building trades",
+  "blurb": "Inspects buildings and construction work to check safety, plans, and code rules.",
+  "tags": {
+   "setting": "mixed",
+   "social": "solo",
+   "physical": "light",
+   "focus": [
+    "inspect"
+   ],
+   "brain": [
+    "math",
+    "detail",
+    "judgment"
+   ],
+   "cond": [
+    "danger",
+    "noise",
+    "hot-cold"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 3090.0,
+  "wage": 71040.0,
+  "growth": 0.0,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-3022",
+  "name": "Meat, poultry, and fish cutters and trimmers",
+  "family": "Food and hospitality",
+  "blurb": "Cuts, trims, and packages meat, poultry, or fish for sale in a shop.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "make"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "hot-cold",
+    "dirty",
+    "noise",
+    "danger"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 920.0,
+  "wage": 44430.0,
+  "growth": 5.7,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "51-5112",
+  "name": "Printing press operators",
+  "family": "Production and assembly",
+  "blurb": "Runs printing presses, loads paper and ink, checks prints, and maintains equipment.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "detail",
+    "tech"
+   ],
+   "cond": [
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 5110.0,
+  "wage": 45280.0,
+  "growth": -8.7,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "31-9097",
+  "name": "Phlebotomists",
+  "family": "Health technicians and care",
+  "blurb": "Draws blood from patients, labels samples, and keeps testing records accurate at all times.",
+  "tags": {
+   "setting": "indoors",
+   "social": "public",
+   "physical": "light",
+   "focus": [
+    "care",
+    "inspect"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": []
+  },
+  "path": "certificate",
+  "miWorkers": 3540.0,
+  "wage": 39860.0,
+  "growth": 6.8,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "49-2022",
+  "name": "Telecommunications equipment installers and repairers, except line installers",
+  "family": "Installation and repair (other)",
+  "blurb": "Installs and repairs telecommunications equipment, tests connections, and troubleshoots problems at customer sites.",
+  "tags": {
+   "setting": "mixed",
+   "social": "public",
+   "physical": "moderate",
+   "focus": [
+    "build",
+    "fix"
+   ],
+   "brain": [
+    "tech",
+    "troubleshoot"
+   ],
+   "cond": [
+    "tight-spaces",
+    "noise"
+   ]
+  },
+  "path": "certificate",
+  "miWorkers": 3940.0,
+  "wage": 61700.0,
+  "growth": -3.3,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "29-1126",
+  "name": "Respiratory therapists",
+  "family": "Health technicians and care",
+  "blurb": "Treats patients with breathing problems, manages ventilators, and checks oxygen equipment daily.",
+  "tags": {
+   "setting": "indoors",
+   "social": "public",
+   "physical": "moderate",
+   "focus": [
+    "care"
+   ],
+   "brain": [
+    "tech",
+    "judgment"
+   ],
+   "cond": [
+    "irregular-hours"
+   ]
+  },
+  "path": "associate",
+  "miWorkers": 4520.0,
+  "wage": 79850.0,
+  "growth": 8.5,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-9011",
+  "name": "Chemical equipment operators and tenders",
+  "family": "Production and assembly",
+  "blurb": "Runs equipment that mixes, heats, or treats chemicals, and watches gauges closely.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "inspect"
+   ],
+   "brain": [
+    "math",
+    "detail"
+   ],
+   "cond": [
+    "danger",
+    "hot-cold",
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 5210.0,
+  "wage": 50060.0,
+  "growth": 3.6,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "49-3011",
+  "name": "Aircraft mechanics and service technicians",
+  "family": "Vehicle and equipment repair",
+  "blurb": "Inspects aircraft, repairs engines and systems, and keeps maintenance records for safety.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "fix",
+    "inspect"
+   ],
+   "brain": [
+    "troubleshoot",
+    "tech",
+    "detail"
+   ],
+   "cond": [
+    "noise",
+    "tight-spaces",
+    "danger"
+   ]
+  },
+  "path": "certificate",
+  "miWorkers": 3380.0,
+  "wage": 74900.0,
+  "growth": 5.4,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "53-6021",
+  "name": "Parking attendants",
+  "family": "Driving and transportation",
+  "blurb": "Directs vehicles in parking areas, collects fees, and keeps traffic moving safely.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "public",
+   "physical": "light",
+   "focus": [
+    "operate",
+    "serve"
+   ],
+   "brain": [
+    "math"
+   ],
+   "cond": [
+    "hot-cold",
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 3210.0,
+  "wage": 33690.0,
+  "growth": 2.0,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "51-3021",
+  "name": "Butchers and meat cutters",
+  "family": "Food and hospitality",
+  "blurb": "Cuts meat into portions, grinds meat, and prepares displays for customers daily.",
+  "tags": {
+   "setting": "indoors",
+   "social": "public",
+   "physical": "heavy",
+   "focus": [
+    "make",
+    "serve"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "hot-cold",
+    "dirty",
+    "noise",
+    "danger"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 4230.0,
+  "wage": 39350.0,
+  "growth": 2.4,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "47-2181",
+  "name": "Roofers",
+  "family": "Building trades",
+  "blurb": "Installs and repairs roofs, lays shingles or other materials, and seals leaks.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "build",
+    "fix"
+   ],
+   "brain": [],
+   "cond": [
+    "heights",
+    "danger",
+    "hot-cold",
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 3090.0,
+  "wage": 59530.0,
+  "growth": 5.3,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "53-2031",
+  "name": "Flight attendants",
+  "family": "Driving and transportation",
+  "blurb": "Greets passengers, explains safety steps, serves items, and keeps cabins orderly during flights.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "public",
+   "physical": "moderate",
+   "focus": [
+    "serve",
+    "care"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "travel",
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": null,
+  "wage": 62490.0,
+  "growth": 8.8,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "49-9051",
+  "name": "Electrical power-line installers and repairers",
+  "family": "Electrical and power",
+  "blurb": "Installs and repairs power lines, climbs poles or towers, and follows safety rules.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "build",
+    "fix"
+   ],
+   "brain": [
+    "math",
+    "troubleshoot"
+   ],
+   "cond": [
+    "heights",
+    "danger",
+    "hot-cold",
+    "noise"
+   ]
+  },
+  "path": "onjob-long",
+  "miWorkers": 2800.0,
+  "wage": 106890.0,
+  "growth": 10.3,
+  "ai": "low",
+  "deepDive": true
+ },
+ {
+  "soc": "29-2056",
+  "name": "Veterinary technologists and technicians",
+  "family": "Health technicians and care",
+  "blurb": "Cares for animals, takes samples, assists veterinarians, and explains care to owners.",
+  "tags": {
+   "setting": "indoors",
+   "social": "public",
+   "physical": "moderate",
+   "focus": [
+    "care"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "danger"
+   ]
+  },
+  "path": "associate",
+  "miWorkers": 2550.0,
+  "wage": 49710.0,
+  "growth": 9.4,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-8031",
+  "name": "Water and wastewater treatment plant and system operators",
+  "family": "Industrial and machine maintenance",
+  "blurb": "Operates controls at treatment plants, checks water quality, and keeps records carefully.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "inspect"
+   ],
+   "brain": [
+    "tech",
+    "detail",
+    "math"
+   ],
+   "cond": [
+    "noise",
+    "hot-cold",
+    "danger",
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-long",
+  "miWorkers": 3400.0,
+  "wage": 59270.0,
+  "growth": -5.7,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "51-4081",
+  "name": "Multiple machine tool setters, operators, and tenders, metal and plastic",
+  "family": "Metalworking and manufacturing",
+  "blurb": "Runs several machine tools, loads materials, adjusts settings, and checks finished parts.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "math",
+    "detail"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 9350.0,
+  "wage": 45920.0,
+  "growth": 0.6,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "47-2211",
+  "name": "Sheet metal workers",
+  "family": "Building trades",
+  "blurb": "Cuts, shapes, and installs sheet metal for ducts, roofs, and building systems.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "build",
+    "make"
+   ],
+   "brain": [
+    "math",
+    "detail"
+   ],
+   "cond": [
+    "tight-spaces",
+    "noise",
+    "danger",
+    "dirty"
+   ]
+  },
+  "path": "apprenticeship",
+  "miWorkers": 4000.0,
+  "wage": 64490.0,
+  "growth": 2.5,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "29-2055",
+  "name": "Surgical technologists",
+  "family": "Health technicians and care",
+  "blurb": "Prepares operating rooms, hands instruments to surgeons, and keeps surgical areas sterile.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "care",
+    "inspect"
+   ],
+   "brain": [
+    "detail",
+    "judgment"
+   ],
+   "cond": []
+  },
+  "path": "certificate",
+  "miWorkers": 3840.0,
+  "wage": 63320.0,
+  "growth": 5.0,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "31-2021",
+  "name": "Physical therapist assistants",
+  "family": "Health technicians and care",
+  "blurb": "Guides patients through exercises, helps with movement, and tracks therapy progress each day.",
+  "tags": {
+   "setting": "indoors",
+   "social": "public",
+   "physical": "moderate",
+   "focus": [
+    "care"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": []
+  },
+  "path": "associate",
+  "miWorkers": 4520.0,
+  "wage": 61670.0,
+  "growth": 23.0,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "49-3093",
+  "name": "Tire repairers and changers",
+  "family": "Vehicle and equipment repair",
+  "blurb": "Repairs tires, changes tires on wheels, checks pressure, and balances wheels safely.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "fix"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "dirty",
+    "noise"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 4470.0,
+  "wage": 37130.0,
+  "growth": 3.4,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-6031",
+  "name": "Sewing machine operators",
+  "family": "Production and assembly",
+  "blurb": "Runs sewing machines to stitch fabric, checks seams, and trims loose threads.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "light",
+   "focus": [
+    "make",
+    "operate"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 3210.0,
+  "wage": 37490.0,
+  "growth": -15.1,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "53-2011",
+  "name": "Airline pilots, copilots, and flight engineers",
+  "family": "Driving and transportation",
+  "blurb": "Flies aircraft, checks instruments, talks with controllers, and keeps passengers safe during flights.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate"
+   ],
+   "brain": [
+    "judgment",
+    "tech"
+   ],
+   "cond": [
+    "travel",
+    "irregular-hours"
+   ]
+  },
+  "path": "college",
+  "miWorkers": null,
+  "wage": 428570.0,
+  "growth": 8.3,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "43-5031",
+  "name": "Public safety telecommunicators",
+  "family": "Public safety",
+  "blurb": "Answers emergency calls, sends help, gives instructions, and keeps radio logs accurate.",
+  "tags": {
+   "setting": "indoors",
+   "social": "public",
+   "physical": "light",
+   "focus": [
+    "care",
+    "serve"
+   ],
+   "brain": [
+    "judgment",
+    "detail"
+   ],
+   "cond": [
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 2100.0,
+  "wage": 53310.0,
+  "growth": 3.7,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "53-6031",
+  "name": "Automotive and watercraft service attendants",
+  "family": "Driving and transportation",
+  "blurb": "Fuels vehicles or boats, checks fluids, cleans equipment, and helps customers safely.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "public",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "serve"
+   ],
+   "brain": [],
+   "cond": [
+    "hot-cold",
+    "dirty"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 3390.0,
+  "wage": 31280.0,
+  "growth": 3.8,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "29-2043",
+  "name": "Paramedics",
+  "family": "Health technicians and care",
+  "blurb": "Provides advanced emergency care, gives medicines, and transports patients during emergencies quickly.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "public",
+   "physical": "heavy",
+   "focus": [
+    "care"
+   ],
+   "brain": [
+    "judgment",
+    "troubleshoot"
+   ],
+   "cond": [
+    "danger",
+    "irregular-hours"
+   ]
+  },
+  "path": "certificate",
+  "miWorkers": 2750.0,
+  "wage": 52080.0,
+  "growth": 5.7,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "31-9011",
+  "name": "Massage therapists",
+  "family": "Personal care and service",
+  "blurb": "Gives massages, listens to client needs, and suggests ways to ease tension.",
+  "tags": {
+   "setting": "indoors",
+   "social": "public",
+   "physical": "moderate",
+   "focus": [
+    "care",
+    "serve"
+   ],
+   "brain": [],
+   "cond": []
+  },
+  "path": "certificate",
+  "miWorkers": 2410.0,
+  "wage": 70960.0,
+  "growth": 15.3,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "49-9052",
+  "name": "Telecommunications line installers and repairers",
+  "family": "Electrical and power",
+  "blurb": "Installs and repairs cables and lines, climbs poles, and tests signals outside.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "build",
+    "fix"
+   ],
+   "brain": [
+    "tech",
+    "troubleshoot"
+   ],
+   "cond": [
+    "heights",
+    "danger",
+    "hot-cold",
+    "noise"
+   ]
+  },
+  "path": "onjob-long",
+  "miWorkers": 2780.0,
+  "wage": 74360.0,
+  "growth": -3.4,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-9196",
+  "name": "Paper goods machine setters, operators, and tenders",
+  "family": "Production and assembly",
+  "blurb": "Runs machines that make paper products, loads materials, and checks quality constantly.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 3000.0,
+  "wage": 50540.0,
+  "growth": -3.6,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "49-9098",
+  "name": "Helpers--installation, maintenance, and repair workers",
+  "family": "Installation and repair (other)",
+  "blurb": "Helps installers and repairers carry tools, prepare sites, and clean up after work.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "fix",
+    "build"
+   ],
+   "brain": [],
+   "cond": [
+    "tight-spaces",
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 2180.0,
+  "wage": 43630.0,
+  "growth": 5.3,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-9023",
+  "name": "Mixing and blending machine setters, operators, and tenders",
+  "family": "Production and assembly",
+  "blurb": "Runs machines that mix or blend materials, checks consistency, and records results.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "math",
+    "detail"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 3040.0,
+  "wage": 44310.0,
+  "growth": -6.1,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "29-2032",
+  "name": "Diagnostic medical sonographers",
+  "family": "Health technicians and care",
+  "blurb": "Uses ultrasound equipment to create images, explains steps, and helps doctors with findings.",
+  "tags": {
+   "setting": "indoors",
+   "social": "public",
+   "physical": "moderate",
+   "focus": [
+    "inspect",
+    "care"
+   ],
+   "brain": [
+    "tech",
+    "detail"
+   ],
+   "cond": []
+  },
+  "path": "associate",
+  "miWorkers": 3100.0,
+  "wage": 82490.0,
+  "growth": 13.9,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "49-2098",
+  "name": "Security and fire alarm systems installers",
+  "family": "Installation and repair (other)",
+  "blurb": "Installs security and fire alarm systems, wires devices, and tests equipment carefully.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "build",
+    "fix"
+   ],
+   "brain": [
+    "tech",
+    "troubleshoot",
+    "detail"
+   ],
+   "cond": [
+    "heights",
+    "tight-spaces"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 2060.0,
+  "wage": 55830.0,
+  "growth": 6.8,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "47-2081",
+  "name": "Drywall and ceiling tile installers",
+  "family": "Building trades",
+  "blurb": "Measures, cuts, and fastens wallboard or ceiling tiles inside buildings during remodeling.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "build"
+   ],
+   "brain": [
+    "math",
+    "detail"
+   ],
+   "cond": [
+    "heights",
+    "tight-spaces",
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 1050.0,
+  "wage": 58440.0,
+  "growth": 2.5,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-7011",
+  "name": "Cabinetmakers and bench carpenters",
+  "family": "Building trades",
+  "blurb": "Builds and repairs cabinets, reads drawings, cuts wood, and fits parts together.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "build"
+   ],
+   "brain": [
+    "math",
+    "detail"
+   ],
+   "cond": [
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 1120.0,
+  "wage": 48550.0,
+  "growth": -2.9,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "29-2081",
+  "name": "Opticians, dispensing",
+  "family": "Health technicians and care",
+  "blurb": "Helps customers choose eyeglasses, measures faces, and fits frames and lenses correctly.",
+  "tags": {
+   "setting": "indoors",
+   "social": "public",
+   "physical": "light",
+   "focus": [
+    "serve",
+    "care"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": []
+  },
+  "path": "onjob-long",
+  "miWorkers": 3080.0,
+  "wage": 41180.0,
+  "growth": 4.2,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "29-2057",
+  "name": "Ophthalmic medical technicians",
+  "family": "Health technicians and care",
+  "blurb": "Tests patients' eyes, takes measurements, and helps eye doctors with care during visits.",
+  "tags": {
+   "setting": "indoors",
+   "social": "public",
+   "physical": "light",
+   "focus": [
+    "inspect",
+    "care"
+   ],
+   "brain": [
+    "detail",
+    "tech"
+   ],
+   "cond": []
+  },
+  "path": "certificate",
+  "miWorkers": 1800.0,
+  "wage": 46750.0,
+  "growth": 21.4,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-3023",
+  "name": "Slaughterers and meat packers",
+  "family": "Food and hospitality",
+  "blurb": "Processes meat animals, cuts carcasses, and follows strict safety and sanitation rules.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "make"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "danger",
+    "dirty",
+    "hot-cold",
+    "noise"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 2920.0,
+  "wage": 45850.0,
+  "growth": 2.0,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "47-2221",
+  "name": "Structural iron and steel workers",
+  "family": "Building trades",
+  "blurb": "Erects steel beams and columns, connects parts, and works on construction sites.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "build"
+   ],
+   "brain": [
+    "math",
+    "judgment"
+   ],
+   "cond": [
+    "heights",
+    "danger",
+    "noise",
+    "hot-cold"
+   ]
+  },
+  "path": "apprenticeship",
+  "miWorkers": 1750.0,
+  "wage": 62830.0,
+  "growth": 3.1,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-4033",
+  "name": "Grinding, lapping, polishing, and buffing machine tool setters, operators, and tenders, metal and plastic",
+  "family": "Metalworking and manufacturing",
+  "blurb": "Runs grinding or polishing machines, smooths metal parts, and checks dimensions carefully.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "detail",
+    "math"
+   ],
+   "cond": [
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 4180.0,
+  "wage": 45460.0,
+  "growth": -10.8,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "49-9062",
+  "name": "Medical equipment repairers",
+  "family": "Installation and repair (other)",
+  "blurb": "Repairs medical equipment, replaces parts, tests devices, and keeps service records accurate.",
+  "tags": {
+   "setting": "indoors",
+   "social": "solo",
+   "physical": "light",
+   "focus": [
+    "fix",
+    "inspect"
+   ],
+   "brain": [
+    "troubleshoot",
+    "tech",
+    "detail"
+   ],
+   "cond": []
+  },
+  "path": "associate",
+  "miWorkers": 1820.0,
+  "wage": 60680.0,
+  "growth": 12.6,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "49-2011",
+  "name": "Computer, automated teller, and office machine repairers",
+  "family": "Installation and repair (other)",
+  "blurb": "Fixes computers, office machines, and automated tellers, and replaces broken parts as needed.",
+  "tags": {
+   "setting": "indoors",
+   "social": "solo",
+   "physical": "light",
+   "focus": [
+    "fix"
+   ],
+   "brain": [
+    "troubleshoot",
+    "tech",
+    "detail"
+   ],
+   "cond": []
+  },
+  "path": "onjob-short",
+  "miWorkers": 1660.0,
+  "wage": 47570.0,
+  "growth": -3.0,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "49-2094",
+  "name": "Electrical and electronics repairers, commercial and industrial equipment",
+  "family": "Electrical and power",
+  "blurb": "Repairs electrical controls and equipment safely in shops, plants, and buildings daily.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "fix"
+   ],
+   "brain": [
+    "troubleshoot",
+    "tech",
+    "math"
+   ],
+   "cond": [
+    "danger",
+    "noise",
+    "tight-spaces"
+   ]
+  },
+  "path": "certificate",
+  "miWorkers": 1460.0,
+  "wage": 66140.0,
+  "growth": 0.3,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-3099",
+  "name": "Food processing workers, all other",
+  "family": "Food and hospitality",
+  "blurb": "Helps process food products, runs equipment, checks quality, and cleans work areas.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "operate"
+   ],
+   "brain": [],
+   "cond": [
+    "hot-cold",
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 430.0,
+  "wage": 38750.0,
+  "growth": 5.5,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "47-3013",
+  "name": "Helpers--electricians",
+  "family": "Electrical and power",
+  "blurb": "Helps electricians by carrying tools, measuring wire, and keeping work areas clean.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "build",
+    "fix"
+   ],
+   "brain": [],
+   "cond": [
+    "danger",
+    "noise",
+    "dirty",
+    "hot-cold"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 500.0,
+  "wage": 44240.0,
+  "growth": 0.6,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "29-2031",
+  "name": "Cardiovascular technologists and technicians",
+  "family": "Health technicians and care",
+  "blurb": "Prepares patients for heart tests, runs equipment, and helps doctors during procedures.",
+  "tags": {
+   "setting": "indoors",
+   "social": "public",
+   "physical": "moderate",
+   "focus": [
+    "care",
+    "operate"
+   ],
+   "brain": [
+    "tech",
+    "detail"
+   ],
+   "cond": [
+    "irregular-hours"
+   ]
+  },
+  "path": "associate",
+  "miWorkers": 2070.0,
+  "wage": 80650.0,
+  "growth": 3.7,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-7042",
+  "name": "Woodworking machine setters, operators, and tenders, except sawing",
+  "family": "Production and assembly",
+  "blurb": "Runs woodworking machines to shape, sand, or finish wood parts safely and accurately.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "math",
+    "detail"
+   ],
+   "cond": [
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 5250.0,
+  "wage": 47680.0,
+  "growth": -2.5,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "51-4021",
+  "name": "Extruding and drawing machine setters, operators, and tenders, metal and plastic",
+  "family": "Metalworking and manufacturing",
+  "blurb": "Runs machines that draw, extrude, or shape metal and plastic materials into parts.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "noise",
+    "hot-cold"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 1800.0,
+  "wage": 45140.0,
+  "growth": 0.7,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "51-9012",
+  "name": "Separating, filtering, clarifying, precipitating, and still machine setters, operators, and tenders",
+  "family": "Production and assembly",
+  "blurb": "Runs machines that separate, filter, or clarify liquids, and watches controls closely.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "inspect"
+   ],
+   "brain": [
+    "detail",
+    "math"
+   ],
+   "cond": [
+    "noise",
+    "hot-cold",
+    "danger"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 2230.0,
+  "wage": 49480.0,
+  "growth": -5.7,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "49-9043",
+  "name": "Maintenance workers, machinery",
+  "family": "Industrial and machine maintenance",
+  "blurb": "Maintains machinery, lubricates parts, fixes problems, and helps prevent breakdowns before they happen.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "fix",
+    "operate"
+   ],
+   "brain": [
+    "troubleshoot",
+    "math"
+   ],
+   "cond": [
+    "noise",
+    "dirty",
+    "tight-spaces",
+    "danger"
+   ]
+  },
+  "path": "onjob-long",
+  "miWorkers": 1640.0,
+  "wage": 59590.0,
+  "growth": -1.9,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-9041",
+  "name": "Extruding, forming, pressing, and compacting machine setters, operators, and tenders",
+  "family": "Production and assembly",
+  "blurb": "Runs machines that form, press, or compact materials into shapes for further work.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "noise",
+    "hot-cold"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 1970.0,
+  "wage": 39790.0,
+  "growth": 1.5,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "47-2121",
+  "name": "Glaziers",
+  "family": "Building trades",
+  "blurb": "Cuts, installs, and replaces glass in windows, doors, and building fronts safely.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "build",
+    "fix"
+   ],
+   "brain": [
+    "math",
+    "detail"
+   ],
+   "cond": [
+    "heights",
+    "danger",
+    "noise",
+    "hot-cold"
+   ]
+  },
+  "path": "apprenticeship",
+  "miWorkers": 2040.0,
+  "wage": 52770.0,
+  "growth": 1.9,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "17-3031",
+  "name": "Surveying and mapping technicians",
+  "family": "Land, farm and trees",
+  "blurb": "Helps surveyors measure land, sets instruments, records data, and marks boundary points.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "light",
+   "focus": [
+    "inspect"
+   ],
+   "brain": [
+    "math",
+    "detail",
+    "tech"
+   ],
+   "cond": [
+    "hot-cold",
+    "travel"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 690.0,
+  "wage": 50340.0,
+  "growth": 5.8,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-4111",
+  "name": "Tool and die makers",
+  "family": "Metalworking and manufacturing",
+  "blurb": "Makes and repairs tools, dies, and metal fixtures for machines in manufacturing.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "fix"
+   ],
+   "brain": [
+    "math",
+    "detail"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "certificate",
+  "miWorkers": 9420.0,
+  "wage": 65590.0,
+  "growth": -9.2,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "37-3013",
+  "name": "Tree trimmers and pruners",
+  "family": "Land, farm and trees",
+  "blurb": "Climbs or lifts tools to trim trees, removes branches, and clears hazards.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "grow",
+    "care"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "heights",
+    "danger",
+    "noise",
+    "hot-cold"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 1840.0,
+  "wage": 57550.0,
+  "growth": 4.2,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "47-2021",
+  "name": "Brickmasons and blockmasons",
+  "family": "Building trades",
+  "blurb": "Lays bricks or blocks with mortar, checks alignment, and builds walls strong.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "build"
+   ],
+   "brain": [
+    "math",
+    "detail"
+   ],
+   "cond": [
+    "hot-cold",
+    "danger",
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "apprenticeship",
+  "miWorkers": 2240.0,
+  "wage": 63500.0,
+  "growth": 1.1,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-2041",
+  "name": "Structural metal fabricators and fitters",
+  "family": "Metalworking and manufacturing",
+  "blurb": "Cuts, fits, and welds metal parts for structures and machines from drawings.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "build"
+   ],
+   "brain": [
+    "math",
+    "detail"
+   ],
+   "cond": [
+    "noise",
+    "hot-cold"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 1270.0,
+  "wage": 47950.0,
+  "growth": -6.2,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "47-4041",
+  "name": "Hazardous materials removal workers",
+  "family": "Public safety",
+  "blurb": "Removes hazardous materials from sites, wears protective gear, and follows disposal rules.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "inspect",
+    "care"
+   ],
+   "brain": [
+    "detail",
+    "judgment"
+   ],
+   "cond": [
+    "danger",
+    "dirty",
+    "tight-spaces",
+    "hot-cold"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 1610.0,
+  "wage": 46380.0,
+  "growth": 1.5,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "31-2011",
+  "name": "Occupational therapy assistants",
+  "family": "Health technicians and care",
+  "blurb": "Helps patients practice daily activities, prepares therapy tools, and records progress over time.",
+  "tags": {
+   "setting": "indoors",
+   "social": "public",
+   "physical": "moderate",
+   "focus": [
+    "care"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": []
+  },
+  "path": "associate",
+  "miWorkers": 1250.0,
+  "wage": 63260.0,
+  "growth": 21.5,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "17-1022",
+  "name": "Surveyors",
+  "family": "Land, farm and trees",
+  "blurb": "Measures land boundaries, uses surveying instruments, and prepares accurate maps for projects.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "light",
+   "focus": [
+    "inspect"
+   ],
+   "brain": [
+    "math",
+    "detail",
+    "tech"
+   ],
+   "cond": [
+    "hot-cold",
+    "travel"
+   ]
+  },
+  "path": "college",
+  "miWorkers": 1050.0,
+  "wage": 72080.0,
+  "growth": 5.8,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "49-9012",
+  "name": "Control and valve installers and repairers, except mechanical door",
+  "family": "Installation and repair (other)",
+  "blurb": "Installs and repairs control devices, valves, and pipes in industrial systems safely.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "fix",
+    "build"
+   ],
+   "brain": [
+    "troubleshoot",
+    "math"
+   ],
+   "cond": [
+    "tight-spaces",
+    "noise",
+    "danger",
+    "hot-cold"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 2240.0,
+  "wage": 96890.0,
+  "growth": 4.3,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "53-2012",
+  "name": "Commercial pilots",
+  "family": "Driving and transportation",
+  "blurb": "Flies small airplanes and helicopters for charters, tours, cargo and aerial work, checking weather and the aircraft before each trip.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate"
+   ],
+   "brain": [
+    "judgment",
+    "tech"
+   ],
+   "cond": [
+    "travel",
+    "irregular-hours",
+    "danger"
+   ]
+  },
+  "path": "certificate",
+  "miWorkers": 1390.0,
+  "wage": 126670.0,
+  "growth": 5.2,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "53-3099",
+  "name": "Motor vehicle operators, all other",
+  "family": "Driving and transportation",
+  "blurb": "Operates trucks, vans, or utility vehicles to move people, supplies, or equipment safely.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "solo",
+   "physical": "moderate",
+   "focus": [
+    "operate"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "danger",
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 2600.0,
+  "wage": 33990.0,
+  "growth": 2.8,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "53-4031",
+  "name": "Railroad conductors and yardmasters",
+  "family": "Driving and transportation",
+  "blurb": "Directs train movements, checks tickets or cargo, coordinates crews, and keeps rail yards moving.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "inspect"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "danger",
+    "irregular-hours",
+    "travel"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 760.0,
+  "wage": 78960.0,
+  "growth": 0.9,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "51-9032",
+  "name": "Cutting and slicing machine setters, operators, and tenders",
+  "family": "Production and assembly",
+  "blurb": "Sets up and runs machines that cut materials into pieces, checking sizes and sharpness.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "math",
+    "detail"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 730.0,
+  "wage": 44620.0,
+  "growth": -0.9,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "47-5071",
+  "name": "Roustabouts, oil and gas",
+  "family": "Mining, oil, gas and logging",
+  "blurb": "Performs hard labor on oil and gas sites, moves equipment, cleans areas, and helps crews.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "operate",
+    "build"
+   ],
+   "brain": [],
+   "cond": [
+    "danger",
+    "dirty",
+    "hot-cold",
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 290.0,
+  "wage": 51720.0,
+  "growth": 3.6,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "47-2131",
+  "name": "Insulation workers, floor, ceiling, and wall",
+  "family": "Building trades",
+  "blurb": "Cuts and fits insulation in walls, ceilings, and floors to control temperature and sound.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "build"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "tight-spaces",
+    "dirty",
+    "noise"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 710.0,
+  "wage": 46490.0,
+  "growth": 2.4,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "47-3015",
+  "name": "Helpers--pipelayers, plumbers, pipefitters, and steamfitters",
+  "family": "Plumbing, HVAC and pipe",
+  "blurb": "Helps pipe workers carry materials, dig trenches, hold tools, and keep work areas clean.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "build",
+    "fix"
+   ],
+   "brain": [],
+   "cond": [
+    "danger",
+    "dirty",
+    "noise",
+    "hot-cold"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 270.0,
+  "wage": 42810.0,
+  "growth": 2.4,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "29-2035",
+  "name": "Magnetic resonance imaging technologists",
+  "family": "Health technicians and care",
+  "blurb": "Positions patients for scans, operates magnetic imaging machines, and watches images for quality.",
+  "tags": {
+   "setting": "indoors",
+   "social": "public",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "inspect"
+   ],
+   "brain": [
+    "tech",
+    "detail"
+   ],
+   "cond": []
+  },
+  "path": "associate",
+  "miWorkers": 1270.0,
+  "wage": 84620.0,
+  "growth": 7.7,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "47-5013",
+  "name": "Service unit operators, oil and gas",
+  "family": "Mining, oil, gas and logging",
+  "blurb": "Operates equipment at oil and gas wells to support drilling, repairs, or production tasks.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "operate",
+    "fix"
+   ],
+   "brain": [
+    "judgment",
+    "troubleshoot"
+   ],
+   "cond": [
+    "danger",
+    "dirty",
+    "hot-cold",
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 230.0,
+  "wage": 52000.0,
+  "growth": 1.1,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "53-7021",
+  "name": "Crane and tower operators",
+  "family": "Driving and transportation",
+  "blurb": "Operates cranes or towers to lift, move, and place heavy materials safely on sites.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate"
+   ],
+   "brain": [
+    "judgment",
+    "detail"
+   ],
+   "cond": [
+    "heights",
+    "danger",
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 1310.0,
+  "wage": 59740.0,
+  "growth": 3.8,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "53-7063",
+  "name": "Machine feeders and offbearers",
+  "family": "Production and assembly",
+  "blurb": "Feeds materials into machines, removes finished items, and keeps production areas supplied and clear.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 740.0,
+  "wage": 42320.0,
+  "growth": -13.1,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "47-2071",
+  "name": "Paving, surfacing, and tamping equipment operators",
+  "family": "Building trades",
+  "blurb": "Operates machines that spread and smooth asphalt or concrete for roads and parking areas.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "build"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "hot-cold",
+    "noise",
+    "danger",
+    "dirty"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 1720.0,
+  "wage": 54220.0,
+  "growth": -0.9,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "53-3054",
+  "name": "Taxi drivers",
+  "family": "Driving and transportation",
+  "blurb": "Drives passengers to requested places, collects fares, and keeps the vehicle clean and safe.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "public",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "serve"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "danger",
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 90.0,
+  "wage": 36670.0,
+  "growth": 11.5,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "51-7041",
+  "name": "Sawing machine setters, operators, and tenders, wood",
+  "family": "Production and assembly",
+  "blurb": "Sets up and runs saws that cut wood into parts, checking measurements and blades.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "math",
+    "detail"
+   ],
+   "cond": [
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 1510.0,
+  "wage": 40260.0,
+  "growth": -1.0,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "49-9044",
+  "name": "Millwrights",
+  "family": "Industrial and machine maintenance",
+  "blurb": "Installs, aligns, and repairs heavy machines, motors, and conveying equipment in plants or sites.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "build",
+    "fix"
+   ],
+   "brain": [
+    "math",
+    "troubleshoot"
+   ],
+   "cond": [
+    "danger",
+    "noise",
+    "tight-spaces",
+    "hot-cold"
+   ]
+  },
+  "path": "apprenticeship",
+  "miWorkers": 2900.0,
+  "wage": 89190.0,
+  "growth": 0.9,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "49-3041",
+  "name": "Farm equipment mechanics and service technicians",
+  "family": "Vehicle and equipment repair",
+  "blurb": "Repairs tractors and farm machines, checks engines, and replaces parts to keep equipment working.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "fix"
+   ],
+   "brain": [
+    "troubleshoot",
+    "tech"
+   ],
+   "cond": [
+    "dirty",
+    "noise",
+    "hot-cold",
+    "tight-spaces"
+   ]
+  },
+  "path": "onjob-long",
+  "miWorkers": 980.0,
+  "wage": 50870.0,
+  "growth": 10.7,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "53-5021",
+  "name": "Captains, mates, and pilots of water vessels",
+  "family": "Driving and transportation",
+  "blurb": "Commands or steers boats and ships, watches navigation, directs crew, and keeps voyages safe.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "travel",
+    "danger",
+    "irregular-hours"
+   ]
+  },
+  "path": "certificate",
+  "miWorkers": 640.0,
+  "wage": 53590.0,
+  "growth": 4.0,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "49-3053",
+  "name": "Outdoor power equipment and other small engine mechanics",
+  "family": "Vehicle and equipment repair",
+  "blurb": "Repairs lawn mowers, chainsaws, and small engines, replacing parts and testing equipment after repair.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "fix"
+   ],
+   "brain": [
+    "troubleshoot",
+    "tech"
+   ],
+   "cond": [
+    "dirty",
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 1860.0,
+  "wage": 46730.0,
+  "growth": 2.3,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "47-2044",
+  "name": "Tile and stone setters",
+  "family": "Building trades",
+  "blurb": "Cuts, lays, and grouts tile or stone on floors, walls, and counters neatly.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "build",
+    "make"
+   ],
+   "brain": [
+    "math",
+    "detail"
+   ],
+   "cond": [
+    "dirty",
+    "noise"
+   ]
+  },
+  "path": "onjob-long",
+  "miWorkers": 1010.0,
+  "wage": 47950.0,
+  "growth": 9.8,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "47-5022",
+  "name": "Excavating and loading machine and dragline operators, surface mining",
+  "family": "Mining, oil, gas and logging",
+  "blurb": "Operates large machines that dig, load, and move earth or rock at surface mines.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "operate"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "danger",
+    "noise",
+    "dirty",
+    "hot-cold"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 880.0,
+  "wage": 59040.0,
+  "growth": 1.0,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "51-9081",
+  "name": "Dental laboratory technicians",
+  "family": "Health technicians and care",
+  "blurb": "Makes crowns, bridges, and dentures from dental impressions, using molds and small tools carefully.",
+  "tags": {
+   "setting": "indoors",
+   "social": "solo",
+   "physical": "light",
+   "focus": [
+    "make",
+    "fix"
+   ],
+   "brain": [
+    "detail",
+    "creative"
+   ],
+   "cond": []
+  },
+  "path": "onjob-mid",
+  "miWorkers": 1180.0,
+  "wage": 49570.0,
+  "growth": -5.9,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "51-2011",
+  "name": "Aircraft structure, surfaces, rigging, and systems assemblers",
+  "family": "Production and assembly",
+  "blurb": "Assembles aircraft parts, installs fasteners, reads drawings, and checks surfaces for proper fit.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "inspect"
+   ],
+   "brain": [
+    "math",
+    "detail",
+    "tech"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 360.0,
+  "wage": 47230.0,
+  "growth": -5.6,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "51-2031",
+  "name": "Engine and other machine assemblers",
+  "family": "Production and assembly",
+  "blurb": "Builds engines and machines by fitting parts, tightening fasteners, and testing completed assemblies.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "inspect"
+   ],
+   "brain": [
+    "math",
+    "detail"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 5030.0,
+  "wage": 60950.0,
+  "growth": -17.0,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "53-4011",
+  "name": "Locomotive engineers",
+  "family": "Driving and transportation",
+  "blurb": "Drives trains, watches signals and gauges, controls speed, and keeps cargo or passengers safe.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "danger",
+    "irregular-hours",
+    "travel"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": null,
+  "wage": 81410.0,
+  "growth": 0.5,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "51-9195",
+  "name": "Molders, shapers, and casters, except metal and plastic",
+  "family": "Production and assembly",
+  "blurb": "Shapes materials using molds or forms, checks finished pieces, and removes rough edges.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "operate"
+   ],
+   "brain": [
+    "detail",
+    "creative"
+   ],
+   "cond": [
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-long",
+  "miWorkers": 1470.0,
+  "wage": 45250.0,
+  "growth": 5.8,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "51-5113",
+  "name": "Print binding and finishing workers",
+  "family": "Production and assembly",
+  "blurb": "Binds printed pages, trims edges, folds sheets, and prepares finished books or pamphlets.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "operate"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 1320.0,
+  "wage": 40460.0,
+  "growth": -17.5,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "51-8093",
+  "name": "Petroleum pump system operators, refinery operators, and gaugers",
+  "family": "Mining, oil, gas and logging",
+  "blurb": "Operates pumps and refinery controls, watches gauges, moves oil products, and records readings carefully.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "inspect"
+   ],
+   "brain": [
+    "tech",
+    "detail",
+    "judgment"
+   ],
+   "cond": [
+    "danger",
+    "hot-cold",
+    "noise",
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 180.0,
+  "wage": 84030.0,
+  "growth": -1.9,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "47-2151",
+  "name": "Pipelayers",
+  "family": "Plumbing, HVAC and pipe",
+  "blurb": "Lays pipes for water, sewer, or drainage, checks slope, and joins sections securely.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "build",
+    "fix"
+   ],
+   "brain": [
+    "math"
+   ],
+   "cond": [
+    "danger",
+    "dirty",
+    "noise",
+    "hot-cold"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 180.0,
+  "wage": 61560.0,
+  "growth": -3.1,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-4193",
+  "name": "Plating machine setters, operators, and tenders, metal and plastic",
+  "family": "Metalworking and manufacturing",
+  "blurb": "Runs machines that coat metal parts, mixes plating solutions, and checks surface quality.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "dirty",
+    "noise",
+    "hot-cold"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 3330.0,
+  "wage": 37600.0,
+  "growth": -9.7,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "49-9031",
+  "name": "Home appliance repairers",
+  "family": "Installation and repair (other)",
+  "blurb": "Fixes washers, dryers, ovens, and refrigerators, diagnoses faults, and replaces worn or broken parts.",
+  "tags": {
+   "setting": "indoors",
+   "social": "public",
+   "physical": "moderate",
+   "focus": [
+    "fix"
+   ],
+   "brain": [
+    "troubleshoot",
+    "tech"
+   ],
+   "cond": [
+    "tight-spaces"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 1050.0,
+  "wage": 52160.0,
+  "growth": 1.9,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "53-5011",
+  "name": "Sailors and marine oilers",
+  "family": "Driving and transportation",
+  "blurb": "Works on ships, maintains decks and engines, handles lines, and supports safe vessel operation.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "operate",
+    "fix"
+   ],
+   "brain": [
+    "troubleshoot",
+    "judgment"
+   ],
+   "cond": [
+    "travel",
+    "danger",
+    "noise",
+    "hot-cold"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 250.0,
+  "wage": 51310.0,
+  "growth": 3.2,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-4122",
+  "name": "Welding, soldering, and brazing machine setters, operators, and tenders",
+  "family": "Metalworking and manufacturing",
+  "blurb": "Sets up and runs welding machines, feeds parts, and checks joints for strength.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "noise",
+    "hot-cold",
+    "danger"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 3150.0,
+  "wage": 42530.0,
+  "growth": -8.9,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "51-9141",
+  "name": "Semiconductor processing technicians",
+  "family": "Production and assembly",
+  "blurb": "Runs equipment that makes electronic parts, follows cleanroom rules, and checks tiny components.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "light",
+   "focus": [
+    "make",
+    "inspect"
+   ],
+   "brain": [
+    "tech",
+    "detail"
+   ],
+   "cond": []
+  },
+  "path": "onjob-mid",
+  "miWorkers": 270.0,
+  "wage": 51430.0,
+  "growth": 8.2,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "47-2231",
+  "name": "Solar photovoltaic installers",
+  "family": "Electrical and power",
+  "blurb": "Installs solar panels on roofs or ground frames, connects wiring, and checks system output.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "build",
+    "fix"
+   ],
+   "brain": [
+    "math",
+    "tech"
+   ],
+   "cond": [
+    "heights",
+    "danger",
+    "hot-cold"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 310.0,
+  "wage": 47080.0,
+  "growth": 36.5,
+  "ai": "low",
+  "deepDive": true
+ },
+ {
+  "soc": "53-6032",
+  "name": "Aircraft service attendants",
+  "family": "Driving and transportation",
+  "blurb": "Services aircraft between flights, guides planes, loads supplies, and keeps ramp areas safe.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "serve"
+   ],
+   "brain": [],
+   "cond": [
+    "noise",
+    "hot-cold",
+    "danger",
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 230.0,
+  "wage": 41360.0,
+  "growth": 5.6,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-3093",
+  "name": "Food cooking machine operators and tenders",
+  "family": "Food and hospitality",
+  "blurb": "Operates machines that cook food products, watches temperatures, and keeps equipment clean during production.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "hot-cold",
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 380.0,
+  "wage": 47260.0,
+  "growth": -0.3,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "39-4021",
+  "name": "Funeral attendants",
+  "family": "Personal care and service",
+  "blurb": "Helps at funeral services, moves caskets, arranges flowers, and supports staff and families.",
+  "tags": {
+   "setting": "indoors",
+   "social": "public",
+   "physical": "moderate",
+   "focus": [
+    "serve",
+    "care"
+   ],
+   "brain": [],
+   "cond": []
+  },
+  "path": "onjob-short",
+  "miWorkers": 1460.0,
+  "wage": 35380.0,
+  "growth": 2.6,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "47-4071",
+  "name": "Septic tank servicers and sewer pipe cleaners",
+  "family": "Plumbing, HVAC and pipe",
+  "blurb": "Cleans septic tanks and sewer lines, uses pumps or hoses, and keeps sites safe.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "fix",
+    "inspect"
+   ],
+   "brain": [],
+   "cond": [
+    "dirty",
+    "hot-cold",
+    "danger",
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 1080.0,
+  "wage": 50040.0,
+  "growth": 7.8,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-8013",
+  "name": "Power plant operators",
+  "family": "Electrical and power",
+  "blurb": "Controls equipment that generates electricity, watches meters, adjusts output, and reports problems quickly.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "inspect"
+   ],
+   "brain": [
+    "tech",
+    "detail",
+    "judgment"
+   ],
+   "cond": [
+    "noise",
+    "hot-cold",
+    "danger",
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-long",
+  "miWorkers": 1220.0,
+  "wage": 105820.0,
+  "growth": -5.1,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "51-9162",
+  "name": "Computer numerically controlled tool programmers",
+  "family": "Metalworking and manufacturing",
+  "blurb": "Writes instructions for computer controlled machine tools, checks programs, and tests part output.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "light",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "math",
+    "tech",
+    "detail"
+   ],
+   "cond": []
+  },
+  "path": "certificate",
+  "miWorkers": 2300.0,
+  "wage": 64640.0,
+  "growth": 5.9,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "47-4090",
+  "name": "Miscellaneous construction and related workers",
+  "family": "Building trades",
+  "blurb": "Performs construction support tasks, prepares sites, moves materials, and helps skilled trades workers.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "build"
+   ],
+   "brain": [],
+   "cond": [
+    "danger",
+    "noise",
+    "hot-cold",
+    "dirty"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 660.0,
+  "wage": 53800.0,
+  "growth": 3.9,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-8021",
+  "name": "Stationary engineers and boiler operators",
+  "family": "Industrial and machine maintenance",
+  "blurb": "Runs boilers and engine room equipment, checks pressure, and keeps heating systems working.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "inspect"
+   ],
+   "brain": [
+    "troubleshoot",
+    "tech",
+    "detail"
+   ],
+   "cond": [
+    "hot-cold",
+    "noise",
+    "danger"
+   ]
+  },
+  "path": "onjob-long",
+  "miWorkers": 490.0,
+  "wage": 82800.0,
+  "growth": 3.1,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "49-9011",
+  "name": "Mechanical door repairers",
+  "family": "Installation and repair (other)",
+  "blurb": "Repairs automatic doors, replaces sensors and motors, checks safety features, and keeps entrances working.",
+  "tags": {
+   "setting": "indoors",
+   "social": "solo",
+   "physical": "moderate",
+   "focus": [
+    "fix"
+   ],
+   "brain": [
+    "troubleshoot",
+    "tech"
+   ],
+   "cond": [
+    "heights",
+    "tight-spaces"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 810.0,
+  "wage": 52370.0,
+  "growth": 6.4,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "53-6061",
+  "name": "Passenger attendants",
+  "family": "Driving and transportation",
+  "blurb": "Assists passengers on trains, buses, or boats, checks tickets, and keeps cabins orderly.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "public",
+   "physical": "light",
+   "focus": [
+    "serve",
+    "care"
+   ],
+   "brain": [],
+   "cond": [
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 840.0,
+  "wage": 40250.0,
+  "growth": 6.0,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "49-9091",
+  "name": "Coin, vending, and amusement machine servicers and repairers",
+  "family": "Installation and repair (other)",
+  "blurb": "Fills, fixes, and cleans vending or amusement machines, collects payments, and keeps machines working.",
+  "tags": {
+   "setting": "mixed",
+   "social": "solo",
+   "physical": "moderate",
+   "focus": [
+    "fix",
+    "serve"
+   ],
+   "brain": [
+    "troubleshoot",
+    "math"
+   ],
+   "cond": []
+  },
+  "path": "onjob-short",
+  "miWorkers": 430.0,
+  "wage": 46980.0,
+  "growth": -3.4,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-6021",
+  "name": "Pressers, textile, garment, and related materials",
+  "family": "Production and assembly",
+  "blurb": "Presses garments and textiles with irons or machines, removes wrinkles, and checks finished items.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "light",
+   "focus": [
+    "make",
+    "operate"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "hot-cold"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 300.0,
+  "wage": 36290.0,
+  "growth": -15.7,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "51-9021",
+  "name": "Crushing, grinding, and polishing machine setters, operators, and tenders",
+  "family": "Production and assembly",
+  "blurb": "Runs machines that crush, grind, or polish materials, watches controls, and clears jams.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "noise",
+    "dirty",
+    "hot-cold"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 670.0,
+  "wage": 46500.0,
+  "growth": -1.7,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "47-2132",
+  "name": "Insulation workers, mechanical",
+  "family": "Building trades",
+  "blurb": "Wraps pipes, ducts, and boilers with insulation, cuts materials, and seals joints tightly.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "build",
+    "fix"
+   ],
+   "brain": [
+    "detail",
+    "math"
+   ],
+   "cond": [
+    "tight-spaces",
+    "hot-cold",
+    "dirty",
+    "noise"
+   ]
+  },
+  "path": "apprenticeship",
+  "miWorkers": 650.0,
+  "wage": 58860.0,
+  "growth": 5.1,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-4023",
+  "name": "Rolling machine setters, operators, and tenders, metal and plastic",
+  "family": "Metalworking and manufacturing",
+  "blurb": "Runs rolling machines that shape metal or plastic, adjusts rollers, and measures finished parts.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "math",
+    "detail"
+   ],
+   "cond": [
+    "noise",
+    "hot-cold"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 1480.0,
+  "wage": 44090.0,
+  "growth": -8.3,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "39-4031",
+  "name": "Morticians, undertakers, and funeral arrangers",
+  "family": "Personal care and service",
+  "blurb": "Plans funeral details, prepares bodies, talks with families, and handles paperwork for services.",
+  "tags": {
+   "setting": "indoors",
+   "social": "public",
+   "physical": "moderate",
+   "focus": [
+    "care",
+    "serve"
+   ],
+   "brain": [
+    "detail",
+    "creative"
+   ],
+   "cond": [
+    "irregular-hours"
+   ]
+  },
+  "path": "associate",
+  "miWorkers": 810.0,
+  "wage": 60450.0,
+  "growth": 3.0,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "47-3019",
+  "name": "Helpers, construction trades, all other",
+  "family": "Building trades",
+  "blurb": "Helps construction workers by carrying tools, cleaning sites, mixing materials, and holding parts.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "build"
+   ],
+   "brain": [],
+   "cond": [
+    "danger",
+    "noise",
+    "hot-cold",
+    "dirty"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 320.0,
+  "wage": 39840.0,
+  "growth": -1.0,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "53-6051",
+  "name": "Transportation inspectors",
+  "family": "Driving and transportation",
+  "blurb": "Checks vehicles, cargo, and transport equipment for safety problems, and records inspection results.",
+  "tags": {
+   "setting": "mixed",
+   "social": "solo",
+   "physical": "moderate",
+   "focus": [
+    "inspect"
+   ],
+   "brain": [
+    "detail",
+    "judgment"
+   ],
+   "cond": [
+    "danger",
+    "noise",
+    "hot-cold"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 540.0,
+  "wage": 35890.0,
+  "growth": 2.2,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "47-4031",
+  "name": "Fence erectors",
+  "family": "Building trades",
+  "blurb": "Sets fence posts, stretches wire, attaches panels, and builds fences around yards or fields.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "build"
+   ],
+   "brain": [
+    "math"
+   ],
+   "cond": [
+    "hot-cold",
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 460.0,
+  "wage": 45800.0,
+  "growth": 5.6,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-5111",
+  "name": "Prepress technicians and workers",
+  "family": "Production and assembly",
+  "blurb": "Prepares digital files and plates for printing, checks layout, and corrects image problems.",
+  "tags": {
+   "setting": "indoors",
+   "social": "solo",
+   "physical": "light",
+   "focus": [
+    "make",
+    "inspect"
+   ],
+   "brain": [
+    "tech",
+    "detail",
+    "creative"
+   ],
+   "cond": []
+  },
+  "path": "certificate",
+  "miWorkers": 540.0,
+  "wage": 46960.0,
+  "growth": -15.3,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "47-4021",
+  "name": "Elevator and escalator installers and repairers",
+  "family": "Building trades",
+  "blurb": "Installs and repairs elevators and escalators, checks cables, and tests safety controls.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "build",
+    "fix"
+   ],
+   "brain": [
+    "math",
+    "troubleshoot",
+    "tech"
+   ],
+   "cond": [
+    "tight-spaces",
+    "heights",
+    "danger",
+    "noise"
+   ]
+  },
+  "path": "apprenticeship",
+  "miWorkers": 560.0,
+  "wage": 99140.0,
+  "growth": 5.7,
+  "ai": "low",
+  "deepDive": true
+ },
+ {
+  "soc": "47-2042",
+  "name": "Floor layers, except carpet, wood, and hard tiles",
+  "family": "Building trades",
+  "blurb": "Installs vinyl, linoleum, or other floor coverings, measures rooms, and cuts materials to fit.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "build",
+    "make"
+   ],
+   "brain": [
+    "math",
+    "detail"
+   ],
+   "cond": [
+    "noise",
+    "dirty",
+    "tight-spaces"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 670.0,
+  "wage": 46800.0,
+  "growth": 9.0,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "53-7199",
+  "name": "Material moving workers, all other",
+  "family": "Driving and transportation",
+  "blurb": "Moves materials using carts, hoists, or hand tools, and keeps storage areas organized.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate"
+   ],
+   "brain": [],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 130.0,
+  "wage": 44090.0,
+  "growth": 2.7,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "49-3051",
+  "name": "Motorboat mechanics and service technicians",
+  "family": "Vehicle and equipment repair",
+  "blurb": "Repairs boat engines, checks fuel and steering systems, and tests boats after service.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "fix"
+   ],
+   "brain": [
+    "troubleshoot",
+    "tech"
+   ],
+   "cond": [
+    "dirty",
+    "noise",
+    "hot-cold"
+   ]
+  },
+  "path": "onjob-long",
+  "miWorkers": 1480.0,
+  "wage": 47900.0,
+  "growth": 4.9,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "53-7011",
+  "name": "Conveyor operators and tenders",
+  "family": "Driving and transportation",
+  "blurb": "Runs conveyor systems that move materials, watches belts, clears jams, and keeps flow steady.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "inspect"
+   ],
+   "brain": [
+    "detail",
+    "troubleshoot"
+   ],
+   "cond": [
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 410.0,
+  "wage": 39340.0,
+  "growth": -2.6,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "49-9096",
+  "name": "Riggers",
+  "family": "Installation and repair (other)",
+  "blurb": "Attaches cables, chains, and slings to heavy loads, directs crane operators, and checks balance.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "build",
+    "operate"
+   ],
+   "brain": [
+    "math",
+    "judgment"
+   ],
+   "cond": [
+    "heights",
+    "danger",
+    "noise",
+    "hot-cold"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 380.0,
+  "wage": 58490.0,
+  "growth": 3.9,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "53-2021",
+  "name": "Air traffic controllers",
+  "family": "Driving and transportation",
+  "blurb": "Guides aircraft takeoffs, landings, and routes, gives pilots instructions, and prevents dangerous conflicts.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "light",
+   "focus": [
+    "operate",
+    "care"
+   ],
+   "brain": [
+    "judgment",
+    "tech",
+    "detail"
+   ],
+   "cond": [
+    "irregular-hours"
+   ]
+  },
+  "path": "associate",
+  "miWorkers": 360.0,
+  "wage": 118930.0,
+  "growth": 1.7,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-9071",
+  "name": "Jewelers and precious stone and metal workers",
+  "family": "Metalworking and manufacturing",
+  "blurb": "Makes, repairs, and adjusts jewelry, sets stones, polishes metal, and checks fine details.",
+  "tags": {
+   "setting": "indoors",
+   "social": "solo",
+   "physical": "light",
+   "focus": [
+    "make",
+    "fix"
+   ],
+   "brain": [
+    "detail",
+    "creative"
+   ],
+   "cond": []
+  },
+  "path": "onjob-long",
+  "miWorkers": 460.0,
+  "wage": 56610.0,
+  "growth": -3.2,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-6064",
+  "name": "Textile winding, twisting, and drawing out machine setters, operators, and tenders",
+  "family": "Production and assembly",
+  "blurb": "Runs machines that wind or draw fibers, replaces spools, and checks thread quality.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 130.0,
+  "wage": 36540.0,
+  "growth": -10.3,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "47-3012",
+  "name": "Helpers--carpenters",
+  "family": "Building trades",
+  "blurb": "Helps carpenters carry lumber, hold materials, clean work areas, and gather tools safely.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "build"
+   ],
+   "brain": [],
+   "cond": [
+    "danger",
+    "noise",
+    "hot-cold",
+    "dirty"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 230.0,
+  "wage": 44960.0,
+  "growth": -1.7,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "49-3043",
+  "name": "Rail car repairers",
+  "family": "Vehicle and equipment repair",
+  "blurb": "Repairs railroad cars, checks brakes and wheels, replaces parts, and tests cars for service.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "fix",
+    "inspect"
+   ],
+   "brain": [
+    "troubleshoot",
+    "detail"
+   ],
+   "cond": [
+    "noise",
+    "dirty",
+    "danger",
+    "tight-spaces"
+   ]
+  },
+  "path": "onjob-long",
+  "miWorkers": 370.0,
+  "wage": 64370.0,
+  "growth": 2.6,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-9197",
+  "name": "Tire builders",
+  "family": "Production and assembly",
+  "blurb": "Builds tires by layering rubber and fabric, checks shape, and moves tires to curing.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "operate"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 80.0,
+  "wage": 44420.0,
+  "growth": 0.8,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "49-2095",
+  "name": "Electrical and electronics repairers, powerhouse, substation, and relay",
+  "family": "Electrical and power",
+  "blurb": "Repairs electrical controls, relays, and substation equipment, tests circuits, and keeps power systems reliable.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "fix",
+    "inspect"
+   ],
+   "brain": [
+    "tech",
+    "troubleshoot",
+    "math"
+   ],
+   "cond": [
+    "danger",
+    "noise",
+    "hot-cold",
+    "tight-spaces"
+   ]
+  },
+  "path": "certificate",
+  "miWorkers": 450.0,
+  "wage": 106600.0,
+  "growth": 9.7,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-3091",
+  "name": "Food and tobacco roasting, baking, and drying machine operators and tenders",
+  "family": "Food and hospitality",
+  "blurb": "Runs machines that roast, bake, or dry food or tobacco, checking heat and quality.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "hot-cold",
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 700.0,
+  "wage": 48240.0,
+  "growth": 0.4,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "49-3022",
+  "name": "Automotive glass installers and repairers",
+  "family": "Vehicle and equipment repair",
+  "blurb": "Installs and repairs vehicle glass, removes broken windshields, seals edges, and checks for leaks.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "fix",
+    "build"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "tight-spaces"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 580.0,
+  "wage": 46860.0,
+  "growth": 5.7,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-6093",
+  "name": "Upholsterers",
+  "family": "Production and assembly",
+  "blurb": "Covers furniture with fabric or leather, cuts padding, and repairs frames and springs.",
+  "tags": {
+   "setting": "indoors",
+   "social": "solo",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "fix"
+   ],
+   "brain": [
+    "detail",
+    "creative"
+   ],
+   "cond": []
+  },
+  "path": "onjob-mid",
+  "miWorkers": 500.0,
+  "wage": 44890.0,
+  "growth": -2.3,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "49-2097",
+  "name": "Audiovisual equipment installers and repairers",
+  "family": "Installation and repair (other)",
+  "blurb": "Installs and fixes sound, video, and display equipment, runs cables, and tests connections.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "build",
+    "fix"
+   ],
+   "brain": [
+    "tech",
+    "troubleshoot"
+   ],
+   "cond": [
+    "tight-spaces",
+    "heights"
+   ]
+  },
+  "path": "certificate",
+  "miWorkers": 310.0,
+  "wage": 45400.0,
+  "growth": 4.8,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "47-4061",
+  "name": "Rail-track laying and maintenance equipment operators",
+  "family": "Building trades",
+  "blurb": "Operates machines that lay or maintain railroad tracks, checks alignment, and keeps tracks safe.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "build"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "noise",
+    "danger",
+    "hot-cold",
+    "dirty"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 290.0,
+  "wage": 75450.0,
+  "growth": 1.5,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "47-5023",
+  "name": "Earth drillers, except oil and gas",
+  "family": "Building trades",
+  "blurb": "Operates drilling rigs to make holes in earth, sets casing, and keeps sites safe.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "operate"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "noise",
+    "danger",
+    "hot-cold",
+    "dirty"
+   ]
+  },
+  "path": "onjob-long",
+  "miWorkers": 850.0,
+  "wage": 62570.0,
+  "growth": 3.6,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "47-2161",
+  "name": "Plasterers and stucco masons",
+  "family": "Building trades",
+  "blurb": "Applies plaster or stucco to walls and ceilings, smooths surfaces, and repairs cracks.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "build",
+    "make"
+   ],
+   "brain": [
+    "detail",
+    "creative"
+   ],
+   "cond": [
+    "hot-cold",
+    "dirty",
+    "noise"
+   ]
+  },
+  "path": "onjob-long",
+  "miWorkers": 210.0,
+  "wage": 72990.0,
+  "growth": 2.8,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "49-2091",
+  "name": "Avionics technicians",
+  "family": "Vehicle and equipment repair",
+  "blurb": "Repairs aircraft instruments, radios, and control systems, runs tests, and keeps records of work.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "fix",
+    "inspect"
+   ],
+   "brain": [
+    "tech",
+    "troubleshoot",
+    "detail"
+   ],
+   "cond": [
+    "noise",
+    "tight-spaces"
+   ]
+  },
+  "path": "certificate",
+  "miWorkers": 300.0,
+  "wage": 58280.0,
+  "growth": 9.4,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-9083",
+  "name": "Ophthalmic laboratory technicians",
+  "family": "Health technicians and care",
+  "blurb": "Cuts and grinds eyeglass lenses, fits them into frames, and checks prescriptions carefully.",
+  "tags": {
+   "setting": "indoors",
+   "social": "solo",
+   "physical": "light",
+   "focus": [
+    "make",
+    "inspect"
+   ],
+   "brain": [
+    "detail",
+    "tech"
+   ],
+   "cond": []
+  },
+  "path": "onjob-mid",
+  "miWorkers": 330.0,
+  "wage": 45490.0,
+  "growth": 2.2,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "51-8092",
+  "name": "Gas plant operators",
+  "family": "Mining, oil, gas and logging",
+  "blurb": "Runs equipment that processes or moves gas, watches dials, and records plant readings.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "inspect"
+   ],
+   "brain": [
+    "tech",
+    "detail",
+    "judgment"
+   ],
+   "cond": [
+    "danger",
+    "hot-cold",
+    "noise",
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-long",
+  "miWorkers": 540.0,
+  "wage": 100500.0,
+  "growth": -6.0,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "53-7073",
+  "name": "Wellhead pumpers",
+  "family": "Mining, oil, gas and logging",
+  "blurb": "Operates pumps at well sites, checks pressure, watches flow, and reports equipment problems.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "solo",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "inspect"
+   ],
+   "brain": [
+    "detail",
+    "troubleshoot"
+   ],
+   "cond": [
+    "danger",
+    "hot-cold",
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 210.0,
+  "wage": 47630.0,
+  "growth": -2.0,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "49-3092",
+  "name": "Recreational vehicle service technicians",
+  "family": "Vehicle and equipment repair",
+  "blurb": "Repairs recreational vehicles, checks plumbing, wiring, and engines, and tests appliances after repair.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "fix"
+   ],
+   "brain": [
+    "troubleshoot",
+    "tech"
+   ],
+   "cond": [
+    "dirty",
+    "noise"
+   ]
+  },
+  "path": "onjob-long",
+  "miWorkers": 640.0,
+  "wage": 41600.0,
+  "growth": 9.7,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "29-2033",
+  "name": "Nuclear medicine technologists",
+  "family": "Health technicians and care",
+  "blurb": "Prepares patients for scans, gives small amounts of radioactive material, and captures images.",
+  "tags": {
+   "setting": "indoors",
+   "social": "public",
+   "physical": "moderate",
+   "focus": [
+    "care",
+    "inspect"
+   ],
+   "brain": [
+    "tech",
+    "detail"
+   ],
+   "cond": []
+  },
+  "path": "associate",
+  "miWorkers": 640.0,
+  "wage": 95400.0,
+  "growth": 4.4,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "29-1124",
+  "name": "Radiation therapists",
+  "family": "Health technicians and care",
+  "blurb": "Gives radiation treatments to patients, positions body areas, and monitors safety during therapy.",
+  "tags": {
+   "setting": "indoors",
+   "social": "public",
+   "physical": "moderate",
+   "focus": [
+    "care",
+    "operate"
+   ],
+   "brain": [
+    "tech",
+    "detail"
+   ],
+   "cond": []
+  },
+  "path": "associate",
+  "miWorkers": 450.0,
+  "wage": 95890.0,
+  "growth": 2.8,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-4051",
+  "name": "Metal-refining furnace operators and tenders",
+  "family": "Metalworking and manufacturing",
+  "blurb": "Operates furnaces that melt or refine metal, watches temperatures, and removes impurities safely.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "hot-cold",
+    "noise",
+    "danger",
+    "dirty"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 680.0,
+  "wage": 44900.0,
+  "growth": -2.9,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "51-4034",
+  "name": "Lathe and turning machine tool setters, operators, and tenders, metal and plastic",
+  "family": "Metalworking and manufacturing",
+  "blurb": "Runs lathes and turning machines, shapes metal or plastic parts, and checks dimensions.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "math",
+    "detail"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 1540.0,
+  "wage": 46680.0,
+  "growth": -11.3,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "51-8091",
+  "name": "Chemical plant and system operators",
+  "family": "Production and assembly",
+  "blurb": "Controls chemical processing equipment, watches valves and gauges, and records changes during production.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "inspect"
+   ],
+   "brain": [
+    "tech",
+    "detail",
+    "judgment"
+   ],
+   "cond": [
+    "danger",
+    "hot-cold",
+    "noise",
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 40.0,
+  "wage": 72430.0,
+  "growth": -5.2,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "51-2051",
+  "name": "Fiberglass laminators and fabricators",
+  "family": "Production and assembly",
+  "blurb": "Layers fiberglass materials into molds, applies resins, trims pieces, and checks finished surfaces.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "build"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "dirty",
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 520.0,
+  "wage": 43980.0,
+  "growth": 4.6,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-4199",
+  "name": "Metal workers and plastic workers, all other",
+  "family": "Metalworking and manufacturing",
+  "blurb": "Makes or repairs metal and plastic items using hand tools, machines, and drawings.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "fix"
+   ],
+   "brain": [
+    "math",
+    "detail"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 530.0,
+  "wage": 40110.0,
+  "growth": -7.1,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "53-2022",
+  "name": "Airfield operations specialists",
+  "family": "Driving and transportation",
+  "blurb": "Helps aircraft move safely on the ground, checks runways, and gives pilots directions.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "inspect"
+   ],
+   "brain": [
+    "judgment",
+    "tech"
+   ],
+   "cond": [
+    "noise",
+    "hot-cold",
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-long",
+  "miWorkers": 440.0,
+  "wage": 61780.0,
+  "growth": 7.8,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "49-9094",
+  "name": "Locksmiths and safe repairers",
+  "family": "Installation and repair (other)",
+  "blurb": "Makes keys, opens locks, repairs lock parts, and installs security devices for customers.",
+  "tags": {
+   "setting": "mixed",
+   "social": "public",
+   "physical": "light",
+   "focus": [
+    "fix",
+    "make"
+   ],
+   "brain": [
+    "detail",
+    "troubleshoot"
+   ],
+   "cond": []
+  },
+  "path": "onjob-long",
+  "miWorkers": 230.0,
+  "wage": 54120.0,
+  "growth": -11.7,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "39-5011",
+  "name": "Barbers",
+  "family": "Personal care and service",
+  "blurb": "Cuts, trims, shaves, and styles hair while talking with clients about their preferences.",
+  "tags": {
+   "setting": "indoors",
+   "social": "public",
+   "physical": "light",
+   "focus": [
+    "serve"
+   ],
+   "brain": [
+    "creative",
+    "detail"
+   ],
+   "cond": []
+  },
+  "path": "certificate",
+  "miWorkers": null,
+  "wage": 35490.0,
+  "growth": 3.3,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-9192",
+  "name": "Cleaning, washing, and metal pickling equipment operators and tenders",
+  "family": "Production and assembly",
+  "blurb": "Runs machines that clean or treat parts, mixes solutions, and checks surfaces after cleaning.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "noise",
+    "dirty",
+    "hot-cold"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 820.0,
+  "wage": 44400.0,
+  "growth": 3.4,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "51-7021",
+  "name": "Furniture finishers",
+  "family": "Production and assembly",
+  "blurb": "Sands, stains, and seals wood furniture, checks surfaces, and applies protective coatings carefully.",
+  "tags": {
+   "setting": "indoors",
+   "social": "solo",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "fix"
+   ],
+   "brain": [
+    "detail",
+    "creative"
+   ],
+   "cond": [
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 570.0,
+  "wage": 45260.0,
+  "growth": -3.5,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "49-2092",
+  "name": "Electric motor, power tool, and related repairers",
+  "family": "Electrical and power",
+  "blurb": "Repairs electric motors, generators, and power tools, replaces worn parts, and tests equipment.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "fix"
+   ],
+   "brain": [
+    "troubleshoot",
+    "tech"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 390.0,
+  "wage": 48440.0,
+  "growth": 4.4,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-9051",
+  "name": "Furnace, kiln, oven, drier, and kettle operators and tenders",
+  "family": "Production and assembly",
+  "blurb": "Operates furnaces, kilns, ovens, or dryers, watches temperatures, and removes finished materials safely.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "hot-cold",
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 420.0,
+  "wage": 47410.0,
+  "growth": 2.6,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "47-3011",
+  "name": "Helpers--brickmasons, blockmasons, stonemasons, and tile and marble setters",
+  "family": "Building trades",
+  "blurb": "Helps masons by mixing mortar, carrying bricks or blocks, and keeping tools ready.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "build"
+   ],
+   "brain": [],
+   "cond": [
+    "hot-cold",
+    "danger",
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 240.0,
+  "wage": 45540.0,
+  "growth": -11.7,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-8099",
+  "name": "Plant and system operators, all other",
+  "family": "Industrial and machine maintenance",
+  "blurb": "Operates plant equipment that moves or treats materials, watches gauges, and records results.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "inspect"
+   ],
+   "brain": [
+    "tech",
+    "detail",
+    "judgment"
+   ],
+   "cond": [
+    "noise",
+    "hot-cold",
+    "danger",
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 250.0,
+  "wage": 64690.0,
+  "growth": 2.3,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "47-5041",
+  "name": "Continuous mining machine operators",
+  "family": "Mining, oil, gas and logging",
+  "blurb": "Operates machines that cut coal or rock from mine faces, and watches safety conditions.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "operate"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "tight-spaces",
+    "danger",
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 180.0,
+  "wage": 57760.0,
+  "growth": 3.2,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "51-4191",
+  "name": "Heat treating equipment setters, operators, and tenders, metal and plastic",
+  "family": "Metalworking and manufacturing",
+  "blurb": "Runs heat treating furnaces, hardens or softens metal parts, and checks hardness results.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "detail",
+    "math"
+   ],
+   "cond": [
+    "hot-cold",
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 1190.0,
+  "wage": 50560.0,
+  "growth": -9.5,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "51-6052",
+  "name": "Tailors, dressmakers, and custom sewers",
+  "family": "Production and assembly",
+  "blurb": "Alters, repairs, and makes clothing, measures customers, and sews fabric to fit properly.",
+  "tags": {
+   "setting": "indoors",
+   "social": "public",
+   "physical": "light",
+   "focus": [
+    "make",
+    "fix"
+   ],
+   "brain": [
+    "detail",
+    "creative",
+    "math"
+   ],
+   "cond": []
+  },
+  "path": "onjob-mid",
+  "miWorkers": 280.0,
+  "wage": 37500.0,
+  "growth": -8.8,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "47-2171",
+  "name": "Reinforcing iron and rebar workers",
+  "family": "Building trades",
+  "blurb": "Cuts, bends, and places steel rods inside forms so concrete will be stronger.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "build"
+   ],
+   "brain": [
+    "math"
+   ],
+   "cond": [
+    "danger",
+    "hot-cold",
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "apprenticeship",
+  "miWorkers": null,
+  "wage": 91220.0,
+  "growth": -5.3,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "47-2041",
+  "name": "Carpet installers",
+  "family": "Building trades",
+  "blurb": "Measures floors, cuts carpet, stretches it into place, and trims edges for finish.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "build",
+    "make"
+   ],
+   "brain": [
+    "math",
+    "detail"
+   ],
+   "cond": [
+    "tight-spaces",
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 470.0,
+  "wage": 48790.0,
+  "growth": -16.4,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "53-6099",
+  "name": "Transportation workers, all other",
+  "family": "Driving and transportation",
+  "blurb": "Helps move people or goods, checks vehicles or schedules, and supports transportation operations.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "inspect"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 220.0,
+  "wage": 37190.0,
+  "growth": 4.0,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "51-6099",
+  "name": "Textile, apparel, and furnishings workers, all other",
+  "family": "Production and assembly",
+  "blurb": "Makes or repairs fabric products, cuts material, operates sewing equipment, and checks quality.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "fix"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 540.0,
+  "wage": 31270.0,
+  "growth": -13.4,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "49-3052",
+  "name": "Motorcycle mechanics",
+  "family": "Vehicle and equipment repair",
+  "blurb": "Repairs motorcycles, checks engines and brakes, tunes motors, and tests bikes after service.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "fix"
+   ],
+   "brain": [
+    "troubleshoot",
+    "tech"
+   ],
+   "cond": [
+    "dirty",
+    "noise"
+   ]
+  },
+  "path": "certificate",
+  "miWorkers": 310.0,
+  "wage": 40100.0,
+  "growth": 2.1,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-6063",
+  "name": "Textile knitting and weaving machine setters, operators, and tenders",
+  "family": "Production and assembly",
+  "blurb": "Runs knitting or weaving machines, watches yarn feeds, and fixes breaks in fabric.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 90.0,
+  "wage": 38120.0,
+  "growth": -13.7,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "51-6091",
+  "name": "Extruding and forming machine setters, operators, and tenders, synthetic and glass fibers",
+  "family": "Production and assembly",
+  "blurb": "Runs machines that form synthetic or glass fibers, checks thickness, and winds strands.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "detail",
+    "tech"
+   ],
+   "cond": [
+    "hot-cold",
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 180.0,
+  "wage": 49180.0,
+  "growth": -3.3,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "47-2082",
+  "name": "Tapers",
+  "family": "Building trades",
+  "blurb": "Applies tape and compound to drywall joints, smooths surfaces, and prepares walls for paint.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "build",
+    "make"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 190.0,
+  "wage": 63630.0,
+  "growth": -1.6,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-2021",
+  "name": "Coil winders, tapers, and finishers",
+  "family": "Electrical and power",
+  "blurb": "Winds wire coils for motors or transformers, checks connections, and tests finished parts.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "light",
+   "focus": [
+    "make",
+    "operate"
+   ],
+   "brain": [
+    "detail",
+    "tech"
+   ],
+   "cond": []
+  },
+  "path": "onjob-mid",
+  "miWorkers": 110.0,
+  "wage": 47350.0,
+  "growth": -4.0,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "51-4071",
+  "name": "Foundry mold and coremakers",
+  "family": "Metalworking and manufacturing",
+  "blurb": "Makes molds and cores for metal casting, packs sand, and checks mold shapes.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "make",
+    "operate"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "hot-cold",
+    "dirty",
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 2050.0,
+  "wage": 46150.0,
+  "growth": -23.0,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "53-3011",
+  "name": "Ambulance drivers and attendants, except emergency medical technicians",
+  "family": "Driving and transportation",
+  "blurb": "Drives ambulances, helps load patients, keeps vehicles stocked, and follows emergency traffic rules.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "care"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "danger",
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": null,
+  "wage": 31770.0,
+  "growth": -1.3,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "47-5012",
+  "name": "Rotary drill operators, oil and gas",
+  "family": "Mining, oil, gas and logging",
+  "blurb": "Operates rotary drilling rigs at oil or gas wells, watches gauges, and guides drilling.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "operate"
+   ],
+   "brain": [
+    "judgment",
+    "troubleshoot"
+   ],
+   "cond": [
+    "danger",
+    "dirty",
+    "hot-cold",
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 70.0,
+  "wage": 54020.0,
+  "growth": 0.8,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "51-4035",
+  "name": "Milling and planing machine setters, operators, and tenders, metal and plastic",
+  "family": "Metalworking and manufacturing",
+  "blurb": "Runs milling or planing machines, cuts metal parts, and checks sizes with measuring tools.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "math",
+    "detail"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 670.0,
+  "wage": 48400.0,
+  "growth": -13.2,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "53-4022",
+  "name": "Railroad brake, signal, and switch operators and locomotive firers",
+  "family": "Driving and transportation",
+  "blurb": "Operates train brakes, switches, and signals, watches track conditions, and helps trains move safely.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "danger",
+    "noise",
+    "hot-cold"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 190.0,
+  "wage": 66970.0,
+  "growth": 0.8,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "49-3091",
+  "name": "Bicycle repairers",
+  "family": "Vehicle and equipment repair",
+  "blurb": "Repairs bicycles, fixes brakes and gears, replaces tires, and checks frames for safety.",
+  "tags": {
+   "setting": "indoors",
+   "social": "solo",
+   "physical": "light",
+   "focus": [
+    "fix"
+   ],
+   "brain": [
+    "troubleshoot",
+    "detail"
+   ],
+   "cond": []
+  },
+  "path": "onjob-mid",
+  "miWorkers": 580.0,
+  "wage": 38910.0,
+  "growth": -5.7,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-9191",
+  "name": "Adhesive bonding machine operators and tenders",
+  "family": "Production and assembly",
+  "blurb": "Runs machines that glue parts together, feeds materials, and checks bonds for strength.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 210.0,
+  "wage": 45470.0,
+  "growth": 1.3,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "51-9082",
+  "name": "Medical appliance technicians",
+  "family": "Health technicians and care",
+  "blurb": "Makes or repairs medical appliances, such as braces or orthotics, and checks fit.",
+  "tags": {
+   "setting": "indoors",
+   "social": "public",
+   "physical": "light",
+   "focus": [
+    "make",
+    "fix"
+   ],
+   "brain": [
+    "detail",
+    "tech"
+   ],
+   "cond": []
+  },
+  "path": "onjob-mid",
+  "miWorkers": 480.0,
+  "wage": 49140.0,
+  "growth": 3.5,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "29-2092",
+  "name": "Hearing aid specialists",
+  "family": "Health technicians and care",
+  "blurb": "Tests hearing, fits hearing aids, explains device care, and helps clients adjust settings.",
+  "tags": {
+   "setting": "indoors",
+   "social": "public",
+   "physical": "light",
+   "focus": [
+    "care",
+    "serve"
+   ],
+   "brain": [
+    "detail",
+    "tech"
+   ],
+   "cond": []
+  },
+  "path": "onjob-mid",
+  "miWorkers": 460.0,
+  "wage": 55100.0,
+  "growth": 19.4,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "49-2021",
+  "name": "Radio, cellular, and tower equipment installers and repairers",
+  "family": "Installation and repair (other)",
+  "blurb": "Installs and repairs radio or cellular equipment, climbs towers, and tests signal strength.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "build",
+    "fix"
+   ],
+   "brain": [
+    "tech",
+    "troubleshoot"
+   ],
+   "cond": [
+    "heights",
+    "danger",
+    "hot-cold",
+    "noise"
+   ]
+  },
+  "path": "associate",
+  "miWorkers": 410.0,
+  "wage": 64130.0,
+  "growth": 1.2,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "53-7121",
+  "name": "Tank car, truck, and ship loaders",
+  "family": "Driving and transportation",
+  "blurb": "Loads liquids or bulk materials into tanks, cars, trucks, or ships safely and carefully.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "operate",
+    "inspect"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "danger",
+    "noise",
+    "hot-cold",
+    "dirty"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 200.0,
+  "wage": 57900.0,
+  "growth": 2.8,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "47-5011",
+  "name": "Derrick operators, oil and gas",
+  "family": "Mining, oil, gas and logging",
+  "blurb": "Operates derrick equipment during drilling, moves drill pipe, and helps keep rigs working.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "operate"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "heights",
+    "danger",
+    "hot-cold",
+    "noise"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 40.0,
+  "wage": 45180.0,
+  "growth": 1.6,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "51-9022",
+  "name": "Grinding and polishing workers, hand",
+  "family": "Metalworking and manufacturing",
+  "blurb": "Smooths and polishes metal or plastic parts by hand, using grinding tools carefully.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "fix"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 650.0,
+  "wage": 44430.0,
+  "growth": -19.2,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "53-4041",
+  "name": "Subway and streetcar operators",
+  "family": "Driving and transportation",
+  "blurb": "Drives subway or streetcar trains, opens doors, watches signals, and keeps riders safe.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "public",
+   "physical": "moderate",
+   "focus": [
+    "operate"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "danger",
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 40.0,
+  "wage": 41710.0,
+  "growth": 3.7,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "47-2011",
+  "name": "Boilermakers",
+  "family": "Building trades",
+  "blurb": "Builds and repairs boilers, tanks, and vats, cuts metal, and welds seams securely.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "build",
+    "fix"
+   ],
+   "brain": [
+    "math",
+    "detail"
+   ],
+   "cond": [
+    "tight-spaces",
+    "noise",
+    "danger",
+    "hot-cold"
+   ]
+  },
+  "path": "apprenticeship",
+  "miWorkers": null,
+  "wage": 98220.0,
+  "growth": -1.8,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "49-9081",
+  "name": "Wind turbine service technicians",
+  "family": "Electrical and power",
+  "blurb": "Climbs wind turbines, inspects blades and generators, fixes problems, and performs routine maintenance.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "fix",
+    "inspect"
+   ],
+   "brain": [
+    "tech",
+    "troubleshoot"
+   ],
+   "cond": [
+    "heights",
+    "danger",
+    "hot-cold",
+    "noise"
+   ]
+  },
+  "path": "certificate",
+  "miWorkers": 70.0,
+  "wage": 62800.0,
+  "growth": 29.5,
+  "ai": "low",
+  "deepDive": true
+ },
+ {
+  "soc": "53-7072",
+  "name": "Pump operators, except wellhead pumpers",
+  "family": "Driving and transportation",
+  "blurb": "Operates pumps and valves to move liquids, watches gauges, and records flow readings.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "inspect"
+   ],
+   "brain": [
+    "detail",
+    "troubleshoot"
+   ],
+   "cond": [
+    "noise",
+    "hot-cold",
+    "danger"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 40.0,
+  "wage": 69540.0,
+  "growth": 4.3,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "53-1041",
+  "name": "Aircraft cargo handling supervisors",
+  "family": "Driving and transportation",
+  "blurb": "Supervises workers who load aircraft cargo, checks schedules, and keeps ramp operations safe.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "inspect"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "noise",
+    "danger",
+    "hot-cold",
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-long",
+  "miWorkers": 90.0,
+  "wage": 47850.0,
+  "growth": 9.2,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "49-9069",
+  "name": "Precision instrument and equipment repairers, all other",
+  "family": "Installation and repair (other)",
+  "blurb": "Repairs delicate instruments and equipment, replaces small parts, and tests devices for accuracy.",
+  "tags": {
+   "setting": "indoors",
+   "social": "solo",
+   "physical": "light",
+   "focus": [
+    "fix",
+    "inspect"
+   ],
+   "brain": [
+    "detail",
+    "troubleshoot",
+    "tech"
+   ],
+   "cond": []
+  },
+  "path": "onjob-long",
+  "miWorkers": 190.0,
+  "wage": 66360.0,
+  "growth": 2.5,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-6062",
+  "name": "Textile cutting machine setters, operators, and tenders",
+  "family": "Production and assembly",
+  "blurb": "Runs machines that cut fabric, spreads material layers, and checks pattern alignment carefully.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 100.0,
+  "wage": 37280.0,
+  "growth": -13.6,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "51-4022",
+  "name": "Forging machine setters, operators, and tenders, metal and plastic",
+  "family": "Metalworking and manufacturing",
+  "blurb": "Operates forging machines that shape hot metal, checks dies, and removes finished pieces.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "hot-cold",
+    "noise",
+    "danger"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 620.0,
+  "wage": 61620.0,
+  "growth": -17.2,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "49-9097",
+  "name": "Signal and track switch repairers",
+  "family": "Installation and repair (other)",
+  "blurb": "Repairs railroad signals, switches, and track devices, tests wiring, and keeps trains moving.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "fix",
+    "inspect"
+   ],
+   "brain": [
+    "tech",
+    "troubleshoot"
+   ],
+   "cond": [
+    "danger",
+    "noise",
+    "hot-cold"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 120.0,
+  "wage": 93060.0,
+  "growth": 1.8,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "49-2096",
+  "name": "Electronic equipment installers and repairers, motor vehicles",
+  "family": "Vehicle and equipment repair",
+  "blurb": "Installs and repairs electronic devices in vehicles, runs wiring, and tests controls after installation.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "build",
+    "fix"
+   ],
+   "brain": [
+    "tech",
+    "troubleshoot"
+   ],
+   "cond": [
+    "tight-spaces",
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 80.0,
+  "wage": 48070.0,
+  "growth": -14.5,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "51-8012",
+  "name": "Power distributors and dispatchers",
+  "family": "Electrical and power",
+  "blurb": "Controls the flow of electricity through power lines, watches load changes, and responds quickly.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "light",
+   "focus": [
+    "operate",
+    "inspect"
+   ],
+   "brain": [
+    "tech",
+    "judgment",
+    "math"
+   ],
+   "cond": [
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-long",
+  "miWorkers": 450.0,
+  "wage": 116780.0,
+  "growth": 1.2,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "53-5031",
+  "name": "Ship engineers",
+  "family": "Driving and transportation",
+  "blurb": "Operates and maintains ship engines, boilers, and pumps, and watches engine room instruments.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "fix"
+   ],
+   "brain": [
+    "troubleshoot",
+    "tech"
+   ],
+   "cond": [
+    "noise",
+    "hot-cold",
+    "danger",
+    "travel"
+   ]
+  },
+  "path": "certificate",
+  "miWorkers": 100.0,
+  "wage": 79170.0,
+  "growth": 2.7,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-9123",
+  "name": "Painting, coating, and decorating workers",
+  "family": "Production and assembly",
+  "blurb": "Paints, coats, or decorates products by hand or spray, checking finish and coverage.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "operate"
+   ],
+   "brain": [
+    "detail",
+    "creative"
+   ],
+   "cond": [
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 140.0,
+  "wage": 38500.0,
+  "growth": 1.3,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "53-6041",
+  "name": "Traffic technicians",
+  "family": "Driving and transportation",
+  "blurb": "Sets up traffic signs and cones, helps control road work areas, and records conditions.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "build",
+    "inspect"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "danger",
+    "noise",
+    "hot-cold"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 100.0,
+  "wage": 37890.0,
+  "growth": 4.0,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "47-2022",
+  "name": "Stonemasons",
+  "family": "Building trades",
+  "blurb": "Cuts and sets stone for walls, walkways, and buildings, checking level and fit.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "build"
+   ],
+   "brain": [
+    "math",
+    "detail"
+   ],
+   "cond": [
+    "hot-cold",
+    "danger",
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "apprenticeship",
+  "miWorkers": 130.0,
+  "wage": 59160.0,
+  "growth": -5.4,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-9194",
+  "name": "Etchers and engravers",
+  "family": "Metalworking and manufacturing",
+  "blurb": "Etches or engraves designs into metal, glass, or plastic using tools and guides.",
+  "tags": {
+   "setting": "indoors",
+   "social": "solo",
+   "physical": "light",
+   "focus": [
+    "make",
+    "inspect"
+   ],
+   "brain": [
+    "detail",
+    "creative"
+   ],
+   "cond": []
+  },
+  "path": "onjob-mid",
+  "miWorkers": 390.0,
+  "wage": 43180.0,
+  "growth": -0.7,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "47-3014",
+  "name": "Helpers--painters, paperhangers, plasterers, and stucco masons",
+  "family": "Building trades",
+  "blurb": "Helps painters and plasterers by preparing surfaces, mixing materials, and covering nearby areas.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "build",
+    "make"
+   ],
+   "brain": [],
+   "cond": [
+    "dirty",
+    "hot-cold",
+    "noise"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": null,
+  "wage": 30300.0,
+  "growth": 1.5,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-6041",
+  "name": "Shoe and leather workers and repairers",
+  "family": "Personal care and service",
+  "blurb": "Repairs shoes, replaces soles and heels, stitches leather, and polishes finished footwear.",
+  "tags": {
+   "setting": "indoors",
+   "social": "solo",
+   "physical": "light",
+   "focus": [
+    "fix",
+    "make"
+   ],
+   "brain": [
+    "detail",
+    "creative"
+   ],
+   "cond": []
+  },
+  "path": "onjob-mid",
+  "miWorkers": 150.0,
+  "wage": 35940.0,
+  "growth": -6.5,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "49-2093",
+  "name": "Electrical and electronics installers and repairers, transportation equipment",
+  "family": "Vehicle and equipment repair",
+  "blurb": "Installs and repairs electrical systems on trains, buses, or other vehicles, and tests wiring.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "build",
+    "fix"
+   ],
+   "brain": [
+    "tech",
+    "troubleshoot"
+   ],
+   "cond": [
+    "tight-spaces",
+    "noise"
+   ]
+  },
+  "path": "certificate",
+  "miWorkers": 130.0,
+  "wage": 69510.0,
+  "growth": 5.4,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-9193",
+  "name": "Cooling and freezing equipment operators and tenders",
+  "family": "Industrial and machine maintenance",
+  "blurb": "Operates cooling and freezing equipment, watches temperatures, and keeps cold rooms working properly.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "inspect"
+   ],
+   "brain": [
+    "detail",
+    "tech"
+   ],
+   "cond": [
+    "hot-cold",
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 290.0,
+  "wage": 31700.0,
+  "growth": 5.9,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "47-5081",
+  "name": "Helpers--extraction workers",
+  "family": "Mining, oil, gas and logging",
+  "blurb": "Helps mining and oil workers carry tools, clean sites, and keep equipment ready.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "build",
+    "operate"
+   ],
+   "brain": [],
+   "cond": [
+    "danger",
+    "dirty",
+    "noise",
+    "hot-cold"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": null,
+  "wage": 47730.0,
+  "growth": 1.7,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "51-9031",
+  "name": "Cutters and trimmers, hand",
+  "family": "Production and assembly",
+  "blurb": "Cuts and trims materials by hand, follows patterns, and checks pieces for accuracy.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "inspect"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": []
+  },
+  "path": "onjob-short",
+  "miWorkers": 50.0,
+  "wage": 46830.0,
+  "growth": -18.9,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "47-3016",
+  "name": "Helpers--roofers",
+  "family": "Building trades",
+  "blurb": "Helps roofers carry shingles, clean roofs, hold materials, and keep job sites safe.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "build"
+   ],
+   "brain": [],
+   "cond": [
+    "heights",
+    "danger",
+    "hot-cold",
+    "noise"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": null,
+  "wage": 41750.0,
+  "growth": -0.1,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-4192",
+  "name": "Layout workers, metal and plastic",
+  "family": "Metalworking and manufacturing",
+  "blurb": "Marks cut lines and drill points on metal or plastic, using drawings and measuring tools.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "light",
+   "focus": [
+    "inspect",
+    "make"
+   ],
+   "brain": [
+    "math",
+    "detail"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 160.0,
+  "wage": 61550.0,
+  "growth": -3.4,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "47-5044",
+  "name": "Loading and moving machine operators, underground mining",
+  "family": "Mining, oil, gas and logging",
+  "blurb": "Operates machines that load and move rock or ore inside underground mines safely.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "operate"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "tight-spaces",
+    "danger",
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 80.0,
+  "wage": 59310.0,
+  "growth": -15.8,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "51-4194",
+  "name": "Tool grinders, filers, and sharpeners",
+  "family": "Metalworking and manufacturing",
+  "blurb": "Sharpens and shapes tools, grinds edges, checks angles, and keeps cutting tools ready.",
+  "tags": {
+   "setting": "indoors",
+   "social": "solo",
+   "physical": "light",
+   "focus": [
+    "fix",
+    "make"
+   ],
+   "brain": [
+    "detail",
+    "math"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 260.0,
+  "wage": 43470.0,
+  "growth": -6.8,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "47-5099",
+  "name": "Extraction workers, all other",
+  "family": "Mining, oil, gas and logging",
+  "blurb": "Helps extract minerals, oil, or gas by moving tools, cleaning sites, and supporting crews.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "operate",
+    "build"
+   ],
+   "brain": [],
+   "cond": [
+    "danger",
+    "dirty",
+    "noise",
+    "hot-cold"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": null,
+  "wage": 57010.0,
+  "growth": 3.4,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "51-7099",
+  "name": "Woodworkers, all other",
+  "family": "Production and assembly",
+  "blurb": "Makes wood products by cutting, shaping, and sanding parts, then checking fit and finish.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "fix"
+   ],
+   "brain": [
+    "math",
+    "detail"
+   ],
+   "cond": [
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 120.0,
+  "wage": 44450.0,
+  "growth": -2.3,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "49-9063",
+  "name": "Musical instrument repairers and tuners",
+  "family": "Installation and repair (other)",
+  "blurb": "Repairs musical instruments, replaces worn parts, tunes them, and checks sound quality after work.",
+  "tags": {
+   "setting": "indoors",
+   "social": "solo",
+   "physical": "light",
+   "focus": [
+    "fix",
+    "make"
+   ],
+   "brain": [
+    "detail",
+    "creative"
+   ],
+   "cond": []
+  },
+  "path": "apprenticeship",
+  "miWorkers": 210.0,
+  "wage": 59570.0,
+  "growth": 1.9,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-6061",
+  "name": "Textile bleaching and dyeing machine operators and tenders",
+  "family": "Production and assembly",
+  "blurb": "Runs machines that bleach or dye fabric, mixes colors, and checks cloth evenly.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "detail",
+    "creative"
+   ],
+   "cond": [
+    "noise",
+    "hot-cold",
+    "dirty"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 60.0,
+  "wage": 44720.0,
+  "growth": -12.5,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "51-8011",
+  "name": "Nuclear power reactor operators",
+  "family": "Electrical and power",
+  "blurb": "Controls nuclear reactor equipment, watches instruments closely, and follows strict safety procedures each shift.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "inspect"
+   ],
+   "brain": [
+    "tech",
+    "judgment",
+    "math"
+   ],
+   "cond": [
+    "danger",
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-long",
+  "miWorkers": null,
+  "wage": 122890.0,
+  "growth": -5.9,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "47-5032",
+  "name": "Explosives workers, ordnance handling experts, and blasters",
+  "family": "Mining, oil, gas and logging",
+  "blurb": "Handles explosives, sets charges, clears dangerous areas, and blasts rock or earth safely.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "operate",
+    "build"
+   ],
+   "brain": [
+    "math",
+    "judgment"
+   ],
+   "cond": [
+    "danger",
+    "noise",
+    "hot-cold"
+   ]
+  },
+  "path": "onjob-long",
+  "miWorkers": null,
+  "wage": 61390.0,
+  "growth": 0.0,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-9151",
+  "name": "Photographic process workers and processing machine operators",
+  "family": "Production and assembly",
+  "blurb": "Runs machines that develop film or prints, loads materials, and checks image quality.",
+  "tags": {
+   "setting": "indoors",
+   "social": "solo",
+   "physical": "light",
+   "focus": [
+    "make",
+    "operate"
+   ],
+   "brain": [
+    "detail",
+    "tech"
+   ],
+   "cond": []
+  },
+  "path": "onjob-short",
+  "miWorkers": 150.0,
+  "wage": 38610.0,
+  "growth": -5.6,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "51-4032",
+  "name": "Drilling and boring machine tool setters, operators, and tenders, metal and plastic",
+  "family": "Metalworking and manufacturing",
+  "blurb": "Runs drilling and boring machines, makes holes in parts, and checks depth carefully.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "math",
+    "detail"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 190.0,
+  "wage": 60410.0,
+  "growth": -9.5,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "51-4052",
+  "name": "Pourers and casters, metal",
+  "family": "Metalworking and manufacturing",
+  "blurb": "Pours molten metal into molds, watches flow, removes castings, and checks for flaws.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "make",
+    "operate"
+   ],
+   "brain": [
+    "detail",
+    "judgment"
+   ],
+   "cond": [
+    "hot-cold",
+    "noise",
+    "danger",
+    "dirty"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 360.0,
+  "wage": 60280.0,
+  "growth": -5.0,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "53-4013",
+  "name": "Rail yard engineers, dinkey operators, and hostlers",
+  "family": "Driving and transportation",
+  "blurb": "Moves rail cars around yards, connects cars, watches signals, and keeps tracks organized.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "danger",
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": null,
+  "wage": 60600.0,
+  "growth": 0.8,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "39-4011",
+  "name": "Embalmers",
+  "family": "Personal care and service",
+  "blurb": "Prepares bodies for burial, uses preserving fluids, applies cosmetics, and dresses remains respectfully.",
+  "tags": {
+   "setting": "indoors",
+   "social": "solo",
+   "physical": "moderate",
+   "focus": [
+    "care",
+    "make"
+   ],
+   "brain": [
+    "detail",
+    "creative"
+   ],
+   "cond": [
+    "irregular-hours"
+   ]
+  },
+  "path": "associate",
+  "miWorkers": null,
+  "wage": 58780.0,
+  "growth": 0.7,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "47-2043",
+  "name": "Floor sanders and finishers",
+  "family": "Building trades",
+  "blurb": "Sands wooden floors, applies stain or finish, and keeps surfaces smooth and even.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "fix"
+   ],
+   "brain": [
+    "detail",
+    "creative"
+   ],
+   "cond": [
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": null,
+  "wage": 51400.0,
+  "growth": 1.4,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "53-7071",
+  "name": "Gas compressor and gas pumping station operators",
+  "family": "Mining, oil, gas and logging",
+  "blurb": "Runs compressors and pumps at gas stations, checks pressure, and records meter readings.",
+  "tags": {
+   "setting": "mixed",
+   "social": "solo",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "inspect"
+   ],
+   "brain": [
+    "detail",
+    "troubleshoot"
+   ],
+   "cond": [
+    "noise",
+    "hot-cold",
+    "danger"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 40.0,
+  "wage": 78240.0,
+  "growth": 2.1,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "49-9092",
+  "name": "Commercial divers",
+  "family": "Installation and repair (other)",
+  "blurb": "Dives underwater to inspect, repair, or install equipment, and follows strict safety rules.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "fix",
+    "inspect"
+   ],
+   "brain": [
+    "troubleshoot",
+    "judgment",
+    "detail"
+   ],
+   "cond": [
+    "danger",
+    "tight-spaces",
+    "hot-cold",
+    "travel"
+   ]
+  },
+  "path": "certificate",
+  "miWorkers": 80.0,
+  "wage": 54620.0,
+  "growth": 4.8,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "47-5051",
+  "name": "Rock splitters, quarry",
+  "family": "Mining, oil, gas and logging",
+  "blurb": "Splits rock in quarries using tools, moves stone pieces, and keeps work areas safe.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "make"
+   ],
+   "brain": [],
+   "cond": [
+    "danger",
+    "noise",
+    "hot-cold",
+    "dirty"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": null,
+  "wage": 48740.0,
+  "growth": 5.8,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-6042",
+  "name": "Shoe machine operators and tenders",
+  "family": "Production and assembly",
+  "blurb": "Runs machines that cut, stitch, or shape shoe parts, and checks finished shoes.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "make"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": null,
+  "wage": 35650.0,
+  "growth": -6.9,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "47-5049",
+  "name": "Underground mining machine operators, all other",
+  "family": "Mining, oil, gas and logging",
+  "blurb": "Operates underground mining machines, watches controls, moves materials, and checks for unsafe conditions.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "operate"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "tight-spaces",
+    "danger",
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": null,
+  "wage": 70130.0,
+  "growth": -1.0,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "53-6011",
+  "name": "Bridge and lock tenders",
+  "family": "Driving and transportation",
+  "blurb": "Operates bridges and locks, opens pathways for traffic, watches signals, and keeps records.",
+  "tags": {
+   "setting": "mixed",
+   "social": "solo",
+   "physical": "light",
+   "focus": [
+    "operate",
+    "inspect"
+   ],
+   "brain": [
+    "judgment",
+    "detail"
+   ],
+   "cond": [
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 130.0,
+  "wage": 50540.0,
+  "growth": -2.3,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "49-9095",
+  "name": "Manufactured building and mobile home installers",
+  "family": "Building trades",
+  "blurb": "Sets up manufactured buildings or mobile homes, levels frames, and connects utilities safely.",
+  "tags": {
+   "setting": "outdoors",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "build"
+   ],
+   "brain": [
+    "math"
+   ],
+   "cond": [
+    "hot-cold",
+    "danger",
+    "noise"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": null,
+  "wage": 45990.0,
+  "growth": 5.8,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-6092",
+  "name": "Fabric and apparel patternmakers",
+  "family": "Production and assembly",
+  "blurb": "Draws and cuts patterns for clothing or fabric goods, and adjusts sizes as needed.",
+  "tags": {
+   "setting": "indoors",
+   "social": "solo",
+   "physical": "light",
+   "focus": [
+    "make",
+    "inspect"
+   ],
+   "brain": [
+    "math",
+    "detail",
+    "creative"
+   ],
+   "cond": []
+  },
+  "path": "onjob-mid",
+  "miWorkers": null,
+  "wage": 62750.0,
+  "growth": -15.0,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "51-4061",
+  "name": "Model makers, metal and plastic",
+  "family": "Metalworking and manufacturing",
+  "blurb": "Builds metal or plastic models from drawings, uses machine tools, and checks details.",
+  "tags": {
+   "setting": "indoors",
+   "social": "solo",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "inspect"
+   ],
+   "brain": [
+    "math",
+    "detail",
+    "creative"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 710.0,
+  "wage": 60540.0,
+  "growth": -17.3,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "53-7041",
+  "name": "Hoist and winch operators",
+  "family": "Driving and transportation",
+  "blurb": "Operates hoists or winches to lift and move loads, watches signals, and checks safety.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "noise",
+    "danger",
+    "hot-cold"
+   ]
+  },
+  "path": "onjob-short",
+  "miWorkers": 50.0,
+  "wage": 40070.0,
+  "growth": 0.2,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "53-5022",
+  "name": "Motorboat operators",
+  "family": "Driving and transportation",
+  "blurb": "Drives motorboats to carry passengers or cargo, checks navigation, and keeps vessels safe.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "public",
+   "physical": "moderate",
+   "focus": [
+    "operate"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "travel",
+    "danger",
+    "hot-cold"
+   ]
+  },
+  "path": "certificate",
+  "miWorkers": null,
+  "wage": 46760.0,
+  "growth": 4.9,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "47-2072",
+  "name": "Pile driver operators",
+  "family": "Building trades",
+  "blurb": "Operates pile driving equipment to set posts or supports deep in the ground.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "noise",
+    "danger",
+    "hot-cold"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": null,
+  "wage": 73300.0,
+  "growth": -5.7,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-6051",
+  "name": "Sewers, hand",
+  "family": "Production and assembly",
+  "blurb": "Sews fabric pieces by hand, follows patterns, trims threads, and checks seams carefully.",
+  "tags": {
+   "setting": "indoors",
+   "social": "solo",
+   "physical": "light",
+   "focus": [
+    "make"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": []
+  },
+  "path": "onjob-mid",
+  "miWorkers": null,
+  "wage": 36480.0,
+  "growth": -12.0,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "47-5043",
+  "name": "Roof bolters, mining",
+  "family": "Mining, oil, gas and logging",
+  "blurb": "Drills holes in mine roofs and installs bolts to prevent collapses and keep areas safe.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "operate",
+    "build"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "tight-spaces",
+    "danger",
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": null,
+  "wage": 78540.0,
+  "growth": -18.9,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "49-9061",
+  "name": "Camera and photographic equipment repairers",
+  "family": "Installation and repair (other)",
+  "blurb": "Repairs cameras and photographic equipment, replaces small parts, cleans lenses, and tests functions.",
+  "tags": {
+   "setting": "indoors",
+   "social": "solo",
+   "physical": "light",
+   "focus": [
+    "fix",
+    "inspect"
+   ],
+   "brain": [
+    "detail",
+    "troubleshoot"
+   ],
+   "cond": []
+  },
+  "path": "onjob-long",
+  "miWorkers": null,
+  "wage": 52720.0,
+  "growth": -15.5,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "47-2142",
+  "name": "Paperhangers",
+  "family": "Building trades",
+  "blurb": "Hangs wallpaper or coverings on walls, measures strips, matches patterns, and smooths bubbles.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "build"
+   ],
+   "brain": [
+    "detail",
+    "creative",
+    "math"
+   ],
+   "cond": []
+  },
+  "path": "onjob-long",
+  "miWorkers": null,
+  "wage": 52140.0,
+  "growth": 4.3,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-4062",
+  "name": "Patternmakers, metal and plastic",
+  "family": "Metalworking and manufacturing",
+  "blurb": "Makes patterns for metal or plastic casting, reads drawings, and checks dimensions carefully.",
+  "tags": {
+   "setting": "indoors",
+   "social": "solo",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "inspect"
+   ],
+   "brain": [
+    "math",
+    "detail",
+    "creative"
+   ],
+   "cond": [
+    "noise"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": 250.0,
+  "wage": 53780.0,
+  "growth": -22.8,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "49-9064",
+  "name": "Watch and clock repairers",
+  "family": "Installation and repair (other)",
+  "blurb": "Repairs watches and clocks, cleans tiny parts, replaces gears, and tests timekeeping accuracy.",
+  "tags": {
+   "setting": "indoors",
+   "social": "solo",
+   "physical": "light",
+   "focus": [
+    "fix",
+    "inspect"
+   ],
+   "brain": [
+    "detail"
+   ],
+   "cond": []
+  },
+  "path": "onjob-long",
+  "miWorkers": null,
+  "wage": 67230.0,
+  "growth": -0.3,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "47-2053",
+  "name": "Terrazzo workers and finishers",
+  "family": "Building trades",
+  "blurb": "Pours and grinds terrazzo floors, chips stone, polishes surfaces, and repairs small cracks.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "build",
+    "make"
+   ],
+   "brain": [
+    "detail",
+    "creative"
+   ],
+   "cond": [
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "apprenticeship",
+  "miWorkers": null,
+  "wage": 72450.0,
+  "growth": -13.0,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "53-4099",
+  "name": "Rail transportation workers, all other",
+  "family": "Driving and transportation",
+  "blurb": "Supports railroad operations by checking cars, moving equipment, and helping keep trains on schedule.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate",
+    "inspect"
+   ],
+   "brain": [
+    "judgment"
+   ],
+   "cond": [
+    "danger",
+    "irregular-hours"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": null,
+  "wage": 56360.0,
+  "growth": 4.4,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "49-9045",
+  "name": "Refractory materials repairers, except brickmasons",
+  "family": "Building trades",
+  "blurb": "Repairs heat resistant linings in furnaces or kilns, removes worn material, and rebuilds surfaces.",
+  "tags": {
+   "setting": "mixed",
+   "social": "crew",
+   "physical": "heavy",
+   "focus": [
+    "fix",
+    "build"
+   ],
+   "brain": [],
+   "cond": [
+    "hot-cold",
+    "dirty",
+    "noise",
+    "tight-spaces"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": null,
+  "wage": 61290.0,
+  "growth": -13.7,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "53-7031",
+  "name": "Dredge operators",
+  "family": "Driving and transportation",
+  "blurb": "Operates dredging equipment to move sediment from waterways, watches controls, and keeps channels clear.",
+  "tags": {
+   "setting": "vehicle",
+   "social": "crew",
+   "physical": "moderate",
+   "focus": [
+    "operate"
+   ],
+   "brain": [
+    "judgment",
+    "detail"
+   ],
+   "cond": [
+    "noise",
+    "hot-cold"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": null,
+  "wage": 49640.0,
+  "growth": 0.7,
+  "ai": "low",
+  "deepDive": false
+ },
+ {
+  "soc": "51-7031",
+  "name": "Model makers, wood",
+  "family": "Production and assembly",
+  "blurb": "Builds wooden models from drawings, cuts and sands parts, and checks shapes carefully.",
+  "tags": {
+   "setting": "indoors",
+   "social": "solo",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "inspect"
+   ],
+   "brain": [
+    "math",
+    "detail",
+    "creative"
+   ],
+   "cond": [
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": null,
+  "wage": 56550.0,
+  "growth": -3.3,
+  "ai": "medium",
+  "deepDive": false
+ },
+ {
+  "soc": "51-2061",
+  "name": "Timing device assemblers and adjusters",
+  "family": "Production and assembly",
+  "blurb": "Assembles clocks or timing devices, fits small parts, adjusts mechanisms, and checks accuracy.",
+  "tags": {
+   "setting": "indoors",
+   "social": "crew",
+   "physical": "light",
+   "focus": [
+    "make",
+    "inspect"
+   ],
+   "brain": [
+    "detail",
+    "tech"
+   ],
+   "cond": []
+  },
+  "path": "onjob-mid",
+  "miWorkers": null,
+  "wage": 62620.0,
+  "growth": -6.1,
+  "ai": "high",
+  "deepDive": false
+ },
+ {
+  "soc": "51-7032",
+  "name": "Patternmakers, wood",
+  "family": "Production and assembly",
+  "blurb": "Makes wooden patterns for casting, reads drawings, shapes parts, and checks sizes carefully.",
+  "tags": {
+   "setting": "indoors",
+   "social": "solo",
+   "physical": "moderate",
+   "focus": [
+    "make",
+    "inspect"
+   ],
+   "brain": [
+    "math",
+    "detail",
+    "creative"
+   ],
+   "cond": [
+    "noise",
+    "dirty"
+   ]
+  },
+  "path": "onjob-mid",
+  "miWorkers": null,
+  "wage": 49630.0,
+  "growth": -2.0,
+  "ai": "medium",
+  "deepDive": false
+ }
+]
