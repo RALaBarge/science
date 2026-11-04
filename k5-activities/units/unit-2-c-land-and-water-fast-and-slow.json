@@ -1,0 +1,185 @@
+{
+ "id": "2-c-guard-the-sand",
+ "engine": "fairtest",
+ "title": "Guard the Sand",
+ "intro": "Wind and water move sand. Which guard holds it best? Run a fair test and use the numbers to decide.",
+ "note": "This is a model that uses the lesson's backup numbers. The real Erosion Guard Test in the lesson, with your own tray and your own trials, still counts.",
+ "summary": "A fair test changes one thing and keeps the rest the same. With three trials per guard, grass moved the least sand, so it was the best guard. Beach grass holds Michigan dunes the same way.",
+ "rounds": [
+  {
+   "question": "Wind moves sand in a tray. Which guard keeps the sand in place best?",
+   "factors": [
+    {
+     "id": "guard",
+     "icon": "🌾",
+     "label": "The kind of guard"
+    },
+    {
+     "id": "fan",
+     "icon": "🌬️",
+     "label": "How hard you fan",
+     "held": "The same gentle fanning with a folded card",
+     "why": "If you fan harder for some guards, you will not know if the guard or the fanning moved the sand."
+    },
+    {
+     "id": "sand",
+     "icon": "🏖️",
+     "label": "The sand in the tray",
+     "held": "The same kind and amount of dry sand",
+     "why": "If the sand is different each time, the sand could cause the difference, not the guard."
+    },
+    {
+     "id": "dist",
+     "icon": "📏",
+     "label": "Where you fan from",
+     "held": "The same distance from the tray",
+     "why": "If the distance changes, the distance could cause the difference, not the guard."
+    }
+   ],
+   "change": "guard",
+   "measure": "How far did the sand move? (finger widths; smaller means the guard worked better)",
+   "better": "low",
+   "options": [
+    {
+     "id": "none",
+     "icon": "🟫",
+     "label": "No guard",
+     "trials": [
+      4,
+      5,
+      4
+     ]
+    },
+    {
+     "id": "grass",
+     "icon": "🌾",
+     "label": "Grass",
+     "trials": [
+      1,
+      1,
+      2
+     ]
+    },
+    {
+     "id": "stones",
+     "icon": "🪨",
+     "label": "Stones",
+     "trials": [
+      2,
+      1,
+      2
+     ]
+    },
+    {
+     "id": "paper",
+     "icon": "📄",
+     "label": "Paper barrier",
+     "trials": [
+      3,
+      3,
+      2
+     ]
+    }
+   ],
+   "reads": [
+    {
+     "q": "Which one kept the sand from moving the most?",
+     "choices": [
+      {
+       "label": "Stones",
+       "ok": false,
+       "why": "Look again at the bars. Stones moved the sand 1 to 2 finger widths. Is there a guard with smaller bars?"
+      },
+      {
+       "label": "Grass",
+       "ok": true,
+       "why": "Grass moved the sand only 1 to 2 finger widths, the smallest bars of all. No guard moved it 4 to 5."
+      },
+      {
+       "label": "Paper barrier",
+       "ok": false,
+       "why": "The paper barrier moved the sand 2 to 3 finger widths. Look for the smallest bars."
+      }
+     ]
+    },
+    {
+     "q": "Why run each guard three times?",
+     "choices": [
+      {
+       "label": "To use up all the sand",
+       "ok": false,
+       "why": "Trials are not for using things up. Think about what one lucky or unlucky try could look like."
+      },
+      {
+       "label": "One try can be a fluke; three show what usually happens",
+       "ok": true,
+       "why": "Yes. Stones moved sand 2, 1 and 2 finger widths. The tries are close, so we can trust the pattern."
+      },
+      {
+       "label": "So every guard gets a different amount of fanning",
+       "ok": false,
+       "why": "That would make the test unfair. The fanning must stay the same."
+      }
+     ]
+    }
+   ],
+   "claim": [
+    {
+     "lead": "We changed",
+     "choices": [
+      {
+       "label": "the kind of guard.",
+       "ok": true,
+       "why": "Right. The guard is the one thing we changed."
+      },
+      {
+       "label": "how hard we fanned.",
+       "ok": false,
+       "why": "The fanning was held the same in every trial."
+      }
+     ]
+    },
+    {
+     "lead": "Then",
+     "choices": [
+      {
+       "label": "no guard moved the least sand.",
+       "ok": false,
+       "why": "No guard moved the sand 4 to 5 finger widths, the most."
+      },
+      {
+       "label": "grass moved the least sand, 1 to 2 finger widths.",
+       "ok": true,
+       "why": "Yes. That matches the grass bars."
+      },
+      {
+       "label": "paper barrier moved the least sand.",
+       "ok": false,
+       "why": "The paper barrier moved the sand 2 to 3 finger widths. Another guard moved less."
+      }
+     ]
+    },
+    {
+     "lead": "So",
+     "choices": [
+      {
+       "label": "grass is the best guard in this test.",
+       "ok": true,
+       "why": "Yes. The evidence is the smallest sand movement, trial after trial."
+      },
+      {
+       "label": "stones do nothing.",
+       "ok": false,
+       "why": "Stones moved the sand less than no guard did, so they helped some."
+      },
+      {
+       "label": "sand never moves.",
+       "ok": false,
+       "why": "The no-guard tray shows sand does move."
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

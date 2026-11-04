@@ -1,0 +1,188 @@
+{
+ "id": "2-a-dry-note",
+ "engine": "fairtest",
+ "title": "Rainproof Note",
+ "intro": "A paper note must stay dry. Which cover works? Run a fair test and read the results.",
+ "note": "This is a model that uses the lesson's backup data. The real Rainproof Note test in the lesson still counts.",
+ "summary": "A fair test uses the same water and the same distance for every cover. Plastic wrap and foil stayed dry every time, cloth did not, paper did not. When two covers both pass, the second need decides, such as whether the cover bends around the note.",
+ "rounds": [
+  {
+   "question": "Which cover keeps a paper note dry?",
+   "factors": [
+    {
+     "id": "cover",
+     "icon": "🧻",
+     "label": "The cover material"
+    },
+    {
+     "id": "sprays",
+     "icon": "💧",
+     "label": "Number of sprays",
+     "held": "The same 3 sprays",
+     "why": "If some covers get more sprays, the sprays could cause the difference, not the material."
+    },
+    {
+     "id": "dist",
+     "icon": "📏",
+     "label": "Spray distance",
+     "held": "The same distance",
+     "why": "If the distance changes, the distance could cause the difference, not the material."
+    },
+    {
+     "id": "note",
+     "icon": "📝",
+     "label": "The note",
+     "held": "The same kind of paper note",
+     "why": "If the note is different, the note could cause the difference, not the cover."
+    }
+   ],
+   "change": "cover",
+   "measure": "Was the note dry, damp or wet after each spray test?",
+   "better": "high",
+   "good": [
+    "Dry"
+   ],
+   "options": [
+    {
+     "id": "wrap",
+     "icon": "🎞️",
+     "label": "Plastic wrap",
+     "trials": [
+      "Dry",
+      "Dry",
+      "Dry"
+     ]
+    },
+    {
+     "id": "foil",
+     "icon": "🥈",
+     "label": "Foil",
+     "trials": [
+      "Dry",
+      "Dry",
+      "Dry"
+     ]
+    },
+    {
+     "id": "cloth",
+     "icon": "🧦",
+     "label": "Cloth",
+     "trials": [
+      "Damp",
+      "Wet",
+      "Wet"
+     ]
+    },
+    {
+     "id": "paper",
+     "icon": "📄",
+     "label": "Paper",
+     "trials": [
+      "Wet",
+      "Wet",
+      "Wet"
+     ]
+    }
+   ],
+   "reads": [
+    {
+     "q": "Which covers kept the note dry every time?",
+     "choices": [
+      {
+       "label": "Cloth and paper",
+       "ok": false,
+       "why": "Look at the chips. Cloth was damp or wet and paper was wet."
+      },
+      {
+       "label": "Plastic wrap and foil",
+       "ok": true,
+       "why": "Both stayed dry in all 3 trials."
+      },
+      {
+       "label": "Only foil",
+       "ok": false,
+       "why": "Foil was dry every time, but look at the plastic wrap too."
+      }
+     ]
+    },
+    {
+     "q": "Two covers both stayed dry. What do you do next?",
+     "choices": [
+      {
+       "label": "Pick one by luck",
+       "ok": false,
+       "why": "A choice should come from evidence, not luck."
+      },
+      {
+       "label": "Test them on the second need: does it bend around the note?",
+       "ok": true,
+       "why": "Yes. The goal has two needs. When the first need ties, the second need decides."
+      },
+      {
+       "label": "Say cloth is best",
+       "ok": false,
+       "why": "Cloth was damp or wet. It did not meet the first need."
+      }
+     ]
+    }
+   ],
+   "claim": [
+    {
+     "lead": "We changed",
+     "choices": [
+      {
+       "label": "the cover material.",
+       "ok": true,
+       "why": "Right. The cover was the one thing we changed."
+      },
+      {
+       "label": "the number of sprays.",
+       "ok": false,
+       "why": "Every cover got the same sprays."
+      }
+     ]
+    },
+    {
+     "lead": "Then",
+     "choices": [
+      {
+       "label": "paper stayed dry in 3 of 3 trials.",
+       "ok": false,
+       "why": "Paper was wet in all 3 trials."
+      },
+      {
+       "label": "plastic wrap and foil stayed dry in 3 of 3 trials.",
+       "ok": true,
+       "why": "Yes. That matches the chips."
+      },
+      {
+       "label": "cloth stayed dry in 3 of 3 trials.",
+       "ok": false,
+       "why": "Cloth was damp once and wet twice."
+      }
+     ]
+    },
+    {
+     "lead": "So",
+     "choices": [
+      {
+       "label": "plastic wrap and foil meet the goal of keeping the note dry, and the second need can decide between them.",
+       "ok": true,
+       "why": "Yes. The evidence says which covers keep water out."
+      },
+      {
+       "label": "cloth and paper keep water out.",
+       "ok": false,
+       "why": "They let water reach the note."
+      },
+      {
+       "label": "all covers are the same.",
+       "ok": false,
+       "why": "The results are not the same. Two stayed dry and two did not."
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
