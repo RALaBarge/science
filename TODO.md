@@ -27,8 +27,7 @@ Plan: one lead agent splits the work by grade folder, one sub-agent per folder, 
 The full review is saved in `reviews/k5-grok-review-2026-11-03.md` (section 1 content, sections 2-4 games/diagrams/build order). Text fixes from sections 1 were applied in two passes (all high items and most medium/low). Still open:
 
 - Standards footers are not checked against the Michigan Department of Education document; backup-data paths do not fully earn the verbs for 2-LS2-1, K-ESS2-1, 1-ESS1-1/2, 2-LS4-1 (the pages say the data is a backup).
-- K-2 quiz distractors still restate the misconception; 2-A quiz does not check 2-PS1-2 or 2-PS1-3.
-- 2-B Concept 1: the dark-box row changes temperature as well as light.
+- K-2 quiz distractors still restate the misconception.
 - Beans (2-LS2-1, 3-LS3-2, 5-LS1-1) and erosion spoon counts (2-C, 3.2, 4.5, 5.4) recur with different numbers; each page should say what is new so one messy trial is not treated as the finding.
 - 4.4 sound-cue ruler drop is a weaker fair test than the visual drop; 4.5 is five PEs in six sessions.
 

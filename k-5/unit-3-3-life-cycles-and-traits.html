@@ -358,7 +358,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s3">
   <div><p class="kicker">Concept 3</p><h2>Environment can influence traits</h2></div>
-  <p class="idea">The same kind of plant can grow taller in sun than shade; environment can change how a trait shows up.</p>
+  <p class="idea">The same kind of plant can grow differently in sun and in shade; environment can change how a trait shows up.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag try">Try it</span>
@@ -366,7 +366,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
     </article>
     <article class="aid">
       <span class="tag data">Data</span>
-      <h3>Provided plant-height data</h3><p>table with sun plants and shade plants.</p><p class="tip">“The sun plants are taller. The environment changed growth.”</p>
+      <h3>Provided plant-height data</h3><p>table with sun plants and shade plants.</p><p class="tip">“The shade plant stretched taller, but its stem was thin and its leaves were small. The sun plant was shorter and sturdier. The environment changed how the plant grew.”</p>
     </article>
     <article class="aid">
       <span class="tag real">Real world</span>
@@ -377,12 +377,12 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="kit">
   <div><p class="kicker">Hands-on · Design or investigate</p><h2>Try it at home or in class</h2></div>
-  <p class="idea">Fair test: Does light affect bean sprout growth? Change only light. Keep water, container, and seed type the same. Measure and graph sprout height, or use the provided dataset if time or weather is a problem.</p>
+  <p class="idea">Fair test: Does light affect bean sprout growth? Change only light. Keep water, container, and seed type the same. Measure and graph sprout height, record color and stem thickness, or use the provided dataset if time or weather is a problem.</p>
   <div class="aids">
     <article class="aid"><span class="tag try">Try it</span><h3>What you need</h3><p>bean seeds, clear cups, paper towels or soil, water, magnifier, index cards, tape, pictures or drawings of frog, bean plant, and mealworm beetle life stages.</p><p class="cap"><b>Safety:</b> do not eat seeds; wash hands after handling soil.</p></article>
     <article class="aid"><span class="tag try">Try it</span><h3>What you do</h3><p>build life-cycle models; sort beans or leaves by traits; analyze parent-offspring data; grow or examine beans in sun and shade.</p></article>
   </div>
-  <details class="deep"><summary>No time or no good weather? Use this data</summary><div class="in"><p class="cap">This data is a backup. It lets you practice reading evidence, but the standard expects you to collect your own when you can.</p><p>students record seed traits and plant height if growing beans.</p><p>parent-offspring bean data: yellow parent produces 8 yellow and 2 green offspring seeds; green parent produces 9 green and 1 yellow; spotted parent produces 6 spotted and 4 yellow. Sun/shade data: same seed type, same water, sun plant 18 cm, shade plant 9 cm after two weeks.</p></div></details>
+  <details class="deep"><summary>No time or no good weather? Use this data</summary><div class="in"><p class="cap">This data is a backup. It lets you practice reading evidence, but the standard expects you to collect your own when you can.</p><p>students record seed traits and plant height if growing beans.</p><p>parent-offspring bean data: yellow parent produces 8 yellow and 2 green offspring seeds; green parent produces 9 green and 1 yellow; spotted parent produces 6 spotted and 4 yellow. Sun/shade data: same seed type, same water, sun plant 18 cm with a thick green stem and wide leaves; shade plant 22 cm with a thin pale stem and small leaves, after two weeks.</p></div></details>
   <p class="cap"><b>Near you:</b> Michigan dry bean fields: bean seeds from parent plants can show different seed-coat colors and sizes, giving students real trait data.</p>
 </section>
 
@@ -408,7 +408,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
 <script>
 (function(){
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
-const Q=[{"q": "All life cycles include:", "o": ["only eggs and adults", "birth, growth, reproduction, and death", "flying and swimming"], "a": 1, "e": "Different organisms have different cycles, but they share key stages."}, {"q": "Offspring usually:", "o": ["are like parents but can differ", "do not inherit traits", "are exactly the same as parents"], "a": 0, "e": "They inherit traits but also show variation."}, {"q": "The same kind of plant grows taller in sun than shade. This shows:", "o": ["traits never change", "the environment can influence traits", "shade makes plants into a new kind of plant"], "a": 1, "e": "Light can affect how growth shows up."}, {"q": "Which data help show inheritance?", "o": ["the color of the pot", "parent and offspring seed colors", "the sound of the wind"], "a": 1, "e": "Parent-offspring data are evidence of inherited traits."}];
+const Q=[{"q": "All life cycles include:", "o": ["only eggs and adults", "birth, growth, reproduction, and death", "flying and swimming"], "a": 1, "e": "Different organisms have different cycles, but they share key stages."}, {"q": "Offspring usually:", "o": ["are like parents but can differ", "do not inherit traits", "are exactly the same as parents"], "a": 0, "e": "They inherit traits but also show variation."}, {"q": "The same kind of bean plant grows thick and green in sun but thin and pale in shade. This shows:", "o": ["traits never change", "the environment can influence traits", "shade makes plants into a new kind of plant"], "a": 1, "e": "Light can affect how growth shows up."}, {"q": "Which data help show inheritance?", "o": ["the color of the pot", "parent and offspring seed colors", "the sound of the wind"], "a": 1, "e": "Parent-offspring data are evidence of inherited traits."}];
 const box=$('#quiz'), sc=$('#quizScore'); let right=0;
 box.innerHTML=Q.map((x,i)=>`<div class="q item" data-i="${i}" style="display:grid"><h4>${i+1}. ${x.q}</h4><div class="opts">${x.o.map((t,j)=>`<button class="opt" type="button" data-j="${j}">${t}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
 box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.disabled)return; const row=b.closest('.q'), x=Q[+row.dataset.i], ok=+b.dataset.j===x.a;
