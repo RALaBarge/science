@@ -49,12 +49,13 @@ h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
 .hero-art{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:10px 12px}
 .howto{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:.92rem;color:var(--muted)}
 
-/* nav */
-.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);margin-top:18px;border-bottom:1px solid var(--line);
-  margin-inline:auto;max-width:920px}
-.nav ul{list-style:none;margin:0;padding:8px 0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin}
-.nav a{display:block;white-space:nowrap;text-decoration:none;font-size:.9rem;padding:7px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface)}
-.nav a:hover{border-color:var(--ink)}
+/* index at the top */
+.toc{margin:16px 0 8px;padding:12px 16px 10px;background:var(--surface);border:1px solid var(--line);border-radius:14px;max-width:62ch}
+.toc h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 4px}
+.toc ol{margin:0;padding-left:1.5em;columns:2 250px;column-gap:28px}
+.toc li{margin:.3em 0;break-inside:avoid}
+.toc a{color:var(--ink);text-underline-offset:3px}
+.toc a:hover{color:var(--accent,var(--ink))}
 
 /* sections */
 .sec{padding-block:52px 6px;scroll-margin-top:68px;display:grid;gap:20px}
@@ -230,7 +231,7 @@ html[data-style="retro"] .idea mark{color:var(--beam)}
 html[data-style="retro"] .aid,html[data-style="retro"] .hero-art,html[data-style="retro"] .card2,html[data-style="retro"] .related li,html[data-style="retro"] .evrow{border:1.5px solid #6E4BC8;border-radius:14px;box-shadow:0 0 22px #8a5cff33}
 html[data-style="retro"] .tag{border-radius:6px;background:transparent;border:1px solid var(--tint);color:var(--tint)}
 html[data-style="retro"] .kicker{color:#4DF0C2}
-html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#160B33}
+html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#160B33}
 </style>
 <script>
 /* Page style lives in the URL (?style=retro). Every param is kept on links to other pages. */
@@ -238,7 +239,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
   var de=document.documentElement;
   function cur(){return new URLSearchParams(location.search);}
   function apply(){
-    if(cur().get('style')==='retro'){de.setAttribute('data-style','retro');de.setAttribute('data-theme','dark');}
+    if(cur().get('style')!=='classic'){de.setAttribute('data-style','retro');de.setAttribute('data-theme','dark');}
     else{de.removeAttribute('data-style');de.removeAttribute('data-theme');}
   }
   function carry(){
@@ -255,7 +256,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
     });
   }
   function sync(){
-    var st=cur().get('style')==='retro'?'retro':'classic';
+    var st=cur().get('style')==='classic'?'classic':'retro';
     document.querySelectorAll('#styleSwitch .chip').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.style===st));});
   }
   apply();
@@ -263,7 +264,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
     var box=document.getElementById('styleSwitch');
     if(box)box.addEventListener('click',function(e){
       var b=e.target.closest('button'); if(!b)return;
-      var p=cur(); if(b.dataset.style==='retro')p.set('style','retro'); else p.delete('style');
+      var p=cur(); if(b.dataset.style==='classic')p.set('style','classic'); else p.delete('style');
       var qs=p.toString();
       try{history.replaceState(null,'',location.pathname+(qs?'?'+qs:'')+location.hash);}catch(err){}
       apply(); sync(); carry();
@@ -273,11 +274,12 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
 })();
 </script>
 <header class="hero">
-  <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="true">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="false">Retro space</button></div>
+  <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="false">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="true">Retro space</button></div>
   <p class="kicker">Eighth grade science · Unit 8.1</p>
   <h1>Contact Forces &amp; Collisions</h1>
   <p class="lede">Sixth grade (<b>Unit 3: Forces, Motion and Energy</b>) showed you that forces change motion. Now we get exact: how does a push turn into acceleration, why do two colliding objects push on each other equally, and how can engineers design cars so passengers survive crashes? Use <b>Unit 0: How Science Works</b>: we will predict, test, and compare.</p>
   <p class="bridge"><b>Where we left off:</b> in Unit 3 you learned that forces change motion and that energy transforms. You may already have learned that pushing something harder speeds it up. Now we get quantitative: how force, mass, and acceleration are connected, why forces come in pairs, and how engineers design for collisions.</p>
+  <nav class="toc" aria-label="In this unit"><h2>In this unit</h2><ol><li><a href="#s1">Force pairs</a></li><li><a href="#s2">F = m × a</a></li><li><a href="#s3">Collisions</a></li><li><a href="#s4">Friction</a></li><li><a href="#s5">Design</a></li><li><a href="#s6">Check yourself</a></li><li><a href="#game">Game</a></li></ol></nav>
   <div class="hero-art"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 240" role="img" aria-label="Two carts touching at the moment of collision with equal and opposite force arrows"><title>Newton's third law</title><desc>Cart A pushes on cart B and cart B pushes back on cart A with a force of the same size in the opposite direction.</desc>
 <defs>
 <marker id="ah1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--ink)"/></marker>
@@ -309,12 +311,12 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
   <p class="howto">Look for the tags <span class="tag analogy">Analogy</span><span class="tag diagram">Diagram</span><span class="tag try">Try it</span><span class="tag data">Data</span><span class="tag real">Real world</span></p>
 </header>
 
-<nav class="nav" aria-label="Lesson sections"><ul><li><a href="#s1">1 Force pairs</a></li><li><a href="#s2">2 F = m × a</a></li><li><a href="#s3">3 Collisions</a></li><li><a href="#s4">4 Friction</a></li><li><a href="#s5">5 Design</a></li><li><a href="#s6">6 Check yourself</a></li><li><a href="#game">7 Game</a></li></ul></nav>
 
 <main>
-<section class="sec" id="s1"><div><p class="kicker">Concept 1 · Newton's third law</p><h2>Forces come in pairs</h2></div><p class="idea">When object A pushes on object B, B pushes back on A with an <mark>equal and opposite force</mark>. The two forces act on <mark>different objects</mark>, so they do not cancel each other.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Pushing a wall on skates</h3><p class="cap">If you push on a wall while wearing skates, you roll backward. The wall did not move, but it pushed on you with the same force you pushed on it.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Find the partner force</h3><div class="chips" id="fpChips" role="group" aria-label="Situation"></div><div class="card2" id="fpCard" aria-live="polite"></div></article><article class="aid wide"><span class="tag data">Data</span><h3>Force pairs</h3><div class="tw"><table class="tbl" style="min-width:440px"><thead><tr><th>Action</th><th>Reaction</th></tr></thead><tbody><tr><td>Foot pushes ground backward</td><td>Ground pushes foot forward</td></tr><tr><td>Rocket pushes gas down</td><td>Gas pushes rocket up</td></tr><tr><td>Hammer hits nail</td><td>Nail pushes on hammer</td></tr><tr><td>Earth pulls you down</td><td>You pull Earth up</td></tr></tbody></table></div></article></div></section>
+<section class="sec" id="s1"><div><p class="kicker">Concept 1 · Newton's third law</p><h2>Forces come in pairs</h2></div><p class="idea">When object A pushes on object B, B pushes back on A with an <mark>equal and opposite force</mark>. The two forces act on <mark>different objects</mark>, so they do not cancel each other.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Pushing a wall on skates</h3><p class="cap">If you push on a wall while wearing skates, you roll backward. The wall did not move, but it pushed on you with the same force you pushed on it.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Find the partner force</h3><div class="chips" id="fpChips" role="group" aria-label="Situation"></div><div class="card2" id="fpCard" aria-live="polite"></div></article><article class="aid wide"><span class="tag try">Try it</span><h3>Push-back lab</h3><p class="cap">Cart A pushes cart B. First predict, then push. Change the push and the masses and see what stays the same and what changes.</p><p class="cap"><b>Predict:</b> which cart feels the bigger force?</p><div class="chips" id="pbPred" role="group" aria-label="Your prediction"></div><div class="stage"><svg id="pbSvg" viewBox="0 0 480 170" role="img" aria-label="Two carts touching. Press Push."></svg></div><div class="ctl"><label for="pbF">Push strength: <span id="pbFV"></span> N</label><input id="pbF" type="range" min="10" max="100" step="5" value="40"></div><div class="ctl"><label for="pbA">Cart A mass: <span id="pbAV"></span> kg</label><input id="pbA" type="range" min="1" max="10" step="1" value="2"></div><div class="ctl"><label for="pbB">Cart B mass: <span id="pbBV"></span> kg</label><input id="pbB" type="range" min="1" max="10" step="1" value="8"></div><div class="btnrow"><button type="button" class="btn" id="pbGo">Push</button><button type="button" class="btn ghost" id="pbReset">Reset</button></div><p class="readout" id="pbR" aria-live="polite"></p></article><article class="aid wide"><span class="tag data">Data</span><h3>Force pairs</h3><div class="tw"><table class="tbl" style="min-width:440px"><thead><tr><th>Action</th><th>Reaction</th></tr></thead><tbody><tr><td>Foot pushes ground backward</td><td>Ground pushes foot forward</td></tr><tr><td>Rocket pushes gas down</td><td>Gas pushes rocket up</td></tr><tr><td>Hammer hits nail</td><td>Nail pushes on hammer</td></tr><tr><td>Earth pulls you down</td><td>You pull Earth up</td></tr></tbody></table></div></article></div></section>
 <section class="sec" id="s2"><div><p class="kicker">Concept 2 · Net force and acceleration</p><h2>How much a push changes motion</h2></div><p class="idea">The <mark>net force</mark> on an object (all forces added, with direction) equals <mark>mass × acceleration</mark>. The same push gives a big acceleration to a light object and a small one to a heavy object.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Pushing a shopping cart</h3><p class="cap">An empty cart speeds up quickly with a gentle push. A full cart takes a lot more push to get the same speed-up.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Force and mass lab</h3><div class="ctl"><label for="fmF">Net force: <span id="fmFV"></span> N</label><input id="fmF" type="range" min="5" max="100" step="5" value="40"></div><div class="ctl"><label for="fmM">Mass: <span id="fmMV"></span> kg</label><input id="fmM" type="range" min="1" max="20" step="1" value="5"></div><div class="bars" id="fmBars"></div><p class="readout" id="fmR" aria-live="polite"></p></article><article class="aid wide"><span class="tag data">Data</span><h3>Acceleration comparison</h3><div class="stage"><svg id="fmSvg" viewBox="0 0 480 210" role="img" aria-label="Acceleration against mass for a fixed force, falling as mass increases."></svg></div><p class="cap">For a fixed force of 40 N: heavier objects accelerate less. This curve is called an inverse relationship.</p></article></div></section>
 <section class="sec" id="s3"><div><p class="kicker">Concept 3 · Momentum</p><h2>What happens when objects collide</h2></div><p class="idea"><mark>Momentum</mark> = mass × velocity. In a collision the <mark>total momentum before equals the total after</mark> (if no outside force acts). A heavy object that hits a light one changes the light one's motion more.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Bowling ball vs. ping pong ball</h3><p class="cap">A bowling ball hits a ping-pong ball: the ping-pong ball flies away fast and the bowling ball barely slows. Reverse them and the bowling ball barely notices.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Cart crash lab</h3><div class="chips" id="ccChips" role="group" aria-label="Case"></div><div id="ccBars" class="bars"></div><p class="readout" id="ccR" aria-live="polite"></p></article><article class="aid wide"><span class="tag data">Data</span><h3>Momentum before and after</h3><div class="tw"><table class="tbl" style="min-width:460px"><thead><tr><th></th><th>Cart A</th><th>Cart B</th><th>Total</th></tr></thead><tbody><tr><td>Before</td><td>2 kg × 3 m/s = 6</td><td>1 kg × 0 = 0</td><td>6</td></tr><tr><td>After (stick)</td><td>3 kg × 2 m/s = 6 (together)</td><td></td><td>6</td></tr></tbody></table></div><p class="cap">Momentum stays 6 kg·m/s. This is a conservation law like conservation of mass.</p></article></div></section>
+<style>.jumpgame{text-align:center;padding:36px 0 4px}.jumpgame p{margin:0 0 12px;color:var(--muted)}.jumpgame a{display:inline-block;padding:14px 28px;border-radius:999px;background:var(--beam);color:var(--beam-ink,#1a1400);font-weight:800;font-size:1.1rem;text-decoration:none;border:2px solid var(--beam)}.jumpgame a:hover,.jumpgame a:focus-visible{outline:3px solid var(--ink);outline-offset:3px}</style><div class="jumpgame"><p>Enjoying the collisions? You can skip the rest and play.</p><a href="#game">Jump to the Collision Lab game &darr;</a></div>
 <section class="sec" id="s4"><div><p class="kicker">Concept 4 · Contact forces</p><h2>Friction and other contact forces</h2></div><p class="idea"><mark>Friction</mark> opposes sliding; <mark>normal force</mark> pushes up from a surface; <mark>tension</mark> pulls along a rope; <mark>drag</mark> resists motion in air or water. All happen when objects touch.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Sneakers vs. socks</h3><p class="cap">Socks on a wooden floor slide a long way. Sneakers on the same floor stop quickly. The surfaces grip differently.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Stopping distance</h3><div class="ctl"><label for="frS">Speed: <span id="frSV"></span> m/s</label><input id="frS" type="range" min="10" max="40" step="5" value="20"></div><div class="chips" id="frChips" role="group" aria-label="Road"></div><div class="bars" id="frBars"></div><p class="readout" id="frR" aria-live="polite"></p></article><article class="aid wide"><span class="tag real">Real world</span><h3>Contact forces around you</h3><div class="tw"><table class="tbl"><thead><tr><th>Force</th><th>Example</th></tr></thead><tbody><tr><td>Friction</td><td>Brakes, shoes on ice</td></tr><tr><td>Normal</td><td>Book on a table</td></tr><tr><td>Tension</td><td>Rope holding a swing</td></tr><tr><td>Drag</td><td>Parachute slowing a skydiver</td></tr></tbody></table></div></article></div></section>
 <section class="sec" id="s5"><div><p class="kicker">Concept 5 · Engineering safety</p><h2>Design a safer crash</h2></div><p class="idea">A force is <mark>change in momentum ÷ time</mark>. If a crash takes <mark>longer</mark> (crumple zones, airbags, padding), the <mark>peak force is smaller</mark>. That is how engineers protect people.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Catching an egg</h3><p class="cap">Catch a raw egg by stopping your hand suddenly and it breaks. Move your hand back as you catch, taking more time, and it lives.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Crumple-zone test</h3><div class="ctl"><label for="czD">Crumple distance: <span id="czDV"></span> m</label><input id="czD" type="range" min="0.1" max="2" step="0.1" value="0.5"></div><div class="bars" id="czBars"></div><p class="readout" id="czR" aria-live="polite"></p></article><article class="aid wide"><span class="tag real">Real world</span><h3>Safety designs</h3><div class="tw"><table class="tbl"><thead><tr><th>Design</th><th>How it lowers force</th></tr></thead><tbody><tr><td>Car crumple zone</td><td>Longer stopping distance and time</td></tr><tr><td>Airbag</td><td>Spreads force over time and area</td></tr><tr><td>Bike helmet foam</td><td>Compresses slowly</td></tr><tr><td>Gymnastics mat</td><td>Thick padding extends the time</td></tr></tbody></table></div></article></div></section>
 
@@ -383,6 +385,50 @@ function line(svg,o){
 safe(()=>{
   const P=[['Foot pushes the floor','The floor pushes up and forward on your foot: that is what actually moves you.'],['Swimmer pushes water back','Water pushes the swimmer forward.'],['Bat hits ball','Ball pushes back on the bat (you feel the sting).'],['Magnet attracts a nail','The nail attracts the magnet equally.'],['Book rests on a table','Table pushes up on the book (normal force); the book pushes down on the table.']];
   const ch=$('#fpChips'); mkChips(ch,P.map(p=>p[0]),0); const d=i=>$('#fpCard').innerHTML='<b>'+P[i][0]+'.</b> Partner: '+P[i][1]; chipsOn(ch,d); d(0);
+});
+safe(()=>{
+  const svg=$('#pbSvg'), F=$('#pbF'), A=$('#pbA'), B=$('#pbB'), R=$('#pbR'), pred=$('#pbPred');
+  const DT=.5, SECS=1.4, K=2.5, REDUCE=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const GUESS=['cart A, the pusher','cart B, the one pushed','both the same'];
+  let guess=-1, raf=0, played=false;
+  mkChips(pred,['Cart A (the pusher)','Cart B (the one pushed)','They are the same'],-1);
+  const vals=()=>({f:+F.value, a:+A.value, b:+B.value});
+  const wid=m=>36+7*m;
+  // distance moved (in metres) after t seconds of a push of duration DT, then coasting
+  const dist=(acc,t)=>{ const c=Math.min(t,DT); return .5*acc*c*c + (t>DT? acc*DT*(t-DT) : 0); };
+  function draw(t){
+    const {f,a,b}=vals(), accA=f/a, accB=f/b;
+    const dA=Math.min(190,dist(accA,t)*K), dB=Math.min(190,dist(accB,t)*K);
+    const wA=wid(a), wB=wid(b), xA=240-wA-dA, xB=240+dB, L=20+f*.6;
+    const cart=(x,w,col,lab)=>'<rect x="'+x+'" y="88" width="'+w+'" height="40" rx="6" fill="var(--surface)" stroke="'+col+'" stroke-width="3"/><circle cx="'+(x+14)+'" cy="132" r="7" fill="var(--surface)" stroke="'+col+'" stroke-width="3"/><circle cx="'+(x+w-14)+'" cy="132" r="7" fill="var(--surface)" stroke="'+col+'" stroke-width="3"/><text x="'+(x+w/2)+'" y="114" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink)">'+lab+'</text>';
+    const op=t<=DT?1:.4;
+    const arr='<g opacity="'+op+'"><line x1="240" y1="64" x2="'+(240+L)+'" y2="64" stroke="var(--reflect)" stroke-width="5"/><polygon points="'+(240+L+12)+',64 '+(240+L)+',57 '+(240+L)+',71" fill="var(--reflect)"/><line x1="240" y1="64" x2="'+(240-L)+'" y2="64" stroke="var(--absorb)" stroke-width="5"/><polygon points="'+(240-L-12)+',64 '+(240-L)+',57 '+(240-L)+',71" fill="var(--absorb)"/>'+
+      '<text x="'+(240+L/2)+'" y="50" text-anchor="middle" font-size="12" fill="var(--ink)">force of A on B: '+f+' N</text><text x="'+(240-L/2)+'" y="34" text-anchor="middle" font-size="12" fill="var(--ink)">force of B on A: '+f+' N</text></g>';
+    svg.innerHTML='<line x1="10" y1="140" x2="470" y2="140" stroke="var(--line)" stroke-width="3"/>'+(t>0||played?arr:'')+cart(xA,wA,'var(--absorb)','A')+cart(xB,wB,'var(--reflect)','B');
+  }
+  function labels(){ $('#pbFV').textContent=F.value; $('#pbAV').textContent=A.value; $('#pbBV').textContent=B.value; }
+  function report(){
+    const {f,a,b}=vals(), accA=f/a, accB=f/b, p=f*DT;
+    let msg='A pushes B with <b>'+f+' N</b> and B pushes A with <b>'+f+' N</b>: equal in size, opposite in direction. They act on <i>different</i> carts. ';
+    msg+='A accelerates at '+accA.toFixed(1)+' m/s² ('+f+' ÷ '+a+') and B at '+accB.toFixed(1)+' m/s² ('+f+' ÷ '+b+'). '+(a===b?'The masses are equal, so the carts move the same way.':'The '+(a<b?'lighter cart A':'lighter cart B')+' changes motion more, because the same force acts on less mass.');
+    msg+=' Each cart gets <b>'+p.toFixed(0)+' kg·m/s</b> of momentum, in opposite directions, so the total stays 0.';
+    if(guess>=0) msg=(guess===2?'<b>Your prediction was right.</b> ':'<b>You predicted '+GUESS[guess]+'. Not quite.</b> ')+msg;
+    R.innerHTML=msg;
+    svg.setAttribute('aria-label','Carts A and B pushed apart. Both felt a force of '+f+' newtons in opposite directions. Cart A moved '+(accA>accB?'more':accA<accB?'less':'the same')+' than cart B.');
+  }
+  function idle(){ clearTimeout(raf); played=false; labels(); draw(0); R.innerHTML='Pick a prediction, change the settings if you like, then press <b>Push</b>.'; svg.setAttribute('aria-label','Two carts touching. Press Push.'); }
+  function go(){
+    clearTimeout(raf); played=false; labels();
+    if(REDUCE){ played=true; draw(SECS); report(); return; }
+    const t0=performance.now();
+    const step=()=>{ const t=Math.min((performance.now()-t0)/1000,SECS); draw(t); if(t<SECS) raf=setTimeout(step,16); else { played=true; report(); } };
+    step();
+  }
+  chipsOn(pred,i=>{ guess=i; if(played) report(); });
+  [F,A,B].forEach(e=>e.addEventListener('input',idle));
+  $('#pbGo').addEventListener('click',go);
+  $('#pbReset').addEventListener('click',idle);
+  idle();
 });
 safe(()=>{
   const F=$('#fmF'), M=$('#fmM'), d=()=>{ const f=+F.value, m=+M.value; $('#fmFV').textContent=f; $('#fmMV').textContent=m; const a=f/m;

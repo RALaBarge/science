@@ -50,7 +50,6 @@ h1{font-size:clamp(2.5rem,9.5vw,4.4rem);font-weight:800;letter-spacing:-.025em}
 .mosaic img{width:100%;height:100%;object-fit:cover}
 .mosaic span{position:absolute;left:6px;bottom:6px;font-family:var(--font-mono);font-size:.68rem;background:rgba(0,0,0,.62);color:#fff;padding:2px 7px;border-radius:99px}
 .howto{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:.92rem;color:var(--muted)}
-.themebtn{border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:5px 12px;cursor:pointer;font-size:.85rem}
 
 /* nav */
 .nav{position:sticky;top:0;z-index:20;background:var(--bg);margin-top:18px;border-bottom:1px solid var(--line);
@@ -161,7 +160,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
   var de=document.documentElement;
   function cur(){return new URLSearchParams(location.search);}
   function apply(){
-    if(cur().get('style')==='retro'){de.setAttribute('data-style','retro');de.setAttribute('data-theme','dark');}
+    if(cur().get('style')!=='classic'){de.setAttribute('data-style','retro');de.setAttribute('data-theme','dark');}
     else{de.removeAttribute('data-style');de.removeAttribute('data-theme');}
   }
   function carry(){
@@ -178,7 +177,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
     });
   }
   function sync(){
-    var st=cur().get('style')==='retro'?'retro':'classic';
+    var st=cur().get('style')==='classic'?'classic':'retro';
     document.querySelectorAll('#styleSwitch .chip').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.style===st));});
   }
   apply();
@@ -186,7 +185,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
     var box=document.getElementById('styleSwitch');
     if(box)box.addEventListener('click',function(e){
       var b=e.target.closest('button'); if(!b)return;
-      var p=cur(); if(b.dataset.style==='retro')p.set('style','retro'); else p.delete('style');
+      var p=cur(); if(b.dataset.style==='classic')p.set('style','classic'); else p.delete('style');
       var qs=p.toString();
       try{history.replaceState(null,'',location.pathname+(qs?'?'+qs:'')+location.hash);}catch(err){}
       apply(); sync(); carry();
@@ -196,7 +195,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
 })();
 </script>
 <header class="hero">
-  <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="true">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="false">Retro space</button></div>
+  <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="false">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="true">Retro space</button></div>
   <div class="kicker">Pattern lab · how things grow</div>
   <h1>The Same Shape Everywhere</h1>
   <p class="lede">A tree, a lightning bolt, the wiring inside your brain, the veins in a leaf, and the structure of the whole universe all look like branches. Why? And how far should we trust a resemblance?</p>
@@ -210,7 +209,6 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
   </div>
   <div class="howto">
     <span>Scroll, drag the sliders, press the buttons. Every picture is a real photo, microscope or satellite image, or a scientific simulation or graphic, credited at the bottom.</span>
-    <button class="themebtn" id="themebtn" type="button">Light / dark</button>
   </div>
 </header>
 
@@ -511,12 +509,6 @@ document.querySelectorAll('img[data-use]').forEach(i=>{i.src=BANK[i.dataset.use]
 function lerpColor(a,b,t){const pa=a.match(/\d+/g).map(Number),pb=b.match(/\d+/g).map(Number);return `rgb(${pa.map((v,i)=>Math.round(v+(pb[i]-v)*t)).join(',')})`}
 function hex2rgb(h){h=h.replace('#','');if(h.length===3)h=h.split('').map(c=>c+c).join('');return `rgb(${parseInt(h.slice(0,2),16)},${parseInt(h.slice(2,4),16)},${parseInt(h.slice(4,6),16)})`}
 function col(name){const v=css(name);return v.startsWith('#')?hex2rgb(v):v}
-
-/* theme toggle (remembered if storage works) */
-(function(){const b=$('#themebtn');let t=null;try{t=localStorage.getItem('shape-theme')}catch(e){}
- if(t)document.documentElement.setAttribute('data-theme',t);
- b.addEventListener('click',()=>{const dark=matchMedia('(prefers-color-scheme: dark)').matches;const cur=document.documentElement.getAttribute('data-theme')||(dark?'dark':'light');const nx=cur==='dark'?'light':'dark';
-  document.documentElement.setAttribute('data-theme',nx);try{localStorage.setItem('shape-theme',nx)}catch(e){}redrawAll()});})();
 
 /* gallery filter */
 document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{

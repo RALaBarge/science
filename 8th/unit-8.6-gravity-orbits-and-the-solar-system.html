@@ -49,12 +49,13 @@ h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
 .hero-art{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:10px 12px}
 .howto{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:.92rem;color:var(--muted)}
 
-/* nav */
-.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);margin-top:18px;border-bottom:1px solid var(--line);
-  margin-inline:auto;max-width:920px}
-.nav ul{list-style:none;margin:0;padding:8px 0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin}
-.nav a{display:block;white-space:nowrap;text-decoration:none;font-size:.9rem;padding:7px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface)}
-.nav a:hover{border-color:var(--ink)}
+/* index at the top */
+.toc{margin:16px 0 8px;padding:12px 16px 10px;background:var(--surface);border:1px solid var(--line);border-radius:14px;max-width:62ch}
+.toc h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 4px}
+.toc ol{margin:0;padding-left:1.5em;columns:2 250px;column-gap:28px}
+.toc li{margin:.3em 0;break-inside:avoid}
+.toc a{color:var(--ink);text-underline-offset:3px}
+.toc a:hover{color:var(--accent,var(--ink))}
 
 /* sections */
 .sec{padding-block:52px 6px;scroll-margin-top:68px;display:grid;gap:20px}
@@ -230,7 +231,7 @@ html[data-style="retro"] .idea mark{color:var(--beam)}
 html[data-style="retro"] .aid,html[data-style="retro"] .hero-art,html[data-style="retro"] .card2,html[data-style="retro"] .related li,html[data-style="retro"] .evrow{border:1.5px solid #6E4BC8;border-radius:14px;box-shadow:0 0 22px #8a5cff33}
 html[data-style="retro"] .tag{border-radius:6px;background:transparent;border:1px solid var(--tint);color:var(--tint)}
 html[data-style="retro"] .kicker{color:#4DF0C2}
-html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#160B33}
+html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#160B33}
 </style>
 <script>
 /* Page style lives in the URL (?style=retro). Every param is kept on links to other pages. */
@@ -238,7 +239,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
   var de=document.documentElement;
   function cur(){return new URLSearchParams(location.search);}
   function apply(){
-    if(cur().get('style')==='retro'){de.setAttribute('data-style','retro');de.setAttribute('data-theme','dark');}
+    if(cur().get('style')!=='classic'){de.setAttribute('data-style','retro');de.setAttribute('data-theme','dark');}
     else{de.removeAttribute('data-style');de.removeAttribute('data-theme');}
   }
   function carry(){
@@ -255,7 +256,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
     });
   }
   function sync(){
-    var st=cur().get('style')==='retro'?'retro':'classic';
+    var st=cur().get('style')==='classic'?'classic':'retro';
     document.querySelectorAll('#styleSwitch .chip').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.style===st));});
   }
   apply();
@@ -263,7 +264,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
     var box=document.getElementById('styleSwitch');
     if(box)box.addEventListener('click',function(e){
       var b=e.target.closest('button'); if(!b)return;
-      var p=cur(); if(b.dataset.style==='retro')p.set('style','retro'); else p.delete('style');
+      var p=cur(); if(b.dataset.style==='classic')p.set('style','classic'); else p.delete('style');
       var qs=p.toString();
       try{history.replaceState(null,'',location.pathname+(qs?'?'+qs:'')+location.hash);}catch(err){}
       apply(); sync(); carry();
@@ -273,11 +274,12 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
 })();
 </script>
 <header class="hero">
-  <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="true">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="false">Retro space</button></div>
+  <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="false">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="true">Retro space</button></div>
   <p class="kicker">Eighth grade science · Unit 8.6</p>
   <h1>Gravity, Orbits &amp; the Solar System</h1>
   <p class="lede">In <b>Unit 11: Earth in Space</b> you used the Sun, Earth, and Moon to explain seasons, phases, and tides. In <b>Unit 8.3</b> you learned that gravity is a force at a distance. Now we put them together: why do planets orbit, how did the Solar System form, and how do we send spacecraft through it? Use the model-building habits of <b>Unit 0: How Science Works</b>.</p>
   <p class="bridge"><b>Where we left off:</b> Unit 11 explained seasons, phases, and tides, and Unit 8.3 introduced gravity as a field. You may already have learned that the Moon orbits Earth. Here we explain <i>why</i> orbits happen, how the Solar System formed, and how spacecraft use gravity.</p>
+  <nav class="toc" aria-label="In this unit"><h2>In this unit</h2><ol><li><a href="#s1">Falling around</a></li><li><a href="#s2">Period & distance</a></li><li><a href="#s3">Formation</a></li><li><a href="#s4">Planet comparison</a></li><li><a href="#s5">Exploring</a></li><li><a href="#s6">Check yourself</a></li><li><a href="#game">Game</a></li></ol></nav>
   <div class="hero-art"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 260" role="img" aria-label="Top-down diagram of the Solar System with eight planets and the asteroid belt">
 <title>Solar System from above</title>
 <desc>The Sun sits at the shared focus of eight almost-circular elliptical orbits, with the planets, an asteroid belt between Mars and Jupiter, and sizes and distances not to scale.</desc>
@@ -414,10 +416,8 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
 <text x="452" y="187" style="fill:var(--ink);font-size:14px;font-weight:600">Neptune</text>
 </g>
 </svg></div>
-  <p class="howto">Look for the tags <span class="tag analogy">Analogy</span><span class="tag diagram">Diagram</span><span class="tag try">Try it</span><span class="tag data">Data</span><span class="tag real">Real world</span></p>
 </header>
 
-<nav class="nav" aria-label="Lesson sections"><ul><li><a href="#s1">1 Falling around</a></li><li><a href="#s2">2 Period & distance</a></li><li><a href="#s3">3 Formation</a></li><li><a href="#s4">4 Planet comparison</a></li><li><a href="#s5">5 Exploring</a></li><li><a href="#s6">6 Check yourself</a></li><li><a href="#game">7 Game</a></li></ul></nav>
 
 <main>
 <section class="sec" id="s1"><div><p class="kicker">Concept 1 · What is an orbit?</p><h2>An orbit is falling and missing the ground</h2></div><p class="idea">Gravity pulls a moving object toward the planet, but if it moves sideways <mark>fast enough</mark>, the ground curves away as fast as it falls. That endless fall is an <mark>orbit</mark>.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Newton's cannonball</h3><p class="cap">Fire a cannon sideways from a tall mountain: the ball lands farther with more speed. Fast enough, and it never lands.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Launch speed lab</h3><div class="ctl"><label for="ocV">Launch speed (1.0 = circular orbit speed): <span id="ocVV"></span></label><input id="ocV" type="range" min="0.5" max="1.5" step="0.05" value="1"></div><div class="stage"><svg id="ocSvg" viewBox="0 0 480 300" role="img" aria-label="Path of an object launched sideways from a planet."></svg></div><p class="readout" id="ocR" aria-live="polite"></p></article><article class="aid wide"><span class="tag data">Data</span><h3>Real speeds</h3><div class="tw"><table class="tbl" style="min-width:420px"><thead><tr><th>Object</th><th>Speed</th></tr></thead><tbody><tr><td>ISS (low Earth orbit)</td><td>7.7 km/s (27,600 km/h)</td></tr><tr><td>Escape from Earth</td><td>11.2 km/s</td></tr><tr><td>Earth around the Sun</td><td>29.8 km/s</td></tr><tr><td>Moon around Earth</td><td>1.0 km/s</td></tr></tbody></table></div><p class="cap">Astronauts feel "weightless" because they and the station fall together, not because gravity is gone (it is ~90% of its surface value at the ISS).</p></article></div></section>

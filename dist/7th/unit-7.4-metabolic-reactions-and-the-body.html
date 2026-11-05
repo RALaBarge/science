@@ -53,12 +53,13 @@ h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
 .hero-art{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:10px 12px}
 .howto{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:.92rem;color:var(--muted)}
 
-/* nav */
-.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);margin-top:18px;border-bottom:1px solid var(--line);
-  margin-inline:auto;max-width:920px}
-.nav ul{list-style:none;margin:0;padding:8px 0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin}
-.nav a{display:block;white-space:nowrap;text-decoration:none;font-size:.9rem;padding:7px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface)}
-.nav a:hover{border-color:var(--ink)}
+/* index at the top */
+.toc{margin:16px 0 8px;padding:12px 16px 10px;background:var(--surface);border:1px solid var(--line);border-radius:14px;max-width:62ch}
+.toc h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 4px}
+.toc ol{margin:0;padding-left:1.5em;columns:2 250px;column-gap:28px}
+.toc li{margin:.3em 0;break-inside:avoid}
+.toc a{color:var(--ink);text-underline-offset:3px}
+.toc a:hover{color:var(--accent,var(--ink))}
 
 /* sections */
 .sec{padding-block:52px 6px;scroll-margin-top:68px;display:grid;gap:20px}
@@ -234,7 +235,7 @@ html[data-style="retro"] .idea mark{color:var(--beam)}
 html[data-style="retro"] .aid,html[data-style="retro"] .hero-art,html[data-style="retro"] .card2,html[data-style="retro"] .related li,html[data-style="retro"] .evrow{border:1.5px solid #6E4BC8;border-radius:14px;box-shadow:0 0 22px #8a5cff33}
 html[data-style="retro"] .tag{border-radius:6px;background:transparent;border:1px solid var(--tint);color:var(--tint)}
 html[data-style="retro"] .kicker{color:#4DF0C2}
-html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#160B33}
+html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#160B33}
 </style>
 <script>
 /* Page style lives in the URL (?style=retro). Every param is kept on links to other pages. */
@@ -242,7 +243,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
   var de=document.documentElement;
   function cur(){return new URLSearchParams(location.search);}
   function apply(){
-    if(cur().get('style')==='retro'){de.setAttribute('data-style','retro');de.setAttribute('data-theme','dark');}
+    if(cur().get('style')!=='classic'){de.setAttribute('data-style','retro');de.setAttribute('data-theme','dark');}
     else{de.removeAttribute('data-style');de.removeAttribute('data-theme');}
   }
   function carry(){
@@ -259,7 +260,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
     });
   }
   function sync(){
-    var st=cur().get('style')==='retro'?'retro':'classic';
+    var st=cur().get('style')==='classic'?'classic':'retro';
     document.querySelectorAll('#styleSwitch .chip').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.style===st));});
   }
   apply();
@@ -267,7 +268,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
     var box=document.getElementById('styleSwitch');
     if(box)box.addEventListener('click',function(e){
       var b=e.target.closest('button'); if(!b)return;
-      var p=cur(); if(b.dataset.style==='retro')p.set('style','retro'); else p.delete('style');
+      var p=cur(); if(b.dataset.style==='classic')p.set('style','classic'); else p.delete('style');
       var qs=p.toString();
       try{history.replaceState(null,'',location.pathname+(qs?'?'+qs:'')+location.hash);}catch(err){}
       apply(); sync(); carry();
@@ -277,11 +278,12 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
 })();
 </script>
 <header class="hero">
-  <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="true">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="false">Retro space</button></div>
+  <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="false">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="true">Retro space</button></div>
   <p class="kicker">Seventh grade science · Unit 7.4</p>
   <h1>Metabolic Reactions &amp; the Body</h1>
   <p class="lede">Your body is a chemistry lab with trillions of tiny reactors. Last year you met cells and body systems (Units 7 and 9); in 7.2 you learned that atoms rearrange in reactions. Now we connect them: how a sandwich becomes you. Use the evidence steps from <b>Unit 0: How Science Works</b> when we read the data.</p>
   <p class="bridge"><b>Where we left off:</b> Unit 7.2 and 7.3 showed that reactions rearrange atoms and release or absorb energy. You may already have learned about cells (Unit 7) and body systems (Unit 9). Now we see that your body runs thousands of those chemical reactions, and that digestion and cellular respiration are how food becomes matter and energy for you.</p>
+  <nav class="toc" aria-label="In this unit"><h2>In this unit</h2><ol><li><a href="#s1">Digestion</a></li><li><a href="#s2">Respiration</a></li><li><a href="#s3">Breathing & blood</a></li><li><a href="#s4">Teamwork</a></li><li><a href="#s5">Food to you</a></li><li><a href="#s6">Check yourself</a></li><li><a href="#game">Game</a></li></ol></nav>
   <div class="hero-art"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 240" role="img" aria-label="Cellular respiration: a cell takes in glucose and oxygen and releases carbon dioxide, water and energy.">
   <title>Cellular respiration</title>
   <desc>A cell takes in glucose and oxygen, releases carbon dioxide, water and energy, and carries out the first step in the cytoplasm and the main energy release in a mitochondrion.</desc>
@@ -327,10 +329,8 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
   <text x="320" y="231" style="fill:var(--muted);font-size:13px;text-anchor:middle">C₆H₁₂O₆ + 6 O₂ → 6 CO₂ + 6 H₂O</text>
   <text x="627" y="231" style="fill:var(--muted);font-size:13px;text-anchor:end">not to scale</text>
 </svg></div>
-  <p class="howto">Look for the tags <span class="tag analogy">Analogy</span><span class="tag diagram">Diagram</span><span class="tag try">Try it</span><span class="tag data">Data</span><span class="tag real">Real world</span></p>
 </header>
 
-<nav class="nav" aria-label="Lesson sections"><ul><li><a href="#s1">1 Digestion</a></li><li><a href="#s2">2 Respiration</a></li><li><a href="#s3">3 Breathing & blood</a></li><li><a href="#s4">4 Teamwork</a></li><li><a href="#s5">5 Food to you</a></li><li><a href="#s6">6 Check yourself</a></li><li><a href="#game">7 Game</a></li></ul></nav>
 
 <main>
 <section class="sec" id="s1"><div><p class="kicker">Concept 1 · Breaking food down</p><h2>Digestion: from sandwich to small molecules</h2></div><p class="idea"><mark>Digestion</mark> uses <mark>physical</mark> (chewing, churning) and <mark>chemical</mark> (enzymes, acid) changes to break big food molecules into small ones that can cross into the blood.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Taking apart a LEGO castle</h3><p class="cap">Food molecules are huge builds. Your gut takes them apart into single bricks (sugars, amino acids, fatty acids) so the blood can carry them.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Follow the food</h3><div class="chips" id="dgChips" role="group" aria-label="Organ"></div><div class="card2" id="dgCard" aria-live="polite"></div></article><article class="aid wide"><span class="tag data">Data</span><h3>Big molecules and their building blocks</h3><div class="tw"><table class="tbl" style="min-width:480px"><thead><tr><th>Nutrient</th><th>Broken down into</th><th>Used for</th></tr></thead><tbody><tr><td>Carbohydrates (bread)</td><td>Simple sugars</td><td>Quick energy</td></tr><tr><td>Proteins (beans, meat)</td><td>Amino acids</td><td>Building and repair</td></tr><tr><td>Fats (oil, nuts)</td><td>Fatty acids + glycerol</td><td>Stored energy, cell membranes</td></tr><tr><td>Starch + enzyme amylase</td><td>Sugar</td><td>Why bread tastes sweet if chewed long</td></tr></tbody></table></div></article><article class="aid wide"><span class="tag real">Real world</span><h3>Time in each organ</h3><div class="bars" id="dgBars"></div><p class="cap">Approximate hours for food to travel through an adult.</p></article></div></section>

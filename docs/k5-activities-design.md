@@ -9,7 +9,7 @@ Every K–5 unit gets one short interactive activity that sits in the lesson pag
 ## Scope
 
 - Add an activity to all 23 grade-tagged K–5 units. Unit 0 (How Science Works) already has one.
-- No activity, by design, for pages that are readings or explorables: 6th Unit 14, 9th 9.1 How AI Works, and `extras/same-shape-everywhere`. This matches how the site is built today (those three have no game block). No written rationale for the exemption was found in the repo, so this document assumes it still holds.
+- No activity, by design, for pages that are readings or explorables: 6th Unit 14, the extra How AI Works, and `extras/same-shape-everywhere`. This matches how the site is built today (those three have no game block). No written rationale for the exemption was found in the repo, so this document assumes it still holds.
 - The six arcade games stay as they are. Do not reskin Gravity Duel, Football Duel or Balance Duel for these units: they are duels with a 15-second clock, and K–5 units need calm, untimed work.
 
 ## Constraints

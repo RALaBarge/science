@@ -57,6 +57,14 @@ h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
 .nav ul{list-style:none;margin:0;padding:8px 0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin;flex:1;min-width:0}
 .nav a{display:block;white-space:nowrap;text-decoration:none;font-size:.9rem;padding:7px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface)}
 .nav a:hover{border-color:var(--ink)}
+/* index at the top */
+.toc{margin:16px 0 8px;padding:12px 16px 10px;background:var(--surface);border:1px solid var(--line);border-radius:14px;max-width:62ch}
+.toc h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 4px}
+.toc ol{margin:0;padding-left:1.5em;columns:2 250px;column-gap:28px}
+.toc li{margin:.3em 0;break-inside:avoid}
+.toc a{color:var(--ink);text-underline-offset:3px}
+.toc a:hover{color:var(--accent,var(--ink))}
+
 .nav .meta{display:flex;gap:8px;align-items:center;flex:none;font-family:var(--font-mono);font-size:.8rem}
 .nav .meta button{border:1.5px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 10px;cursor:pointer;min-height:34px}
 
@@ -202,7 +210,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
   var de=document.documentElement;
   function cur(){return new URLSearchParams(location.search);}
   function apply(){
-    if(cur().get('style')==='retro'){de.setAttribute('data-style','retro');de.setAttribute('data-theme','dark');}
+    if(cur().get('style')!=='classic'){de.setAttribute('data-style','retro');de.setAttribute('data-theme','dark');}
     else{de.removeAttribute('data-style');de.removeAttribute('data-theme');}
   }
   function carry(){
@@ -219,7 +227,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
     });
   }
   function sync(){
-    var st=cur().get('style')==='retro'?'retro':'classic';
+    var st=cur().get('style')==='classic'?'classic':'retro';
     document.querySelectorAll('#styleSwitch .chip').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.style===st));});
   }
   apply();
@@ -227,7 +235,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
     var box=document.getElementById('styleSwitch');
     if(box)box.addEventListener('click',function(e){
       var b=e.target.closest('button'); if(!b)return;
-      var p=cur(); if(b.dataset.style==='retro')p.set('style','retro'); else p.delete('style');
+      var p=cur(); if(b.dataset.style==='classic')p.set('style','classic'); else p.delete('style');
       var qs=p.toString();
       try{history.replaceState(null,'',location.pathname+(qs?'?'+qs:'')+location.hash);}catch(err){}
       apply(); sync(); carry();
@@ -237,19 +245,15 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
 })();
 </script>
 <header class="hero">
-  <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="true">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="false">Retro space</button></div>
-  <p class="kicker">Ninth grade &middot; Reading course</p>
+  <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="false">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="true">Retro space</button></div>
+  <p class="kicker">Extra &middot; Reading course</p>
   <h1>How AI Works</h1>
   <p class="lede">Chatbots, image generators, and recommendation systems are everywhere, and most people have never seen how they work inside. In six short readings you will learn what an <b>LLM</b> really does, why it can seem to <b>forget</b>, how AI turns meaning into <b>numbers in space</b>, how <b>diffusion</b> makes pictures out of static, and what to watch out for now and later. No programming needed. You will practice careful reading: finding evidence, separating what is known from what is debated, and explaining ideas in your own words.</p>
+  <nav class="toc" aria-label="In this reading"><h2>In this reading</h2><ol><li><a href="#s1">Next word</a></li><li><a href="#s2">Context window</a></li><li><a href="#s3">Meaning as numbers</a></li><li><a href="#s4">Diffusion</a></li><li><a href="#s5">Warnings now</a></li><li><a href="#s6">Warnings ahead</a></li><li><a href="#lab">Verify lab</a></li><li><a href="#wrap">Wrap-up</a></li></ol></nav>
   <p class="howto">Look for the tags <span class="tag read">Passage</span><span class="tag try">Try it</span><span class="tag qn">Question</span><span class="tag ev">Find the evidence</span><span class="tag write">Write</span></p>
 </header>
 
-<nav class="nav" aria-label="Course sections">
-  <ul>
-    <li><a href="#s1">1 Next word</a></li><li><a href="#s2">2 Context window</a></li><li><a href="#s3">3 Meaning as numbers</a></li><li><a href="#s4">4 Diffusion</a></li><li><a href="#s5">5 Warnings now</a></li><li><a href="#s6">6 Warnings ahead</a></li><li><a href="#lab">7 Verify lab</a></li><li><a href="#wrap">8 Wrap-up</a></li>
-  </ul>
-  <div class="meta"><span class="score" id="score" aria-live="polite" title="Multiple-choice questions answered correctly"><span class="lbl">Score </span>0/18</span><button type="button" id="themeBtn" aria-label="Switch color theme">Theme</button></div>
-</nav>
+<nav class="nav" aria-label="Score"><div class="meta"><span class="score" id="score" aria-live="polite" title="Multiple-choice questions answered correctly"><span class="lbl">Score </span>0/20</span></div></nav>
 
 <main>
 
@@ -372,6 +376,38 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
     <div class="btnrow"><button type="button" class="btn" id="dfPlay">Generate</button><button type="button" class="btn ghost" id="dfSeed">New seed</button><span class="cap">Seed: <b class="mono" id="dfSeedV"></b></span></div>
     <p class="cap">Click <b>New seed</b> with the same prompt: the noise changes, and so would the details of a real image.</p>
   </article>
+  <article class="aid passage" id="p4b"><span class="tag read">Passage</span>
+    <h3>Not every language model is built the same way</h3>
+    <p>Reading 2 described the design behind most chatbots: a transformer that predicts one token at a time and uses attention to look back over the text. As of late 2026 that is still the main recipe for the strongest general-purpose models. It is not the only recipe, though, and researchers keep testing others. Two problems drive the search. Attention gets more expensive as the text gets longer, because the model keeps a growing memory of everything it has read. And writing one token at a time is slow.</p>
+    <h4>Answer one: hybrids</h4>
+    <p>A hybrid keeps a few attention layers and swaps most of the others for layers that carry forward a fixed-size summary instead of re-reading everything. AI21 Labs&rsquo; Jamba mixes attention layers with Mamba layers, a kind of &ldquo;state space&rdquo; layer. IBM&rsquo;s Granite 4 and NVIDIA&rsquo;s Nemotron models take a similar path. Qwen3-Next and Kimi Linear use a related idea called linear attention, with roughly three efficient layers for every full attention layer. Moonshot AI, the maker of Kimi Linear, says it needs up to 75 percent less cache memory than full attention. That figure comes from the company.</p>
+    <p>Hybrids are not a clean win. The company MiniMax first used an efficient linear attention in one model, then went back to full attention in the next, saying the efficient version was harder to make reliable for reasoning and long back-and-forth chats.</p>
+    <h4>Answer two: write the whole answer at once</h4>
+    <p>A <b>diffusion language model</b> changes how the text is produced. It starts with the whole answer hidden behind blanks and fills in many tokens at a time over several rounds, much like the picture getting clearer in the demo above. Inception Labs sells models of this kind, called Mercury, through a paid service. Google has shown an experimental one, Gemini Diffusion, and a research model called LLaDA is openly available. The makers report large speed gains.</p>
+    <p>There are trade-offs. When several neighboring tokens are guessed in the same round, none of them has seen the others&rsquo; final choices, so they can clash. Answers cannot easily be shown word by word as they are written, and calling outside tools is harder. A well-known researcher who surveyed these designs in late 2025 called diffusion text models solid but not state of the art.</p>
+    <h4>Where things stand</h4>
+    <p>For now, the standard transformer that writes one token at a time is still the model to beat. Hybrids are the alternative gaining the most ground in real products. Diffusion for text is newer and more experimental. Most of the speed and cost numbers come from the companies selling the models, and this area changes quickly, so check the date on anything you read about it. That is the same habit as Reading 6: keep what is documented apart from what is claimed or predicted.</p>
+  </article>
+<details class="tn"><summary>Stop and check: which statements in this passage come from the companies, and which are a researcher&rsquo;s independent view?</summary><div class="in"><p>From the companies: Kimi Linear needing up to 75 percent less cache memory, and the speed gains for diffusion models. Independent view: the researcher&rsquo;s judgment that diffusion text models are solid but not state of the art, and that the standard transformer is still the model to beat. The reasons behind both come from how the designs work, but a company is not a neutral judge of its own product.</p></div></details>
+  <details class="deeper"><summary><span class="tag deep">Go deeper</span>Why attention gets expensive, and what a fixed-size summary gives up</summary><div class="in"><p>When a transformer writes a token, each attention layer looks back at the stored information for every earlier token. That stored information is called the <b>cache</b>, and it grows by one entry per token for every attention layer. Double the length of the text and the cache doubles. The work of comparing each new token with all the earlier ones also grows. That is why very long documents are costly.</p><p>A state-space or linear-attention layer works more like a running summary. After each token it updates a fixed-size state, so it does not grow with the text. The price is that the summary has limited room. Details can be squeezed out, and in tests such layers can do worse on tasks that need an exact detail from far back. Hybrids keep a few full attention layers so the model can still look something up precisely, and use the cheap layers for the rest.</p><p>Where this comes from: Sebastian Raschka&rsquo;s November 2025 survey, <a href="https://magazine.sebastianraschka.com/p/beyond-standard-llms" rel="noopener">Beyond Standard LLMs</a>, plus the companies&rsquo; own pages, such as <a href="https://www.inceptionlabs.ai/" rel="noopener">Inception Labs</a>. Checked in November 2026.</p></div></details>
+  <article class="aid"><span class="tag try">Try it</span><h3>Write it two ways</h3>
+    <p class="cap">The same sentence, written by a one-token-at-a-time model and by a diffusion-style model that fills in several tokens each round. Change how many tokens the diffusion model fills in per round and watch what happens to the number of rounds and to the risk of clashes. This is a toy; it does not use a real model.</p>
+    <div class="ctl"><label for="wtRange">Diffusion model fills in <span class="mono" id="wtN"></span> per round</label><input type="range" id="wtRange" min="1" max="9" step="1" value="3"></div>
+    <div class="btnrow"><button type="button" class="btn" id="wtGo">Write it</button><button type="button" class="btn ghost" id="wtReset">Reset</button></div>
+    <div class="wtrow"><p class="wtlab"><b>One token at a time</b> <span class="mono" id="wtARc"></span></p><div class="wtline" id="wtAR" aria-live="off"></div></div>
+    <div class="wtrow"><p class="wtlab"><b>Diffusion style</b> <span class="mono" id="wtDFc"></span></p><div class="wtline" id="wtDF" aria-live="off"></div></div>
+    <p class="readout" id="wtRead" aria-live="polite"></p>
+  </article>
+  <article class="aid"><span class="tag try">Try it</span><h3>The memory bill for long text</h3>
+    <p class="cap">Move the slider to change how much text the model has read. The bars show how much cache memory a model needs, as a share of what a model with attention in <b>every</b> layer needs. This is a simplified toy: the numbers are not measurements of any real model.</p>
+    <div class="chips" id="mbChips" role="group" aria-label="How many layers use attention"></div>
+    <div class="ctl"><label for="mbRange">Text read so far: <span class="mono" id="mbN"></span> tokens</label><input type="range" id="mbRange" min="0" max="100" step="1" value="40"></div>
+    <div class="mbrow"><span class="mblab">All attention</span><div class="mbbar"><div class="mbfill" id="mbFull" style="width:100%;background:var(--absorb)"></div></div><span class="mono mbv" id="mbFullV"></span></div>
+    <div class="mbrow"><span class="mblab" id="mbHL">Hybrid</span><div class="mbbar"><div class="mbfill" id="mbHyb" style="background:var(--transmit)"></div></div><span class="mono mbv" id="mbHybV"></span></div>
+    <p class="readout" id="mbRead" aria-live="polite"></p>
+    <p class="cap">In the toy, the layers that are not attention keep a small fixed-size summary, so a short text saves less than a long one. Real savings depend on the design. Kimi Linear&rsquo;s maker reports up to 75 percent, which matches &ldquo;1 attention layer in 4&rdquo; here.</p>
+  </article>
+  <style>.wtrow{margin-top:12px}.wtlab{margin:0 0 6px;font-size:.95rem}.wtline{display:flex;flex-wrap:wrap;gap:6px;min-height:40px}.wtt{font-family:var(--font-mono);font-size:.92rem;padding:4px 9px;border-radius:6px;border:1.5px solid var(--line);background:var(--surface-2);color:var(--muted);min-width:3.2em;text-align:center}.wtt.on{color:var(--ink);background:color-mix(in srgb,var(--reflect) 26%,var(--surface));border-color:color-mix(in srgb,var(--reflect) 60%,var(--line))}.wtt.new{border-color:var(--beam);box-shadow:0 0 0 2px color-mix(in srgb,var(--beam) 55%,transparent)}.wtt.pair{border-color:var(--bad)}.mbbar{height:20px;border-radius:6px;background:var(--surface-2);overflow:hidden}.mbrow{display:grid;grid-template-columns:7.5em 1fr 5em;gap:10px;align-items:center;margin:10px 0}.mblab{font-size:.92rem}.mbv{text-align:right;font-size:.9rem}.mbfill{height:100%;border-radius:6px;transition:width .15s}@media (max-width:520px){.mbrow{grid-template-columns:1fr;gap:4px}.mbv{text-align:left}}</style>
   <div class="check" id="chk-s4"></div>
 </section>
 
@@ -571,13 +607,6 @@ const cssv=n=>getComputedStyle(document.documentElement).getPropertyValue(n).tri
 function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 
-/* ---------- theme ---------- */
-(function(){
-  const modes=["auto","light","dark"];let m=store.get("aiCourse.theme")||"auto";
-  function apply(){const r=document.documentElement;if(m==="auto")r.removeAttribute("data-theme");else r.setAttribute("data-theme",m);$("themeBtn").textContent="Theme: "+m;redrawAll();}
-  $("themeBtn").onclick=()=>{m=modes[(modes.indexOf(m)+1)%3];store.set("aiCourse.theme",m);apply();};
-  window.__applyTheme=apply;
-})();
 const redrawers=[];function redrawAll(){redrawers.forEach(f=>{try{f()}catch(e){}});}
 
 /* ---------- quiz data ---------- */
@@ -616,7 +645,11 @@ s4:{mc:[
  {q:"During training, what does a diffusion model learn to do at each noisy step?",c:["Predict the noise that was added so it can be removed","Copy the original image pixel for pixel","Choose a random picture from storage","Translate the prompt into another language"],a:0,
   why:"The passage says the model is shown the noisy version and learns to predict the noise that was added."},
  {q:"Two people type the identical prompt into the same generator, with different seeds. Why do they get different images?",c:["Each run starts from a different pattern of random noise","The model rewrites the prompt differently every time","One person’s computer is faster than the other’s","The generator picks a stored photo at random"],a:0,
-  why:"The starting noise comes from the seed. A different seed gives different noise, and the denoising steps lead to a different image."}],
+  why:"The starting noise comes from the seed. A different seed gives different noise, and the denoising steps lead to a different image."},
+ {q:"A team swaps most of a chatbot's attention layers for layers that keep a fixed-size summary. What are they mainly trying to get?",c:["Cheaper memory and faster handling of very long text","A model that never makes mistakes","A model that needs no training","A model that can only work with pictures"],a:0,
+  why:"Attention keeps a cache that grows with the text. A fixed-size summary does not, so long text costs less. The trade-off is that details can be squeezed out."},
+ {q:"Why might a diffusion language model that fills in many neighboring words in the same round produce clashes such as \"the the\"?",c:["Words chosen in the same round have not seen each other's final choice","It is not allowed to use common words","It reads the text from right to left","It forgets the prompt after the first round"],a:0,
+  why:"When several tokens are guessed at once, none of them can take the others' final choices into account, so neighboring words can fail to fit together."}],
  ev:{q:"Which sentence from the passage best supports the claim that details of a generated image appear gradually, not all at once?",
   c:["To generate an image, the process runs backward.","Rough patches of light and dark appear first, then shapes and edges, then fine details.","During training, the model is shown a real image, and a little random noise is added.","The model does not paste together pieces of stored photos."],a:1,
   why:"The second sentence describes the order in which features appear. The others describe direction, training, or what the model does not do."},
@@ -864,6 +897,71 @@ upScore();
   window.__df={get scene(){return scene},build,draw,setStep(v){rng.value=v;draw();},px(){return xc.getImageData(0,0,SW,SH).data;}};
 })();
 
+/* ---------- 4b: write it two ways, and the memory bill ---------- */
+(function(){
+  const WORDS=["The","small","robot","carefully","carried","the","red","box","home"];
+  const N=WORDS.length;
+  const ar=$("wtAR"),df=$("wtDF"),arc=$("wtARc"),dfc=$("wtDFc"),rd=$("wtRead"),rng=$("wtRange"),nEl=$("wtN");
+  // The order the diffusion model "feels sure" about: function words and the head noun first, details last.
+  const ORDER=[0,2,5,7,1,4,8,3,6];
+  let arStep=0,dfRound=0,pairs=0,timer=null;
+  const per=()=>+rng.value;
+  const rounds=()=>Math.ceil(N/per());
+  function cell(txt,on,cls){return '<span class="wtt'+(on?' on':'')+(cls?' '+cls:'')+'">'+(on?esc(txt):'&#9617;&#9617;')+'</span>';}
+  function draw(){
+    nEl.textContent=per();
+    let a='';for(let i=0;i<N;i++)a+=cell(WORDS[i],i<arStep,i===arStep-1?'new':'');
+    ar.innerHTML=a;
+    const shown=new Set(),fresh=new Set();
+    for(let r=0;r<dfRound;r++)for(let k=0;k<per();k++){const idx=ORDER[r*per()+k];if(idx!==undefined){shown.add(idx);if(r===dfRound-1)fresh.add(idx);}}
+    let d='';for(let i=0;i<N;i++)d+=cell(WORDS[i],shown.has(i),fresh.has(i)?'new':'');
+    df.innerHTML=d;
+    arc.textContent=arStep+' of '+N+' steps';
+    dfc.textContent=dfRound+' of '+rounds()+' rounds';
+    // neighbours filled in the same round could not see each other's final choice
+    let p=0;for(let r=0;r<rounds();r++){const grp=ORDER.slice(r*per(),r*per()+per()).sort((x,y)=>x-y);for(let k=1;k<grp.length;k++)if(grp[k]-grp[k-1]===1)p++;}
+    pairs=p;
+    const done=arStep>=N&&dfRound>=rounds();
+    rd.innerHTML='One at a time always takes <b>'+N+'</b> steps for this sentence. At <b>'+per()+'</b> per round, the diffusion style takes <b>'+rounds()+'</b> round'+(rounds()===1?'':'s')+'. In '+(p===0?'<b>no</b> round':'<b>'+p+'</b> case'+(p===1?'':'s'))+' did two <i>neighboring</i> words get chosen in the same round without seeing each other.'+(p>0?' Each one is a chance for a clash, like &ldquo;the the&rdquo; or a color that does not match.':' Nothing here can clash. Try a bigger number.')+(done?'':' Press <b>Write it</b> to run both.');
+  }
+  function stop(){if(timer){clearInterval(timer);timer=null;}}
+  $("wtGo").onclick=()=>{
+    stop();arStep=0;dfRound=0;draw();
+    timer=setInterval(()=>{
+      let moved=false;
+      if(arStep<N){arStep++;moved=true;}
+      if(dfRound<rounds()){dfRound++;moved=true;}
+      draw();
+      if(!moved)stop();
+    },650);
+  };
+  $("wtReset").onclick=()=>{stop();arStep=0;dfRound=0;draw();};
+  rng.addEventListener("input",()=>{stop();arStep=0;dfRound=0;draw();});
+  draw();
+})();
+(function(){
+  const OPT=[["All attention",1],["1 in 4 layers",4],["1 in 8 layers",8]];
+  let r=4;
+  const chips=$("mbChips"),rng=$("mbRange"),nEl=$("mbN"),hyb=$("mbHyb"),hv=$("mbHybV"),fv=$("mbFullV"),rd=$("mbRead"),hl=$("mbHL");
+  const FIXED=0.3; // toy: the fixed-size summary, as a share of 1K tokens of full-attention cache
+  const tokens=()=>Math.round(1000*Math.pow(10,(+rng.value)*3/100)); // 1K to 1M on a log slider
+  function fmt(n){return n>=1e6?(n/1e6)+'M':n>=1e3?Math.round(n/100)/10+'K':String(n);}
+  function draw(){
+    const n=tokens(),full=n/1000,hybrid=full/r+(r>1?FIXED*(r-1)/r:0);
+    const pct=Math.min(100,hybrid/full*100);
+    nEl.textContent=fmt(n);
+    hyb.style.width=pct+'%';fv.textContent='100%';hv.textContent=Math.round(pct)+'%';
+    hl.textContent=r===1?'(same as above)':'Hybrid, 1 in '+r;
+    rd.innerHTML=r===1?'With attention in every layer, memory grows in step with the text. Pick a hybrid to compare.':'At <b>'+fmt(n)+'</b> tokens the hybrid needs about <b>'+Math.round(pct)+'%</b> of the memory, so it saves about <b>'+Math.round(100-pct)+'%</b>. The longer the text, the closer the saving gets to '+Math.round(100-100/r)+'%.';
+  }
+  OPT.forEach(([lab,v],i)=>{
+    const b=document.createElement("button");b.type="button";b.className="chip";b.textContent=lab;b.setAttribute("aria-pressed",String(v===r));
+    b.onclick=()=>{r=v;[...chips.children].forEach((c,j)=>c.setAttribute("aria-pressed",String(OPT[j][1]===r)));draw();};
+    chips.appendChild(b);
+  });
+  rng.addEventListener("input",draw);draw();
+})();
+
 /* ---------- 5: prompt injection ---------- */
 (function(){
   let shown=false;$("piBtn").onclick=()=>{shown=!shown;$("piHid").hidden=!shown;$("piNote").hidden=!shown;$("piBtn").textContent=shown?"Hide it again":"Show the hidden text";};
@@ -890,7 +988,7 @@ upScore();
   $("finalCopy").onclick=()=>{try{navigator.clipboard.writeText(t.value).then(()=>{sv.textContent="Copied";},()=>{t.select();sv.textContent="Select and copy";});}catch(e){t.select();sv.textContent="Select and copy";}};
 })();
 
-window.__applyTheme();
+redrawAll();
 })();
 </script>
 </body>

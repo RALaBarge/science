@@ -49,12 +49,13 @@ h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
 .hero-art{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:10px 12px}
 .howto{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:.92rem;color:var(--muted)}
 
-/* nav */
-.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);margin-top:18px;border-bottom:1px solid var(--line);
-  margin-inline:auto;max-width:920px}
-.nav ul{list-style:none;margin:0;padding:8px 0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin}
-.nav a{display:block;white-space:nowrap;text-decoration:none;font-size:.9rem;padding:7px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface)}
-.nav a:hover{border-color:var(--ink)}
+/* index at the top */
+.toc{margin:16px 0 8px;padding:12px 16px 10px;background:var(--surface);border:1px solid var(--line);border-radius:14px;max-width:62ch}
+.toc h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 4px}
+.toc ol{margin:0;padding-left:1.5em;columns:2 250px;column-gap:28px}
+.toc li{margin:.3em 0;break-inside:avoid}
+.toc a{color:var(--ink);text-underline-offset:3px}
+.toc a:hover{color:var(--accent,var(--ink))}
 
 /* sections */
 .sec{padding-block:52px 6px;scroll-margin-top:68px;display:grid;gap:20px}
@@ -230,7 +231,7 @@ html[data-style="retro"] .idea mark{color:var(--beam)}
 html[data-style="retro"] .aid,html[data-style="retro"] .hero-art,html[data-style="retro"] .card2,html[data-style="retro"] .related li,html[data-style="retro"] .evrow{border:1.5px solid #6E4BC8;border-radius:14px;box-shadow:0 0 22px #8a5cff33}
 html[data-style="retro"] .tag{border-radius:6px;background:transparent;border:1px solid var(--tint);color:var(--tint)}
 html[data-style="retro"] .kicker{color:#4DF0C2}
-html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#160B33}
+html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#160B33}
 </style>
 <script>
 /* Page style lives in the URL (?style=retro). Every param is kept on links to other pages. */
@@ -238,7 +239,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
   var de=document.documentElement;
   function cur(){return new URLSearchParams(location.search);}
   function apply(){
-    if(cur().get('style')==='retro'){de.setAttribute('data-style','retro');de.setAttribute('data-theme','dark');}
+    if(cur().get('style')!=='classic'){de.setAttribute('data-style','retro');de.setAttribute('data-theme','dark');}
     else{de.removeAttribute('data-style');de.removeAttribute('data-theme');}
   }
   function carry(){
@@ -255,7 +256,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
     });
   }
   function sync(){
-    var st=cur().get('style')==='retro'?'retro':'classic';
+    var st=cur().get('style')==='classic'?'classic':'retro';
     document.querySelectorAll('#styleSwitch .chip').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.style===st));});
   }
   apply();
@@ -263,7 +264,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
     var box=document.getElementById('styleSwitch');
     if(box)box.addEventListener('click',function(e){
       var b=e.target.closest('button'); if(!b)return;
-      var p=cur(); if(b.dataset.style==='retro')p.set('style','retro'); else p.delete('style');
+      var p=cur(); if(b.dataset.style==='classic')p.set('style','classic'); else p.delete('style');
       var qs=p.toString();
       try{history.replaceState(null,'',location.pathname+(qs?'?'+qs:'')+location.hash);}catch(err){}
       apply(); sync(); carry();
@@ -273,11 +274,12 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
 })();
 </script>
 <header class="hero">
-  <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="true">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="false">Retro space</button></div>
+  <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="false">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="true">Retro space</button></div>
   <p class="kicker">Seventh grade science · Unit 7.5</p>
   <h1>Photosynthesis &amp; Matter Cycling</h1>
   <p class="lede">A tree can grow to weigh tons, but you never see anyone feed it. Where does all that matter come from? In Unit 7.4 you saw animals burn sugar with oxygen; here plants do the reverse and build sugar from air and water. Test ideas with the <b>Unit 0: How Science Works</b> method, as scientists did when they weighed a growing tree.</p>
   <p class="bridge"><b>Where we left off:</b> Unit 7.4 showed animals burning sugar with oxygen. You may already have learned that plants capture light energy (Unit 1) and that food webs pass energy along (Unit 12). Here plants do the reverse: they build sugar from air and water, and matter cycles through living and nonliving things.</p>
+  <nav class="toc" aria-label="In this unit"><h2>In this unit</h2><ol><li><a href="#s1">Photosynthesis</a></li><li><a href="#s2">Where mass comes from</a></li><li><a href="#s3">Plant–animal trade</a></li><li><a href="#s4">Energy flow</a></li><li><a href="#s5">Carbon cycle</a></li><li><a href="#s6">Check yourself</a></li><li><a href="#game">Game</a></li></ol></nav>
   <div class="hero-art"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 240" role="img" aria-label="Photosynthesis diagram: a leaf takes in light energy, carbon dioxide and water, and releases glucose and oxygen.">
 <title>Photosynthesis</title>
 <desc>A green leaf uses light energy to turn carbon dioxide and water into glucose and oxygen, as summarised by the balanced equation.</desc>
@@ -325,10 +327,8 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
 <text x="320" y="229" text-anchor="middle" style="fill:var(--muted);font-size:14px">Light is energy; CO₂ and water are matter.</text>
 <text x="612" y="229" text-anchor="end" style="fill:var(--muted);font-size:13px">not to scale</text>
 </svg></div>
-  <p class="howto">Look for the tags <span class="tag analogy">Analogy</span><span class="tag diagram">Diagram</span><span class="tag try">Try it</span><span class="tag data">Data</span><span class="tag real">Real world</span></p>
 </header>
 
-<nav class="nav" aria-label="Lesson sections"><ul><li><a href="#s1">1 Photosynthesis</a></li><li><a href="#s2">2 Where mass comes from</a></li><li><a href="#s3">3 Plant–animal trade</a></li><li><a href="#s4">4 Energy flow</a></li><li><a href="#s5">5 Carbon cycle</a></li><li><a href="#s6">6 Check yourself</a></li><li><a href="#game">7 Game</a></li></ul></nav>
 
 <main>
 <section class="sec" id="s1"><div><p class="kicker">Concept 1 · Making food from light</p><h2>Plants build sugar from air and water</h2></div><p class="idea"><mark>Photosynthesis</mark>: <mark>carbon dioxide + water + light energy → sugar + oxygen</mark>, in <mark>chloroplasts</mark> (green because of <mark>chlorophyll</mark>). Light energy gets stored in the bonds of sugar.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>A solar-powered kitchen</h3><p class="cap">Air and water are the ingredients, sunlight is the electricity, chlorophyll is the stove. Sugar is the meal.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Tweak the inputs</h3><div class="ctl"><label for="psL">Light level: <span id="psLV"></span></label><input id="psL" type="range" min="0" max="10" step="1" value="6"></div><div class="chips" id="psChips" role="group" aria-label="Other inputs"></div><div class="bars" id="psBars"></div><p class="readout" id="psR" aria-live="polite"></p></article><article class="aid wide"><span class="tag data">Data</span><h3>Matching the atoms</h3><div class="tw"><table class="tbl" style="min-width:440px"><thead><tr><th></th><th>Reactants</th><th>Products</th></tr></thead><tbody><tr><td>Equation</td><td>6 CO₂ + 6 H₂O + light</td><td>C₆H₁₂O₆ + 6 O₂</td></tr><tr><td>C</td><td>6</td><td>6</td></tr><tr><td>H</td><td>12</td><td>12</td></tr><tr><td>O</td><td>18</td><td>18</td></tr></tbody></table></div><p class="cap">Compare with cellular respiration in 7.4: it is the same equation run backwards.</p></article></div></section>

@@ -13,14 +13,28 @@ const data = JSON.parse(readFileSync(join(root, 'docs', 'trades', 'quiz-prototyp
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const slug = (s) => s.toLowerCase().replace(/&amp;/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
+const urlText = (u) => {
+  const m = u.match(/catalog\.wccnet\.edu\/current\/programs\/([a-z0-9]+)\.php/i);
+  if (m && m[1].toLowerCase() !== 'index') return m[1].toUpperCase();
+  try { return new URL(u).hostname.replace(/^www\./, ''); } catch { return u; }
+};
 function inline(s) {
   let t = esc(s);
   t = t.replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '<a href="$2" rel="noopener">$1</a>');
-  t = t.replace(/(^|[\s(;,])(https?:\/\/[^\s<)|;,]+[^\s<)|;,.])/g, '$1<a href="$2" rel="noopener">$2</a>');
+  t = t.replace(/(^|[\s(;,])(https?:\/\/[^\s<)|;,]+[^\s<)|;,.])/g, (m, a, u) => a + '<a href="' + u + '" rel="noopener">' + urlText(u.replace(/&amp;/g, '&')) + '</a>');
   t = t.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
   t = t.replace(/(^|[^*])\*([^*\s][^*]*)\*(?!\*)/g, '$1<em>$2</em>');
   t = t.replace(/`([^`]+)`/g, '<code>$1</code>');
   return t;
+}
+
+// Long cells in these columns hold several items separated by semicolons: show them as bullets.
+function cell(c, headName) {
+  if (['Where to train in Michigan', 'Link'].includes(headName) && c.includes(';')) {
+    const parts = c.split(';').map((x) => x.trim()).filter(Boolean);
+    if (parts.length > 1) return '<ul class="cell">' + parts.map((x) => '<li>' + inline(x) + '</li>').join('') + '</ul>';
+  }
+  return inline(c);
 }
 
 function convert(text, { h1 = 1 } = {}) {
@@ -41,10 +55,10 @@ function convert(text, { h1 = 1 } = {}) {
       const rows = [];
       while (i < lines.length && lines[i].startsWith('|')) { rows.push(lines[i]); i++; }
       const cells = (r) => r.replace(/^\||\|\s*$/g, '').split('|').map((c) => c.trim());
-      const head = cells(rows[0]);
+      const head = cells(rows[0]).map((h) => (h === 'URL' ? 'Link' : h));
       const body = rows.slice(2).map(cells);
       out.push('<div class="tw"><table><thead><tr>' + head.map((c) => '<th scope="col">' + inline(c) + '</th>').join('') + '</tr></thead><tbody>' +
-        body.map((r) => '<tr>' + r.map((c) => '<td>' + inline(c) + '</td>').join('') + '</tr>').join('') + '</tbody></table></div>');
+        body.map((r) => '<tr>' + r.map((c, ci) => '<td>' + cell(c, head[ci]) + '</td>').join('') + '</tr>').join('') + '</tbody></table></div>');
       continue;
     }
     if (/^\s*-\s+/.test(l)) {
@@ -101,13 +115,21 @@ const part3 = find('Part 3').replace(/^Part 3:[^\n]*\n/, '');
 // Part 1: wrap each trade in an article with its own anchor.
 const trades = part1.split(/^(?=### )/m);
 const intro1 = trades.shift();
-const tradeNav = [];
+const pickRows = [];
+const bySoc = Object.fromEntries(data.map((o) => [o.soc, o]));
 const articles = trades.map((t) => {
   const title = t.match(/^### (.*)$/m)[1];
-  const id = slug(title.replace(/\s*\(\d{2}-\d{4}\)/, ''));
-  tradeNav.push('<a href="#' + id + '">' + esc(title.replace(/\s*\(\d{2}-\d{4}\)/, '')) + '</a>');
-  return '<article class="trade" id="' + id + '">' + convert(t, { h1: 1 }) + '</article>';
+  const name = title.replace(/\s*\(\d{2}-\d{4}\)/, '');
+  const id = slug(name);
+  const o = bySoc[(title.match(/\((\d{2}-\d{4})\)/) || [])[1]] || {};
+  pickRows.push('<tr><th scope="row"><button type="button" class="pick" data-t="' + id + '" aria-pressed="false" aria-controls="' + id + '">' + esc(name) + '</button></th>' +
+    '<td class="num">' + (o.miWorkers == null ? 'n/a' : Math.round(o.miWorkers).toLocaleString('en-US')) + '</td><td class="num">' + (o.wage == null ? 'n/a' : '$' + Math.round(o.wage).toLocaleString('en-US')) + '</td></tr>');
+  return '<article class="trade" id="' + id + '" hidden>' + convert(t, { h1: 1 }) + '</article>';
 });
+const half = Math.ceil(pickRows.length / 2);
+const pickTable = (rowsHtml) => '<div class="tw"><table class="picktab"><thead><tr><th scope="col">Trade</th><th scope="col">MI workers</th><th scope="col">Median wage</th></tr></thead><tbody>' + rowsHtml.join('') + '</tbody></table></div>';
+const picker = '<div class="picker">' + pickTable(pickRows.slice(0, half)) + pickTable(pickRows.slice(half)) + '</div>' +
+  '<p class="pickbar"><button type="button" id="showall">Show all</button> <button type="button" id="hideall">Hide all</button> <span id="pickhint">Pick a trade to read about it.</span></p>';
 
 // Part 3: one collapsible block per family; the leading text and the "cannot count" list stay open.
 const p3 = part3.split(/^(?=## )/m);
@@ -180,6 +202,25 @@ details.fam li{margin:.35em 0}
 #cmp .tg{color:var(--muted);font-size:.78rem}
 .pill{display:inline-block;font-size:.72rem;border:1px solid var(--accent);color:var(--accent);border-radius:999px;padding:0 7px;margin-left:4px}
 #count{color:var(--muted);font-size:.9rem;margin:6px 0}
+details.sec{margin:22px 0;border-top:1px solid var(--line)}
+details.sec>summary{cursor:pointer;list-style:none;padding:6px 0}
+details.sec>summary::-webkit-details-marker{display:none}
+details.sec>summary h2{display:inline;margin:0}
+details.sec>summary::before{content:"▸";color:var(--accent);margin-right:8px;display:inline-block;transition:transform .15s;font-size:1.2rem}
+details.sec[open]>summary::before{transform:rotate(90deg)}
+.picker{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0 4px;align-items:start}
+@media (max-width:680px){.picker{grid-template-columns:1fr}}
+.picktab th[scope=row]{background:none;position:static;white-space:normal;font-weight:400}
+.picktab td.num{text-align:right;white-space:nowrap}
+.pick{font:inherit;text-align:left;background:none;border:0;padding:2px 0;color:var(--accent);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.pick[aria-pressed="true"]{color:var(--ink);font-weight:700;text-decoration:none}
+.pickbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0 12px}
+.pickbar button{font:inherit;padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);cursor:pointer}
+.pickbar button:hover{border-color:var(--accent)}
+#pickhint{color:var(--muted);font-size:.9rem}
+ul.cell{margin:0;padding-left:1.1em}
+ul.cell li{margin:.25em 0}
+article.trade[hidden]{display:none}
 footer{margin-top:3em;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line);padding-top:14px}
 </style>
 </head>
@@ -188,21 +229,22 @@ footer{margin-top:3em;color:var(--muted);font-size:.9rem;border-top:1px solid va
 <p class="top"><a href="../index.html">&larr; All lessons</a></p>
 <p class="kicker">Careers &middot; Michigan</p>
 <h1>Pick a Trade</h1>
-<p class="lede">Hands-on careers that do not depend on a screen: what the work is like, how people get in, and what Michigan numbers say about pay and demand. Fifteen trades in depth, what Washtenaw Community College (WCC) offers, and a short description of every other occupation we could count.</p>
-<div class="note"><b>Draft.</b> The numbers come from the U.S. Bureau of Labor Statistics. The descriptions, the "AI exposure" labels and the tags were written by a language model without web access and have not been checked line by line. WCC information comes from a survey of its 2026&ndash;27 catalog and may have changed. Check anything you act on with the school, union or employer. Last built 2026-11-04.</div>
-<nav class="jump" aria-label="Sections"><a href="#in-depth">Fifteen in depth</a><a href="#wcc">Washtenaw CC</a><a href="#more">More trades</a><a href="#compare">Compare all ${data.length}</a></nav>
+<p class="lede">Hands-on careers that do not depend on a screen: what the work is like, how people get in, and what Michigan numbers say about pay and demand. Fifteen trades in depth, what Washtenaw Community College (WCC) offers, and a short description of every other occupation we could count. The numbers come from the U.S. Bureau of Labor Statistics.</p>
+<nav class="jump" aria-label="Sections"><a href="#wcc">Washtenaw CC</a><a href="#in-depth">Fifteen in depth</a><a href="#more">More trades</a><a href="#compare">Compare all ${data.length}</a></nav>
+
+<details class="sec" id="wcc"><summary><h2>Washtenaw Community College (WCC)</h2></summary>
+${convert(part2, { h1: 2 })}
+</details>
 
 <h2 id="in-depth">Fifteen trades in depth</h2>
 ${convert(intro1.replace('Health technician careers are in Part 3 and the appendix.', 'Health technician careers are in More trades and the comparison table.'))}
-<div class="tradenav">${tradeNav.join('')}</div>
+${picker}
 ${articles.join('\n')}
 
-<h2 id="wcc">Washtenaw Community College (WCC)</h2>
-${convert(part2, { h1: 2 })}
-
-<h2 id="more">More trades, one line each</h2>
+<details class="sec" id="more"><summary><h2>More trades, one line each</h2></summary>
 ${p3intro}
 ${p3html}
+</details>
 
 <h2 id="compare">Compare all ${data.length} occupations</h2>
 <p>Search, filter and sort. Worker counts are for Michigan where BLS publishes them. The wage is the Michigan median, or the U.S. median where Michigan is not published. Projected change is the national 2025 to 2035 estimate.</p>
@@ -258,6 +300,22 @@ function render(){
 [q,fam,pth,set].forEach(function(e){e.addEventListener('input',render);});
 document.querySelectorAll('#cmp th button').forEach(function(b){b.addEventListener('click',function(){var k=b.dataset.k;if(sortKey===k)dir=-dir;else{sortKey=k;dir=k==='n'?1:-1;}render();});});
 render();
+})();
+(function(){
+var picks=[].slice.call(document.querySelectorAll('.pick')),arts=[].slice.call(document.querySelectorAll('article.trade')),hint=document.getElementById('pickhint');
+function show(id,scroll){
+ arts.forEach(function(a){a.hidden=a.id!==id;});
+ picks.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.t===id?'true':'false');});
+ hint.textContent=id?'Showing one trade. Pick another, or Show all.':'Pick a trade to read about it.';
+ if(id&&scroll){document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});}
+}
+picks.forEach(function(b){b.addEventListener('click',function(){show(b.getAttribute('aria-pressed')==='true'?'':b.dataset.t,true);});});
+document.getElementById('showall').addEventListener('click',function(){arts.forEach(function(a){a.hidden=false;});picks.forEach(function(b){b.setAttribute('aria-pressed','false');});hint.textContent='Showing all fifteen.';});
+document.getElementById('hideall').addEventListener('click',function(){show('',false);});
+function hash(){var id=location.hash.slice(1);if(!id)return;var e=document.getElementById(id);if(!e)return;
+ if(e.matches('article.trade')){show(id,true);return;}
+ var d=e.closest('details');if(d&&!d.open){d.open=true;e.scrollIntoView();}}
+addEventListener('hashchange',hash);hash();
 })();
 </script>
 </body>

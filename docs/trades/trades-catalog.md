@@ -206,6 +206,8 @@ WCC is in Ann Arbor (wccnet.edu). This part comes from a survey of its 2026-2027
 
 Costs in the tables are arithmetic (credits times the 2026-27 in-district tuition plus fee), not a published total, and leave out books, tools, lab fees and exam fees. Wages and openings are the figures WCC shows on its own program pages for Michigan.
 
+**Is tuition free for in-district students?** No. WCC's in-district rate is the lowest in the state and is frozen for 2026-27 (about $99 per credit in tuition, per [WCC's tuition announcement](https://www.wccnet.edu/news/articles/2026-05-19-tuitionfreeze.php)), but it is not free; the cost column above includes a per-credit fee, which is why it uses $114. The one free group is Washtenaw County residents 65 and older. People who live outside the county but work 30 or more hours a week for an employer in it, or who own and live on property in it, can apply for the in-district rate ([WCC tuition discounts](https://www.wccnet.edu/afford/cost/tuition/discounts.php)). State aid such as the Michigan Reconnect and Michigan Achievement scholarships and the Tuition Incentive Program can cover tuition for students who qualify; ask WCC financial aid.
+
 ## What WCC offers (45 credentialed programs, plus 1 proposed)
 
 ### HVAC / refrigeration
@@ -294,25 +296,25 @@ Also in the A-Z list, not opened: Registered Nursing (AAS), LPN-to-RN (AAS), CT,
 | Police Academy (CTPA) | Certificate | 19 | $2,166 | Required for law enforcement licensing in Michigan (MCOLES). [Police/sheriff's patrol officers] $73,663, 1,436 (from the CJ AAS page) | Reading, writing, physical exams; fingerprinting and criminal history check; uniforms and supplies extra | https://catalog.wccnet.edu/current/programs/ctpa.php |
 | Criminal Justice - Law Enforcement (APCJLE) | AAS | 60 | $6,840 | Same | Academy admission as above | https://catalog.wccnet.edu/current/programs/apcjle.php |
 
-### Not found at WCC (not in its program list)
-Plumbing, standalone electrician, solar/energy/renewables, culinary, fire science/EMT/paramedic, CDL/truck driving, heavy equipment operation, standalone carpentry, standalone diesel/heavy truck, wind. Confirm against https://catalog.wccnet.edu/current/programs/index.php. I did not search non-credit continuing-education offerings.
-
 ## Apprenticeships and union partnerships
 
-- **Office of Apprenticeship**: employer-driven "earn while you learn". WCC provides the related classroom instruction; employers provide on-the-job training. Open to high school students/graduates, career changers, current workers. WCC will build a new program for any employer or occupation. Contact. https://www.wccnet.edu/business/apprenticeships/index.php
-- **Union partnerships**: https://www.wccnet.edu/learn/our-offerings/union-members/index.php
-  - Sprinkler Fitters Local 669 JATC: home office on WCC's campus; WCC manages the five-year apprentice program; serves more than 3,200 apprentices per year (about 13,000 enrollments). https://www.wccnet.edu/learn/our-offerings/union-members/jatc.php
-  - United Association (plumbers/pipefitters/HVACR/welders): credit for apprenticeship; Journeyman Industrial, Construction Supervision and Industrial Training degrees; online classes. https://www.wccnet.edu/learn/departments/uasd/index.php
-  - Ironworkers: pre-apprenticeship certificate (above); annual instructor training at WCC each July (700+ attendees); 26 credits for completed apprenticeship. https://www.wccnet.edu/learn/our-offerings/union-members/ironworkers.php
-  - Bricklayers (BAC): 45 credits each for brick/block, tile mechanic and cement mason apprenticeships; classes online. https://www.wccnet.edu/learn/our-offerings/union-members/bricklayers.php
-  - IBEW / Ann Arbor Electrical JATC (Local 252): articulation agreement signed May 2026; associate degrees in Construction Supervision and Journeyman Industrial via online coursework plus prior-learning credit. https://www.wccnet.edu/news/articles/2026-05-21-ibewcontract.php
-  - Plasterers and Cement Masons (OPCMIA): page exists, no details captured. https://www.wccnet.edu/learn/our-offerings/union-members/masons.php
-  - Up to 45 college credits for completed union apprenticeships: https://www.wccnet.edu/learn/our-offerings/union-members/apprentice-credit.php
-- **For the guide**: WCC does not itself run the plumbing, electrical, bricklayer or ironworker apprenticeship. It is the classroom and credit partner; the union JATC or employer runs the apprenticeship. Only the Sprinkler Fitter program and the Ironworker pre-apprenticeship are directly WCC-linked.
+WCC does not run the plumbing, electrical, bricklayer or ironworker apprenticeships itself. It is the classroom and college-credit partner; the union training center (JATC) or the employer runs the apprenticeship. Only the sprinkler fitter program and the ironworker pre-apprenticeship are directly WCC-linked.
+
+| Group | What WCC does | Link |
+|---|---|---|
+| Employers (Office of Apprenticeship) | Employer-driven "earn while you learn". WCC teaches the classroom part and the employer provides on-the-job training. Open to high school students and graduates, career changers and current workers. WCC will build a new program for any employer or occupation. | [Office of Apprenticeship](https://www.wccnet.edu/business/apprenticeships/index.php) |
+| Sprinkler Fitters Local 669 JATC | Home office is on WCC's campus and WCC manages the five-year apprentice program. More than 3,200 apprentices a year (about 13,000 enrollments). | [Sprinkler fitters](https://www.wccnet.edu/learn/our-offerings/union-members/jatc.php) |
+| United Association (plumbers, pipefitters, HVACR, welders) | Credit for apprenticeship; Journeyman Industrial, Construction Supervision and Industrial Training degrees; online classes. | [United Association](https://www.wccnet.edu/learn/departments/uasd/index.php) |
+| Ironworkers | Pre-apprenticeship certificate (CTPAIW above); annual instructor training at WCC each July (700+ attendees); 26 credits for a completed apprenticeship. | [Ironworkers](https://www.wccnet.edu/learn/our-offerings/union-members/ironworkers.php) |
+| Bricklayers (BAC) | 45 credits each for the brick and block, tile mechanic and cement mason apprenticeships; classes online. | [Bricklayers](https://www.wccnet.edu/learn/our-offerings/union-members/bricklayers.php) |
+| IBEW / Ann Arbor Electrical JATC (Local 252) | Agreement signed May 2026: associate degrees in Construction Supervision and Journeyman Industrial through online coursework plus prior-learning credit. | [IBEW agreement](https://www.wccnet.edu/news/articles/2026-05-21-ibewcontract.php) |
+| Plasterers and Cement Masons (OPCMIA) | WCC has a page for this group; we could not find details. | [Plasterers and cement masons](https://www.wccnet.edu/learn/our-offerings/union-members/masons.php) |
+| Any completed union apprenticeship | Up to 45 college credits. | [Apprentice credit](https://www.wccnet.edu/learn/our-offerings/union-members/apprentice-credit.php) |
+| All union partners | One page listing every union partnership. | [Union members](https://www.wccnet.edu/learn/our-offerings/union-members/index.php) |
 
 ## What WCC does not offer, and where people train instead
 
-17 items. Sourced from web search results and the pages linked; many are union or aggregator pages, so verify before publishing.
+Places to train in Michigan for trades WCC does not teach. Check each one with the school, union or employer before you act on it.
 
 | Trade | One line | Where to train in Michigan | Link |
 |---|---|---|---|
@@ -333,18 +335,6 @@ Plumbing, standalone electrician, solar/energy/renewables, culinary, fire scienc
 | Land surveyor | Measures property boundaries and sites. Not at WCC | Michigan license through LARA: surveying degree (or board-accepted related degree), verified experience, NCEES exams. I did not identify a specific Michigan school | https://www.michigan.gov/documents/lara/Professional_Surveyor_Licensing_Guide_700329_7.pdf |
 | Funeral director / mortuary science | Embalming and funeral arrangement; state licensed. Not at WCC | Wayne State University Mortuary Science (accredited; online option); one source calls it the only accredited undergraduate program in Michigan leading to licensure | https://online.wayne.edu/undergraduate/mortuary-science |
 | Arborist | Tree care, climbing, removal. Not at WCC | One secondary source says Michigan has no state arborist license; ISA Certified Arborist is the common credential; pesticide applicator license via MDARD for chemical treatments. I found no Michigan training program | https://getlicensemap.com/states/arborist/michigan |
-
-### What we could not confirm about WCC
-
-- Program length in months/years: WCC pages do not state it. Stated only: welding AAS plan (5 semesters), nursing assistant (4-5 weeks), sprinkler fitter apprenticeship (five years).
-- Cost: no per-program published total found. The cost column is credits x $114 and excludes books, tools, fees, uniforms and exam fees.
-- Wage data: WCC gives Lightcast medians for "Michigan" with no year, and for the occupations WCC chose. These are experienced-worker medians, not graduate starting pay. Annual openings are statewide.
-- Admission requirement text not captured: CVWLDN, CVSBMF, CTMA2, CTSPTF, CCCTT, details of Dental Assisting.
-- Not opened: Construction Supervision, Construction Management, RN, LPN-to-RN, CT/MRI/mammography.
-- No plumbing, electrician, solar, culinary, fire/EMS or CDL program found in the A-Z list. Non-credit continuing-ed offerings were not searched. A search result pointed to a WCC "Trainco Truck Driving Schools" workforce page, but it returned 404 when fetched.
-- Gap list sources are web search results, union job-board listings (SHRM Hirevets, Helmets to Hardhats), SkillPlum and TradeColleges aggregators, and news. Wages, hours and program lengths for union apprenticeships conflict across sources, and application windows were not confirmed. Check ua190.org, oe324.org, rooferslocal149.com, IUEC/NEIEP directly. The Local 36 Detroit elevator identification, the Legacy and LCC aircraft entries, and the KVCC wind academy status come from search summaries only. Surveyor and arborist have no identified Michigan training program.
-- Union pages for BAC, IBEW and OPCMIA give credit rules only; none gave wages.
-
 
 # Part 3: The rest, one line each
 

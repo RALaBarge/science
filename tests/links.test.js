@@ -40,7 +40,6 @@ check('k-5 has 24 lessons', count('k-5') === 24, String(count('k-5')));
 check('6th has 14 lessons', count('6th') === 14, String(count('6th')));
 check('7th has 9 lessons', count('7th') === 9, String(count('7th')));
 check('8th has 9 lessons', count('8th') === 9, String(count('8th')));
-check('9th has 1 lesson', count('9th') === 1, String(count('9th')));
-check('extras has 2 pages', count('extras') === 2, String(count('extras')));
+check('extras has 3 pages', count('extras') === 3, String(count('extras')));
 check('design log published', existsSync(path.join(ROOT, 'design-log.html')));
 check(`${checked} relative links resolve`, problems.length === 0, problems.slice(0, 8).join(' | '));

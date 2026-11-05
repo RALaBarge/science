@@ -15,6 +15,18 @@ Scope to cover on every lesson page, the lesson map, and the arcade:
 
 Plan: one lead agent splits the work by grade folder, one sub-agent per folder, then rebuilds `dist/` and runs `node tests/links.test.js`.
 
+## Missing units (moved from the index page's "Not covered yet" card, checked 2026-11-05)
+
+Checked against the lesson text in 6th to 9th and K-5. All five are still open:
+
+- **Acids and bases:** no lesson teaches pH, indicators or neutralization (the word only appears in passing).
+- **Simple machines and work:** only a mention in K-5 3.1. Nothing in 6th to 8th on levers, pulleys, ramps, work or mechanical advantage.
+- **Data analysis and statistics** as a mini-unit: graphs appear inside lessons, but nothing teaches mean, median, spread, outliers or sample size.
+- **Human body health:** nutrition and disease are only touched (6th Unit 9 has germs and vaccines, 7.4 has nutrients as fuel). A fuller unit is still open.
+- **Climate and climate change** beyond 6th Unit 13: Unit 13 covers the greenhouse effect and Unit 4 covers climate vs weather, but there is no unit on evidence of change over time or regional effects.
+
+High school is out of scope.
+
 ## K-5 units (added 2026-11-03)
 
 - Verify every K-5 footer standard against the Michigan Department of Education Science Standards document (codes follow NGSS and are expected to match, not yet checked).

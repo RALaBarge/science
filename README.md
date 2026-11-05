@@ -2,7 +2,7 @@
 
 Science material for kids, all plain HTML that runs in a browser with no install, sign-in, or server. Two halves:
 
-- **Lesson guides** — 58 pages, sorted into grade folders: `k-5/`, `6th/`, `7th/`, `8th/`, `9th/`, plus `extras/`. Most lessons end with a short browser game embedded in the page; the K–5 units are getting one each (5 of 23 so far: K-B, K-C, 1-B, 3.3, 4.4).
+- **Lesson guides** — 58 pages, sorted into grade folders: `k-5/`, `6th/`, `7th/`, `8th/`, plus `extras/`. Most lessons end with a short browser game embedded in the page; the K–5 units are getting one each (5 of 23 so far: K-B, K-C, 1-B, 3.3, 4.4).
 - **Science Arcade** — six standalone games (gravity, light, circuits, levers, states of matter, football physics) with a shared bank of 177 science questions.
 
 Open `dist/index.html` for the lesson map, or `dist/arcade.html` for the arcade. Every file in `dist/` is self-contained, so it works from GitHub Pages, a web server, a USB stick, or a `file://` link. No font is fetched from the network: Atkinson Hyperlegible is embedded in each lesson page.
@@ -15,8 +15,7 @@ Open `dist/index.html` for the lesson map, or `dist/arcade.html` for the arcade.
 | `6th/` | 6th | Units 1–14: light and matter, thermal energy, forces and motion, weather, plate tectonics, natural hazards, cells, classifying life, body systems, states of matter, Earth in space, ecosystems, energy resources, and where the solar system is going in the galaxy and how it formed | 14 |
 | `7th/` | 7th | Units 7.1–7.9: matter and its properties, chemical reactions, reaction energy, metabolism, photosynthesis, ecosystems, Earth resources, EM spectrum, adaptation and Earth history | 9 |
 | `8th/` | 8th | Units 8.1–8.9: collisions, energy transformation, forces at a distance (including simple circuits), sound, light and information, gravity and orbits, stars and galaxies, genetics, natural selection | 9 |
-| `9th/` | 9th | 9.1 How AI Works: a reading-comprehension course on language models, context windows, embeddings, diffusion, and warnings now and ahead | 1 |
-| `extras/` | any | The Same Shape Everywhere: branching patterns from trees and lightning to neurons and the cosmic web (real photos, credits in the page and `extras/CREDITS.md`); Pick a Trade: hands-on careers in Michigan, with fifteen trades in depth, Washtenaw Community College's programs, and a searchable table of 306 occupations (built by `node docs/trades/build-page.mjs` from `docs/trades/trades-catalog.md`; draft) | 2 |
+| `extras/` | any | How AI Works: a reading-comprehension course on language models, context windows, embeddings, diffusion, and warnings now and ahead (grade 9 and up); The Same Shape Everywhere: branching patterns from trees and lightning to neurons and the cosmic web (real photos, credits in the page and `extras/CREDITS.md`); Pick a Trade: hands-on careers in Michigan, with fifteen trades in depth, Washtenaw Community College's programs, and a searchable table of 306 occupations (built by `node docs/trades/build-page.mjs` from `docs/trades/trades-catalog.md`; draft) | 2 |
 
 The K–5 folder holds the method unit and 23 grade-tagged units (K–2: K2.0 optional plus K-A to 2-C; grades 3–5: 3.1 to 5.4). They are text-first lessons: concept cards, a hands-on kit, a check-yourself quiz, vocabulary and tutor notes. All 23 have an activity: 13 Big Sort, 4 Fair Test Lab (2-A, 2-C, 4.1, 4.5), 2 Push Arena (K-A, 3.1), 2 Graph & Sky (1-C, 5.2), 1 Path & Signal (4.2) and 1 Scene & Web (K2.0). Each says it is a model and points back to the real hands-on work. The weakest are K2.0 (about 90 seconds of play, aimed at kindergarten with a grown-up), the Big Sort units that the design table gave to a richer engine, and the 5.2 gravity round, which asks the same question three times. Whether kids find them fun is not yet checked (see `docs/k5-activities-design.md`). Every K–5 lesson now has pictures: 61 text-free images (one hero per unit plus concept and "what it should look like" kit photos), 34 data graphs and 16 labeled diagrams. The graphs are generated from each page's own numbers and the diagrams are hand-built SVG with real text; the images are Z-Image-Turbo output kept as 800 px WebP, with prompts, seeds and accept/reject reasons in `k5-images/manifest.json`. `node k5-images/make-figures.mjs` rebuilds the SVGs and per-page lists, `node k5-images/inject-images.mjs` embeds everything between `k5images` markers (it can run before or after `k5-activities/inject.mjs`), then `node build.mjs`; `node tests/k5-images.test.js` checks alt text, file sizes and one block per page.
 
@@ -73,8 +72,7 @@ k-5/                 24 lessons (Unit 0 plus 23 grade-tagged units)
 6th/                 14 lessons (Units 1–14)
 7th/                 9 lessons (Units 7.1–7.9)
 8th/                 9 lessons (Units 8.1–8.9)
-9th/                 1 lesson  (9.1, How AI Works)
-extras/              1 page    (The Same Shape Everywhere)
+extras/              3 pages   (How AI Works, Pick a Trade, The Same Shape Everywhere)
 dist/                built site (committed); regenerate with node build.mjs
 games/<name>.html    arcade page markup (links the shared files)
 games/<name>.js      arcade game logic
@@ -89,12 +87,12 @@ tests/               Playwright tests, link check, and benchmarks
 
 ## Page style and URL parameters
 
-Every lesson page has a **Style: Classic / Retro space** switch at the top. The choice lives in the URL as `?style=retro` (Classic is the default and adds nothing), so a link shares the style and a reload keeps it.
+Every lesson page has a **Style: Classic / Retro space** switch at the top. The choice lives in the URL as `?style=classic` (Retro space is the default and adds nothing), so a link shares the style and a reload keeps it.
 
 - **Params pass through.** On every lesson page and on the lesson map, links to other pages in the site get the page's whole query string appended, not just `style`. Any other parameter you add (for example `?style=retro&kid=ava`) travels with the reader from page to page, so it can be used later for per-reader settings. Links to other sites and `#anchor` links are left alone.
 - **Fonts:** headings and body text are Atkinson Hyperlegible (chosen for legibility), embedded in each page as a base64 `@font-face` (Latin subset, regular and bold). Small labels, tags and numeric readouts use the device's own monospace font (`ui-monospace`, Cascadia Mono, SF Mono, Menlo, Consolas). Key terms in the big sentences are bold and colored, with no highlighter background.
 - **Where it lives:** each lesson page carries one `<style id="v2">` block and one script just above `<header class="hero">`. The retro palette is a set of overrides under `html[data-style="retro"]`. The arcade games have their own look and are not part of this.
-- **Not yet:** the 9th-grade course and the extras page have their own light/dark toggle, which may conflict with the retro theme once used (untested). The arcade games ignore `style`.
+- **Not yet:** How AI Works still has its own light/dark theme button, which may conflict with the retro theme (untested). The index page, Pick a Trade and the design log have no retro style. The arcade games ignore `style`.
 
 ## Editing content
 

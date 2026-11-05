@@ -49,12 +49,13 @@ h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
 .hero-art{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:10px 12px}
 .howto{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:.92rem;color:var(--muted)}
 
-/* nav */
-.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);margin-top:18px;border-bottom:1px solid var(--line);
-  margin-inline:auto;max-width:920px}
-.nav ul{list-style:none;margin:0;padding:8px 0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin}
-.nav a{display:block;white-space:nowrap;text-decoration:none;font-size:.9rem;padding:7px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface)}
-.nav a:hover{border-color:var(--ink)}
+/* index at the top */
+.toc{margin:16px 0 8px;padding:12px 16px 10px;background:var(--surface);border:1px solid var(--line);border-radius:14px;max-width:62ch}
+.toc h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 4px}
+.toc ol{margin:0;padding-left:1.5em;columns:2 250px;column-gap:28px}
+.toc li{margin:.3em 0;break-inside:avoid}
+.toc a{color:var(--ink);text-underline-offset:3px}
+.toc a:hover{color:var(--accent,var(--ink))}
 
 /* sections */
 .sec{padding-block:52px 6px;scroll-margin-top:68px;display:grid;gap:20px}
@@ -230,7 +231,7 @@ html[data-style="retro"] .idea mark{color:var(--beam)}
 html[data-style="retro"] .aid,html[data-style="retro"] .hero-art,html[data-style="retro"] .card2,html[data-style="retro"] .related li,html[data-style="retro"] .evrow{border:1.5px solid #6E4BC8;border-radius:14px;box-shadow:0 0 22px #8a5cff33}
 html[data-style="retro"] .tag{border-radius:6px;background:transparent;border:1px solid var(--tint);color:var(--tint)}
 html[data-style="retro"] .kicker{color:#4DF0C2}
-html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#160B33}
+html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#160B33}
 </style>
 <script>
 /* Page style lives in the URL (?style=retro). Every param is kept on links to other pages. */
@@ -238,7 +239,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
   var de=document.documentElement;
   function cur(){return new URLSearchParams(location.search);}
   function apply(){
-    if(cur().get('style')==='retro'){de.setAttribute('data-style','retro');de.setAttribute('data-theme','dark');}
+    if(cur().get('style')!=='classic'){de.setAttribute('data-style','retro');de.setAttribute('data-theme','dark');}
     else{de.removeAttribute('data-style');de.removeAttribute('data-theme');}
   }
   function carry(){
@@ -255,7 +256,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
     });
   }
   function sync(){
-    var st=cur().get('style')==='retro'?'retro':'classic';
+    var st=cur().get('style')==='classic'?'classic':'retro';
     document.querySelectorAll('#styleSwitch .chip').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.style===st));});
   }
   apply();
@@ -263,7 +264,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
     var box=document.getElementById('styleSwitch');
     if(box)box.addEventListener('click',function(e){
       var b=e.target.closest('button'); if(!b)return;
-      var p=cur(); if(b.dataset.style==='retro')p.set('style','retro'); else p.delete('style');
+      var p=cur(); if(b.dataset.style==='classic')p.set('style','classic'); else p.delete('style');
       var qs=p.toString();
       try{history.replaceState(null,'',location.pathname+(qs?'?'+qs:'')+location.hash);}catch(err){}
       apply(); sync(); carry();
@@ -273,11 +274,12 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
 })();
 </script>
 <header class="hero">
-  <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="true">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="false">Retro space</button></div>
+  <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="false">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="true">Retro space</button></div>
   <p class="kicker">Eighth grade science · Unit 8.9</p>
   <h1>Natural Selection &amp; Common Ancestry</h1>
   <p class="lede">You may already have learned in <b>Unit 7.9</b> that helpful traits spread, and in <b>Unit 8.8</b> how traits are inherited and mutate. Now put them together: variation + inheritance + selection = <b>evolution</b>, the idea that explains the diversity of life and its relatedness. Darwin spent twenty years collecting evidence before publishing. Check how he did it using <b>Unit 0: How Science Works</b>.</p>
   <p class="bridge"><b>Where we left off:</b> Unit 8.8 showed how traits are inherited and how mutations create new ones, and Unit 7.9 introduced adaptation and fossils. You may already have learned that helpful traits spread. Now we assemble the full theory of natural selection and common ancestry with several lines of evidence.</p>
+  <nav class="toc" aria-label="In this unit"><h2>In this unit</h2><ol><li><a href="#s1">Selection</a></li><li><a href="#s2">Darwin's finches</a></li><li><a href="#s3">Fossil record</a></li><li><a href="#s4">Common ancestry</a></li><li><a href="#s5">Selection by people</a></li><li><a href="#s6">Check yourself</a></li><li><a href="#game">Game</a></li></ol></nav>
   <div class="hero-art"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 260" role="img" aria-label="Simplified tree of life showing Bacteria, Archaea, Eukarya and example species">
   <title>Tree of life from the common ancestor</title>
   <desc>A simplified family tree of life: the first split separates Bacteria from the Archaea–Eukarya lineage, plants branch before the animal–fungus pair, example species sit at the tips, and closer branches share a more recent ancestor.</desc>
@@ -336,10 +338,8 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
   </g>
   <text x="24" y="42" style="fill:var(--muted);font-size:13px;text-anchor:middle">time</text>
 </svg></div>
-  <p class="howto">Look for the tags <span class="tag analogy">Analogy</span><span class="tag diagram">Diagram</span><span class="tag try">Try it</span><span class="tag data">Data</span><span class="tag real">Real world</span></p>
 </header>
 
-<nav class="nav" aria-label="Lesson sections"><ul><li><a href="#s1">1 Selection</a></li><li><a href="#s2">2 Darwin's finches</a></li><li><a href="#s3">3 Fossil record</a></li><li><a href="#s4">4 Common ancestry</a></li><li><a href="#s5">5 Selection by people</a></li><li><a href="#s6">6 Check yourself</a></li><li><a href="#game">7 Game</a></li></ul></nav>
 
 <main>
 <section class="sec" id="s1"><div><p class="kicker">Concept 1 · How it works</p><h2>Variation, inheritance, and survival add up</h2></div><p class="idea">Natural selection needs four things: <mark>variation</mark> among individuals, traits that are <mark>inherited</mark>, <mark>more offspring than can survive</mark>, and traits that make some <mark>more likely to survive and reproduce</mark>. Over many generations, the population changes.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>A race with a filter</h3><p class="cap">Imagine a hurdle race in which leg length varies from birth. Taller runners clear the hurdle more often, so they are more likely to finish and have children. The next generation starts with more tall runners, not because anyone trained, but because the tall variants survived and reproduced. <b>Where it breaks:</b> the runners do not "try" to evolve, and strength gained by training is not inherited. Selection edits the variation that is already there.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Beetles on grass</h3><div class="chips" id="beChips" role="group" aria-label="Background"></div><div class="ctl"><label for="beG">Generations: <span id="beGV"></span></label><input id="beG" type="range" min="0" max="20" step="1" value="0"></div><div class="stage"><svg id="beSvg" viewBox="0 0 480 130" role="img" aria-label="A population of beetles, green and brown."></svg></div><p class="readout" id="beR" aria-live="polite"></p></article><article class="aid wide"><span class="tag data">Data</span><h3>Four ingredients</h3><div class="tw"><table class="tbl" style="min-width:440px"><thead><tr><th>Ingredient</th><th>Beetle example</th></tr></thead><tbody><tr><td>Variation</td><td>Some green, some brown</td></tr><tr><td>Heredity</td><td>Color genes pass on</td></tr><tr><td>Overproduction</td><td>Each pair lays 20 eggs</td></tr><tr><td>Selection</td><td>Birds eat the more visible color</td></tr></tbody></table></div></article></div></section>

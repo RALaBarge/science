@@ -49,12 +49,13 @@ h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
 .hero-art{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:10px 12px}
 .howto{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:.92rem;color:var(--muted)}
 
-/* nav */
-.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);margin-top:18px;border-bottom:1px solid var(--line);
-  margin-inline:auto;max-width:920px}
-.nav ul{list-style:none;margin:0;padding:8px 0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin}
-.nav a{display:block;white-space:nowrap;text-decoration:none;font-size:.9rem;padding:7px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface)}
-.nav a:hover{border-color:var(--ink)}
+/* index at the top */
+.toc{margin:16px 0 8px;padding:12px 16px 10px;background:var(--surface);border:1px solid var(--line);border-radius:14px;max-width:62ch}
+.toc h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 4px}
+.toc ol{margin:0;padding-left:1.5em;columns:2 250px;column-gap:28px}
+.toc li{margin:.3em 0;break-inside:avoid}
+.toc a{color:var(--ink);text-underline-offset:3px}
+.toc a:hover{color:var(--accent,var(--ink))}
 
 /* sections */
 .sec{padding-block:52px 6px;scroll-margin-top:68px;display:grid;gap:20px}
@@ -225,7 +226,7 @@ html[data-style="retro"] .idea mark{color:var(--beam)}
 html[data-style="retro"] .aid,html[data-style="retro"] .hero-art,html[data-style="retro"] .card2,html[data-style="retro"] .related li,html[data-style="retro"] .evrow{border:1.5px solid #6E4BC8;border-radius:14px;box-shadow:0 0 22px #8a5cff33}
 html[data-style="retro"] .tag{border-radius:6px;background:transparent;border:1px solid var(--tint);color:var(--tint)}
 html[data-style="retro"] .kicker{color:#4DF0C2}
-html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#160B33}
+html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#160B33}
 </style>
 <script>
 /* Page style lives in the URL (?style=retro). Every param is kept on links to other pages. */
@@ -233,7 +234,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
   var de=document.documentElement;
   function cur(){return new URLSearchParams(location.search);}
   function apply(){
-    if(cur().get('style')==='retro'){de.setAttribute('data-style','retro');de.setAttribute('data-theme','dark');}
+    if(cur().get('style')!=='classic'){de.setAttribute('data-style','retro');de.setAttribute('data-theme','dark');}
     else{de.removeAttribute('data-style');de.removeAttribute('data-theme');}
   }
   function carry(){
@@ -250,7 +251,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
     });
   }
   function sync(){
-    var st=cur().get('style')==='retro'?'retro':'classic';
+    var st=cur().get('style')==='classic'?'classic':'retro';
     document.querySelectorAll('#styleSwitch .chip').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.style===st));});
   }
   apply();
@@ -258,7 +259,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
     var box=document.getElementById('styleSwitch');
     if(box)box.addEventListener('click',function(e){
       var b=e.target.closest('button'); if(!b)return;
-      var p=cur(); if(b.dataset.style==='retro')p.set('style','retro'); else p.delete('style');
+      var p=cur(); if(b.dataset.style==='classic')p.set('style','classic'); else p.delete('style');
       var qs=p.toString();
       try{history.replaceState(null,'',location.pathname+(qs?'?'+qs:'')+location.hash);}catch(err){}
       apply(); sync(); carry();
@@ -268,11 +269,12 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
 })();
 </script>
 <header class="hero">
-  <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="true">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="false">Retro space</button></div>
+  <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="false">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="true">Retro space</button></div>
   <p class="kicker">Sixth grade science · Unit 12 · Extension</p>
   <h1>Ecosystems &amp; Food Webs</h1>
   <p class="lede">A forest, a pond, and a lake are not just collections of living things. They are systems where energy flows, matter cycles, and every species affects the others. Use the investigation steps from <b>Unit 0: How Science Works</b> when you study how changes ripple through a food web.</p>
   <p class="bridge"><b>Core unit (best after Unit 8 or 9):</b> Units 7 to 9 were about living things one at a time. Now we ask how they depend on each other. You may already have learned that producers capture the Sun's energy (Unit 1) and that energy changes form (Unit 2). Food webs trace that energy and the matter that moves with it. Units 7.5 and 7.6 go deeper.</p>
+  <nav class="toc" aria-label="In this unit"><h2>In this unit</h2><ol><li><a href="#s1">Ecosystems</a></li><li><a href="#s2">Energy flow</a></li><li><a href="#s3">Matter cycles</a></li><li><a href="#s4">Populations</a></li><li><a href="#s5">Change</a></li><li><a href="#s6">Check yourself</a></li><li><a href="#game">Game</a></li></ol></nav>
   <div class="hero-art">
     <svg viewBox="0 0 640 190" role="img" aria-label="A simple food chain: sun, plant, grasshopper, frog, hawk.">
       <g style="stroke:var(--ink);stroke-width:3"><circle cx="50" cy="60" r="28" style="fill:var(--beam)"/><rect x="130" y="95" width="80" height="50" rx="12" style="fill:var(--transmit);fill-opacity:.4"/><rect x="250" y="95" width="80" height="50" rx="12" style="fill:var(--beam);fill-opacity:.4"/><rect x="370" y="95" width="80" height="50" rx="12" style="fill:var(--reflect);fill-opacity:.4"/><rect x="490" y="95" width="100" height="50" rx="12" style="fill:var(--absorb);fill-opacity:.4"/></g>
@@ -281,13 +283,8 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
       <text x="320" y="176" font-size="12" text-anchor="middle">arrows show the flow of energy, not "who chases whom"</text>
     </svg>
   </div>
-  <p class="howto">Look for the tags <span class="tag analogy">Analogy</span><span class="tag diagram">Diagram</span><span class="tag try">Try it</span><span class="tag data">Data</span><span class="tag real">Real world</span></p>
 </header>
 
-<nav class="nav" aria-label="Lesson sections"><ul>
-  <li><a href="#s1">1 Ecosystems</a></li><li><a href="#s2">2 Energy flow</a></li><li><a href="#s3">3 Matter cycles</a></li><li><a href="#s4">4 Populations</a></li><li><a href="#s5">5 Change</a></li><li><a href="#s6">6 Check yourself</a></li>
-  <li><a href="#game">7 Game</a></li>
-  </ul></nav>
 
 <main>
 

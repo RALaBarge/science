@@ -2,7 +2,7 @@
 //   - dist/<game>.html      one self-contained arcade game per game
 //   - dist/arcade.html      the arcade hub (self-contained)
 //   - dist/index.html       the lesson map / site home (already self-contained)
-//   - dist/k-5|6th|7th|8th|9th|extras  the lesson guides, copied as-is (games are embedded in them)
+//   - dist/k-5|6th|7th|8th|extras  the lesson guides, copied as-is (games are embedded in them)
 //   - dist/design-log.html  the engineering design log
 // Run: node build.mjs
 import { readFileSync, writeFileSync, readdirSync, mkdirSync, copyFileSync, existsSync } from 'node:fs';
@@ -13,7 +13,7 @@ const root = dirname(fileURLToPath(import.meta.url));
 const out = join(root, 'dist');
 mkdirSync(out, { recursive: true });
 
-const GRADES = ['k-5', '6th', '7th', '8th', '9th', 'extras'];
+const GRADES = ['k-5', '6th', '7th', '8th', 'extras'];
 
 // Pages were authored as fragments (no doctype, charset, viewport or lang). Wrap them so phones scale the
 // page, screen readers get the language and the browser uses standards mode.
