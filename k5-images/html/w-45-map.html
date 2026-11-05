@@ -1,0 +1,27 @@
+<div class="k5w" id="w45map"></div>
+<script>(function(){var box=document.getElementById('w45map'),K=K5W,S=K.S,C=K.C;
+ var PAT=[['Mountain range',400,180,85,85],['Broad flat plain',200,195,95,55],['Connected lakes',215,58,125,32]];
+ var sel=0,found=[false,false,false],marks=[],svg,say,miss=0;
+ box.appendChild(K.h('p',null,'This map is made up. Choose a pattern, then tap the map where you think it is. A circle marks your guess.'));
+ K.chips(box,PAT.map(function(p){return p[0];}),0,function(i){sel=i;miss=0;say('Tap the map to find the <b>'+PAT[i][0].toLowerCase()+'</b>.');},'Pattern');
+ svg=K.svg(box,'0 0 480 300','A made-up map with mountains, a flat plain and lakes.');
+ say=K.say(box);
+ function base(){
+  var s=S.r(0,0,480,300,'#cfe7c4',C.ink,6,2);
+  s+=S.r(30,196,300,80,'#e4d8a8','none',40,0);
+  for(var i=0;i<14;i++)s+=S.l(110+(i*37)%180,190+((i*53)%70),114+(i*37)%180,184+((i*53)%70),'#a3a06a',1.5);
+  [[100,52,46,20],[170,60,40,18],[240,52,44,20],[300,70,34,16]].forEach(function(l){s+='<ellipse cx="'+l[0]+'" cy="'+l[1]+'" rx="'+l[2]+'" ry="'+l[3]+'" fill="#6aa8ff" stroke="'+C.ink+'" stroke-width="2"/>';});
+  [[140,56],[205,58],[268,60]].forEach(function(c){s+=S.l(c[0]-6,c[1],c[0]+6,c[1]+2,'#6aa8ff',9);});
+  for(i=0;i<8;i++){var x=372+i*7,y=100+i*22;s+=S.p((x-16)+','+(y+16)+' '+x+','+(y-16)+' '+(x+16)+','+(y+16),'#8b8f9c',C.ink,2);s+=S.p((x-4)+','+(y-8)+' '+x+','+(y-16)+' '+(x+4)+','+(y-8),'#fff','none',0);}
+  return s;
+ }
+ function draw(){var s=base();marks.forEach(function(m){s+=S.c(m[0],m[1],m[2],'none',m[3]?C.teal:C.red,4);});svg.innerHTML=s;}
+ svg.addEventListener('click',function(e){
+  var r=svg.getBoundingClientRect(),x=(e.clientX-r.left)/r.width*480,y=(e.clientY-r.top)/r.height*300,p=PAT[sel];
+  var hit=Math.pow((x-p[1])/p[3],2)+Math.pow((y-p[2])/p[4],2)<=1;
+  marks.push([x,y,22,hit]);
+  if(hit){found[sel]=true;miss=0;var n=found.filter(Boolean).length;say('<b>Yes!</b> You found the '+p[0].toLowerCase()+'. '+n+' of 3 patterns found.'+(n===3?' Maps help us see patterns in Earth&rsquo;s features.':' Pick another pattern.'));}
+  else{miss++;say('Not there. '+(miss>=2?'Hint: look for '+(sel===0?'a row of peaks':sel===1?'a big flat area':'blue shapes joined together')+'.':'Try again.'));}
+  draw();});
+ draw();say('Tap the map to find the <b>mountain range</b>.');
+})();</script>

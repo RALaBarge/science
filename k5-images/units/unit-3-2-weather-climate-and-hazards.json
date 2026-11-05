@@ -42,6 +42,14 @@
    "caption": "Testing a barrier: the same amount of water each time, then compare how much soil moves."
   },
   {
+   "id": "w-32-highs",
+   "after": "s3",
+   "kind": "html",
+   "file": "w-32-highs.html",
+   "alt": "Interactive: a bar graph of Detroit’s typical daily high by month with a month picker and a note that a high is not the whole-day average.",
+   "caption": "Pick a month to read Detroit’s typical daily high."
+  },
+  {
    "id": "g-32-temp",
    "after": "s3",
    "kind": "svg",

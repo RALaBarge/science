@@ -1,0 +1,19 @@
+<div class="k5w" id="w53docks"></div>
+<script>(function(){var box=document.getElementById('w53docks'),K=K5W,S=K.S,C=K.C;
+ var mass=0,energy=0,svg,say,last='';
+ box.appendChild(K.h('p',null,'Send things to the plant one at a time and watch two meters: the plant&rsquo;s <b>mass</b> (matter it is built from) and its <b>energy</b> for working.'));
+ svg=K.svg(box,'0 0 480 200','A plant with a meter for mass and a meter for energy.');
+ K.btn(box,'Send air',function(){add('air');});K.btn(box,'Send water',function(){add('water');});K.btn(box,'Send tiny soil minerals',function(){add('min');});K.btn(box,'Send sunlight',function(){add('sun');});K.btn(box,'Start over',function(){mass=0;energy=0;last='';draw();});
+ say=K.say(box);
+ function add(w){last=w;if(w==='air')mass=Math.min(100,mass+30);if(w==='water')mass=Math.min(100,mass+30);if(w==='min')mass=Math.min(100,mass+1);if(w==='sun')energy=Math.min(100,energy+25);draw();}
+ function meter(x,lab,v,col){return S.t(x+60,28,lab,13,C.ink,'middle',700)+S.r(x,36,120,18,C.surf2,C.ink,6,2)+S.r(x,36,120*v/100,18,col,'none',6,0)+S.t(x+60,70,Math.round(v)+'',13,C.muted);}
+ function draw(){
+  var s=meter(20,'Plant mass (matter)',mass,C.teal)+meter(340,'Energy for the work',energy,C.beam);
+  var g=14+mass*.4;
+  s+=S.l(240,190,240,190-g*2.2,C.teal,6)+S.c(240-g*.9,190-g*2.2,g*.7,C.teal,C.ink,2)+S.c(240+g*.9,190-g*1.6,g*.6,C.teal,C.ink,2)+S.r(160,188,160,10,'#c8a46e',C.ink,3,2);
+  svg.innerHTML=s;
+  say(last==='air'?'<b>Air is matter.</b> Plants build part of their body from it, so the mass goes up.':last==='water'?'<b>Water is matter.</b> The plant builds new material from it, so the mass goes up.':last==='min'?'Soil minerals are matter too, but only a <b>very small amount</b>. In the tree example, the soil lost just 0.1 kg while the tree gained 48 kg.':last==='sun'?'<b>Sunlight is energy, not matter.</b> It powers the building work, so the energy meter rises, but it adds <b>no mass</b>.':'Send air, water, minerals or sunlight to the plant.');
+  svg.setAttribute('aria-label','Plant mass '+Math.round(mass)+' out of 100 and energy '+Math.round(energy)+' out of 100.');
+ }
+ draw();
+})();</script>

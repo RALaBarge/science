@@ -1,0 +1,24 @@
+<div class="k5w" id="w41ramp"></div>
+<script>(function(){var box=document.getElementById('w41ramp'),K=K5W,S=K.S,C=K.C;
+ var hgt=2,svg,say,timer=0,carT=0,blockX=0;
+ svg=K.svg(box,'0 0 480 210','A toy car on a ramp above a floor, with a block waiting at the bottom.');
+ K.slider(box,'Ramp height',1,4,1,2,function(v){return v+' blocks high';},function(v){hgt=v;idle();});
+ K.btn(box,'Let go',go);K.btn(box,'Reset',idle);
+ say=K.say(box);K.note(box,'The same car is used every time, so its mass does not change. Distances are made up to show the pattern.');
+ var FLOOR=170,RX=40,BASE=190,BLK0=250;
+ function draw(p,slide){
+  var top=FLOOR-hgt*34,s=S.p(RX+','+FLOOR+' '+BASE+','+FLOOR+' '+RX+','+top,'#c8a46e',C.ink,2.5)+S.l(10,FLOOR,470,FLOOR,C.ink,3);
+  var cx,cy,ang=Math.atan2(FLOOR-top,BASE-RX);
+  if(p<1){cx=RX+(BASE-RX)*p;cy=top+(FLOOR-top)*p;}else{cx=BASE+(p-1)*(BLK0-BASE-26);cy=FLOOR;}
+  cx=Math.min(cx,BLK0-30+slide);
+  s+=S.r(BLK0+slide,FLOOR-30,30,30,C.red,C.ink,3,2.5);
+  s+='<g transform="translate('+cx.toFixed(1)+' '+(cy-12).toFixed(1)+') rotate('+(p<1?(ang*57.3).toFixed(1):0)+')">'+S.r(-14,-10,28,14,C.blue,C.ink,4,2.5)+S.c(-8,5,5,C.surf,C.ink,2)+S.c(8,5,5,C.surf,C.ink,2)+'</g>';
+  svg.innerHTML=s;
+ }
+ function idle(){clearInterval(timer);draw(0,0);say('Set the ramp height, then press <b>Let go</b>.');}
+ function go(){clearInterval(timer);var t=0,D=hgt*38;
+  timer=setInterval(function(){t+=.03;
+   if(t<1)draw(t*t,0);else if(t<1.6)draw(1+(t-1)/.6*1.0,0);else{var q=Math.min(1,(t-1.6)/.8);draw(2,D*(1-Math.pow(1-q,2)));if(q>=1){clearInterval(timer);say('From <b>'+hgt+' block'+(hgt>1?'s':'')+'</b> up, the car pushed the block about <b>'+Math.round(D/38)+' unit'+(D/38>1?'s':'')+'</b>. A higher ramp makes the car go faster at the bottom, so it has <b>more energy</b> and pushes the block farther.');}}
+  },30);}
+ idle();
+})();</script>

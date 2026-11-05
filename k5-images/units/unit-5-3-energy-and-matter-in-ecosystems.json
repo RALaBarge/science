@@ -34,6 +34,14 @@
    "caption": "Plants build their matter from air and water, with a very small amount from the soil. Sunlight is energy. It powers the work but adds no mass."
   },
   {
+   "id": "w-53-docks",
+   "after": "s1",
+   "kind": "html",
+   "file": "w-53-docks.html",
+   "alt": "Interactive: send air, water, minerals or sunlight to a plant and watch a mass meter and an energy meter. Sunlight raises only the energy meter.",
+   "caption": "Send air, water, minerals and sunlight to a plant."
+  },
+  {
    "id": "g-53-beans",
    "after": "kit",
    "kind": "svg",

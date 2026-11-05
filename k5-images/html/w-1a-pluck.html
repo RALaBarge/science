@@ -1,0 +1,24 @@
+<div class="k5w" id="w1apluck"></div>
+<script>(function(){var box=document.getElementById('w1apluck'),K=K5W,S=K.S,C=K.C;
+ var hard=0,svg,say,timer=0,t=0,amp=0,A0=0;
+ K.chips(box,['Soft pluck','Hard pluck'],0,function(i){hard=i;},'How hard to pluck');
+ svg=K.svg(box,'0 0 480 220','A rubber band stretched across a cup with grains of rice on it.');
+ K.btn(box,'Pluck',pluck);K.btn(box,'Touch the band',touch);
+ say=K.say(box);
+ var rice=[140,200,260,320];
+ function draw(){
+  var y0=110,s=S.r(80,110,320,90,C.surf2,C.line,6,2)+S.t(240,160,'cup',12,C.muted);
+  var path='M100 '+y0,x,i;
+  var phase=Math.cos(t*2*Math.PI*3);
+  for(x=100;x<=380;x+=8)path+=' L'+x+' '+(y0-amp*phase*Math.sin(Math.PI*(x-100)/280)).toFixed(1);
+  s+='<path d="'+path+'" fill="none" stroke="'+C.red+'" stroke-width="4" stroke-linecap="round"/>';
+  rice.forEach(function(rx){var yy=y0-amp*phase*Math.sin(Math.PI*(rx-100)/280)-9-(amp>2?Math.abs(phase)*amp*.3:0);s+='<ellipse cx="'+rx+'" cy="'+yy.toFixed(1)+'" rx="6" ry="3.5" fill="#f3ecd2" stroke="'+C.ink+'" stroke-width="1.5"/>';});
+  if(amp>1.5){for(i=1;i<=3;i++)s+='<path d="M'+(410+i*14)+' '+(95)+' q'+(8+i*3)+' 15 0 30" fill="none" stroke="'+C.muted+'" stroke-width="2.5" opacity="'+(Math.min(1,amp/20)*(1-i*.2)).toFixed(2)+'"/>';s+=S.t(450,150,'sound',12,C.muted);}
+  svg.innerHTML=s;
+ }
+ function pluck(){clearInterval(timer);t=0;A0=hard?30:14;amp=A0;
+  timer=setInterval(function(){t+=.03;amp=A0*Math.exp(-t/1.1);if(amp<.8){amp=0;clearInterval(timer);say('The band stopped shaking, so the sound stopped too. <b>Sound is shaking.</b>');}draw();},30);
+  say('The band is <b>shaking</b> (vibrating), and you hear a sound. A '+(hard?'hard':'soft')+' pluck shakes it more, so it is louder. Watch the rice jump.');}
+ function touch(){clearInterval(timer);amp=0;draw();say('You held the band still. No shaking, so <b>no sound</b>. Nothing flew from the band to your ear.');}
+ draw();say('Pick a pluck, then press <b>Pluck</b>.');
+})();</script>

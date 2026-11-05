@@ -1,0 +1,18 @@
+<div class="k5w" id="w1cstars"></div>
+<script>(function(){var box=document.getElementById('w1cstars'),K=K5W,S=K.S,C=K.C;
+ var pts=[[40,40],[110,70],[170,30],[230,90],[300,45],[360,85],[420,35],[70,120],[190,135],[330,140],[400,125]];
+ var svg,say,sl,b=100;
+ svg=K.svg(box,'0 0 480 190','A sky that changes from bright day to dark night.');
+ sl=K.slider(box,'How bright is the sky',0,100,5,100,function(v){return v>66?'bright (day)':v>25?'getting dark':'dark (night)';},function(v){b=v;draw();});
+ say=K.say(box);
+ function star(x,y,o){return '<path d="M'+x+' '+(y-7)+' L'+(x+2)+' '+(y-2)+' L'+(x+7)+' '+y+' L'+(x+2)+' '+(y+2)+' L'+x+' '+(y+7)+' L'+(x-2)+' '+(y+2)+' L'+(x-7)+' '+y+' L'+(x-2)+' '+(y-2)+'Z" fill="#fff" opacity="'+o+'"/>';}
+ function draw(){
+  var wash=b/100,so=Math.max(0,1-wash*1.25),s=S.r(0,0,480,190,'#161c3a','none',0,0);
+  s+=S.r(0,0,480,190,'#8fc3ff','none',0,0).replace('/>',' opacity="'+wash.toFixed(2)+'"/>');
+  pts.forEach(function(p){s+=star(p[0],p[1],so.toFixed(2));if(so<.3)s+=S.c(p[0],p[1],8,'none',C.muted,1.5).replace('/>',' stroke-dasharray="3 3"/>');});
+  if(wash>.5)s+=S.c(430,50,18,C.beam,C.ink,2.5);else if(wash<.25)s+=S.c(430,50,14,'#e8edf6','none',0)+S.c(436,45,12,'#161c3a','none',0);
+  svg.innerHTML=s;
+  say(wash>.66?'Bright sunlight fills the sky, so the stars are <b>hidden</b>. The dashed rings show where they still are.':wash>.25?'The sky is getting darker. The brightest stars start to show.':'The sky is dark, so we can see the stars. They were there all day. <b>Stars do not turn off.</b>');
+ }
+ draw();
+})();</script>

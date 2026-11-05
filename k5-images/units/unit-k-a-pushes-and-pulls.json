@@ -18,6 +18,14 @@
    "caption": "What a finished Safe Stopper test can look like: a ramp, a car, and a foam stopper."
   },
   {
+   "id": "w-ka-push",
+   "after": "s2",
+   "kind": "html",
+   "file": "w-ka-push.html",
+   "alt": "Interactive: choose a soft, medium or hard push and whether a wall is in the way, then push a toy car along floor tiles and see how far it goes.",
+   "caption": "Push a toy car softly, medium or hard, with or without a wall in the way."
+  },
+  {
    "id": "g-ka-push",
    "after": "kit",
    "kind": "svg",

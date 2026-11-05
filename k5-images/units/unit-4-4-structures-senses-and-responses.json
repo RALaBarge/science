@@ -34,6 +34,14 @@
    "caption": "A sense takes in information, the brain works on it, and then the body responds."
   },
   {
+   "id": "w-44-sense",
+   "after": "s3",
+   "kind": "html",
+   "file": "w-44-sense.html",
+   "alt": "Interactive: choose a hot pan, a bell or a ball and step through sense, brain and response in order.",
+   "caption": "Send a message from sense to brain to response."
+  },
+  {
    "id": "g-44-reaction",
    "after": "kit",
    "kind": "svg",

@@ -34,6 +34,22 @@
    "caption": "Salt that dissolves is still in the water as bits too small to see. Filtering removes the sand, and evaporating leaves the salt behind."
   },
   {
+   "id": "w-51-particles",
+   "after": "s2",
+   "kind": "html",
+   "file": "w-51-particles.html",
+   "alt": "Interactive: twenty particles move as a solid, liquid or gas, and a temperature slider changes their speed but not their size.",
+   "caption": "Watch 20 particles in a solid, a liquid and a gas, and heat them."
+  },
+  {
+   "id": "w-51-salt",
+   "after": "s4",
+   "kind": "html",
+   "file": "w-51-salt.html",
+   "alt": "Interactive: step through mixing, stirring, filtering and evaporating salt and sand, with a zoom view that shows the dissolved salt bits.",
+   "caption": "Mix, stir, filter and evaporate, and zoom in on the salt."
+  },
+  {
    "id": "g-51-mass",
    "after": "s5",
    "kind": "svg",

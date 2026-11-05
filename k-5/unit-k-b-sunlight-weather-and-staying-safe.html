@@ -327,7 +327,38 @@ figure.k5i details.k5i-alt summary{cursor:pointer;padding:2px 0}
 :root[data-theme="dark"] figure.k5i img{filter:brightness(.92)}
 @media (prefers-reduced-motion:reduce){figure.k5i,figure.k5i *{transition:none!important;animation:none!important}}
 </style>
-<!--k5images-css-end-->
+<script>/* Shared helpers for the small K-5 interactives. inject-images.mjs puts this once on every page that has one. */
+window.K5W=window.K5W||(function(){
+ var n=0;
+ function h(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
+ var C={ink:'var(--ink,#12172b)',muted:'var(--muted,#47506e)',line:'var(--line,#d0d8e8)',surf:'var(--surface,#fff)',surf2:'var(--surface-2,#e8edf6)',beam:'var(--beam,#f2a900)',blue:'var(--reflect,#2b66e8)',red:'var(--absorb,#d6450b)',teal:'var(--transmit,#0b7f70)',shade:'var(--shade,#222a4a)',bad:'#d93036'};
+ function a(v){return v==null?'':v;}
+ var S={
+  c:function(x,y,r,f,s,w){return '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'"/>';},
+  r:function(x,y,w,hh,f,s,rx,sw){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+hh+'" rx="'+(rx||0)+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(sw||2)+'"/>';},
+  l:function(x1,y1,x2,y2,s,w,dash){return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+(s||C.ink)+'" stroke-width="'+(w||2)+'" stroke-linecap="round"'+(dash?' stroke-dasharray="'+dash+'"':'')+'/>';},
+  t:function(x,y,txt,sz,f,anc,wt){return '<text x="'+x+'" y="'+y+'" font-size="'+(sz||13)+'" fill="'+(f||C.ink)+'" text-anchor="'+(anc||'middle')+'"'+(wt?' font-weight="'+wt+'"':'')+'>'+txt+'</text>';},
+  p:function(pts,f,s,w){return '<polygon points="'+pts+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'" stroke-linejoin="round"/>';},
+  a:function(x1,y1,x2,y2,col,w,hd){w=w||4;hd=hd||11;var an=Math.atan2(y2-y1,x2-x1),hx=x2-Math.cos(an)*hd*.9,hy=y2-Math.sin(an)*hd*.9,px=-Math.sin(an)*hd*.55,py=Math.cos(an)*hd*.55;
+   return '<line x1="'+x1+'" y1="'+y1+'" x2="'+hx.toFixed(1)+'" y2="'+hy.toFixed(1)+'" stroke="'+col+'" stroke-width="'+w+'" stroke-linecap="round"/><polygon points="'+x2+','+y2+' '+(hx+px).toFixed(1)+','+(hy+py).toFixed(1)+' '+(hx-px).toFixed(1)+','+(hy-py).toFixed(1)+'" fill="'+col+'"/>';}
+ };
+ return {
+  h:h,C:C,S:S,
+  chips:function(box,labels,sel,fn,aria){
+   var g=h('div','row');g.setAttribute('role','group');if(aria)g.setAttribute('aria-label',aria);box.appendChild(g);
+   function draw(){g.innerHTML='';labels.forEach(function(l,i){var b=h('button',null,l);b.type='button';b.setAttribute('aria-pressed',String(i===sel));b.onclick=function(){sel=i;draw();fn(i);};g.appendChild(b);});}
+   draw();return {set:function(i){sel=i;draw();},get:function(){return sel;}};},
+  slider:function(box,label,min,max,step,val,fmt,fn){
+   var id='k5s'+(++n),w=h('div'),l=h('label'),inp=h('input');l.setAttribute('for',id);inp.type='range';inp.id=id;inp.min=min;inp.max=max;inp.step=step;inp.value=val;
+   function upd(){l.innerHTML=label+': <span>'+fmt(+inp.value)+'</span>';}
+   inp.oninput=function(){upd();fn(+inp.value);};upd();w.appendChild(l);w.appendChild(inp);box.appendChild(w);inp.refresh=upd;return inp;},
+  btn:function(box,label,fn){var r=box.querySelector('.row.btns');if(!r){r=h('div','row btns');box.appendChild(r);}var b=h('button',null,label);b.type='button';b.onclick=fn;r.appendChild(b);return b;},
+  svg:function(box,vb,label){var s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox',vb);s.setAttribute('role','img');s.setAttribute('aria-label',label||'');box.appendChild(s);return s;},
+  say:function(box){var p=h('p');p.setAttribute('aria-live','polite');box.appendChild(p);return function(t){p.innerHTML=t;};},
+  note:function(box,t){var p=h('p','small',t);box.appendChild(p);return p;}
+ };
+})();
+</script><!--k5images-css-end-->
 <header class="hero">
   <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="false">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="true">Retro space</button></div>
   <p class="kicker">Kindergarten · Unit K-B</p>
@@ -347,6 +378,32 @@ figure.k5i details.k5i-alt summary{cursor:pointer;padding:2px 0}
 <section class="sec" id="s1">
   <div><p class="kicker">Concept 1</p><h2>Sunlight warms and lights surfaces</h2></div>
   <p class="idea">Sunlight makes surfaces brighter and often warmer; dark surfaces often warm more.</p>
+<!--k5images-start id=w-kb-paper-->
+<figure class="k5i k5i-chart k5i-widget" id="fig-w-kb-paper"><div class="k5w" id="wkbpaper"></div>
+<script>(function(){var box=document.getElementById('wkbpaper'),K=K5W,S=K.S,C=K.C;
+ var sun=true,mins=10,svg,say,sl;
+ K.chips(box,['Both in the sun','Both in the shade'],0,function(i){sun=i===0;draw();},'Where the paper is');
+ svg=K.svg(box,'0 0 480 230','Two sheets of paper, one white and one black, each with a thermometer.');
+ sl=K.slider(box,'Time in place',0,20,1,10,function(v){return v+' minutes';},function(v){mins=v;draw();});
+ say=K.say(box);K.note(box,'The temperatures are typical but made up, to show the idea.');
+ function temp(dark){return sun?68+mins*(dark?1.1:.3):68;}
+ function therm(x,t){var f=Math.max(0,Math.min(1,(t-60)/50)),hh=110;
+  return S.r(x,50,16,hh,C.surf,C.ink,8,2.5)+S.r(x+3,50+hh*(1-f),10,hh*f,C.red,'none',5,0)+S.c(x+8,170,13,C.red,C.ink,2.5)+S.t(x+8,196,Math.round(t)+' F',13,C.ink,'middle',700);}
+ function draw(){
+  var s='';
+  if(sun){s+=S.c(60,40,18,C.beam,C.ink,2);for(var i=0;i<10;i++){var a=i/10*6.283;s+=S.l(60+Math.cos(a)*24,40+Math.sin(a)*24,60+Math.cos(a)*34,40+Math.sin(a)*34,C.beam,3);}s+=S.t(60,88,'Sun',12,C.muted);}
+  else s+=S.r(24,26,80,24,C.shade,C.ink,6,2)+S.t(64,43,'shade',12,'#fff');
+  s+=S.r(130,70,96,76,'#ffffff',C.ink,4,3)+S.t(178,166,'light paper',13,C.ink,'middle',700)+therm(250,temp(false));
+  s+=S.r(310,70,96,76,'#14141f',C.ink,4,3)+S.t(358,166,'dark paper',13,C.ink,'middle',700)+therm(430,temp(true));
+  svg.innerHTML=s;
+  var w=temp(false),d=temp(true);
+  say(sun?'After <b>'+mins+' minutes</b> in the sun, the light paper is about <b>'+Math.round(w)+' F</b> and the dark paper about <b>'+Math.round(d)+' F</b>. Sunlight warms things, and dark paper gets warmer.':'In the shade both papers stay near <b>68 F</b>. A shade blocks sunlight, so there is little to warm them. Try the sun again.');
+  svg.setAttribute('aria-label','Light paper at '+Math.round(w)+' degrees F and dark paper at '+Math.round(d)+' degrees F after '+mins+' minutes '+(sun?'in the sun':'in the shade')+'.');
+ }
+ draw();
+})();</script><figcaption>Put light and dark paper in the sun or the shade and watch the thermometers.</figcaption></figure>
+<!--k5images-end id=w-kb-paper-->
+
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>

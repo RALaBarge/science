@@ -34,6 +34,22 @@
    "caption": "Wavelength is crest to crest. Amplitude is the height above the resting line. The wave moves forward while the cork moves up and down."
   },
   {
+   "id": "w-43-rope",
+   "after": "s1",
+   "kind": "html",
+   "file": "w-43-rope.html",
+   "alt": "Interactive: sliders change the amplitude and wavelength of a moving rope wave, with a cork that moves up and down while the wave moves forward.",
+   "caption": "Change a rope wave’s height and length and watch the cork bob."
+  },
+  {
+   "id": "w-43-eye",
+   "after": "s2",
+   "kind": "html",
+   "file": "w-43-eye.html",
+   "alt": "Interactive: a lamp, apple and eye, with the lamp on or off, and a toggle that shows the wrong idea of eye beams crossed out.",
+   "caption": "See how light reaches the eye, and why eye beams are a wrong idea."
+  },
+  {
    "id": "g-43-wave",
    "after": "s1",
    "kind": "svg",

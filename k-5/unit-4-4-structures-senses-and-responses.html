@@ -327,7 +327,38 @@ figure.k5i details.k5i-alt summary{cursor:pointer;padding:2px 0}
 :root[data-theme="dark"] figure.k5i img{filter:brightness(.92)}
 @media (prefers-reduced-motion:reduce){figure.k5i,figure.k5i *{transition:none!important;animation:none!important}}
 </style>
-<!--k5images-css-end-->
+<script>/* Shared helpers for the small K-5 interactives. inject-images.mjs puts this once on every page that has one. */
+window.K5W=window.K5W||(function(){
+ var n=0;
+ function h(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
+ var C={ink:'var(--ink,#12172b)',muted:'var(--muted,#47506e)',line:'var(--line,#d0d8e8)',surf:'var(--surface,#fff)',surf2:'var(--surface-2,#e8edf6)',beam:'var(--beam,#f2a900)',blue:'var(--reflect,#2b66e8)',red:'var(--absorb,#d6450b)',teal:'var(--transmit,#0b7f70)',shade:'var(--shade,#222a4a)',bad:'#d93036'};
+ function a(v){return v==null?'':v;}
+ var S={
+  c:function(x,y,r,f,s,w){return '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'"/>';},
+  r:function(x,y,w,hh,f,s,rx,sw){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+hh+'" rx="'+(rx||0)+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(sw||2)+'"/>';},
+  l:function(x1,y1,x2,y2,s,w,dash){return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+(s||C.ink)+'" stroke-width="'+(w||2)+'" stroke-linecap="round"'+(dash?' stroke-dasharray="'+dash+'"':'')+'/>';},
+  t:function(x,y,txt,sz,f,anc,wt){return '<text x="'+x+'" y="'+y+'" font-size="'+(sz||13)+'" fill="'+(f||C.ink)+'" text-anchor="'+(anc||'middle')+'"'+(wt?' font-weight="'+wt+'"':'')+'>'+txt+'</text>';},
+  p:function(pts,f,s,w){return '<polygon points="'+pts+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'" stroke-linejoin="round"/>';},
+  a:function(x1,y1,x2,y2,col,w,hd){w=w||4;hd=hd||11;var an=Math.atan2(y2-y1,x2-x1),hx=x2-Math.cos(an)*hd*.9,hy=y2-Math.sin(an)*hd*.9,px=-Math.sin(an)*hd*.55,py=Math.cos(an)*hd*.55;
+   return '<line x1="'+x1+'" y1="'+y1+'" x2="'+hx.toFixed(1)+'" y2="'+hy.toFixed(1)+'" stroke="'+col+'" stroke-width="'+w+'" stroke-linecap="round"/><polygon points="'+x2+','+y2+' '+(hx+px).toFixed(1)+','+(hy+py).toFixed(1)+' '+(hx-px).toFixed(1)+','+(hy-py).toFixed(1)+'" fill="'+col+'"/>';}
+ };
+ return {
+  h:h,C:C,S:S,
+  chips:function(box,labels,sel,fn,aria){
+   var g=h('div','row');g.setAttribute('role','group');if(aria)g.setAttribute('aria-label',aria);box.appendChild(g);
+   function draw(){g.innerHTML='';labels.forEach(function(l,i){var b=h('button',null,l);b.type='button';b.setAttribute('aria-pressed',String(i===sel));b.onclick=function(){sel=i;draw();fn(i);};g.appendChild(b);});}
+   draw();return {set:function(i){sel=i;draw();},get:function(){return sel;}};},
+  slider:function(box,label,min,max,step,val,fmt,fn){
+   var id='k5s'+(++n),w=h('div'),l=h('label'),inp=h('input');l.setAttribute('for',id);inp.type='range';inp.id=id;inp.min=min;inp.max=max;inp.step=step;inp.value=val;
+   function upd(){l.innerHTML=label+': <span>'+fmt(+inp.value)+'</span>';}
+   inp.oninput=function(){upd();fn(+inp.value);};upd();w.appendChild(l);w.appendChild(inp);box.appendChild(w);inp.refresh=upd;return inp;},
+  btn:function(box,label,fn){var r=box.querySelector('.row.btns');if(!r){r=h('div','row btns');box.appendChild(r);}var b=h('button',null,label);b.type='button';b.onclick=fn;r.appendChild(b);return b;},
+  svg:function(box,vb,label){var s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox',vb);s.setAttribute('role','img');s.setAttribute('aria-label',label||'');box.appendChild(s);return s;},
+  say:function(box){var p=h('p');p.setAttribute('aria-live','polite');box.appendChild(p);return function(t){p.innerHTML=t;};},
+  note:function(box,t){var p=h('p','small',t);box.appendChild(p);return p;}
+ };
+})();
+</script><!--k5images-css-end-->
 <header class="hero">
   <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="false">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="true">Retro space</button></div>
   <p class="kicker">Grade 4 · Unit 4.4</p>
@@ -396,6 +427,29 @@ figure.k5i details.k5i-alt summary{cursor:pointer;padding:2px 0}
 <!--k5images-start id=d-44-senses-->
 <figure class="k5i k5i-chart" id="fig-d-44-senses"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 344" role="img" aria-labelledby="d-44-senses-t d-44-senses-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="d-44-senses-t">Sense, brain, response</title><desc id="d-44-senses-d">Three rows, each a chain of three boxes with arrows pointing left to right: a sense takes in information, the brain works on it, and the body responds. Row 1: eyes see a ball coming, the brain gets the message, the hands move to catch it. Row 2: skin feels a hot pan, the brain gets the message, the hand pulls away. Row 3: ears hear a bell, the brain gets the message, you walk to the door. Information goes in first, then the brain works on it, then the body responds, in one direction.</desc><rect x="0" y="0" width="480" height="344" fill="var(--surface, #fff)"/><text x="240" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="var(--ink, #12172B)">Sense, brain, response</text><text x="80" y="58" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink, #12172B)">1  Sense takes in</text><text x="240" y="58" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink, #12172B)">2  Brain works on it</text><text x="400" y="58" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink, #12172B)">3  Body responds</text><rect x="16" y="72" width="128" height="54" rx="8" fill="var(--reflect, #2B66E8)" stroke="none" stroke-width="1.5"/><text x="80" y="95" text-anchor="middle" font-size="13" font-weight="700" fill="var(--on-color, #fff)">Eyes see</text><text x="80" y="112" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--on-color, #fff)">a ball coming</text><line x1="146" y1="99" x2="165" y2="99" stroke="var(--ink, #12172B)" stroke-width="3" stroke-linecap="round"/><polygon points="174,99 165,104.5 165,93.5" fill="var(--ink, #12172B)"/><rect x="176" y="72" width="128" height="54" rx="8" fill="var(--surface-2, #E8EDF6)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="240" y="95" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink, #12172B)">Brain gets</text><text x="240" y="112" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--ink, #12172B)">the message</text><line x1="306" y1="99" x2="325" y2="99" stroke="var(--ink, #12172B)" stroke-width="3" stroke-linecap="round"/><polygon points="334,99 325,104.5 325,93.5" fill="var(--ink, #12172B)"/><rect x="336" y="72" width="128" height="54" rx="8" fill="var(--absorb, #D6450B)" stroke="none" stroke-width="1.5"/><text x="400" y="95" text-anchor="middle" font-size="13" font-weight="700" fill="var(--on-color, #fff)">Hands move</text><text x="400" y="112" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--on-color, #fff)">to catch it</text><rect x="16" y="142" width="128" height="54" rx="8" fill="var(--reflect, #2B66E8)" stroke="none" stroke-width="1.5"/><text x="80" y="165" text-anchor="middle" font-size="13" font-weight="700" fill="var(--on-color, #fff)">Skin feels</text><text x="80" y="182" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--on-color, #fff)">a hot pan</text><line x1="146" y1="169" x2="165" y2="169" stroke="var(--ink, #12172B)" stroke-width="3" stroke-linecap="round"/><polygon points="174,169 165,174.5 165,163.5" fill="var(--ink, #12172B)"/><rect x="176" y="142" width="128" height="54" rx="8" fill="var(--surface-2, #E8EDF6)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="240" y="165" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink, #12172B)">Brain gets</text><text x="240" y="182" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--ink, #12172B)">the message</text><line x1="306" y1="169" x2="325" y2="169" stroke="var(--ink, #12172B)" stroke-width="3" stroke-linecap="round"/><polygon points="334,169 325,174.5 325,163.5" fill="var(--ink, #12172B)"/><rect x="336" y="142" width="128" height="54" rx="8" fill="var(--absorb, #D6450B)" stroke="none" stroke-width="1.5"/><text x="400" y="165" text-anchor="middle" font-size="13" font-weight="700" fill="var(--on-color, #fff)">Hand pulls</text><text x="400" y="182" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--on-color, #fff)">away</text><rect x="16" y="212" width="128" height="54" rx="8" fill="var(--reflect, #2B66E8)" stroke="none" stroke-width="1.5"/><text x="80" y="235" text-anchor="middle" font-size="13" font-weight="700" fill="var(--on-color, #fff)">Ears hear</text><text x="80" y="252" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--on-color, #fff)">a bell</text><line x1="146" y1="239" x2="165" y2="239" stroke="var(--ink, #12172B)" stroke-width="3" stroke-linecap="round"/><polygon points="174,239 165,244.5 165,233.5" fill="var(--ink, #12172B)"/><rect x="176" y="212" width="128" height="54" rx="8" fill="var(--surface-2, #E8EDF6)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="240" y="235" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink, #12172B)">Brain gets</text><text x="240" y="252" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--ink, #12172B)">the message</text><line x1="306" y1="239" x2="325" y2="239" stroke="var(--ink, #12172B)" stroke-width="3" stroke-linecap="round"/><polygon points="334,239 325,244.5 325,233.5" fill="var(--ink, #12172B)"/><rect x="336" y="212" width="128" height="54" rx="8" fill="var(--absorb, #D6450B)" stroke="none" stroke-width="1.5"/><text x="400" y="235" text-anchor="middle" font-size="13" font-weight="700" fill="var(--on-color, #fff)">You walk</text><text x="400" y="252" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--on-color, #fff)">to the door</text><text x="240" y="306" text-anchor="middle" font-size="13.5" font-weight="700" fill="var(--ink, #12172B)">Information goes in first. The brain works on it.</text><text x="240" y="326" text-anchor="middle" font-size="13.5" font-weight="400" fill="var(--ink, #12172B)">Then the body responds. It only goes one way.</text></svg><figcaption>A sense takes in information, the brain works on it, and then the body responds.</figcaption><details class="k5i-alt"><summary>Text version of this diagram</summary><p>Three rows, each a chain of three boxes with arrows pointing left to right: a sense takes in information, the brain works on it, and the body responds. Row 1: eyes see a ball coming, the brain gets the message, the hands move to catch it. Row 2: skin feels a hot pan, the brain gets the message, the hand pulls away. Row 3: ears hear a bell, the brain gets the message, you walk to the door. Information goes in first, then the brain works on it, then the body responds, in one direction.</p></details></figure>
 <!--k5images-end id=d-44-senses-->
+<!--k5images-start id=w-44-sense-->
+<figure class="k5i k5i-chart k5i-widget" id="fig-w-44-sense"><div class="k5w" id="w44sense"></div>
+<script>(function(){var box=document.getElementById('w44sense'),K=K5W,S=K.S,C=K.C;
+ var SC=[['Hot pan',['Skin feels a hot pan','Brain gets the message: hot!','Hand pulls away']],['Bell rings',['Ears hear a bell','Brain gets the message: bell','You walk to the door']],['Ball coming',['Eyes see a ball','Brain gets the message: ball','Hands move to catch it']]];
+ var sc=0,step=-1,svg,say,timer=0;
+ K.chips(box,SC.map(function(x){return x[0];}),0,function(i){sc=i;step=-1;clearTimeout(timer);draw();},'What happens');
+ svg=K.svg(box,'0 0 480 170','Three boxes in a row: sense, brain, response.');
+ K.btn(box,'Send the message',go);
+ say=K.say(box);
+ var X=[14,170,326],COL=[C.blue,C.surf2,C.red],LAB=['1 Sense takes in','2 Brain works on it','3 Body responds'];
+ function draw(){
+  var s='';
+  for(var i=0;i<3;i++){var on=step>=i;s+=S.r(X[i],46,140,76,on?COL[i]:C.surf,on?'none':C.line,10,2.5).replace('/>',on?'/>':' stroke-dasharray="5 4"/>');
+   s+=S.t(X[i]+70,34,LAB[i],12,C.ink,'middle',700)+'<foreignObject x="'+(X[i]+6)+'" y="52" width="128" height="64"><div xmlns="http://www.w3.org/1999/xhtml" style="font:13px system-ui;text-align:center;color:'+(i===1?C.ink:(on?'#fff':C.muted))+';display:flex;align-items:center;justify-content:center;height:64px">'+(on?SC[sc][1][i]:'?')+'</div></foreignObject>';
+   if(i<2)s+=S.a(X[i]+144,84,X[i+1]-4,84,step>i?C.ink:C.line,4,12);}
+  svg.innerHTML=s;
+ }
+ function go(){clearTimeout(timer);step=-1;draw();
+  (function next(){step++;draw();say(step===0?'<b>Step 1:</b> a sense takes in information.':step===1?'<b>Step 2:</b> the information goes to the brain, which works on it.':'<b>Step 3:</b> then the body responds. Information goes <b>in first</b>, and the response comes <b>last</b>.');
+   if(step<2)timer=setTimeout(next,900);})();}
+ draw();say('Pick what happens, then press <b>Send the message</b>.');
+})();</script><figcaption>Send a message from sense to brain to response.</figcaption></figure>
+<!--k5images-end id=w-44-sense-->
 
   <div class="aids">
     <article class="aid">

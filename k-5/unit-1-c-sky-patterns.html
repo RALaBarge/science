@@ -327,7 +327,38 @@ figure.k5i details.k5i-alt summary{cursor:pointer;padding:2px 0}
 :root[data-theme="dark"] figure.k5i img{filter:brightness(.92)}
 @media (prefers-reduced-motion:reduce){figure.k5i,figure.k5i *{transition:none!important;animation:none!important}}
 </style>
-<!--k5images-css-end-->
+<script>/* Shared helpers for the small K-5 interactives. inject-images.mjs puts this once on every page that has one. */
+window.K5W=window.K5W||(function(){
+ var n=0;
+ function h(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
+ var C={ink:'var(--ink,#12172b)',muted:'var(--muted,#47506e)',line:'var(--line,#d0d8e8)',surf:'var(--surface,#fff)',surf2:'var(--surface-2,#e8edf6)',beam:'var(--beam,#f2a900)',blue:'var(--reflect,#2b66e8)',red:'var(--absorb,#d6450b)',teal:'var(--transmit,#0b7f70)',shade:'var(--shade,#222a4a)',bad:'#d93036'};
+ function a(v){return v==null?'':v;}
+ var S={
+  c:function(x,y,r,f,s,w){return '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'"/>';},
+  r:function(x,y,w,hh,f,s,rx,sw){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+hh+'" rx="'+(rx||0)+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(sw||2)+'"/>';},
+  l:function(x1,y1,x2,y2,s,w,dash){return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+(s||C.ink)+'" stroke-width="'+(w||2)+'" stroke-linecap="round"'+(dash?' stroke-dasharray="'+dash+'"':'')+'/>';},
+  t:function(x,y,txt,sz,f,anc,wt){return '<text x="'+x+'" y="'+y+'" font-size="'+(sz||13)+'" fill="'+(f||C.ink)+'" text-anchor="'+(anc||'middle')+'"'+(wt?' font-weight="'+wt+'"':'')+'>'+txt+'</text>';},
+  p:function(pts,f,s,w){return '<polygon points="'+pts+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'" stroke-linejoin="round"/>';},
+  a:function(x1,y1,x2,y2,col,w,hd){w=w||4;hd=hd||11;var an=Math.atan2(y2-y1,x2-x1),hx=x2-Math.cos(an)*hd*.9,hy=y2-Math.sin(an)*hd*.9,px=-Math.sin(an)*hd*.55,py=Math.cos(an)*hd*.55;
+   return '<line x1="'+x1+'" y1="'+y1+'" x2="'+hx.toFixed(1)+'" y2="'+hy.toFixed(1)+'" stroke="'+col+'" stroke-width="'+w+'" stroke-linecap="round"/><polygon points="'+x2+','+y2+' '+(hx+px).toFixed(1)+','+(hy+py).toFixed(1)+' '+(hx-px).toFixed(1)+','+(hy-py).toFixed(1)+'" fill="'+col+'"/>';}
+ };
+ return {
+  h:h,C:C,S:S,
+  chips:function(box,labels,sel,fn,aria){
+   var g=h('div','row');g.setAttribute('role','group');if(aria)g.setAttribute('aria-label',aria);box.appendChild(g);
+   function draw(){g.innerHTML='';labels.forEach(function(l,i){var b=h('button',null,l);b.type='button';b.setAttribute('aria-pressed',String(i===sel));b.onclick=function(){sel=i;draw();fn(i);};g.appendChild(b);});}
+   draw();return {set:function(i){sel=i;draw();},get:function(){return sel;}};},
+  slider:function(box,label,min,max,step,val,fmt,fn){
+   var id='k5s'+(++n),w=h('div'),l=h('label'),inp=h('input');l.setAttribute('for',id);inp.type='range';inp.id=id;inp.min=min;inp.max=max;inp.step=step;inp.value=val;
+   function upd(){l.innerHTML=label+': <span>'+fmt(+inp.value)+'</span>';}
+   inp.oninput=function(){upd();fn(+inp.value);};upd();w.appendChild(l);w.appendChild(inp);box.appendChild(w);inp.refresh=upd;return inp;},
+  btn:function(box,label,fn){var r=box.querySelector('.row.btns');if(!r){r=h('div','row btns');box.appendChild(r);}var b=h('button',null,label);b.type='button';b.onclick=fn;r.appendChild(b);return b;},
+  svg:function(box,vb,label){var s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox',vb);s.setAttribute('role','img');s.setAttribute('aria-label',label||'');box.appendChild(s);return s;},
+  say:function(box){var p=h('p');p.setAttribute('aria-live','polite');box.appendChild(p);return function(t){p.innerHTML=t;};},
+  note:function(box,t){var p=h('p','small',t);box.appendChild(p);return p;}
+ };
+})();
+</script><!--k5images-css-end-->
 <header class="hero">
   <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="false">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="true">Retro space</button></div>
   <p class="kicker">Grade 1 · Unit 1-C</p>
@@ -414,6 +445,26 @@ figure.k5i details.k5i-alt summary{cursor:pointer;padding:2px 0}
 <!--k5images-start id=d-1c-stars-->
 <figure class="k5i k5i-chart" id="fig-d-1c-stars"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 362" role="img" aria-labelledby="d-1c-stars-t d-1c-stars-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="d-1c-stars-t">Stars are still there in the day</title><desc id="d-1c-stars-d">Two sky pictures side by side with the same star positions. Left, night: a dark sky with stars and a crescent Moon, so the stars can be seen. Right, day: a bright blue sky with the Sun and no visible stars, but dashed circles show where the stars still are. Stars do not turn off in the day. They are faraway suns, and the bright daytime sky hides them.</desc><rect x="0" y="0" width="480" height="362" fill="var(--surface, #fff)"/><text x="240" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="var(--ink, #12172B)">Stars are still there in the day</text><text x="125" y="58" text-anchor="middle" font-size="15" font-weight="700" fill="var(--ink, #12172B)">Night</text><text x="355" y="58" text-anchor="middle" font-size="15" font-weight="700" fill="var(--ink, #12172B)">Day</text><rect x="20" y="70" width="210" height="160" rx="8" fill="var(--shade, #222A4A)" stroke="var(--ink, #12172B)" stroke-width="2"/><path d="M60 104 L61.8 108.2 L66 110 L61.8 111.8 L60 116 L58.2 111.8 L54 110 L58.2 108.2Z" fill="#fff"/><path d="M112 138 L113.8 142.2 L118 144 L113.8 145.8 L112 150 L110.2 145.8 L106 144 L110.2 142.2Z" fill="#fff"/><path d="M148 94 L149.8 98.2 L154 100 L149.8 101.8 L148 106 L146.2 101.8 L142 100 L146.2 98.2Z" fill="#fff"/><path d="M200 162 L201.8 166.2 L206 168 L201.8 169.8 L200 174 L198.2 169.8 L194 168 L198.2 166.2Z" fill="#fff"/><path d="M84 176 L85.8 180.2 L90 182 L85.8 183.8 L84 188 L82.2 183.8 L78 182 L82.2 180.2Z" fill="#fff"/><path d="M140 192 L141.8 196.2 L146 198 L141.8 199.8 L140 204 L138.2 199.8 L134 198 L138.2 196.2Z" fill="#fff"/><path d="M50 148 L51.8 152.2 L56 154 L51.8 155.8 L50 160 L48.2 155.8 L44 154 L48.2 152.2Z" fill="#fff"/><circle cx="196" cy="100" r="14" fill="#E8EDF6" stroke="none" stroke-width="1.5"/><circle cx="203" cy="95" r="12" fill="var(--shade, #222A4A)"/><rect x="250" y="70" width="210" height="160" rx="8" fill="var(--surface, #fff)" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="251" y="71" width="208" height="158" rx="7" fill="var(--reflect, #2B66E8)" opacity=".3"/><circle cx="290" cy="110" r="7" fill="none" stroke="var(--muted, #47506E)" stroke-width="1.5" stroke-dasharray="3 3"/><circle cx="342" cy="144" r="7" fill="none" stroke="var(--muted, #47506E)" stroke-width="1.5" stroke-dasharray="3 3"/><circle cx="378" cy="100" r="7" fill="none" stroke="var(--muted, #47506E)" stroke-width="1.5" stroke-dasharray="3 3"/><circle cx="430" cy="168" r="7" fill="none" stroke="var(--muted, #47506E)" stroke-width="1.5" stroke-dasharray="3 3"/><circle cx="314" cy="182" r="7" fill="none" stroke="var(--muted, #47506E)" stroke-width="1.5" stroke-dasharray="3 3"/><circle cx="370" cy="198" r="7" fill="none" stroke="var(--muted, #47506E)" stroke-width="1.5" stroke-dasharray="3 3"/><circle cx="280" cy="154" r="7" fill="none" stroke="var(--muted, #47506E)" stroke-width="1.5" stroke-dasharray="3 3"/><line x1="444" y1="102" x2="454" y2="102" stroke="var(--beam, #F2A900)" stroke-width="3" stroke-linecap="round"/><line x1="440.180339887499" y1="113.75570504584947" x2="448.27050983124843" y2="119.6335575687742" stroke="var(--beam, #F2A900)" stroke-width="3" stroke-linecap="round"/><line x1="430.180339887499" y1="121.02113032590307" x2="433.27050983124843" y2="130.5316954888546" stroke="var(--beam, #F2A900)" stroke-width="3" stroke-linecap="round"/><line x1="417.819660112501" y1="121.02113032590307" x2="414.72949016875157" y2="130.5316954888546" stroke="var(--beam, #F2A900)" stroke-width="3" stroke-linecap="round"/><line x1="407.8196601125011" y1="113.75570504584947" x2="399.72949016875157" y2="119.6335575687742" stroke="var(--beam, #F2A900)" stroke-width="3" stroke-linecap="round"/><line x1="404" y1="102" x2="394" y2="102" stroke="var(--beam, #F2A900)" stroke-width="3" stroke-linecap="round"/><line x1="407.819660112501" y1="90.24429495415055" x2="399.72949016875157" y2="84.3664424312258" stroke="var(--beam, #F2A900)" stroke-width="3" stroke-linecap="round"/><line x1="417.819660112501" y1="82.97886967409693" x2="414.72949016875157" y2="73.46830451114539" stroke="var(--beam, #F2A900)" stroke-width="3" stroke-linecap="round"/><line x1="430.1803398874989" y1="82.97886967409693" x2="433.27050983124843" y2="73.46830451114539" stroke="var(--beam, #F2A900)" stroke-width="3" stroke-linecap="round"/><line x1="440.1803398874989" y1="90.24429495415053" x2="448.27050983124843" y2="84.3664424312258" stroke="var(--beam, #F2A900)" stroke-width="3" stroke-linecap="round"/><circle cx="424" cy="102" r="15" fill="var(--beam, #F2A900)" stroke="var(--ink, #12172B)" stroke-width="2"/><text x="125" y="252" text-anchor="middle" font-size="13" font-weight="400" fill="var(--ink, #12172B)">Dark sky: we can see</text><text x="125" y="267" text-anchor="middle" font-size="13" font-weight="400" fill="var(--ink, #12172B)">the faint light of stars.</text><text x="355" y="252" text-anchor="middle" font-size="13" font-weight="400" fill="var(--ink, #12172B)">Bright sky: sunlight hides</text><text x="355" y="267" text-anchor="middle" font-size="13" font-weight="400" fill="var(--ink, #12172B)">the stars. Dashed circles</text><text x="355" y="282" text-anchor="middle" font-size="13" font-weight="400" fill="var(--ink, #12172B)">show where they still are.</text><text x="240" y="322" text-anchor="middle" font-size="14.5" font-weight="700" fill="var(--ink, #12172B)">Stars do not turn off in the day.</text><text x="240" y="344" text-anchor="middle" font-size="13.5" font-weight="400" fill="var(--ink, #12172B)">Stars are faraway suns. The bright daytime sky hides them.</text></svg><figcaption>The stars are still in the sky in the daytime. The bright sky hides them.</figcaption><details class="k5i-alt"><summary>Text version of this diagram</summary><p>Two sky pictures side by side with the same star positions. Left, night: a dark sky with stars and a crescent Moon, so the stars can be seen. Right, day: a bright blue sky with the Sun and no visible stars, but dashed circles show where the stars still are. Stars do not turn off in the day. They are faraway suns, and the bright daytime sky hides them.</p></details></figure>
 <!--k5images-end id=d-1c-stars-->
+<!--k5images-start id=w-1c-stars-->
+<figure class="k5i k5i-chart k5i-widget" id="fig-w-1c-stars"><div class="k5w" id="w1cstars"></div>
+<script>(function(){var box=document.getElementById('w1cstars'),K=K5W,S=K.S,C=K.C;
+ var pts=[[40,40],[110,70],[170,30],[230,90],[300,45],[360,85],[420,35],[70,120],[190,135],[330,140],[400,125]];
+ var svg,say,sl,b=100;
+ svg=K.svg(box,'0 0 480 190','A sky that changes from bright day to dark night.');
+ sl=K.slider(box,'How bright is the sky',0,100,5,100,function(v){return v>66?'bright (day)':v>25?'getting dark':'dark (night)';},function(v){b=v;draw();});
+ say=K.say(box);
+ function star(x,y,o){return '<path d="M'+x+' '+(y-7)+' L'+(x+2)+' '+(y-2)+' L'+(x+7)+' '+y+' L'+(x+2)+' '+(y+2)+' L'+x+' '+(y+7)+' L'+(x-2)+' '+(y+2)+' L'+(x-7)+' '+y+' L'+(x-2)+' '+(y-2)+'Z" fill="#fff" opacity="'+o+'"/>';}
+ function draw(){
+  var wash=b/100,so=Math.max(0,1-wash*1.25),s=S.r(0,0,480,190,'#161c3a','none',0,0);
+  s+=S.r(0,0,480,190,'#8fc3ff','none',0,0).replace('/>',' opacity="'+wash.toFixed(2)+'"/>');
+  pts.forEach(function(p){s+=star(p[0],p[1],so.toFixed(2));if(so<.3)s+=S.c(p[0],p[1],8,'none',C.muted,1.5).replace('/>',' stroke-dasharray="3 3"/>');});
+  if(wash>.5)s+=S.c(430,50,18,C.beam,C.ink,2.5);else if(wash<.25)s+=S.c(430,50,14,'#e8edf6','none',0)+S.c(436,45,12,'#161c3a','none',0);
+  svg.innerHTML=s;
+  say(wash>.66?'Bright sunlight fills the sky, so the stars are <b>hidden</b>. The dashed rings show where they still are.':wash>.25?'The sky is getting darker. The brightest stars start to show.':'The sky is dark, so we can see the stars. They were there all day. <b>Stars do not turn off.</b>');
+ }
+ draw();
+})();</script><figcaption>Darken the sky and the stars appear. They were there all day.</figcaption></figure>
+<!--k5images-end id=w-1c-stars-->
 
   <div class="aids">
     <article class="aid">

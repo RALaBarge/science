@@ -1,0 +1,26 @@
+<div class="k5w" id="w54hill"></div>
+<script>(function(){var box=document.getElementById('w54hill'),K=K5W,S=K.S,C=K.C;
+ var cover=0,svg,say,timer=0,tag=-1,rain=0,moved=0;
+ var COVER=['Bare hill','Grass on the hill','Stones on the hill'],SPOONS=[12,4,7],NAMES=['grass','stones','nothing'];
+ var TAGS=[['Atmosphere','The rain falls from the air.'],['Hydrosphere','Water runs downhill and cuts a channel.'],['Geosphere','Soil and rock get carried away.'],['Biosphere','Plant roots hold the soil in place.']];
+ K.chips(box,COVER,0,function(i){cover=i;rain=0;moved=0;tag=-1;draw();idle();},'What covers the hill');
+ K.btn(box,'Make it rain',go);
+ svg=K.svg(box,'0 0 480 230','A hill with rain falling on it.');
+ K.chips(box,TAGS.map(function(t){return t[0];}),-1,function(i){tag=i;draw();say('<b>'+TAGS[i][0]+':</b> '+TAGS[i][1]);},'Which sphere');
+ say=K.say(box);
+ function hy(x){return x<150?200-(x-20)*.7:109+(x-150)*.3;}
+ function draw(){
+  var s=S.r(10,20,460,200,'none',C.line,8,1.5),i,path='M20 218';
+  for(var x=20;x<=460;x+=10)path+=' L'+x+' '+hy(x).toFixed(1);
+  s+='<path d="'+path+' L460 218Z" fill="#c8a46e" stroke="'+C.ink+'" stroke-width="2.5"/>';
+  if(cover===1)for(i=0;i<14;i++){var gx=50+i*17,gy=hy(gx);s+=S.l(gx,gy,gx-2,gy-12,C.teal,2.5)+S.l(gx,gy,gx+3,gy-10,C.teal,2.5)+S.l(gx,gy+2,gx,gy+18,C.teal,1.5);}
+  if(cover===2)for(i=0;i<8;i++){var sx=60+i*30,sy=hy(sx);s+=S.c(sx,sy-4,6,'#8b8f9c',C.ink,1.5);}
+  if(rain>0){s+=S.c(80,40,18,C.surf2,C.muted,2)+S.c(104,34,22,C.surf2,C.muted,2)+S.c(130,40,18,C.surf2,C.muted,2);for(i=0;i<8;i++)s+=S.l(70+i*10,66+(rain*40+i*9)%40,66+i*10,76+(rain*40+i*9)%40,C.blue,2.5);}
+  var dots=Math.round(moved*SPOONS[cover]);for(i=0;i<dots;i++)s+=S.c(300+(i%12)*12,206-Math.floor(i/12)*8,4,'#7a5a2e',C.ink,1);
+  if(tag===0)s+=S.c(104,38,40,'none',C.beam,3);if(tag===1)s+=S.c(330,166,44,'none',C.beam,3);if(tag===2)s+=S.c(260,160,44,'none',C.beam,3);if(tag===3)s+=S.c(100,150,50,'none',C.beam,3);
+  svg.innerHTML=s;
+ }
+ function idle(){clearInterval(timer);say('Pick what covers the hill, then press <b>Make it rain</b>. Or tap a sphere name to see where it is.');}
+ function go(){clearInterval(timer);var t=0;moved=0;timer=setInterval(function(){t+=.03;rain=t;moved=Math.min(1,t*.9);draw();if(t>=1.2){clearInterval(timer);rain=0;moved=1;draw();say('<b>'+SPOONS[cover]+' spoonfuls</b> of sediment moved'+(cover===0?': nothing held the soil.':cover===1?': grass roots held the soil.':': stones slowed the water, but less than grass.')+' Rain (atmosphere) and running water (hydrosphere) moved soil (geosphere), and roots (biosphere) helped hold it.');}},30);}
+ draw();idle();
+})();</script>

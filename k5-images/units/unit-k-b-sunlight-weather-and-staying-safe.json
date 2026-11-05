@@ -26,6 +26,14 @@
    "caption": "The finished Sun-Safe Beach Helper test: one shaded ice cube, one uncovered control, same window."
   },
   {
+   "id": "w-kb-paper",
+   "after": "s1",
+   "kind": "html",
+   "file": "w-kb-paper.html",
+   "alt": "Interactive: a light paper and a dark paper with thermometers, in the sun or the shade, with a slider for how many minutes they stay there.",
+   "caption": "Put light and dark paper in the sun or the shade and watch the thermometers."
+  },
+  {
    "id": "g-kb-weather",
    "after": "s3",
    "kind": "svg",

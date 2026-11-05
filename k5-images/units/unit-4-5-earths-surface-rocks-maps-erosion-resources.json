@@ -34,6 +34,14 @@
    "caption": "A shoreline test with the jobs split up: same amount of water every time, then compare the sediment lost."
   },
   {
+   "id": "w-45-map",
+   "after": "s3",
+   "kind": "html",
+   "file": "w-45-map.html",
+   "alt": "Interactive: tap a made-up map to find and circle a mountain range, a broad plain and connected lakes.",
+   "caption": "Find a mountain range, a plain and connected lakes on a map."
+  },
+  {
    "id": "g-45-sediment",
    "after": "kit",
    "kind": "svg",

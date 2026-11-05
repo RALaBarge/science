@@ -1,0 +1,28 @@
+<div class="k5w" id="w51part"></div>
+<script>(function(){var box=document.getElementById('w51part'),K=K5W,S=K.S,C=K.C;
+ var mode=0,heat=50,svg,say,P=[],W=300,H=190,X0=90,Y0=20,N=20,timer=0,i;
+ var NAMES=['Solid','Liquid','Gas'];
+ K.chips(box,NAMES,0,function(i){mode=i;init();},'State of matter');
+ svg=K.svg(box,'0 0 480 230','Twenty particles in a box.');
+ K.slider(box,'Temperature',0,100,5,50,function(v){return v<34?'cold':v<67?'warm':'hot';},function(v){heat=v;});
+ say=K.say(box);
+ function rnd(a){return (Math.random()-.5)*a;}
+ function init(){P=[];for(i=0;i<N;i++){var c=i%5,r=Math.floor(i/5);
+   if(mode===0)P.push({hx:X0+30+c*52,hy:Y0+110+r*18,x:0,y:0,vx:0,vy:0});
+   else if(mode===1)P.push({x:X0+20+Math.random()*(W-40),y:Y0+100+Math.random()*(H-120),vx:rnd(2),vy:rnd(2)});
+   else P.push({x:X0+20+Math.random()*(W-40),y:Y0+20+Math.random()*(H-40),vx:rnd(6),vy:rnd(6)});}
+  sayIt();}
+ function sayIt(){say(mode===0?'<b>Solid:</b> the particles are packed close and stay in place. They only <b>jiggle</b>.':mode===1?'<b>Liquid:</b> the particles are close but can <b>slide past each other</b>, so a liquid flows.':'<b>Gas:</b> the particles are far apart and <b>fly around</b>, filling the whole box.');}
+ function step(){
+  var sp=.4+heat/40,s=S.r(X0,Y0,W,H,mode===2?'none':'none',C.ink,4,3);
+  if(mode===1)s+=S.r(X0+2,Y0+92,W-4,H-94,'rgba(43,102,232,.18)','none',0,0);
+  P.forEach(function(p){
+   if(mode===0){p.x=p.hx+rnd(2+heat/12);p.y=p.hy+rnd(2+heat/12);}
+   else if(mode===1){p.x+=p.vx*sp+rnd(3*sp);p.y+=p.vy*sp+rnd(3*sp);if(p.x<X0+8||p.x>X0+W-8)p.vx*=-1;if(p.y<Y0+100||p.y>Y0+H-8)p.vy*=-1;p.x=Math.max(X0+8,Math.min(X0+W-8,p.x));p.y=Math.max(Y0+100,Math.min(Y0+H-8,p.y));if(Math.random()<.1){p.vx=rnd(3);p.vy=rnd(3);}}
+   else{p.x+=p.vx*sp;p.y+=p.vy*sp;if(p.x<X0+8||p.x>X0+W-8)p.vx*=-1;if(p.y<Y0+8||p.y>Y0+H-8)p.vy*=-1;}
+   s+=S.c(p.x.toFixed(1),p.y.toFixed(1),7,C.red,C.ink,1.5);});
+  s+=S.t(X0+W/2,222,N+' particles, the same size every time',12,C.muted);
+  svg.innerHTML=s;
+ }
+ init();clearInterval(timer);timer=setInterval(step,40);
+})();</script>

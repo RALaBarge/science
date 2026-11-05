@@ -331,7 +331,38 @@ figure.k5i details.k5i-alt summary{cursor:pointer;padding:2px 0}
 :root[data-theme="dark"] figure.k5i img{filter:brightness(.92)}
 @media (prefers-reduced-motion:reduce){figure.k5i,figure.k5i *{transition:none!important;animation:none!important}}
 </style>
-<!--k5images-css-end-->
+<script>/* Shared helpers for the small K-5 interactives. inject-images.mjs puts this once on every page that has one. */
+window.K5W=window.K5W||(function(){
+ var n=0;
+ function h(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
+ var C={ink:'var(--ink,#12172b)',muted:'var(--muted,#47506e)',line:'var(--line,#d0d8e8)',surf:'var(--surface,#fff)',surf2:'var(--surface-2,#e8edf6)',beam:'var(--beam,#f2a900)',blue:'var(--reflect,#2b66e8)',red:'var(--absorb,#d6450b)',teal:'var(--transmit,#0b7f70)',shade:'var(--shade,#222a4a)',bad:'#d93036'};
+ function a(v){return v==null?'':v;}
+ var S={
+  c:function(x,y,r,f,s,w){return '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'"/>';},
+  r:function(x,y,w,hh,f,s,rx,sw){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+hh+'" rx="'+(rx||0)+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(sw||2)+'"/>';},
+  l:function(x1,y1,x2,y2,s,w,dash){return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+(s||C.ink)+'" stroke-width="'+(w||2)+'" stroke-linecap="round"'+(dash?' stroke-dasharray="'+dash+'"':'')+'/>';},
+  t:function(x,y,txt,sz,f,anc,wt){return '<text x="'+x+'" y="'+y+'" font-size="'+(sz||13)+'" fill="'+(f||C.ink)+'" text-anchor="'+(anc||'middle')+'"'+(wt?' font-weight="'+wt+'"':'')+'>'+txt+'</text>';},
+  p:function(pts,f,s,w){return '<polygon points="'+pts+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'" stroke-linejoin="round"/>';},
+  a:function(x1,y1,x2,y2,col,w,hd){w=w||4;hd=hd||11;var an=Math.atan2(y2-y1,x2-x1),hx=x2-Math.cos(an)*hd*.9,hy=y2-Math.sin(an)*hd*.9,px=-Math.sin(an)*hd*.55,py=Math.cos(an)*hd*.55;
+   return '<line x1="'+x1+'" y1="'+y1+'" x2="'+hx.toFixed(1)+'" y2="'+hy.toFixed(1)+'" stroke="'+col+'" stroke-width="'+w+'" stroke-linecap="round"/><polygon points="'+x2+','+y2+' '+(hx+px).toFixed(1)+','+(hy+py).toFixed(1)+' '+(hx-px).toFixed(1)+','+(hy-py).toFixed(1)+'" fill="'+col+'"/>';}
+ };
+ return {
+  h:h,C:C,S:S,
+  chips:function(box,labels,sel,fn,aria){
+   var g=h('div','row');g.setAttribute('role','group');if(aria)g.setAttribute('aria-label',aria);box.appendChild(g);
+   function draw(){g.innerHTML='';labels.forEach(function(l,i){var b=h('button',null,l);b.type='button';b.setAttribute('aria-pressed',String(i===sel));b.onclick=function(){sel=i;draw();fn(i);};g.appendChild(b);});}
+   draw();return {set:function(i){sel=i;draw();},get:function(){return sel;}};},
+  slider:function(box,label,min,max,step,val,fmt,fn){
+   var id='k5s'+(++n),w=h('div'),l=h('label'),inp=h('input');l.setAttribute('for',id);inp.type='range';inp.id=id;inp.min=min;inp.max=max;inp.step=step;inp.value=val;
+   function upd(){l.innerHTML=label+': <span>'+fmt(+inp.value)+'</span>';}
+   inp.oninput=function(){upd();fn(+inp.value);};upd();w.appendChild(l);w.appendChild(inp);box.appendChild(w);inp.refresh=upd;return inp;},
+  btn:function(box,label,fn){var r=box.querySelector('.row.btns');if(!r){r=h('div','row btns');box.appendChild(r);}var b=h('button',null,label);b.type='button';b.onclick=fn;r.appendChild(b);return b;},
+  svg:function(box,vb,label){var s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox',vb);s.setAttribute('role','img');s.setAttribute('aria-label',label||'');box.appendChild(s);return s;},
+  say:function(box){var p=h('p');p.setAttribute('aria-live','polite');box.appendChild(p);return function(t){p.innerHTML=t;};},
+  note:function(box,t){var p=h('p','small',t);box.appendChild(p);return p;}
+ };
+})();
+</script><!--k5images-css-end-->
 <header class="hero">
   <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="false">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="true">Retro space</button></div>
   <p class="kicker">Grade 4 · Unit 4.5</p>
@@ -401,6 +432,36 @@ figure.k5i details.k5i-alt summary{cursor:pointer;padding:2px 0}
 <section class="sec" id="s3">
   <div><p class="kicker">Concept 3</p><h2>Maps show patterns of Earth’s features</h2></div>
   <p class="idea">Maps let us see patterns, such as mountain ranges, broad plains, and connected Great Lakes.</p>
+<!--k5images-start id=w-45-map-->
+<figure class="k5i k5i-chart k5i-widget" id="fig-w-45-map"><div class="k5w" id="w45map"></div>
+<script>(function(){var box=document.getElementById('w45map'),K=K5W,S=K.S,C=K.C;
+ var PAT=[['Mountain range',400,180,85,85],['Broad flat plain',200,195,95,55],['Connected lakes',215,58,125,32]];
+ var sel=0,found=[false,false,false],marks=[],svg,say,miss=0;
+ box.appendChild(K.h('p',null,'This map is made up. Choose a pattern, then tap the map where you think it is. A circle marks your guess.'));
+ K.chips(box,PAT.map(function(p){return p[0];}),0,function(i){sel=i;miss=0;say('Tap the map to find the <b>'+PAT[i][0].toLowerCase()+'</b>.');},'Pattern');
+ svg=K.svg(box,'0 0 480 300','A made-up map with mountains, a flat plain and lakes.');
+ say=K.say(box);
+ function base(){
+  var s=S.r(0,0,480,300,'#cfe7c4',C.ink,6,2);
+  s+=S.r(30,196,300,80,'#e4d8a8','none',40,0);
+  for(var i=0;i<14;i++)s+=S.l(110+(i*37)%180,190+((i*53)%70),114+(i*37)%180,184+((i*53)%70),'#a3a06a',1.5);
+  [[100,52,46,20],[170,60,40,18],[240,52,44,20],[300,70,34,16]].forEach(function(l){s+='<ellipse cx="'+l[0]+'" cy="'+l[1]+'" rx="'+l[2]+'" ry="'+l[3]+'" fill="#6aa8ff" stroke="'+C.ink+'" stroke-width="2"/>';});
+  [[140,56],[205,58],[268,60]].forEach(function(c){s+=S.l(c[0]-6,c[1],c[0]+6,c[1]+2,'#6aa8ff',9);});
+  for(i=0;i<8;i++){var x=372+i*7,y=100+i*22;s+=S.p((x-16)+','+(y+16)+' '+x+','+(y-16)+' '+(x+16)+','+(y+16),'#8b8f9c',C.ink,2);s+=S.p((x-4)+','+(y-8)+' '+x+','+(y-16)+' '+(x+4)+','+(y-8),'#fff','none',0);}
+  return s;
+ }
+ function draw(){var s=base();marks.forEach(function(m){s+=S.c(m[0],m[1],m[2],'none',m[3]?C.teal:C.red,4);});svg.innerHTML=s;}
+ svg.addEventListener('click',function(e){
+  var r=svg.getBoundingClientRect(),x=(e.clientX-r.left)/r.width*480,y=(e.clientY-r.top)/r.height*300,p=PAT[sel];
+  var hit=Math.pow((x-p[1])/p[3],2)+Math.pow((y-p[2])/p[4],2)<=1;
+  marks.push([x,y,22,hit]);
+  if(hit){found[sel]=true;miss=0;var n=found.filter(Boolean).length;say('<b>Yes!</b> You found the '+p[0].toLowerCase()+'. '+n+' of 3 patterns found.'+(n===3?' Maps help us see patterns in Earth&rsquo;s features.':' Pick another pattern.'));}
+  else{miss++;say('Not there. '+(miss>=2?'Hint: look for '+(sel===0?'a row of peaks':sel===1?'a big flat area':'blue shapes joined together')+'.':'Try again.'));}
+  draw();});
+ draw();say('Tap the map to find the <b>mountain range</b>.');
+})();</script><figcaption>Find a mountain range, a plain and connected lakes on a map.</figcaption></figure>
+<!--k5images-end id=w-45-map-->
+
   <div class="aids">
     <article class="aid">
       <span class="tag diagram">Diagram</span>

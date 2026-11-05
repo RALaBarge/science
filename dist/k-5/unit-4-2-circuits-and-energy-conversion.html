@@ -331,7 +331,38 @@ figure.k5i details.k5i-alt summary{cursor:pointer;padding:2px 0}
 :root[data-theme="dark"] figure.k5i img{filter:brightness(.92)}
 @media (prefers-reduced-motion:reduce){figure.k5i,figure.k5i *{transition:none!important;animation:none!important}}
 </style>
-<!--k5images-css-end-->
+<script>/* Shared helpers for the small K-5 interactives. inject-images.mjs puts this once on every page that has one. */
+window.K5W=window.K5W||(function(){
+ var n=0;
+ function h(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
+ var C={ink:'var(--ink,#12172b)',muted:'var(--muted,#47506e)',line:'var(--line,#d0d8e8)',surf:'var(--surface,#fff)',surf2:'var(--surface-2,#e8edf6)',beam:'var(--beam,#f2a900)',blue:'var(--reflect,#2b66e8)',red:'var(--absorb,#d6450b)',teal:'var(--transmit,#0b7f70)',shade:'var(--shade,#222a4a)',bad:'#d93036'};
+ function a(v){return v==null?'':v;}
+ var S={
+  c:function(x,y,r,f,s,w){return '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'"/>';},
+  r:function(x,y,w,hh,f,s,rx,sw){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+hh+'" rx="'+(rx||0)+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(sw||2)+'"/>';},
+  l:function(x1,y1,x2,y2,s,w,dash){return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+(s||C.ink)+'" stroke-width="'+(w||2)+'" stroke-linecap="round"'+(dash?' stroke-dasharray="'+dash+'"':'')+'/>';},
+  t:function(x,y,txt,sz,f,anc,wt){return '<text x="'+x+'" y="'+y+'" font-size="'+(sz||13)+'" fill="'+(f||C.ink)+'" text-anchor="'+(anc||'middle')+'"'+(wt?' font-weight="'+wt+'"':'')+'>'+txt+'</text>';},
+  p:function(pts,f,s,w){return '<polygon points="'+pts+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'" stroke-linejoin="round"/>';},
+  a:function(x1,y1,x2,y2,col,w,hd){w=w||4;hd=hd||11;var an=Math.atan2(y2-y1,x2-x1),hx=x2-Math.cos(an)*hd*.9,hy=y2-Math.sin(an)*hd*.9,px=-Math.sin(an)*hd*.55,py=Math.cos(an)*hd*.55;
+   return '<line x1="'+x1+'" y1="'+y1+'" x2="'+hx.toFixed(1)+'" y2="'+hy.toFixed(1)+'" stroke="'+col+'" stroke-width="'+w+'" stroke-linecap="round"/><polygon points="'+x2+','+y2+' '+(hx+px).toFixed(1)+','+(hy+py).toFixed(1)+' '+(hx-px).toFixed(1)+','+(hy-py).toFixed(1)+'" fill="'+col+'"/>';}
+ };
+ return {
+  h:h,C:C,S:S,
+  chips:function(box,labels,sel,fn,aria){
+   var g=h('div','row');g.setAttribute('role','group');if(aria)g.setAttribute('aria-label',aria);box.appendChild(g);
+   function draw(){g.innerHTML='';labels.forEach(function(l,i){var b=h('button',null,l);b.type='button';b.setAttribute('aria-pressed',String(i===sel));b.onclick=function(){sel=i;draw();fn(i);};g.appendChild(b);});}
+   draw();return {set:function(i){sel=i;draw();},get:function(){return sel;}};},
+  slider:function(box,label,min,max,step,val,fmt,fn){
+   var id='k5s'+(++n),w=h('div'),l=h('label'),inp=h('input');l.setAttribute('for',id);inp.type='range';inp.id=id;inp.min=min;inp.max=max;inp.step=step;inp.value=val;
+   function upd(){l.innerHTML=label+': <span>'+fmt(+inp.value)+'</span>';}
+   inp.oninput=function(){upd();fn(+inp.value);};upd();w.appendChild(l);w.appendChild(inp);box.appendChild(w);inp.refresh=upd;return inp;},
+  btn:function(box,label,fn){var r=box.querySelector('.row.btns');if(!r){r=h('div','row btns');box.appendChild(r);}var b=h('button',null,label);b.type='button';b.onclick=fn;r.appendChild(b);return b;},
+  svg:function(box,vb,label){var s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox',vb);s.setAttribute('role','img');s.setAttribute('aria-label',label||'');box.appendChild(s);return s;},
+  say:function(box){var p=h('p');p.setAttribute('aria-live','polite');box.appendChild(p);return function(t){p.innerHTML=t;};},
+  note:function(box,t){var p=h('p','small',t);box.appendChild(p);return p;}
+ };
+})();
+</script><!--k5images-css-end-->
 <header class="hero">
   <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="false">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="true">Retro space</button></div>
   <p class="kicker">Grade 4 · Unit 4.2</p>
@@ -378,6 +409,31 @@ figure.k5i details.k5i-alt summary{cursor:pointer;padding:2px 0}
 <section class="sec" id="s2">
   <div><p class="kicker">Concept 2</p><h2>Conductors and insulators</h2></div>
   <p class="idea">Some materials let current flow easily; others do not.</p>
+<!--k5images-start id=w-42-gap-->
+<figure class="k5i k5i-chart k5i-widget" id="fig-w-42-gap"><div class="k5w" id="w42gap"></div>
+<script>(function(){var box=document.getElementById('w42gap'),K=K5W,S=K.S,C=K.C;
+ var IT=[['Paper clip',1],['Aluminum foil',1],['Coin',1],['Plastic spoon',0],['Wooden stick',0],['String',0]];
+ var sel=-1,svg,say;
+ box.appendChild(K.h('p',null,'The circuit has a gap. Pick something to lay across it and see if the bulb lights.'));
+ K.chips(box,IT.map(function(x){return x[0];}),-1,function(i){sel=i;draw();},'Material');
+ svg=K.svg(box,'0 0 480 220','A circuit with a battery and a bulb and a gap in the top wire.');
+ say=K.say(box);
+ function draw(){
+  var lit=sel>=0&&IT[sel][1],s=S.l(70,60,200,60,C.ink,4)+S.l(280,60,410,60,C.ink,4)+S.l(70,180,410,180,C.ink,4)+S.l(70,60,70,100,C.ink,4)+S.l(70,140,70,180,C.ink,4)+S.l(410,60,410,96,C.ink,4)+S.l(410,146,410,180,C.ink,4);
+  s+=S.l(52,100,88,100,C.ink,3)+S.l(58,118,82,118,C.ink,7)+S.l(52,136,88,136,C.ink,3);
+  s+=S.c(410,121,24,lit?C.beam:C.surf,C.ink,3);
+  if(lit)for(var i=0;i<10;i++){var a=i/10*6.283;s+=S.l(410+Math.cos(a)*30,121+Math.sin(a)*30,410+Math.cos(a)*42,121+Math.sin(a)*42,C.beam,3);}
+  s+=S.c(200,60,5,C.ink)+S.c(280,60,5,C.ink);
+  if(sel>=0)s+=S.r(186,50,108,20,lit?'#c9ced8':'#e6d3a8',C.ink,10,2.5)+S.t(240,92,IT[sel][0],12,C.ink);
+  else s+=S.t(240,48,'gap',13,C.red,'middle',700);
+  svg.innerHTML=s;
+  say(sel<0?'Pick a material to bridge the gap.':lit?'<b>'+IT[sel][0]+' lets current through</b>, so the loop is complete and the bulb lights. Metals are conductors.':'<b>'+IT[sel][0]+' does not let current through</b>, so the gap stays open and the bulb stays off. It is an insulator.');
+  svg.setAttribute('aria-label',sel<0?'A circuit with a gap. The bulb is off.':IT[sel][0]+' across the gap. The bulb is '+(lit?'on':'off')+'.');
+ }
+ draw();
+})();</script><figcaption>Lay different materials across a gap to see what lets current through.</figcaption></figure>
+<!--k5images-end id=w-42-gap-->
+
   <div class="aids">
     <article class="aid">
       <span class="tag try">Try it</span>
@@ -471,6 +527,31 @@ figure.k5i details.k5i-alt summary{cursor:pointer;padding:2px 0}
 <section class="sec" id="s4">
   <div><p class="kicker">Concept 4</p><h2>Circuits convert energy</h2></div>
   <p class="idea">Electrical energy can change into light, sound, motion, or heat.</p>
+<!--k5images-start id=w-42-led-->
+<figure class="k5i k5i-chart k5i-widget" id="fig-w-42-led"><div class="k5w" id="w42led"></div>
+<script>(function(){var box=document.getElementById('w42led'),K=K5W,S=K.S,C=K.C;
+ var flip=false,svg,say,btn;
+ svg=K.svg(box,'0 0 480 230','A coin cell and an LED in a loop.');
+ btn=K.btn(box,'Flip the LED',function(){flip=!flip;draw();});
+ say=K.say(box);
+ function draw(){
+  var lit=!flip,s=S.l(80,50,330,50,C.ink,4)+S.l(80,190,330,190,C.ink,4)+S.l(80,50,80,92,C.ink,4)+S.l(80,148,80,190,C.ink,4);
+  s+=S.c(80,120,28,'#b8bcc8',C.ink,3)+S.t(80,127,'+',22,C.ink,'middle',700)+S.t(80,170,'',1)+S.t(46,92,'cell',12,C.muted,'end');
+  // the cell's + side is up. The LED sits at x=330 with legs up and down.
+  var topLong=!flip;
+  s+=S.l(330,50,330,topLong?96:112,C.ink,3)+S.l(330,190,330,topLong?148:132,C.ink,3);
+  s+=S.c(330,122,26,lit?C.red:'#caa',C.ink,3);
+  if(lit)for(var i=0;i<10;i++){var a=i/10*6.283;s+=S.l(330+Math.cos(a)*34,122+Math.sin(a)*34,330+Math.cos(a)*48,122+Math.sin(a)*48,C.beam,3);}
+  s+=S.t(358,56,topLong?'long leg':'short leg',12,C.muted,'start')+S.t(358,198,topLong?'short leg':'long leg',12,C.muted,'start');
+  s+=S.t(104,46,'+ side',12,C.muted,'start');
+  svg.innerHTML=s;
+  say(lit?'<b>The LED lights.</b> Its long leg is toward the + side of the cell. Current can go through an LED in only one direction.':'<b>The LED stays dark.</b> The long leg is toward the wrong side. Flip it around and it will light. An LED works one way only.');
+  svg.setAttribute('aria-label','An LED with its '+(topLong?'long':'short')+' leg toward the plus side of the cell. It is '+(lit?'lit':'dark')+'.');
+ }
+ draw();
+})();</script><figcaption>Flip the LED: it lights only one way.</figcaption></figure>
+<!--k5images-end id=w-42-led-->
+
   <div class="aids">
     <article class="aid">
       <span class="tag diagram">Diagram</span>

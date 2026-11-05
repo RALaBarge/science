@@ -42,6 +42,22 @@
    "caption": "Where Earth’s water is: mostly salty ocean. The fresh water is mostly ice or underground, and lakes and rivers hold very little."
   },
   {
+   "id": "w-54-hill",
+   "after": "s1",
+   "kind": "html",
+   "file": "w-54-hill.html",
+   "alt": "Interactive: rain falls on a hill that is bare, grassy or stony and the soil moved is counted, with buttons that name the atmosphere, hydrosphere, geosphere and biosphere.",
+   "caption": "Make it rain on a bare, grassy or stony hill and tap the four spheres."
+  },
+  {
+   "id": "w-54-squares",
+   "after": "s2",
+   "kind": "html",
+   "file": "w-54-squares.html",
+   "alt": "Interactive: predict how many of 100 squares are lakes and rivers, then see 97 ocean, 2 ice, 1 underground and a tiny dot for lakes and rivers.",
+   "caption": "Predict, then color 100 squares for Earth’s water."
+  },
+  {
    "id": "g-54-sediment",
    "after": "kit",
    "kind": "svg",

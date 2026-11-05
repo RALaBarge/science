@@ -1,0 +1,23 @@
+<div class="k5w" id="wkbpaper"></div>
+<script>(function(){var box=document.getElementById('wkbpaper'),K=K5W,S=K.S,C=K.C;
+ var sun=true,mins=10,svg,say,sl;
+ K.chips(box,['Both in the sun','Both in the shade'],0,function(i){sun=i===0;draw();},'Where the paper is');
+ svg=K.svg(box,'0 0 480 230','Two sheets of paper, one white and one black, each with a thermometer.');
+ sl=K.slider(box,'Time in place',0,20,1,10,function(v){return v+' minutes';},function(v){mins=v;draw();});
+ say=K.say(box);K.note(box,'The temperatures are typical but made up, to show the idea.');
+ function temp(dark){return sun?68+mins*(dark?1.1:.3):68;}
+ function therm(x,t){var f=Math.max(0,Math.min(1,(t-60)/50)),hh=110;
+  return S.r(x,50,16,hh,C.surf,C.ink,8,2.5)+S.r(x+3,50+hh*(1-f),10,hh*f,C.red,'none',5,0)+S.c(x+8,170,13,C.red,C.ink,2.5)+S.t(x+8,196,Math.round(t)+' F',13,C.ink,'middle',700);}
+ function draw(){
+  var s='';
+  if(sun){s+=S.c(60,40,18,C.beam,C.ink,2);for(var i=0;i<10;i++){var a=i/10*6.283;s+=S.l(60+Math.cos(a)*24,40+Math.sin(a)*24,60+Math.cos(a)*34,40+Math.sin(a)*34,C.beam,3);}s+=S.t(60,88,'Sun',12,C.muted);}
+  else s+=S.r(24,26,80,24,C.shade,C.ink,6,2)+S.t(64,43,'shade',12,'#fff');
+  s+=S.r(130,70,96,76,'#ffffff',C.ink,4,3)+S.t(178,166,'light paper',13,C.ink,'middle',700)+therm(250,temp(false));
+  s+=S.r(310,70,96,76,'#14141f',C.ink,4,3)+S.t(358,166,'dark paper',13,C.ink,'middle',700)+therm(430,temp(true));
+  svg.innerHTML=s;
+  var w=temp(false),d=temp(true);
+  say(sun?'After <b>'+mins+' minutes</b> in the sun, the light paper is about <b>'+Math.round(w)+' F</b> and the dark paper about <b>'+Math.round(d)+' F</b>. Sunlight warms things, and dark paper gets warmer.':'In the shade both papers stay near <b>68 F</b>. A shade blocks sunlight, so there is little to warm them. Try the sun again.');
+  svg.setAttribute('aria-label','Light paper at '+Math.round(w)+' degrees F and dark paper at '+Math.round(d)+' degrees F after '+mins+' minutes '+(sun?'in the sun':'in the shade')+'.');
+ }
+ draw();
+})();</script>

@@ -34,6 +34,14 @@
    "caption": "Teams share the jobs in the Erosion Guard test: pour the same amount each time, measure the sand that moved, and record it."
   },
   {
+   "id": "w-2c-wind",
+   "after": "s2",
+   "kind": "html",
+   "file": "w-2c-wind.html",
+   "alt": "Interactive: wind blows over a sand mound with or without grass and counts how many grains move.",
+   "caption": "Blow wind over bare sand and over sand with grass."
+  },
+  {
    "id": "g-2c-guard",
    "after": "kit",
    "kind": "svg",

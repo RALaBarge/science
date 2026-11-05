@@ -1,0 +1,21 @@
+<div class="k5w" id="w44sense"></div>
+<script>(function(){var box=document.getElementById('w44sense'),K=K5W,S=K.S,C=K.C;
+ var SC=[['Hot pan',['Skin feels a hot pan','Brain gets the message: hot!','Hand pulls away']],['Bell rings',['Ears hear a bell','Brain gets the message: bell','You walk to the door']],['Ball coming',['Eyes see a ball','Brain gets the message: ball','Hands move to catch it']]];
+ var sc=0,step=-1,svg,say,timer=0;
+ K.chips(box,SC.map(function(x){return x[0];}),0,function(i){sc=i;step=-1;clearTimeout(timer);draw();},'What happens');
+ svg=K.svg(box,'0 0 480 170','Three boxes in a row: sense, brain, response.');
+ K.btn(box,'Send the message',go);
+ say=K.say(box);
+ var X=[14,170,326],COL=[C.blue,C.surf2,C.red],LAB=['1 Sense takes in','2 Brain works on it','3 Body responds'];
+ function draw(){
+  var s='';
+  for(var i=0;i<3;i++){var on=step>=i;s+=S.r(X[i],46,140,76,on?COL[i]:C.surf,on?'none':C.line,10,2.5).replace('/>',on?'/>':' stroke-dasharray="5 4"/>');
+   s+=S.t(X[i]+70,34,LAB[i],12,C.ink,'middle',700)+'<foreignObject x="'+(X[i]+6)+'" y="52" width="128" height="64"><div xmlns="http://www.w3.org/1999/xhtml" style="font:13px system-ui;text-align:center;color:'+(i===1?C.ink:(on?'#fff':C.muted))+';display:flex;align-items:center;justify-content:center;height:64px">'+(on?SC[sc][1][i]:'?')+'</div></foreignObject>';
+   if(i<2)s+=S.a(X[i]+144,84,X[i+1]-4,84,step>i?C.ink:C.line,4,12);}
+  svg.innerHTML=s;
+ }
+ function go(){clearTimeout(timer);step=-1;draw();
+  (function next(){step++;draw();say(step===0?'<b>Step 1:</b> a sense takes in information.':step===1?'<b>Step 2:</b> the information goes to the brain, which works on it.':'<b>Step 3:</b> then the body responds. Information goes <b>in first</b>, and the response comes <b>last</b>.');
+   if(step<2)timer=setTimeout(next,900);})();}
+ draw();say('Pick what happens, then press <b>Send the message</b>.');
+})();</script>

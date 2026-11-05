@@ -1,0 +1,25 @@
+<div class="k5w" id="w43rope"></div>
+<script>(function(){var box=document.getElementById('w43rope'),K=K5W,S=K.S,C=K.C;
+ var A=30,W=200,run=true,svg,say,t0=performance.now(),frozen=0,btn,cy=110;
+ svg=K.svg(box,'0 0 480 220','A wave moving along a rope with a cork floating on it.');
+ K.slider(box,'Wave height (amplitude)',10,45,5,30,function(v){return v+'';},function(v){A=v;});
+ K.slider(box,'Distance between crests (wavelength)',100,260,20,200,function(v){return v+'';},function(v){W=v;});
+ btn=K.btn(box,'Pause',function(){if(run){frozen=(performance.now()-t0)/1000;run=false;btn.textContent='Play';}else{t0=performance.now()-frozen*1000;run=true;btn.textContent='Pause';}});
+ say=K.say(box);
+ say('The wave moves <b>forward</b>. Watch the cork: it mostly moves <b>up and down</b>, not along. Change the sliders to make taller or longer waves.');
+ function frame(){
+  var tt=run?(performance.now()-t0)/1000:frozen;
+  var ph=tt*.6,path='M30 '+(cy-A*Math.sin(2*Math.PI*(-ph))).toFixed(1),x,y,s='';
+  for(x=30;x<=450;x+=4){y=cy-A*Math.sin(2*Math.PI*((x-30)/W-ph));path+=' L'+x+' '+y.toFixed(1);}
+  s+=S.l(24,cy,456,cy,C.muted,1.5,'5 4')+'<path d="'+path+'" fill="none" stroke="'+C.blue+'" stroke-width="4" stroke-linejoin="round"/>';
+  var cx=300,cyy=cy-A*Math.sin(2*Math.PI*((cx-30)/W-ph));
+  s+=S.r(cx-12,cyy-14,24,14,'#c8a46e',C.ink,5,2)+S.a(cx,cyy+8,cx,cyy+34,C.muted,2,7)+S.a(cx,cyy+34,cx,cyy+8,C.muted,2,7)+S.t(cx,cyy+52,'cork',12,C.ink,'middle',700);
+  var f=((ph%1)+1)%1,xc=30+W*(.25+f);while(xc>40+W)xc-=W;while(xc<40)xc+=W;
+  if(xc+W<=450){s+=S.a(xc,cy-A-16,xc+W,cy-A-16,C.red,2.5,9)+S.a(xc+W,cy-A-16,xc,cy-A-16,C.red,2.5,9);}
+  s+=S.a(xc,cy-3,xc,cy-A+3,C.teal,2.5,9)+S.a(xc,cy-A+3,xc,cy-3,C.teal,2.5,9)+S.t(30,16,'red arrow: wavelength (crest to crest)',11,C.red,'start',700)+S.t(30,32,'green arrow: amplitude (height)',11,C.teal,'start',700);
+  s+=S.a(380,196,440,196,C.blue,3,10)+S.t(410,214,'wave moves',12,C.blue,'middle',700);
+  svg.innerHTML=s;
+  requestAnimationFrame(frame);
+ }
+ frame();
+})();</script>

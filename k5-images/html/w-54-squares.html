@@ -1,0 +1,24 @@
+<div class="k5w" id="w54squares"></div>
+<script>(function(){var box=document.getElementById('w54squares'),K=K5W,S=K.S,C=K.C;
+ var svg,say,done=false;
+ box.appendChild(K.h('p',null,'Imagine all of Earth&rsquo;s water as <b>100 squares</b>. <b>Predict:</b> how much of it is the liquid fresh water in lakes and rivers that we use most easily?'));
+ K.chips(box,['About 25 squares','About 3 squares','Less than 1 square'],-1,function(i){reveal(i);},'Your prediction');
+ svg=K.svg(box,'0 0 480 270','A grid of 100 squares showing where Earth water is.');
+ say=K.say(box);
+ function grid(show){
+  var s='',i;
+  for(i=0;i<100;i++){var r=Math.floor(i/10),c=i%10,x=40+c*28,y=10+r*24,col=C.surf2;
+   if(show){col=i<97?C.blue:i<99?'#ffffff':'#46d6c0';}
+   s+=S.r(x,y,26,22,col,C.ink,3,1.5);}
+  if(show)s+=S.c(40+9*28+13,10+9*24+11,2.2,C.red,C.ink,1);
+  return s;
+ }
+ function reveal(g){
+  var s=grid(true);
+  s+=S.r(340,18,14,14,C.blue,C.ink,3,1.5)+S.t(362,30,'salty ocean: 97',13,C.ink,'start')+S.r(340,46,14,14,'#fff',C.ink,3,1.5)+S.t(362,58,'frozen fresh water: 2',13,C.ink,'start')+S.r(340,74,14,14,'#46d6c0',C.ink,3,1.5)+S.t(362,86,'fresh water underground: 1',13,C.ink,'start')+S.c(347,110,3,C.red,C.ink,1)+S.t(362,114,'lakes and rivers: a tiny dot',13,C.ink,'start');
+  svg.innerHTML=s;
+  say((g===2?'<b>Right: less than one square.</b> ':'<b>Not quite.</b> ')+'About 97 squares are salty ocean, about 2 are frozen fresh water and about 1 is fresh water under the ground. The lakes and rivers we use most easily are <b>less than one square</b>, shown by the red dot. Fresh water we can reach is rare.');
+  svg.setAttribute('aria-label','97 squares ocean, 2 frozen, 1 underground, and lakes and rivers less than one square.');
+ }
+ svg.innerHTML=grid(false);say('Pick a prediction to color the squares.');
+})();</script>

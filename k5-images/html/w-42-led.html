@@ -1,0 +1,22 @@
+<div class="k5w" id="w42led"></div>
+<script>(function(){var box=document.getElementById('w42led'),K=K5W,S=K.S,C=K.C;
+ var flip=false,svg,say,btn;
+ svg=K.svg(box,'0 0 480 230','A coin cell and an LED in a loop.');
+ btn=K.btn(box,'Flip the LED',function(){flip=!flip;draw();});
+ say=K.say(box);
+ function draw(){
+  var lit=!flip,s=S.l(80,50,330,50,C.ink,4)+S.l(80,190,330,190,C.ink,4)+S.l(80,50,80,92,C.ink,4)+S.l(80,148,80,190,C.ink,4);
+  s+=S.c(80,120,28,'#b8bcc8',C.ink,3)+S.t(80,127,'+',22,C.ink,'middle',700)+S.t(80,170,'',1)+S.t(46,92,'cell',12,C.muted,'end');
+  // the cell's + side is up. The LED sits at x=330 with legs up and down.
+  var topLong=!flip;
+  s+=S.l(330,50,330,topLong?96:112,C.ink,3)+S.l(330,190,330,topLong?148:132,C.ink,3);
+  s+=S.c(330,122,26,lit?C.red:'#caa',C.ink,3);
+  if(lit)for(var i=0;i<10;i++){var a=i/10*6.283;s+=S.l(330+Math.cos(a)*34,122+Math.sin(a)*34,330+Math.cos(a)*48,122+Math.sin(a)*48,C.beam,3);}
+  s+=S.t(358,56,topLong?'long leg':'short leg',12,C.muted,'start')+S.t(358,198,topLong?'short leg':'long leg',12,C.muted,'start');
+  s+=S.t(104,46,'+ side',12,C.muted,'start');
+  svg.innerHTML=s;
+  say(lit?'<b>The LED lights.</b> Its long leg is toward the + side of the cell. Current can go through an LED in only one direction.':'<b>The LED stays dark.</b> The long leg is toward the wrong side. Flip it around and it will light. An LED works one way only.');
+  svg.setAttribute('aria-label','An LED with its '+(topLong?'long':'short')+' leg toward the plus side of the cell. It is '+(lit?'lit':'dark')+'.');
+ }
+ draw();
+})();</script>

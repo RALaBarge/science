@@ -34,6 +34,14 @@
    "caption": "Pick a ball and see that its energy of motion becomes a little heat, sound and bending. The total stays the same."
   },
   {
+   "id": "w-41-ramp",
+   "after": "s1",
+   "kind": "html",
+   "file": "w-41-ramp.html",
+   "alt": "Interactive: a slider sets the ramp height and a toy car rolls down to push a block, farther from a higher ramp.",
+   "caption": "Raise the ramp and see how far the same car pushes the block."
+  },
+  {
    "id": "g-41-ramp",
    "after": "kit",
    "kind": "svg",

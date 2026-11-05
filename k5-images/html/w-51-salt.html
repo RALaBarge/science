@@ -1,0 +1,29 @@
+<div class="k5w" id="w51salt"></div>
+<script>(function(){var box=document.getElementById('w51salt'),K=K5W,S=K.S,C=K.C;
+ var step=0,zoom=false,svg,say;
+ var ST=['1  Mix salt and sand into water','2  Stir','3  Filter','4  Let the water evaporate'];
+ K.chips(box,['1 Mix','2 Stir','3 Filter','4 Evaporate'],0,function(i){step=i;draw();},'Step');
+ K.chips(box,['Normal view','Zoom in on the salt'],0,function(i){zoom=i===1;draw();},'View');
+ svg=K.svg(box,'0 0 480 250','A cup of salt, sand and water going through four steps.');
+ say=K.say(box);
+ var BITS=[[150,150],[190,130],[220,170],[250,140],[170,185],[240,195],[205,152],[260,175],[180,165],[230,125]];
+ function cup(x,w,top,level){return '<path d="M'+x+' '+top+' L'+(x+10)+' 215 H'+(x+w-10)+' L'+(x+w)+' '+top+'" fill="none" stroke="'+C.ink+'" stroke-width="3" stroke-linejoin="round"/>'+(level?'<path d="M'+(x+1.5)+' '+level+' L'+(x+10)+' 215 H'+(x+w-10)+' L'+(x+w-1.5)+' '+level+'Z" fill="rgba(43,102,232,.28)"/>':'');}
+ function sandDots(x0,n){var s='';for(var i=0;i<n;i++)s+=S.c(x0+20+(i*23)%130,206-((i*7)%2)*6,4,'#c8a46e',C.ink,1);return s;}
+ function draw(){
+  var s='';
+  if(step===0){s+=cup(120,180,70,100)+sandDots(120,6);[[170,196],[200,198],[235,196],[185,188],[220,190]].forEach(function(p){s+=S.r(p[0]-5,p[1]-5,10,10,'#fff',C.ink,1,1.5);});
+    say('Salt grains and sand sink in the water. You can see the grains.');}
+  if(step===1){s+=cup(120,180,70,100)+sandDots(120,6);
+    if(zoom){BITS.forEach(function(b){s+=S.c(b[0]+10,b[1]-20,4,C.ink);});s+=S.t(210,250,'dots = salt bits, too small to see',12,C.muted);}
+    say(zoom?'In the zoomed view, the stirred salt is <b>tiny bits spread through the water</b>. They are too small to see, but they are still there.':'The salt <b>dissolved</b>: you cannot see it any more, and the water looks clear. Press <b>Zoom in</b> to see what is really there.');}
+  if(step===2){s+=S.p('150,40 270,40 210,100',C.surf,C.muted,2.5)+sandDots(190,0)+[[200,70],[212,72],[224,70],[206,64],[218,64]].map(function(p){return S.c(p[0],p[1],4,'#c8a46e',C.ink,1);}).join('')+S.t(210,28,'sand stays on the paper',12,C.muted);
+    s+=cup(150,120,120,160);if(zoom)BITS.slice(0,6).forEach(function(b){s+=S.c(b[0]+20,b[1]+18,4,C.ink);});
+    say(zoom?'The salt bits <b>pass through</b> the filter with the water. Only the sand stays on the paper.':'<b>Sand</b> is caught by the filter paper. The clear salt water drips through. The salt is still in it.');}
+  if(step===3){s+='<path d="M120 190 Q210 230 300 190" fill="'+C.surf2+'" stroke="'+C.ink+'" stroke-width="3"/>';
+    [[170,208],[195,215],[220,217],[245,214],[265,206],[205,200],[232,204]].forEach(function(p){s+=S.r(p[0]-5,p[1]-5,10,10,'#fff',C.ink,1,1.5);});
+    s+=S.c(210,70,16,C.beam,C.ink,2.5)+S.t(210,112,'warm sun',12,C.muted);
+    say('The water <b>evaporates</b> and leaves white <b>salt crystals</b> behind. The salt never went away. It was in the water the whole time.');}
+  svg.innerHTML=s;
+ }
+ draw();
+})();</script>

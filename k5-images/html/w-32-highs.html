@@ -1,0 +1,18 @@
+<div class="k5w" id="w32highs"></div>
+<script>(function(){var box=document.getElementById('w32highs'),K=K5W,S=K.S,C=K.C;
+ var MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],T=[32,35,45,58,69,79,83,81,74,62,50,38];
+ var sel=6,svg,say,chips;
+ box.appendChild(K.h('p',null,'Detroit&rsquo;s typical daily <b>high</b> for each month. Pick a month.'));
+ chips=K.chips(box,MO,6,function(i){sel=i;draw();},'Month');
+ svg=K.svg(box,'0 0 480 220','A bar graph of the typical daily high temperature in Detroit for each month.');
+ say=K.say(box);
+ function draw(){
+  var s=S.l(40,180,460,180,C.ink,2.5)+S.l(40,20,40,180,C.ink,2.5),i;
+  [0,20,40,60,80].forEach(function(v){var y=180-v*1.8;s+=S.l(40,y,460,y,C.line,1)+S.t(34,y+4,String(v),11,C.muted,'end');});
+  T.forEach(function(v,i){var x=52+i*34,hh=v*1.8;s+=S.r(x,180-hh,26,hh,i===sel?C.beam:C.blue,C.ink,3,i===sel?3:1.5)+S.t(x+13,198,MO[i],11,C.ink);});
+  s+=S.t(250,214,'month',12,C.muted);
+  svg.innerHTML=s;
+  say('In <b>'+MO[sel]+'</b>, Detroit&rsquo;s typical daily high is <b>'+T[sel]+' F</b>. That is the warmest part of a typical day, so it is <b>not</b> the average for the whole day. Nights are cooler. July is highest (83 F) and January lowest (32 F).');
+ }
+ draw();
+})();</script>

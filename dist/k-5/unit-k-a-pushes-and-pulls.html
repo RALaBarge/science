@@ -331,7 +331,38 @@ figure.k5i details.k5i-alt summary{cursor:pointer;padding:2px 0}
 :root[data-theme="dark"] figure.k5i img{filter:brightness(.92)}
 @media (prefers-reduced-motion:reduce){figure.k5i,figure.k5i *{transition:none!important;animation:none!important}}
 </style>
-<!--k5images-css-end-->
+<script>/* Shared helpers for the small K-5 interactives. inject-images.mjs puts this once on every page that has one. */
+window.K5W=window.K5W||(function(){
+ var n=0;
+ function h(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
+ var C={ink:'var(--ink,#12172b)',muted:'var(--muted,#47506e)',line:'var(--line,#d0d8e8)',surf:'var(--surface,#fff)',surf2:'var(--surface-2,#e8edf6)',beam:'var(--beam,#f2a900)',blue:'var(--reflect,#2b66e8)',red:'var(--absorb,#d6450b)',teal:'var(--transmit,#0b7f70)',shade:'var(--shade,#222a4a)',bad:'#d93036'};
+ function a(v){return v==null?'':v;}
+ var S={
+  c:function(x,y,r,f,s,w){return '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'"/>';},
+  r:function(x,y,w,hh,f,s,rx,sw){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+hh+'" rx="'+(rx||0)+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(sw||2)+'"/>';},
+  l:function(x1,y1,x2,y2,s,w,dash){return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+(s||C.ink)+'" stroke-width="'+(w||2)+'" stroke-linecap="round"'+(dash?' stroke-dasharray="'+dash+'"':'')+'/>';},
+  t:function(x,y,txt,sz,f,anc,wt){return '<text x="'+x+'" y="'+y+'" font-size="'+(sz||13)+'" fill="'+(f||C.ink)+'" text-anchor="'+(anc||'middle')+'"'+(wt?' font-weight="'+wt+'"':'')+'>'+txt+'</text>';},
+  p:function(pts,f,s,w){return '<polygon points="'+pts+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'" stroke-linejoin="round"/>';},
+  a:function(x1,y1,x2,y2,col,w,hd){w=w||4;hd=hd||11;var an=Math.atan2(y2-y1,x2-x1),hx=x2-Math.cos(an)*hd*.9,hy=y2-Math.sin(an)*hd*.9,px=-Math.sin(an)*hd*.55,py=Math.cos(an)*hd*.55;
+   return '<line x1="'+x1+'" y1="'+y1+'" x2="'+hx.toFixed(1)+'" y2="'+hy.toFixed(1)+'" stroke="'+col+'" stroke-width="'+w+'" stroke-linecap="round"/><polygon points="'+x2+','+y2+' '+(hx+px).toFixed(1)+','+(hy+py).toFixed(1)+' '+(hx-px).toFixed(1)+','+(hy-py).toFixed(1)+'" fill="'+col+'"/>';}
+ };
+ return {
+  h:h,C:C,S:S,
+  chips:function(box,labels,sel,fn,aria){
+   var g=h('div','row');g.setAttribute('role','group');if(aria)g.setAttribute('aria-label',aria);box.appendChild(g);
+   function draw(){g.innerHTML='';labels.forEach(function(l,i){var b=h('button',null,l);b.type='button';b.setAttribute('aria-pressed',String(i===sel));b.onclick=function(){sel=i;draw();fn(i);};g.appendChild(b);});}
+   draw();return {set:function(i){sel=i;draw();},get:function(){return sel;}};},
+  slider:function(box,label,min,max,step,val,fmt,fn){
+   var id='k5s'+(++n),w=h('div'),l=h('label'),inp=h('input');l.setAttribute('for',id);inp.type='range';inp.id=id;inp.min=min;inp.max=max;inp.step=step;inp.value=val;
+   function upd(){l.innerHTML=label+': <span>'+fmt(+inp.value)+'</span>';}
+   inp.oninput=function(){upd();fn(+inp.value);};upd();w.appendChild(l);w.appendChild(inp);box.appendChild(w);inp.refresh=upd;return inp;},
+  btn:function(box,label,fn){var r=box.querySelector('.row.btns');if(!r){r=h('div','row btns');box.appendChild(r);}var b=h('button',null,label);b.type='button';b.onclick=fn;r.appendChild(b);return b;},
+  svg:function(box,vb,label){var s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox',vb);s.setAttribute('role','img');s.setAttribute('aria-label',label||'');box.appendChild(s);return s;},
+  say:function(box){var p=h('p');p.setAttribute('aria-live','polite');box.appendChild(p);return function(t){p.innerHTML=t;};},
+  note:function(box,t){var p=h('p','small',t);box.appendChild(p);return p;}
+ };
+})();
+</script><!--k5images-css-end-->
 <header class="hero">
   <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="false">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="true">Retro space</button></div>
   <p class="kicker">Kindergarten · Unit K-A</p>
@@ -375,6 +406,35 @@ figure.k5i details.k5i-alt summary{cursor:pointer;padding:2px 0}
 <section class="sec" id="s2">
   <div><p class="kicker">Concept 2</p><h2>Strength and direction matter</h2></div>
   <p class="idea">A stronger push or a different direction can change how far or where an object goes.</p>
+<!--k5images-start id=w-ka-push-->
+<figure class="k5i k5i-chart k5i-widget" id="fig-w-ka-push"><div class="k5w" id="wkapush"></div>
+<script>(function(){var box=document.getElementById('wkapush'),K=K5W,S=K.S,C=K.C;
+ var DIST=[2,4,8],NAMES=['soft','medium','hard'],WALLX=300,CARW=40,X0=40,TILE=40;
+ var strength=0,wall=0,pos=0,timer=0,svg,say,moved=false;
+ K.chips(box,['Soft push','Medium push','Hard push'],0,function(i){strength=i;idle();},'How hard to push');
+ K.chips(box,['Open floor','A wall is in the way'],0,function(i){wall=i;idle();},'Floor');
+ svg=K.svg(box,'0 0 480 150','A toy car on a row of floor tiles.');
+ K.btn(box,'Push!',go);K.btn(box,'Reset',idle);
+ say=K.say(box);
+ function stop(){return wall?(WALLX-CARW-X0)/TILE:99;}
+ function draw(tiles,arrow){
+  var s='',i;
+  for(i=0;i<10;i++)s+=S.r(X0+i*TILE,104,TILE-2,22,C.surf2,C.line,3,1.5);
+  if(wall)s+=S.r(WALLX,50,14,76,C.red,C.ink,3,2)+S.t(WALLX+7,44,'wall',12,C.muted);
+  var x=X0+tiles*TILE;
+  s+=S.r(x,78,CARW,24,C.blue,C.ink,6,2.5)+S.c(x+9,104,6,C.surf,C.ink,2.5)+S.c(x+CARW-9,104,6,C.surf,C.ink,2.5);
+  if(arrow)s+=S.a(x-4-8*(strength+1),90,x-4,90,C.beam,3+strength*2,10);
+  svg.innerHTML=s;
+ }
+ function idle(){clearInterval(timer);pos=0;moved=false;draw(0,true);say('Pick how hard to push, then press <b>Push!</b>');}
+ function go(){clearInterval(timer);pos=0;var goal=Math.min(DIST[strength],stop()),t=0;
+  timer=setInterval(function(){t+=.04;var e=1-Math.pow(1-Math.min(1,t),2);pos=goal*e;draw(pos,false);
+   if(t>=1){clearInterval(timer);var hit=wall&&DIST[strength]>stop();
+    say('A <b>'+NAMES[strength]+'</b> push sent the car '+(hit?'into the wall. The wall stopped it.':'about <b>'+goal.toFixed(0)+' tiles</b>. A stronger push sends it farther.')+' Try another push.');}},30);}
+ idle();
+})();</script><figcaption>Push a toy car softly, medium or hard, with or without a wall in the way.</figcaption></figure>
+<!--k5images-end id=w-ka-push-->
+
   <div class="aids">
     <article class="aid">
       <span class="tag try">Try it</span>

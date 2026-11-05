@@ -101,7 +101,8 @@ export function injectInto(html, figs, file) {
   // The lesson pages have no <head> tag, so the CSS goes just before the page header.
   const head = html.indexOf('<header class="hero">');
   if (head < 0) throw new Error(file + ': no page header to put the CSS before');
-  html = html.slice(0, head) + CSS + html.slice(head);
+  const helper = figs.some((f) => f.kind === 'html') ? '<script>' + readFileSync(join(dir, 'html', '_k5w.js'), 'utf8') + '</script>' : '';
+  html = html.slice(0, head) + CSS.replace('<!--k5images-css-end-->', helper + '<!--k5images-css-end-->') + html.slice(head);
   return crlf ? html.replace(/\n/g, '\r\n') : html;
 }
 

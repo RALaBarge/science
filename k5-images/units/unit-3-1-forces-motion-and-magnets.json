@@ -42,6 +42,30 @@
    "caption": "Equal gaps between dots mean steady speed. A real ball on a floor slows down, so its dots bunch closer together."
   },
   {
+   "id": "w-31-forces",
+   "after": "s1",
+   "kind": "html",
+   "file": "w-31-forces.html",
+   "alt": "Interactive: sliders set the push from each side on a puck on ice, starting at rest or already sliding, and a run shows whether its speed changes.",
+   "caption": "Push a puck from both sides and see what balanced and unbalanced forces do."
+  },
+  {
+   "id": "w-31-tape",
+   "after": "s2",
+   "kind": "html",
+   "file": "w-31-tape.html",
+   "alt": "Interactive: a dot drops every second under a rolling ball. On ice the gaps stay equal, on a real floor they shrink.",
+   "caption": "Roll a ball on ice or on a real floor and read the dot tape."
+  },
+  {
+   "id": "w-31-magnet",
+   "after": "s3",
+   "kind": "html",
+   "file": "w-31-magnet.html",
+   "alt": "Interactive: choose a nail, foil, penny or paper clip, a distance and whether paper is between, and see whether the magnet pulls it.",
+   "caption": "Test which things a magnet pulls, from how far, and through paper."
+  },
+  {
    "id": "g-31-dots-a",
    "after": "s2",
    "kind": "svg",

@@ -58,6 +58,14 @@
    "caption": "Turn the Earth and watch your place go from day to night. The Sun does not turn off: Earth turns."
   },
   {
+   "id": "w-1c-stars",
+   "after": "s2",
+   "kind": "html",
+   "file": "w-1c-stars.html",
+   "alt": "Interactive: a slider changes the sky from bright day to dark night. Stars fade in as the sky darkens, and dashed rings show where they still are in daylight.",
+   "caption": "Darken the sky and the stars appear. They were there all day."
+  },
+  {
    "id": "g-1c-daylight",
    "after": "s3",
    "kind": "svg",

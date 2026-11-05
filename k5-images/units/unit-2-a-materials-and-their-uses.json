@@ -18,6 +18,22 @@
    "caption": "Warming melts ice and butter. These changes can be undone by cooling."
   },
   {
+   "id": "w-2a-bins",
+   "after": "s1",
+   "kind": "html",
+   "file": "w-2a-bins.html",
+   "alt": "Interactive: pick a property bin and tap the items that belong in it, then check your bin. An item can be in more than one bin.",
+   "caption": "Sort everyday things into waterproof, bendy and hard bins."
+  },
+  {
+   "id": "w-2a-pieces",
+   "after": "s3",
+   "kind": "html",
+   "file": "w-2a-pieces.html",
+   "alt": "Interactive: four numbered blocks are rearranged into different shapes while the count stays four.",
+   "caption": "Build four pieces into a tower, a house, a train or a square."
+  },
+  {
    "id": "g-2a-rainproof",
    "after": "kit",
    "kind": "svg",

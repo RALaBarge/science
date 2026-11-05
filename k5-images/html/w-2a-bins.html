@@ -1,0 +1,16 @@
+<div class="k5w" id="w2abins"></div>
+<script>(function(){var box=document.getElementById('w2abins'),K=K5W,h=K.h;
+ var ITEMS=['Raincoat','Sponge','Rubber band','Glass jar','Paper towel','Steel spoon','Wooden block','Foil sheet'];
+ var PROP=[['Waterproof',[1,0,1,1,0,1,0,1]],['Bendy',[1,1,1,0,1,0,0,1]],['Hard',[0,0,0,1,0,1,1,0]]];
+ var sel=0,bins=[{},{},{}],list,say,checked=false;
+ box.appendChild(h('p',null,'Pick a bin, then tap every item that belongs in it. An item can go in more than one bin. Then press <b>Check my bin</b>.'));
+ K.chips(box,PROP.map(function(p){return p[0];}),0,function(i){sel=i;checked=false;draw();say('');},'Which bin');
+ list=h('div','row');box.appendChild(list);
+ K.btn(box,'Check my bin',check);
+ say=K.say(box);
+ function draw(){list.innerHTML='';ITEMS.forEach(function(n,i){var b=h('button',null,n);b.type='button';b.setAttribute('aria-pressed',String(!!bins[sel][i]));b.onclick=function(){bins[sel][i]=!bins[sel][i];draw();};list.appendChild(b);});}
+ function check(){var ok=[],miss=[],extra=[];PROP[sel][1].forEach(function(v,i){var inb=!!bins[sel][i];if(v&&inb)ok.push(ITEMS[i]);else if(v)miss.push(ITEMS[i]);else if(inb)extra.push(ITEMS[i]);});
+  var tot=PROP[sel][1].reduce(function(a,b){return a+b;},0);
+  say('<b>'+PROP[sel][0]+' bin:</b> you found '+ok.length+' of '+tot+'.'+(miss.length?' Missing: '+miss.join(', ')+'.':'')+(extra.length?' Not '+PROP[sel][0].toLowerCase()+': '+extra.join(', ')+'.':'')+(!miss.length&&!extra.length?' <b>All correct.</b>':'')+' Sort by what a material is <i>like</i>, not by its size.');}
+ draw();
+})();</script>

@@ -1,0 +1,26 @@
+<div class="k5w" id="wkapush"></div>
+<script>(function(){var box=document.getElementById('wkapush'),K=K5W,S=K.S,C=K.C;
+ var DIST=[2,4,8],NAMES=['soft','medium','hard'],WALLX=300,CARW=40,X0=40,TILE=40;
+ var strength=0,wall=0,pos=0,timer=0,svg,say,moved=false;
+ K.chips(box,['Soft push','Medium push','Hard push'],0,function(i){strength=i;idle();},'How hard to push');
+ K.chips(box,['Open floor','A wall is in the way'],0,function(i){wall=i;idle();},'Floor');
+ svg=K.svg(box,'0 0 480 150','A toy car on a row of floor tiles.');
+ K.btn(box,'Push!',go);K.btn(box,'Reset',idle);
+ say=K.say(box);
+ function stop(){return wall?(WALLX-CARW-X0)/TILE:99;}
+ function draw(tiles,arrow){
+  var s='',i;
+  for(i=0;i<10;i++)s+=S.r(X0+i*TILE,104,TILE-2,22,C.surf2,C.line,3,1.5);
+  if(wall)s+=S.r(WALLX,50,14,76,C.red,C.ink,3,2)+S.t(WALLX+7,44,'wall',12,C.muted);
+  var x=X0+tiles*TILE;
+  s+=S.r(x,78,CARW,24,C.blue,C.ink,6,2.5)+S.c(x+9,104,6,C.surf,C.ink,2.5)+S.c(x+CARW-9,104,6,C.surf,C.ink,2.5);
+  if(arrow)s+=S.a(x-4-8*(strength+1),90,x-4,90,C.beam,3+strength*2,10);
+  svg.innerHTML=s;
+ }
+ function idle(){clearInterval(timer);pos=0;moved=false;draw(0,true);say('Pick how hard to push, then press <b>Push!</b>');}
+ function go(){clearInterval(timer);pos=0;var goal=Math.min(DIST[strength],stop()),t=0;
+  timer=setInterval(function(){t+=.04;var e=1-Math.pow(1-Math.min(1,t),2);pos=goal*e;draw(pos,false);
+   if(t>=1){clearInterval(timer);var hit=wall&&DIST[strength]>stop();
+    say('A <b>'+NAMES[strength]+'</b> push sent the car '+(hit?'into the wall. The wall stopped it.':'about <b>'+goal.toFixed(0)+' tiles</b>. A stronger push sends it farther.')+' Try another push.');}},30);}
+ idle();
+})();</script>

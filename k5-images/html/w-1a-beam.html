@@ -1,0 +1,21 @@
+<div class="k5w" id="w1abeam"></div>
+<script>(function(){var box=document.getElementById('w1abeam'),K=K5W,S=K.S,C=K.C;
+ var M=[['Clear plastic','The light goes <b>straight through</b>. You can see clearly through it.'],['Wax paper','Some light goes through, but it <b>spreads out</b>. Things look blurry.'],['Cardboard','The light is <b>blocked</b>. The cardboard makes a dark shadow behind it.'],['Mirror','The light <b>bounces back</b>. A mirror reflects the beam.']];
+ var m=0,svg,say;
+ K.chips(box,M.map(function(x){return x[0];}),0,function(i){m=i;draw();},'Material');
+ svg=K.svg(box,'0 0 480 200','A flashlight beam hitting a material.');
+ say=K.say(box);
+ function draw(){
+  var s=S.r(20,86,44,28,'#6b7280',C.ink,5,2)+S.p('64,86 78,78 78,122 64,114','#6b7280',C.ink,2)+S.t(42,140,'flashlight',12,C.muted);
+  var y=100,fill=['rgba(43,102,232,.28)','rgba(242,169,0,.55)','#222a4a','#ffffff'][m];
+  s+=S.a(82,y-(m===3?8:0),196,y-(m===3?8:0),C.beam,5,13);
+  s+=S.r(200,60,16,80,fill,C.ink,3,2.5);
+  if(m===0)s+=S.a(218,y,330,y,C.beam,5,13);
+  if(m===1)[-26,0,26].forEach(function(d){s+=S.a(218,y,330,y+d,C.beam,2.5,9);});
+  if(m===2)s+=S.r(218,60,140,80,'rgba(34,42,74,.28)','none',4,0)+S.t(290,104,'shadow',13,C.muted);
+  if(m===3)s+=S.a(196,y+8,100,y+42,C.beam,5,13);
+  svg.innerHTML=s;say(M[m][1]);
+  svg.setAttribute('aria-label','Beam hitting '+M[m][0].toLowerCase()+'.');
+ }
+ draw();
+})();</script>

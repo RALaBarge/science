@@ -34,6 +34,22 @@
    "caption": "Close the switch to light the bulb, then cut a wire. One gap anywhere breaks the whole loop."
   },
   {
+   "id": "w-42-led",
+   "after": "s4",
+   "kind": "html",
+   "file": "w-42-led.html",
+   "alt": "Interactive: a button flips an LED in a circuit. It lights only when its long leg is toward the plus side of the cell.",
+   "caption": "Flip the LED: it lights only one way."
+  },
+  {
+   "id": "w-42-gap",
+   "after": "s2",
+   "kind": "html",
+   "file": "w-42-gap.html",
+   "alt": "Interactive: choose a paper clip, foil, coin, plastic spoon, wooden stick or string to bridge a gap in a circuit and see if the bulb lights.",
+   "caption": "Lay different materials across a gap to see what lets current through."
+  },
+  {
    "id": "g-42-tester",
    "after": "kit",
    "kind": "svg",

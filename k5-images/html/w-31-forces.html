@@ -1,0 +1,23 @@
+<div class="k5w" id="w31forces"></div>
+<script>(function(){var box=document.getElementById('w31forces'),K=K5W,S=K.S,C=K.C;
+ var L=2,R=2,start=0,svg,say,timer=0,t=0,SC=10,X0=240;
+ K.chips(box,['Starts at rest','Already sliding right'],0,function(i){start=i;idle();},'Starting motion');
+ svg=K.svg(box,'0 0 480 200','A puck on slippery ice with a push from each side.');
+ K.slider(box,'Push from the left',0,5,1,2,function(v){return v+' N';},function(v){L=v;idle();});
+ K.slider(box,'Push from the right (backward)',0,5,1,2,function(v){return v+' N';},function(v){R=v;idle();});
+ K.btn(box,'Run 2.5 seconds',go);K.btn(box,'Reset',idle);
+ say=K.say(box);K.note(box,'The puck is 1 kg on very slippery ice, so there is almost no friction. Forces are in newtons (N).');
+ function state(tt){var v0=start?2:0,a=L-R;return {x:X0+(v0*tt+.5*a*tt*tt)*SC,v:v0+a*tt,a:a};}
+ function draw(tt){
+  var st=state(tt),x=Math.max(30,Math.min(450,st.x)),s=S.r(10,128,460,16,'#bfe3ff',C.ink,4,2)+S.t(240,170,'ice',12,C.muted);
+  s+=S.r(x-24,100,48,28,C.surf,C.ink,6,3)+S.t(x,119,'puck',12,C.ink,'middle',700);
+  if(L>0)s+=S.a(x-30-L*14,114,x-30,114,C.blue,5,12)+S.t(x-30-L*7,98,L+' N',12,C.ink);
+  if(R>0)s+=S.a(x+30+R*14,114,x+30,114,C.red,5,12)+S.t(x+30+R*7,98,R+' N',12,C.ink);
+  s+=S.t(240,30,'Speed now: '+Math.abs(st.v).toFixed(1)+' m/s '+(st.v>0.05?'to the right':st.v<-0.05?'to the left':'(stopped)'),15,C.ink,'middle',700);
+  svg.innerHTML=s;return st;
+ }
+ function idle(){clearInterval(timer);t=0;draw(0);var net=L-R;say(net===0?'The forces are <b>balanced</b> (net 0 N). Press Run to see what the puck does.':'The forces are <b>unbalanced</b>: net <b>'+Math.abs(net)+' N</b> '+(net>0?'to the right':'to the left')+'. Press Run.');}
+ function go(){clearInterval(timer);t=0;timer=setInterval(function(){t+=.05;var st=draw(Math.min(2.5,t));if(t>=2.5){clearInterval(timer);
+   say(st.a===0?(start?'Balanced forces: the puck kept sliding at the <b>same speed</b>. Balanced does not mean stopped.':'Balanced forces: the puck stayed <b>at rest</b>. Nothing changed its motion.'):'Unbalanced forces: the puck <b>changed speed</b>. It sped up toward the bigger push (net '+Math.abs(st.a)+' N).');}},30);}
+ idle();
+})();</script>

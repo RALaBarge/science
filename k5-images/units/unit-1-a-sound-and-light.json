@@ -24,6 +24,30 @@
    "file": "d-1a-beam.svg",
    "alt": "Four rows. In each, a flashlight on the left sends a beam to a material. Clear plastic: the light passes straight through. Wax paper: some light passes through and spreads out, so it is blurry. Cardboard: the light is blocked and there is a shadow behind it. Mirror: the light bounces back toward the flashlight.",
    "caption": "What a beam of light does to four materials: passes through, spreads, is blocked, or bounces."
+  },
+  {
+   "id": "w-1a-pluck",
+   "after": "s1",
+   "kind": "html",
+   "file": "w-1a-pluck.html",
+   "alt": "Interactive: pluck a rubber band softly or hard, watch it vibrate and the rice jump, and touch it to stop the sound.",
+   "caption": "Pluck a rubber band: it shakes and makes sound. Touch it and the sound stops."
+  },
+  {
+   "id": "w-1a-box",
+   "after": "s2",
+   "kind": "html",
+   "file": "w-1a-box.html",
+   "alt": "Interactive: a mystery box holds an apple or a glow star. A lamp button shows that you see the apple only when light bounces from it into your eye.",
+   "caption": "Turn the lamp on and off to see when you can see what is in the box."
+  },
+  {
+   "id": "w-1a-beam",
+   "after": "s3",
+   "kind": "html",
+   "file": "w-1a-beam.html",
+   "alt": "Interactive: choose a material and see the flashlight beam pass through, spread out, stop with a shadow, or bounce back.",
+   "caption": "Shine a beam on clear plastic, wax paper, cardboard or a mirror."
   }
  ]
 }

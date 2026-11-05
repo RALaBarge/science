@@ -41,6 +41,14 @@ for (const f of units) {
       maxData = Math.max(maxData, Math.ceil(size / 3) * 4);
       ok(Math.ceil(size / 3) * 4 <= 120 * 1024, where + ' data URI is at most 120 KB (' + Math.round(size / 1024) + ' KB file)');
     }
+    if (fig.kind === 'html' && fs.existsSync(file)) {
+      const frag = fs.readFileSync(file, 'utf8');
+      const m = /<script>([\s\S]*?)<\/script>/.exec(frag);
+      let parses = false;
+      try { if (m) { new (require('node:vm').Script)(m[1]); parses = true; } } catch (e) { parses = false; }
+      ok(parses, where + ' widget script parses');
+      ok(/<div class="k5w" id="[^"]+"><\/div>|<div class="k5w" id="[^"]+">/.test(frag), where + ' widget has its container');
+    }
     if (fig.kind === 'svg' && fs.existsSync(file)) {
       const svg = fs.readFileSync(file, 'utf8');
       ok(/<title id=/.test(svg) && /<desc id=/.test(svg) && /role="img"/.test(svg), where + ' svg has role, title and description');

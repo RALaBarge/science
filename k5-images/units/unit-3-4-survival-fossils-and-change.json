@@ -26,6 +26,14 @@
    "caption": "A wetland is a habitat. Filling it in changes who can live there."
   },
   {
+   "id": "w-34-habitat",
+   "after": "s4",
+   "kind": "html",
+   "file": "w-34-habitat.html",
+   "alt": "Interactive: pick a frog, wolf or cactus and a wetland, forest, desert or tundra and see whether it lives well, less well or cannot survive.",
+   "caption": "Match a living thing to a habitat and see how well it fits."
+  },
+  {
    "id": "g-34-fur",
    "after": "kit",
    "kind": "svg",
