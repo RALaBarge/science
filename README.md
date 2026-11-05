@@ -109,6 +109,7 @@ Some content is generated from data. Re-run these after editing their sources, t
 | `node k5-activities/inject.mjs` | puts each K-5 activity engine and config (`k5-activities/units/*.json`) into its lesson page |
 | `node k5-images/make-figures.mjs` | rebuilds the K-5 graph and diagram SVGs and the per-page figure lists from `graph-defs.mjs`, `diagram-defs.mjs`, `figures-src.mjs` and `interactive-defs.mjs` |
 | `node k5-images/inject-images.mjs` | embeds the images, SVGs and interactives (`k5-images/html/*.html`) into the K-5 pages |
+| `node 8th-images/inject.mjs` | embeds the real photographs listed in `8th-images/figures.json` (with credits) into the 8th-grade pages; re-runnable |
 | `node shared/apply-retro.mjs` | gives the lesson map the Retro look and writes the snippet Pick a Trade reuses |
 | `node docs/trades/build-page.mjs` | rebuilds `extras/pick-a-trade.html` from the trades catalog |
 

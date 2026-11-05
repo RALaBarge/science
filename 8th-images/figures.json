@@ -1,0 +1,167 @@
+[
+ {
+  "id": "86-eva",
+  "page": "unit-8.6-gravity-orbits-and-the-solar-system.html",
+  "after": "lede",
+  "file": "eva.webp",
+  "maxw": 720,
+  "w": 1700,
+  "h": 1700,
+  "alt": "Astronaut Bruce McCandless II in a white spacesuit floating freely above the curved blue Earth against the black of space, with no tether to the shuttle.",
+  "caption": "An astronaut on a spacewalk, falling around Earth at 7.7 km/s. He feels weightless because he and the shuttle fall together, not because gravity is gone.",
+  "credit": "Bruce McCandless II during the first untethered spacewalk, 1984. NASA (public domain)."
+ },
+ {
+  "id": "86-disk",
+  "page": "unit-8.6-gravity-orbits-and-the-solar-system.html",
+  "after": "s3",
+  "file": "hltau.webp",
+  "maxw": 520,
+  "w": 900,
+  "h": 900,
+  "alt": "A young star in the center of a flat disk of gas and dust, with bright rings and dark gaps where new planets are sweeping up material.",
+  "caption": "A real young star, HL Tauri, with the flat disk of gas and dust around it. The dark gaps are where planets are forming.",
+  "credit": "ALMA (ESO/NAOJ/NRAO), CC BY 4.0, via Wikimedia Commons."
+ },
+ {
+  "id": "86-planets",
+  "page": "unit-8.6-gravity-orbits-and-the-solar-system.html",
+  "after": "s4",
+  "file": "planets.webp",
+  "maxw": 520,
+  "w": 900,
+  "h": 1100,
+  "alt": "A montage of the Sun and the eight planets of the Solar System, shown as photographs and spacecraft images in order from the Sun.",
+  "caption": "The Sun and the planets (sizes and distances not to scale). The four small rocky worlds are closest to the Sun, then the four giants.",
+  "credit": "NASA (public domain)."
+ },
+ {
+  "id": "86-milestones",
+  "page": "unit-8.6-gravity-orbits-and-the-solar-system.html",
+  "after": "end:s5",
+  "items": [
+   {
+    "year": "1957",
+    "file": "sputnik.webp",
+    "w": 1000,
+    "h": 750,
+    "alt": "A shiny metal ball with four long antennas: a replica of Sputnik 1.",
+    "caption": "Sputnik, the first satellite. A replica.",
+    "credit": "Replica of Sputnik 1, World Museum Liverpool. Photo: Rept0n1x, CC BY-SA 3.0, via Wikimedia Commons."
+   },
+   {
+    "year": "1969",
+    "file": "apollo11.webp",
+    "w": 900,
+    "h": 561,
+    "alt": "Astronaut Buzz Aldrin in a white spacesuit on the Moon, with a gold visor reflecting the photographer and the lunar surface.",
+    "caption": "Apollo 11: first humans on the Moon. Buzz Aldrin, photographed by Neil Armstrong.",
+    "credit": "NASA (public domain)."
+   },
+   {
+    "year": "1977",
+    "file": "voyager-launch.webp",
+    "w": 900,
+    "h": 702,
+    "alt": "A Titan IIIE-Centaur rocket on its launch pad at night, with the service tower beside it.",
+    "caption": "Voyager 1 and 2 launch, riding a Titan rocket. Their route used gravity assists from the giant planets.",
+    "credit": "Titan IIIE-Centaur carrying a Voyager probe, 1977. NASA (public domain)."
+   },
+   {
+    "year": "1997",
+    "file": "sojourner.webp",
+    "w": 1000,
+    "h": 917,
+    "alt": "The small six-wheeled Sojourner rover sitting on the rocky red surface of Mars next to a large rock.",
+    "caption": "Sojourner, the first rover to drive on Mars.",
+    "credit": "NASA/JPL (public domain)."
+   },
+   {
+    "year": "2012",
+    "file": "voyager-interstellar.webp",
+    "w": 1100,
+    "h": 619,
+    "alt": "An artist painting of the Voyager 1 spacecraft far from the Sun, with the Solar System shown as a tiny bubble in the background.",
+    "caption": "Voyager 1 enters interstellar space. This is an artist's concept: no camera can photograph the spacecraft from outside.",
+    "credit": "NASA/JPL-Caltech (public domain)."
+   },
+   {
+    "year": "2021",
+    "file": "perseverance.webp",
+    "w": 1100,
+    "h": 934,
+    "alt": "A selfie of the Perseverance rover on the surface of Mars, made from many photographs stitched together.",
+    "caption": "Perseverance on Mars, a selfie stitched from many photos.",
+    "credit": "NASA/JPL-Caltech/MSSS (public domain)."
+   },
+   {
+    "year": "2021",
+    "file": "jwst.webp",
+    "w": 1100,
+    "h": 732,
+    "alt": "Gold-coated hexagonal mirror segments of the James Webb Space Telescope in a clean room.",
+    "caption": "The James Webb Space Telescope's gold mirror segments, before launch.",
+    "credit": "NASA/MSFC/David Higginbotham/Emmett Given (public domain)."
+   }
+  ]
+ },
+ {
+  "id": "87-crab",
+  "page": "unit-8.7-stars-galaxies-and-the-universe.html",
+  "after": "end:s2",
+  "stack": true,
+  "items": [
+   {
+    "file": "crab.webp",
+    "maxw": 560,
+    "w": 1000,
+    "h": 1000,
+    "alt": "The Crab Nebula: a glowing, tangled cloud of red and blue gas and filaments, the remains of an exploded star.",
+    "caption": "The Crab Nebula is the remains of a massive star that exploded as a supernova. Chinese astronomers saw the explosion in the year 1054. The glowing gas is made of the elements the star built, now spreading out to become new stars and planets.",
+    "credit": "NASA, ESA, J. Hester and A. Loll (Arizona State University) (public domain)."
+   },
+   {
+    "file": "nucleo.svg",
+    "maxw": 860,
+    "alt": "A periodic table colored by where each element came from: the Big Bang, dying low-mass stars, exploding massive stars, merging neutron stars, exploding white dwarfs, and cosmic rays.",
+    "caption": "Where every element came from. Hydrogen and helium come from the Big Bang. Carbon and oxygen come mostly from stars, and the heaviest elements, like gold, from supernovas and neutron-star collisions.",
+    "credit": "Periodic table of nucleosynthesis by Cmglee, CC BY-SA 3.0, via Wikimedia Commons."
+   }
+  ]
+ },
+ {
+  "id": "87-cmb",
+  "page": "unit-8.7-stars-galaxies-and-the-universe.html",
+  "after": "end:s5",
+  "stack": true,
+  "items": [
+   {
+    "file": "cmb-timeline.webp",
+    "maxw": 860,
+    "w": 1400,
+    "h": 924,
+    "alt": "A picture of the history of the universe from the Big Bang on the left, through the glow of the cosmic microwave background, the first stars and galaxies, to today on the right, with the universe growing wider over time.",
+    "caption": "The history of the universe, from the Big Bang (left) to today (right). The glow of the CMB was released 380,000 years in.",
+    "credit": "NASA/WMAP Science Team (public domain)."
+   },
+   {
+    "file": "cmb-planck.webp",
+    "maxw": 860,
+    "w": 1000,
+    "h": 500,
+    "alt": "An oval map of the whole sky in blue, yellow and red speckles showing tiny temperature differences in the cosmic microwave background.",
+    "caption": "The CMB over the whole sky, as mapped by the Planck satellite. The colors are tiny differences of about 1 part in 100,000, exaggerated so we can see them. Red patches are slightly warmer and denser.",
+    "credit": "ESA and the Planck Collaboration, CC BY 4.0, via Wikimedia Commons."
+   },
+   {
+    "file": "hudf.webp",
+    "maxw": 560,
+    "w": 1000,
+    "h": 1000,
+    "alt": "A dark patch of sky filled with thousands of galaxies of many colors and shapes, some tiny and red.",
+    "caption": "The Hubble Ultra Deep Field: thousands of galaxies in a tiny patch of sky. Some of these galaxies are shown as they were over 13 billion years ago.",
+    "credit": "NASA and ESA (public domain)."
+   }
+  ]
+ }
+]
