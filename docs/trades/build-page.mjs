@@ -10,6 +10,8 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const md = readFileSync(join(root, 'docs', 'trades', 'trades-catalog.md'), 'utf8').replace(/\r\n/g, '\n');
 const data = JSON.parse(readFileSync(join(root, 'docs', 'trades', 'quiz-prototype', 'data.json'), 'utf8'));
 
+const retroSnippet = readFileSync(join(root, 'shared', 'retro-snippet.html'), 'utf8').split(String.fromCharCode(13)).join('');
+const retroSwitch = readFileSync(join(root, 'shared', 'retro-switch.html'), 'utf8').trim();
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const slug = (s) => s.toLowerCase().replace(/&amp;/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
@@ -151,6 +153,7 @@ const html = `<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Pick a Trade: hands-on careers in Michigan</title>
+${retroSnippet}
 <meta name="description" content="A guide to 306 hands-on careers with Michigan worker counts, wages and growth, fifteen trades in depth, and what Washtenaw Community College offers.">
 <style>
 :root{--bg:#f6f4ee;--surface:#fffdf8;--ink:#1d2433;--muted:#5b6475;--line:#d9d4c6;--accent:#b4531c;--soft:#efe9da;--font:'Inter','Segoe UI',system-ui,-apple-system,Roboto,sans-serif}
@@ -226,6 +229,7 @@ footer{margin-top:3em;color:var(--muted);font-size:.9rem;border-top:1px solid va
 </head>
 <body>
 <div class="wrap">
+${retroSwitch}
 <p class="top"><a href="../index.html">&larr; All lessons</a></p>
 <p class="kicker">Careers &middot; Michigan</p>
 <h1>Pick a Trade</h1>

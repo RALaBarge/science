@@ -18,6 +18,22 @@
    "caption": "The bulb lights only when the loop is closed all the way around. A gap anywhere stops the current in the whole loop."
   },
   {
+   "id": "d-42-kit",
+   "after": "kit",
+   "kind": "svg",
+   "file": "d-42-kit.svg",
+   "alt": "Top view of an index card with a coin cell on the left, an LED in the middle and a paper clip switch on the right. Strips of copper tape connect them in one loop: from the plus side of the cell to the LED long leg, from the LED short leg to the first brass fastener, then through the paper clip to the second fastener and back along the bottom to the cell. When the clip touches both fasteners the loop is complete and the LED lights. When the clip is swung away the loop is open and the LED is off. The LED lights only when its long leg is toward the plus side of the cell.",
+   "caption": "What the light-up card looks like: tape, coin cell, LED and a paper clip switch in one loop."
+  },
+  {
+   "id": "w-42-switch",
+   "after": "s3",
+   "kind": "html",
+   "file": "w-42-switch.html",
+   "alt": "Interactive: buttons open and close a switch and cut a wire in a circuit with a battery and a bulb. The bulb lights only when the loop is complete.",
+   "caption": "Close the switch to light the bulb, then cut a wire. One gap anywhere breaks the whole loop."
+  },
+  {
    "id": "g-42-tester",
    "after": "kit",
    "kind": "svg",

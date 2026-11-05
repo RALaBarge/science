@@ -524,6 +524,18 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
       <p class="readout" id="tugR" aria-live="polite"></p>
     </article>
     <article class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>Flick the card: inertia</h3>
+      <p class="cap">A coin sits on a card over a cup. Pull the card out sideways. <b>Predict first:</b> where does the coin go?</p>
+      <div class="chips" id="inPred" role="group" aria-label="Your prediction"></div>
+      <div class="stage"><svg id="inSvg" viewBox="0 0 480 220" role="img" aria-label="A coin on a card above a cup. Press Pull."></svg></div>
+      <div class="ctl"><label for="inV">Pull speed: <span id="inVv"></span> m/s</label><input id="inV" type="range" min="0.1" max="3" step="0.1" value="2"></div>
+      <div class="chips" id="inSurf" role="group" aria-label="Card surface"></div>
+      <div class="btnrow"><button class="btn" id="inGo" type="button">Pull!</button><button class="btn ghost" id="inReset" type="button">Reset</button></div>
+      <p class="readout" id="inR" aria-live="polite"></p>
+      <p class="cap">Friction on the coin is the same kind of push each time. What changes is <b>how long</b> it acts. A fast pull gives it almost no time, so the coin&rsquo;s inertia keeps it where it was and it drops straight down. Fast pulls are shown in slow motion.</p>
+    </article>
+    <article class="aid wide">
       <span class="tag data">Data</span>
       <h3>Same push, different masses: acceleration</h3>
       <div class="stage"><svg id="faSvg" viewBox="0 0 640 260" role="img" aria-label="Lines of acceleration versus net force for 10, 20, and 40 kilogram carts. The lighter the cart, the steeper the line."></svg></div>
@@ -1206,6 +1218,62 @@ safe(()=>{
 
 /* ===== 2 tug ===== */
 let tugNet=60,tugM=20,redrawFA=()=>{};
+safe(()=>{
+  const svg=$('#inSvg'), V=$('#inV'), R=$('#inR'), predBox=$('#inPred'), surfBox=$('#inSurf');
+  const SURF=[['Slippery card',0.15],['Paper card',0.4],['Rubbery card',0.9]];
+  const GUESS=['falls into the cup','goes with the card','depends on how fast you pull'];
+  const G=9.8, HALF=.04, OUT=.3, FALL=.04, CUP=.027, PX=700, X0=240;
+  let mu=.4, guess=-1, timer=0, frames=[], result=null;
+  predBox.innerHTML=['Falls into the cup','Goes with the card','Depends on how fast I pull'].map((l,i)=>'<button class="chip" type="button" data-i="'+i+'" aria-pressed="false">'+l+'</button>').join('');
+  surfBox.innerHTML=SURF.map((s,i)=>'<button class="chip" type="button" data-i="'+i+'" aria-pressed="'+(i===1)+'">'+s[0]+'</button>').join('');
+  function pressed(box,b){ box.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',String(c===b))); }
+  function simulate(v,m){
+    const dt=.001, a=m*G; let t=0, xc=0, x=0, vx=0, on=true; const fr=[];
+    while(on && xc<OUT){ // coin on the card
+      xc=v*t; if(vx<v){ vx=Math.min(v,vx+a*dt); } x+=vx*dt; t+=dt;
+      fr.push([xc,x,0]); if(x-xc<=-HALF) on=false;
+    }
+    const left=!on, tl=t;
+    if(!left){ // still on the card when it stopped: it rides off with it
+      const tf=Math.sqrt(2*FALL/G); for(let s=dt;s<tf;s+=dt){ fr.push([xc,x+vx*s,.5*G*s*s]); }
+      return {fr,out:'rides',x:x+vx*tf,tl:t*1000,vx};
+    }
+    const tf=Math.sqrt(2*FALL/G); for(let s=dt;s<=tf;s+=dt){ fr.push([v*(tl+s),x+vx*s,.5*G*s*s]); }
+    const xf=x+vx*tf; return {fr,out:Math.abs(xf)<=CUP?'cup':'beside',x:xf,tl:tl*1000,vx};
+  }
+  function draw(f){
+    const xc=f?f[0]:0, xk=f?f[1]:0, fall=f?f[2]:0;
+    const cardX=X0-HALF*PX+xc*PX, coinX=X0+xk*PX, coinY=124+fall*PX;
+    svg.innerHTML='<line x1="10" y1="192" x2="470" y2="192" stroke="var(--line)" stroke-width="3"/>'+
+      '<path d="M'+(X0-CUP*PX-6)+' 150 L'+(X0-CUP*PX)+' 192 H'+(X0+CUP*PX)+' L'+(X0+CUP*PX+6)+' 150" fill="var(--surface-2)" stroke="var(--ink)" stroke-width="3"/>'+
+      '<text x="'+X0+'" y="212" text-anchor="middle" font-size="12" fill="var(--muted)">cup</text>'+
+      '<rect x="'+cardX.toFixed(1)+'" y="130" width="'+(2*HALF*PX)+'" height="5" rx="2" fill="var(--reflect)"/>'+
+      '<circle cx="'+coinX.toFixed(1)+'" cy="'+coinY.toFixed(1)+'" r="8" fill="var(--beam)" stroke="var(--ink)" stroke-width="2"/>';
+  }
+  function report(){
+    const r=result, ms=(2*HALF/Math.max(.1,+V.value))*1000;
+    let msg;
+    if(r.out==='cup') msg='The coin <b>dropped into the cup</b>. Friction had only about <b>'+r.tl.toFixed(0)+' ms</b> to push it, so it gained just <b>'+(r.vx*100).toFixed(0)+' cm/s</b> sideways. Its inertia kept it nearly in place.';
+    else if(r.out==='beside') msg='The coin <b>fell beside the cup</b>, about '+(Math.abs(r.x)*100).toFixed(1)+' cm from the middle. The pull was slow enough for friction to drag it sideways to <b>'+(r.vx*100).toFixed(0)+' cm/s</b> before it dropped.';
+    else msg='The coin <b>rode along with the card</b>. The pull was so slow that friction had time to speed the coin up to the card&rsquo;s speed, so the two moved together and the card never slid out from under it.';
+    if(guess>=0) msg=(guess===2?'<b>Good thinking: it depends on the speed.</b> ':(guess===0&&r.out==='cup')||(guess===1&&r.out==='rides')?'<b>Your prediction was right.</b> ':'<b>You predicted it '+GUESS[guess]+'. Not this time.</b> ')+msg;
+    msg+=' Try a different speed or surface.';
+    R.innerHTML=msg;
+    svg.setAttribute('aria-label','The coin '+(r.out==='cup'?'dropped into the cup':r.out==='beside'?'fell beside the cup':'rode away with the card')+'.');
+  }
+  function idle(){ clearTimeout(timer); $('#inVv').textContent=(+V.value).toFixed(1); draw(null); R.innerHTML='Pick a prediction, set a speed, then press <b>Pull!</b>'; svg.setAttribute('aria-label','A coin on a card above a cup. Press Pull.'); result=null; }
+  function go(){
+    clearTimeout(timer); $('#inVv').textContent=(+V.value).toFixed(1);
+    result=simulate(+V.value,mu); frames=result.fr;
+    const total=frames.length, slow=total<500?6:1, t0=performance.now();
+    const step=()=>{ const i=Math.min(total-1,Math.floor((performance.now()-t0)/slow)); draw(frames[i]); if(i<total-1) timer=setTimeout(step,16); else report(); };
+    step();
+  }
+  predBox.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; guess=+b.dataset.i; pressed(predBox,b); if(result) report(); });
+  surfBox.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; mu=SURF[+b.dataset.i][1]; pressed(surfBox,b); idle(); });
+  V.addEventListener('input',idle); $('#inGo').addEventListener('click',go); $('#inReset').addEventListener('click',idle);
+  idle();
+});
 safe(()=>{
   const svg=$('#tugSvg'), el={L:$('#fL'),R:$('#fR'),M:$('#mM')}, rd=$('#tugR'), go=$('#tugGo'), rs=$('#tugReset');
   let pos=0, vel=0, anim=null;

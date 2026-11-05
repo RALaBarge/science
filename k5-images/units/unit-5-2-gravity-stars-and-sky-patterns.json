@@ -34,6 +34,22 @@
    "caption": "The shadow table from this page drawn from above. Both the length and the direction change through the day."
   },
   {
+   "id": "w-52-down",
+   "after": "s2",
+   "kind": "html",
+   "file": "w-52-down.html",
+   "alt": "Interactive: a slider moves a ball around a globe and a button drops it. The arrow always points to the center of Earth.",
+   "caption": "Move around the globe and drop the ball from anywhere: it always falls toward the center of Earth."
+  },
+  {
+   "id": "w-52-shadow",
+   "after": "s3",
+   "kind": "html",
+   "file": "w-52-shadow.html",
+   "alt": "Interactive: a slider sets the time of day from 8:30 am to 3:30 pm and shows the shadow of a 10 centimeter stick in a top view, with its length and direction.",
+   "caption": "Slide the time of day and watch the shadow change length and direction while the Sun moves."
+  },
+  {
    "id": "g-52-shadow",
    "after": "s3",
    "kind": "svg",

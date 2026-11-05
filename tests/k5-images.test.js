@@ -29,7 +29,7 @@ for (const f of units) {
     ids.add(fig.id);
     ok(typeof fig.alt === 'string' && fig.alt.trim().length >= 25, where + ' has alt text');
     ok(typeof fig.caption === 'string' && fig.caption.trim().length > 0, where + ' has a caption');
-    const file = path.join(dir, fig.kind === 'image' ? 'webp' : 'svg', fig.file);
+    const file = path.join(dir, fig.kind === 'image' ? 'webp' : fig.kind === 'html' ? 'html' : 'svg', fig.file);
     ok(fs.existsSync(file), where + ' file exists');
     ok(fig.after === 'hero' || new RegExp('<section[^>]*\\bid="' + fig.after + '"').test(html), where + ' has its anchor "' + fig.after + '"');
     const count = (html.match(new RegExp('<!--k5images-start id=' + fig.id + '-->', 'g')) || []).length;

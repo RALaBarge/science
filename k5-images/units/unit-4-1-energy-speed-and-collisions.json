@@ -26,6 +26,14 @@
    "caption": "Heat always moves from warmer to cooler. A coat does not add cold or heat: it slows the heat leaving your body."
   },
   {
+   "id": "w-41-collision",
+   "after": "s2",
+   "kind": "html",
+   "file": "w-41-collision.html",
+   "alt": "Interactive: pick a clay ball, a hard ball or a super ball and see bars for energy before and after a bounce. The total is always 100.",
+   "caption": "Pick a ball and see that its energy of motion becomes a little heat, sound and bending. The total stays the same."
+  },
+  {
    "id": "g-41-ramp",
    "after": "kit",
    "kind": "svg",

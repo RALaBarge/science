@@ -1,0 +1,38 @@
+<div class="k5w" id="w52s">
+<svg viewBox="0 0 480 350" role="img" aria-label="Top view of a 10 centimeter stick and its shadow. Use the slider to change the time of day.">
+<g id="w52sg"></g>
+</svg>
+<label for="w52t">Time of day: <span id="w52tv"></span></label>
+<input type="range" id="w52t" min="8.5" max="15.5" step="0.25" value="12">
+<p id="w52r" aria-live="polite"></p>
+<p class="small">Top view, north at the top. Sun time: 12:00 is when the Sun is highest. The values come from the shadow table on this page; the times in between are estimated.</p>
+</div>
+<script>
+(function(){
+ var T=[[8.5,34,180],[10,20,225],[12,9,270],[14,18,315],[15.5,30,360]];
+ var cx=240,cy=170,k=4.6,sl=document.getElementById('w52t'),g=document.getElementById('w52sg'),r=document.getElementById('w52r'),tv=document.getElementById('w52tv'),svg=document.getElementById('w52s').querySelector('svg');
+ function interp(t,i){for(var n=0;n<T.length-1;n++){if(t<=T[n+1][0]){var f=(t-T[n][0])/(T[n+1][0]-T[n][0]);return T[n][i]+(T[n+1][i]-T[n][i])*f;}}return T[T.length-1][i];}
+ function name(a){var n=['west','northwest','north','northeast','east'];return n[Math.round((a-180)/45)];}
+ function clock(t){var h=Math.floor(t),m=Math.round((t-h)*60);if(m===60){h++;m=0;}var ap=h>=12?'pm':'am',hh=h>12?h-12:h;return hh+':'+(m<10?'0':'')+m+' '+ap;}
+ function draw(){
+  var t=+sl.value,len=interp(t,1),ang=interp(t,2)*Math.PI/180,sx=cx+Math.cos(ang)*len*k,sy=cy+Math.sin(ang)*len*k;
+  var sun=ang+Math.PI,ux=cx+Math.cos(sun)*125,uy=cy+Math.sin(sun)*125;
+  var s='<line x1="30" y1="'+cy+'" x2="450" y2="'+cy+'" stroke="var(--line,#d0d8e8)" stroke-dasharray="4 4"/><line x1="'+cx+'" y1="60" x2="'+cx+'" y2="'+cy+'" stroke="var(--line,#d0d8e8)" stroke-dasharray="4 4"/>';
+  s+='<text x="30" y="'+(cy-8)+'" font-size="14" font-weight="700" fill="var(--ink,#12172b)">W</text><text x="450" y="'+(cy-8)+'" text-anchor="end" font-size="14" font-weight="700" fill="var(--ink,#12172b)">E</text><text x="'+cx+'" y="52" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink,#12172b)">N</text>';
+  // sun, opposite the shadow
+  var sxn=ux,syn=uy;
+  s+='<g>';for(var i=0;i<10;i++){var a=i/10*6.283;s+='<line x1="'+(sxn+Math.cos(a)*18).toFixed(1)+'" y1="'+(syn+Math.sin(a)*18).toFixed(1)+'" x2="'+(sxn+Math.cos(a)*28).toFixed(1)+'" y2="'+(syn+Math.sin(a)*28).toFixed(1)+'" stroke="var(--beam,#f2a900)" stroke-width="3" stroke-linecap="round"/>';}
+  s+='<circle cx="'+sxn.toFixed(1)+'" cy="'+syn.toFixed(1)+'" r="13" fill="var(--beam,#f2a900)" stroke="var(--ink,#12172b)" stroke-width="2"/></g>';
+  s+='<text x="'+sxn.toFixed(1)+'" y="'+(syn+(syn<cy?-34:46)).toFixed(1)+'" text-anchor="middle" font-size="12" fill="var(--muted,#47506e)">Sun</text>';
+  // shadow arrow
+  var hx=sx-Math.cos(ang)*10,hy=sy-Math.sin(ang)*10,px=-Math.sin(ang)*6,py=Math.cos(ang)*6;
+  s+='<line x1="'+cx+'" y1="'+cy+'" x2="'+hx.toFixed(1)+'" y2="'+hy.toFixed(1)+'" stroke="var(--shade,#222a4a)" stroke-width="6" stroke-linecap="round"/><polygon points="'+sx.toFixed(1)+','+sy.toFixed(1)+' '+(hx+px).toFixed(1)+','+(hy+py).toFixed(1)+' '+(hx-px).toFixed(1)+','+(hy-py).toFixed(1)+'" fill="var(--shade,#222a4a)"/>';
+  s+='<circle cx="'+cx+'" cy="'+cy+'" r="7" fill="var(--ink,#12172b)"/><text x="'+cx+'" y="'+(cy+26)+'" text-anchor="middle" font-size="12" fill="var(--muted,#47506e)">10 cm stick</text>';
+  g.innerHTML=s;
+  tv.textContent=clock(t);
+  r.innerHTML='At <b>'+clock(t)+'</b> the shadow is about <b>'+Math.round(len)+' cm</b> long and points <b>'+name(interp(t,2))+'</b>, away from the Sun. It is shortest at noon.';
+  svg.setAttribute('aria-label','Top view of a 10 centimeter stick. At '+clock(t)+' its shadow is about '+Math.round(len)+' centimeters long and points '+name(interp(t,2))+'.');
+ }
+ sl.addEventListener('input',draw);draw();
+})();
+</script>

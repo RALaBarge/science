@@ -50,6 +50,14 @@
    "caption": "The stars are still in the sky in the daytime. The bright sky hides them."
   },
   {
+   "id": "w-1c-spin",
+   "after": "s1",
+   "kind": "html",
+   "file": "w-1c-spin.html",
+   "alt": "Interactive: a slider turns a ball that stands for Earth in front of a lamp, and says whether your place, a red dot, is in day or night.",
+   "caption": "Turn the Earth and watch your place go from day to night. The Sun does not turn off: Earth turns."
+  },
+  {
    "id": "g-1c-daylight",
    "after": "s3",
    "kind": "svg",

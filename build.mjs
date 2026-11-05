@@ -60,6 +60,10 @@ for (const f of ['index.html', 'design-log.html']) {
   }
 }
 
+// How AI Works used to live at 9th/unit-9.1-how-ai-works.html; keep the old address working.
+mkdirSync(join(out, '9th'), { recursive: true });
+writeFileSync(join(out, '9th', 'unit-9.1-how-ai-works.html'), '<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Moved: How AI Works</title><meta http-equiv="refresh" content="0; url=../extras/how-ai-works.html"><link rel="canonical" href="../extras/how-ai-works.html"></head><body><p>This lesson moved: <a href="../extras/how-ai-works.html">How AI Works</a>.</p></body></html>\n');
+
 // Lesson guides, kept in their grade folders so cross-grade links stay valid.
 for (const grade of GRADES) {
   const dir = join(root, grade);

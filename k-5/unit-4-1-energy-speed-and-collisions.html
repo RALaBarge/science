@@ -311,6 +311,15 @@ figure.k5i{margin:0;min-width:0;max-width:min(100%,720px);background:var(--surfa
 figure.k5i img,figure.k5i svg{display:block;width:100%;height:auto}
 figure.k5i.k5i-hero{margin:4px 0 0}
 figure.k5i.k5i-chart{max-width:min(100%,560px)}
+figure.k5i .k5w{padding:12px 14px 4px;display:grid;gap:10px}
+figure.k5i .k5w p{margin:0;font-size:.98rem;line-height:1.45}
+figure.k5i .k5w p.small{font-size:.88rem;color:var(--muted,#47506e)}
+figure.k5i .k5w .row{display:flex;flex-wrap:wrap;gap:8px}
+figure.k5i .k5w button{font:inherit;font-size:.95rem;padding:8px 14px;min-height:40px;border-radius:999px;border:1.5px solid var(--line,#d0d8e8);background:var(--surface,#fff);color:var(--ink,#12172b);cursor:pointer}
+figure.k5i .k5w button[aria-pressed="true"]{background:var(--ink,#12172b);color:var(--bg,#fff);border-color:var(--ink,#12172b)}
+figure.k5i .k5w button:focus-visible,figure.k5i .k5w input:focus-visible{outline:3px solid var(--beam,#f2a900);outline-offset:2px}
+figure.k5i .k5w label{font-weight:700}
+figure.k5i .k5w input[type=range]{width:100%;accent-color:var(--beam,#f2a900);height:32px}
 figure.k5i figcaption{padding:10px 14px 12px;font-size:.95rem;line-height:1.45;color:var(--muted,#47506e)}
 figure.k5i details.k5i-alt{margin:0;padding:0 14px 12px;font-size:.9rem;color:var(--muted,#47506e)}
 figure.k5i details.k5i-alt summary{cursor:pointer;padding:2px 0}
@@ -362,6 +371,32 @@ figure.k5i details.k5i-alt summary{cursor:pointer;padding:2px 0}
 <section class="sec" id="s2">
   <div><p class="kicker">Concept 2</p><h2>Collisions change energy</h2></div>
   <p class="idea">When objects collide, motion energy can move, so things can speed up, slow down, or change shape.</p>
+<!--k5images-start id=w-41-collision-->
+<figure class="k5i k5i-chart k5i-widget" id="fig-w-41-collision"><div class="k5w" id="w41">
+<p><b>Drop a ball and watch where its energy goes.</b> Pick a ball. These are made-up numbers to show the idea, not measurements.</p>
+<div class="row" id="w41c" role="group" aria-label="Ball"></div>
+<div id="w41b" aria-hidden="true"></div>
+<p id="w41r" aria-live="polite"></p>
+</div>
+<script>
+(function(){
+ var B=[['Clay ball (thud)',4,'It lands with a thud and stays flat.'],['Hard ball (bounce)',60,'It bounces back up, but not as high as it started.'],['Super ball (big bounce)',85,'It bounces almost as high as it started.']];
+ var c=document.getElementById('w41c'),bars=document.getElementById('w41b'),r=document.getElementById('w41r'),i=0;
+ function bar(label,parts){var s='<div style="margin:8px 0"><div style="font-size:.9rem;margin-bottom:4px">'+label+'</div><div style="display:flex;height:26px;border-radius:6px;overflow:hidden;background:var(--surface-2,#e8edf6)">';
+  parts.forEach(function(p){if(p[0]>0)s+='<div style="width:'+p[0]+'%;background:'+p[1]+';color:var(--on-color,#fff);font-size:.8rem;display:flex;align-items:center;justify-content:center;white-space:nowrap">'+p[2]+'</div>';});return s+'</div></div>';}
+ function draw(){
+  var m=B[i][1],h=100-m;
+  c.innerHTML=B.map(function(b,j){return '<button type="button" data-i="'+j+'" aria-pressed="'+(j===i)+'">'+b[0]+'</button>';}).join('');
+  bars.innerHTML=bar('Before the drop: energy of motion',[[100,'var(--reflect,#2b66e8)','motion 100']])+
+   bar('After it hits the floor',[[m,'var(--reflect,#2b66e8)',m>=14?'motion '+m:''],[h,'var(--absorb,#d6450b)','heat, sound, bending '+h]]);
+  r.innerHTML=B[i][2]+' About <b>'+m+'</b> of the 100 units stays as motion. The other <b>'+h+'</b> shows up as a little heat, a little sound and some bending. Before: 100. After: '+m+' + '+h+' = <b>100</b>. Nothing was deleted.';
+ }
+ c.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;i=+b.dataset.i;draw();});
+ draw();
+})();
+</script><figcaption>Pick a ball and see that its energy of motion becomes a little heat, sound and bending. The total stays the same.</figcaption></figure>
+<!--k5images-end id=w-41-collision-->
+
   <div class="aids">
     <article class="aid">
       <span class="tag try">Try it</span>

@@ -1,0 +1,35 @@
+<div class="k5w" id="w1c">
+<svg viewBox="0 0 480 260" role="img" aria-label="A lamp on the left shines on a ball that stands for Earth. A red dot marks your place.">
+<g id="w1cg"></g>
+</svg>
+<label for="w1ca">Turn Earth: <span id="w1cv"></span></label>
+<input type="range" id="w1ca" min="0" max="360" step="5" value="0">
+<div class="row"><button type="button" id="w1cp">Spin Earth</button></div>
+<p id="w1cr" aria-live="polite"></p>
+</div>
+<script>
+(function(){
+ var sl=document.getElementById('w1ca'),g=document.getElementById('w1cg'),r=document.getElementById('w1cr'),v=document.getElementById('w1cv'),pb=document.getElementById('w1cp'),svg=document.getElementById('w1c').querySelector('svg');
+ var cx=300,cy=130,R=70,timer=0;
+ function state(a){var c=Math.cos(a*Math.PI/180);return c>0.17?'day':c<-0.17?'night':'sunrise or sunset';}
+ function draw(){
+  var a=+sl.value,rad=a*Math.PI/180,dx=cx-Math.cos(rad)*R,dy=cy+Math.sin(rad)*R,st=state(a);
+  var s='';
+  s+='<g>';for(var i=0;i<12;i++){var t=i/12*6.283;s+='<line x1="'+(60+Math.cos(t)*34).toFixed(1)+'" y1="'+(130+Math.sin(t)*34).toFixed(1)+'" x2="'+(60+Math.cos(t)*46).toFixed(1)+'" y2="'+(130+Math.sin(t)*46).toFixed(1)+'" stroke="var(--beam,#f2a900)" stroke-width="3" stroke-linecap="round"/>';}
+  s+='<circle cx="60" cy="130" r="26" fill="var(--beam,#f2a900)" stroke="var(--ink,#12172b)" stroke-width="2"/></g><text x="60" y="206" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink,#12172b)">Sun</text>';
+  [-40,0,40].forEach(function(y){s+='<line x1="120" y1="'+(130+y)+'" x2="'+(cx-R-26+(y?12:0))+'" y2="'+(130+y)+'" stroke="var(--beam,#f2a900)" stroke-width="3" stroke-dasharray="6 5"/>';});
+  s+='<circle cx="'+cx+'" cy="'+cy+'" r="'+R+'" fill="var(--reflect,#2b66e8)" stroke="var(--ink,#12172b)" stroke-width="2"/>';
+  s+='<path d="M'+cx+' '+(cy-R)+' A'+R+' '+R+' 0 0 1 '+cx+' '+(cy+R)+'Z" fill="var(--shade,#222a4a)" opacity=".78"/>';
+  s+='<text x="'+(cx-R/2)+'" y="'+(cy+4)+'" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">DAY</text><text x="'+(cx+R/2)+'" y="'+(cy+4)+'" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">NIGHT</text>';
+  s+='<circle cx="'+dx.toFixed(1)+'" cy="'+dy.toFixed(1)+'" r="8" fill="#d93036" stroke="#fff" stroke-width="2.5"/>';
+  s+='<text x="'+cx+'" y="'+(cy+R+28)+'" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink,#12172b)">Earth</text><text x="'+cx+'" y="'+(cy+R+46)+'" text-anchor="middle" font-size="12" fill="var(--muted,#47506e)">red dot = your place</text>';
+  g.innerHTML=s;
+  v.textContent=Math.round(a/360*24)+' hours after your place faced the Sun';
+  r.innerHTML='Your place is '+(st==='day'||st==='night'?'in <b>'+st+'</b>':'at <b>'+st+'</b>')+'. '+(st==='day'?'It faces the Sun.':st==='night'?'It faces away from the Sun. The Sun did not turn off: Earth turned.':'It is turning toward or away from the Sun.');
+  svg.setAttribute('aria-label','A lamp lights the left half of a ball that stands for Earth. Your place, a red dot, is in '+st+'.');
+ }
+ function stop(){if(timer){clearInterval(timer);timer=0;pb.textContent='Spin Earth';}}
+ pb.addEventListener('click',function(){if(timer){stop();return;}pb.textContent='Stop';timer=setInterval(function(){sl.value=(+sl.value+5)%365;if(+sl.value>360)sl.value=0;draw();},90);});
+ sl.addEventListener('input',function(){stop();draw();});draw();
+})();
+</script>

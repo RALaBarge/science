@@ -20,6 +20,15 @@ figure.k5i{margin:0;min-width:0;max-width:min(100%,720px);background:var(--surfa
 figure.k5i img,figure.k5i svg{display:block;width:100%;height:auto}
 figure.k5i.k5i-hero{margin:4px 0 0}
 figure.k5i.k5i-chart{max-width:min(100%,560px)}
+figure.k5i .k5w{padding:12px 14px 4px;display:grid;gap:10px}
+figure.k5i .k5w p{margin:0;font-size:.98rem;line-height:1.45}
+figure.k5i .k5w p.small{font-size:.88rem;color:var(--muted,#47506e)}
+figure.k5i .k5w .row{display:flex;flex-wrap:wrap;gap:8px}
+figure.k5i .k5w button{font:inherit;font-size:.95rem;padding:8px 14px;min-height:40px;border-radius:999px;border:1.5px solid var(--line,#d0d8e8);background:var(--surface,#fff);color:var(--ink,#12172b);cursor:pointer}
+figure.k5i .k5w button[aria-pressed="true"]{background:var(--ink,#12172b);color:var(--bg,#fff);border-color:var(--ink,#12172b)}
+figure.k5i .k5w button:focus-visible,figure.k5i .k5w input:focus-visible{outline:3px solid var(--beam,#f2a900);outline-offset:2px}
+figure.k5i .k5w label{font-weight:700}
+figure.k5i .k5w input[type=range]{width:100%;accent-color:var(--beam,#f2a900);height:32px}
 figure.k5i figcaption{padding:10px 14px 12px;font-size:.95rem;line-height:1.45;color:var(--muted,#47506e)}
 figure.k5i details.k5i-alt{margin:0;padding:0 14px 12px;font-size:.9rem;color:var(--muted,#47506e)}
 figure.k5i details.k5i-alt summary{cursor:pointer;padding:2px 0}
@@ -37,12 +46,15 @@ function figure(f) {
   if (f.kind === 'image') {
     const b = readFileSync(join(dir, 'webp', f.file));
     inner = `<img src="data:image/webp;base64,${b.toString('base64')}" alt="${esc(f.alt)}" width="800" height="450" loading="lazy" decoding="async">`;
+  } else if (f.kind === 'html') {
+    inner = readFileSync(join(dir, 'html', f.file), 'utf8').trim();
   } else {
     inner = readFileSync(join(dir, 'svg', f.file), 'utf8').trim();
   }
   const chart = f.kind === 'svg';
+  const widget = f.kind === 'html';
   const alt = chart ? `<details class="k5i-alt"><summary>Text version of this ${f.id.startsWith('g-') ? 'graph' : 'diagram'}</summary><p>${esc(f.alt)}</p></details>` : '';
-  return `<!--k5images-start id=${f.id}-->\n<figure class="k5i${chart ? ' k5i-chart' : ''}${f.after === 'hero' ? ' k5i-hero' : ''}" id="fig-${f.id}">${inner}<figcaption>${esc(f.caption)}</figcaption>${alt}</figure>\n<!--k5images-end id=${f.id}-->\n`;
+  return `<!--k5images-start id=${f.id}-->\n<figure class="k5i${chart || widget ? ' k5i-chart' : ''}${widget ? ' k5i-widget' : ''}${f.after === 'hero' ? ' k5i-hero' : ''}" id="fig-${f.id}">${inner}<figcaption>${esc(f.caption)}</figcaption>${alt}</figure>\n<!--k5images-end id=${f.id}-->\n`;
 }
 
 // Remove every figure block and the CSS block this script wrote earlier.

@@ -1,0 +1,36 @@
+<div class="k5w" id="w52d">
+<svg viewBox="0 0 480 300" role="img" aria-label="A globe with a ball above its surface and an arrow pointing to the center.">
+<g id="w52dg"></g>
+</svg>
+<label for="w52da">Where you stand on Earth: <span id="w52dv"></span></label>
+<input type="range" id="w52da" min="0" max="360" step="15" value="0">
+<div class="row"><button type="button" id="w52dd">Drop the ball</button><button type="button" id="w52dr">Put it back</button></div>
+<p id="w52dt" aria-live="polite"></p>
+</div>
+<script>
+(function(){
+ var sl=document.getElementById('w52da'),g=document.getElementById('w52dg'),rd=document.getElementById('w52dt'),v=document.getElementById('w52dv'),svg=document.getElementById('w52d').querySelector('svg');
+ var cx=240,cy=150,R=88,H=44,t=0,timer=0;
+ function place(a){var r=a*Math.PI/180;return [Math.sin(r),-Math.cos(r)];}
+ function where(a){a=((a%360)+360)%360;return a===0?'the top (the North Pole)':a===180?'the bottom (the South Pole)':a===90?'the right side':a===270?'the left side':'the side of the globe';}
+ function draw(){
+  var a=+sl.value,u=place(a),d=H*(1-t)+0,rr=R+8+d,bx=cx+u[0]*(R+8+(H-4)*(1-t)),by=cy+u[1]*(R+8+(H-4)*(1-t));
+  var s='<circle cx="'+cx+'" cy="'+cy+'" r="'+R+'" fill="var(--reflect,#2b66e8)" stroke="var(--ink,#12172b)" stroke-width="3"/><path d="M'+(cx-R*.6)+' '+(cy-R*.4)+' q30 -30 60 -4 q-10 30 -40 30 z" fill="var(--transmit,#0b7f70)" opacity=".7"/><path d="M'+(cx+R*.1)+' '+(cy+R*.35)+' q40 -20 56 10 q-20 30 -50 12 z" fill="var(--transmit,#0b7f70)" opacity=".7"/>';
+  s+='<circle cx="'+cx+'" cy="'+cy+'" r="5" fill="#fff" stroke="var(--ink,#12172b)" stroke-width="2"/><text x="'+(cx+10)+'" y="'+(cy+18)+'" font-size="12" fill="#fff">center</text>';
+  // arrow from the ball toward the center
+  var ex=cx+u[0]*(R+6),ey=cy+u[1]*(R+6);
+  s+='<line x1="'+bx.toFixed(1)+'" y1="'+by.toFixed(1)+'" x2="'+cx+'" y2="'+cy+'" stroke="var(--absorb,#d6450b)" stroke-width="3" stroke-dasharray="7 6" opacity=".9"/>';
+  var ax=cx+u[0]*(R+8),ay=cy+u[1]*(R+8),ang=Math.atan2(cy-by,cx-bx),mx=bx+Math.cos(ang)*34,my=by+Math.sin(ang)*34,hx=mx-Math.cos(ang)*10,hy=my-Math.sin(ang)*10,px=-Math.sin(ang)*6,py=Math.cos(ang)*6;
+  if(t<1)s+='<line x1="'+bx.toFixed(1)+'" y1="'+by.toFixed(1)+'" x2="'+hx.toFixed(1)+'" y2="'+hy.toFixed(1)+'" stroke="var(--absorb,#d6450b)" stroke-width="6" stroke-linecap="round"/><polygon points="'+mx.toFixed(1)+','+my.toFixed(1)+' '+(hx+px).toFixed(1)+','+(hy+py).toFixed(1)+' '+(hx-px).toFixed(1)+','+(hy-py).toFixed(1)+'" fill="var(--absorb,#d6450b)"/>';
+  s+='<circle cx="'+bx.toFixed(1)+'" cy="'+by.toFixed(1)+'" r="9" fill="var(--beam,#f2a900)" stroke="var(--ink,#12172b)" stroke-width="2.5"/>';
+  g.innerHTML=s;
+  v.textContent=where(a);
+  rd.innerHTML=t>=1?'The ball landed. It fell <b>toward the center of Earth</b>, which is "down" at '+where(a)+'.':'At '+where(a)+' gravity pulls the ball <b>toward the center of Earth</b>. That direction is "down" here, wherever you stand. Press <b>Drop the ball</b>.';
+  svg.setAttribute('aria-label','A globe with a ball at '+where(a)+'. The arrow points from the ball to the center of Earth.');
+ }
+ function reset(){clearInterval(timer);timer=0;t=0;draw();}
+ document.getElementById('w52dd').addEventListener('click',function(){clearInterval(timer);t=0;timer=setInterval(function(){t=Math.min(1,t+.06);draw();if(t>=1){clearInterval(timer);timer=0;}},40);});
+ document.getElementById('w52dr').addEventListener('click',reset);
+ sl.addEventListener('input',reset);draw();
+})();
+</script>

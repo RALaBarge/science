@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { RASTER } from './figures-src.mjs';
 import { GRAPHS, UNITS } from './graph-defs.mjs';
 import { DIAGRAMS } from './diagram-defs.mjs';
+import { INTERACTIVES } from './interactive-defs.mjs';
 
 const dir = dirname(fileURLToPath(import.meta.url));
 mkdirSync(join(dir, 'svg'), { recursive: true });
@@ -24,6 +25,10 @@ for (const g of [...DIAGRAMS.map((d) => ({ ...d, kind: 'diagram' })), ...GRAPHS]
   const svg = g.svg(g.id);
   writeFileSync(join(dir, 'svg', g.id + '.svg'), svg + '\n');
   add(g.unit, { id: g.id, after: g.after, kind: 'svg', file: g.id + '.svg', alt: svgAlt(svg), caption: g.caption });
+}
+for (const w of INTERACTIVES) {
+  if (!existsSync(join(dir, 'html', w.file))) throw new Error('missing html ' + w.file);
+  add(w.unit, { id: w.id, after: w.after, kind: 'html', file: w.file, alt: w.alt, caption: w.caption });
 }
 for (const f of readdirSync(join(dir, 'units'))) unlinkSync(join(dir, 'units', f));
 let total = 0;

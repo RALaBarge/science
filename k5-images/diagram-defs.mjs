@@ -422,6 +422,63 @@ function senses(id) {
   return wrap(id, 'Sense, brain, response', 'Three rows, each a chain of three boxes with arrows pointing left to right: a sense takes in information, the brain works on it, and the body responds. Row 1: eyes see a ball coming, the brain gets the message, the hands move to catch it. Row 2: skin feels a hot pan, the brain gets the message, the hand pulls away. Row 3: ears hear a bell, the brain gets the message, you walk to the door. Information goes in first, then the brain works on it, then the body responds, in one direction.', 344, s);
 }
 
+// ---------- 4.2 light-up card kit ----------
+function litCard(id) {
+  const TAPE = 'var(--absorb, #D6450B)';
+  const tape = (d) => `<path d="${d}" fill="none" stroke="${TAPE}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity=".85"/>`;
+  let s = '';
+  s += `<rect x="24" y="46" width="432" height="214" rx="10" fill="${SURF}" stroke="${INK}" stroke-width="2.5"/>`;
+  // copper tape strips
+  s += tape('M100 124 V96 H247 V146');
+  s += tape('M263 146 V120 H350 V170');
+  s += tape('M410 170 V236 H100 V196');
+  // coin cell
+  s += circle(100, 160, 36, '#B8BCC8', INK, 3) + circle(100, 160, 24, '#D7DAE3', INK, 1.5) + T(100, 166, '+', { s: 22, w: 700 });
+  s += T(100, 214, 'coin cell', { s: 13, w: 700 }) + T(100, 78, '+ side up', { s: 11.5, f: MUTED });
+  // LED with a long and a short leg
+  s += circle(255, 160, 15, RED, INK, 2.5);
+  s += `<line x1="247" y1="146" x2="247" y2="152" stroke="${INK}" stroke-width="3"/><line x1="263" y1="146" x2="263" y2="152" stroke="${INK}" stroke-width="3"/>`;
+  s += rays(255, 160, 20, 28, 8, BEAM, 2.5);
+  s += T(255, 204, 'LED', { s: 13, w: 700 }) + T(232, 226, '(long leg toward +)', { s: 11.5, f: MUTED });
+  // paper clip switch: two brass fasteners and a clip (closed, with the open position dashed)
+  s += `<rect x="342" y="162" width="76" height="16" rx="8" fill="none" stroke="${INK}" stroke-width="3"/><rect x="348" y="167" width="64" height="6" rx="3" fill="none" stroke="${INK}" stroke-width="2"/>`;
+  s += `<g transform="rotate(-38 350 170)" opacity=".55"><rect x="342" y="162" width="76" height="16" rx="8" fill="none" stroke="${INK}" stroke-width="2.5" stroke-dasharray="5 4"/></g>`;
+  s += circle(350, 170, 8, BEAM, INK, 2) + circle(410, 170, 8, BEAM, INK, 2);
+  s += T(396, 204, 'paper clip switch', { s: 13, w: 700, a: 'end' }) + T(396, 220, 'dashed clip = open', { s: 11.5, f: MUTED, a: 'end' });
+  s += T(240, 250, 'copper tape carries the current around the card', { s: 11.5, f: MUTED });
+  s += T(240, 284, 'Close the switch and the loop is complete: the LED lights.', { s: 13.5, w: 700 });
+  s += T(240, 304, 'The LED works one way only: long leg toward the + side of the cell.', { s: 13 });
+  return wrap(id, 'A light-up card with a switch', 'Top view of an index card with a coin cell on the left, an LED in the middle and a paper clip switch on the right. Strips of copper tape connect them in one loop: from the plus side of the cell to the LED long leg, from the LED short leg to the first brass fastener, then through the paper clip to the second fastener and back along the bottom to the cell. When the clip touches both fasteners the loop is complete and the LED lights. When the clip is swung away the loop is open and the LED is off. The LED lights only when its long leg is toward the plus side of the cell.', 324, s);
+}
+
+// ---------- 5.4 where Earth's water is ----------
+function reservoirs(id) {
+  const SEA = 'var(--reflect, #2B66E8)';
+  let s = '';
+  s += `<rect x="20" y="48" width="440" height="214" rx="10" fill="${SURF}" stroke="${LINE}" stroke-width="1.5"/>`;
+  // ground and groundwater
+  s += `<path d="M200 156 H460 V262 H200Z" fill="#C8A46E" opacity=".5"/>`;
+  s += `<path d="M206 224 H454 V250 H206Z" fill="${SEA}" opacity=".28"/>`;
+  s += [220, 260, 300, 340, 380, 420].map((x) => `<circle cx="${x}" cy="237" r="3" fill="${SEA}"/>`).join('');
+  // ocean
+  s += `<path d="M20 156 H200 V262 H20Z" fill="${SEA}" opacity=".35"/>`;
+  s += `<path d="M34 176 q10 -8 20 0 t20 0 t20 0 t20 0 t20 0" fill="none" stroke="${SEA}" stroke-width="3"/>`;
+  s += `<line x1="200" y1="156" x2="200" y2="262" stroke="${INK}" stroke-width="2"/>`;
+  // mountain with ice
+  s += `<path d="M300 156 L352 78 L404 156Z" fill="#8F96A8" stroke="${INK}" stroke-width="2"/><path d="M335 102 L352 78 L369 102 L360 108 L352 100 L344 108Z" fill="#FFFFFF" stroke="${INK}" stroke-width="1.5"/>`;
+  // river and lake
+  s += `<path d="M300 156 Q252 150 232 158 T200 156" fill="none" stroke="${SEA}" stroke-width="4"/>`;
+  s += `<ellipse cx="426" cy="170" rx="24" ry="8" fill="${SEA}" opacity=".7" stroke="${INK}" stroke-width="1.5"/>`;
+  // labels
+  s += T(110, 204, ['Ocean', 'salt water'], { s: 14, w: 700, lh: 17 }) + T(110, 240, 'about 97% of all water', { s: 11.5, f: MUTED });
+  s += T(352, 66, 'Ice: frozen fresh water', { s: 12.5, w: 700 });
+  s += T(330, 218, 'Groundwater: fresh, underground', { s: 12.5, w: 700 });
+  s += T(408, 196, 'Lakes and rivers', { s: 12.5, w: 700 });
+  s += T(240, 284, 'About 3% is fresh water. Most of that is ice or underground.', { s: 13.5, w: 700 });
+  s += T(240, 304, 'The lakes and rivers we use easily hold only a tiny part.', { s: 13.5 });
+  return wrap(id, 'Where Earth’s water is', 'A side view of Earth’s water. On the left is the ocean, salt water, about 97 percent of all water. On the right are land, a mountain with ice and glaciers on top, a layer of fresh groundwater under the ground, and a small lake and river. About 3 percent of Earth’s water is fresh. Most of that fresh water is frozen in ice or underground. Lakes and rivers hold only a tiny part.', 324, s);
+}
+
 export const DIAGRAMS = [
   { id: 'd-53-matter-energy', unit: 'unit-5-3-energy-and-matter-in-ecosystems', after: 's3', svg: matterEnergy,
     caption: 'Matter cycles: plants, animals and decomposers pass it on and it returns to soil and air. Energy does not cycle: it flows from the Sun through the food chain and leaves as heat.' },
@@ -455,4 +512,8 @@ export const DIAGRAMS = [
     caption: "Wavelength is crest to crest. Amplitude is the height above the resting line. The wave moves forward while the cork moves up and down." },
   { id: 'd-44-senses', unit: 'unit-4-4-structures-senses-and-responses', after: 's3', svg: senses,
     caption: "A sense takes in information, the brain works on it, and then the body responds." },
+  { id: 'd-42-kit', unit: 'unit-4-2-circuits-and-energy-conversion', after: 'kit', svg: litCard,
+    caption: 'What the light-up card looks like: tape, coin cell, LED and a paper clip switch in one loop.' },
+  { id: 'd-54-reservoirs', unit: 'unit-5-4-earths-spheres-water-and-communities', after: 's2', svg: reservoirs,
+    caption: 'Where Earth\u2019s water is: mostly salty ocean. The fresh water is mostly ice or underground, and lakes and rivers hold very little.' },
 ];

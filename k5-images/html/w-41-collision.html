@@ -1,0 +1,23 @@
+<div class="k5w" id="w41">
+<p><b>Drop a ball and watch where its energy goes.</b> Pick a ball. These are made-up numbers to show the idea, not measurements.</p>
+<div class="row" id="w41c" role="group" aria-label="Ball"></div>
+<div id="w41b" aria-hidden="true"></div>
+<p id="w41r" aria-live="polite"></p>
+</div>
+<script>
+(function(){
+ var B=[['Clay ball (thud)',4,'It lands with a thud and stays flat.'],['Hard ball (bounce)',60,'It bounces back up, but not as high as it started.'],['Super ball (big bounce)',85,'It bounces almost as high as it started.']];
+ var c=document.getElementById('w41c'),bars=document.getElementById('w41b'),r=document.getElementById('w41r'),i=0;
+ function bar(label,parts){var s='<div style="margin:8px 0"><div style="font-size:.9rem;margin-bottom:4px">'+label+'</div><div style="display:flex;height:26px;border-radius:6px;overflow:hidden;background:var(--surface-2,#e8edf6)">';
+  parts.forEach(function(p){if(p[0]>0)s+='<div style="width:'+p[0]+'%;background:'+p[1]+';color:var(--on-color,#fff);font-size:.8rem;display:flex;align-items:center;justify-content:center;white-space:nowrap">'+p[2]+'</div>';});return s+'</div></div>';}
+ function draw(){
+  var m=B[i][1],h=100-m;
+  c.innerHTML=B.map(function(b,j){return '<button type="button" data-i="'+j+'" aria-pressed="'+(j===i)+'">'+b[0]+'</button>';}).join('');
+  bars.innerHTML=bar('Before the drop: energy of motion',[[100,'var(--reflect,#2b66e8)','motion 100']])+
+   bar('After it hits the floor',[[m,'var(--reflect,#2b66e8)',m>=14?'motion '+m:''],[h,'var(--absorb,#d6450b)','heat, sound, bending '+h]]);
+  r.innerHTML=B[i][2]+' About <b>'+m+'</b> of the 100 units stays as motion. The other <b>'+h+'</b> shows up as a little heat, a little sound and some bending. Before: 100. After: '+m+' + '+h+' = <b>100</b>. Nothing was deleted.';
+ }
+ c.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;i=+b.dataset.i;draw();});
+ draw();
+})();
+</script>

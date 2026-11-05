@@ -1,0 +1,52 @@
+<div class="k5w" id="w42">
+<svg viewBox="0 0 480 250" role="img" aria-label="A circuit with a battery, a switch and a bulb. The switch is open, so the bulb is off.">
+<g id="w42wires" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" color="var(--ink,#12172b)"></g>
+<g id="w42glow"></g>
+<g id="w42arrows"></g>
+<text x="92" y="132" font-size="13" fill="var(--muted,#47506e)">battery</text>
+<text x="388" y="132" text-anchor="end" font-size="13" fill="var(--muted,#47506e)">bulb</text>
+<text x="240" y="92" text-anchor="middle" font-size="13" fill="var(--muted,#47506e)">switch</text>
+</svg>
+<div class="row"><button type="button" id="w42sw" aria-pressed="false">Switch: open (press to close)</button><button type="button" id="w42cut" aria-pressed="false">Cut the bottom wire</button></div>
+<p id="w42r" aria-live="polite"></p>
+</div>
+<script>
+(function(){
+ var root=document.getElementById('w42'),svg=root.querySelector('svg'),wires=svg.querySelector('#w42wires'),glow=svg.querySelector('#w42glow'),arr=svg.querySelector('#w42arrows');
+ var sw=document.getElementById('w42sw'),cut=document.getElementById('w42cut'),r=document.getElementById('w42r');
+ var closed=false,broken=false;
+ function draw(){
+  var lit=closed&&!broken,INK='var(--ink,#12172b)';
+  var s='';
+  // left side with battery
+  s+='<path d="M60 60 V108"/><path d="M60 144 V190"/>';
+  s+='<line x1="40" y1="108" x2="80" y2="108"/><line x1="48" y1="124" x2="72" y2="124" stroke-width="8"/><line x1="40" y1="140" x2="80" y2="140"/>';
+  // top wire with the switch
+  s+='<path d="M60 60 H190"/><path d="M290 60 H420 V108"/>';
+  s+=closed?'<path d="M190 60 H290"/>':'<path d="M190 60 L262 22"/>';
+  s+='<circle cx="190" cy="60" r="5" fill="'+INK+'"/><circle cx="290" cy="60" r="5" fill="'+INK+'"/>';
+  // right side to the bulb
+  s+='<path d="M420 148 V190"/>';
+  // bottom wire, with a gap when cut
+  s+=broken?'<path d="M60 190 H210"/><path d="M270 190 H420"/>':'<path d="M60 190 H420"/>';
+  if(broken)s+='<text x="240" y="214" text-anchor="middle" font-size="13" fill="var(--absorb,#d6450b)" stroke="none">gap</text>';
+  wires.innerHTML=s;
+  var g='<circle cx="420" cy="128" r="22" fill="'+(lit?'var(--beam,#f2a900)':'var(--surface,#fff)')+'" stroke="'+INK+'" stroke-width="3"/><path d="M410 138 L416 122 L420 132 L424 122 L430 138" fill="none" stroke="'+INK+'" stroke-width="2"/>';
+  if(lit){for(var i=0;i<10;i++){var a=i/10*6.283;g+='<line x1="'+(420+Math.cos(a)*30).toFixed(1)+'" y1="'+(128+Math.sin(a)*30).toFixed(1)+'" x2="'+(420+Math.cos(a)*42).toFixed(1)+'" y2="'+(128+Math.sin(a)*42).toFixed(1)+'" stroke="var(--beam,#f2a900)" stroke-width="3" stroke-linecap="round"/>';}}
+  glow.innerHTML=g;
+  var A='';
+  if(lit){[[110,60,150,60],[330,60,380,60],[420,70,420,98],[420,160,420,182],[380,190,330,190],[170,190,120,190],[60,170,60,150],[60,100,60,70]].forEach(function(p){
+    var ang=Math.atan2(p[3]-p[1],p[2]-p[0]),hx=p[2]-Math.cos(ang)*8,hy=p[3]-Math.sin(ang)*8,px=-Math.sin(ang)*5,py=Math.cos(ang)*5;
+    A+='<line x1="'+p[0]+'" y1="'+p[1]+'" x2="'+hx.toFixed(1)+'" y2="'+hy.toFixed(1)+'" stroke="var(--absorb,#d6450b)" stroke-width="3"/><polygon points="'+p[2]+','+p[3]+' '+(hx+px).toFixed(1)+','+(hy+py).toFixed(1)+' '+(hx-px).toFixed(1)+','+(hy-py).toFixed(1)+'" fill="var(--absorb,#d6450b)"/>';});}
+  arr.innerHTML=A;
+  sw.textContent='Switch: '+(closed?'closed (press to open)':'open (press to close)');sw.setAttribute('aria-pressed',String(closed));
+  cut.textContent=broken?'Mend the bottom wire':'Cut the bottom wire';cut.setAttribute('aria-pressed',String(broken));
+  r.innerHTML=lit?'<b>The bulb is on.</b> The loop is closed all the way around, so the charges move around it together.':
+   (broken?'<b>The bulb is off.</b> The bottom wire has a gap. One gap anywhere breaks the whole loop, even with the switch closed.':'<b>The bulb is off.</b> The open switch is a gap in the loop. Close it to complete the path.');
+  svg.setAttribute('aria-label','A circuit with a battery, a switch and a bulb. The switch is '+(closed?'closed':'open')+(broken?' and the bottom wire has a gap':'')+', so the bulb is '+(lit?'on':'off')+'.');
+ }
+ sw.addEventListener('click',function(){closed=!closed;draw();});
+ cut.addEventListener('click',function(){broken=!broken;draw();});
+ draw();
+})();
+</script>

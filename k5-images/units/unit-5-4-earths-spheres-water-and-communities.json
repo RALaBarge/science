@@ -34,6 +34,14 @@
    "caption": "One rainy hill shows all four spheres at work: air, water, rock and soil, and living things."
   },
   {
+   "id": "d-54-reservoirs",
+   "after": "s2",
+   "kind": "svg",
+   "file": "d-54-reservoirs.svg",
+   "alt": "A side view of Earth’s water. On the left is the ocean, salt water, about 97 percent of all water. On the right are land, a mountain with ice and glaciers on top, a layer of fresh groundwater under the ground, and a small lake and river. About 3 percent of Earth’s water is fresh. Most of that fresh water is frozen in ice or underground. Lakes and rivers hold only a tiny part.",
+   "caption": "Where Earth’s water is: mostly salty ocean. The fresh water is mostly ice or underground, and lakes and rivers hold very little."
+  },
+  {
    "id": "g-54-sediment",
    "after": "kit",
    "kind": "svg",
