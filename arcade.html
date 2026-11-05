@@ -78,7 +78,7 @@
   </section>
 
   <div class="meta">
-    <span>177 science questions · 7 fact decks</span>
+    <span><span id="question-count">177</span> science questions at this level · 7 fact decks</span>
     <span class="sep" aria-hidden="true">|</span>
     <button type="button" class="linkish" id="practice-btn">Practice quiz</button>
   </div>
@@ -88,6 +88,7 @@
 <script src="shared/core.js"></script>
 <script>
   Arcade.$('practice-btn').addEventListener('click', () => Arcade.quiz.practice({ game: 'hub' }));
+  Arcade.$('question-count').textContent = Arcade.availableCount();
 </script>
 </body>
 </html>

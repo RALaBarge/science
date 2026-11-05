@@ -177,23 +177,66 @@
   const BANK = Array.isArray(window.QUESTION_BANK) ? window.QUESTION_BANK : [];
   A.answers = [];
   const decks = {};
+  // ---- question level: every bank row may end with a grade (0 = kindergarten, 1 to 8). A game shows only
+  // questions up to the chosen grade. The choice is saved in this browser; ?maxgrade=N in the address sets it too.
+  const LEVEL_KEY = 'science-arcade.maxGrade';
+  const gradeOf = (row) => (typeof row[4] === 'number' ? row[4] : 8);
+  let maxGrade = 8;
+  try {
+    const q = new URLSearchParams(location.search).get('maxgrade');
+    if (q !== null && /^[0-8]$/.test(q)) { maxGrade = +q; localStorage.setItem(LEVEL_KEY, q); }
+    else { const s = localStorage.getItem(LEVEL_KEY); if (s !== null && /^[0-8]$/.test(s)) maxGrade = +s; }
+  } catch (e) { /* storage blocked: keep the default */ }
+  const pool = () => BANK.map((_, i) => i).filter((i) => gradeOf(BANK[i]) <= maxGrade);
+  A.maxGrade = () => maxGrade;
+  A.gradeLabel = (g) => (g === 0 ? 'Kindergarten' : 'Grade ' + g);
+  A.gradeCounts = () => BANK.reduce((m, b) => { const g = gradeOf(b); m[g] = (m[g] || 0) + 1; return m; }, {});
+  A.availableCount = () => pool().length;
+  A.setMaxGrade = (n) => {
+    maxGrade = Math.max(0, Math.min(8, n | 0));
+    try { localStorage.setItem(LEVEL_KEY, String(maxGrade)); } catch (e) { /* ignore */ }
+    for (const k in decks) delete decks[k];
+    document.dispatchEvent(new CustomEvent('arcade-level', { detail: maxGrade }));
+  };
   function drawFrom(key, idxs) {
+    key += '|' + maxGrade;
     if (!decks[key] || !decks[key].length) decks[key] = A.shuffled(idxs);
     return decks[key].pop();
   }
-  const allIdx = BANK.map((_, i) => i);
   function drawQuestion(topics, strict) {
     let i;
+    const allIdx = pool();
     // When a game names topics, about half its questions come from them; the rest review everything.
     // strict: always from those topics (Football Duel's defense picks the topic).
     if (topics && topics.length && (strict || Math.random() < 0.5)) {
       const idxs = allIdx.filter((k) => topics.includes(BANK[k][0]));
-      i = idxs.length ? drawFrom('t:' + topics.join(','), idxs) : drawFrom('all', allIdx);
-    } else i = drawFrom('all', allIdx);
+      i = idxs.length ? drawFrom('t:' + topics.join(','), idxs) : drawFrom('all', allIdx.length ? allIdx : BANK.map((_, k) => k));
+    } else i = drawFrom('all', allIdx.length ? allIdx : BANK.map((_, k) => k));
     const [topic, q, choices, explain] = BANK[i];
     const order = A.shuffled([0, 1, 2, 3]);
     return { topic, q, explain, choices: order.map((k) => choices[k]), answer: order.indexOf(0) };
   }
+
+  // A small "Questions up to" picker beside the Practice quiz button (every game and the hub have one).
+  function mountLevelPicker() {
+    const pb = $('practice-btn');
+    if (!pb || $('level-pick')) return;
+    const wrap = document.createElement('label');
+    wrap.className = 'level-wrap';
+    wrap.innerHTML = 'Questions up to <select id="level-pick" aria-label="Highest grade of questions"></select>';
+    const sel = wrap.querySelector('select');
+    for (let g = 0; g <= 8; g++) { const o = document.createElement('option'); o.value = g; o.textContent = A.gradeLabel(g) + (g === 8 ? ' (all)' : ''); sel.appendChild(o); }
+    sel.value = String(maxGrade);
+    sel.addEventListener('change', () => A.setMaxGrade(+sel.value));
+    document.addEventListener('arcade-level', () => { sel.value = String(maxGrade); const c = $('question-count'); if (c) c.textContent = A.availableCount(); });
+    pb.parentNode.insertBefore(wrap, pb);
+    const sep = document.createElement('span'); sep.className = 'sep'; sep.setAttribute('aria-hidden', 'true'); sep.textContent = '|';
+    pb.parentNode.insertBefore(sep, pb);
+    const st = document.createElement('style');
+    st.textContent = '.level-wrap{display:inline-flex;gap:6px;align-items:center;font-size:inherit;color:inherit}.level-wrap select{font:inherit;padding:2px 6px;border-radius:6px;border:1px solid rgba(128,140,170,.6);background:transparent;color:inherit;max-width:11em}';
+    document.head.appendChild(st);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mountLevelPicker); else mountLevelPicker();
 
   // For games that show questions in their own panels. Returns { topic, q, explain, choices, answer }.
   A.drawQuestion = drawQuestion;
