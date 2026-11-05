@@ -51,7 +51,9 @@ for (const f of units) {
   ok(html.includes('<!--k5images-start id=') && !/<!--k5images-start id=[^>]*-->(?:(?!<!--k5images-end)[\s\S])*<!--k5images-start/.test(html), base + ' figure blocks are not nested');
   // The built copy matches the source copy.
   const built = path.join(root, 'dist', 'k-5', base + '.html');
-  if (fs.existsSync(built)) ok(fs.readFileSync(built, 'utf8') === html, base + ' dist copy is current');
+  // The build wraps each page with a doctype, lang and viewport, so strip that before comparing.
+  const unwrap = (s) => s.replace(/^<!doctype html>\n<html lang="en">\n<meta charset="utf-8">\n<meta name="viewport"[^\n]*\n/, '').replace(/\n<\/html>\n$/, '');
+  if (fs.existsSync(built)) ok(unwrap(fs.readFileSync(built, 'utf8')) === html, base + ' dist copy is current');
 }
 console.log('  ' + figs + ' figures, largest data URI about ' + Math.round(maxData / 1024) + ' KB');
 

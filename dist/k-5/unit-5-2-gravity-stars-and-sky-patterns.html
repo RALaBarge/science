@@ -1,3 +1,7 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Gravity, Stars, and Sky Patterns</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
@@ -993,7 +997,7 @@ k5GraphSky(document.getElementById("k5-activity"), {"id":"5-2-graphsky","engine"
 <script>
 (function(){
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
-const Q=[{"q": "The Sun looks brighter than other stars because:", "o": ["it is the only star", "it is closer", "it is the biggest star"], "a": 1, "e": "Distance affects apparent brightness."}, {"q": "Day and night are caused by:", "o": ["the Moon blocking the Sun", "the Sun moving around Earth", "Earth rotating"], "a": 2, "e": "Rotation makes daylight move around Earth."}, {"q": "Which statement about gravity is true?", "o": ["It pulls down toward Earth’s center.", "It needs air to work.", "It pulls heavier objects down but not lighter objects."], "a": 0, "e": "Gravity’s direction is down toward Earth."}, {"q": "Different constellations are visible in different seasons because:", "o": ["Earth is closer to the stars in winter", "stars turn off in summer", "Earth orbits the Sun, so the night side faces different directions"], "a": 2, "e": "Earth’s yearly orbit changes the night sky."}];
+const Q=[{"q":"Why does the Sun look much brighter than other stars?","o":["It is the biggest star in space","It is the only star that gives off light","It is much closer to Earth"],"a":2,"e":"Other stars look dim because they are very far away."},{"q":"Day and night are caused by:","o":["Earth rotating","the Moon blocking the Sun","Earth moving closer to and farther from the Sun"],"a":0,"e":"Earth’s spin makes day and night."},{"q":"Which statement about gravity is true?","o":["It needs air to work.","It pulls objects toward Earth’s center.","It pulls heavy things but not light things."],"a":1,"e":"Gravity pulls all objects down toward Earth’s center."},{"q":"Why do we see different constellations in winter than in summer?","o":["Earth gets closer to the stars in winter than in summer","The stars move to new places in the sky each season","Earth orbits the Sun, so the night side faces new stars"],"a":2,"e":"As Earth orbits, the night side faces different parts of the sky."}];
 const box=$('#quiz'), sc=$('#quizScore'); let right=0;
 box.innerHTML=Q.map((x,i)=>`<div class="q item" data-i="${i}" style="display:grid"><h4>${i+1}. ${x.q}</h4><div class="opts">${x.o.map((t,j)=>`<button class="opt" type="button" data-j="${j}">${t}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
 box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.disabled)return; const row=b.closest('.q'), x=Q[+row.dataset.i], ok=+b.dataset.j===x.a;
@@ -1002,4 +1006,6 @@ box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.dis
 })();
 </script>
 </body>
+</html>
+
 </html>

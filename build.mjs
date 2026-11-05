@@ -15,6 +15,15 @@ mkdirSync(out, { recursive: true });
 
 const GRADES = ['k-5', '6th', '7th', '8th', '9th', 'extras'];
 
+// Pages were authored as fragments (no doctype, charset, viewport or lang). Wrap them so phones scale the
+// page, screen readers get the language and the browser uses standards mode.
+function wrap(html) {
+  if (/^\s*<!doctype/i.test(html)) return html;
+  return '<!doctype html>\n<html lang="en">\n<meta charset="utf-8">\n' +
+    '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n' +
+    html.replace(/^\uFEFF/, '') + '\n</html>\n';
+}
+
 function inline(file) {
   const dir = dirname(file);
   let html = readFileSync(file, 'utf8');
@@ -33,20 +42,20 @@ function inline(file) {
 // Arcade games: dist/<name>.html, flat so the hub can link to them by bare filename.
 const pages = readdirSync(join(root, 'games')).filter((f) => f.endsWith('.html'));
 for (const f of pages) {
-  writeFileSync(join(out, f), inline(join(root, 'games', f)));
+  writeFileSync(join(out, f), wrap(inline(join(root, 'games', f))));
   console.log('built dist/' + f);
 }
 
 // Arcade hub.
 try {
-  writeFileSync(join(out, 'arcade.html'), inline(join(root, 'arcade.html')));
+  writeFileSync(join(out, 'arcade.html'), wrap(inline(join(root, 'arcade.html'))));
   console.log('built dist/arcade.html');
 } catch (e) { if (e.code !== 'ENOENT') throw e; }
 
 // Site home (lesson map) and the design log.
 for (const f of ['index.html', 'design-log.html']) {
   if (existsSync(join(root, f))) {
-    copyFileSync(join(root, f), join(out, f));
+    writeFileSync(join(out, f), wrap(readFileSync(join(root, f), 'utf8')));
     console.log('built dist/' + f);
   }
 }
@@ -57,6 +66,6 @@ for (const grade of GRADES) {
   if (!existsSync(dir)) continue;
   mkdirSync(join(out, grade), { recursive: true });
   const files = readdirSync(dir).filter((f) => f.endsWith('.html'));
-  for (const f of files) copyFileSync(join(dir, f), join(out, grade, f));
+  for (const f of files) writeFileSync(join(out, grade, f), wrap(readFileSync(join(dir, f), 'utf8')));
   console.log(`built dist/${grade}/ (${files.length} lesson pages)`);
 }

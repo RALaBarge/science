@@ -26,6 +26,14 @@
    "caption": "The stream tray: compare how much sediment moves with and without plants or stones."
   },
   {
+   "id": "d-54-hill",
+   "after": "s1",
+   "kind": "svg",
+   "file": "d-54-hill.svg",
+   "alt": "A hillside in the rain. 1 Atmosphere: rain falls from a cloud. 2 Hydrosphere: water runs down the bare right slope and cuts a channel. 3 Geosphere: soil and rock are carried downhill, and a rock sits at the bottom. 4 Biosphere: grass on the left slope has roots that hold the soil in place. The four spheres touch and change each other in one place.",
+   "caption": "One rainy hill shows all four spheres at work: air, water, rock and soil, and living things."
+  },
+  {
    "id": "g-54-sediment",
    "after": "kit",
    "kind": "svg",

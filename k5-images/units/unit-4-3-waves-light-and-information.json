@@ -26,6 +26,14 @@
    "caption": "We see an object when light reflects from it and enters our eyes. The eye only receives light. The apple does not make its own light."
   },
   {
+   "id": "d-43-wave",
+   "after": "s1",
+   "kind": "svg",
+   "file": "d-43-wave.svg",
+   "alt": "A blue wave line over a dashed resting line. Wavelength is the distance from one crest to the next crest. Amplitude is the height of the wave above the resting line. A cork floats on the wave and mostly moves up and down while the wave moves forward to the right. A taller wave, with more amplitude, carries more energy.",
+   "caption": "Wavelength is crest to crest. Amplitude is the height above the resting line. The wave moves forward while the cork moves up and down."
+  },
+  {
    "id": "g-43-wave",
    "after": "s1",
    "kind": "svg",

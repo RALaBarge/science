@@ -26,6 +26,14 @@
    "caption": "Matter cycles: plants, animals and decomposers pass it on and it returns to soil and air. Energy does not cycle: it flows from the Sun through the food chain and leaves as heat."
   },
   {
+   "id": "d-53-docks",
+   "after": "s1",
+   "kind": "svg",
+   "file": "d-53-docks.svg",
+   "alt": "Two docks feeding a plant. Matter dock on the left, matter has mass: air, water and a very small amount of tiny minerals each have an arrow into the plant. Energy dock on the right, energy has no mass: sunlight has one arrow into the plant and powers the work but adds no mass. A tree grew from 2 kilograms to 50 kilograms while the soil lost only 0.1 kilogram, so most of the new mass came from air and water. Sunlight is energy, not matter, so it does not become plant mass.",
+   "caption": "Plants build their matter from air and water, with a very small amount from the soil. Sunlight is energy. It powers the work but adds no mass."
+  },
+  {
    "id": "g-53-beans",
    "after": "kit",
    "kind": "svg",

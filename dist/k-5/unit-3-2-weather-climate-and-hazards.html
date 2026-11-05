@@ -1,3 +1,7 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Weather, Climate, and Hazards</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
@@ -460,7 +464,7 @@ figure.k5i details.k5i-alt summary{cursor:pointer;padding:2px 0}
     <article class="aid"><span class="tag try">Try it</span><h3>What you need</h3><p>paper cup, ruler, straw, paper, tape, pencil, thermometer if possible, shallow tray, soil or sand, small cardboard or foil barriers, craft sticks, spoon.</p><p class="cap"><b>Safety:</b> wash hands after soil or sand trays. Keep trays and water away from Chromebooks, wipe up spills, and let an adult control how much water is poured.</p></article>
     <article class="aid"><span class="tag try">Try it</span><h3>What you do</h3><p>make a rain gauge and wind vane; record daily weather; graph class data or provided data; compare climate cards; test a flood barrier with the same amount of water each time.</p></article>
   </div>
-  <details class="deep"><summary>No time or no good weather? Use this data</summary><div class="in"><p class="cap">This data is a backup. It lets you practice reading evidence, but the standard expects you to collect your own when you can.</p><p>daily or weekly weather calendar.</p><p>typical average daily HIGH temperature by month for Detroit, Michigan, rounded to the nearest degree (a given year can differ by several degrees): Jan 32°F, Feb 35°F, Mar 45°F, Apr 58°F, May 69°F, Jun 79°F, Jul 83°F, Aug 81°F, Sep 74°F, Oct 62°F, Nov 50°F, Dec 38°F; precipitation about 2.0, 1.9, 2.4, 3.0, 3.0, 3.2, 3.1, 3.2, 3.0, 2.6, 2.7, 2.2 inches. Backup barrier dataset: no barrier moves 8 spoonfuls of sediment; grass model moves 2; cardboard fence moves 5. GUESS for exact numbers, STRONG for the seasonal pattern.</p></div></details>
+  <details class="deep"><summary>No time or no good weather? Use this data</summary><div class="in"><p class="cap">This data is a backup. It lets you practice reading evidence, but the standard expects you to collect your own when you can.</p><p>daily or weekly weather calendar.</p><p>typical average daily HIGH temperature by month for Detroit, Michigan, rounded to the nearest degree (a given year can differ by several degrees): Jan 32°F, Feb 35°F, Mar 45°F, Apr 58°F, May 69°F, Jun 79°F, Jul 83°F, Aug 81°F, Sep 74°F, Oct 62°F, Nov 50°F, Dec 38°F; precipitation about 2.0, 1.9, 2.4, 3.0, 3.0, 3.2, 3.1, 3.2, 3.0, 2.6, 2.7, 2.2 inches. Backup barrier dataset: no barrier moves 8 spoonfuls of sediment; grass model moves 2; cardboard fence moves 5. What is new here: 2-C counted finger widths of sand; this slope test counts spoonfuls and asks which barrier cuts harm from a flood. These are one run each, so a different tray can give different counts. Repeat each barrier at least three times and use the usual size of the difference, not one run. Other units (4.5, 5.4) use their own trays, so their numbers do not belong to this table. GUESS for exact numbers, STRONG for the seasonal pattern.</p></div></details>
   <p class="cap"><b>Near you:</b> Lake-effect snow: cold air moves over warmer Great Lakes water, picks up moisture, and drops heavy snow on nearby land.</p>
 </section>
 
@@ -674,7 +678,7 @@ k5BigSort(document.getElementById("k5-activity"), {"id":"3-2-sort","title":"Weat
 <script>
 (function(){
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
-const Q=[{"q": "Weather is:", "o": ["short-term conditions", "a long-term average", "caused only by clouds"], "a": 0, "e": "Weather is today or this week."}, {"q": "Climate is:", "o": ["many years of typical weather", "one cold day", "one storm"], "a": 0, "e": "Climate is a long-term pattern."}, {"q": "A flood barrier helps when:", "o": ["it makes storms stronger", "it reduces flooding or keeps soil in place", "it stops all floods forever"], "a": 1, "e": "Barriers can reduce harm, not remove all risk."}, {"q": "Michigan’s Great Lakes can:", "o": ["make no difference", "stop all storms", "make local weather different"], "a": 2, "e": "Large lakes affect temperature and snow."}];
+const Q=[{"q":"Which statement describes weather?","o":["Summers here are usually hot and dry.","Today it is windy with heavy rain.","Winters here have been snowy for many years."],"a":1,"e":"Weather is the conditions at one time. Climate is the pattern over many years."},{"q":"Which statement describes climate?","o":["A big thunderstorm hit Lansing last night.","It will be sunny and warm all week long.","Michigan winters are usually cold and snowy."],"a":2,"e":"Climate is the typical weather over many years."},{"q":"How does a flood barrier help?","o":["It holds back floodwater and lowers the damage","It stops the storm from happening","It keeps floods away forever, so nothing else is needed"],"a":0,"e":"A barrier can reduce harm, but it cannot remove all risk."},{"q":"How can the Great Lakes change Michigan’s weather?","o":["They do not; weather is the same all over Michigan","They stop storms from crossing the state","They make it rain every day near the shore","Nearby weather can differ, like milder shores and lake snow"],"a":3,"e":"Large lakes affect nearby temperature, wind, and snow."}];
 const box=$('#quiz'), sc=$('#quizScore'); let right=0;
 box.innerHTML=Q.map((x,i)=>`<div class="q item" data-i="${i}" style="display:grid"><h4>${i+1}. ${x.q}</h4><div class="opts">${x.o.map((t,j)=>`<button class="opt" type="button" data-j="${j}">${t}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
 box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.disabled)return; const row=b.closest('.q'), x=Q[+row.dataset.i], ok=+b.dataset.j===x.a;
@@ -683,4 +687,6 @@ box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.dis
 })();
 </script>
 </body>
+</html>
+
 </html>

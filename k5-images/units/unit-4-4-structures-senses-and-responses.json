@@ -26,6 +26,14 @@
    "caption": "The ruler-drop test: the farther the stick falls before it is caught, the slower the response."
   },
   {
+   "id": "d-44-senses",
+   "after": "s3",
+   "kind": "svg",
+   "file": "d-44-senses.svg",
+   "alt": "Three rows, each a chain of three boxes with arrows pointing left to right: a sense takes in information, the brain works on it, and the body responds. Row 1: eyes see a ball coming, the brain gets the message, the hands move to catch it. Row 2: skin feels a hot pan, the brain gets the message, the hand pulls away. Row 3: ears hear a bell, the brain gets the message, you walk to the door. Information goes in first, then the brain works on it, then the body responds, in one direction.",
+   "caption": "A sense takes in information, the brain works on it, and then the body responds."
+  },
+  {
    "id": "g-44-reaction",
    "after": "kit",
    "kind": "svg",

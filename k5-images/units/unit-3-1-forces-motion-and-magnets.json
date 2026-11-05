@@ -34,6 +34,14 @@
    "caption": "What the paper-clip mover kit looks like from the side."
   },
   {
+   "id": "d-31-tape",
+   "after": "s2",
+   "kind": "svg",
+   "file": "d-31-tape.svg",
+   "alt": "Two dot tapes, each showing a ball position every second from 0 to 4 seconds. Top, a model ball with no friction: the dots are equally far apart, so the speed is steady. Bottom, a real ball on a floor: the gaps between dots get smaller each second, so the ball is slowing down, and friction pushes against the motion. Close dots mean slow and far apart dots mean fast.",
+   "caption": "Equal gaps between dots mean steady speed. A real ball on a floor slows down, so its dots bunch closer together."
+  },
+  {
    "id": "g-31-dots-a",
    "after": "s2",
    "kind": "svg",

@@ -1,3 +1,7 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Energy, Speed, and Collisions</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
@@ -718,7 +722,7 @@ k5FairTest(document.getElementById("k5-activity"), {"id":"4-1-ramp-test","engine
 <script>
 (function(){
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
-const Q=[{"q": "A car rolls faster off a higher ramp. The faster car usually has:", "o": ["less energy", "no energy", "more energy"], "a": 2, "e": "Faster motion is evidence of more energy."}, {"q": "When a marble hits a block and the block moves, energy:", "o": ["moved from the marble to the block", "became cold", "disappeared"], "a": 0, "e": "Collisions can transfer motion energy."}, {"q": "Heat naturally moves:", "o": ["from warmer to cooler", "from cooler to warmer", "only in coats"], "a": 0, "e": "Heat transfer goes toward cooler places."}, {"q": "Rice jumps near a loud sound because:", "o": ["sound vibrations moved energy to it", "the rice has no energy", "sound cannot move things"], "a": 0, "e": "Sound can transfer energy to small objects."}];
+const Q=[{"q":"A car rolls faster off a higher ramp. The faster car usually has:","o":["less energy because it used some up","more energy of motion","the same energy, since only the ramp has energy"],"a":1,"e":"Faster objects have more energy of motion."},{"q":"A moving marble hits a block and the block slides. What happened to the marble’s energy?","o":["It was used up and disappeared","All of it stayed in the marble","Some of it moved to the block"],"a":2,"e":"Energy transfers in collisions. It is not destroyed."},{"q":"Which way does heat move on its own?","o":["From the warmer object to the cooler one","From the cooler object to the warmer one","Cold flows from an ice cube into your warm hand"],"a":0,"e":"Heat moves from warmer to cooler. Cold is not a thing that flows."},{"q":"Rice on stretched plastic wrap jumps when a speaker plays loud sound. Why?","o":["Sound is wind, and the wind blows it","Loud sound makes rice lighter","The rice gets hot and pops","Sound vibrations move the rice"],"a":3,"e":"Sound is vibration, and vibrations carry energy that can move things."}];
 const box=$('#quiz'), sc=$('#quizScore'); let right=0;
 box.innerHTML=Q.map((x,i)=>`<div class="q item" data-i="${i}" style="display:grid"><h4>${i+1}. ${x.q}</h4><div class="opts">${x.o.map((t,j)=>`<button class="opt" type="button" data-j="${j}">${t}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
 box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.disabled)return; const row=b.closest('.q'), x=Q[+row.dataset.i], ok=+b.dataset.j===x.a;
@@ -727,4 +731,6 @@ box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.dis
 })();
 </script>
 </body>
+</html>
+
 </html>

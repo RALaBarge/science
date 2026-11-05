@@ -1,3 +1,7 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>How Science Works</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
@@ -724,7 +728,7 @@ html[data-style="retro"] .nav,html[data-style="retro"] body::before{background:#
   <details><summary>Show a model answer</summary><div class="in">
     <p>The test is unfair because fertilizer wasn't the only thing that changed: the pot size and the amount of light also differed, so any of them could explain the taller plants. To fix it, keep pot, soil, water, light, and starting size identical in both groups, change only the fertilizer, include a control group with none, and grow several plants per group so the average is trustworthy.</p></div></details>
   <div class="items" id="quiz"></div>
-  <p class="score" id="quizScore">0 of 9 correct</p>
+  <p class="score" id="quizScore">0 of 8 correct</p>
   <h3 style="margin-top:8px">Words to know</h3>
   <dl class="glossary">
     <div><dt>observation</dt><dd>Information gathered with your senses or instruments.</dd></div>
@@ -1192,14 +1196,14 @@ safe(()=>{
 /* ===== quiz ===== */
 safe(()=>{
   const Q=[
-    {q:'Which is the best hypothesis?',o:['Plants are cool.','If bean plants get more light, then they will grow taller, because they make more food.','Light is good.'],a:1,e:'It is testable, measurable, has one variable, and gives a reason.'},
-    {q:'In a fair test, how many variables should you change?',o:['As many as possible','Exactly one at a time','None'],a:1,e:'Changing one lets you attribute any difference to that variable.'},
-    {q:'What is a control group?',o:['The group that gets the change','The group that is left unchanged for comparison','The group that is measured last'],a:1,e:'It shows what happens without the change.'},
-    {q:'Why do scientists repeat trials?',o:['To waste time','Natural variation can mislead one trial','Their first result is always wrong'],a:1,e:'The average of many trials is more reliable.'},
-    {q:'In scientific language, a theory is...',o:['A guess','A well-tested explanation supported by a lot of evidence','A made-up story'],a:1,e:'Theories like plate tectonics are strongly supported.'},
-    {q:'Ice cream sales and swimming accidents rise together. This shows...',o:['Ice cream causes accidents','Correlation does not prove causation; heat drives both','Accidents cause ice cream sales'],a:1,e:'A hidden third variable (temperature) explains both.'},
-    {q:'Why did most scientists eventually accept a Sun-centered solar system?',o:['It was the more popular idea','New evidence, like the moons of Jupiter and the phases of Venus, fit it better','The old model could not predict anything'],a:1,e:'The Ptolemy model predicted well, so it took new evidence to change minds.'},
-    {q:'On the cosmic calendar (the history of the universe squeezed into one year), when do humans appear?',o:['In January','In September','In the last minutes of December 31'],a:2,e:'Life starts in September, but modern humans show up only about 12 minutes before the year ends.'}
+    {"q":"Which hypothesis can be tested with a fair test?","o":["Bean plants are the prettiest plants.","Bean plants given more light, water, and fertilizer will grow taller.","Bean plants with more light will grow taller than those with less."],"a":2,"e":"A testable hypothesis changes one thing (light) and measures something (height). Changing many things at once cannot show which one mattered."},
+    {"q":"How many things should you change at one time in a fair test?","o":["Just one","As many as you can, so you learn more","None, because you only watch"],"a":0,"e":"Changing one thing lets you tell what caused any difference."},
+    {"q":"In a plant experiment, what is the control group?","o":["The plants that get the new light or food","The plants left unchanged, for comparing","The plants measured first, before the others"],"a":1,"e":"The control shows what happens without the change."},
+    {"q":"Why do scientists repeat their trials?","o":["The first try is usually a mistake","They keep going until they get the answer they hoped for","A real experiment always needs exactly three tries","One trial can be a fluke; many trials show a pattern"],"a":3,"e":"One result can be due to chance. Repeating shows what usually happens."},
+    {"q":"In science, what is a theory?","o":["An explanation tested many times and backed by evidence","A first guess made before any testing","A fact that can never change, even with new evidence"],"a":0,"e":"A scientific theory is well supported, and it can still be updated if new evidence appears."},
+    {"q":"Ice cream sales and swimming accidents both go up in summer. What is the best conclusion?","o":["Ice cream causes the accidents","Accidents make people buy ice cream","Something else, hot weather, may cause both","They have nothing to do with each other, so it is luck"],"a":2,"e":"Two things changing together does not mean one causes the other. A third factor, like heat, can drive both."},
+    {"q":"Why did most scientists eventually accept a Sun-centered solar system?","o":["More people liked it better than the old idea","New evidence, like Jupiter’s moons and Venus’s phases, fit it better","A famous scientist said so, and everyone had to agree"],"a":1,"e":"The old model predicted well, so it took new evidence to change minds."},
+    {"q":"On the cosmic calendar (the history of the universe in one year), when do humans appear?","o":["Early in the year, around March","About halfway through, in July","In September, along with the first life","In the last minutes of December 31"],"a":3,"e":"Life starts in September, but modern humans show up only about 12 minutes before the year ends."}
   ];
   const box=$('#quiz'), sc=$('#quizScore'); let right=0;
   box.innerHTML=Q.map((x,i)=>`<div class="q item" data-i="${i}" style="display:grid"><h4>${i+1}. ${x.q}</h4><div class="opts">${x.o.map((t,j)=>`<button class="opt" type="button" data-j="${j}">${t}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
@@ -1401,3 +1405,5 @@ safe(()=>{
 });
 })();
 </script>
+
+</html>

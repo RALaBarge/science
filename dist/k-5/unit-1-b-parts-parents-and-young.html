@@ -1,3 +1,7 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Parts, Parents, and Young</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
@@ -656,7 +660,7 @@ k5BigSort(document.getElementById("k5-activity"), {"id":"1-b-sort","title":"Part
 <script>
 (function(){
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
-const Q=[{"q": "Which is one way parent animals help young?", "o": ["They only watch from far away", "They feed and protect them", "They hide food where the young cannot find it"], "a": 1, "e": "Parent care helps young survive."}, {"q": "What is biomimicry?", "o": ["Making a robot that looks like any animal", "Using a useful shape or job from a living thing to help people", "Studying animals only in a zoo"], "a": 1, "e": "Biomimicry copies useful ideas from nature."}, {"q": "A fawn and an adult deer are:", "o": ["Very much alike, but not exactly alike", "A different kind of animal", "Exactly alike in every way"], "a": 0, "e": "Young resemble parents but are not identical."}, {"q": "External parts such as beaks and feet:", "o": ["Matter only for young animals", "Are inside the body", "Help living things survive"], "a": 2, "e": "External parts have important jobs."}];
+const Q=[{"q":"How do mother and father robins help their chicks?","o":["They leave as soon as the eggs hatch","They bring food and keep chicks safe","They only watch the chicks from far away"],"a":1,"e":"Many animal parents feed and protect their young."},{"q":"What is biomimicry?","o":["Building a robot that looks like an animal for fun","Keeping animals in a zoo to study them","Copying a useful shape from nature to solve a problem"],"a":2,"e":"Biomimicry uses a shape or job from a living thing to help people."},{"q":"A fawn is smaller than its parent and has white spots. Compared to its parent, the fawn is:","o":["mostly alike, with some differences","exactly the same as its parent","a different kind of animal from its parent"],"a":0,"e":"Young animals are like their parents in many ways, but not exactly alike."},{"q":"How do a bird’s beak and a duck’s webbed feet help them?","o":["They only matter when the animal is young","They help the animal eat or move so it can survive","They only help the animal look nice to others"],"a":1,"e":"External parts such as beaks and feet help animals meet their needs."}];
 const box=$('#quiz'), sc=$('#quizScore'); let right=0;
 box.innerHTML=Q.map((x,i)=>`<div class="q item" data-i="${i}" style="display:grid"><h4>${i+1}. ${x.q}</h4><div class="opts">${x.o.map((t,j)=>`<button class="opt" type="button" data-j="${j}">${t}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
 box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.disabled)return; const row=b.closest('.q'), x=Q[+row.dataset.i], ok=+b.dataset.j===x.a;
@@ -665,4 +669,6 @@ box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.dis
 })();
 </script>
 </body>
+</html>
+
 </html>

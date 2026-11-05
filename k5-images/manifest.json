@@ -671,21 +671,26 @@
   {
    "id": "2c-pictured",
    "unit": "2-c",
-   "prompt": "realistic photograph, natural light, sharp detail, tall colorful sandstone cliffs with streaks of orange, tan and green rising from a blue lake, Pictured Rocks on Lake Superior, pine forest on top",
-   "seed": 97740981,
-   "candidate": "2c-pictured-0",
-   "model": "z-image-turbo",
+   "prompt": "Photograph of the sandstone cliffs at Pictured Rocks, Lake Superior, Michigan, seen from the water: layered tan sandstone with horizontal ledges and cracks, subtle natural streaks of rusty orange and pale green-gray mineral stain running down the rock, some overhangs, spruce and pine on top, dark blue lake, bright sun, realistic muted natural color, telephoto, sharp detail",
+   "seed": 41,
+   "candidate": "geoP2-41",
+   "model": "flux-klein",
    "accepted": true,
-   "reason": "Pictured Rocks style colorful cliffs above a lake",
+   "reason": "layered sandstone with natural mineral streaks, muted realistic color, lake below",
    "people": [],
    "rejected": [
     {
      "candidate": "2c-pictured-1",
      "seed": 999486534,
      "reason": "second pick"
+    },
+    {
+     "candidate": "2c-pictured-0",
+     "seed": 97740981,
+     "reason": "redone 2026-11-05 for realism (stylized/unrealistic)"
     }
    ],
-   "bytes": 47722
+   "bytes": 77506
   },
   {
    "id": "2c-tray",
@@ -916,21 +921,26 @@
   {
    "id": "34-petoskey",
    "unit": "3-4",
-   "prompt": "realistic photograph, natural light, sharp detail, a Petoskey stone, a gray fossil coral stone with a honeycomb hexagon pattern, wet on the pebbles of a Lake Michigan beach",
-   "seed": 2101414585,
-   "candidate": "34-petoskey-1",
-   "model": "z-image-turbo",
+   "prompt": "Photograph from slightly above of a palm-sized Petoskey stone from the reference image, lying wet on a Lake Michigan shoreline among many larger rounded gray, tan and black cobbles, each about the same size as the stone, water-darkened, natural overcast daylight, 85mm lens, sharp detail. The stone keeps its real fossil coral pattern of irregular polygon cells with fine radiating lines.",
+   "seed": 31,
+   "candidate": "pet2-31",
+   "model": "flux-klein + reference image",
    "accepted": true,
-   "reason": "honeycomb coral pattern on a wet beach stone",
+   "reason": "real-stone reference (CC BY 3.0 Wikimedia photo, used as model input only): irregular coral cells with radiating septa, hand-sized among cobbles",
    "people": [],
    "rejected": [
     {
      "candidate": "34-petoskey-0",
      "seed": 317794709,
      "reason": "pattern mixed circles, not hexagons"
+    },
+    {
+     "candidate": "34-petoskey-1",
+     "seed": 2101414585,
+     "reason": "redone 2026-11-05 for realism (stylized/unrealistic)"
     }
    ],
-   "bytes": 40554
+   "bytes": 76278
   },
   {
    "id": "34-wetland",
@@ -1200,21 +1210,26 @@
   {
    "id": "45-layers",
    "unit": "4-5",
-   "prompt": "realistic photograph, natural light, sharp detail, a road cut showing clear horizontal layers of sedimentary rock in tan and gray, a small shell fossil visible in one layer",
-   "seed": 1220306797,
-   "candidate": "45-layers-1",
-   "model": "z-image-turbo",
+   "prompt": "Documentary photograph of a roadside cut through horizontally bedded sedimentary rock, thin flat layers of tan sandstone, gray siltstone and shale, weathered surfaces, weeds at top, one small white brachiopod shell fossil visible on a bedding surface, natural overcast light, 35mm lens, sharp detail, no people",
+   "seed": 23,
+   "candidate": "geoL-23",
+   "model": "flux-klein",
    "accepted": true,
-   "reason": "horizontal rock layers with a small shell",
+   "reason": "clear thin horizontal beds of sandstone and shale with one small white shell, documentary realism",
    "people": [],
    "rejected": [
     {
      "candidate": "45-layers-0",
      "seed": 1421735364,
      "reason": "no clear fossil"
+    },
+    {
+     "candidate": "45-layers-1",
+     "seed": 1220306797,
+     "reason": "redone 2026-11-05 for realism (stylized/unrealistic)"
     }
    ],
-   "bytes": 47780
+   "bytes": 84714
   },
   {
    "id": "45-tray",

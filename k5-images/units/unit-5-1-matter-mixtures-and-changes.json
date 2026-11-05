@@ -26,6 +26,14 @@
    "caption": "Separating a mixture takes steps: magnet for iron, water to dissolve the salt, a filter for the sand."
   },
   {
+   "id": "d-51-dissolve",
+   "after": "s4",
+   "kind": "svg",
+   "file": "d-51-dissolve.svg",
+   "alt": "Four steps left to right. 1 Mix: salt grains and sand in a cup of water. 2 Stir: the salt dissolves, so the salt bits spread through the water as dots too small to see, and the sand stays at the bottom. 3 Filter: the sand stays on the filter paper and the salt water drips into the cup below. 4 Evaporate: the water leaves a dish and white salt crystals remain. Dissolved salt is not gone. Filtering takes out the sand, and evaporating brings the salt back.",
+   "caption": "Salt that dissolves is still in the water as bits too small to see. Filtering removes the sand, and evaporating leaves the salt behind."
+  },
+  {
    "id": "g-51-mass",
    "after": "s5",
    "kind": "svg",

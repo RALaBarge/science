@@ -42,6 +42,14 @@
    "caption": "The Sun stays put and Earth spins. A place facing the Sun has day. When Earth turns that place away, it has night."
   },
   {
+   "id": "d-1c-stars",
+   "after": "s2",
+   "kind": "svg",
+   "file": "d-1c-stars.svg",
+   "alt": "Two sky pictures side by side with the same star positions. Left, night: a dark sky with stars and a crescent Moon, so the stars can be seen. Right, day: a bright blue sky with the Sun and no visible stars, but dashed circles show where the stars still are. Stars do not turn off in the day. They are faraway suns, and the bright daytime sky hides them.",
+   "caption": "The stars are still in the sky in the daytime. The bright sky hides them."
+  },
+  {
    "id": "g-1c-daylight",
    "after": "s3",
    "kind": "svg",

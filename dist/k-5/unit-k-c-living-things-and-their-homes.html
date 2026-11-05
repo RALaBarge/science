@@ -1,3 +1,7 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Living Things and Their Homes</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
@@ -670,7 +674,7 @@ k5BigSort(document.getElementById("k5-activity"), {"id":"k-c-sort","title":"Habi
 <script>
 (function(){
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
-const Q=[{"q": "What do plants need to grow?", "o": ["Only sunlight", "Water, sunlight, and air", "Only soil"], "a": 1, "e": "Plants need water, sunlight, and air."}, {"q": "A habitat gives animals:", "o": ["Food, water, shelter, and space", "Only a place to sleep", "Only water"], "a": 0, "e": "Habitats meet needs."}, {"q": "Which shows a living thing changing its environment?", "o": ["A fish swimming in a stream", "A beaver dam blocking a stream", "A bird flying over a stream"], "a": 1, "e": "Beavers change streams to meet their needs."}, {"q": "People can help living things by:", "o": ["Leaving litter for animals to eat", "Planting native flowers and picking up litter", "Moving wild animals into our yard"], "a": 1, "e": "Local actions can reduce harm."}];
+const Q=[{"q":"What do plants need to grow?","o":["Water, sunlight, and air","Dirt, which they eat for food","Only sunlight"],"a":0,"e":"Plants need water, light, and air."},{"q":"What does a habitat give an animal?","o":["Food and a bed","Water and a place to play","Food, water, shelter, and space"],"a":2,"e":"A habitat has what the animal needs."},{"q":"Which animal changes its home?","o":["A fish swimming in a stream","A beaver building a dam in a stream","A bird flying over the stream","A deer drinking at the stream"],"a":1,"e":"A beaver dam changes the stream."},{"q":"What can people do to help living things?","o":["Give wild animals our snacks","Take baby animals home to keep them safe","Leave trash out for animals","Plant native flowers and pick up litter"],"a":3,"e":"Wild animals need their own food and homes."}];
 const box=$('#quiz'), sc=$('#quizScore'); let right=0;
 box.innerHTML=Q.map((x,i)=>`<div class="q item" data-i="${i}" style="display:grid"><h4>${i+1}. ${x.q}</h4><div class="opts">${x.o.map((t,j)=>`<button class="opt" type="button" data-j="${j}">${t}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
 box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.disabled)return; const row=b.closest('.q'), x=Q[+row.dataset.i], ok=+b.dataset.j===x.a;
@@ -679,4 +683,6 @@ box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.dis
 })();
 </script>
 </body>
+</html>
+
 </html>
