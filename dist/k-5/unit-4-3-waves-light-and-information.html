@@ -331,37 +331,37 @@ figure.k5i details.k5i-alt summary{cursor:pointer;padding:2px 0}
 :root[data-theme="dark"] figure.k5i img{filter:brightness(.92)}
 @media (prefers-reduced-motion:reduce){figure.k5i,figure.k5i *{transition:none!important;animation:none!important}}
 </style>
-<script>/* Shared helpers for the small K-5 interactives. inject-images.mjs puts this once on every page that has one. */
-window.K5W=window.K5W||(function(){
- var n=0;
- function h(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
- var C={ink:'var(--ink,#12172b)',muted:'var(--muted,#47506e)',line:'var(--line,#d0d8e8)',surf:'var(--surface,#fff)',surf2:'var(--surface-2,#e8edf6)',beam:'var(--beam,#f2a900)',blue:'var(--reflect,#2b66e8)',red:'var(--absorb,#d6450b)',teal:'var(--transmit,#0b7f70)',shade:'var(--shade,#222a4a)',bad:'#d93036'};
- function a(v){return v==null?'':v;}
- var S={
-  c:function(x,y,r,f,s,w){return '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'"/>';},
-  r:function(x,y,w,hh,f,s,rx,sw){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+hh+'" rx="'+(rx||0)+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(sw||2)+'"/>';},
-  l:function(x1,y1,x2,y2,s,w,dash){return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+(s||C.ink)+'" stroke-width="'+(w||2)+'" stroke-linecap="round"'+(dash?' stroke-dasharray="'+dash+'"':'')+'/>';},
-  t:function(x,y,txt,sz,f,anc,wt){return '<text x="'+x+'" y="'+y+'" font-size="'+(sz||13)+'" fill="'+(f||C.ink)+'" text-anchor="'+(anc||'middle')+'"'+(wt?' font-weight="'+wt+'"':'')+'>'+txt+'</text>';},
-  p:function(pts,f,s,w){return '<polygon points="'+pts+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'" stroke-linejoin="round"/>';},
-  a:function(x1,y1,x2,y2,col,w,hd){w=w||4;hd=hd||11;var an=Math.atan2(y2-y1,x2-x1),hx=x2-Math.cos(an)*hd*.9,hy=y2-Math.sin(an)*hd*.9,px=-Math.sin(an)*hd*.55,py=Math.cos(an)*hd*.55;
-   return '<line x1="'+x1+'" y1="'+y1+'" x2="'+hx.toFixed(1)+'" y2="'+hy.toFixed(1)+'" stroke="'+col+'" stroke-width="'+w+'" stroke-linecap="round"/><polygon points="'+x2+','+y2+' '+(hx+px).toFixed(1)+','+(hy+py).toFixed(1)+' '+(hx-px).toFixed(1)+','+(hy-py).toFixed(1)+'" fill="'+col+'"/>';}
- };
- return {
-  h:h,C:C,S:S,
-  chips:function(box,labels,sel,fn,aria){
-   var g=h('div','row');g.setAttribute('role','group');if(aria)g.setAttribute('aria-label',aria);box.appendChild(g);
-   function draw(){g.innerHTML='';labels.forEach(function(l,i){var b=h('button',null,l);b.type='button';b.setAttribute('aria-pressed',String(i===sel));b.onclick=function(){sel=i;draw();fn(i);};g.appendChild(b);});}
-   draw();return {set:function(i){sel=i;draw();},get:function(){return sel;}};},
-  slider:function(box,label,min,max,step,val,fmt,fn){
-   var id='k5s'+(++n),w=h('div'),l=h('label'),inp=h('input');l.setAttribute('for',id);inp.type='range';inp.id=id;inp.min=min;inp.max=max;inp.step=step;inp.value=val;
-   function upd(){l.innerHTML=label+': <span>'+fmt(+inp.value)+'</span>';}
-   inp.oninput=function(){upd();fn(+inp.value);};upd();w.appendChild(l);w.appendChild(inp);box.appendChild(w);inp.refresh=upd;return inp;},
-  btn:function(box,label,fn){var r=box.querySelector('.row.btns');if(!r){r=h('div','row btns');box.appendChild(r);}var b=h('button',null,label);b.type='button';b.onclick=fn;r.appendChild(b);return b;},
-  svg:function(box,vb,label){var s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox',vb);s.setAttribute('role','img');s.setAttribute('aria-label',label||'');box.appendChild(s);return s;},
-  say:function(box){var p=h('p');p.setAttribute('aria-live','polite');box.appendChild(p);return function(t){p.innerHTML=t;};},
-  note:function(box,t){var p=h('p','small',t);box.appendChild(p);return p;}
- };
-})();
+<script>/* Shared helpers for the small K-5 interactives. inject-images.mjs puts this once on every page that has one. */
+window.K5W=window.K5W||(function(){
+ var n=0;
+ function h(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
+ var C={ink:'var(--ink,#12172b)',muted:'var(--muted,#47506e)',line:'var(--line,#d0d8e8)',surf:'var(--surface,#fff)',surf2:'var(--surface-2,#e8edf6)',beam:'var(--beam,#f2a900)',blue:'var(--reflect,#2b66e8)',red:'var(--absorb,#d6450b)',teal:'var(--transmit,#0b7f70)',shade:'var(--shade,#222a4a)',bad:'#d93036'};
+ function a(v){return v==null?'':v;}
+ var S={
+  c:function(x,y,r,f,s,w){return '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'"/>';},
+  r:function(x,y,w,hh,f,s,rx,sw){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+hh+'" rx="'+(rx||0)+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(sw||2)+'"/>';},
+  l:function(x1,y1,x2,y2,s,w,dash){return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+(s||C.ink)+'" stroke-width="'+(w||2)+'" stroke-linecap="round"'+(dash?' stroke-dasharray="'+dash+'"':'')+'/>';},
+  t:function(x,y,txt,sz,f,anc,wt){return '<text x="'+x+'" y="'+y+'" font-size="'+(sz||13)+'" fill="'+(f||C.ink)+'" text-anchor="'+(anc||'middle')+'"'+(wt?' font-weight="'+wt+'"':'')+'>'+txt+'</text>';},
+  p:function(pts,f,s,w){return '<polygon points="'+pts+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'" stroke-linejoin="round"/>';},
+  a:function(x1,y1,x2,y2,col,w,hd){w=w||4;hd=hd||11;var an=Math.atan2(y2-y1,x2-x1),hx=x2-Math.cos(an)*hd*.9,hy=y2-Math.sin(an)*hd*.9,px=-Math.sin(an)*hd*.55,py=Math.cos(an)*hd*.55;
+   return '<line x1="'+x1+'" y1="'+y1+'" x2="'+hx.toFixed(1)+'" y2="'+hy.toFixed(1)+'" stroke="'+col+'" stroke-width="'+w+'" stroke-linecap="round"/><polygon points="'+x2+','+y2+' '+(hx+px).toFixed(1)+','+(hy+py).toFixed(1)+' '+(hx-px).toFixed(1)+','+(hy-py).toFixed(1)+'" fill="'+col+'"/>';}
+ };
+ return {
+  h:h,C:C,S:S,
+  chips:function(box,labels,sel,fn,aria){
+   var g=h('div','row');g.setAttribute('role','group');if(aria)g.setAttribute('aria-label',aria);box.appendChild(g);
+   function draw(){g.innerHTML='';labels.forEach(function(l,i){var b=h('button',null,l);b.type='button';b.setAttribute('aria-pressed',String(i===sel));b.onclick=function(){sel=i;draw();fn(i);};g.appendChild(b);});}
+   draw();return {set:function(i){sel=i;draw();},get:function(){return sel;}};},
+  slider:function(box,label,min,max,step,val,fmt,fn){
+   var id='k5s'+(++n),w=h('div'),l=h('label'),inp=h('input');l.setAttribute('for',id);inp.type='range';inp.id=id;inp.min=min;inp.max=max;inp.step=step;inp.value=val;
+   function upd(){l.innerHTML=label+': <span>'+fmt(+inp.value)+'</span>';}
+   inp.oninput=function(){upd();fn(+inp.value);};upd();w.appendChild(l);w.appendChild(inp);box.appendChild(w);inp.refresh=upd;return inp;},
+  btn:function(box,label,fn){var r=box.querySelector('.row.btns');if(!r){r=h('div','row btns');box.appendChild(r);}var b=h('button',null,label);b.type='button';b.onclick=fn;r.appendChild(b);return b;},
+  svg:function(box,vb,label){var s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox',vb);s.setAttribute('role','img');s.setAttribute('aria-label',label||'');box.appendChild(s);return s;},
+  say:function(box){var p=h('p');p.setAttribute('aria-live','polite');box.appendChild(p);return function(t){p.innerHTML=t;};},
+  note:function(box,t){var p=h('p','small',t);box.appendChild(p);return p;}
+ };
+})();
 </script><!--k5images-css-end-->
 <header class="hero">
   <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="false">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="true">Retro space</button></div>
@@ -389,30 +389,30 @@ window.K5W=window.K5W||(function(){
 <figure class="k5i k5i-chart" id="fig-d-43-wave"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 330" role="img" aria-labelledby="d-43-wave-t d-43-wave-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="d-43-wave-t">Parts of a wave</title><desc id="d-43-wave-d">A blue wave line over a dashed resting line. Wavelength is the distance from one crest to the next crest. Amplitude is the height of the wave above the resting line. A cork floats on the wave and mostly moves up and down while the wave moves forward to the right. A taller wave, with more amplitude, carries more energy.</desc><rect x="0" y="0" width="480" height="330" fill="var(--surface, #fff)"/><text x="240" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="var(--ink, #12172B)">Parts of a wave</text><line x1="24" x2="456" y1="150" y2="150" stroke="var(--muted, #47506E)" stroke-width="1.5" stroke-dasharray="5 4"/><text x="30" y="222" text-anchor="start" font-size="12" font-weight="400" fill="var(--muted, #47506E)">dashed line = resting line (no wave)</text><path d="M30 150.0 L34 143.7 L38 137.6 L42 131.8 L46 126.5 L50 121.7 L54 117.6 L58 114.4 L62 112.0 L66 110.5 L70 110.0 L74 110.5 L78 112.0 L82 114.4 L86 117.6 L90 121.7 L94 126.5 L98 131.8 L102 137.6 L106 143.7 L110 150.0 L114 156.3 L118 162.4 L122 168.2 L126 173.5 L130 178.3 L134 182.4 L138 185.6 L142 188.0 L146 189.5 L150 190.0 L154 189.5 L158 188.0 L162 185.6 L166 182.4 L170 178.3 L174 173.5 L178 168.2 L182 162.4 L186 156.3 L190 150.0 L194 143.7 L198 137.6 L202 131.8 L206 126.5 L210 121.7 L214 117.6 L218 114.4 L222 112.0 L226 110.5 L230 110.0 L234 110.5 L238 112.0 L242 114.4 L246 117.6 L250 121.7 L254 126.5 L258 131.8 L262 137.6 L266 143.7 L270 150.0 L274 156.3 L278 162.4 L282 168.2 L286 173.5 L290 178.3 L294 182.4 L298 185.6 L302 188.0 L306 189.5 L310 190.0 L314 189.5 L318 188.0 L322 185.6 L326 182.4 L330 178.3 L334 173.5 L338 168.2 L342 162.4 L346 156.3 L350 150.0 L354 143.7 L358 137.6 L362 131.8 L366 126.5 L370 121.7 L374 117.6 L378 114.4 L382 112.0 L386 110.5 L390 110.0 L394 110.5 L398 112.0 L402 114.4 L406 117.6 L410 121.7 L414 126.5 L418 131.8 L422 137.6 L426 143.7 L430 150.0 L434 156.3 L438 162.4 L442 168.2 L446 173.5 L450 178.3 " fill="none" stroke="var(--reflect, #2B66E8)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><line x1="70" x2="70" y1="106" y2="70" stroke="var(--line, #D0D8E8)"/><line x1="230" x2="230" y1="106" y2="70" stroke="var(--line, #D0D8E8)"/><line x1="72" y1="78" x2="219" y2="78" stroke="var(--absorb, #D6450B)" stroke-width="2.5" stroke-linecap="round"/><polygon points="228,78 219,83.5 219,72.5" fill="var(--absorb, #D6450B)"/><line x1="228" y1="78" x2="81" y2="78" stroke="var(--absorb, #D6450B)" stroke-width="2.5" stroke-linecap="round"/><polygon points="72,78 81,72.5 81,83.5" fill="var(--absorb, #D6450B)"/><text x="150" y="62" text-anchor="middle" font-size="13" font-weight="700" fill="var(--absorb, #D6450B)">wavelength</text><text x="150" y="98" text-anchor="middle" font-size="11.5" font-weight="400" fill="var(--muted, #47506E)">(crest to crest)</text><line x1="390" y1="148" x2="390" y2="121" stroke="var(--transmit, #0B7F70)" stroke-width="2.5" stroke-linecap="round"/><polygon points="390,112 395.5,121 384.5,121" fill="var(--transmit, #0B7F70)"/><line x1="390" y1="112" x2="390" y2="139" stroke="var(--transmit, #0B7F70)" stroke-width="2.5" stroke-linecap="round"/><polygon points="390,148 384.5,139 395.5,139" fill="var(--transmit, #0B7F70)"/><text x="390" y="84" text-anchor="middle" font-size="13" font-weight="700" fill="var(--transmit, #0B7F70)">amplitude</text><text x="390" y="98" text-anchor="middle" font-size="11.5" font-weight="400" fill="var(--muted, #47506E)">(height)</text><rect x="298" y="176" width="24" height="14" rx="5" fill="#C8A46E" stroke="var(--ink, #12172B)" stroke-width="1.5"/><line x1="310" y1="194" x2="310" y2="210.8" stroke="var(--muted, #47506E)" stroke-width="2" stroke-linecap="round"/><polygon points="310,218 305.6,210.8 314.4,210.8" fill="var(--muted, #47506E)"/><line x1="310" y1="218" x2="310" y2="201.2" stroke="var(--muted, #47506E)" stroke-width="2" stroke-linecap="round"/><polygon points="310,194 314.4,201.2 305.6,201.2" fill="var(--muted, #47506E)"/><text x="310" y="236" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--ink, #12172B)">cork</text><line x1="350" y1="214" x2="430.1" y2="214" stroke="var(--reflect, #2B66E8)" stroke-width="3" stroke-linecap="round"/><polygon points="440,214 430.1,220.05 430.1,207.95" fill="var(--reflect, #2B66E8)"/><text x="396" y="234" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--reflect, #2B66E8)">wave moves</text><text x="240" y="292" text-anchor="middle" font-size="13.5" font-weight="700" fill="var(--ink, #12172B)">The wave moves forward. The cork mostly moves up and down.</text><text x="240" y="312" text-anchor="middle" font-size="13.5" font-weight="400" fill="var(--ink, #12172B)">A taller wave (more amplitude) carries more energy.</text></svg><figcaption>Wavelength is crest to crest. Amplitude is the height above the resting line. The wave moves forward while the cork moves up and down.</figcaption><details class="k5i-alt"><summary>Text version of this diagram</summary><p>A blue wave line over a dashed resting line. Wavelength is the distance from one crest to the next crest. Amplitude is the height of the wave above the resting line. A cork floats on the wave and mostly moves up and down while the wave moves forward to the right. A taller wave, with more amplitude, carries more energy.</p></details></figure>
 <!--k5images-end id=d-43-wave-->
 <!--k5images-start id=w-43-rope-->
-<figure class="k5i k5i-chart k5i-widget" id="fig-w-43-rope"><div class="k5w" id="w43rope"></div>
-<script>(function(){var box=document.getElementById('w43rope'),K=K5W,S=K.S,C=K.C;
- var A=30,W=200,run=true,svg,say,t0=performance.now(),frozen=0,btn,cy=110;
- svg=K.svg(box,'0 0 480 220','A wave moving along a rope with a cork floating on it.');
- K.slider(box,'Wave height (amplitude)',10,45,5,30,function(v){return v+'';},function(v){A=v;});
- K.slider(box,'Distance between crests (wavelength)',100,260,20,200,function(v){return v+'';},function(v){W=v;});
- btn=K.btn(box,'Pause',function(){if(run){frozen=(performance.now()-t0)/1000;run=false;btn.textContent='Play';}else{t0=performance.now()-frozen*1000;run=true;btn.textContent='Pause';}});
- say=K.say(box);
- say('The wave moves <b>forward</b>. Watch the cork: it mostly moves <b>up and down</b>, not along. Change the sliders to make taller or longer waves.');
- function frame(){
-  var tt=run?(performance.now()-t0)/1000:frozen;
-  var ph=tt*.6,path='M30 '+(cy-A*Math.sin(2*Math.PI*(-ph))).toFixed(1),x,y,s='';
-  for(x=30;x<=450;x+=4){y=cy-A*Math.sin(2*Math.PI*((x-30)/W-ph));path+=' L'+x+' '+y.toFixed(1);}
-  s+=S.l(24,cy,456,cy,C.muted,1.5,'5 4')+'<path d="'+path+'" fill="none" stroke="'+C.blue+'" stroke-width="4" stroke-linejoin="round"/>';
-  var cx=300,cyy=cy-A*Math.sin(2*Math.PI*((cx-30)/W-ph));
-  s+=S.r(cx-12,cyy-14,24,14,'#c8a46e',C.ink,5,2)+S.a(cx,cyy+8,cx,cyy+34,C.muted,2,7)+S.a(cx,cyy+34,cx,cyy+8,C.muted,2,7)+S.t(cx,cyy+52,'cork',12,C.ink,'middle',700);
-  var f=((ph%1)+1)%1,xc=30+W*(.25+f);while(xc>40+W)xc-=W;while(xc<40)xc+=W;
-  if(xc+W<=450){s+=S.a(xc,cy-A-16,xc+W,cy-A-16,C.red,2.5,9)+S.a(xc+W,cy-A-16,xc,cy-A-16,C.red,2.5,9);}
-  s+=S.a(xc,cy-3,xc,cy-A+3,C.teal,2.5,9)+S.a(xc,cy-A+3,xc,cy-3,C.teal,2.5,9)+S.t(30,16,'red arrow: wavelength (crest to crest)',11,C.red,'start',700)+S.t(30,32,'green arrow: amplitude (height)',11,C.teal,'start',700);
-  s+=S.a(380,196,440,196,C.blue,3,10)+S.t(410,214,'wave moves',12,C.blue,'middle',700);
-  svg.innerHTML=s;
-  requestAnimationFrame(frame);
- }
- frame();
+<figure class="k5i k5i-chart k5i-widget" id="fig-w-43-rope"><div class="k5w" id="w43rope"></div>
+<script>(function(){var box=document.getElementById('w43rope'),K=K5W,S=K.S,C=K.C;
+ var A=30,W=200,run=true,svg,say,t0=performance.now(),frozen=0,btn,cy=110;
+ svg=K.svg(box,'0 0 480 220','A wave moving along a rope with a cork floating on it.');
+ K.slider(box,'Wave height (amplitude)',10,45,5,30,function(v){return v+'';},function(v){A=v;});
+ K.slider(box,'Distance between crests (wavelength)',100,260,20,200,function(v){return v+'';},function(v){W=v;});
+ btn=K.btn(box,'Pause',function(){if(run){frozen=(performance.now()-t0)/1000;run=false;btn.textContent='Play';}else{t0=performance.now()-frozen*1000;run=true;btn.textContent='Pause';}});
+ say=K.say(box);
+ say('The wave moves <b>forward</b>. Watch the cork: it mostly moves <b>up and down</b>, not along. Change the sliders to make taller or longer waves.');
+ function frame(){
+  var tt=run?(performance.now()-t0)/1000:frozen;
+  var ph=tt*.6,path='M30 '+(cy-A*Math.sin(2*Math.PI*(-ph))).toFixed(1),x,y,s='';
+  for(x=30;x<=450;x+=4){y=cy-A*Math.sin(2*Math.PI*((x-30)/W-ph));path+=' L'+x+' '+y.toFixed(1);}
+  s+=S.l(24,cy,456,cy,C.muted,1.5,'5 4')+'<path d="'+path+'" fill="none" stroke="'+C.blue+'" stroke-width="4" stroke-linejoin="round"/>';
+  var cx=300,cyy=cy-A*Math.sin(2*Math.PI*((cx-30)/W-ph));
+  s+=S.r(cx-12,cyy-14,24,14,'#c8a46e',C.ink,5,2)+S.a(cx,cyy+8,cx,cyy+34,C.muted,2,7)+S.a(cx,cyy+34,cx,cyy+8,C.muted,2,7)+S.t(cx,cyy+52,'cork',12,C.ink,'middle',700);
+  var f=((ph%1)+1)%1,xc=30+W*(.25+f);while(xc>40+W)xc-=W;while(xc<40)xc+=W;
+  if(xc+W<=450){s+=S.a(xc,cy-A-16,xc+W,cy-A-16,C.red,2.5,9)+S.a(xc+W,cy-A-16,xc,cy-A-16,C.red,2.5,9);}
+  s+=S.a(xc,cy-3,xc,cy-A+3,C.teal,2.5,9)+S.a(xc,cy-A+3,xc,cy-3,C.teal,2.5,9)+S.t(30,16,'red arrow: wavelength (crest to crest)',11,C.red,'start',700)+S.t(30,32,'green arrow: amplitude (height)',11,C.teal,'start',700);
+  s+=S.a(380,196,440,196,C.blue,3,10)+S.t(410,214,'wave moves',12,C.blue,'middle',700);
+  svg.innerHTML=s;
+  requestAnimationFrame(frame);
+ }
+ frame();
 })();</script><figcaption>Change a rope wave’s height and length and watch the cork bob.</figcaption></figure>
 <!--k5images-end id=w-43-rope-->
 <!--k5images-start id=g-43-wave-->
@@ -446,28 +446,28 @@ window.K5W=window.K5W||(function(){
 <figure class="k5i k5i-chart" id="fig-d-43-eye"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 340" role="img" aria-labelledby="d-43-eye-t d-43-eye-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="d-43-eye-t">How we see an apple</title><desc id="d-43-eye-d">Diagram of a lamp on the left, an apple in the middle and an eye on the right. Arrow 1 goes from the lamp to the apple. Arrow 2 goes from the apple into the eye. No arrow leaves the eye. Light from the lamp bounces off the apple and enters the eye, which is how we see it.</desc><rect x="0" y="0" width="480" height="340" fill="var(--surface, #fff)"/><text x="240" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="var(--ink, #12172B)">How we see an apple</text><line x1="86" y1="86" x2="98" y2="86" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="81.41640786499875" y1="100.10684605501936" x2="91.1246117974981" y2="107.16026908252903" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="69.41640786499875" y1="108.82535639108369" x2="73.1246117974981" y2="120.23803458662553" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="54.58359213500126" y1="108.82535639108369" x2="50.875388202501895" y2="120.23803458662553" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="42.58359213500127" y1="100.10684605501936" x2="32.875388202501895" y2="107.16026908252904" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="38" y1="86" x2="26" y2="86" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="42.58359213500126" y1="71.89315394498064" x2="32.875388202501895" y2="64.83973091747097" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="54.58359213500126" y1="63.17464360891631" x2="50.87538820250189" y2="51.761965413374476" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="69.41640786499873" y1="63.17464360891631" x2="73.1246117974981" y2="51.76196541337447" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="81.41640786499873" y1="71.89315394498064" x2="91.1246117974981" y2="64.83973091747096" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><circle cx="62" cy="86" r="18" fill="var(--beam, #F2A900)" stroke="var(--ink, #12172B)" stroke-width="2"/><text x="62" y="134" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink, #12172B)">Lamp</text><circle cx="236" cy="196" r="31" fill="var(--red, #D93036)" stroke="var(--ink, #12172B)" stroke-width="2"/><path d="M236 166 q4 -16 18 -18 q-2 14 -18 18z" fill="var(--green, #25904F)"/><text x="236" y="250" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink, #12172B)">Apple</text><path d="M366 192 Q410 154 454 192 Q410 230 366 192Z" fill="var(--surface, #fff)" stroke="var(--ink, #12172B)" stroke-width="2"/><circle cx="410" cy="192" r="14" fill="var(--reflect, #2B66E8)" stroke="var(--ink, #12172B)" stroke-width="1.5"/><circle cx="410" cy="192" r="6" fill="var(--ink, #12172B)" stroke="none" stroke-width="1.5"/><text x="410" y="244" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink, #12172B)">Eye</text><line x1="84" y1="102" x2="198.02456534679197" y2="171.88602392222734" stroke="var(--beam, #F2A900)" stroke-width="4" stroke-linecap="round"/><polygon points="208,178 194.28824663259758,177.98212287696558 201.76088406098637,165.7899249674891" fill="var(--beam, #F2A900)"/><circle cx="146" cy="138" r="11" fill="var(--surface, #fff)" stroke="var(--ink, #12172B)" stroke-width="1.5"/><text x="146" y="143" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink, #12172B)">1</text><line x1="268" y1="198" x2="350.3165165671435" y2="193.62146188472641" stroke="var(--reflect, #2B66E8)" stroke-width="4" stroke-linecap="round"/><polygon points="362,193 350.6962988300318,200.7613684270276 349.93673430425514,186.48155534242522" fill="var(--reflect, #2B66E8)"/><circle cx="315" cy="176" r="11" fill="var(--surface, #fff)" stroke="var(--ink, #12172B)" stroke-width="1.5"/><text x="315" y="181" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink, #12172B)">2</text><text x="24" y="282" text-anchor="start" font-size="14.5" font-weight="400" fill="var(--ink, #12172B)">1  Light from the lamp hits the apple.</text><text x="24" y="304" text-anchor="start" font-size="14.5" font-weight="400" fill="var(--ink, #12172B)">2  Light bounces off the apple and enters the eye.</text><text x="24" y="326" text-anchor="start" font-size="14.5" font-weight="700" fill="var(--reflect, #2B66E8)">Nothing comes out of the eye. We see because light comes in.</text></svg><figcaption>We see an object when light reflects from it and enters our eyes. The eye only receives light. The apple does not make its own light.</figcaption><details class="k5i-alt"><summary>Text version of this diagram</summary><p>Diagram of a lamp on the left, an apple in the middle and an eye on the right. Arrow 1 goes from the lamp to the apple. Arrow 2 goes from the apple into the eye. No arrow leaves the eye. Light from the lamp bounces off the apple and enters the eye, which is how we see it.</p></details></figure>
 <!--k5images-end id=d-43-eye-->
 <!--k5images-start id=w-43-eye-->
-<figure class="k5i k5i-chart k5i-widget" id="fig-w-43-eye"><div class="k5w" id="w43eye"></div>
-<script>(function(){var box=document.getElementById('w43eye'),K=K5W,S=K.S,C=K.C;
- var lamp=true,wrong=false,svg,say;
- K.chips(box,['Lamp on','Lamp off'],0,function(i){lamp=i===0;draw();},'Lamp');
- K.chips(box,['How seeing works','A wrong idea: eye beams'],0,function(i){wrong=i===1;draw();},'Idea');
- svg=K.svg(box,'0 0 480 230','A lamp, an apple and an eye.');
- say=K.say(box);
- function draw(){
-  var s=S.c(60,70,16,lamp?C.beam:C.surf,C.ink,2.5);
-  if(lamp)for(var i=0;i<10;i++){var a=i/10*6.283;s+=S.l(60+Math.cos(a)*22,70+Math.sin(a)*22,60+Math.cos(a)*34,70+Math.sin(a)*34,C.beam,3);}
-  s+=S.t(60,110,'lamp',12,C.muted)+S.c(235,150,30,C.bad,C.ink,2.5)+S.p('235,120 243,106 252,114',C.teal,C.ink,1.5)+S.t(235,198,'apple',12,C.muted);
-  s+='<path d="M368 150 Q412 112 456 150 Q412 188 368 150Z" fill="'+C.surf+'" stroke="'+C.ink+'" stroke-width="2.5"/>'+S.c(412,150,14,C.blue,C.ink,1.5)+S.c(412,150,6,C.ink)+S.t(412,204,'eye',12,C.muted);
-  if(!wrong){
-   if(lamp)s+=S.a(78,84,206,134,C.beam,4,12)+S.a(266,150,366,150,C.blue,4,12)+S.t(232,92,'1 light from the lamp hits the apple',11,C.ink,'start')+S.t(316,136,'2 light bounces into the eye',11,C.ink,'middle');
-  }else{
-   s+=S.a(366,150,270,150,C.bad,3,10).replace('<line ','<line stroke-dasharray="6 5" ')+S.t(316,136,'eye beam?',12,C.bad,'middle',700)+S.l(300,134,330,166,C.bad,4)+S.l(330,134,300,166,C.bad,4);
-  }
-  svg.innerHTML=s;
-  say(wrong?'<b>This is a wrong idea.</b> Eyes do <b>not</b> shoot out beams. Nothing leaves the eye. Turn the lamp off: the apple is still not seen, which shows the light has to come from somewhere else first.':lamp?'Light from the lamp <b>hits the apple</b> and <b>bounces into the eye</b>. That is how we see it. The apple does not make its own light and nothing comes out of the eye.':'With the lamp off there is no light to bounce, so you cannot see the apple. We see things because <b>light comes in</b>.');
-  svg.setAttribute('aria-label',wrong?'A wrong idea of an eye beam, crossed out.':lamp?'Light goes from the lamp to the apple and bounces into the eye.':'The lamp is off, so no light reaches the eye.');
- }
- draw();
+<figure class="k5i k5i-chart k5i-widget" id="fig-w-43-eye"><div class="k5w" id="w43eye"></div>
+<script>(function(){var box=document.getElementById('w43eye'),K=K5W,S=K.S,C=K.C;
+ var lamp=true,wrong=false,svg,say;
+ K.chips(box,['Lamp on','Lamp off'],0,function(i){lamp=i===0;draw();},'Lamp');
+ K.chips(box,['How seeing works','A wrong idea: eye beams'],0,function(i){wrong=i===1;draw();},'Idea');
+ svg=K.svg(box,'0 0 480 230','A lamp, an apple and an eye.');
+ say=K.say(box);
+ function draw(){
+  var s=S.c(60,70,16,lamp?C.beam:C.surf,C.ink,2.5);
+  if(lamp)for(var i=0;i<10;i++){var a=i/10*6.283;s+=S.l(60+Math.cos(a)*22,70+Math.sin(a)*22,60+Math.cos(a)*34,70+Math.sin(a)*34,C.beam,3);}
+  s+=S.t(60,110,'lamp',12,C.muted)+S.c(235,150,30,C.bad,C.ink,2.5)+S.p('235,120 243,106 252,114',C.teal,C.ink,1.5)+S.t(235,198,'apple',12,C.muted);
+  s+='<path d="M368 150 Q412 112 456 150 Q412 188 368 150Z" fill="'+C.surf+'" stroke="'+C.ink+'" stroke-width="2.5"/>'+S.c(412,150,14,C.blue,C.ink,1.5)+S.c(412,150,6,C.ink)+S.t(412,204,'eye',12,C.muted);
+  if(!wrong){
+   if(lamp)s+=S.a(78,84,206,134,C.beam,4,12)+S.a(266,150,366,150,C.blue,4,12)+S.t(232,92,'1 light from the lamp hits the apple',11,C.ink,'start')+S.t(316,136,'2 light bounces into the eye',11,C.ink,'middle');
+  }else{
+   s+=S.a(366,150,270,150,C.bad,3,10).replace('<line ','<line stroke-dasharray="6 5" ')+S.t(316,136,'eye beam?',12,C.bad,'middle',700)+S.l(300,134,330,166,C.bad,4)+S.l(330,134,300,166,C.bad,4);
+  }
+  svg.innerHTML=s;
+  say(wrong?'<b>This is a wrong idea.</b> Eyes do <b>not</b> shoot out beams. Nothing leaves the eye. Turn the lamp off: the apple is still not seen, which shows the light has to come from somewhere else first.':lamp?'Light from the lamp <b>hits the apple</b> and <b>bounces into the eye</b>. That is how we see it. The apple does not make its own light and nothing comes out of the eye.':'With the lamp off there is no light to bounce, so you cannot see the apple. We see things because <b>light comes in</b>.');
+  svg.setAttribute('aria-label',wrong?'A wrong idea of an eye beam, crossed out.':lamp?'Light goes from the lamp to the apple and bounces into the eye.':'The lamp is off, so no light reaches the eye.');
+ }
+ draw();
 })();</script><figcaption>See how light reaches the eye, and why eye beams are a wrong idea.</figcaption></figure>
 <!--k5images-end id=w-43-eye-->
 
@@ -479,15 +479,19 @@ window.K5W=window.K5W||(function(){
     <article class="aid">
       <span class="tag try">Try it</span>
       <h3>Mirror bounce</h3><p>flashlight and mirror or shiny foil.</p><p class="tip">“Aim the mirror. The light changes direction.”</p>
-    </article>
+<!--k5b-start id=b43-mirror--><figure class="k5i k5i-chart" id="fig-b43-mirror"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 290" role="img" aria-labelledby="b43-mirror-t b43-mirror-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="b43-mirror-t">Light bounces off a mirror</title><desc id="b43-mirror-d">A flashlight on the left sends a beam down to a mirror lying flat. The beam bounces off and goes up to the right. A dashed line stands straight up from the mirror; the beam comes in at the same angle on one side as it leaves on the other.</desc><rect x="0" y="0" width="480" height="290" fill="var(--surface, #fff)"/><text x="240" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="var(--ink, #12172B)">Light bounces off a mirror</text><rect x="100" y="220" width="280" height="10" rx="3" fill="var(--reflect, #2B66E8)" stroke="var(--ink, #12172B)" stroke-width="2"/><text x="240" y="252" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--ink, #12172B)">mirror</text><line x1="240" y1="80" x2="240" y2="218" stroke="var(--muted, #47506E)" stroke-width="2" stroke-linecap="round" stroke-dasharray="5 4"/><text x="240" y="72" text-anchor="middle" font-size="11.5" font-weight="400" fill="var(--muted, #47506E)">straight up</text><rect x="46" y="80" width="44" height="22" rx="4" fill="var(--beam, #F2A900)" stroke="var(--ink, #12172B)" stroke-width="2"/><text x="68" y="70" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--ink, #12172B)">flashlight</text><line x1="92" y1="102" x2="226.2" y2="210.1" stroke="var(--beam, #F2A900)" stroke-width="5" stroke-linecap="round"/><polygon points="236,218 221.4,216.1 231.0,204.1" fill="var(--beam, #F2A900)"/><line x1="244" y1="218" x2="380.2" y2="107.9" stroke="var(--beam, #F2A900)" stroke-width="5" stroke-linecap="round"/><polygon points="390,100 385.0,113.9 375.4,101.9" fill="var(--beam, #F2A900)"/><text x="150" y="162" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink, #12172B)">in</text><text x="340" y="162" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink, #12172B)">out</text></svg><figcaption>A mirror bounces light so it leaves at the same angle it arrived. Tilt the mirror and the beam goes somewhere else.</figcaption><details class="k5i-alt"><summary>Text version of this diagram</summary><p>A flashlight on the left sends a beam down to a mirror lying flat. The beam bounces off and goes up to the right. A dashed line stands straight up from the mirror; the beam comes in at the same angle on one side as it leaves on the other.</p></details></figure><!--k5b-end id=b43-mirror-->
+<!--k5b-start id=b43-mirror-do--><p><b>Predict first:</b> If you aim the flashlight at the mirror from the left, where will the spot on the wall appear?</p><p><b>You need:</b> a flashlight, a small mirror or foil on cardboard, a wall, a dim room.</p><ol><li>Aim the flashlight at the mirror at a low angle.</li><li>Find the bright spot on the wall.</li><li>Tilt the mirror a little. Watch the spot move.</li></ol><p><b>What you should see:</b> The spot jumps to a new place as you tilt the mirror. Light bounces off in a new direction.</p><p class="cap"><b>Why it matters:</b> Mirrors and shiny things bounce light; that is part of how we see.</p><!--k5b-end id=b43-mirror-do-->
+</article>
     <article class="aid">
       <span class="tag data">Data</span>
       <h3>Light-path model</h3><p>drawing space with source, object, eye, and arrows.</p><p class="tip">“Draw the path. The arrow into your eye is how you see.”</p>
-    </article>
+<!--k5b-start id=b43-path--><p class="cap"><b>How to draw it:</b> put a lamp on the left, an object in the middle, and an eye on the right. Draw an arrow from the lamp to the object, then an arrow from the object into the eye. No arrow leaves the eye.</p><!--k5b-end id=b43-path-->
+</article>
     <article class="aid">
       <span class="tag real">Real world</span>
       <h3>Moon</h3><p>Moon at night.</p><p class="tip">“The Moon does not make its own light. It reflects sunlight.”</p>
-    </article>
+<!--k5b-start id=b43-moon--><figure class="k5i k5i-chart" id="fig-b43-moon"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 230" role="img" aria-labelledby="b43-moon-t b43-moon-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="b43-moon-t">The Moon reflects sunlight</title><desc id="b43-moon-d">The Sun on the left sends an arrow to the Moon in the middle. The Moon sends a second arrow to a small eye on the right. The Moon does not make its own light; it bounces sunlight to us.</desc><rect x="0" y="0" width="480" height="230" fill="var(--surface, #fff)"/><text x="240" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="var(--ink, #12172B)">The Moon reflects sunlight</text><line x1="83.0" y1="100.0" x2="92.0" y2="100.0" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="79.4" y1="113.5" x2="87.2" y2="118.0" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="69.5" y1="123.4" x2="74.0" y2="131.2" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="56.0" y1="127.0" x2="56.0" y2="136.0" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="42.5" y1="123.4" x2="38.0" y2="131.2" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="32.6" y1="113.5" x2="24.8" y2="118.0" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="29.0" y1="100.0" x2="20.0" y2="100.0" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="32.6" y1="86.5" x2="24.8" y2="82.0" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="42.5" y1="76.6" x2="38.0" y2="68.8" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="56.0" y1="73.0" x2="56.0" y2="64.0" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="69.5" y1="76.6" x2="74.0" y2="68.8" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="79.4" y1="86.5" x2="87.2" y2="82.0" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><circle cx="56" cy="100" r="22" fill="var(--beam, #F2A900)" stroke="var(--ink, #12172B)" stroke-width="2"/><text x="56" y="160" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink, #12172B)">Sun</text><circle cx="240" cy="100" r="26" fill="var(--surface, #fff)" stroke="var(--ink, #12172B)" stroke-width="3"/><text x="240" y="160" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink, #12172B)">Moon</text><path d="M334 100 Q370 66 416 100 Q370 134 334 100Z" fill="var(--surface, #fff)" stroke="var(--ink, #12172B)" stroke-width="2"/><circle cx="374" cy="100" r="10" fill="var(--reflect, #2B66E8)" stroke="var(--ink, #12172B)" stroke-width="1.5"/><text x="374" y="160" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink, #12172B)">you</text><line x1="84" y1="100" x2="195.2" y2="100.0" stroke="var(--beam, #F2A900)" stroke-width="4" stroke-linecap="round"/><polygon points="206,100 195.2,106.6 195.2,93.4" fill="var(--beam, #F2A900)"/><line x1="270" y1="100" x2="319.2" y2="100.0" stroke="var(--beam, #F2A900)" stroke-width="4" stroke-linecap="round"/><polygon points="330,100 319.2,106.6 319.2,93.4" fill="var(--beam, #F2A900)"/><text x="240" y="204" text-anchor="middle" font-size="13.5" font-weight="700" fill="var(--ink, #12172B)">The Moon only bounces sunlight toward you.</text></svg><figcaption>The Moon shines because sunlight bounces off it and into your eyes.</figcaption><details class="k5i-alt"><summary>Text version of this diagram</summary><p>The Sun on the left sends an arrow to the Moon in the middle. The Moon sends a second arrow to a small eye on the right. The Moon does not make its own light; it bounces sunlight to us.</p></details></figure><!--k5b-end id=b43-moon-->
+</article>
   </div>
 </section>
 
@@ -498,19 +502,23 @@ window.K5W=window.K5W||(function(){
     <article class="aid">
       <span class="tag try">Try it</span>
       <h3>Signal code</h3><p>flashlight blinking short and long.</p><p class="tip">“Short flash, long flash. A pattern can mean something.”</p>
-    </article>
+<!--k5b-start id=b43-code--><p><b>Predict first:</b> Can a partner tell short and long flashes apart across the room?</p><p><b>You need:</b> a flashlight, a dim room, paper and pencil.</p><ol><li>Make a code card: short flash = A, long flash = B, short-short = C.</li><li>Send one letter at a time. Partner writes what they see.</li><li>Switch and try a three-letter word.</li></ol><p><b>What you should see:</b> You may miss some. Slow down and make short and long very different.</p><p class="cap"><b>Why it matters:</b> This is how real signals, like Morse code, carry information with patterns.</p><!--k5b-end id=b43-code-->
+</article>
     <article class="aid">
       <span class="tag real">Real world</span>
       <h3>Traffic light</h3><p>red, yellow, green lights.</p><p class="tip">“Color patterns tell drivers what to do.”</p>
-    </article>
+<!--k5b-start id=b43-traffic--><figure class="k5i k5i-chart" id="fig-b43-traffic"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" role="img" aria-labelledby="b43-traffic-t b43-traffic-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="b43-traffic-t">Color patterns tell drivers what to do</title><desc id="b43-traffic-d">A traffic light with a red, yellow and green lamp. Next to each lamp is its meaning: red means stop, yellow means get ready to stop, green means go.</desc><rect x="0" y="0" width="480" height="300" fill="var(--surface, #fff)"/><text x="240" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="var(--ink, #12172B)">Color patterns tell drivers what to do</text><rect x="150" y="50" width="60" height="190" rx="14" fill="var(--shade, #222A4A)" stroke="var(--ink, #12172B)" stroke-width="3"/><circle cx="180" cy="90" r="20" fill="var(--red, #D93036)" stroke="var(--ink, #12172B)" stroke-width="2"/><circle cx="180" cy="145" r="20" fill="var(--beam, #F2A900)" stroke="var(--ink, #12172B)" stroke-width="2"/><circle cx="180" cy="200" r="20" fill="var(--green, #25904F)" stroke="var(--ink, #12172B)" stroke-width="2"/><text x="230" y="96" text-anchor="start" font-size="15" font-weight="700" fill="var(--ink, #12172B)">red: stop</text><text x="230" y="151" text-anchor="start" font-size="14" font-weight="700" fill="var(--ink, #12172B)">yellow: get ready to stop</text><text x="230" y="206" text-anchor="start" font-size="15" font-weight="700" fill="var(--ink, #12172B)">green: go</text><text x="240" y="275" text-anchor="middle" font-size="13.5" font-weight="400" fill="var(--ink, #12172B)">Drivers read the color and know what to do.</text></svg><figcaption>A color pattern is a signal. Everyone agrees on what each color means.</figcaption><details class="k5i-alt"><summary>Text version of this diagram</summary><p>A traffic light with a red, yellow and green lamp. Next to each lamp is its meaning: red means stop, yellow means get ready to stop, green means go.</p></details></figure><!--k5b-end id=b43-traffic-->
+</article>
     <article class="aid">
       <span class="tag try">Try it</span>
       <h3>Compare two signals</h3><p>one team using flashlight code and another using drum or tap code.</p><p class="tip">“Send the same message two ways. Which one is clearer?”</p>
-    </article>
+<!--k5b-start id=b43-compare--><p><b>Predict first:</b> Which will your partner get right more often, flashlight or drum?</p><ol><li>Pick a short message, such as "GO".</li><li>Send it five times with the flashlight from 5 meters. Count the correct ones.</li><li>Send it five times with a drum or tap. Count again.</li><li>Use the same distance and the same message for both.</li></ol><p><b>What you should see:</b> Sample from the page: flashlight 4 of 5, drum 3 of 5.</p><p class="cap"><b>Why it matters:</b> Comparing two designs with the same test shows which one works better.</p><!--k5b-end id=b43-compare-->
+</article>
     <article class="aid">
       <span class="tag data">Data</span>
       <h3>Signal accuracy table</h3><p>table with Signal type, Distance, Message correct?</p><p class="tip">“Record hits and misses. Compare solutions. Provided dataset: flashlight 4 of 5 correct; drum 3 of 5 correct at 5 meters.”</p>
-    </article>
+<!--k5b-start id=b43-acc--><figure class="k5i k5i-chart" id="fig-b43-acc"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 330" role="img" aria-labelledby="b43-acc-t b43-acc-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="b43-acc-t">Messages sent correctly</title><desc id="b43-acc-d">Bar graph of messages sent correctly out of 5 at 5 meters. Flashlight 4, drum 3.</desc><rect x="0" y="0" width="480" height="330" fill="var(--surface, #fff)"/><text x="240" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="var(--ink, #12172B)">Messages sent correctly</text><line x1="54" x2="464" y1="268" y2="268" stroke="var(--line, #D0D8E8)" stroke-width="1"/><text x="46" y="273" text-anchor="end" font-size="13" fill="var(--muted, #47506E)">0</text><line x1="54" x2="464" y1="226.8" y2="226.8" stroke="var(--line, #D0D8E8)" stroke-width="1"/><text x="46" y="231.8" text-anchor="end" font-size="13" fill="var(--muted, #47506E)">1</text><line x1="54" x2="464" y1="185.6" y2="185.6" stroke="var(--line, #D0D8E8)" stroke-width="1"/><text x="46" y="190.6" text-anchor="end" font-size="13" fill="var(--muted, #47506E)">2</text><line x1="54" x2="464" y1="144.4" y2="144.4" stroke="var(--line, #D0D8E8)" stroke-width="1"/><text x="46" y="149.4" text-anchor="end" font-size="13" fill="var(--muted, #47506E)">3</text><line x1="54" x2="464" y1="103.19999999999999" y2="103.19999999999999" stroke="var(--line, #D0D8E8)" stroke-width="1"/><text x="46" y="108.19999999999999" text-anchor="end" font-size="13" fill="var(--muted, #47506E)">4</text><line x1="54" x2="464" y1="62" y2="62" stroke="var(--line, #D0D8E8)" stroke-width="1"/><text x="46" y="67" text-anchor="end" font-size="13" fill="var(--muted, #47506E)">5</text><text transform="translate(14 165) rotate(-90)" text-anchor="middle" font-size="13" fill="var(--muted, #47506E)">Correct out of 5</text><rect x="130.5" y="103.19999999999999" width="52" height="164.8" rx="3" fill="var(--reflect, #2B66E8)" /><text x="156.5" y="97.19999999999999" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink, #12172B)">4</text><text x="156.5" y="288" text-anchor="middle" font-size="13.5" fill="var(--ink, #12172B)">Flashlight</text><rect x="335.5" y="144.4" width="52" height="123.6" rx="3" fill="var(--reflect, #2B66E8)" /><text x="361.5" y="138.4" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink, #12172B)">3</text><text x="361.5" y="288" text-anchor="middle" font-size="13.5" fill="var(--ink, #12172B)">Drum</text><line x1="54" x2="464" y1="268" y2="268" stroke="var(--ink, #12172B)" stroke-width="1.5"/></svg><figcaption>Provided dataset from this page: at 5 meters, the flashlight code got 4 of 5 messages right and the drum got 3 of 5. Five tries is a small test, so repeat it.</figcaption><details class="k5i-alt"><summary>Text version of this diagram</summary><p>Bar graph. Flashlight 4 of 5 correct, drum 3 of 5 correct at 5 meters.</p></details></figure><!--k5b-end id=b43-acc-->
+</article>
   </div>
 </section>
 
@@ -523,7 +531,9 @@ window.K5W=window.K5W||(function(){
 
   <div class="aids">
     <article class="aid"><span class="tag try">Try it</span><h3>What you need</h3><p>rope or rubber band, shallow tray, water, small cork or paper bits, flashlight, mirror or shiny foil, paper, tape, cup or small drum, spoon, rice, plastic wrap.</p><p class="cap"><b>Safety:</b> do not shine lights into eyes; wipe water spills; keep water away from Chromebooks.</p></article>
-    <article class="aid"><span class="tag try">Try it</span><h3>What you do</h3><p>Make rope waves and water waves. Observe waves moving objects. Model light reflection with mirror and eye-path drawings. Design and compare two signal systems for accuracy.</p></article>
+    <article class="aid"><span class="tag try">Try it</span><h3>What you do</h3><p>Make rope waves and water waves. Observe waves moving objects. Model light reflection with mirror and eye-path drawings. Design and compare two signal systems for accuracy.</p>
+<!--k5b-start id=b43-do--><ol><li>Shake a rope or slinky to make tall and short waves (10 minutes).</li><li>Float a cork in a bowl and tap the water (5 minutes).</li><li>Draw the light path from lamp to object to eye (10 minutes).</li><li>Make a flashlight code and a drum code. Send the same message five times with each from 5 meters. Count the correct ones (20 minutes).</li></ol><p><b>Notice:</b> Waves carry energy and move things. Patterns can carry information.</p><p class="cap"><b>Why it matters:</b> Choose the better design by comparing counts, not by guessing.</p><!--k5b-end id=b43-do-->
+</article>
   </div>
   <details class="deep"><summary>No time or no good weather? Use this data</summary><div class="in"><p class="cap">This data is a backup. It lets you practice reading evidence, but the standard expects you to collect your own when you can.</p><p>wave movement small wave 1 cm, large wave 3 cm; signal accuracy flashlight 4/5, drum 3/5.</p></div></details>
   <p class="cap"><b>Near you:</b> Great Lakes shipping: lighthouses and fog signals use light and sound patterns. Michigan traffic lights use color patterns to tell drivers what to do.</p>

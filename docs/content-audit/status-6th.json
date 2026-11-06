@@ -1,0 +1,533 @@
+[
+ {
+  "file": "6th/unit-01-light-and-matter.html",
+  "concept": "How do we know what a star is made of?",
+  "type": "real",
+  "verdict": "needs-image",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": "He D3 587.6 nm, Na D 589.0/589.6 nm; bright-line view of 1868 prominence observation."
+ },
+ {
+  "file": "6th/unit-02-thermal-energy.html",
+  "concept": "Temperature is average motion energy",
+  "type": "try",
+  "verdict": "needs-context",
+  "status": "done",
+  "what": "Added predict/do/notice/why guide above the activity.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-02-thermal-energy.html",
+  "concept": "Why ice stays at 0 °C (32 °F) while it melts",
+  "type": "try",
+  "verdict": "needs-context",
+  "status": "done",
+  "what": "Added predict/do/notice/why guide above the activity.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-03-forces-motion-and-energy.html",
+  "concept": "Speed is distance per time",
+  "type": "real",
+  "verdict": "needs-graph",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-03-forces-motion-and-energy.html",
+  "concept": "Energy changes form",
+  "type": "try",
+  "verdict": "needs-context",
+  "status": "done",
+  "what": "Added predict/do/notice/why guide above the activity.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-03-forces-motion-and-energy.html",
+  "concept": "Equal pushes, softer stops",
+  "type": "try",
+  "verdict": "needs-context",
+  "status": "done",
+  "what": "Added predict/do/notice/why guide above the activity.",
+  "check": "Egg numbers come from the page model (0.06 kg, 25 N crack threshold); real egg crack force is an assumption."
+ },
+ {
+  "file": "6th/unit-04-weather-and-the-water-cycle.html",
+  "concept": "An ocean of air",
+  "type": "try",
+  "verdict": "needs-context",
+  "status": "done",
+  "what": "Added predict/do/notice/why guide above the activity.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-04-weather-and-the-water-cycle.html",
+  "concept": "Sun heats ground unevenly",
+  "type": "try",
+  "verdict": "needs-context",
+  "status": "done",
+  "what": "Added predict/do/notice/why guide above the activity.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-05-plate-tectonics-and-rocks.html",
+  "concept": "Earth has layers",
+  "type": "try",
+  "verdict": "needs-context",
+  "status": "done",
+  "what": "Added predict/do/notice/why guide above the activity.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-05-plate-tectonics-and-rocks.html",
+  "concept": "Rocks recycle",
+  "type": "try",
+  "verdict": "needs-context",
+  "status": "done",
+  "what": "Added predict/do/notice/why guide above the activity.",
+  "check": "Rock swatches are texture sketches, not photos."
+ },
+ {
+  "file": "6th/unit-05-plate-tectonics-and-rocks.html",
+  "concept": "Rocks recycle",
+  "type": "real",
+  "verdict": "needs-image",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": "Rock swatches are texture sketches, not photos."
+ },
+ {
+  "file": "6th/unit-05-plate-tectonics-and-rocks.html",
+  "concept": "Break, carry, drop",
+  "type": "real",
+  "verdict": "needs-image",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": "Erratic/groove sketch is schematic; ice drawn over bedrock."
+ },
+ {
+  "file": "6th/unit-07-cells.html",
+  "concept": "Everything alive is made of cells",
+  "type": "real",
+  "verdict": "needs-image",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-07-cells.html",
+  "concept": "Making and using food energy",
+  "type": "try",
+  "verdict": "needs-context",
+  "status": "done",
+  "what": "Added predict/do/notice/why guide above the activity.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-07-cells.html",
+  "concept": "From one cell to a whole body",
+  "type": "analogy",
+  "verdict": "needs-diagram",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-08-classifying-life.html",
+  "concept": "Three domains, six kingdoms",
+  "type": "try",
+  "verdict": "needs-context",
+  "status": "done",
+  "what": "Added predict/do/notice/why guide above the activity.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-08-classifying-life.html",
+  "concept": "Three domains, six kingdoms",
+  "type": "diagram",
+  "verdict": "needs-diagram",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-08-classifying-life.html",
+  "concept": "Dichotomous keys",
+  "type": "try",
+  "verdict": "needs-context",
+  "status": "done",
+  "what": "Added predict/do/notice/why guide above the activity.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-08-classifying-life.html",
+  "concept": "Why variety matters",
+  "type": "real",
+  "verdict": "needs-image",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": "Warbler/sturgeon/turtle/peeper icons are simplified sketches; Kirtland warbler nests under young jack pine (check)."
+ },
+ {
+  "file": "6th/unit-09-body-systems-and-homeostasis.html",
+  "concept": "Cells, tissues, organs, systems",
+  "type": "try",
+  "verdict": "needs-context",
+  "status": "done",
+  "what": "Added predict/do/notice/why guide above the activity.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-09-body-systems-and-homeostasis.html",
+  "concept": "Heart, blood, and lungs",
+  "type": "try",
+  "verdict": "needs-context",
+  "status": "done",
+  "what": "Added predict/do/notice/why guide above the activity.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-10-states-of-matter.html",
+  "concept": "Matter is made of tiny moving particles",
+  "type": "real",
+  "verdict": "needs-diagram",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-10-states-of-matter.html",
+  "concept": "Same particles, different arrangement",
+  "type": "analogy",
+  "verdict": "needs-diagram",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-10-states-of-matter.html",
+  "concept": "Same particles, different arrangement",
+  "type": "diagram",
+  "verdict": "needs-diagram",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-10-states-of-matter.html",
+  "concept": "Same particles, different arrangement",
+  "type": "real",
+  "verdict": "needs-image",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-10-states-of-matter.html",
+  "concept": "Why things float, and why gases squeeze",
+  "type": "try",
+  "verdict": "needs-context",
+  "status": "done",
+  "what": "Added predict/do/notice/why guide above the activity.",
+  "check": "Iron floats in mercury (7.87 < 13.5); ice 92% submerged."
+ },
+ {
+  "file": "6th/unit-10-states-of-matter.html",
+  "concept": "Mixtures, solutions, and separating them",
+  "type": "diagram",
+  "verdict": "needs-diagram",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-11-earth-in-space.html",
+  "concept": "Rotation gives us day and night",
+  "type": "try",
+  "verdict": "needs-context",
+  "status": "done",
+  "what": "Added predict/do/notice/why guide above the activity.",
+  "check": "Foucault drift about 10 deg/hour at Ann Arbor latitude (15 deg x sin 42 deg); star trail 15 deg/hour."
+ },
+ {
+  "file": "6th/unit-11-earth-in-space.html",
+  "concept": "Rotation gives us day and night",
+  "type": "real",
+  "verdict": "needs-image",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": "Foucault drift about 10 deg/hour at Ann Arbor latitude (15 deg x sin 42 deg); star trail 15 deg/hour."
+ },
+ {
+  "file": "6th/unit-11-earth-in-space.html",
+  "concept": "The seasons come from tilt, not distance",
+  "type": "try",
+  "verdict": "needs-context",
+  "status": "done",
+  "what": "Added predict/do/notice/why guide above the activity.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-11-earth-in-space.html",
+  "concept": "Moon phases",
+  "type": "analogy",
+  "verdict": "needs-diagram",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-11-earth-in-space.html",
+  "concept": "Moon phases",
+  "type": "try",
+  "verdict": "needs-context",
+  "status": "done",
+  "what": "Added predict/do/notice/why guide above the activity.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-11-earth-in-space.html",
+  "concept": "Eclipses and tides",
+  "type": "analogy",
+  "verdict": "needs-diagram",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": "Moon orbit tilt about 5 deg, drawn exaggerated; nodes drawn at ring ends."
+ },
+ {
+  "file": "6th/unit-11-earth-in-space.html",
+  "concept": "The solar system is mostly empty space",
+  "type": "try",
+  "verdict": "needs-context",
+  "status": "done",
+  "what": "Added predict/do/notice/why guide above the activity.",
+  "check": "Model: Earth about 10.8 m, Neptune about 325 m from a 10 cm Sun; Earth about 1 mm."
+ },
+ {
+  "file": "6th/unit-12-ecosystems-and-food-webs.html",
+  "concept": "Living and non-living parts, working together",
+  "type": "try",
+  "verdict": "needs-context",
+  "status": "done",
+  "what": "Added predict/do/notice/why guide above the activity.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-12-ecosystems-and-food-webs.html",
+  "concept": "Producers, consumers, and decomposers",
+  "type": "real",
+  "verdict": "needs-graph",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": "25 kg feed per 1 kg beef is the page figure; literature ranges widely."
+ },
+ {
+  "file": "6th/unit-12-ecosystems-and-food-webs.html",
+  "concept": "Matter cycles; energy flows",
+  "type": "analogy",
+  "verdict": "needs-diagram",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-12-ecosystems-and-food-webs.html",
+  "concept": "Why population sizes rise and fall",
+  "type": "analogy",
+  "verdict": "needs-graph",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-12-ecosystems-and-food-webs.html",
+  "concept": "Remove one species, and the web shifts",
+  "type": "analogy",
+  "verdict": "needs-diagram",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-12-ecosystems-and-food-webs.html",
+  "concept": "Remove one species, and the web shifts",
+  "type": "real",
+  "verdict": "needs-image",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-13-energy-resources-and-human-impact.html",
+  "concept": "Renewable and non-renewable resources",
+  "type": "real",
+  "verdict": "needs-diagram",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": "Ludington pumped-storage sketch is schematic."
+ },
+ {
+  "file": "6th/unit-13-energy-resources-and-human-impact.html",
+  "concept": "Sun, wind, and water",
+  "type": "analogy",
+  "verdict": "needs-diagram",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-13-energy-resources-and-human-impact.html",
+  "concept": "Sun, wind, and water",
+  "type": "try",
+  "verdict": "needs-context",
+  "status": "done",
+  "what": "Added predict/do/notice/why guide above the activity.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-13-energy-resources-and-human-impact.html",
+  "concept": "Weigh costs, benefits, and trade-offs",
+  "type": "analogy",
+  "verdict": "needs-diagram",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-14-where-were-going.html",
+  "concept": "You’re on a very long ride",
+  "type": "analogy",
+  "verdict": "needs-diagram",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-14-where-were-going.html",
+  "concept": "How the solar system began",
+  "type": "analogy",
+  "verdict": "needs-diagram",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": "Frost line about 3 AU (estimates 2.7-5); timeline stage durations are page estimates; Moon formation time."
+ },
+ {
+  "file": "6th/unit-14-where-were-going.html",
+  "concept": "How the solar system began",
+  "type": "analogy",
+  "verdict": "needs-diagram",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": "Frost line about 3 AU (estimates 2.7-5); timeline stage durations are page estimates; Moon formation time."
+ },
+ {
+  "file": "6th/unit-14-where-were-going.html",
+  "concept": "How the solar system began",
+  "type": "analogy",
+  "verdict": "needs-diagram",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": "Frost line about 3 AU (estimates 2.7-5); timeline stage durations are page estimates; Moon formation time."
+ },
+ {
+  "file": "6th/unit-14-where-were-going.html",
+  "concept": "How the solar system began",
+  "type": "data",
+  "verdict": "needs-diagram",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": "Frost line about 3 AU (estimates 2.7-5); timeline stage durations are page estimates; Moon formation time."
+ },
+ {
+  "file": "6th/unit-15-data-and-statistics.html",
+  "concept": "Mean, median and mode",
+  "type": "analogy",
+  "verdict": "needs-diagram",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-15-data-and-statistics.html",
+  "concept": "Mean, median and mode",
+  "type": "try",
+  "verdict": "needs-context",
+  "status": "done",
+  "what": "Added predict/do/notice/why guide above the activity.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-15-data-and-statistics.html",
+  "concept": "Two sets can share a mean and still differ",
+  "type": "analogy",
+  "verdict": "needs-diagram",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-15-data-and-statistics.html",
+  "concept": "Two sets can share a mean and still differ",
+  "type": "try",
+  "verdict": "needs-context",
+  "status": "done",
+  "what": "Added predict/do/notice/why guide above the activity.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-15-data-and-statistics.html",
+  "concept": "Two sets can share a mean and still differ",
+  "type": "real",
+  "verdict": "needs-graph",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-15-data-and-statistics.html",
+  "concept": "The question decides the graph",
+  "type": "analogy",
+  "verdict": "needs-diagram",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-15-data-and-statistics.html",
+  "concept": "The question decides the graph",
+  "type": "try",
+  "verdict": "needs-context",
+  "status": "done",
+  "what": "Added predict/do/notice/why guide above the activity.",
+  "check": ""
+ },
+ {
+  "file": "6th/unit-15-data-and-statistics.html",
+  "concept": "More trials mean more trust",
+  "type": "analogy",
+  "verdict": "needs-diagram",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": "Range table values are the page's own 95% approximations."
+ },
+ {
+  "file": "6th/unit-15-data-and-statistics.html",
+  "concept": "More trials mean more trust",
+  "type": "try",
+  "verdict": "needs-context",
+  "status": "done",
+  "what": "Added predict/do/notice/why guide above the activity.",
+  "check": "Range table values are the page's own 95% approximations."
+ },
+ {
+  "file": "6th/unit-15-data-and-statistics.html",
+  "concept": "More trials mean more trust",
+  "type": "data",
+  "verdict": "needs-graph",
+  "status": "done",
+  "what": "Added inline SVG/figure or table-backed illustration from the cell numbers, with role=img, title and desc.",
+  "check": "Range table values are the page's own 95% approximations."
+ }
+]

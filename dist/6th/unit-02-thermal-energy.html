@@ -193,6 +193,8 @@ footer{max-width:920px;margin:48px auto 0;color:var(--muted);font-size:.88rem;bo
   .tally{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:420px){.brow{grid-template-columns:84px minmax(0,1fr)}.race{grid-template-columns:minmax(0,1fr)}}
+.tryguide{display:grid;gap:5px;font-size:.95rem;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.tryguide p{margin:0}.tryguide b{color:var(--ink)}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -337,6 +339,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
     <article class="aid">
       <span class="tag try">Try it</span>
       <h3>Turn up the heat</h3>
+      <div class="tryguide"><p><b>Predict.</b> Will the particles move faster, slower, or the same when the temperature goes up? Will they all move at exactly the same speed?</p><p><b>Do.</b> Start at 20 °C (room temperature). Drag the slider to 0, then to 100, and watch the box and the speed readout at each stop.</p><p><b>Notice.</b> At 100 °C the particles race around and bump hard, and they turn redder. At 0 °C they barely move. At any one setting they still do not all move at the same speed: the temperature tells you the <i>average</i>.</p><p><b>Why it matters.</b> Temperature is not a thing that flows. It is a measure of how fast the particles are moving, on average. That is why heating something makes it expand, melt, or boil.</p></div>
       <canvas id="cv1" width="640" height="260" role="img" aria-label="Particles bouncing in a box. Faster and redder when hotter."></canvas>
       <div class="ctl"><label for="t1">Temperature: <span id="t1v"></span></label><input id="t1" type="range" min="0" max="100" value="20"></div>
       <p class="readout" id="t1r" aria-live="polite"></p>
@@ -599,6 +602,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
     <article class="aid">
       <span class="tag try">Try it</span>
       <h3>Add energy to 1 g of ice</h3>
+      <div class="tryguide"><p><b>Predict.</b> You start with 1 g of ice at -20 °C and add energy a little at a time. Predict: does the temperature rise the whole way? When might it stop rising?</p><p><b>Do.</b> Slide the energy from 0 up to about 3,100 J in small steps. Pause often and read the temperature, the stage name, and the dot on the graph. Look at 0 to 100 J, then 100 to 400 J, then 400 to 800 J.</p><p><b>Notice.</b> Between about 42 J and 376 J the temperature sits at 0 °C even though you keep adding energy, and the picture changes from a tight lattice to loose particles. It does the same thing at 100 °C between about 794 J and 3,054 J. Melting needs roughly 334 J per gram; boiling needs roughly 2,260 J per gram.</p><p><b>Why it matters.</b> During melting and boiling, the energy goes into loosening the grip particles have on each other, not into speeding them up. That is why a pot of boiling water stays at 100 °C no matter how high you turn the burner, and why ice water stays cold until the last ice is gone.</p></div>
       <canvas id="cv5" width="640" height="260" role="img" aria-label="Particles shown as a solid, liquid, or gas depending on how much energy has been added."></canvas>
       <div class="ctl"><label for="e5">Energy added: <span id="e5v"></span></label><input id="e5" type="range" min="0" max="3100" step="10" value="0"></div>
       <p class="readout" id="e5r" aria-live="polite"></p>

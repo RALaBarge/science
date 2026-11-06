@@ -331,37 +331,37 @@ figure.k5i details.k5i-alt summary{cursor:pointer;padding:2px 0}
 :root[data-theme="dark"] figure.k5i img{filter:brightness(.92)}
 @media (prefers-reduced-motion:reduce){figure.k5i,figure.k5i *{transition:none!important;animation:none!important}}
 </style>
-<script>/* Shared helpers for the small K-5 interactives. inject-images.mjs puts this once on every page that has one. */
-window.K5W=window.K5W||(function(){
- var n=0;
- function h(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
- var C={ink:'var(--ink,#12172b)',muted:'var(--muted,#47506e)',line:'var(--line,#d0d8e8)',surf:'var(--surface,#fff)',surf2:'var(--surface-2,#e8edf6)',beam:'var(--beam,#f2a900)',blue:'var(--reflect,#2b66e8)',red:'var(--absorb,#d6450b)',teal:'var(--transmit,#0b7f70)',shade:'var(--shade,#222a4a)',bad:'#d93036'};
- function a(v){return v==null?'':v;}
- var S={
-  c:function(x,y,r,f,s,w){return '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'"/>';},
-  r:function(x,y,w,hh,f,s,rx,sw){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+hh+'" rx="'+(rx||0)+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(sw||2)+'"/>';},
-  l:function(x1,y1,x2,y2,s,w,dash){return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+(s||C.ink)+'" stroke-width="'+(w||2)+'" stroke-linecap="round"'+(dash?' stroke-dasharray="'+dash+'"':'')+'/>';},
-  t:function(x,y,txt,sz,f,anc,wt){return '<text x="'+x+'" y="'+y+'" font-size="'+(sz||13)+'" fill="'+(f||C.ink)+'" text-anchor="'+(anc||'middle')+'"'+(wt?' font-weight="'+wt+'"':'')+'>'+txt+'</text>';},
-  p:function(pts,f,s,w){return '<polygon points="'+pts+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'" stroke-linejoin="round"/>';},
-  a:function(x1,y1,x2,y2,col,w,hd){w=w||4;hd=hd||11;var an=Math.atan2(y2-y1,x2-x1),hx=x2-Math.cos(an)*hd*.9,hy=y2-Math.sin(an)*hd*.9,px=-Math.sin(an)*hd*.55,py=Math.cos(an)*hd*.55;
-   return '<line x1="'+x1+'" y1="'+y1+'" x2="'+hx.toFixed(1)+'" y2="'+hy.toFixed(1)+'" stroke="'+col+'" stroke-width="'+w+'" stroke-linecap="round"/><polygon points="'+x2+','+y2+' '+(hx+px).toFixed(1)+','+(hy+py).toFixed(1)+' '+(hx-px).toFixed(1)+','+(hy-py).toFixed(1)+'" fill="'+col+'"/>';}
- };
- return {
-  h:h,C:C,S:S,
-  chips:function(box,labels,sel,fn,aria){
-   var g=h('div','row');g.setAttribute('role','group');if(aria)g.setAttribute('aria-label',aria);box.appendChild(g);
-   function draw(){g.innerHTML='';labels.forEach(function(l,i){var b=h('button',null,l);b.type='button';b.setAttribute('aria-pressed',String(i===sel));b.onclick=function(){sel=i;draw();fn(i);};g.appendChild(b);});}
-   draw();return {set:function(i){sel=i;draw();},get:function(){return sel;}};},
-  slider:function(box,label,min,max,step,val,fmt,fn){
-   var id='k5s'+(++n),w=h('div'),l=h('label'),inp=h('input');l.setAttribute('for',id);inp.type='range';inp.id=id;inp.min=min;inp.max=max;inp.step=step;inp.value=val;
-   function upd(){l.innerHTML=label+': <span>'+fmt(+inp.value)+'</span>';}
-   inp.oninput=function(){upd();fn(+inp.value);};upd();w.appendChild(l);w.appendChild(inp);box.appendChild(w);inp.refresh=upd;return inp;},
-  btn:function(box,label,fn){var r=box.querySelector('.row.btns');if(!r){r=h('div','row btns');box.appendChild(r);}var b=h('button',null,label);b.type='button';b.onclick=fn;r.appendChild(b);return b;},
-  svg:function(box,vb,label){var s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox',vb);s.setAttribute('role','img');s.setAttribute('aria-label',label||'');box.appendChild(s);return s;},
-  say:function(box){var p=h('p');p.setAttribute('aria-live','polite');box.appendChild(p);return function(t){p.innerHTML=t;};},
-  note:function(box,t){var p=h('p','small',t);box.appendChild(p);return p;}
- };
-})();
+<script>/* Shared helpers for the small K-5 interactives. inject-images.mjs puts this once on every page that has one. */
+window.K5W=window.K5W||(function(){
+ var n=0;
+ function h(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
+ var C={ink:'var(--ink,#12172b)',muted:'var(--muted,#47506e)',line:'var(--line,#d0d8e8)',surf:'var(--surface,#fff)',surf2:'var(--surface-2,#e8edf6)',beam:'var(--beam,#f2a900)',blue:'var(--reflect,#2b66e8)',red:'var(--absorb,#d6450b)',teal:'var(--transmit,#0b7f70)',shade:'var(--shade,#222a4a)',bad:'#d93036'};
+ function a(v){return v==null?'':v;}
+ var S={
+  c:function(x,y,r,f,s,w){return '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'"/>';},
+  r:function(x,y,w,hh,f,s,rx,sw){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+hh+'" rx="'+(rx||0)+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(sw||2)+'"/>';},
+  l:function(x1,y1,x2,y2,s,w,dash){return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+(s||C.ink)+'" stroke-width="'+(w||2)+'" stroke-linecap="round"'+(dash?' stroke-dasharray="'+dash+'"':'')+'/>';},
+  t:function(x,y,txt,sz,f,anc,wt){return '<text x="'+x+'" y="'+y+'" font-size="'+(sz||13)+'" fill="'+(f||C.ink)+'" text-anchor="'+(anc||'middle')+'"'+(wt?' font-weight="'+wt+'"':'')+'>'+txt+'</text>';},
+  p:function(pts,f,s,w){return '<polygon points="'+pts+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'" stroke-linejoin="round"/>';},
+  a:function(x1,y1,x2,y2,col,w,hd){w=w||4;hd=hd||11;var an=Math.atan2(y2-y1,x2-x1),hx=x2-Math.cos(an)*hd*.9,hy=y2-Math.sin(an)*hd*.9,px=-Math.sin(an)*hd*.55,py=Math.cos(an)*hd*.55;
+   return '<line x1="'+x1+'" y1="'+y1+'" x2="'+hx.toFixed(1)+'" y2="'+hy.toFixed(1)+'" stroke="'+col+'" stroke-width="'+w+'" stroke-linecap="round"/><polygon points="'+x2+','+y2+' '+(hx+px).toFixed(1)+','+(hy+py).toFixed(1)+' '+(hx-px).toFixed(1)+','+(hy-py).toFixed(1)+'" fill="'+col+'"/>';}
+ };
+ return {
+  h:h,C:C,S:S,
+  chips:function(box,labels,sel,fn,aria){
+   var g=h('div','row');g.setAttribute('role','group');if(aria)g.setAttribute('aria-label',aria);box.appendChild(g);
+   function draw(){g.innerHTML='';labels.forEach(function(l,i){var b=h('button',null,l);b.type='button';b.setAttribute('aria-pressed',String(i===sel));b.onclick=function(){sel=i;draw();fn(i);};g.appendChild(b);});}
+   draw();return {set:function(i){sel=i;draw();},get:function(){return sel;}};},
+  slider:function(box,label,min,max,step,val,fmt,fn){
+   var id='k5s'+(++n),w=h('div'),l=h('label'),inp=h('input');l.setAttribute('for',id);inp.type='range';inp.id=id;inp.min=min;inp.max=max;inp.step=step;inp.value=val;
+   function upd(){l.innerHTML=label+': <span>'+fmt(+inp.value)+'</span>';}
+   inp.oninput=function(){upd();fn(+inp.value);};upd();w.appendChild(l);w.appendChild(inp);box.appendChild(w);inp.refresh=upd;return inp;},
+  btn:function(box,label,fn){var r=box.querySelector('.row.btns');if(!r){r=h('div','row btns');box.appendChild(r);}var b=h('button',null,label);b.type='button';b.onclick=fn;r.appendChild(b);return b;},
+  svg:function(box,vb,label){var s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox',vb);s.setAttribute('role','img');s.setAttribute('aria-label',label||'');box.appendChild(s);return s;},
+  say:function(box){var p=h('p');p.setAttribute('aria-live','polite');box.appendChild(p);return function(t){p.innerHTML=t;};},
+  note:function(box,t){var p=h('p','small',t);box.appendChild(p);return p;}
+ };
+})();
 </script><!--k5images-css-end-->
 <header class="hero">
   <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="false">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="true">Retro space</button></div>
@@ -384,29 +384,29 @@ window.K5W=window.K5W||(function(){
   <div><p class="kicker">Concept 1</p><h2>Speed and energy</h2></div>
   <p class="idea">Faster moving objects can cause bigger changes, which is evidence that they have more energy.</p>
 <!--k5images-start id=w-41-ramp-->
-<figure class="k5i k5i-chart k5i-widget" id="fig-w-41-ramp"><div class="k5w" id="w41ramp"></div>
-<script>(function(){var box=document.getElementById('w41ramp'),K=K5W,S=K.S,C=K.C;
- var hgt=2,svg,say,timer=0,carT=0,blockX=0;
- svg=K.svg(box,'0 0 480 210','A toy car on a ramp above a floor, with a block waiting at the bottom.');
- K.slider(box,'Ramp height',1,4,1,2,function(v){return v+' blocks high';},function(v){hgt=v;idle();});
- K.btn(box,'Let go',go);K.btn(box,'Reset',idle);
- say=K.say(box);K.note(box,'The same car is used every time, so its mass does not change. Distances are made up to show the pattern.');
- var FLOOR=170,RX=40,BASE=190,BLK0=250;
- function draw(p,slide){
-  var top=FLOOR-hgt*34,s=S.p(RX+','+FLOOR+' '+BASE+','+FLOOR+' '+RX+','+top,'#c8a46e',C.ink,2.5)+S.l(10,FLOOR,470,FLOOR,C.ink,3);
-  var cx,cy,ang=Math.atan2(FLOOR-top,BASE-RX);
-  if(p<1){cx=RX+(BASE-RX)*p;cy=top+(FLOOR-top)*p;}else{cx=BASE+(p-1)*(BLK0-BASE-26);cy=FLOOR;}
-  cx=Math.min(cx,BLK0-30+slide);
-  s+=S.r(BLK0+slide,FLOOR-30,30,30,C.red,C.ink,3,2.5);
-  s+='<g transform="translate('+cx.toFixed(1)+' '+(cy-12).toFixed(1)+') rotate('+(p<1?(ang*57.3).toFixed(1):0)+')">'+S.r(-14,-10,28,14,C.blue,C.ink,4,2.5)+S.c(-8,5,5,C.surf,C.ink,2)+S.c(8,5,5,C.surf,C.ink,2)+'</g>';
-  svg.innerHTML=s;
- }
- function idle(){clearInterval(timer);draw(0,0);say('Set the ramp height, then press <b>Let go</b>.');}
- function go(){clearInterval(timer);var t=0,D=hgt*38;
-  timer=setInterval(function(){t+=.03;
-   if(t<1)draw(t*t,0);else if(t<1.6)draw(1+(t-1)/.6*1.0,0);else{var q=Math.min(1,(t-1.6)/.8);draw(2,D*(1-Math.pow(1-q,2)));if(q>=1){clearInterval(timer);say('From <b>'+hgt+' block'+(hgt>1?'s':'')+'</b> up, the car pushed the block about <b>'+Math.round(D/38)+' unit'+(D/38>1?'s':'')+'</b>. A higher ramp makes the car go faster at the bottom, so it has <b>more energy</b> and pushes the block farther.');}}
-  },30);}
- idle();
+<figure class="k5i k5i-chart k5i-widget" id="fig-w-41-ramp"><div class="k5w" id="w41ramp"></div>
+<script>(function(){var box=document.getElementById('w41ramp'),K=K5W,S=K.S,C=K.C;
+ var hgt=2,svg,say,timer=0,carT=0,blockX=0;
+ svg=K.svg(box,'0 0 480 210','A toy car on a ramp above a floor, with a block waiting at the bottom.');
+ K.slider(box,'Ramp height',1,4,1,2,function(v){return v+' blocks high';},function(v){hgt=v;idle();});
+ K.btn(box,'Let go',go);K.btn(box,'Reset',idle);
+ say=K.say(box);K.note(box,'The same car is used every time, so its mass does not change. Distances are made up to show the pattern.');
+ var FLOOR=170,RX=40,BASE=190,BLK0=250;
+ function draw(p,slide){
+  var top=FLOOR-hgt*34,s=S.p(RX+','+FLOOR+' '+BASE+','+FLOOR+' '+RX+','+top,'#c8a46e',C.ink,2.5)+S.l(10,FLOOR,470,FLOOR,C.ink,3);
+  var cx,cy,ang=Math.atan2(FLOOR-top,BASE-RX);
+  if(p<1){cx=RX+(BASE-RX)*p;cy=top+(FLOOR-top)*p;}else{cx=BASE+(p-1)*(BLK0-BASE-26);cy=FLOOR;}
+  cx=Math.min(cx,BLK0-30+slide);
+  s+=S.r(BLK0+slide,FLOOR-30,30,30,C.red,C.ink,3,2.5);
+  s+='<g transform="translate('+cx.toFixed(1)+' '+(cy-12).toFixed(1)+') rotate('+(p<1?(ang*57.3).toFixed(1):0)+')">'+S.r(-14,-10,28,14,C.blue,C.ink,4,2.5)+S.c(-8,5,5,C.surf,C.ink,2)+S.c(8,5,5,C.surf,C.ink,2)+'</g>';
+  svg.innerHTML=s;
+ }
+ function idle(){clearInterval(timer);draw(0,0);say('Set the ramp height, then press <b>Let go</b>.');}
+ function go(){clearInterval(timer);var t=0,D=hgt*38;
+  timer=setInterval(function(){t+=.03;
+   if(t<1)draw(t*t,0);else if(t<1.6)draw(1+(t-1)/.6*1.0,0);else{var q=Math.min(1,(t-1.6)/.8);draw(2,D*(1-Math.pow(1-q,2)));if(q>=1){clearInterval(timer);say('From <b>'+hgt+' block'+(hgt>1?'s':'')+'</b> up, the car pushed the block about <b>'+Math.round(D/38)+' unit'+(D/38>1?'s':'')+'</b>. A higher ramp makes the car go faster at the bottom, so it has <b>more energy</b> and pushes the block farther.');}}
+  },30);}
+ idle();
 })();</script><figcaption>Raise the ramp and see how far the same car pushes the block.</figcaption></figure>
 <!--k5images-end id=w-41-ramp-->
 
@@ -426,7 +426,8 @@ window.K5W=window.K5W||(function(){
     <article class="aid">
       <span class="tag real">Real world</span>
       <h3>Sledding on a Michigan hill</h3><p>a sled going down a snowy hill.</p><p class="tip">“A faster sled can push farther into the snow.”</p>
-    </article>
+<!--k5b-start id=b41-sled--><figure class="k5i k5i-chart" id="fig-b41-sled"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 256" role="img" aria-labelledby="b41-sled-t b41-sled-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="b41-sled-t">A faster sled pushes farther</title><desc id="b41-sled-d">A snowy hill with two sleds. The sled that started higher is going fast and has a long arrow, and it pushes a long way into the snow. The sled that started lower is slow, has a short arrow, and stops sooner.</desc><rect x="0" y="0" width="480" height="256" fill="var(--surface, #fff)"/><text x="240" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="var(--ink, #12172B)">A faster sled pushes farther</text><polygon points="0,240 0,70 300,200 480,200 480,240" fill="var(--surface-2, #E8EDF6)" stroke="var(--line, #D0D8E8)" stroke-width="2" stroke-linejoin="round"/><path d="M0 70 L300 200 L480 200" fill="none" stroke="var(--ink, #12172B)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(112 112) rotate(23)"><rect x="-18" y="-7" width="36" height="14" rx="4" fill="var(--absorb, #D6450B)" stroke="var(--ink, #12172B)" stroke-width="2"/></g><text x="110" y="84" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--ink, #12172B)">start high</text><line x1="130" y1="108" x2="190.2" y2="135.5" stroke="var(--absorb, #D6450B)" stroke-width="4" stroke-linecap="round"/><polygon points="200,140 187.4,141.5 192.9,129.5" fill="var(--absorb, #D6450B)"/><g transform="translate(42 82) rotate(23)"><rect x="-18" y="-7" width="36" height="14" rx="4" fill="var(--reflect, #2B66E8)" stroke="var(--ink, #12172B)" stroke-width="2"/></g><text x="42" y="56" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--ink, #12172B)">start low</text><line x1="62" y1="86" x2="92.5" y2="98.9" stroke="var(--reflect, #2B66E8)" stroke-width="2.5" stroke-linecap="round"/><polygon points="100,102 90.6,103.4 94.5,94.3" fill="var(--reflect, #2B66E8)"/><line x1="310" y1="192" x2="450" y2="192" stroke="var(--absorb, #D6450B)" stroke-width="6" stroke-linecap="round"/><text x="380" y="220" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--absorb, #D6450B)">pushes far</text><line x1="310" y1="198" x2="350" y2="198" stroke="var(--reflect, #2B66E8)" stroke-width="6" stroke-linecap="round"/><text x="240" y="236" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink, #12172B)">Higher start: faster at the bottom, longer push.</text></svg><figcaption>A sled that starts higher goes faster at the bottom, so it carries more energy and pushes farther into the snow.</figcaption><details class="k5i-alt"><summary>Text version of this diagram</summary><p>A snowy hill with two sleds. The sled that started higher is going fast and has a long arrow, and it pushes a long way into the snow. The sled that started lower is slow, has a short arrow, and stops sooner.</p></details></figure><!--k5b-end id=b41-sled-->
+</article>
   </div>
 </section>
 
@@ -434,28 +435,28 @@ window.K5W=window.K5W||(function(){
   <div><p class="kicker">Concept 2</p><h2>Collisions change energy</h2></div>
   <p class="idea">When objects collide, motion energy can move, so things can speed up, slow down, or change shape.</p>
 <!--k5images-start id=w-41-collision-->
-<figure class="k5i k5i-chart k5i-widget" id="fig-w-41-collision"><div class="k5w" id="w41">
-<p><b>Drop a ball and watch where its energy goes.</b> Pick a ball. These are made-up numbers to show the idea, not measurements.</p>
-<div class="row" id="w41c" role="group" aria-label="Ball"></div>
-<div id="w41b" aria-hidden="true"></div>
-<p id="w41r" aria-live="polite"></p>
-</div>
-<script>
-(function(){
- var B=[['Clay ball (thud)',4,'It lands with a thud and stays flat.'],['Hard ball (bounce)',60,'It bounces back up, but not as high as it started.'],['Super ball (big bounce)',85,'It bounces almost as high as it started.']];
- var c=document.getElementById('w41c'),bars=document.getElementById('w41b'),r=document.getElementById('w41r'),i=0;
- function bar(label,parts){var s='<div style="margin:8px 0"><div style="font-size:.9rem;margin-bottom:4px">'+label+'</div><div style="display:flex;height:26px;border-radius:6px;overflow:hidden;background:var(--surface-2,#e8edf6)">';
-  parts.forEach(function(p){if(p[0]>0)s+='<div style="width:'+p[0]+'%;background:'+p[1]+';color:var(--on-color,#fff);font-size:.8rem;display:flex;align-items:center;justify-content:center;white-space:nowrap">'+p[2]+'</div>';});return s+'</div></div>';}
- function draw(){
-  var m=B[i][1],h=100-m;
-  c.innerHTML=B.map(function(b,j){return '<button type="button" data-i="'+j+'" aria-pressed="'+(j===i)+'">'+b[0]+'</button>';}).join('');
-  bars.innerHTML=bar('Before the drop: energy of motion',[[100,'var(--reflect,#2b66e8)','motion 100']])+
-   bar('After it hits the floor',[[m,'var(--reflect,#2b66e8)',m>=14?'motion '+m:''],[h,'var(--absorb,#d6450b)','heat, sound, bending '+h]]);
-  r.innerHTML=B[i][2]+' About <b>'+m+'</b> of the 100 units stays as motion. The other <b>'+h+'</b> shows up as a little heat, a little sound and some bending. Before: 100. After: '+m+' + '+h+' = <b>100</b>. Nothing was deleted.';
- }
- c.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;i=+b.dataset.i;draw();});
- draw();
-})();
+<figure class="k5i k5i-chart k5i-widget" id="fig-w-41-collision"><div class="k5w" id="w41">
+<p><b>Drop a ball and watch where its energy goes.</b> Pick a ball. These are made-up numbers to show the idea, not measurements.</p>
+<div class="row" id="w41c" role="group" aria-label="Ball"></div>
+<div id="w41b" aria-hidden="true"></div>
+<p id="w41r" aria-live="polite"></p>
+</div>
+<script>
+(function(){
+ var B=[['Clay ball (thud)',4,'It lands with a thud and stays flat.'],['Hard ball (bounce)',60,'It bounces back up, but not as high as it started.'],['Super ball (big bounce)',85,'It bounces almost as high as it started.']];
+ var c=document.getElementById('w41c'),bars=document.getElementById('w41b'),r=document.getElementById('w41r'),i=0;
+ function bar(label,parts){var s='<div style="margin:8px 0"><div style="font-size:.9rem;margin-bottom:4px">'+label+'</div><div style="display:flex;height:26px;border-radius:6px;overflow:hidden;background:var(--surface-2,#e8edf6)">';
+  parts.forEach(function(p){if(p[0]>0)s+='<div style="width:'+p[0]+'%;background:'+p[1]+';color:var(--on-color,#fff);font-size:.8rem;display:flex;align-items:center;justify-content:center;white-space:nowrap">'+p[2]+'</div>';});return s+'</div></div>';}
+ function draw(){
+  var m=B[i][1],h=100-m;
+  c.innerHTML=B.map(function(b,j){return '<button type="button" data-i="'+j+'" aria-pressed="'+(j===i)+'">'+b[0]+'</button>';}).join('');
+  bars.innerHTML=bar('Before the drop: energy of motion',[[100,'var(--reflect,#2b66e8)','motion 100']])+
+   bar('After it hits the floor',[[m,'var(--reflect,#2b66e8)',m>=14?'motion '+m:''],[h,'var(--absorb,#d6450b)','heat, sound, bending '+h]]);
+  r.innerHTML=B[i][2]+' About <b>'+m+'</b> of the 100 units stays as motion. The other <b>'+h+'</b> shows up as a little heat, a little sound and some bending. Before: 100. After: '+m+' + '+h+' = <b>100</b>. Nothing was deleted.';
+ }
+ c.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;i=+b.dataset.i;draw();});
+ draw();
+})();
 </script><figcaption>Pick a ball and see that its energy of motion becomes a little heat, sound and bending. The total stays the same.</figcaption></figure>
 <!--k5images-end id=w-41-collision-->
 
@@ -463,19 +464,23 @@ window.K5W=window.K5W||(function(){
     <article class="aid">
       <span class="tag try">Try it</span>
       <h3>Marble target</h3><p>a marble rolling into a small block target.</p><p class="tip">“Roll the marble. Watch the target move. Energy moved.”</p>
-    </article>
+<!--k5b-start id=b41-target--><p><b>Predict first:</b> If the marble rolls faster, will the block move farther or less far?</p><p><b>You need:</b> a marble, a small block or box, a ruler, a ramp or book.</p><ol><li>Set a ramp. Place the block at the bottom.</li><li>Roll the marble from a low start. Measure how far the block slides.</li><li>Roll from a higher start. Measure again.</li><li>Do each three times.</li></ol><p><b>What you should see:</b> The higher start makes the marble faster, so the block moves farther. Your numbers will differ.</p><p class="cap"><b>Why it matters:</b> Energy of motion moves from the marble to the block.</p><!--k5b-end id=b41-target-->
+</article>
     <article class="aid">
       <span class="tag diagram">Diagram</span>
       <h3>Before and after collision</h3><p>marble before contact, block after contact, arrows showing motion.</p><p class="tip">“Before: marble moves. After: block moves. Energy changed places.”</p>
-    </article>
+<!--k5b-start id=b41-coll--><figure class="k5i k5i-chart" id="fig-b41-coll"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 290" role="img" aria-labelledby="b41-coll-t b41-coll-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="b41-coll-t">A collision passes energy along</title><desc id="b41-coll-d">Two pictures. Before: a marble with an arrow moves toward a block that is not moving. After: the marble has stopped or slowed and the block moves away with an arrow. The energy of motion moved from the marble to the block.</desc><rect x="0" y="0" width="480" height="290" fill="var(--surface, #fff)"/><text x="240" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="var(--ink, #12172B)">A collision passes energy along</text><text x="240" y="58" text-anchor="middle" font-size="15" font-weight="700" fill="var(--ink, #12172B)">Before</text><circle cx="90" cy="100" r="16" fill="var(--reflect, #2B66E8)" stroke="var(--ink, #12172B)" stroke-width="2"/><line x1="112" y1="100" x2="197.4" y2="100.0" stroke="var(--absorb, #D6450B)" stroke-width="5" stroke-linecap="round"/><polygon points="210,100 197.4,107.7 197.4,92.3" fill="var(--absorb, #D6450B)"/><text x="160" y="86" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--ink, #12172B)">moving</text><rect x="260" y="78" width="44" height="44" rx="4" fill="var(--surface-2, #E8EDF6)" stroke="var(--ink, #12172B)" stroke-width="2"/><text x="282" y="144" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--muted, #47506E)">block at rest</text><line x1="20" y1="170" x2="460" y2="170" stroke="var(--line, #D0D8E8)" stroke-width="1" stroke-linecap="round"/><text x="240" y="198" text-anchor="middle" font-size="15" font-weight="700" fill="var(--ink, #12172B)">After</text><circle cx="210" cy="240" r="16" fill="var(--reflect, #2B66E8)" stroke="var(--ink, #12172B)" stroke-width="2"/><text x="210" y="276" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--muted, #47506E)">marble slows</text><rect x="262" y="218" width="44" height="44" rx="4" fill="var(--surface-2, #E8EDF6)" stroke="var(--ink, #12172B)" stroke-width="2"/><line x1="316" y1="240" x2="407.4" y2="240.0" stroke="var(--absorb, #D6450B)" stroke-width="5" stroke-linecap="round"/><polygon points="420,240 407.4,247.7 407.4,232.3" fill="var(--absorb, #D6450B)"/><text x="370" y="226" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--ink, #12172B)">moves!</text><g stroke="var(--ink, #12172B)" stroke-width="2.5" stroke-linecap="round"><line x1="238" y1="222" x2="246" y2="214"/><line x1="242" y1="232" x2="254" y2="230"/></g></svg><figcaption>In a collision, energy of motion can move from one object to another. Some turns into sound and a little heat, which is why you hear a click.</figcaption><details class="k5i-alt"><summary>Text version of this diagram</summary><p>Two pictures. Before: a marble with an arrow moves toward a block that is not moving. After: the marble has stopped or slowed and the block moves away with an arrow. The energy of motion moved from the marble to the block.</p></details></figure><!--k5b-end id=b41-coll-->
+</article>
     <article class="aid">
       <span class="tag data">Data</span>
       <h3>Predict-test table</h3><p>columns for Prediction, Test, What happened.</p><p class="tip">“Ask: What if the marble is faster? What if it is heavier? Predict, then test.”</p>
-    </article>
+<!--k5b-start id=b41-pt--><table style="border-collapse:collapse;font-size:.92rem;margin:6px 0"><thead><tr><th style="border:1px solid var(--line,#d0d8e8);padding:4px 8px;text-align:left">What I change</th><th style="border:1px solid var(--line,#d0d8e8);padding:4px 8px;text-align:left">My prediction</th><th style="border:1px solid var(--line,#d0d8e8);padding:4px 8px;text-align:left">What happened</th></tr></thead><tbody><tr><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">Faster marble</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">block moves farther</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">___ cm</td></tr><tr><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">Heavier marble</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">block moves farther</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">___ cm</td></tr><tr><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">Lighter marble</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">block moves less far</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">___ cm</td></tr></tbody></table><p class="cap">Write your guess first, then test. Sample numbers are not given: fill in your own.</p><!--k5b-end id=b41-pt-->
+</article>
     <article class="aid">
       <span class="tag real">Real world</span>
       <h3>Bumper cars</h3><p>two bumper cars touching and changing direction.</p><p class="tip">“Collisions can change speed and direction.”</p>
-    </article>
+<!--k5b-start id=b41-bump--><figure class="k5i k5i-chart" id="fig-b41-bump"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 250" role="img" aria-labelledby="b41-bump-t b41-bump-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="b41-bump-t">Bumper cars change direction</title><desc id="b41-bump-d">Two bumper cars seen from above. Before, they drive toward each other with arrows. After, they have bounced and move apart in new directions, with short arrows.</desc><rect x="0" y="0" width="480" height="250" fill="var(--surface, #fff)"/><text x="240" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="var(--ink, #12172B)">Bumper cars change direction</text><text x="120" y="58" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink, #12172B)">Before</text><rect x="40" y="90" width="56" height="30" rx="10" fill="var(--red, #D93036)" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="144" y="130" width="56" height="30" rx="10" fill="var(--reflect, #2B66E8)" stroke="var(--ink, #12172B)" stroke-width="2"/><line x1="100" y1="108" x2="118.9" y2="116.1" stroke="var(--absorb, #D6450B)" stroke-width="4" stroke-linecap="round"/><polygon points="128,120 116.5,121.7 121.3,110.5" fill="var(--absorb, #D6450B)"/><line x1="140" y1="146" x2="121.1" y2="137.9" stroke="var(--absorb, #D6450B)" stroke-width="4" stroke-linecap="round"/><polygon points="112,134 123.5,132.3 118.7,143.5" fill="var(--absorb, #D6450B)"/><text x="360" y="58" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink, #12172B)">After</text><rect x="290" y="120" width="56" height="30" rx="10" fill="var(--red, #D93036)" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="394" y="100" width="56" height="30" rx="10" fill="var(--reflect, #2B66E8)" stroke="var(--ink, #12172B)" stroke-width="2"/><line x1="288" y1="140" x2="269.1" y2="154.5" stroke="var(--absorb, #D6450B)" stroke-width="3" stroke-linecap="round"/><polygon points="262,160 265.8,150.2 272.5,158.9" fill="var(--absorb, #D6450B)"/><line x1="452" y1="112" x2="463.3" y2="102.0" stroke="var(--absorb, #D6450B)" stroke-width="3" stroke-linecap="round"/><polygon points="470,96 466.9,106.1 459.6,97.9" fill="var(--absorb, #D6450B)"/><text x="240" y="220" text-anchor="middle" font-size="13.5" font-weight="700" fill="var(--ink, #12172B)">They bump, then bounce away in new directions.</text></svg><figcaption>When bumper cars hit, each car changes speed and direction. Seat belts keep riders safe.</figcaption><details class="k5i-alt"><summary>Text version of this diagram</summary><p>Two bumper cars seen from above. Before, they drive toward each other with arrows. After, they have bounced and move apart in new directions, with short arrows.</p></details></figure><!--k5b-end id=b41-bump-->
+</article>
   </div>
 </section>
 
@@ -497,7 +502,8 @@ window.K5W=window.K5W||(function(){
     <article class="aid">
       <span class="tag try">Try it</span>
       <h3>Cup warming</h3><p>hands wrapped around a warm cup. Adult handles warm water.</p><p class="tip">“Your hands warm up because heat moves into them.”</p>
-    </article>
+<!--k5b-start id=b41-cup--><p><b>Predict first:</b> Will your hands feel warm? Where does the warmth come from?</p><p><b>You need:</b> a mug with warm (not hot) water; an adult pours it.</p><ol><li>Feel the empty mug first.</li><li>Have an adult fill it with warm water.</li><li>Wrap both hands around it for one minute.</li></ol><p><b>Notice:</b> Your hands feel warm and the water cools a little. Heat moved from the warm water, through the mug, into your hands.</p><p class="cap"><b>Why it matters:</b> Heat always moves from the warmer thing to the cooler thing.</p><!--k5b-end id=b41-cup-->
+</article>
     <article class="aid">
       <span class="tag data">Data</span>
       <h3>Temperature change table</h3><p>warm water cooling over time, with a real observation log and provided dataset.</p><p class="tip">“Warm things cool down. Heat leaves them. Real log: start, 5 minutes, 10 minutes. Provided dataset: 40°C, 37°C, 35°C.”</p>
@@ -516,19 +522,23 @@ window.K5W=window.K5W||(function(){
     <article class="aid">
       <span class="tag try">Try it</span>
       <h3>Sound moves rice</h3><p>rice on plastic wrap over a cup or near a speaker; the rice jumps when sound is made.</p><p class="tip">“Make a sound. Watch rice jump. Sound moved energy.”</p>
-    </article>
+<!--k5b-start id=b41-rice--><p><b>Predict first:</b> Will rice jump when you make a loud sound near the wrap?</p><p><b>You need:</b> a bowl, plastic wrap, a rubber band, a pinch of rice, a pot and spoon.</p><ol><li>Stretch plastic wrap tight over the bowl. Put the rubber band on.</li><li>Sprinkle rice on top.</li><li>Hold a pot near the bowl and bang it with a spoon.</li></ol><p><b>Notice:</b> The rice dances. Sound is moving air, and it shakes the plastic and the rice.</p><p class="cap"><b>Why it matters:</b> Sound carries energy from one place to another.</p><!--k5b-end id=b41-rice-->
+</article>
     <article class="aid">
       <span class="tag try">Try it</span>
       <h3>Light warms a hand</h3><p>a hand held near a lamp, not touching it. Adult handles the warm lamp.</p><p class="tip">“Hold your hand near the lamp. It feels warm. Light moved energy.”</p>
-    </article>
+<!--k5b-start id=b41-lamp--><p><b>Predict first:</b> Will your hand feel warm near a lamp, without touching it?</p><p><b>You need:</b> a desk lamp with a regular bulb; an adult switches it on.</p><ol><li>Hold your palm 20 cm below the lamp for 10 seconds.</li><li>Move it away and compare.</li><li>Never touch the bulb; it gets hot.</li></ol><p><b>Notice:</b> Your hand warms up in the light. Light moved energy to your hand.</p><p class="cap"><b>Why it matters:</b> This is how the Sun warms the Earth.</p><!--k5b-end id=b41-lamp-->
+</article>
     <article class="aid">
       <span class="tag data">Data</span>
       <h3>Energy-transfer chart</h3><p>columns for heat, light, sound, and observed change.</p><p class="tip">“Heat warmed the spoon. Light warmed the hand. Sound moved rice.”</p>
-    </article>
+<!--k5b-start id=b41-chart--><table style="border-collapse:collapse;font-size:.92rem;margin:6px 0"><thead><tr><th style="border:1px solid var(--line,#d0d8e8);padding:4px 8px;text-align:left">Energy that moved</th><th style="border:1px solid var(--line,#d0d8e8);padding:4px 8px;text-align:left">How it moved</th><th style="border:1px solid var(--line,#d0d8e8);padding:4px 8px;text-align:left">What changed</th></tr></thead><tbody><tr><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">Heat</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">warm cocoa to spoon</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">spoon got warm</td></tr><tr><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">Light</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">lamp to hand</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">hand got warm</td></tr><tr><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">Sound</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">air to plastic wrap</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">rice moved</td></tr></tbody></table><!--k5b-end id=b41-chart-->
+</article>
     <article class="aid">
       <span class="tag real">Real world</span>
       <h3>Sunlight on snow</h3><p>sunlight shining on a snowy yard.</p><p class="tip">“Sunlight can melt snow. Light energy changes things.”</p>
-    </article>
+<!--k5b-start id=b41-snow--><figure class="k5i k5i-chart" id="fig-b41-snow"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 250" role="img" aria-labelledby="b41-snow-t b41-snow-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="b41-snow-t">Sunlight melts snow</title><desc id="b41-snow-d">The Sun on the left sends rays down onto a snowy yard. A patch of snow under the rays is melting into drops, and the snow in the shade is not.</desc><rect x="0" y="0" width="480" height="250" fill="var(--surface, #fff)"/><text x="240" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="var(--ink, #12172B)">Sunlight melts snow</text><line x1="87.0" y1="90.0" x2="96.0" y2="90.0" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="83.4" y1="103.5" x2="91.2" y2="108.0" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="73.5" y1="113.4" x2="78.0" y2="121.2" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="60.0" y1="117.0" x2="60.0" y2="126.0" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="46.5" y1="113.4" x2="42.0" y2="121.2" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="36.6" y1="103.5" x2="28.8" y2="108.0" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="33.0" y1="90.0" x2="24.0" y2="90.0" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="36.6" y1="76.5" x2="28.8" y2="72.0" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="46.5" y1="66.6" x2="42.0" y2="58.8" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="60.0" y1="63.0" x2="60.0" y2="54.0" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="73.5" y1="66.6" x2="78.0" y2="58.8" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="83.4" y1="76.5" x2="91.2" y2="72.0" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><circle cx="60" cy="90" r="22" fill="var(--beam, #F2A900)" stroke="var(--ink, #12172B)" stroke-width="2"/><line x1="86" y1="112" x2="182.0" y2="182.2" stroke="var(--beam, #F2A900)" stroke-width="3" stroke-linecap="round"/><polygon points="190,188 178.4,187.0 185.6,177.3" fill="var(--beam, #F2A900)"/><line x1="90" y1="124" x2="221.0" y2="183.9" stroke="var(--beam, #F2A900)" stroke-width="3" stroke-linecap="round"/><polygon points="230,188 218.5,189.4 223.5,178.4" fill="var(--beam, #F2A900)"/><line x1="94" y1="136" x2="260.5" y2="185.2" stroke="var(--beam, #F2A900)" stroke-width="3" stroke-linecap="round"/><polygon points="270,188 258.8,191.0 262.2,179.4" fill="var(--beam, #F2A900)"/><polygon points="0,250 0,190 480,190 480,250" fill="var(--surface-2, #E8EDF6)" stroke="var(--line, #D0D8E8)" stroke-width="2" stroke-linejoin="round"/><path d="M170 190 q30 -10 60 0 t60 0 t60 0" fill="none" stroke="var(--reflect, #2B66E8)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><ellipse cx="200" cy="205" rx="4" ry="6" fill="var(--reflect, #2B66E8)"/><ellipse cx="250" cy="205" rx="4" ry="6" fill="var(--reflect, #2B66E8)"/><ellipse cx="310" cy="205" rx="4" ry="6" fill="var(--reflect, #2B66E8)"/><text x="260" y="230" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--reflect, #2B66E8)">sunny: melting</text><text x="70" y="214" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--muted, #47506E)">shade: snow stays</text></svg><figcaption>Light carries energy. When snow soaks up sunlight, it warms and melts.</figcaption><details class="k5i-alt"><summary>Text version of this diagram</summary><p>The Sun on the left sends rays down onto a snowy yard. A patch of snow under the rays is melting into drops, and the snow in the shade is not.</p></details></figure><!--k5b-end id=b41-snow-->
+</article>
   </div>
 </section>
 
@@ -544,7 +554,9 @@ window.K5W=window.K5W||(function(){
 
   <div class="aids">
     <article class="aid"><span class="tag try">Try it</span><h3>What you need</h3><p>toy car or marble, cardboard ramp, books, small block or target, paper cups, spoon, warm water, thermometer if available, flashlight or lamp, plastic wrap, rubber band, small speaker or drum, rice, paper, pencil, tape.</p><p class="cap"><b>Safety:</b> adult handles warm water and warm lamps; do not stare into bright lights; keep water away from Chromebooks.</p></article>
-    <article class="aid"><span class="tag try">Try it</span><h3>What you do</h3><p>Test ramp height and block movement. Run marble collisions and predict outcomes. Observe heat transfer with a warm cup. Observe sound moving rice and light warming a hand. Record real observations.</p></article>
+    <article class="aid"><span class="tag try">Try it</span><h3>What you do</h3><p>Test ramp height and block movement. Run marble collisions and predict outcomes. Observe heat transfer with a warm cup. Observe sound moving rice and light warming a hand. Record real observations.</p>
+<!--k5b-start id=b41-do--><ol><li>Let a toy car roll down a low ramp, then a high one. Measure how far it pushes a block each time (15 minutes).</li><li>Roll a marble into a block. Predict first, then test three times (15 minutes).</li><li>Warm your hands on a warm cup. Bang a pot near rice. Hold a hand under a lamp (15 minutes).</li><li>Write one evidence sentence, such as: "The higher ramp made the car faster, and the block moved farther."</li></ol><p><b>Notice:</b> Faster things carry more energy. Energy can move from one thing to another.</p><p class="cap"><b>Why it matters:</b> Energy is easier to track when you measure what it moves.</p><!--k5b-end id=b41-do-->
+</article>
   </div>
   <details class="deep"><summary>No time or no good weather? Use this data</summary><div class="in"><p class="cap">This data is a backup. It lets you practice reading evidence, but the standard expects you to collect your own when you can.</p><p>if the investigation cannot be run, use ramp data low ramp 2 cm, 2 cm, 3 cm; high ramp 7 cm, 8 cm, 8 cm; cooling data 40°C, 37°C, 35°C.</p></div></details>
   <p class="cap"><b>Near you:</b> Great Lakes winter: heat loss from buildings, snow reflecting sunlight, and sound traveling across cold air. A faster sled can push farther into a snowbank.</p>

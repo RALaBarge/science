@@ -327,37 +327,37 @@ figure.k5i details.k5i-alt summary{cursor:pointer;padding:2px 0}
 :root[data-theme="dark"] figure.k5i img{filter:brightness(.92)}
 @media (prefers-reduced-motion:reduce){figure.k5i,figure.k5i *{transition:none!important;animation:none!important}}
 </style>
-<script>/* Shared helpers for the small K-5 interactives. inject-images.mjs puts this once on every page that has one. */
-window.K5W=window.K5W||(function(){
- var n=0;
- function h(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
- var C={ink:'var(--ink,#12172b)',muted:'var(--muted,#47506e)',line:'var(--line,#d0d8e8)',surf:'var(--surface,#fff)',surf2:'var(--surface-2,#e8edf6)',beam:'var(--beam,#f2a900)',blue:'var(--reflect,#2b66e8)',red:'var(--absorb,#d6450b)',teal:'var(--transmit,#0b7f70)',shade:'var(--shade,#222a4a)',bad:'#d93036'};
- function a(v){return v==null?'':v;}
- var S={
-  c:function(x,y,r,f,s,w){return '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'"/>';},
-  r:function(x,y,w,hh,f,s,rx,sw){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+hh+'" rx="'+(rx||0)+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(sw||2)+'"/>';},
-  l:function(x1,y1,x2,y2,s,w,dash){return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+(s||C.ink)+'" stroke-width="'+(w||2)+'" stroke-linecap="round"'+(dash?' stroke-dasharray="'+dash+'"':'')+'/>';},
-  t:function(x,y,txt,sz,f,anc,wt){return '<text x="'+x+'" y="'+y+'" font-size="'+(sz||13)+'" fill="'+(f||C.ink)+'" text-anchor="'+(anc||'middle')+'"'+(wt?' font-weight="'+wt+'"':'')+'>'+txt+'</text>';},
-  p:function(pts,f,s,w){return '<polygon points="'+pts+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'" stroke-linejoin="round"/>';},
-  a:function(x1,y1,x2,y2,col,w,hd){w=w||4;hd=hd||11;var an=Math.atan2(y2-y1,x2-x1),hx=x2-Math.cos(an)*hd*.9,hy=y2-Math.sin(an)*hd*.9,px=-Math.sin(an)*hd*.55,py=Math.cos(an)*hd*.55;
-   return '<line x1="'+x1+'" y1="'+y1+'" x2="'+hx.toFixed(1)+'" y2="'+hy.toFixed(1)+'" stroke="'+col+'" stroke-width="'+w+'" stroke-linecap="round"/><polygon points="'+x2+','+y2+' '+(hx+px).toFixed(1)+','+(hy+py).toFixed(1)+' '+(hx-px).toFixed(1)+','+(hy-py).toFixed(1)+'" fill="'+col+'"/>';}
- };
- return {
-  h:h,C:C,S:S,
-  chips:function(box,labels,sel,fn,aria){
-   var g=h('div','row');g.setAttribute('role','group');if(aria)g.setAttribute('aria-label',aria);box.appendChild(g);
-   function draw(){g.innerHTML='';labels.forEach(function(l,i){var b=h('button',null,l);b.type='button';b.setAttribute('aria-pressed',String(i===sel));b.onclick=function(){sel=i;draw();fn(i);};g.appendChild(b);});}
-   draw();return {set:function(i){sel=i;draw();},get:function(){return sel;}};},
-  slider:function(box,label,min,max,step,val,fmt,fn){
-   var id='k5s'+(++n),w=h('div'),l=h('label'),inp=h('input');l.setAttribute('for',id);inp.type='range';inp.id=id;inp.min=min;inp.max=max;inp.step=step;inp.value=val;
-   function upd(){l.innerHTML=label+': <span>'+fmt(+inp.value)+'</span>';}
-   inp.oninput=function(){upd();fn(+inp.value);};upd();w.appendChild(l);w.appendChild(inp);box.appendChild(w);inp.refresh=upd;return inp;},
-  btn:function(box,label,fn){var r=box.querySelector('.row.btns');if(!r){r=h('div','row btns');box.appendChild(r);}var b=h('button',null,label);b.type='button';b.onclick=fn;r.appendChild(b);return b;},
-  svg:function(box,vb,label){var s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox',vb);s.setAttribute('role','img');s.setAttribute('aria-label',label||'');box.appendChild(s);return s;},
-  say:function(box){var p=h('p');p.setAttribute('aria-live','polite');box.appendChild(p);return function(t){p.innerHTML=t;};},
-  note:function(box,t){var p=h('p','small',t);box.appendChild(p);return p;}
- };
-})();
+<script>/* Shared helpers for the small K-5 interactives. inject-images.mjs puts this once on every page that has one. */
+window.K5W=window.K5W||(function(){
+ var n=0;
+ function h(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
+ var C={ink:'var(--ink,#12172b)',muted:'var(--muted,#47506e)',line:'var(--line,#d0d8e8)',surf:'var(--surface,#fff)',surf2:'var(--surface-2,#e8edf6)',beam:'var(--beam,#f2a900)',blue:'var(--reflect,#2b66e8)',red:'var(--absorb,#d6450b)',teal:'var(--transmit,#0b7f70)',shade:'var(--shade,#222a4a)',bad:'#d93036'};
+ function a(v){return v==null?'':v;}
+ var S={
+  c:function(x,y,r,f,s,w){return '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'"/>';},
+  r:function(x,y,w,hh,f,s,rx,sw){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+hh+'" rx="'+(rx||0)+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(sw||2)+'"/>';},
+  l:function(x1,y1,x2,y2,s,w,dash){return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+(s||C.ink)+'" stroke-width="'+(w||2)+'" stroke-linecap="round"'+(dash?' stroke-dasharray="'+dash+'"':'')+'/>';},
+  t:function(x,y,txt,sz,f,anc,wt){return '<text x="'+x+'" y="'+y+'" font-size="'+(sz||13)+'" fill="'+(f||C.ink)+'" text-anchor="'+(anc||'middle')+'"'+(wt?' font-weight="'+wt+'"':'')+'>'+txt+'</text>';},
+  p:function(pts,f,s,w){return '<polygon points="'+pts+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'" stroke-linejoin="round"/>';},
+  a:function(x1,y1,x2,y2,col,w,hd){w=w||4;hd=hd||11;var an=Math.atan2(y2-y1,x2-x1),hx=x2-Math.cos(an)*hd*.9,hy=y2-Math.sin(an)*hd*.9,px=-Math.sin(an)*hd*.55,py=Math.cos(an)*hd*.55;
+   return '<line x1="'+x1+'" y1="'+y1+'" x2="'+hx.toFixed(1)+'" y2="'+hy.toFixed(1)+'" stroke="'+col+'" stroke-width="'+w+'" stroke-linecap="round"/><polygon points="'+x2+','+y2+' '+(hx+px).toFixed(1)+','+(hy+py).toFixed(1)+' '+(hx-px).toFixed(1)+','+(hy-py).toFixed(1)+'" fill="'+col+'"/>';}
+ };
+ return {
+  h:h,C:C,S:S,
+  chips:function(box,labels,sel,fn,aria){
+   var g=h('div','row');g.setAttribute('role','group');if(aria)g.setAttribute('aria-label',aria);box.appendChild(g);
+   function draw(){g.innerHTML='';labels.forEach(function(l,i){var b=h('button',null,l);b.type='button';b.setAttribute('aria-pressed',String(i===sel));b.onclick=function(){sel=i;draw();fn(i);};g.appendChild(b);});}
+   draw();return {set:function(i){sel=i;draw();},get:function(){return sel;}};},
+  slider:function(box,label,min,max,step,val,fmt,fn){
+   var id='k5s'+(++n),w=h('div'),l=h('label'),inp=h('input');l.setAttribute('for',id);inp.type='range';inp.id=id;inp.min=min;inp.max=max;inp.step=step;inp.value=val;
+   function upd(){l.innerHTML=label+': <span>'+fmt(+inp.value)+'</span>';}
+   inp.oninput=function(){upd();fn(+inp.value);};upd();w.appendChild(l);w.appendChild(inp);box.appendChild(w);inp.refresh=upd;return inp;},
+  btn:function(box,label,fn){var r=box.querySelector('.row.btns');if(!r){r=h('div','row btns');box.appendChild(r);}var b=h('button',null,label);b.type='button';b.onclick=fn;r.appendChild(b);return b;},
+  svg:function(box,vb,label){var s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox',vb);s.setAttribute('role','img');s.setAttribute('aria-label',label||'');box.appendChild(s);return s;},
+  say:function(box){var p=h('p');p.setAttribute('aria-live','polite');box.appendChild(p);return function(t){p.innerHTML=t;};},
+  note:function(box,t){var p=h('p','small',t);box.appendChild(p);return p;}
+ };
+})();
 </script><!--k5images-css-end-->
 <header class="hero">
   <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="false">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="true">Retro space</button></div>
@@ -380,21 +380,21 @@ window.K5W=window.K5W||(function(){
   <div><p class="kicker">Concept 1</p><h2>Materials have properties we can observe</h2></div>
   <p class="idea">We can sort materials by things like hardness, softness, flexibility, and whether they keep water out.</p>
 <!--k5images-start id=w-2a-bins-->
-<figure class="k5i k5i-chart k5i-widget" id="fig-w-2a-bins"><div class="k5w" id="w2abins"></div>
-<script>(function(){var box=document.getElementById('w2abins'),K=K5W,h=K.h;
- var ITEMS=['Raincoat','Sponge','Rubber band','Glass jar','Paper towel','Steel spoon','Wooden block','Foil sheet'];
- var PROP=[['Waterproof',[1,0,1,1,0,1,0,1]],['Bendy',[1,1,1,0,1,0,0,1]],['Hard',[0,0,0,1,0,1,1,0]]];
- var sel=0,bins=[{},{},{}],list,say,checked=false;
- box.appendChild(h('p',null,'Pick a bin, then tap every item that belongs in it. An item can go in more than one bin. Then press <b>Check my bin</b>.'));
- K.chips(box,PROP.map(function(p){return p[0];}),0,function(i){sel=i;checked=false;draw();say('');},'Which bin');
- list=h('div','row');box.appendChild(list);
- K.btn(box,'Check my bin',check);
- say=K.say(box);
- function draw(){list.innerHTML='';ITEMS.forEach(function(n,i){var b=h('button',null,n);b.type='button';b.setAttribute('aria-pressed',String(!!bins[sel][i]));b.onclick=function(){bins[sel][i]=!bins[sel][i];draw();};list.appendChild(b);});}
- function check(){var ok=[],miss=[],extra=[];PROP[sel][1].forEach(function(v,i){var inb=!!bins[sel][i];if(v&&inb)ok.push(ITEMS[i]);else if(v)miss.push(ITEMS[i]);else if(inb)extra.push(ITEMS[i]);});
-  var tot=PROP[sel][1].reduce(function(a,b){return a+b;},0);
-  say('<b>'+PROP[sel][0]+' bin:</b> you found '+ok.length+' of '+tot+'.'+(miss.length?' Missing: '+miss.join(', ')+'.':'')+(extra.length?' Not '+PROP[sel][0].toLowerCase()+': '+extra.join(', ')+'.':'')+(!miss.length&&!extra.length?' <b>All correct.</b>':'')+' Sort by what a material is <i>like</i>, not by its size.');}
- draw();
+<figure class="k5i k5i-chart k5i-widget" id="fig-w-2a-bins"><div class="k5w" id="w2abins"></div>
+<script>(function(){var box=document.getElementById('w2abins'),K=K5W,h=K.h;
+ var ITEMS=['Raincoat','Sponge','Rubber band','Glass jar','Paper towel','Steel spoon','Wooden block','Foil sheet'];
+ var PROP=[['Waterproof',[1,0,1,1,0,1,0,1]],['Bendy',[1,1,1,0,1,0,0,1]],['Hard',[0,0,0,1,0,1,1,0]]];
+ var sel=0,bins=[{},{},{}],list,say,checked=false;
+ box.appendChild(h('p',null,'Pick a bin, then tap every item that belongs in it. An item can go in more than one bin. Then press <b>Check my bin</b>.'));
+ K.chips(box,PROP.map(function(p){return p[0];}),0,function(i){sel=i;checked=false;draw();say('');},'Which bin');
+ list=h('div','row');box.appendChild(list);
+ K.btn(box,'Check my bin',check);
+ say=K.say(box);
+ function draw(){list.innerHTML='';ITEMS.forEach(function(n,i){var b=h('button',null,n);b.type='button';b.setAttribute('aria-pressed',String(!!bins[sel][i]));b.onclick=function(){bins[sel][i]=!bins[sel][i];draw();};list.appendChild(b);});}
+ function check(){var ok=[],miss=[],extra=[];PROP[sel][1].forEach(function(v,i){var inb=!!bins[sel][i];if(v&&inb)ok.push(ITEMS[i]);else if(v)miss.push(ITEMS[i]);else if(inb)extra.push(ITEMS[i]);});
+  var tot=PROP[sel][1].reduce(function(a,b){return a+b;},0);
+  say('<b>'+PROP[sel][0]+' bin:</b> you found '+ok.length+' of '+tot+'.'+(miss.length?' Missing: '+miss.join(', ')+'.':'')+(extra.length?' Not '+PROP[sel][0].toLowerCase()+': '+extra.join(', ')+'.':'')+(!miss.length&&!extra.length?' <b>All correct.</b>':'')+' Sort by what a material is <i>like</i>, not by its size.');}
+ draw();
 })();</script><figcaption>Sort everyday things into waterproof, bendy and hard bins.</figcaption></figure>
 <!--k5images-end id=w-2a-bins-->
 
@@ -410,7 +410,10 @@ window.K5W=window.K5W||(function(){
     <article class="aid">
       <span class="tag data">Data</span>
       <p>Class property chart.</p><p class="tip">“5 things are waterproof. 3 are not.”</p>
-    </article>
+    <!--k5a-start id=2a-property-chart-->
+<figure class="k5i k5i-chart" id="fig-2a-property-chart"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 206" role="img" aria-labelledby="2a-property-chart-t 2a-property-chart-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="2a-property-chart-t">Our class property chart</title><desc id="2a-property-chart-d">A picture chart. Five squares for things that are waterproof and three squares for things that are not waterproof.</desc><rect width="480" height="206" fill="var(--surface, #fff)"/><text x="120" y="60" text-anchor="middle" font-size="17" font-weight="700" fill="var(--ink, #12172B)">Waterproof</text><text x="370" y="60" text-anchor="middle" font-size="17" font-weight="700" fill="var(--ink, #12172B)">Not waterproof</text><rect x="20" y="84" width="40" height="40" rx="6" fill="var(--reflect, #2B66E8)" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="66" y="84" width="40" height="40" rx="6" fill="var(--reflect, #2B66E8)" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="112" y="84" width="40" height="40" rx="6" fill="var(--reflect, #2B66E8)" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="158" y="84" width="40" height="40" rx="6" fill="var(--reflect, #2B66E8)" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="204" y="84" width="40" height="40" rx="6" fill="var(--reflect, #2B66E8)" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="266" y="84" width="40" height="40" rx="6" fill="var(--absorb, #D6450B)" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="312" y="84" width="40" height="40" rx="6" fill="var(--absorb, #D6450B)" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="358" y="84" width="40" height="40" rx="6" fill="var(--absorb, #D6450B)" stroke="var(--ink, #12172B)" stroke-width="2"/><text x="120" y="170" text-anchor="middle" font-size="30" font-weight="800" fill="var(--ink, #12172B)">5</text><text x="370" y="170" text-anchor="middle" font-size="30" font-weight="800" fill="var(--ink, #12172B)">3</text></svg><figcaption>One square for each thing we tested. 5 things are waterproof. 3 are not. Make your own chart with the things you test.</figcaption><details class="k5i-alt"><summary>Text version of this picture</summary><p>5 waterproof things and 3 not waterproof things.</p></details></figure>
+<!--k5a-end id=2a-property-chart-->
+</article>
   </div>
 </section>
 
@@ -420,8 +423,7 @@ window.K5W=window.K5W||(function(){
   <div class="aids">
     <article class="aid">
       <span class="tag try">Try it</span>
-      <p>Spray water on paper, foil, cloth, and plastic wrap to see which keeps a paper note dry.</p><p class="tip">“Which one keeps the note dry?”</p>
-    </article>
+      <p><b>Guess first:</b> Which material will keep a paper note dry: paper, foil, cloth, or plastic wrap?</p><p><b>What you need:</b> a small spray bottle of water, a tray, paper notes (about the size of a card), pieces of paper, foil, cloth, and plastic wrap.</p><p><b>Do:</b> Put a note on the tray. Cover it with one material. Spray it 3 times from the same distance. Lift the cover and check the note: dry or wet? Do the same with each material, with a fresh note.</p><p><b>Look for:</b> Which materials left the note dry? Which let water through?</p><p><b>What it shows:</b> The best material depends on the job. For keeping dry, we pick a material that keeps water out.</p><p><b>Safety:</b> Wipe up spills so no one slips.</p><p class="tip">“Which one keeps the note dry?”</p></article>
     <article class="aid">
       <span class="tag data">Data</span>
       <p>Table with dry/wet results.</p><p class="tip">“Foil: dry. Cloth: wet.”</p>
@@ -429,7 +431,10 @@ window.K5W=window.K5W||(function(){
     <article class="aid">
       <span class="tag real">Real world</span>
       <p>Raincoats and bike helmets.</p><p class="tip">“A raincoat keeps water out. A helmet is hard outside.”</p>
-    </article>
+    <!--k5a-start id=2a-raincoat-helmet-->
+<figure class="k5i k5i-chart" id="fig-2a-raincoat-helmet"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 252" role="img" aria-labelledby="2a-raincoat-helmet-t 2a-raincoat-helmet-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="2a-raincoat-helmet-t">Materials for jobs</title><desc id="2a-raincoat-helmet-d">A raincoat shown with raindrops that bounce off it, and a bike helmet with a hard shell.</desc><rect width="480" height="252" fill="var(--surface, #fff)"/><rect x="40" y="80" width="130" height="120" rx="14" fill="var(--beam, #F2A900)" stroke="var(--ink, #12172B)" stroke-width="3"/><path d="M40 80 q65 -50 130 0" fill="var(--beam, #F2A900)" stroke="var(--ink, #12172B)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><line x1="105" y1="80" x2="105" y2="200" stroke="var(--ink, #12172B)" stroke-width="3" stroke-linecap="round" stroke-dasharray="4 4"/><line x1="60" y1="60" x2="54" y2="36" stroke="var(--reflect, #2B66E8)" stroke-width="3" stroke-linecap="round"/><line x1="100" y1="60" x2="94" y2="36" stroke="var(--reflect, #2B66E8)" stroke-width="3" stroke-linecap="round"/><line x1="140" y1="60" x2="134" y2="36" stroke="var(--reflect, #2B66E8)" stroke-width="3" stroke-linecap="round"/><rect x="-1.4210854715202004e-14" y="213" width="210.00000000000003" height="24" rx="12" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="105" y="230" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink, #12172B)">raincoat: keeps water out</text><path d="M270 170 q0 -80 80 -80 q80 0 80 80 Z" fill="var(--red, #D93036)" stroke="var(--ink, #12172B)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><line x1="270" y1="170" x2="430" y2="170" stroke="var(--ink, #12172B)" stroke-width="4" stroke-linecap="round"/><rect x="264.6" y="213" width="170.8" height="24" rx="12" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="350" y="230" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink, #12172B)">helmet: hard outside</text></svg><figcaption>A raincoat is made of a waterproof material to keep water out. A helmet is hard outside to protect your head.</figcaption><details class="k5i-alt"><summary>Text version of this picture</summary><p>Raincoat: keeps water out. Helmet: hard outside.</p></details></figure>
+<!--k5a-end id=2a-raincoat-helmet-->
+</article>
   </div>
 </section>
 
@@ -437,23 +442,23 @@ window.K5W=window.K5W||(function(){
   <div><p class="kicker">Concept 3</p><h2>Pieces can be taken apart and rebuilt</h2></div>
   <p class="idea">Many objects are made of pieces, and the same pieces can make a new object.</p>
 <!--k5images-start id=w-2a-pieces-->
-<figure class="k5i k5i-chart k5i-widget" id="fig-w-2a-pieces"><div class="k5w" id="w2apieces"></div>
-<script>(function(){var box=document.getElementById('w2apieces'),K=K5W,S=K.S,C=K.C;
- var COL=[C.blue,C.red,C.teal,C.beam],L=['Tower','House','Train','Square'],svg,say;
- var POS=[[[210,150],[210,120],[210,90],[210,60]],[[165,150],[195,150],[225,150],[195,120]],[[120,150],[160,150],[200,150],[240,150]],[[195,120],[225,120],[195,150],[225,150]]];
- var sel=0;
- box.appendChild(K.h('p',null,'Same four pieces. Build something different each time.'));
- K.chips(box,L,0,function(i){sel=i;draw();},'What to build');
- svg=K.svg(box,'0 0 420 190','Four blocks arranged to make a shape.');
- say=K.say(box);
- function draw(){
-  var s=S.l(40,182,380,182,C.ink,3);
-  POS[sel].forEach(function(p,i){s+=S.r(p[0],p[1],30,30,COL[i],C.ink,3,2.5)+S.t(p[0]+15,p[1]+21,String(i+1),15,'#fff','middle',700);});
-  svg.innerHTML=s;
-  say('A <b>'+L[sel].toLowerCase()+'</b> made of 4 pieces. Count: <b>4 = 4</b>. Taking things apart and building something new does not make pieces appear or disappear.');
-  svg.setAttribute('aria-label','A '+L[sel].toLowerCase()+' built from the same four blocks.');
- }
- draw();
+<figure class="k5i k5i-chart k5i-widget" id="fig-w-2a-pieces"><div class="k5w" id="w2apieces"></div>
+<script>(function(){var box=document.getElementById('w2apieces'),K=K5W,S=K.S,C=K.C;
+ var COL=[C.blue,C.red,C.teal,C.beam],L=['Tower','House','Train','Square'],svg,say;
+ var POS=[[[210,150],[210,120],[210,90],[210,60]],[[165,150],[195,150],[225,150],[195,120]],[[120,150],[160,150],[200,150],[240,150]],[[195,120],[225,120],[195,150],[225,150]]];
+ var sel=0;
+ box.appendChild(K.h('p',null,'Same four pieces. Build something different each time.'));
+ K.chips(box,L,0,function(i){sel=i;draw();},'What to build');
+ svg=K.svg(box,'0 0 420 190','Four blocks arranged to make a shape.');
+ say=K.say(box);
+ function draw(){
+  var s=S.l(40,182,380,182,C.ink,3);
+  POS[sel].forEach(function(p,i){s+=S.r(p[0],p[1],30,30,COL[i],C.ink,3,2.5)+S.t(p[0]+15,p[1]+21,String(i+1),15,'#fff','middle',700);});
+  svg.innerHTML=s;
+  say('A <b>'+L[sel].toLowerCase()+'</b> made of 4 pieces. Count: <b>4 = 4</b>. Taking things apart and building something new does not make pieces appear or disappear.');
+  svg.setAttribute('aria-label','A '+L[sel].toLowerCase()+' built from the same four blocks.');
+ }
+ draw();
 })();</script><figcaption>Build four pieces into a tower, a house, a train or a square.</figcaption></figure>
 <!--k5images-end id=w-2a-pieces-->
 
@@ -469,7 +474,10 @@ window.K5W=window.K5W||(function(){
     <article class="aid">
       <span class="tag real">Real world</span>
       <p>A block or building-toy set.</p><p class="tip">“The same blocks can build a car or a house.”</p>
-    </article>
+    <!--k5a-start id=2a-blocks-->
+<figure class="k5i k5i-chart" id="fig-2a-blocks"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 244" role="img" aria-labelledby="2a-blocks-t 2a-blocks-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="2a-blocks-t">Same blocks, new build</title><desc id="2a-blocks-d">The same five colored blocks built first as a house, then taken apart and built as a car.</desc><rect width="480" height="244" fill="var(--surface, #fff)"/><rect x="40" y="150" width="36" height="36" rx="4" fill="var(--reflect, #2B66E8)" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="76" y="150" width="36" height="36" rx="4" fill="var(--absorb, #D6450B)" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="112" y="150" width="36" height="36" rx="4" fill="var(--beam, #F2A900)" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="58" y="114" width="36" height="36" rx="4" fill="var(--green, #25904F)" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="94" y="114" width="36" height="36" rx="4" fill="var(--red, #D93036)" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="60.56" y="203" width="68.88" height="24" rx="12" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="95" y="220" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink, #12172B)">a house</text><line x1="180" y1="160" x2="219.2" y2="160" stroke="var(--ink, #12172B)" stroke-width="5" stroke-linecap="round"/><polygon points="230,160 219.2,166.6 219.2,153.4" fill="var(--ink, #12172B)"/><rect x="270" y="150" width="36" height="36" rx="4" fill="var(--reflect, #2B66E8)" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="306" y="150" width="36" height="36" rx="4" fill="var(--absorb, #D6450B)" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="342" y="150" width="36" height="36" rx="4" fill="var(--beam, #F2A900)" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="306" y="114" width="36" height="36" rx="4" fill="var(--green, #25904F)" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="378" y="150" width="36" height="36" rx="4" fill="var(--red, #D93036)" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="313.4" y="203" width="53.2" height="24" rx="12" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="340" y="220" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink, #12172B)">a car</text><circle cx="285" cy="196" r="9" fill="var(--ink, #12172B)" stroke="none" stroke-width="1.5"/><circle cx="345" cy="196" r="9" fill="var(--ink, #12172B)" stroke="none" stroke-width="1.5"/></svg><figcaption>The same blocks can build a car or a house. The pieces stay the same, and the new shape is what changes.</figcaption><details class="k5i-alt"><summary>Text version of this picture</summary><p>The same five blocks make a house, then a car.</p></details></figure>
+<!--k5a-end id=2a-blocks-->
+</article>
   </div>
 </section>
 
@@ -483,16 +491,17 @@ window.K5W=window.K5W||(function(){
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
-      <p>Some changes have an “undo,” and some do not.</p><p class="tip">“Some changes can undo. Some cannot.”</p>
-    </article>
+      <p>Some changes have an <b>“undo”</b> button, and some do not. <b>Melting ice</b> = a change with undo (freeze it again). <b>Cooking an egg</b> = no undo (it will not turn raw again).</p><p>Ask: if I cool it or warm it back, will it go back?</p><p class="tip">“Some changes can undo. Some cannot.”</p></article>
     <article class="aid">
       <span class="tag try">Try it</span>
-      <p>Watch ice melt into water, then refreeze if possible. Adult may use warm water. Compare with a photo or teacher demo of a cooked egg and toast.</p><p class="tip">“Ice becomes water. Water can become ice again.”</p>
-    </article>
+      <p><b>Guess first:</b> Will the ice turn back into ice after it melts? Will a cooked egg or toast turn back?</p><p><b>What you need:</b> an ice cube in a small cup, a freezer or cold spot, butter or crayon wax, pictures of a cooked egg and toast.</p><p><b>Do:</b> Put an ice cube in a cup and let it melt (an adult may use warm water). Look at the water. Put the cup in a freezer and check again later. Look at pictures of an egg before and after cooking, and bread before and after toasting.</p><p><b>Look for:</b> Ice to water to ice again: it goes back. Egg or toast: it does not go back.</p><p><b>What it shows:</b> Some heating or cooling changes can be undone, and some cannot.</p><p><b>Safety:</b> An adult handles anything warm. No tasting science materials.</p><p class="tip">“Ice becomes water. Water can become ice again.”</p></article>
     <article class="aid">
       <span class="tag data">Data</span>
       <p>Argument table: “Can it change back?” with evidence.</p><p class="tip">“Can it change back? What is your evidence?”</p>
-    </article>
+    <!--k5a-start id=2a-argument-table-->
+<figure class="k5i k5i-chart" id="fig-2a-argument-table"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 266" role="img" aria-labelledby="2a-argument-table-t 2a-argument-table-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="2a-argument-table-t">Can it change back?</title><desc id="2a-argument-table-d">A table. Ice melting can change back, because it freezes again. Butter melting can change back. A cooked egg cannot change back. Toasted bread cannot change back.</desc><rect width="480" height="266" fill="var(--surface, #fff)"/><text x="16" y="62" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink, #12172B)">What changed</text><text x="243" y="62" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink, #12172B)">Can it change back?</text><text x="388" y="62" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink, #12172B)">Evidence</text><rect x="8" y="72" width="460" height="38" rx="8" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="16" y="96" text-anchor="start" font-size="14" font-weight="700" fill="var(--ink, #12172B)">Ice melts</text><path d="M235 89 l6 7 l11 -15" fill="none" stroke="var(--green, #25904F)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><text x="388" y="96" text-anchor="middle" font-size="14" font-weight="400" fill="var(--ink, #12172B)">it freezes again</text><rect x="8" y="116" width="460" height="38" rx="8" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="16" y="140" text-anchor="start" font-size="14" font-weight="700" fill="var(--ink, #12172B)">Butter melts</text><path d="M235 133 l6 7 l11 -15" fill="none" stroke="var(--green, #25904F)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><text x="388" y="140" text-anchor="middle" font-size="14" font-weight="400" fill="var(--ink, #12172B)">it gets hard when cold</text><rect x="8" y="160" width="460" height="38" rx="8" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="16" y="184" text-anchor="start" font-size="14" font-weight="700" fill="var(--ink, #12172B)">Egg is cooked</text><path d="M236 172 l14 14 M250 172 l-14 14" fill="none" stroke="var(--red, #D93036)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><text x="388" y="184" text-anchor="middle" font-size="14" font-weight="400" fill="var(--ink, #12172B)">it stays cooked</text><rect x="8" y="204" width="460" height="38" rx="8" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="16" y="228" text-anchor="start" font-size="14" font-weight="700" fill="var(--ink, #12172B)">Bread is toasted</text><path d="M236 216 l14 14 M250 216 l-14 14" fill="none" stroke="var(--red, #D93036)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><text x="388" y="228" text-anchor="middle" font-size="14" font-weight="400" fill="var(--ink, #12172B)">it stays toasted</text></svg><figcaption>Our argument: a claim plus evidence. “Ice can change back. My evidence: it froze again.”</figcaption><details class="k5i-alt"><summary>Text version of this picture</summary><p>Ice and butter can change back; cooked egg and toast cannot.</p></details></figure>
+<!--k5a-end id=2a-argument-table-->
+</article>
     <article class="aid">
       <span class="tag real">Real world</span>
       <p>Michigan snow melts and can freeze again.</p><p class="tip">“Snow melts. Puddles can freeze.”</p>
@@ -509,7 +518,12 @@ window.K5W=window.K5W||(function(){
 
   <div class="aids">
     <article class="aid"><span class="tag try">Try it</span><h3>What you need</h3><p>assorted safe objects (wood, plastic, metal, fabric, paper, rubber), tray, paper notes, spray bottle, foil, cloth, plastic wrap, blocks/beads/paper chain, ice cube, small cup, butter or crayon wax, picture cards for cooked egg/toast, paper, crayons.</p><p class="cap"><b>Safety:</b> Adult handles warm things. No tasting. Wash hands after handling materials, especially food items. No coin cells or magnets are required.</p></article>
-    <article class="aid"><span class="tag try">Try it</span><h3>What you do</h3><p>Sort materials, run the Rainproof Note fair test, take apart and rebuild pieces, observe ice/butter changes, and construct an argument about reversible and irreversible changes.</p></article>
+    <article class="aid"><span class="tag try">Try it</span>
+      <h3>What you do</h3>
+      <p><b>1. Sort (10 minutes).</b> Sort objects by hard or soft, bendy or stiff, waterproof or not.</p>
+      <p><b>2. Rainproof Note (20 minutes).</b> Pick two materials. Spray each 3 times, same distance. Record dry or wet. Choose the better one.</p>
+      <p><b>3. Take apart and rebuild (10 minutes).</b> Use blocks or beads to make something new from the same pieces.</p>
+      <p><b>4. Heating and cooling (15 minutes).</b> Watch ice or butter change, then argue: can it change back? What is your evidence?</p></article>
   </div>
   <details class="deep"><summary>No time or no good weather? Use this data</summary><div class="in"><p class="cap">This data is a backup. It lets you practice reading evidence, but the standard expects you to collect your own when you can.</p><p>Real observation log is preferred; this dataset guarantees evidence for 2-PS1-4 if you cannot melt/refreeze live. | Change | Before | After | Can it change back? | Evidence sentence | |---|---|---|---|---| | Ice cube | Solid ice | Water | Yes | The water froze back into ice. | | Butter | Solid butter | Melted butter | Yes | It hardened again when cooled. | | Egg | Raw egg | Cooked egg | No | It stayed solid after cooling. | | Bread | Soft bread | Toast | No | It did not become bread again. | Optional Rainproof Note backup data: | Material | Try 1 | Try 2 | Try 3 | Result | |---|---|---|---|---| | Plastic wrap | Dry | Dry | Dry | Meets the goal | | Foil | Dry | Dry | Dry | Meets the goal | | Cloth | Damp | Wet | Wet | Not good | | Paper | Wet | Wet | Wet | Not good |</p></div></details>
   <p class="cap"><b>Near you:</b> Michigan materials include copper, iron, salt, sand, wood, and water. Winter ice and snow show heating/cooling changes. Child text: “Michigan has metal, wood, water, and ice.”</p>

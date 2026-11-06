@@ -76,6 +76,8 @@ h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
   background:color-mix(in srgb,var(--tint) 24%,var(--surface));border:1px solid color-mix(in srgb,var(--tint) 55%,var(--line))}
 .tag.analogy{--tint:var(--beam)} .tag.diagram{--tint:var(--reflect)} .tag.try{--tint:var(--transmit)} .tag.data{--tint:var(--absorb)} .tag.real{--tint:var(--muted)}
 .stage{background:var(--surface-2);border-radius:10px;padding:6px}
+.tryguide{display:grid;gap:5px;font-size:.95rem;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.tryguide p{margin:0}.tryguide b{color:var(--ink)}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{font-size:.92rem;padding:7px 13px;min-height:40px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer}
 .chip:hover{border-color:var(--ink)}
@@ -316,6 +318,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
     <article class="aid">
       <span class="tag try">Try it</span>
       <h3>Zoom out</h3>
+      <div class="tryguide"><p><b>Predict.</b> Your body is built in levels. Put these in order from smallest to largest before you click: organ, cell, organism, tissue, organ system. Which level do you think the heart belongs to?</p><p><b>Do.</b> Press each level button from Cell to Organism. For each one, read the sentence and look at how the picture changes: what is the new level made of?</p><p><b>Notice.</b> Each level is made of many of the one before it: cells make tissue, tissues make an organ (the heart has muscle, nerve and lining tissue), organs team up as a system (the circulatory system), and the systems together make you.</p><p><b>Why it matters.</b> When a body part fails, doctors ask at which level the problem is: a single cell (a mutation), a tissue (a torn muscle), an organ (a damaged heart), or a whole system. Knowing the levels tells you where to look.</p></div>
       <div class="chips" id="lvChips" role="group" aria-label="Level"></div>
       <div class="stage"><svg id="lvSvg" viewBox="0 0 480 190" role="img" aria-label="Diagram of the selected level of body organization."></svg></div>
       <p class="readout" id="lvR" aria-live="polite"></p>
@@ -356,6 +359,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
     <article class="aid">
       <span class="tag try">Try it</span>
       <h3>Exercise and your heart</h3>
+      <div class="tryguide"><p><b>Predict.</b> How many times does your heart beat each minute when you are sleeping, and when you sprint? Predict a number for each, then check.</p><p><b>Do.</b> Press Sleeping, then Sitting, Walking, Jogging, and Sprinting. Watch the heartbeat trace speed up and read the beats per minute and beats per second.</p><p><b>Notice.</b> The beat rate climbs from about 60 per minute asleep to about 190 when sprinting. The trace gets more crowded: the pattern stays the same, just faster. At 60 beats a minute the heart beats once per second.</p><p><b>Why it matters.</b> Working muscles need more oxygen and nutrients, and they make more waste. The heart speeds up to deliver blood faster, with the lungs breathing faster to match. This is a feedback loop that keeps the body in balance.</p></div>
       <div class="chips" id="exChips" role="group" aria-label="Activity"></div>
       <div class="stage"><svg id="ecg" viewBox="0 0 480 130" role="img" aria-label="Heartbeat trace for the chosen activity."></svg></div>
       <p class="readout" id="exR" aria-live="polite"></p>

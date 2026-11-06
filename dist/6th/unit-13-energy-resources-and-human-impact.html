@@ -77,6 +77,8 @@ h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
 .tag.analogy{--tint:var(--beam)} .tag.diagram{--tint:var(--reflect)} .tag.try{--tint:var(--transmit)} .tag.data{--tint:var(--absorb)} .tag.real{--tint:var(--muted)} .tag.build{--tint:#8A63D2}
 ol.steps{margin:4px 0 0;padding-left:1.3em;display:grid;gap:6px}
 .stage{background:var(--surface-2);border-radius:10px;padding:6px}
+.tryguide{display:grid;gap:5px;font-size:.95rem;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.tryguide p{margin:0}.tryguide b{color:var(--ink)}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{font-size:.92rem;padding:7px 13px;min-height:40px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer}
 .chip:hover{border-color:var(--ink)}
@@ -327,10 +329,26 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
       <div class="items" id="rnSort"></div>
       <p class="score" id="rnS">0 of 6 correct</p>
     </article>
-    <article class="aid">
+    <article class="aid wide">
       <span class="tag real">Real world</span>
       <h3>Michigan's giant battery</h3>
       <p>The Ludington Pumped Storage Plant on Lake Michigan (built 1973) was the largest in the world when it was built and is still one of the biggest in the U.S. At night, when power is cheap, it pumps water uphill into a reservoir; when demand is high it lets the water fall back through turbines. It stores energy as <b>gravitational potential energy</b> (Unit 3).</p>
+      <div class="stage"><svg viewBox="0 0 640 250" role="img" aria-label="Side view of a pumped storage plant. An upper reservoir sits on a hill. A tunnel runs down to a powerhouse beside a lower reservoir. At night, a blue arrow shows water pumped uphill using cheap electricity. During the day, an orange arrow shows water falling back down through the tunnel and turbines to make electricity."><title>How a pumped storage plant works</title><desc>Two reservoirs at different heights. Night: surplus electricity runs pumps that lift water to the upper reservoir, storing energy as gravitational potential energy. Day: water is released, falls through turbines, and makes electricity when demand is high.</desc>
+        <defs><marker id="mPmpB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10z" style="fill:var(--reflect)"/></marker><marker id="mPmpO" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10z" style="fill:var(--absorb)"/></marker></defs>
+        <path d="M0 210 L0 150 L130 150 L250 40 L500 40 L520 70 L640 70 L640 210Z" style="fill:var(--muted);fill-opacity:.35;stroke:var(--ink);stroke-width:2.5"/>
+        <path d="M250 40 L270 62 L480 62 L500 40Z" style="fill:var(--reflect);fill-opacity:.6;stroke:var(--ink);stroke-width:2"/>
+        <text x="375" y="32" font-size="13" text-anchor="middle" style="font-weight:700">Upper reservoir (water stored high up)</text>
+        <rect x="0" y="150" width="120" height="60" style="fill:var(--reflect);fill-opacity:.6;stroke:var(--ink);stroke-width:2"/>
+        <text x="60" y="186" font-size="13" text-anchor="middle" style="font-weight:700">Lake Michigan</text><text x="60" y="202" font-size="11" text-anchor="middle">(lower reservoir)</text>
+        <path d="M262 62 L150 160" style="fill:none;stroke:var(--ink);stroke-width:12;stroke-linecap:round"/><path d="M262 62 L150 160" style="fill:none;stroke:var(--surface);stroke-width:7;stroke-linecap:round"/>
+        <rect x="118" y="140" width="48" height="36" rx="5" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/><text x="142" y="163" font-size="11" text-anchor="middle" style="font-weight:700;fill:var(--beam-ink)">turbine</text>
+        <path d="M168 128 L246 52" style="fill:none;stroke:var(--reflect);stroke-width:5" marker-end="url(#mPmpB)"/>
+        <path d="M284 78 L196 156" style="fill:none;stroke:var(--absorb);stroke-width:5;stroke-dasharray:9 7" marker-end="url(#mPmpO)"/>
+        <g font-size="13" style="font-weight:700"><text x="300" y="104" style="fill:var(--reflect)">NIGHT: cheap power pumps water uphill</text><text x="300" y="128" style="fill:var(--absorb)">DAY: water falls, turbines make electricity</text></g>
+        <text x="300" y="158" font-size="12">Stored energy = gravitational potential</text>
+        <text x="300" y="174" font-size="12">energy of the water up high. Like a battery:</text>
+        <text x="300" y="190" font-size="12">charge when cheap, use when demand is high.</text>
+      </svg></div>
     </article>
   </div>
 </section>
@@ -381,14 +399,29 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
   <div><p class="kicker">Concept 3 · Renewable energy</p><h2>Sun, wind, and water</h2></div>
   <p class="idea">Renewable sources convert natural flows of energy into electricity. Each has strengths and limits: <mark>solar</mark> works only when the Sun is up, and wind power grows with the <mark>cube of wind speed</mark>.</p>
   <div class="aids">
-    <article class="aid">
+    <article class="aid wide">
       <span class="tag analogy">Analogy</span>
       <h3>A pinwheel in the wind</h3>
       <p>A pinwheel spins faster in a stronger breeze. A wind turbine works the same way, spinning a generator. Doubling the wind speed doesn't double the power: it gives <b>eight times</b> more (2³), because more air hits the blades <i>and</i> each bit of air carries more energy.</p>
+      <div class="stage"><svg viewBox="0 0 640 235" role="img" aria-label="Left: a toy pinwheel and a large wind turbine side by side, both spun by the same wind. Right: bars showing wind power grows with the cube of speed: wind at 5 meters per second gives 1 unit of power, 10 meters per second gives 8 units, and 15 meters per second gives 27 units."><title>Pinwheel, turbine, and the speed-cubed rule</title><desc>A pinwheel and a turbine both turn faster in stronger wind. The bars show that doubling wind speed gives eight times the power, and tripling gives twenty-seven times.</desc>
+        <rect x="10" y="8" width="300" height="190" rx="10" style="fill:var(--surface);stroke:var(--ink);stroke-width:2.5"/>
+        <line x1="70" y1="100" x2="70" y2="180" style="stroke:#8B5E3C;stroke-width:4"/><line x1="70.0" y1="100.0" x2="98.2" y2="110.3" style="stroke:var(--absorb);stroke-width:9;stroke-linecap:round"/><line x1="70.0" y1="100.0" x2="59.7" y2="128.2" style="stroke:var(--absorb);stroke-width:9;stroke-linecap:round"/><line x1="70.0" y1="100.0" x2="41.8" y2="89.7" style="stroke:var(--absorb);stroke-width:9;stroke-linecap:round"/><line x1="70.0" y1="100.0" x2="80.3" y2="71.8" style="stroke:var(--absorb);stroke-width:9;stroke-linecap:round"/><circle cx="70" cy="100" r="4" style="fill:var(--ink)"/>
+        <line x1="200" y1="60" x2="200" y2="182" style="stroke:var(--ink);stroke-width:7"/><line x1="200.0" y1="60.0" x2="200.0" y2="10.0" style="stroke:var(--transmit);stroke-width:6;stroke-linecap:round"/><line x1="200.0" y1="60.0" x2="243.3" y2="85.0" style="stroke:var(--transmit);stroke-width:6;stroke-linecap:round"/><line x1="200.0" y1="60.0" x2="156.7" y2="85.0" style="stroke:var(--transmit);stroke-width:6;stroke-linecap:round"/><circle cx="200" cy="60" r="6" style="fill:var(--ink)"/>
+        <g style="stroke:var(--reflect);stroke-width:3;stroke-linecap:round"><path d="M18 40 H44 M18 62 H52 M18 84 H40 M120 90 H150 M120 120 H152 M120 146 H146" marker-end="url(#mInk)"/></g>
+        <text x="70" y="196" font-size="12" text-anchor="middle" style="font-weight:700">pinwheel</text><text x="200" y="196" font-size="12" text-anchor="middle" style="font-weight:700">turbine</text>
+        <text x="26" y="22" font-size="11" style="fill:var(--muted)">wind →</text>
+        <g transform="translate(330 8)"><rect width="300" height="190" rx="10" style="fill:var(--surface);stroke:var(--ink);stroke-width:2.5"/>
+        <line x1="50" y1="160" x2="285" y2="160" style="stroke:var(--ink);stroke-width:2"/><line x1="50" y1="20" x2="50" y2="160" style="stroke:var(--ink);stroke-width:2"/>
+        <rect x="72" y="155.4" width="52" height="4.6" rx="3" style="fill:var(--transmit)"/><text x="98" y="149.4" font-size="13" text-anchor="middle" style="font-weight:700">1×</text><text x="98" y="178" font-size="12" text-anchor="middle">5 m/s</text><rect x="144" y="123.2" width="52" height="36.8" rx="3" style="fill:var(--transmit)"/><text x="170" y="117.2" font-size="13" text-anchor="middle" style="font-weight:700">8×</text><text x="170" y="178" font-size="12" text-anchor="middle">10 m/s</text><rect x="216" y="35.80000000000001" width="52" height="124.19999999999999" rx="3" style="fill:var(--transmit)"/><text x="242" y="29.80000000000001" font-size="13" text-anchor="middle" style="font-weight:700">27×</text><text x="242" y="178" font-size="12" text-anchor="middle">15 m/s</text>
+        <text x="14" y="94" font-size="12" text-anchor="middle" transform="rotate(-90 14 94)" style="font-weight:700">power (times the 5 m/s power)</text></g>
+        <text x="480" y="224" font-size="12" text-anchor="middle" style="fill:var(--muted)">Double the wind: 2³ = 8 times the power.</text>
+      </svg></div>
+      <p class="cap">The cube rule holds until the turbine reaches its maximum; the activity next to this one shows where it levels off.</p>
     </article>
     <article class="aid">
       <span class="tag try">Try it</span>
       <h3>Wind turbine power</h3>
+      <div class="tryguide"><p><b>Predict.</b> If the wind speed doubles, will the turbine make twice the power? Guess what the turbine does in a gentle breeze, and in a storm.</p><p><b>Do.</b> Drag the wind speed from 0 up to 28 m/s. Stop at 3, 6, 12 and 25 and read the percent of maximum power. Compare the power at 6 m/s with the power at 12 m/s.</p><p><b>Notice.</b> Under about 3 m/s the blades make no power. Between 3 and 12 m/s the power rises steeply: at 6 m/s you get about one eighth (12.5%) of the maximum, and at 12 m/s you get all of it. Above 12 m/s it stays at its maximum, and above about 25 m/s it shuts down.</p><p><b>Why it matters.</b> Power rises with the cube of wind speed, so a site with a little more wind makes far more electricity. The shutoff protects the machine, and the flat top means wind farms need other sources or storage when it is calm or stormy.</p></div>
       <div class="stage"><svg id="wnSvg" viewBox="0 0 480 240" role="img" aria-label="Turbine power rises with wind speed, levels off at the rated speed, and shuts down at very high wind."></svg></div>
       <div class="ctl"><label for="wnV">Wind speed: <span id="wnVV"></span> m/s</label><input id="wnV" type="range" min="0" max="28" step="1" value="8"></div>
       <p class="readout" id="wnR" aria-live="polite"></p>
@@ -474,6 +507,15 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
       <span class="tag analogy">Analogy</span>
       <h3>Picking a phone</h3>
       <p>You compare price, battery, camera, and size, and what matters most depends on you. A decision matrix does the same for power plants: score each option on each criterion, weight the criteria by importance, and add up.</p>
+      <div class="tw"><table class="tbl" style="min-width:380px">
+        <thead><tr><th>Criterion</th><th>Weight</th><th>Phone A</th><th>Phone B</th></tr></thead>
+        <tbody>
+          <tr><td><b>Price</b> (5 = cheap)</td><td>3</td><td>5</td><td>2</td></tr>
+          <tr><td><b>Battery</b></td><td>2</td><td>3</td><td>5</td></tr>
+          <tr><td><b>Camera</b></td><td>1</td><td>2</td><td>5</td></tr>
+          <tr><td><b>Total</b> (weight &times; score, added)</td><td></td><td><b>23</b></td><td><b>21</b></td></tr>
+        </tbody></table></div>
+      <p class="cap"><b>Worked example:</b> Phone A = 3&times;5 + 2&times;3 + 1&times;2 = 23. Phone B = 3&times;2 + 2&times;5 + 1&times;5 = 21. A wins. Now say the camera matters most to you and you change its weight to 3: A = 15 + 6 + 6 = 27, B = 6 + 10 + 15 = 31, and B wins. Same scores, different weights, different answer. The next activity does this for power sources.</p>
     </article>
     <article class="aid wide">
       <span class="tag try">Try it</span>

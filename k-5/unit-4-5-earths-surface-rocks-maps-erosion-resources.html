@@ -327,37 +327,37 @@ figure.k5i details.k5i-alt summary{cursor:pointer;padding:2px 0}
 :root[data-theme="dark"] figure.k5i img{filter:brightness(.92)}
 @media (prefers-reduced-motion:reduce){figure.k5i,figure.k5i *{transition:none!important;animation:none!important}}
 </style>
-<script>/* Shared helpers for the small K-5 interactives. inject-images.mjs puts this once on every page that has one. */
-window.K5W=window.K5W||(function(){
- var n=0;
- function h(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
- var C={ink:'var(--ink,#12172b)',muted:'var(--muted,#47506e)',line:'var(--line,#d0d8e8)',surf:'var(--surface,#fff)',surf2:'var(--surface-2,#e8edf6)',beam:'var(--beam,#f2a900)',blue:'var(--reflect,#2b66e8)',red:'var(--absorb,#d6450b)',teal:'var(--transmit,#0b7f70)',shade:'var(--shade,#222a4a)',bad:'#d93036'};
- function a(v){return v==null?'':v;}
- var S={
-  c:function(x,y,r,f,s,w){return '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'"/>';},
-  r:function(x,y,w,hh,f,s,rx,sw){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+hh+'" rx="'+(rx||0)+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(sw||2)+'"/>';},
-  l:function(x1,y1,x2,y2,s,w,dash){return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+(s||C.ink)+'" stroke-width="'+(w||2)+'" stroke-linecap="round"'+(dash?' stroke-dasharray="'+dash+'"':'')+'/>';},
-  t:function(x,y,txt,sz,f,anc,wt){return '<text x="'+x+'" y="'+y+'" font-size="'+(sz||13)+'" fill="'+(f||C.ink)+'" text-anchor="'+(anc||'middle')+'"'+(wt?' font-weight="'+wt+'"':'')+'>'+txt+'</text>';},
-  p:function(pts,f,s,w){return '<polygon points="'+pts+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'" stroke-linejoin="round"/>';},
-  a:function(x1,y1,x2,y2,col,w,hd){w=w||4;hd=hd||11;var an=Math.atan2(y2-y1,x2-x1),hx=x2-Math.cos(an)*hd*.9,hy=y2-Math.sin(an)*hd*.9,px=-Math.sin(an)*hd*.55,py=Math.cos(an)*hd*.55;
-   return '<line x1="'+x1+'" y1="'+y1+'" x2="'+hx.toFixed(1)+'" y2="'+hy.toFixed(1)+'" stroke="'+col+'" stroke-width="'+w+'" stroke-linecap="round"/><polygon points="'+x2+','+y2+' '+(hx+px).toFixed(1)+','+(hy+py).toFixed(1)+' '+(hx-px).toFixed(1)+','+(hy-py).toFixed(1)+'" fill="'+col+'"/>';}
- };
- return {
-  h:h,C:C,S:S,
-  chips:function(box,labels,sel,fn,aria){
-   var g=h('div','row');g.setAttribute('role','group');if(aria)g.setAttribute('aria-label',aria);box.appendChild(g);
-   function draw(){g.innerHTML='';labels.forEach(function(l,i){var b=h('button',null,l);b.type='button';b.setAttribute('aria-pressed',String(i===sel));b.onclick=function(){sel=i;draw();fn(i);};g.appendChild(b);});}
-   draw();return {set:function(i){sel=i;draw();},get:function(){return sel;}};},
-  slider:function(box,label,min,max,step,val,fmt,fn){
-   var id='k5s'+(++n),w=h('div'),l=h('label'),inp=h('input');l.setAttribute('for',id);inp.type='range';inp.id=id;inp.min=min;inp.max=max;inp.step=step;inp.value=val;
-   function upd(){l.innerHTML=label+': <span>'+fmt(+inp.value)+'</span>';}
-   inp.oninput=function(){upd();fn(+inp.value);};upd();w.appendChild(l);w.appendChild(inp);box.appendChild(w);inp.refresh=upd;return inp;},
-  btn:function(box,label,fn){var r=box.querySelector('.row.btns');if(!r){r=h('div','row btns');box.appendChild(r);}var b=h('button',null,label);b.type='button';b.onclick=fn;r.appendChild(b);return b;},
-  svg:function(box,vb,label){var s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox',vb);s.setAttribute('role','img');s.setAttribute('aria-label',label||'');box.appendChild(s);return s;},
-  say:function(box){var p=h('p');p.setAttribute('aria-live','polite');box.appendChild(p);return function(t){p.innerHTML=t;};},
-  note:function(box,t){var p=h('p','small',t);box.appendChild(p);return p;}
- };
-})();
+<script>/* Shared helpers for the small K-5 interactives. inject-images.mjs puts this once on every page that has one. */
+window.K5W=window.K5W||(function(){
+ var n=0;
+ function h(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
+ var C={ink:'var(--ink,#12172b)',muted:'var(--muted,#47506e)',line:'var(--line,#d0d8e8)',surf:'var(--surface,#fff)',surf2:'var(--surface-2,#e8edf6)',beam:'var(--beam,#f2a900)',blue:'var(--reflect,#2b66e8)',red:'var(--absorb,#d6450b)',teal:'var(--transmit,#0b7f70)',shade:'var(--shade,#222a4a)',bad:'#d93036'};
+ function a(v){return v==null?'':v;}
+ var S={
+  c:function(x,y,r,f,s,w){return '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'"/>';},
+  r:function(x,y,w,hh,f,s,rx,sw){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+hh+'" rx="'+(rx||0)+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(sw||2)+'"/>';},
+  l:function(x1,y1,x2,y2,s,w,dash){return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+(s||C.ink)+'" stroke-width="'+(w||2)+'" stroke-linecap="round"'+(dash?' stroke-dasharray="'+dash+'"':'')+'/>';},
+  t:function(x,y,txt,sz,f,anc,wt){return '<text x="'+x+'" y="'+y+'" font-size="'+(sz||13)+'" fill="'+(f||C.ink)+'" text-anchor="'+(anc||'middle')+'"'+(wt?' font-weight="'+wt+'"':'')+'>'+txt+'</text>';},
+  p:function(pts,f,s,w){return '<polygon points="'+pts+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'" stroke-linejoin="round"/>';},
+  a:function(x1,y1,x2,y2,col,w,hd){w=w||4;hd=hd||11;var an=Math.atan2(y2-y1,x2-x1),hx=x2-Math.cos(an)*hd*.9,hy=y2-Math.sin(an)*hd*.9,px=-Math.sin(an)*hd*.55,py=Math.cos(an)*hd*.55;
+   return '<line x1="'+x1+'" y1="'+y1+'" x2="'+hx.toFixed(1)+'" y2="'+hy.toFixed(1)+'" stroke="'+col+'" stroke-width="'+w+'" stroke-linecap="round"/><polygon points="'+x2+','+y2+' '+(hx+px).toFixed(1)+','+(hy+py).toFixed(1)+' '+(hx-px).toFixed(1)+','+(hy-py).toFixed(1)+'" fill="'+col+'"/>';}
+ };
+ return {
+  h:h,C:C,S:S,
+  chips:function(box,labels,sel,fn,aria){
+   var g=h('div','row');g.setAttribute('role','group');if(aria)g.setAttribute('aria-label',aria);box.appendChild(g);
+   function draw(){g.innerHTML='';labels.forEach(function(l,i){var b=h('button',null,l);b.type='button';b.setAttribute('aria-pressed',String(i===sel));b.onclick=function(){sel=i;draw();fn(i);};g.appendChild(b);});}
+   draw();return {set:function(i){sel=i;draw();},get:function(){return sel;}};},
+  slider:function(box,label,min,max,step,val,fmt,fn){
+   var id='k5s'+(++n),w=h('div'),l=h('label'),inp=h('input');l.setAttribute('for',id);inp.type='range';inp.id=id;inp.min=min;inp.max=max;inp.step=step;inp.value=val;
+   function upd(){l.innerHTML=label+': <span>'+fmt(+inp.value)+'</span>';}
+   inp.oninput=function(){upd();fn(+inp.value);};upd();w.appendChild(l);w.appendChild(inp);box.appendChild(w);inp.refresh=upd;return inp;},
+  btn:function(box,label,fn){var r=box.querySelector('.row.btns');if(!r){r=h('div','row btns');box.appendChild(r);}var b=h('button',null,label);b.type='button';b.onclick=fn;r.appendChild(b);return b;},
+  svg:function(box,vb,label){var s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox',vb);s.setAttribute('role','img');s.setAttribute('aria-label',label||'');box.appendChild(s);return s;},
+  say:function(box){var p=h('p');p.setAttribute('aria-live','polite');box.appendChild(p);return function(t){p.innerHTML=t;};},
+  note:function(box,t){var p=h('p','small',t);box.appendChild(p);return p;}
+ };
+})();
 </script><!--k5images-css-end-->
 <header class="hero">
   <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="false">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="true">Retro space</button></div>
@@ -382,19 +382,23 @@ window.K5W=window.K5W||(function(){
     <article class="aid">
       <span class="tag try">Try it</span>
       <h3>Soil sort</h3><p>soil sample, magnifier, paper.</p><p class="tip">“Look closely. Find bits of rock, sand, and plant matter.”</p>
-    </article>
+<!--k5b-start id=b45-soil--><p><b>Predict first:</b> What do you think is in a handful of soil?</p><p><b>You need:</b> a small scoop of soil, a magnifier, white paper.</p><ol><li>Spread the soil on the paper.</li><li>Use the magnifier to find: bits of rock, sand, and plant bits.</li><li>Sort them into three piles. Draw what you see.</li></ol><p><b>Notice:</b> Soil is a mix of tiny rock bits and once-living plant matter.</p><p class="cap"><b>Why it matters:</b> Soil comes from rock that broke into small pieces and plants that decayed.</p><!--k5b-end id=b45-soil-->
+</article>
     <article class="aid">
       <span class="tag data">Data</span>
       <h3>Property table</h3><p>table with color, grain size, hard/soft.</p><p class="tip">“Earth materials have clues.”</p>
-    </article>
+<!--k5b-start id=b45-prop--><table style="border-collapse:collapse;font-size:.92rem;margin:6px 0"><thead><tr><th style="border:1px solid var(--line,#d0d8e8);padding:4px 8px;text-align:left">Material</th><th style="border:1px solid var(--line,#d0d8e8);padding:4px 8px;text-align:left">Color</th><th style="border:1px solid var(--line,#d0d8e8);padding:4px 8px;text-align:left">Grain size</th><th style="border:1px solid var(--line,#d0d8e8);padding:4px 8px;text-align:left">Hard or soft?</th></tr></thead><tbody><tr><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">Sand</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">tan</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">small, gritty</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">hard grains</td></tr><tr><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">Clay</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">gray or red</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">tiny, smooth</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">soft when wet</td></tr><tr><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">Pebble</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">mixed</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">big</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">hard</td></tr></tbody></table><p class="cap">Fill in a row for each thing in your soil sample.</p><!--k5b-end id=b45-prop-->
+</article>
     <article class="aid">
       <span class="tag try">Try it</span>
       <h3>Shake and water tray</h3><p>sugar cubes or chalk shaken in a cup, then water poured over sand in a tray.</p><p class="tip">“Shake sugar cubes. Edges break. Pour water. Watch sand move.”</p>
-    </article>
+<!--k5b-start id=b45-shake--><p><b>Predict first:</b> What will happen to sugar cubes after a lot of shaking?</p><p><b>You need:</b> sugar cubes or chalk, a lid-tight jar, sand in a tray, a cup of water.</p><ol><li>Shake 3 sugar cubes in a jar for 30 seconds. Look at the pieces.</li><li>Pour a cup of water slowly across the sand tray tilted a little.</li><li>Watch where the sand goes.</li></ol><p><b>Notice:</b> Shaking rounds the corners and makes small pieces (weathering). Water carries sand downhill (erosion).</p><p class="cap"><b>Why it matters:</b> Rocks break down and move like this too, only much more slowly.</p><!--k5b-end id=b45-shake-->
+</article>
     <article class="aid">
       <span class="tag real">Real world</span>
       <h3>Michigan copper</h3><p>copper nugget or rock picture.</p><p class="tip">“Michigan has copper and other minerals.”</p>
-    </article>
+<!--k5b-start id=b45-copper--><figure class="k5i k5i-chart" id="fig-b45-copper"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 240" role="img" aria-labelledby="b45-copper-t b45-copper-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="b45-copper-t">Copper from rock</title><desc id="b45-copper-d">A lumpy rock drawn with orange-brown copper veins running through it. A label says Michigan has copper in its rock.</desc><rect x="0" y="0" width="480" height="240" fill="var(--surface, #fff)"/><text x="240" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="var(--ink, #12172B)">Copper from rock</text><path d="M90 190 Q70 130 120 90 Q190 50 270 70 Q380 80 390 150 Q400 200 330 205 Q200 215 90 190Z" fill="var(--surface-2, #E8EDF6)" stroke="var(--ink, #12172B)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M130 160 Q180 120 230 140 Q280 160 340 120" fill="none" stroke="var(--absorb, #D6450B)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M170 110 Q200 150 190 190" fill="none" stroke="var(--absorb, #D6450B)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><text x="240" y="232" text-anchor="middle" font-size="13.5" font-weight="700" fill="var(--ink, #12172B)">Orange-brown lines are copper in the rock.</text></svg><figcaption>Copper is a metal found in rock. The Upper Peninsula has had copper mines.</figcaption><details class="k5i-alt"><summary>Text version of this diagram</summary><p>A lumpy rock drawn with orange-brown copper veins running through it. A label says Michigan has copper in its rock.</p></details></figure><!--k5b-end id=b45-copper-->
+</article>
   </div>
 </section>
 
@@ -409,19 +413,23 @@ window.K5W=window.K5W||(function(){
     <article class="aid">
       <span class="tag diagram">Diagram</span>
       <h3>Rock layers</h3><p>colored layers with fossil shells.</p><p class="tip">“Older layers are usually deeper.”</p>
-    </article>
+<!--k5b-start id=b45-layers--><figure class="k5i k5i-chart" id="fig-b45-layers"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 330" role="img" aria-labelledby="b45-layers-t b45-layers-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="b45-layers-t">Older layers are usually deeper</title><desc id="b45-layers-d">A cut-away cliff shows four rock layers in different colors, stacked. The bottom layer is labeled oldest, the top is labeled newest. A snail-shell fossil is in the top layer and a different fossil is in a lower layer.</desc><rect x="0" y="0" width="480" height="330" fill="var(--surface, #fff)"/><text x="240" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="var(--ink, #12172B)">Older layers are usually deeper</text><rect x="50" y="60" width="250" height="50" rx="0" fill="var(--beam, #F2A900)" fill-opacity=".5" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="50" y="110" width="250" height="50" rx="0" fill="var(--absorb, #D6450B)" fill-opacity=".45" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="50" y="160" width="250" height="50" rx="0" fill="var(--reflect, #2B66E8)" fill-opacity=".4" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="50" y="210" width="250" height="50" rx="0" fill="var(--surface-2, #E8EDF6)" stroke="var(--ink, #12172B)" stroke-width="2"/><path d="M100 92 q10 -16 22 -4 q8 10 -4 14 q-12 4 -18 -10z" fill="var(--surface, #fff)" stroke="var(--ink, #12172B)" stroke-width="2"/><ellipse cx="220" cy="236" rx="22" ry="8" fill="var(--surface, #fff)" stroke="var(--ink, #12172B)" stroke-width="2"/><ellipse cx="160" cy="184" rx="18" ry="8" fill="var(--surface, #fff)" stroke="var(--ink, #12172B)" stroke-width="2"/><line x1="380" y1="80" x2="380.0" y2="67.2" stroke="var(--ink, #12172B)" stroke-width="2" stroke-linecap="round"/><polygon points="380,60 384.4,67.2 375.6,67.2" fill="var(--ink, #12172B)"/><text x="320" y="98" text-anchor="start" font-size="13.5" font-weight="700" fill="var(--ink, #12172B)">newest (top)</text><text x="320" y="252" text-anchor="start" font-size="13.5" font-weight="700" fill="var(--ink, #12172B)">oldest (bottom)</text><line x1="450" y1="90" x2="450.0" y2="240.1" stroke="var(--ink, #12172B)" stroke-width="2.5" stroke-linecap="round"/><polygon points="450,250 443.9,240.1 456.1,240.1" fill="var(--ink, #12172B)"/><text x="400" y="150" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--muted, #47506E)">time</text><text x="175" y="296" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--muted, #47506E)">white shapes are fossils</text></svg><figcaption>Layers pile up one on top of another. The bottom layer was laid down first, so it is usually the oldest. Fossils show what lived there when each layer formed.</figcaption><details class="k5i-alt"><summary>Text version of this diagram</summary><p>A cut-away cliff shows four rock layers in different colors, stacked. The bottom layer is labeled oldest, the top is labeled newest. A snail-shell fossil is in the top layer and a different fossil is in a lower layer.</p></details></figure><!--k5b-end id=b45-layers-->
+</article>
     <article class="aid">
       <span class="tag try">Try it</span>
       <h3>Make layers</h3><p>cup with sand, pebbles, soil.</p><p class="tip">“Add layers. Each layer is a new event.”</p>
-    </article>
+<!--k5b-start id=b45-make--><p><b>Predict first:</b> If you pour sand, then pebbles, then soil, which layer will be on the bottom?</p><p><b>You need:</b> a clear cup, sand, small pebbles, soil, a spoon.</p><ol><li>Add a spoonful of sand. Level it.</li><li>Add pebbles on top, then soil.</li><li>Look from the side. Which went in first? Which is oldest?</li></ol><p><b>What you should see:</b> The first layer is on the bottom, the last on top. Each layer is a separate event.</p><p class="cap"><b>Why it matters:</b> This is how scientists read old landscapes in a cliff.</p><!--k5b-end id=b45-make-->
+</article>
     <article class="aid">
       <span class="tag real">Real world</span>
       <h3>Petoskey stone</h3><p>fossil coral stone.</p><p class="tip">“A Petoskey stone is a fossil. It shows ancient seas in Michigan.”</p>
-    </article>
+<!--k5b-start id=b45-petoskey--><figure class="k5i k5i-chart" id="fig-b45-petoskey"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 240" role="img" aria-labelledby="b45-petoskey-t b45-petoskey-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="b45-petoskey-t">A Petoskey stone is fossil coral</title><desc id="b45-petoskey-d">A smooth round stone with a pattern of many small six-sided shapes like a honeycomb, each with a dot in the middle. A label says it is fossil coral from an ancient warm sea.</desc><rect x="0" y="0" width="480" height="240" fill="var(--surface, #fff)"/><text x="240" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="var(--ink, #12172B)">A Petoskey stone is fossil coral</text><ellipse cx="240" cy="120" rx="110" ry="76" fill="var(--surface-2, #E8EDF6)" stroke="var(--ink, #12172B)" stroke-width="3"/><polygon points="212.1,97.0 200.0,104.0 187.9,97.0 187.9,83.0 200.0,76.0 212.1,83.0" fill="none" stroke="var(--ink, #12172B)" stroke-width="1.5"/><circle cx="200" cy="90" r="2.5" fill="var(--ink, #12172B)" stroke="none" stroke-width="1.5"/><polygon points="252.1,97.0 240.0,104.0 227.9,97.0 227.9,83.0 240.0,76.0 252.1,83.0" fill="none" stroke="var(--ink, #12172B)" stroke-width="1.5"/><circle cx="240" cy="90" r="2.5" fill="var(--ink, #12172B)" stroke="none" stroke-width="1.5"/><polygon points="292.1,97.0 280.0,104.0 267.9,97.0 267.9,83.0 280.0,76.0 292.1,83.0" fill="none" stroke="var(--ink, #12172B)" stroke-width="1.5"/><circle cx="280" cy="90" r="2.5" fill="var(--ink, #12172B)" stroke="none" stroke-width="1.5"/><polygon points="192.1,127.0 180.0,134.0 167.9,127.0 167.9,113.0 180.0,106.0 192.1,113.0" fill="none" stroke="var(--ink, #12172B)" stroke-width="1.5"/><circle cx="180" cy="120" r="2.5" fill="var(--ink, #12172B)" stroke="none" stroke-width="1.5"/><polygon points="232.1,127.0 220.0,134.0 207.9,127.0 207.9,113.0 220.0,106.0 232.1,113.0" fill="none" stroke="var(--ink, #12172B)" stroke-width="1.5"/><circle cx="220" cy="120" r="2.5" fill="var(--ink, #12172B)" stroke="none" stroke-width="1.5"/><polygon points="272.1,127.0 260.0,134.0 247.9,127.0 247.9,113.0 260.0,106.0 272.1,113.0" fill="none" stroke="var(--ink, #12172B)" stroke-width="1.5"/><circle cx="260" cy="120" r="2.5" fill="var(--ink, #12172B)" stroke="none" stroke-width="1.5"/><polygon points="312.1,127.0 300.0,134.0 287.9,127.0 287.9,113.0 300.0,106.0 312.1,113.0" fill="none" stroke="var(--ink, #12172B)" stroke-width="1.5"/><circle cx="300" cy="120" r="2.5" fill="var(--ink, #12172B)" stroke="none" stroke-width="1.5"/><polygon points="212.1,157.0 200.0,164.0 187.9,157.0 187.9,143.0 200.0,136.0 212.1,143.0" fill="none" stroke="var(--ink, #12172B)" stroke-width="1.5"/><circle cx="200" cy="150" r="2.5" fill="var(--ink, #12172B)" stroke="none" stroke-width="1.5"/><polygon points="252.1,157.0 240.0,164.0 227.9,157.0 227.9,143.0 240.0,136.0 252.1,143.0" fill="none" stroke="var(--ink, #12172B)" stroke-width="1.5"/><circle cx="240" cy="150" r="2.5" fill="var(--ink, #12172B)" stroke="none" stroke-width="1.5"/><polygon points="292.1,157.0 280.0,164.0 267.9,157.0 267.9,143.0 280.0,136.0 292.1,143.0" fill="none" stroke="var(--ink, #12172B)" stroke-width="1.5"/><circle cx="280" cy="150" r="2.5" fill="var(--ink, #12172B)" stroke="none" stroke-width="1.5"/><text x="240" y="226" text-anchor="middle" font-size="13.5" font-weight="700" fill="var(--ink, #12172B)">Six-sided coral pattern</text></svg><figcaption>A Petoskey stone is fossil coral. The six-sided pattern is where the coral animals once lived. It shows Michigan was once under a warm shallow sea.</figcaption><details class="k5i-alt"><summary>Text version of this diagram</summary><p>A smooth round stone with a pattern of many small six-sided shapes like a honeycomb, each with a dot in the middle. A label says it is fossil coral from an ancient warm sea.</p></details></figure><!--k5b-end id=b45-petoskey-->
+</article>
     <article class="aid">
       <span class="tag data">Data</span>
       <h3>Patterns question</h3><p>shell fossils in a Michigan quarry drawing.</p><p class="tip">“Shell fossils were found in a Michigan quarry. What do they tell us about this place long ago? What other clues would you want?”</p>
-    </article>
+<!--k5b-start id=b45-quarry--><p class="cap"><b>Think about it:</b> sea shells are made by animals that live in water. If you find shells in a Michigan quarry, the place was once under water. More clues to look for: ripple marks in the rock, fish bones, how deep the shell layer is.</p><!--k5b-end id=b45-quarry-->
+</article>
   </div>
 </section>
 
@@ -429,32 +437,32 @@ window.K5W=window.K5W||(function(){
   <div><p class="kicker">Concept 3</p><h2>Maps show patterns of Earth’s features</h2></div>
   <p class="idea">Maps let us see patterns, such as mountain ranges, broad plains, and connected Great Lakes.</p>
 <!--k5images-start id=w-45-map-->
-<figure class="k5i k5i-chart k5i-widget" id="fig-w-45-map"><div class="k5w" id="w45map"></div>
-<script>(function(){var box=document.getElementById('w45map'),K=K5W,S=K.S,C=K.C;
- var PAT=[['Mountain range',400,180,85,85],['Broad flat plain',200,195,95,55],['Connected lakes',215,58,125,32]];
- var sel=0,found=[false,false,false],marks=[],svg,say,miss=0;
- box.appendChild(K.h('p',null,'This map is made up. Choose a pattern, then tap the map where you think it is. A circle marks your guess.'));
- K.chips(box,PAT.map(function(p){return p[0];}),0,function(i){sel=i;miss=0;say('Tap the map to find the <b>'+PAT[i][0].toLowerCase()+'</b>.');},'Pattern');
- svg=K.svg(box,'0 0 480 300','A made-up map with mountains, a flat plain and lakes.');
- say=K.say(box);
- function base(){
-  var s=S.r(0,0,480,300,'#cfe7c4',C.ink,6,2);
-  s+=S.r(30,196,300,80,'#e4d8a8','none',40,0);
-  for(var i=0;i<14;i++)s+=S.l(110+(i*37)%180,190+((i*53)%70),114+(i*37)%180,184+((i*53)%70),'#a3a06a',1.5);
-  [[100,52,46,20],[170,60,40,18],[240,52,44,20],[300,70,34,16]].forEach(function(l){s+='<ellipse cx="'+l[0]+'" cy="'+l[1]+'" rx="'+l[2]+'" ry="'+l[3]+'" fill="#6aa8ff" stroke="'+C.ink+'" stroke-width="2"/>';});
-  [[140,56],[205,58],[268,60]].forEach(function(c){s+=S.l(c[0]-6,c[1],c[0]+6,c[1]+2,'#6aa8ff',9);});
-  for(i=0;i<8;i++){var x=372+i*7,y=100+i*22;s+=S.p((x-16)+','+(y+16)+' '+x+','+(y-16)+' '+(x+16)+','+(y+16),'#8b8f9c',C.ink,2);s+=S.p((x-4)+','+(y-8)+' '+x+','+(y-16)+' '+(x+4)+','+(y-8),'#fff','none',0);}
-  return s;
- }
- function draw(){var s=base();marks.forEach(function(m){s+=S.c(m[0],m[1],m[2],'none',m[3]?C.teal:C.red,4);});svg.innerHTML=s;}
- svg.addEventListener('click',function(e){
-  var r=svg.getBoundingClientRect(),x=(e.clientX-r.left)/r.width*480,y=(e.clientY-r.top)/r.height*300,p=PAT[sel];
-  var hit=Math.pow((x-p[1])/p[3],2)+Math.pow((y-p[2])/p[4],2)<=1;
-  marks.push([x,y,22,hit]);
-  if(hit){found[sel]=true;miss=0;var n=found.filter(Boolean).length;say('<b>Yes!</b> You found the '+p[0].toLowerCase()+'. '+n+' of 3 patterns found.'+(n===3?' Maps help us see patterns in Earth&rsquo;s features.':' Pick another pattern.'));}
-  else{miss++;say('Not there. '+(miss>=2?'Hint: look for '+(sel===0?'a row of peaks':sel===1?'a big flat area':'blue shapes joined together')+'.':'Try again.'));}
-  draw();});
- draw();say('Tap the map to find the <b>mountain range</b>.');
+<figure class="k5i k5i-chart k5i-widget" id="fig-w-45-map"><div class="k5w" id="w45map"></div>
+<script>(function(){var box=document.getElementById('w45map'),K=K5W,S=K.S,C=K.C;
+ var PAT=[['Mountain range',400,180,85,85],['Broad flat plain',200,195,95,55],['Connected lakes',215,58,125,32]];
+ var sel=0,found=[false,false,false],marks=[],svg,say,miss=0;
+ box.appendChild(K.h('p',null,'This map is made up. Choose a pattern, then tap the map where you think it is. A circle marks your guess.'));
+ K.chips(box,PAT.map(function(p){return p[0];}),0,function(i){sel=i;miss=0;say('Tap the map to find the <b>'+PAT[i][0].toLowerCase()+'</b>.');},'Pattern');
+ svg=K.svg(box,'0 0 480 300','A made-up map with mountains, a flat plain and lakes.');
+ say=K.say(box);
+ function base(){
+  var s=S.r(0,0,480,300,'#cfe7c4',C.ink,6,2);
+  s+=S.r(30,196,300,80,'#e4d8a8','none',40,0);
+  for(var i=0;i<14;i++)s+=S.l(110+(i*37)%180,190+((i*53)%70),114+(i*37)%180,184+((i*53)%70),'#a3a06a',1.5);
+  [[100,52,46,20],[170,60,40,18],[240,52,44,20],[300,70,34,16]].forEach(function(l){s+='<ellipse cx="'+l[0]+'" cy="'+l[1]+'" rx="'+l[2]+'" ry="'+l[3]+'" fill="#6aa8ff" stroke="'+C.ink+'" stroke-width="2"/>';});
+  [[140,56],[205,58],[268,60]].forEach(function(c){s+=S.l(c[0]-6,c[1],c[0]+6,c[1]+2,'#6aa8ff',9);});
+  for(i=0;i<8;i++){var x=372+i*7,y=100+i*22;s+=S.p((x-16)+','+(y+16)+' '+x+','+(y-16)+' '+(x+16)+','+(y+16),'#8b8f9c',C.ink,2);s+=S.p((x-4)+','+(y-8)+' '+x+','+(y-16)+' '+(x+4)+','+(y-8),'#fff','none',0);}
+  return s;
+ }
+ function draw(){var s=base();marks.forEach(function(m){s+=S.c(m[0],m[1],m[2],'none',m[3]?C.teal:C.red,4);});svg.innerHTML=s;}
+ svg.addEventListener('click',function(e){
+  var r=svg.getBoundingClientRect(),x=(e.clientX-r.left)/r.width*480,y=(e.clientY-r.top)/r.height*300,p=PAT[sel];
+  var hit=Math.pow((x-p[1])/p[3],2)+Math.pow((y-p[2])/p[4],2)<=1;
+  marks.push([x,y,22,hit]);
+  if(hit){found[sel]=true;miss=0;var n=found.filter(Boolean).length;say('<b>Yes!</b> You found the '+p[0].toLowerCase()+'. '+n+' of 3 patterns found.'+(n===3?' Maps help us see patterns in Earth&rsquo;s features.':' Pick another pattern.'));}
+  else{miss++;say('Not there. '+(miss>=2?'Hint: look for '+(sel===0?'a row of peaks':sel===1?'a big flat area':'blue shapes joined together')+'.':'Try again.'));}
+  draw();});
+ draw();say('Tap the map to find the <b>mountain range</b>.');
 })();</script><figcaption>Find a mountain range, a plain and connected lakes on a map.</figcaption></figure>
 <!--k5images-end id=w-45-map-->
 
@@ -470,7 +478,8 @@ window.K5W=window.K5W||(function(){
     <article class="aid">
       <span class="tag data">Data</span>
       <h3>Pattern log</h3><p>table with Pattern and Where.</p><p class="tip">“Record three patterns. Backup map notes (find the patterns yourself): Rocky Mountains, west; Appalachian Mountains, east; Sierra Nevada, west; Great Plains, middle; Gulf Coastal Plain, south; Lake Superior, Lake Michigan, Lake Huron, Lake Erie and Lake Ontario, north, touching each other.”</p>
-    </article>
+<!--k5b-start id=b45-log--><table style="border-collapse:collapse;font-size:.92rem;margin:6px 0"><thead><tr><th style="border:1px solid var(--line,#d0d8e8);padding:4px 8px;text-align:left">Pattern</th><th style="border:1px solid var(--line,#d0d8e8);padding:4px 8px;text-align:left">Where</th></tr></thead><tbody><tr><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">Tall mountains</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">in the west (Rockies) and east (Appalachians)</td></tr><tr><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">Flat plains</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">in the middle</td></tr><tr><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">Great Lakes</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">in the north, next to each other</td></tr></tbody></table><p class="cap">This is a model answer. Check it against your own map.</p><!--k5b-end id=b45-log-->
+</article>
   </div>
 </section>
 
@@ -481,7 +490,8 @@ window.K5W=window.K5W||(function(){
     <article class="aid">
       <span class="tag real">Real world</span>
       <h3>Michigan energy cards</h3><p>natural gas storage field, Thumb wind turbines, solar panels, legacy coal plant.</p><p class="tip">“Some energy comes from gas, wind, sun, or coal.”</p>
-    </article>
+<!--k5b-start id=b45-cards--><figure class="k5i k5i-chart" id="fig-b45-cards"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 280" role="img" aria-labelledby="b45-cards-t b45-cards-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="b45-cards-t">Four energy sources</title><desc id="b45-cards-d">Four small drawings: a gas pipe from underground, a wind turbine, a solar panel, and a coal plant with a smokestack. Each has a short label.</desc><rect x="0" y="0" width="480" height="280" fill="var(--surface, #fff)"/><text x="240" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="var(--ink, #12172B)">Four energy sources</text><rect x="10" y="60" width="100" height="160" rx="8" fill="var(--surface-2, #E8EDF6)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><rect x="130" y="60" width="100" height="160" rx="8" fill="var(--surface-2, #E8EDF6)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><rect x="250" y="60" width="100" height="160" rx="8" fill="var(--surface-2, #E8EDF6)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><rect x="370" y="60" width="100" height="160" rx="8" fill="var(--surface-2, #E8EDF6)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><line x1="60" y1="160" x2="60" y2="190" stroke="var(--ink, #12172B)" stroke-width="5" stroke-linecap="round"/><rect x="40" y="190" width="40" height="14" rx="3" fill="var(--muted, #47506E)" stroke="var(--ink, #12172B)" stroke-width="2"/><text x="60" y="120" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink, #12172B)">gas</text><line x1="180" y1="130" x2="180" y2="190" stroke="var(--ink, #12172B)" stroke-width="4" stroke-linecap="round"/><line x1="180" y1="130" x2="180" y2="90" stroke="var(--ink, #12172B)" stroke-width="4" stroke-linecap="round"/><line x1="180" y1="130" x2="214.64101615137756" y2="150" stroke="var(--ink, #12172B)" stroke-width="4" stroke-linecap="round"/><line x1="180" y1="130" x2="145.35898384862244" y2="150" stroke="var(--ink, #12172B)" stroke-width="4" stroke-linecap="round"/><circle cx="180" cy="130" r="5" fill="var(--ink, #12172B)" stroke="none" stroke-width="1.5"/><polygon points="300,180 340,180 330,140 310,140" fill="var(--reflect, #2B66E8)" stroke="var(--ink, #12172B)" stroke-width="2" stroke-linejoin="round"/><rect x="280" y="140" width="40" height="10" rx="2" fill="var(--reflect, #2B66E8)" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="270" y="150" width="60" height="36" rx="3" fill="var(--reflect, #2B66E8)" fill-opacity=".5" stroke="var(--ink, #12172B)" stroke-width="2"/><line x1="322.0" y1="112.0" x2="331.0" y2="112.0" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="319.7" y1="120.5" x2="327.5" y2="125.0" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="313.5" y1="126.7" x2="318.0" y2="134.5" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="305.0" y1="129.0" x2="305.0" y2="138.0" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="296.5" y1="126.7" x2="292.0" y2="134.5" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="290.3" y1="120.5" x2="282.5" y2="125.0" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="288.0" y1="112.0" x2="279.0" y2="112.0" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="290.3" y1="103.5" x2="282.5" y2="99.0" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="296.5" y1="97.3" x2="292.0" y2="89.5" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="305.0" y1="95.0" x2="305.0" y2="86.0" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="313.5" y1="97.3" x2="318.0" y2="89.5" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="319.7" y1="103.5" x2="327.5" y2="99.0" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><circle cx="305" cy="112" r="12" fill="var(--beam, #F2A900)" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="396" y="150" width="48" height="52" rx="0" fill="var(--muted, #47506E)" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="410" y="108" width="14" height="42" rx="0" fill="var(--muted, #47506E)" stroke="var(--ink, #12172B)" stroke-width="2"/><path d="M416 100 q-8 -14 4 -22" fill="none" stroke="var(--ink, #12172B)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><text x="60" y="238" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--ink, #12172B)">natural gas</text><text x="180" y="238" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--ink, #12172B)">wind</text><text x="300" y="238" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--ink, #12172B)">solar</text><text x="420" y="238" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--ink, #12172B)">coal</text><text x="240" y="264" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink, #12172B)">Every source changes land, air or water in some way.</text></svg><figcaption>Gas, wind, sun and coal all give us energy. Each one has a cost to land, air or water.</figcaption><details class="k5i-alt"><summary>Text version of this diagram</summary><p>Four small drawings: a gas pipe from underground, a wind turbine, a solar panel, and a coal plant with a smokestack. Each has a short label.</p></details></figure><!--k5b-end id=b45-cards-->
+</article>
     <article class="aid">
       <span class="tag data">Data</span>
       <h3>Resource chart</h3><p>table with Resource, Where found, How used, Effect.</p><p class="tip">“Natural gas is found underground. Burning it makes heat and puts gases in the air. Coal is mined, and mining changes the land. Wind turbines use moving air and need open land; they can disturb birds. Solar panels use sunlight and need space. Every energy source changes land, air, or water in some way.”</p>
@@ -489,11 +499,13 @@ window.K5W=window.K5W||(function(){
     <article class="aid">
       <span class="tag diagram">Diagram</span>
       <h3>From resource to use</h3><p>natural gas storage field → homes; wind turbine → lights.</p><p class="tip">“Resources are found, moved, and used.”</p>
-    </article>
+<!--k5b-start id=b45-flow--><figure class="k5i k5i-chart" id="fig-b45-flow"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 330" role="img" aria-labelledby="b45-flow-t b45-flow-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="b45-flow-t">From resource to use</title><desc id="b45-flow-d">Two paths from left to right. Top: natural gas stored underground travels by pipe to homes, where it makes heat. Bottom: wind turns a turbine, which makes electricity for lights.</desc><rect x="0" y="0" width="480" height="330" fill="var(--surface, #fff)"/><text x="240" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="var(--ink, #12172B)">From resource to use</text><rect x="14" y="56" width="120" height="70" rx="8" fill="var(--surface-2, #E8EDF6)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="74" y="84" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink, #12172B)">Natural gas</text><text x="74" y="104" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--muted, #47506E)">underground</text><line x1="136" y1="91" x2="179.2" y2="91.0" stroke="var(--transmit, #0B7F70)" stroke-width="4" stroke-linecap="round"/><polygon points="190,91 179.2,97.6 179.2,84.4" fill="var(--transmit, #0B7F70)"/><text x="163" y="78" text-anchor="middle" font-size="12" font-weight="400" fill="var(--ink, #12172B)">pipe</text><rect x="194" y="56" width="120" height="70" rx="8" fill="var(--surface-2, #E8EDF6)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="254" y="84" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink, #12172B)">Gas is burned</text><text x="254" y="104" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--muted, #47506E)">makes heat</text><line x1="316" y1="91" x2="349.2" y2="91.0" stroke="var(--transmit, #0B7F70)" stroke-width="4" stroke-linecap="round"/><polygon points="360,91 349.2,97.6 349.2,84.4" fill="var(--transmit, #0B7F70)"/><rect x="364" y="56" width="102" height="70" rx="8" fill="var(--surface-2, #E8EDF6)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="415" y="98" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink, #12172B)">Warm home</text><line x1="20" y1="170" x2="460" y2="170" stroke="var(--line, #D0D8E8)" stroke-width="1" stroke-linecap="round"/><rect x="14" y="196" width="120" height="70" rx="8" fill="var(--surface-2, #E8EDF6)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="74" y="224" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink, #12172B)">Wind</text><text x="74" y="244" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--muted, #47506E)">moving air</text><line x1="136" y1="231" x2="179.2" y2="231.0" stroke="var(--transmit, #0B7F70)" stroke-width="4" stroke-linecap="round"/><polygon points="190,231 179.2,237.6 179.2,224.4" fill="var(--transmit, #0B7F70)"/><rect x="194" y="196" width="120" height="70" rx="8" fill="var(--surface-2, #E8EDF6)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="254" y="224" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink, #12172B)">Turbine spins</text><text x="254" y="244" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--muted, #47506E)">makes electricity</text><line x1="316" y1="231" x2="349.2" y2="231.0" stroke="var(--transmit, #0B7F70)" stroke-width="4" stroke-linecap="round"/><polygon points="360,231 349.2,237.6 349.2,224.4" fill="var(--transmit, #0B7F70)"/><rect x="364" y="196" width="102" height="70" rx="8" fill="var(--surface-2, #E8EDF6)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="415" y="238" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink, #12172B)">Lights</text><text x="240" y="308" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--ink, #12172B)">Each source has an effect: gas puts gases in the air; turbines need open land.</text></svg><figcaption>Energy resources are found, moved and used. Each step changes the land, air or water in some way.</figcaption><details class="k5i-alt"><summary>Text version of this diagram</summary><p>Two paths from left to right. Top: natural gas stored underground travels by pipe to homes, where it makes heat. Bottom: wind turns a turbine, which makes electricity for lights.</p></details></figure><!--k5b-end id=b45-flow-->
+</article>
     <article class="aid">
       <span class="tag try">Try it</span>
       <h3>Card combine</h3><p>information cards that students combine into one chart.</p><p class="tip">“Put the cards together. What is the source? How do we use it? What effect does it have?”</p>
-    </article>
+<!--k5b-start id=b45-combine--><table style="border-collapse:collapse;font-size:.92rem;margin:6px 0"><thead><tr><th style="border:1px solid var(--line,#d0d8e8);padding:4px 8px;text-align:left">Resource</th><th style="border:1px solid var(--line,#d0d8e8);padding:4px 8px;text-align:left">Where found</th><th style="border:1px solid var(--line,#d0d8e8);padding:4px 8px;text-align:left">How used</th><th style="border:1px solid var(--line,#d0d8e8);padding:4px 8px;text-align:left">Effect</th></tr></thead><tbody><tr><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">Natural gas</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">underground</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">burned for heat</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">puts gases in the air</td></tr><tr><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">Coal</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">mined</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">burned for electricity</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">mining changes land</td></tr><tr><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">Wind</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">moving air</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">turns turbines</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">needs open land</td></tr><tr><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">Sun</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">sunlight</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">solar panels</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">needs space</td></tr></tbody></table><p class="cap">Cut these into cards, mix them, and put each resource back together with its clues.</p><!--k5b-end id=b45-combine-->
+</article>
   </div>
 </section>
 
@@ -504,7 +516,8 @@ window.K5W=window.K5W||(function(){
     <article class="aid">
       <span class="tag analogy">Analogy</span>
       <h3>Helmet</h3><p>bicycle helmet.</p><p class="tip">“A helmet does not stop falls. It reduces harm.”</p>
-    </article>
+<!--k5b-start id=b45-helmet--><p class="cap"><b>What matches what:</b> the helmet is the <i>design</i> (a wall, grass, a break wall). A fall is the <i>hazard</i> (a flood, an eroding shore). The design does not stop the hazard. It makes the harm smaller.</p><!--k5b-end id=b45-helmet-->
+</article>
     <article class="aid">
       <span class="tag try">Try it</span>
       <h3>Barrier test</h3><p>soil slope, water, cardboard or foil barriers, grass or pebbles.</p><p class="tip">“Test barriers. Which one keeps soil in place?”</p><p class="cap"><b>You did this before / what is new:</b> You tested erosion guards in 2-C and a flood barrier in 3.2; now the new part is comparing at least two designs, like grass and a wall, with the same amount of water each time and a real observation log. New measurement: spoonfuls of moved sediment. One messy trial is not the finding: run each design more than once the same way and compare before you claim.</p>
@@ -516,7 +529,8 @@ window.K5W=window.K5W||(function(){
     <article class="aid">
       <span class="tag real">Real world</span>
       <h3>Great Lakes flooding</h3><p>high lake water near shore.</p><p class="tip">“High water and waves can damage shorelines.”</p>
-    </article>
+<!--k5b-start id=b45-flood--><figure class="k5i k5i-chart" id="fig-b45-flood"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 250" role="img" aria-labelledby="b45-flood-t b45-flood-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="b45-flood-t">High water hurts a shore</title><desc id="b45-flood-d">A side view of a lake shore. Waves are high and splash up the sand toward a house. Some sand has been washed away, and a small wall of rocks is placed near the water to slow the waves.</desc><rect x="0" y="0" width="480" height="250" fill="var(--surface, #fff)"/><text x="240" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="var(--ink, #12172B)">High water hurts a shore</text><rect x="0" y="130" width="160" height="80" rx="0" fill="var(--reflect, #2B66E8)" fill-opacity=".5" stroke="none" stroke-width="0"/><path d="M0 140 q20 -24 40 0 t40 0 t40 0 t40 0" fill="none" stroke="var(--reflect, #2B66E8)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><polygon points="160,130 480,170 480,210 160,210" fill="var(--beam, #F2A900)" fill-opacity=".5" stroke="var(--ink, #12172B)" stroke-width="2" stroke-linejoin="round"/><circle cx="170" cy="146" r="9" fill="var(--muted, #47506E)" stroke="var(--ink, #12172B)" stroke-width="2"/><circle cx="188" cy="146" r="9" fill="var(--muted, #47506E)" stroke="var(--ink, #12172B)" stroke-width="2"/><circle cx="206" cy="146" r="9" fill="var(--muted, #47506E)" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="380" y="86" width="70" height="60" rx="0" fill="var(--surface-2, #E8EDF6)" stroke="var(--ink, #12172B)" stroke-width="2"/><polygon points="374,86 415,56 456,86" fill="var(--red, #D93036)" stroke="var(--ink, #12172B)" stroke-width="2" stroke-linejoin="round"/><line x1="120" y1="128" x2="151.2" y2="121.8" stroke="var(--reflect, #2B66E8)" stroke-width="3" stroke-linecap="round"/><polygon points="160,120 152.3,127.2 150.1,116.4" fill="var(--reflect, #2B66E8)"/><text x="240" y="232" text-anchor="middle" font-size="13.5" font-weight="700" fill="var(--ink, #12172B)">High water pushes in. Rocks slow the waves.</text></svg><figcaption>High lake water and waves wash away sand and can damage shorelines. A wall or plants can slow the waves.</figcaption><details class="k5i-alt"><summary>Text version of this diagram</summary><p>A side view of a lake shore. Waves are high and splash up the sand toward a house. Some sand has been washed away, and a small wall of rocks is placed near the water to slow the waves.</p></details></figure><!--k5b-end id=b45-flood-->
+</article>
   </div>
 </section>
 
@@ -535,7 +549,9 @@ window.K5W=window.K5W||(function(){
 
   <div class="aids">
     <article class="aid"><span class="tag try">Try it</span><h3>What you need</h3><p>cups, sand/soil/pebbles, shallow tray, straw, magnifier, sugar cubes or chalk, water, cardboard, foil, tape, craft sticks, paper, pencil, provided map cards, provided energy-resource cards.</p><p class="cap"><b>Safety:</b> wash hands after soil/sand trays; wipe water spills; keep soil away from Chromebooks.</p></article>
-    <article class="aid"><span class="tag try">Try it</span><h3>What you do</h3><p>Sort soil. Shake weathering models. Run water-tray erosion and measure sediment. Build a layer cup. Analyze map patterns. Combine energy-resource cards into a chart. Design and compare shoreline or slope barriers.</p></article>
+    <article class="aid"><span class="tag try">Try it</span><h3>What you do</h3><p>Sort soil. Shake weathering models. Run water-tray erosion and measure sediment. Build a layer cup. Analyze map patterns. Combine energy-resource cards into a chart. Design and compare shoreline or slope barriers.</p>
+<!--k5b-start id=b45-do--><ol><li>Sort soil and shake sugar cubes (10 minutes).</li><li>Pour water over a slope with no barrier. Count spoonfuls of sediment that moved (10 minutes).</li><li>Repeat with grass, then with a wall. Same water each time (20 minutes).</li><li>Write your claim: "I claim ___ reduces harm because our data show ___."</li></ol><p><b>Notice:</b> The barrier that moves the fewest spoonfuls helped most. Repeat each test at least three times.</p><p class="cap"><b>Why it matters:</b> Engineers compare designs with the same test before they build.</p><!--k5b-end id=b45-do-->
+</article>
   </div>
   <details class="deep"><summary>No time or no good weather? Use this data</summary><div class="in"><p class="cap">This data is a backup. It lets you practice reading evidence, but the standard expects you to collect your own when you can.</p><p>erosion sediment no barrier 12 spoons, grass 5 spoons, wall 7 spoons (one trial each from one shoreline tray; what is new here: 3.2 tested a flood slope, and this unit tests waves on a shoreline with the same water each time. These counts are not the 3.2 counts. Repeat each barrier and compare, because one trial can be off); map notes (find the patterns yourself): Rockies west, Appalachians east, Great Plains middle, five Great Lakes touching in the north; energy cards natural gas, Thumb wind, solar, legacy coal.</p></div></details>
   <p class="cap"><b>Near you:</b> Great Lakes shoreline erosion, Sleeping Bear Dunes, Petoskey stones, and copper mining show Earth materials and change. Michigan’s Thumb wind turbines, natural gas storage fields, and shift from legacy coal toward gas and solar show how resources are used and affect the environment.</p>

@@ -77,6 +77,8 @@ h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
 .tag.analogy{--tint:var(--beam)} .tag.diagram{--tint:var(--reflect)} .tag.try{--tint:var(--transmit)} .tag.data{--tint:var(--absorb)} .tag.real{--tint:var(--muted)} .tag.build{--tint:#8A63D2}
 ol.steps{margin:4px 0 0;padding-left:1.3em;display:grid;gap:6px}
 .stage{background:var(--surface-2);border-radius:10px;padding:6px}
+.tryguide{display:grid;gap:5px;font-size:.95rem;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.tryguide p{margin:0}.tryguide b{color:var(--ink)}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{font-size:.92rem;padding:7px 13px;min-height:40px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer}
 .chip:hover{border-color:var(--ink)}
@@ -315,6 +317,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
     <article class="aid">
       <span class="tag try">Try it</span>
       <h3>Spin the Earth</h3>
+      <div class="tryguide"><p><b>Predict.</b> It is noon in Ann Arbor and the marker faces the Sun. Predict where the marker will be 6 hours later, and 12 hours later. Does the Sun move or does the marker move?</p><p><b>Do.</b> Slide the time of day from 12 to 18, then to 24 (midnight), then back to 6 and 12 again. Read the sentence below the picture each time.</p><p><b>Notice.</b> The Sun and its light stay put on the left. The marker turns with Earth: it rides into darkness at sunset, is on the far side at midnight, and comes back into sunlight at dawn. Each hour the marker turns 15°, so 24 hours is one full turn of 360°.</p><p><b>Why it matters.</b> Day and night are not caused by the Sun moving or going out. They are caused by where your spot on a spinning Earth faces, which is why places far east of you have their sunrise first.</p></div>
       <div class="stage"><svg id="rotSvg" viewBox="0 0 480 240" role="img" aria-label="Top view of Earth with a marker for Ann Arbor, lit from the left by the Sun."></svg></div>
       <div class="ctl"><label for="rotH">Time of day: <span id="rotHV"></span></label><input id="rotH" type="range" min="0" max="24" step="0.5" value="12"></div>
       <p class="readout" id="rotR" aria-live="polite"></p>
@@ -329,6 +332,19 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
       <span class="tag real">Real world</span>
       <h3>Proof the Earth rotates</h3>
       <p>Time-lapse photos of the night sky show stars drawing circles around the North Star. A <b>Foucault pendulum</b> (found in many science museums) slowly changes the direction it swings, because the floor is rotating beneath it. Satellites launched eastward get a free speed boost of up to about 460 m/s from Earth's spin at the equator, which is why launch sites are placed as close to the equator as possible.</p>
+      <div class="stage"><svg viewBox="0 0 640 262" role="img" aria-label="Two pieces of evidence that Earth rotates. Left: a long-exposure photo of the night sky drawn as star trails, short circular arcs around the North Star; in four hours each star travels 60 degrees. Right: a Foucault pendulum's swing line turns slowly clockwise on the floor, about 10 degrees an hour at Ann Arbor."><title>Star trails and the Foucault pendulum</title><desc>Left panel: stars leave arcs around a fixed center, the North Star, because Earth turns beneath them. Right panel: the line along which a long pendulum swings appears to turn slowly because the floor is turning under it.</desc>
+        <rect x="10" y="8" width="320" height="200" rx="10" style="fill:var(--shade);stroke:var(--ink);stroke-width:2.5"/>
+        <clipPath id="stc"><rect x="10" y="8" width="320" height="200" rx="10"/></clipPath><g clip-path="url(#stc)"><path d="M198.2 139.7 A30 30 0 0 1 193.0 169.3" style="fill:none;stroke:var(--beam);stroke-width:2.5;stroke-linecap:round"/><path d="M140.0 151.0 A30 30 0 0 1 154.1 124.6" style="fill:none;stroke:var(--beam);stroke-width:2.5;stroke-linecap:round;stroke-opacity:.7"/><path d="M221.7 131.2 A55 55 0 0 1 212.1 185.4" style="fill:none;stroke:var(--beam);stroke-width:2.5;stroke-linecap:round"/><path d="M115.0 151.9 A55 55 0 0 1 140.9 103.4" style="fill:none;stroke:var(--beam);stroke-width:2.5;stroke-linecap:round;stroke-opacity:.7"/><path d="M245.2 122.6 A80 80 0 0 1 231.3 201.4" style="fill:none;stroke:var(--beam);stroke-width:2.5;stroke-linecap:round"/><path d="M90.0 152.8 A80 80 0 0 1 127.6 82.2" style="fill:none;stroke:var(--beam);stroke-width:2.5;stroke-linecap:round;stroke-opacity:.7"/><path d="M268.7 114.1 A105 105 0 0 1 250.4 217.5" style="fill:none;stroke:var(--beam);stroke-width:2.5;stroke-linecap:round"/><path d="M65.1 153.7 A105 105 0 0 1 114.4 61.0" style="fill:none;stroke:var(--beam);stroke-width:2.5;stroke-linecap:round;stroke-opacity:.7"/><path d="M292.2 105.5 A130 130 0 0 1 269.6 233.6" style="fill:none;stroke:var(--beam);stroke-width:2.5;stroke-linecap:round"/><path d="M40.1 154.5 A130 130 0 0 1 101.1 39.8" style="fill:none;stroke:var(--beam);stroke-width:2.5;stroke-linecap:round;stroke-opacity:.7"/><circle cx="170" cy="150" r="4" style="fill:#fff"/></g>
+        <text x="178" y="168" font-size="12" style="fill:#fff;font-weight:700">North Star</text>
+        <text x="20" y="28" font-size="12" style="fill:#fff">Night sky, camera open about 4 hours</text>
+        <g transform="translate(320 0)"><rect x="10" y="8" width="300" height="200" rx="10" style="fill:var(--surface);stroke:var(--ink);stroke-width:2.5"/></g>
+        <line x1="385.4" y1="180.8" x2="554.6" y2="119.2" style="stroke:var(--line);stroke-width:5;stroke-linecap:round;stroke-opacity:1"/><line x1="381.4" y1="165.6" x2="558.6" y2="134.4" style="stroke:var(--muted);stroke-width:5;stroke-linecap:round;stroke-opacity:0.6"/><line x1="380.0" y1="150.0" x2="560.0" y2="150.0" style="stroke:var(--reflect);stroke-width:5;stroke-linecap:round;stroke-opacity:1"/>
+        <circle cx="470" cy="150" r="5" style="fill:var(--ink)"/>
+        <text x="470" y="36" font-size="12" text-anchor="middle" style="font-weight:700">Floor view of a swinging pendulum</text>
+        <text x="470" y="58" font-size="11" text-anchor="middle" style="fill:var(--muted)">faint = earlier, blue = latest (turns clockwise)</text>
+        <g font-size="13" text-anchor="middle" style="font-weight:700"><text x="170" y="232">Star trails</text><text x="480" y="232">Foucault pendulum</text></g>
+        <g font-size="11.5" text-anchor="middle" style="fill:var(--muted)"><text x="170" y="250">arcs around one fixed point: Earth turns</text><text x="480" y="250">swing line drifts about 10° an hour here</text></g>
+      </svg></div>
     </article>
     <article class="aid wide">
       <span class="tag build">Build it</span>
@@ -363,6 +379,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
     <article class="aid wide">
       <span class="tag try">Try it</span>
       <h3>Ride around the Sun</h3>
+      <div class="tryguide"><p><b>Predict.</b> Is Earth closer to the Sun in summer? Make a guess about the distance in June and in December before you move the slider.</p><p><b>Do.</b> Start at day 172 (June 21). Slide to day 355 (December 21), then to day 80 (March) and day 266 (September). At each, read the noon Sun height, the hours of daylight, and the Earth–Sun distance. Watch which way the tilted axis points; it never changes.</p><p><b>Notice.</b> The axis keeps pointing the same direction all year. In June the Northern Hemisphere leans toward the Sun, the noon Sun is high and the days are long. In December it leans away, and the Sun is low and days are short. The distance barely changes, and Earth is actually closest to the Sun in early January.</p><p><b>Why it matters.</b> Seasons come from tilt, not distance. A high Sun spreads the same sunlight over a smaller patch of ground and gives more hours of daylight, so summer is warmer. When it is summer in Michigan it is winter in Australia.</p></div>
       <div class="stage"><svg id="orbSvg" viewBox="0 0 640 300" role="img" aria-label="Earth at its position on the orbit with the tilted axis fixed in space."></svg></div>
       <div class="ctl"><label for="orbD">Date: <span id="orbDV"></span></label><input id="orbD" type="range" min="1" max="365" step="1" value="172"></div>
       <p class="readout" id="orbR" aria-live="polite"></p>
@@ -395,15 +412,31 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
   <div><p class="kicker">Concept 3 · The Moon</p><h2>Moon phases</h2></div>
   <p class="idea">The Moon always has one half lit by the Sun. As it orbits Earth, the cycle of phases repeats about every <mark>29.5 days</mark>, and we see different amounts of the lit half. Phases are <mark>not</mark> caused by Earth's shadow.</p>
   <div class="aids">
-    <article class="aid">
+    <article class="aid wide">
       <span class="tag analogy">Analogy</span>
       <h3>A ball and a lamp</h3>
       <p>Hold a ball at arm's length in a dark room with one lamp. The side facing the lamp is always lit. Turn slowly in a circle: sometimes you see the dark side (new moon), sometimes the lit half (full), and in between a slice.</p>
+      
+      <div class="stage"><svg viewBox="0 0 640 318" role="img" aria-label="A top-down view of the lamp-and-ball model. A lamp stands at the left as the Sun. Earth is in the middle. The Moon ball is shown at four spots on a circle around Earth: between lamp and Earth, below Earth, on the far side from the lamp, and above Earth. Each ball is lit on the half facing the lamp. Below, the shape seen from Earth is drawn for each spot: new moon dark, first quarter right half lit, full moon fully lit, third quarter left half lit."><title>Lamp, ball and the phase you see</title><desc>The lit half of the Moon always faces the lamp. What changes is how much of that lit half faces Earth. With the Moon between lamp and Earth you see the dark side (new). With Earth between lamp and Moon you see the whole lit side (full). At the two sideways positions you see half of the lit half (quarter phases).</desc>
+        <defs><marker id="mLamp" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10z" style="fill:var(--beam)"/></marker></defs>
+        <circle cx="48" cy="100" r="22" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/>
+        <g style="stroke:var(--beam);stroke-width:3" ><line x1="80" y1="60" x2="236" y2="60" marker-end="url(#mLamp)"/><line x1="80" y1="100" x2="226" y2="100" marker-end="url(#mLamp)" style="stroke-opacity:0"/><line x1="80" y1="140" x2="236" y2="140" marker-end="url(#mLamp)"/></g>
+        <text x="48" y="140" font-size="12" text-anchor="middle" style="font-weight:700">lamp</text><text x="48" y="154" font-size="12" text-anchor="middle" style="font-weight:700">(Sun)</text>
+        <circle cx="330" cy="100" r="72" style="fill:none;stroke:var(--line);stroke-width:2;stroke-dasharray:6 5"/>
+        <circle cx="330" cy="100" r="16" style="fill:var(--reflect);fill-opacity:.7;stroke:var(--ink);stroke-width:2.5"/><text x="330" y="104" font-size="10" text-anchor="middle" style="font-weight:700">you</text>
+        <circle cx="258" cy="100" r="15" style="fill:var(--shade);stroke:var(--ink);stroke-width:2"/><path d="M258 85 A15 15 0 0 0 258 115Z" style="fill:var(--beam)"/><circle cx="258" cy="100" r="15" style="fill:none;stroke:var(--ink);stroke-width:2"/><circle cx="330" cy="172" r="15" style="fill:var(--shade);stroke:var(--ink);stroke-width:2"/><path d="M330 157 A15 15 0 0 0 330 187Z" style="fill:var(--beam)"/><circle cx="330" cy="172" r="15" style="fill:none;stroke:var(--ink);stroke-width:2"/><circle cx="402" cy="100" r="15" style="fill:var(--shade);stroke:var(--ink);stroke-width:2"/><path d="M402 85 A15 15 0 0 0 402 115Z" style="fill:var(--beam)"/><circle cx="402" cy="100" r="15" style="fill:none;stroke:var(--ink);stroke-width:2"/><circle cx="330" cy="28" r="15" style="fill:var(--shade);stroke:var(--ink);stroke-width:2"/><path d="M330 13 A15 15 0 0 0 330 43Z" style="fill:var(--beam)"/><circle cx="330" cy="28" r="15" style="fill:none;stroke:var(--ink);stroke-width:2"/>
+        <g font-size="11.5" style="font-weight:700"><text x="244" y="76" text-anchor="end">A: new</text><text x="352" y="177">B: first quarter</text><text x="426" y="104">C: full</text><text x="352" y="32">D: third quarter</text></g>
+        <circle cx="120" cy="254" r="24" style="fill:var(--shade)"/><circle cx="120" cy="254" r="24" style="fill:none;stroke:var(--ink);stroke-width:2.5"/><circle cx="260" cy="254" r="24" style="fill:var(--shade)"/><path d="M260 230 A24 24 0 0 1 260 278Z" style="fill:var(--beam)"/><circle cx="260" cy="254" r="24" style="fill:none;stroke:var(--ink);stroke-width:2.5"/><circle cx="400" cy="254" r="24" style="fill:var(--shade)"/><circle cx="400" cy="254" r="24" style="fill:var(--beam)"/><circle cx="400" cy="254" r="24" style="fill:none;stroke:var(--ink);stroke-width:2.5"/><circle cx="540" cy="254" r="24" style="fill:var(--shade)"/><path d="M540 230 A24 24 0 0 0 540 278Z" style="fill:var(--beam)"/><circle cx="540" cy="254" r="24" style="fill:none;stroke:var(--ink);stroke-width:2.5"/>
+        <g font-size="12.5" text-anchor="middle" style="font-weight:700"><text x="120" y="296">A: new moon</text><text x="260" y="296">B: first quarter</text><text x="400" y="296">C: full moon</text><text x="540" y="296">D: third quarter</text></g>
+        <text x="330" y="205" font-size="11.5" text-anchor="middle" style="fill:var(--muted)">What you see from the middle (Northern Hemisphere):</text>
+      </svg></div>
+      <p class="cap">Top view. The ball is <b>always</b> half lit, on the side facing the lamp. Walk the ball around your head counterclockwise and you will see it go A, B, C, D. The sizes and distances are not to scale.</p>
       <p class="cap">That is the exact model we use to understand the Moon. Try it with a tennis ball and a flashlight.</p>
     </article>
     <article class="aid wide">
       <span class="tag try">Try it</span>
       <h3>Orbit the Moon</h3>
+      <div class="tryguide"><p><b>Predict.</b> Is the Moon’s phase caused by Earth’s shadow? Predict what shape you will see when the Moon is on the side of Earth facing the Sun, and when it is on the far side.</p><p><b>Do.</b> Drag the day from 0 through 29.5, stopping at days 0, 7, 15, 22. Compare the left picture (top view) with the right picture (what you see) and read the percent lit.</p><p><b>Notice.</b> The Moon is half lit at every position, always on the side facing the Sun. At day 0 the lit half faces away from you, so you see almost none (new). At day 15 the whole lit half faces you (full). In between you see a growing, then shrinking, slice. Earth’s shadow is not involved.</p><p><b>Why it matters.</b> Phases are a view-angle effect. The same thing happens with a ball and a lamp: the pattern repeats every 29.5 days, which is where the idea of a month came from.</p></div>
       <div class="stage"><svg id="moonSvg" viewBox="0 0 640 260" role="img" aria-label="Left: top view of the Moon orbiting Earth with sunlight from the left. Right: the phase seen from Earth."></svg></div>
       <div class="ctl"><label for="moonD">Day in the cycle: <span id="moonDV"></span></label><input id="moonD" type="range" min="0" max="29.5" step="0.5" value="7"></div>
       <p class="readout" id="moonR" aria-live="polite"></p>
@@ -435,10 +468,24 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
       <div class="stage"><svg id="ecSvg" viewBox="0 0 480 190" role="img" aria-label="Alignment of Sun, Moon and Earth."></svg></div>
       <p class="readout" id="ecR" aria-live="polite"></p>
     </article>
-    <article class="aid">
+    <article class="aid wide">
       <span class="tag analogy">Analogy</span>
       <h3>A tilted hula hoop</h3>
       <p>The Moon's orbit is <b>tilted about 5°</b> from Earth's orbit, like a hula hoop tipped against another one. Most months, the Moon passes a little above or below the Sun–Earth line, so its shadow misses. We get 2 to 5 solar eclipses a year somewhere on Earth, but any one place sees a total one only about once in 375 years.</p>
+      <div class="stage"><svg viewBox="0 0 640 262" role="img" aria-label="Two tilted rings drawn in perspective. The wide blue ring is the plane of Earth's orbit around the Sun. The thinner orange ring is the Moon's orbit around Earth, tilted about 5 degrees (drawn much bigger). The rings cross at only two points, the nodes, at the left and right ends. An eclipse can happen only when a new or full Moon is near a node."><title>Why eclipses are rare: two tilted rings</title><desc>Because the Moon's orbit is tilted, the Moon is usually above or below the plane that holds the Sun and Earth. It crosses that plane only at two nodes. Eclipses happen when a new moon (solar) or full moon (lunar) occurs close to a node.</desc>
+        <path d="M535.0 130.0L534.2 136.4L531.7 142.7L527.7 148.9L522.0 155.0L514.9 160.9L506.2 166.6L496.1 171.9L484.7 177.0L472.0 181.7L458.2 186.0L443.3 189.9L427.5 193.3L410.9 196.3L393.5 198.7L375.6 200.6L357.3 202.0L338.7 202.8L320.0 203.1L301.3 202.8L282.7 202.0L264.4 200.6L246.5 198.7L229.1 196.3L212.5 193.3L196.7 189.9L181.8 186.0L168.0 181.7L155.3 177.0L143.9 171.9L133.8 166.6L125.1 160.9L118.0 155.0L112.3 148.9L108.3 142.7L105.8 136.4L105.0 130.0L105.8 123.6L108.3 117.3L112.3 111.1L118.0 105.0L125.1 99.1L133.8 93.4L143.9 88.1L155.3 83.0L168.0 78.3L181.8 74.0L196.7 70.1L212.5 66.7L229.1 63.7L246.5 61.3L264.4 59.4L282.7 58.0L301.3 57.2L320.0 56.9L338.7 57.2L357.3 58.0L375.6 59.4L393.5 61.3L410.9 63.7L427.5 66.7L443.3 70.1L458.2 74.0L472.0 78.3L484.7 83.0L496.1 88.1L506.2 93.4L514.9 99.1L522.0 105.0L527.7 111.1L531.7 117.3L534.2 123.6L535.0 130.0Z" style="fill:var(--reflect);fill-opacity:.12;stroke:var(--reflect);stroke-width:3"/>
+        <path d="M535.0 130.0L534.2 132.3L531.7 134.7L527.7 136.9L522.0 139.2L514.9 141.3L506.2 143.4L496.1 145.4L484.7 147.2L472.0 149.0L458.2 150.5L443.3 152.0L427.5 153.2L410.9 154.3L393.5 155.2L375.6 155.9L357.3 156.4L338.7 156.7L320.0 156.8L301.3 156.7L282.7 156.4L264.4 155.9L246.5 155.2L229.1 154.3L212.5 153.2L196.7 152.0L181.8 150.5L168.0 149.0L155.3 147.2L143.9 145.4L133.8 143.4L125.1 141.3L118.0 139.2L112.3 136.9L108.3 134.7L105.8 132.3L105.0 130.0L105.8 127.7L108.3 125.3L112.3 123.1L118.0 120.8L125.1 118.7L133.8 116.6L143.9 114.6L155.3 112.8L168.0 111.0L181.8 109.5L196.7 108.0L212.5 106.8L229.1 105.7L246.5 104.8L264.4 104.1L282.7 103.6L301.3 103.3L320.0 103.2L338.7 103.3L357.3 103.6L375.6 104.1L393.5 104.8L410.9 105.7L427.5 106.8L443.3 108.0L458.2 109.5L472.0 111.0L484.7 112.8L496.1 114.6L506.2 116.6L514.9 118.7L522.0 120.8L527.7 123.1L531.7 125.3L534.2 127.7L535.0 130.0Z" style="fill:var(--absorb);fill-opacity:.12;stroke:var(--absorb);stroke-width:3"/>
+        <circle cx="320" cy="130" r="10" style="fill:var(--transmit);fill-opacity:.8;stroke:var(--ink);stroke-width:2.5"/><text x="320" y="158" font-size="12" text-anchor="middle" style="font-weight:700">Earth</text>
+        <circle cx="105" cy="130" r="7" style="fill:var(--surface);stroke:var(--ink);stroke-width:3"/><circle cx="535" cy="130" r="7" style="fill:var(--surface);stroke:var(--ink);stroke-width:3"/>
+        <text x="105" y="116" font-size="12" text-anchor="middle" style="font-weight:700">node</text><text x="535" y="116" font-size="12" text-anchor="middle" style="font-weight:700">node</text>
+        <circle cx="119.0" cy="133" r="9" style="fill:var(--beam);stroke:var(--ink);stroke-width:2"/>
+        <circle cx="320.0" cy="103.2" r="9" style="fill:var(--beam);stroke:var(--ink);stroke-width:2"/>
+        <line x1="320.0" y1="30" x2="320.0" y2="93.2" style="stroke:var(--ink);stroke-width:1.5"/><text x="320.0" y="22" font-size="12" text-anchor="middle" style="font-weight:700">New moon off the nodes: Moon is above or below the line, its shadow misses Earth</text>
+        <line x1="110" y1="196" x2="119.0" y2="144" style="stroke:var(--ink);stroke-width:1.5"/><text x="40" y="210" font-size="12" style="font-weight:700">New or full Moon at a node: eclipse</text>
+        <text x="40" y="240" font-size="12" style="fill:var(--reflect);font-weight:700">Blue ring: plane of Earth’s orbit around the Sun</text>
+        <text x="40" y="256" font-size="12" style="fill:var(--absorb);font-weight:700">Orange ring: Moon’s orbit around Earth, tilted about 5° (shown much bigger)</text>
+      </svg></div>
+      <p class="cap">Two hula hoops that cross at only two spots. The Moon is on the shared line only twice a month, and it also has to be new or full at that moment.</p>
     </article>
     <article class="aid wide">
       <span class="tag try">Try it</span>
@@ -473,6 +520,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
     <article class="aid">
       <span class="tag try">Try it</span>
       <h3>Walk the scale model</h3>
+      <div class="tryguide"><p><b>Predict.</b> If the Sun were a 10 cm ball, how far away do you think Earth would be: across a table, across a room, or across a field? And Neptune?</p><p><b>Do.</b> Press each planet’s button in order, from Mercury to Neptune. Read the distance in meters and in steps. If you can, walk off Earth’s distance outside (about one step is 0.75 m).</p><p><b>Notice.</b> Earth is about 11 m from the Sun in this model, roughly a classroom and a hallway away, and Earth itself would be a grain of sand, about 1 mm across. Neptune is more than 300 m away. The distances grow very fast: the gaps between the outer planets are far wider than the whole inner solar system.</p><p><b>Why it matters.</b> Space is almost entirely empty. This is why sunlight takes 8 minutes to reach Earth but more than 4 hours to reach Neptune, and why space probes take years to cross the solar system.</p></div>
       <p class="tip">Scale: the Sun is a 10 cm ball.</p>
       <div class="chips" id="plChips" role="group" aria-label="Planet"></div>
       <div class="card2" id="plCard" aria-live="polite" style="padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg)"></div>

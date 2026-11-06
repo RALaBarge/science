@@ -77,6 +77,8 @@ h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
 .tag.analogy{--tint:var(--beam)} .tag.diagram{--tint:var(--reflect)} .tag.try{--tint:var(--transmit)} .tag.data{--tint:var(--absorb)} .tag.real{--tint:var(--muted)} .tag.build{--tint:#8A63D2}
 ol.steps{margin:4px 0 0;padding-left:1.3em;display:grid;gap:6px}
 .stage{background:var(--surface-2);border-radius:10px;padding:6px}
+.tryguide{display:grid;gap:5px;font-size:.95rem;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.tryguide p{margin:0}.tryguide b{color:var(--ink)}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{font-size:.92rem;padding:7px 13px;min-height:40px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer}
 .chip:hover{border-color:var(--ink)}
@@ -466,6 +468,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
     <article class="aid">
       <span class="tag try">Try it</span>
       <h3>Rise through all five layers</h3>
+      <div class="tryguide"><p><b>Predict.</b> You go straight up from the ground. Will the air get colder the whole way? Will the air get thinner? Guess which layer you leave first, and where the weather happens.</p><p><b>Do.</b> Drag the altitude slider from 0 slowly to the top. Stop in each layer and read the temperature and air pressure. Try about 5 km (top of a tall mountain), 11 km (jet airliner), and 30 km.</p><p><b>Notice.</b> In the lowest layer (the troposphere) the air gets colder as you rise, and almost all clouds and weather live there. Higher up the temperature stops falling and then rises again. The pressure falls steadily the whole way, because there is less and less air above you pressing down.</p><p><b>Why it matters.</b> Air has weight, and most of it sits close to the ground. That is why your ears pop on a mountain, why climbers need extra oxygen, and why airliners fly above most of the weather.</p></div>
       <div class="stage"><svg id="layerSvg" viewBox="-40 0 520 320" role="img" aria-label="The five layers of the atmosphere from the ground up: troposphere, stratosphere, mesosphere, thermosphere, exosphere, with a marker at the chosen altitude."></svg></div>
       <div class="ctl"><label for="alt">Altitude: <span id="altV"></span></label><input id="alt" type="range" min="0" max="499" step="1" value="0"></div>
       <p class="readout" id="altR" aria-live="polite"></p>
@@ -806,6 +809,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
     <article class="aid">
       <span class="tag try">Try it</span>
       <h3>Beach through the day</h3>
+      <div class="tryguide"><p><b>Predict.</b> The sun heats sand and water equally. Which will warm up faster, the land or the sea? At 2 PM, which way should the wind blow: toward the water or toward the land?</p><p><b>Do.</b> Start at 2 PM, then drag the time of day through a full 24 hours. Watch the two thermometers and the arrows at noon, at 2 PM, and at 2 AM.</p><p><b>Notice.</b> The land swings through a big temperature range in a day; the water barely changes. In the afternoon the land is warmer and the breeze comes in from the water (sea breeze). At night the land cools below the water and the arrows flip (land breeze). Around the switch-over there is almost no wind.</p><p><b>Why it matters.</b> Water takes a lot more energy to warm up than land does. Unequal heating makes air rise in one place and sink in another, and that moving air is wind. It is the same reason coastal towns have milder weather than inland ones.</p></div>
       <div class="stage"><svg id="seaSvg" viewBox="0 0 480 285" role="img" aria-label="Beach scene. Arrows show wind direction depending on whether land or water is warmer."></svg></div>
       <div class="ctl"><label for="hr">Time of day: <span id="hrv"></span></label><input id="hr" type="range" min="0" max="23" step="1" value="14"></div>
       <p class="readout" id="seaR" aria-live="polite"></p>

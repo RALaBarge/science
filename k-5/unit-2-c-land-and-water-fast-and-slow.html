@@ -327,37 +327,37 @@ figure.k5i details.k5i-alt summary{cursor:pointer;padding:2px 0}
 :root[data-theme="dark"] figure.k5i img{filter:brightness(.92)}
 @media (prefers-reduced-motion:reduce){figure.k5i,figure.k5i *{transition:none!important;animation:none!important}}
 </style>
-<script>/* Shared helpers for the small K-5 interactives. inject-images.mjs puts this once on every page that has one. */
-window.K5W=window.K5W||(function(){
- var n=0;
- function h(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
- var C={ink:'var(--ink,#12172b)',muted:'var(--muted,#47506e)',line:'var(--line,#d0d8e8)',surf:'var(--surface,#fff)',surf2:'var(--surface-2,#e8edf6)',beam:'var(--beam,#f2a900)',blue:'var(--reflect,#2b66e8)',red:'var(--absorb,#d6450b)',teal:'var(--transmit,#0b7f70)',shade:'var(--shade,#222a4a)',bad:'#d93036'};
- function a(v){return v==null?'':v;}
- var S={
-  c:function(x,y,r,f,s,w){return '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'"/>';},
-  r:function(x,y,w,hh,f,s,rx,sw){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+hh+'" rx="'+(rx||0)+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(sw||2)+'"/>';},
-  l:function(x1,y1,x2,y2,s,w,dash){return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+(s||C.ink)+'" stroke-width="'+(w||2)+'" stroke-linecap="round"'+(dash?' stroke-dasharray="'+dash+'"':'')+'/>';},
-  t:function(x,y,txt,sz,f,anc,wt){return '<text x="'+x+'" y="'+y+'" font-size="'+(sz||13)+'" fill="'+(f||C.ink)+'" text-anchor="'+(anc||'middle')+'"'+(wt?' font-weight="'+wt+'"':'')+'>'+txt+'</text>';},
-  p:function(pts,f,s,w){return '<polygon points="'+pts+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'" stroke-linejoin="round"/>';},
-  a:function(x1,y1,x2,y2,col,w,hd){w=w||4;hd=hd||11;var an=Math.atan2(y2-y1,x2-x1),hx=x2-Math.cos(an)*hd*.9,hy=y2-Math.sin(an)*hd*.9,px=-Math.sin(an)*hd*.55,py=Math.cos(an)*hd*.55;
-   return '<line x1="'+x1+'" y1="'+y1+'" x2="'+hx.toFixed(1)+'" y2="'+hy.toFixed(1)+'" stroke="'+col+'" stroke-width="'+w+'" stroke-linecap="round"/><polygon points="'+x2+','+y2+' '+(hx+px).toFixed(1)+','+(hy+py).toFixed(1)+' '+(hx-px).toFixed(1)+','+(hy-py).toFixed(1)+'" fill="'+col+'"/>';}
- };
- return {
-  h:h,C:C,S:S,
-  chips:function(box,labels,sel,fn,aria){
-   var g=h('div','row');g.setAttribute('role','group');if(aria)g.setAttribute('aria-label',aria);box.appendChild(g);
-   function draw(){g.innerHTML='';labels.forEach(function(l,i){var b=h('button',null,l);b.type='button';b.setAttribute('aria-pressed',String(i===sel));b.onclick=function(){sel=i;draw();fn(i);};g.appendChild(b);});}
-   draw();return {set:function(i){sel=i;draw();},get:function(){return sel;}};},
-  slider:function(box,label,min,max,step,val,fmt,fn){
-   var id='k5s'+(++n),w=h('div'),l=h('label'),inp=h('input');l.setAttribute('for',id);inp.type='range';inp.id=id;inp.min=min;inp.max=max;inp.step=step;inp.value=val;
-   function upd(){l.innerHTML=label+': <span>'+fmt(+inp.value)+'</span>';}
-   inp.oninput=function(){upd();fn(+inp.value);};upd();w.appendChild(l);w.appendChild(inp);box.appendChild(w);inp.refresh=upd;return inp;},
-  btn:function(box,label,fn){var r=box.querySelector('.row.btns');if(!r){r=h('div','row btns');box.appendChild(r);}var b=h('button',null,label);b.type='button';b.onclick=fn;r.appendChild(b);return b;},
-  svg:function(box,vb,label){var s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox',vb);s.setAttribute('role','img');s.setAttribute('aria-label',label||'');box.appendChild(s);return s;},
-  say:function(box){var p=h('p');p.setAttribute('aria-live','polite');box.appendChild(p);return function(t){p.innerHTML=t;};},
-  note:function(box,t){var p=h('p','small',t);box.appendChild(p);return p;}
- };
-})();
+<script>/* Shared helpers for the small K-5 interactives. inject-images.mjs puts this once on every page that has one. */
+window.K5W=window.K5W||(function(){
+ var n=0;
+ function h(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
+ var C={ink:'var(--ink,#12172b)',muted:'var(--muted,#47506e)',line:'var(--line,#d0d8e8)',surf:'var(--surface,#fff)',surf2:'var(--surface-2,#e8edf6)',beam:'var(--beam,#f2a900)',blue:'var(--reflect,#2b66e8)',red:'var(--absorb,#d6450b)',teal:'var(--transmit,#0b7f70)',shade:'var(--shade,#222a4a)',bad:'#d93036'};
+ function a(v){return v==null?'':v;}
+ var S={
+  c:function(x,y,r,f,s,w){return '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'"/>';},
+  r:function(x,y,w,hh,f,s,rx,sw){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+hh+'" rx="'+(rx||0)+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(sw||2)+'"/>';},
+  l:function(x1,y1,x2,y2,s,w,dash){return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+(s||C.ink)+'" stroke-width="'+(w||2)+'" stroke-linecap="round"'+(dash?' stroke-dasharray="'+dash+'"':'')+'/>';},
+  t:function(x,y,txt,sz,f,anc,wt){return '<text x="'+x+'" y="'+y+'" font-size="'+(sz||13)+'" fill="'+(f||C.ink)+'" text-anchor="'+(anc||'middle')+'"'+(wt?' font-weight="'+wt+'"':'')+'>'+txt+'</text>';},
+  p:function(pts,f,s,w){return '<polygon points="'+pts+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'" stroke-linejoin="round"/>';},
+  a:function(x1,y1,x2,y2,col,w,hd){w=w||4;hd=hd||11;var an=Math.atan2(y2-y1,x2-x1),hx=x2-Math.cos(an)*hd*.9,hy=y2-Math.sin(an)*hd*.9,px=-Math.sin(an)*hd*.55,py=Math.cos(an)*hd*.55;
+   return '<line x1="'+x1+'" y1="'+y1+'" x2="'+hx.toFixed(1)+'" y2="'+hy.toFixed(1)+'" stroke="'+col+'" stroke-width="'+w+'" stroke-linecap="round"/><polygon points="'+x2+','+y2+' '+(hx+px).toFixed(1)+','+(hy+py).toFixed(1)+' '+(hx-px).toFixed(1)+','+(hy-py).toFixed(1)+'" fill="'+col+'"/>';}
+ };
+ return {
+  h:h,C:C,S:S,
+  chips:function(box,labels,sel,fn,aria){
+   var g=h('div','row');g.setAttribute('role','group');if(aria)g.setAttribute('aria-label',aria);box.appendChild(g);
+   function draw(){g.innerHTML='';labels.forEach(function(l,i){var b=h('button',null,l);b.type='button';b.setAttribute('aria-pressed',String(i===sel));b.onclick=function(){sel=i;draw();fn(i);};g.appendChild(b);});}
+   draw();return {set:function(i){sel=i;draw();},get:function(){return sel;}};},
+  slider:function(box,label,min,max,step,val,fmt,fn){
+   var id='k5s'+(++n),w=h('div'),l=h('label'),inp=h('input');l.setAttribute('for',id);inp.type='range';inp.id=id;inp.min=min;inp.max=max;inp.step=step;inp.value=val;
+   function upd(){l.innerHTML=label+': <span>'+fmt(+inp.value)+'</span>';}
+   inp.oninput=function(){upd();fn(+inp.value);};upd();w.appendChild(l);w.appendChild(inp);box.appendChild(w);inp.refresh=upd;return inp;},
+  btn:function(box,label,fn){var r=box.querySelector('.row.btns');if(!r){r=h('div','row btns');box.appendChild(r);}var b=h('button',null,label);b.type='button';b.onclick=fn;r.appendChild(b);return b;},
+  svg:function(box,vb,label){var s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox',vb);s.setAttribute('role','img');s.setAttribute('aria-label',label||'');box.appendChild(s);return s;},
+  say:function(box){var p=h('p');p.setAttribute('aria-live','polite');box.appendChild(p);return function(t){p.innerHTML=t;};},
+  note:function(box,t){var p=h('p','small',t);box.appendChild(p);return p;}
+ };
+})();
 </script><!--k5images-css-end-->
 <header class="hero">
   <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="false">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="true">Retro space</button></div>
@@ -385,20 +385,38 @@ window.K5W=window.K5W||(function(){
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
-      <p>Fast like a door slamming; slow like a crayon wearing down.</p><p class="tip">“Some changes are quick. Some are slow.”</p>
-    </article>
+      <p>Some changes are <b>fast like a door slamming</b>. Some are <b>slow like a crayon wearing down</b>. <b>Door slam</b> = a flood or a volcano: done quickly. <b>Crayon wearing down</b> = a canyon or a dune: it takes a very long time, a little at a time.</p><p class="tip">“Some changes are quick. Some are slow.”</p></article>
     <article class="aid">
       <span class="tag diagram">Diagram</span>
       <p>Photo pairs: flood before/after, volcano, canyon, dune.</p><p class="tip">“Fast: flood moved soil. Slow: water carved rock.”</p>
-    </article>
+    <!--k5a-start id=2c-fast-slow-->
+<figure class="k5i k5i-chart" id="fig-2c-fast-slow"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 266" role="img" aria-labelledby="2c-fast-slow-t 2c-fast-slow-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="2c-fast-slow-t">Fast and slow changes to land</title><desc id="2c-fast-slow-d">Left: a flood covers a field and houses with water that carries soil away, a fast change. Right: a deep canyon with layers of rock and a river at the bottom, a slow change.</desc><rect width="480" height="266" fill="var(--surface, #fff)"/><rect x="10" y="44" width="220" height="190" rx="12" fill="var(--surface, #fff)" stroke="var(--ink, #12172B)" stroke-width="3"/><rect x="12" y="150" width="216" height="82" rx="0" fill="var(--green, #25904F)" stroke="none" stroke-width="0"/><rect x="12" y="170" width="216" height="40" rx="0" fill="var(--reflect, #2B66E8)" stroke="none" stroke-width="0"/><path d="M12 180 q20 -10 40 0 t40 0 t40 0 t40 0 t40 0" fill="none" stroke="var(--surface, #fff)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="40" y="110" width="40" height="44" rx="3" fill="var(--beam, #F2A900)" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="130" y="110" width="40" height="44" rx="3" fill="var(--beam, #F2A900)" stroke="var(--ink, #12172B)" stroke-width="2"/><line x1="60" y1="195" x2="167.4" y2="195" stroke="var(--absorb, #D6450B)" stroke-width="5" stroke-linecap="round"/><polygon points="180,195 167.4,202.7 167.4,187.3" fill="var(--absorb, #D6450B)"/><rect x="58.39999999999999" y="58" width="123.20000000000002" height="25" rx="12.5" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="120" y="76" text-anchor="middle" font-size="15" font-weight="700" fill="var(--ink, #12172B)">FAST: a flood</text><text x="120" y="252" text-anchor="middle" font-size="14" font-weight="400" fill="var(--ink, #12172B)">Water moved soil.</text><rect x="250" y="44" width="220" height="190" rx="12" fill="var(--surface, #fff)" stroke="var(--ink, #12172B)" stroke-width="3"/><path d="M252 90 L300 90 L330 190 L390 190 L420 90 L468 90 L468 232 L252 232 Z" fill="var(--absorb, #8a5a2b)" stroke="var(--ink, #12172B)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="330" y="190" width="60" height="42" rx="0" fill="var(--reflect, #2B66E8)" stroke="none" stroke-width="0"/><line x1="252" y1="130" x2="304" y2="130" stroke="var(--surface, #fff)" stroke-width="2" stroke-linecap="round" stroke-dasharray="5 4"/><line x1="420" y1="130" x2="468" y2="130" stroke="var(--surface, #fff)" stroke-width="2" stroke-linecap="round" stroke-dasharray="5 4"/><line x1="252" y1="160" x2="316" y2="160" stroke="var(--surface, #fff)" stroke-width="2" stroke-linecap="round" stroke-dasharray="5 4"/><line x1="404" y1="160" x2="468" y2="160" stroke="var(--surface, #fff)" stroke-width="2" stroke-linecap="round" stroke-dasharray="5 4"/><rect x="294.2" y="58" width="131.60000000000002" height="25" rx="12.5" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="360" y="76" text-anchor="middle" font-size="15" font-weight="700" fill="var(--ink, #12172B)">SLOW: a canyon</text><text x="360" y="252" text-anchor="middle" font-size="14" font-weight="400" fill="var(--ink, #12172B)">Water carved rock.</text></svg><figcaption>A flood is a fast change: water moved soil. A canyon is a slow change: a river carved the rock over a very long time.</figcaption><details class="k5i-alt"><summary>Text version of this picture</summary><p>Left: flood (fast). Right: canyon (slow).</p></details></figure>
+<!--k5a-end id=2c-fast-slow-->
+</article>
     <article class="aid">
       <span class="tag try">Try it</span>
       <p>Sort picture cards or video stills into fast or slow. Add a resource token: water, soil, sand, or rock.</p><p class="tip">“I see a volcano. It is fast.”</p>
-    </article>
+    <!--k5a-start id=2c-fast-slow-sort-->
+<figure class="k5i k5i-chart k5i-widget" id="fig-2c-fast-slow-sort"><div class="k5w" id="w-2c-fast-slow-sort"></div><figcaption>Sort picture cards into fast or slow. Name the material: water, soil, sand, or rock.</figcaption></figure>
+<script>(function(){var cfg={"intro":"Guess first. Is it fast or slow? What Earth material is moving?","rounds":[{"q":"A volcano erupts. Fast or slow?","opts":["Fast","Slow"],"a":0,"why":"A volcano can erupt quickly and send out rock and ash."},{"q":"A river carves a canyon. Fast or slow?","opts":["Fast","Slow"],"a":1,"why":"A canyon takes a very long time, because water wears away a little rock at a time."},{"q":"A flood covers a field. Fast or slow?","opts":["Fast","Slow"],"a":0,"why":"A flood can happen in hours or days, and it moves water and soil."},{"q":"A sand dune moves a little each year. Fast or slow?","opts":["Fast","Slow"],"a":1,"why":"Wind moves dune sand a little at a time."},{"q":"An earthquake shakes the ground. Fast or slow?","opts":["Fast","Slow"],"a":0,"why":"An earthquake shakes the ground in seconds to minutes."}]},root=document.getElementById("w-2c-fast-slow-sort");if(!root)return;var i=0;
+function draw(){root.innerHTML="";var p0=document.createElement("p");p0.className="small";p0.textContent=cfg.intro;root.appendChild(p0);
+if(i>=cfg.rounds.length){var e=document.createElement("p");e.setAttribute("aria-live","polite");e.innerHTML="<b>All done!</b> You sorted all "+cfg.rounds.length+" cards.";root.appendChild(e);var rb=document.createElement("button");rb.type="button";rb.textContent="Play again";rb.onclick=function(){i=0;draw()};var rw=document.createElement("div");rw.className="row";rw.appendChild(rb);root.appendChild(rw);return}
+var r=cfg.rounds[i];var h=document.createElement("p");h.innerHTML="<b>Card "+(i+1)+" of "+cfg.rounds.length+"</b>";root.appendChild(h);
+if(r.icon){var d=document.createElement("div");d.innerHTML=r.icon;d.style.maxWidth="170px";root.appendChild(d)}
+var q=document.createElement("p");q.textContent=r.q;q.style.fontSize="1.1rem";root.appendChild(q);
+var row=document.createElement("div");row.className="row";row.setAttribute("role","group");row.setAttribute("aria-label","Answers");root.appendChild(row);
+var fb=document.createElement("p");fb.setAttribute("aria-live","polite");fb.className="small";root.appendChild(fb);var solved=false;
+r.opts.forEach(function(o,k){var b=document.createElement("button");b.type="button";b.textContent=o;b.onclick=function(){if(solved)return;if(k===r.a){solved=true;b.setAttribute("aria-pressed","true");fb.innerHTML="<b>Yes!</b> "+r.why;var n=document.createElement("button");n.type="button";n.textContent=(i+1<cfg.rounds.length)?"Next card":"Finish";n.onclick=function(){i++;draw()};row.appendChild(n);n.focus()}else{b.disabled=true;fb.textContent="Not this one. Look again and try another."}};row.appendChild(b)});}
+draw()})();</script>
+<!--k5a-end id=2c-fast-slow-sort-->
+</article>
     <article class="aid">
       <span class="tag data">Data</span>
       <p>Class evidence chart: event, clue, fast/slow, Earth material.</p><p class="tip">“Earthquake: fast. Dune moves: slow.”</p>
-    </article>
+    <!--k5a-start id=2c-evidence-chart-->
+<figure class="k5i k5i-chart" id="fig-2c-evidence-chart"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 290" role="img" aria-labelledby="2c-evidence-chart-t 2c-evidence-chart-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="2c-evidence-chart-t">Class evidence chart</title><desc id="2c-evidence-chart-d">A chart with columns event, clue, speed and Earth material. Flood: mud left behind, fast, water and soil. Volcano: new rock, fast, rock. Earthquake: ground cracks, fast, rock. Canyon: deep cut in rock, slow, water and rock. Dune moves: sand ridge shifts, slow, sand.</desc><rect width="480" height="290" fill="var(--surface, #fff)"/><text x="12" y="62" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink, #12172B)">Event</text><text x="171" y="62" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink, #12172B)">Clue</text><text x="276" y="62" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink, #12172B)">Speed</text><text x="381" y="62" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink, #12172B)">Earth material</text><rect x="4" y="72" width="452" height="34" rx="8" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="12" y="94" text-anchor="start" font-size="14" font-weight="700" fill="var(--ink, #12172B)">Flood</text><text x="171" y="94" text-anchor="middle" font-size="14" font-weight="400" fill="var(--ink, #12172B)">mud left behind</text><text x="276" y="94" text-anchor="middle" font-size="14" font-weight="400" fill="var(--ink, #12172B)">fast</text><text x="381" y="94" text-anchor="middle" font-size="14" font-weight="400" fill="var(--ink, #12172B)">water, soil</text><rect x="4" y="112" width="452" height="34" rx="8" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="12" y="134" text-anchor="start" font-size="14" font-weight="700" fill="var(--ink, #12172B)">Volcano</text><text x="171" y="134" text-anchor="middle" font-size="14" font-weight="400" fill="var(--ink, #12172B)">new rock</text><text x="276" y="134" text-anchor="middle" font-size="14" font-weight="400" fill="var(--ink, #12172B)">fast</text><text x="381" y="134" text-anchor="middle" font-size="14" font-weight="400" fill="var(--ink, #12172B)">rock</text><rect x="4" y="152" width="452" height="34" rx="8" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="12" y="174" text-anchor="start" font-size="14" font-weight="700" fill="var(--ink, #12172B)">Earthquake</text><text x="171" y="174" text-anchor="middle" font-size="14" font-weight="400" fill="var(--ink, #12172B)">ground cracks</text><text x="276" y="174" text-anchor="middle" font-size="14" font-weight="400" fill="var(--ink, #12172B)">fast</text><text x="381" y="174" text-anchor="middle" font-size="14" font-weight="400" fill="var(--ink, #12172B)">rock</text><rect x="4" y="192" width="452" height="34" rx="8" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="12" y="214" text-anchor="start" font-size="14" font-weight="700" fill="var(--ink, #12172B)">Canyon</text><text x="171" y="214" text-anchor="middle" font-size="14" font-weight="400" fill="var(--ink, #12172B)">deep cut in rock</text><text x="276" y="214" text-anchor="middle" font-size="14" font-weight="400" fill="var(--ink, #12172B)">slow</text><text x="381" y="214" text-anchor="middle" font-size="14" font-weight="400" fill="var(--ink, #12172B)">water, rock</text><rect x="4" y="232" width="452" height="34" rx="8" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="12" y="254" text-anchor="start" font-size="14" font-weight="700" fill="var(--ink, #12172B)">Dune moves</text><text x="171" y="254" text-anchor="middle" font-size="14" font-weight="400" fill="var(--ink, #12172B)">sand ridge shifts</text><text x="276" y="254" text-anchor="middle" font-size="14" font-weight="400" fill="var(--ink, #12172B)">slow</text><text x="381" y="254" text-anchor="middle" font-size="14" font-weight="400" fill="var(--ink, #12172B)">sand</text></svg><figcaption>Each row has the event, a clue we can see, fast or slow, and the Earth material involved.</figcaption><details class="k5i-alt"><summary>Text version of this picture</summary><p>Flood, volcano, earthquake are fast. Canyon and dune moving are slow.</p></details></figure>
+<!--k5a-end id=2c-evidence-chart-->
+</article>
   </div>
 </section>
 
@@ -406,25 +424,25 @@ window.K5W=window.K5W||(function(){
   <div><p class="kicker">Concept 2</p><h2>Slowing wind and water</h2></div>
   <p class="idea">Wind and moving water can move soil and sand; plants, rocks, and barriers can help.</p>
 <!--k5images-start id=w-2c-wind-->
-<figure class="k5i k5i-chart k5i-widget" id="fig-w-2c-wind"><div class="k5w" id="w2cwind"></div>
-<script>(function(){var box=document.getElementById('w2cwind'),K=K5W,S=K.S,C=K.C;
- var grass=0,svg,say,timer=0,t=0;
- var G=[[190,150],[215,142],[240,134],[265,142],[290,150],[205,152],[230,144],[255,138],[280,152],[225,150],[250,150],[275,146],[200,146],[245,152]];
- var BARE=[60,90,40,110,70,130,50,100,80,120,45,95,75,105],HELD=[0,0,22,0,0,0,0,18,0,0,0,25,0,0];
- K.chips(box,['Bare sand','Sand with grass'],0,function(i){grass=i;idle();},'Ground');
- svg=K.svg(box,'0 0 480 200','A mound of sand with wind blowing across it.');
- K.btn(box,'Blow the wind',go);K.btn(box,'Reset',idle);
- say=K.say(box);
- function draw(p){
-  var s=S.l(20,170,460,170,C.ink,3)+'<path d="M160 170 Q240 105 320 170Z" fill="#e0c389" stroke="'+C.ink+'" stroke-width="2"/>',moved=0;
-  if(grass){for(var i=0;i<11;i++){var x=176+i*14;s+=S.l(x,162-Math.abs(5-i)*2,x-3,142-Math.abs(5-i)*3,C.teal,2.5);s+=S.l(x,162-Math.abs(5-i)*2,x+4,146-Math.abs(5-i)*3,C.teal,2.5);}}
-  for(var k=0;k<G.length;k++){var d=(grass?HELD[k]:BARE[k])*p;if(d>0)moved++;s+=S.c(G[k][0]+d,G[k][1]-(d>0?Math.sin(p*3.14)*18:0),4,'#c8a46e',C.ink,1.2);}
-  if(p>0&&p<1)for(var j=0;j<4;j++)s+=S.a(120,70+j*22,190+30*j,70+j*22,C.blue,2.5,8);
-  svg.innerHTML=s;return moved;
- }
- function idle(){clearInterval(timer);draw(0);say('Pick the ground, then press <b>Blow the wind</b>.');}
- function go(){clearInterval(timer);t=0;timer=setInterval(function(){t+=.04;var m=draw(Math.min(1,t));if(t>=1){clearInterval(timer);say(grass?'With grass, only <b>'+m+' of 14</b> grains moved, and not far. Plant roots and blades hold the sand and slow the wind near the ground.':'On bare sand, <b>'+m+' of 14</b> grains blew away. Wind moves sand little by little, and bare sand has nothing to stop it.');}},30);}
- idle();
+<figure class="k5i k5i-chart k5i-widget" id="fig-w-2c-wind"><div class="k5w" id="w2cwind"></div>
+<script>(function(){var box=document.getElementById('w2cwind'),K=K5W,S=K.S,C=K.C;
+ var grass=0,svg,say,timer=0,t=0;
+ var G=[[190,150],[215,142],[240,134],[265,142],[290,150],[205,152],[230,144],[255,138],[280,152],[225,150],[250,150],[275,146],[200,146],[245,152]];
+ var BARE=[60,90,40,110,70,130,50,100,80,120,45,95,75,105],HELD=[0,0,22,0,0,0,0,18,0,0,0,25,0,0];
+ K.chips(box,['Bare sand','Sand with grass'],0,function(i){grass=i;idle();},'Ground');
+ svg=K.svg(box,'0 0 480 200','A mound of sand with wind blowing across it.');
+ K.btn(box,'Blow the wind',go);K.btn(box,'Reset',idle);
+ say=K.say(box);
+ function draw(p){
+  var s=S.l(20,170,460,170,C.ink,3)+'<path d="M160 170 Q240 105 320 170Z" fill="#e0c389" stroke="'+C.ink+'" stroke-width="2"/>',moved=0;
+  if(grass){for(var i=0;i<11;i++){var x=176+i*14;s+=S.l(x,162-Math.abs(5-i)*2,x-3,142-Math.abs(5-i)*3,C.teal,2.5);s+=S.l(x,162-Math.abs(5-i)*2,x+4,146-Math.abs(5-i)*3,C.teal,2.5);}}
+  for(var k=0;k<G.length;k++){var d=(grass?HELD[k]:BARE[k])*p;if(d>0)moved++;s+=S.c(G[k][0]+d,G[k][1]-(d>0?Math.sin(p*3.14)*18:0),4,'#c8a46e',C.ink,1.2);}
+  if(p>0&&p<1)for(var j=0;j<4;j++)s+=S.a(120,70+j*22,190+30*j,70+j*22,C.blue,2.5,8);
+  svg.innerHTML=s;return moved;
+ }
+ function idle(){clearInterval(timer);draw(0);say('Pick the ground, then press <b>Blow the wind</b>.');}
+ function go(){clearInterval(timer);t=0;timer=setInterval(function(){t+=.04;var m=draw(Math.min(1,t));if(t>=1){clearInterval(timer);say(grass?'With grass, only <b>'+m+' of 14</b> grains moved, and not far. Plant roots and blades hold the sand and slow the wind near the ground.':'On bare sand, <b>'+m+' of 14</b> grains blew away. Wind moves sand little by little, and bare sand has nothing to stop it.');}},30);}
+ idle();
 })();</script><figcaption>Blow wind over bare sand and over sand with grass.</figcaption></figure>
 <!--k5images-end id=w-2c-wind-->
 
@@ -440,7 +458,10 @@ window.K5W=window.K5W||(function(){
     <article class="aid">
       <span class="tag real">Real world</span>
       <p>Beach grass helps hold dunes.</p><p class="tip">“Beach grass holds sand.”</p>
-    </article>
+    <!--k5a-start id=2c-beach-grass-->
+<figure class="k5i k5i-chart" id="fig-2c-beach-grass"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 258" role="img" aria-labelledby="2c-beach-grass-t 2c-beach-grass-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="2c-beach-grass-t">Beach grass holds the dune</title><desc id="2c-beach-grass-d">A sandy dune with beach grass growing on it and wind arrows blowing toward it. The grass roots hold the sand in place.</desc><rect width="480" height="258" fill="var(--surface, #fff)"/><rect x="0" y="150" width="480" height="100" rx="0" fill="var(--beam, #F2A900)" stroke="none" stroke-width="0"/><line x1="60" y1="210" x2="56" y2="150" stroke="var(--green, #25904F)" stroke-width="5" stroke-linecap="round"/><line x1="60" y1="210" x2="67" y2="156" stroke="var(--green, #25904F)" stroke-width="5" stroke-linecap="round"/><line x1="100" y1="210" x2="96" y2="150" stroke="var(--green, #25904F)" stroke-width="5" stroke-linecap="round"/><line x1="100" y1="210" x2="107" y2="156" stroke="var(--green, #25904F)" stroke-width="5" stroke-linecap="round"/><line x1="140" y1="210" x2="136" y2="150" stroke="var(--green, #25904F)" stroke-width="5" stroke-linecap="round"/><line x1="140" y1="210" x2="147" y2="156" stroke="var(--green, #25904F)" stroke-width="5" stroke-linecap="round"/><line x1="180" y1="210" x2="176" y2="150" stroke="var(--green, #25904F)" stroke-width="5" stroke-linecap="round"/><line x1="180" y1="210" x2="187" y2="156" stroke="var(--green, #25904F)" stroke-width="5" stroke-linecap="round"/><line x1="220" y1="210" x2="216" y2="150" stroke="var(--green, #25904F)" stroke-width="5" stroke-linecap="round"/><line x1="220" y1="210" x2="227" y2="156" stroke="var(--green, #25904F)" stroke-width="5" stroke-linecap="round"/><line x1="470" y1="90" x2="340.8" y2="90" stroke="var(--transmit, #0B7F70)" stroke-width="5" stroke-linecap="round"/><polygon points="330,90 340.8,83.4 340.8,96.6" fill="var(--transmit, #0B7F70)"/><line x1="470" y1="110" x2="340.8" y2="110" stroke="var(--transmit, #0B7F70)" stroke-width="5" stroke-linecap="round"/><polygon points="330,110 340.8,103.4 340.8,116.6" fill="var(--transmit, #0B7F70)"/><line x1="470" y1="130" x2="340.8" y2="130" stroke="var(--transmit, #0B7F70)" stroke-width="5" stroke-linecap="round"/><polygon points="330,130 340.8,123.4 340.8,136.6" fill="var(--transmit, #0B7F70)"/><rect x="89.88" y="219" width="100.24000000000001" height="24" rx="12" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="140" y="236" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink, #12172B)">beach grass</text><rect x="377.32" y="133" width="45.36" height="24" rx="12" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="400" y="150" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink, #12172B)">wind</text><rect x="78.12" y="103" width="123.76" height="24" rx="12" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="140" y="120" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink, #12172B)">holds the sand</text></svg><figcaption>Beach grass holds sand. Its roots and leaves slow the wind near the ground, so the dune is not blown away.</figcaption><details class="k5i-alt"><summary>Text version of this picture</summary><p>Beach grass on a dune, wind arrows, sand stays.</p></details></figure>
+<!--k5a-end id=2c-beach-grass-->
+</article>
   </div>
 </section>
 
@@ -451,15 +472,16 @@ window.K5W=window.K5W||(function(){
     <article class="aid">
       <span class="tag diagram">Diagram</span>
       <p>Simple Michigan-like map or photo with lake, river, hill, and dune.</p><p class="tip">“Land can be hills. Water can be lakes.”</p>
-    </article>
+    <!--k5a-start id=2c-map-->
+<figure class="k5i k5i-chart" id="fig-2c-map"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 260" role="img" aria-labelledby="2c-map-t 2c-map-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="2c-map-t">A Michigan-like map from above</title><desc id="2c-map-d">A map seen from above with a lake in the upper right, a river that flows to it, a brown round hill on the lower left and a sandy dune near the lake.</desc><rect width="480" height="260" fill="var(--surface, #fff)"/><rect x="10" y="44" width="460" height="200" rx="12" fill="var(--green, #25904F)" stroke="var(--ink, #12172B)" stroke-width="3"/><path d="M30 60 q60 40 40 90 q-20 40 80 60" fill="none" stroke="var(--reflect, #2B66E8)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><ellipse cx="330" cy="100" rx="80" ry="40" fill="var(--reflect, #2B66E8)" stroke="var(--ink, #12172B)" stroke-width="3"/><path d="M150 210 q60 10 80 -30 t60 -60" fill="none" stroke="var(--reflect, #2B66E8)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="100" cy="190" r="40" fill="var(--absorb, #8a5a2b)" stroke="var(--ink, #12172B)" stroke-width="3"/><circle cx="100" cy="190" r="26" fill="none" stroke="var(--ink, #12172B)" stroke-width="2"/><circle cx="100" cy="190" r="12" fill="none" stroke="var(--ink, #12172B)" stroke-width="2"/><ellipse cx="380" cy="190" rx="56" ry="22" fill="var(--beam, #F2A900)" stroke="var(--ink, #12172B)" stroke-width="3"/><rect x="306.2" y="86" width="47.6" height="25" rx="12.5" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="330" y="104" text-anchor="middle" font-size="15" font-weight="700" fill="var(--ink, #12172B)">lake</text><rect x="31.999999999999996" y="112" width="56.00000000000001" height="25" rx="12.5" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="60" y="130" text-anchor="middle" font-size="15" font-weight="700" fill="var(--ink, #12172B)">river</text><rect x="76.2" y="222" width="47.6" height="25" rx="12.5" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="100" y="240" text-anchor="middle" font-size="15" font-weight="700" fill="var(--ink, #12172B)">hill</text><rect x="356.2" y="214" width="47.6" height="25" rx="12.5" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="380" y="232" text-anchor="middle" font-size="15" font-weight="700" fill="var(--ink, #12172B)">dune</text></svg><figcaption>Land can be hills. Water can be lakes and rivers. Sand can pile into a dune. A model can show all of them.</figcaption><details class="k5i-alt"><summary>Text version of this picture</summary><p>Map with a lake, a river, a hill, and a dune.</p></details></figure>
+<!--k5a-end id=2c-map-->
+</article>
     <article class="aid">
       <span class="tag try">Try it</span>
-      <p>Build a clay or paper landform-water model of a Michigan-like area. Add blue paper for water.</p><p class="tip">“Make a lake. Make a dune.”</p>
-    </article>
+      <p><b>Guess first:</b> What do the land and water near you look like from above? Which shapes will your model need?</p><p><b>What you need:</b> clay or play dough, a tray or cardboard, blue paper, paper, crayons, a simple map or photo.</p><p><b>Do:</b> Look at the map. Build a model: a hill from clay, a lake from blue paper, a river from a blue paper strip, a dune from sand-colored clay. Add a label for each.</p><p><b>Look for:</b> Does it have a lake, a river, a hill, and a dune? How is it different from the real place?</p><p><b>What it shows:</b> A model shows the shapes of land and water so we can talk about them.</p><p class="tip">“Make a lake. Make a dune.”</p></article>
     <article class="aid">
       <span class="tag data">Data</span>
-      <p>Model feature checklist.</p><p class="tip">“Our model has a lake and a river.”</p>
-    </article>
+      <p><b>Model feature checklist.</b> After building, tick each box that your model really has: <b>lake</b>, <b>river</b>, <b>hill</b>, <b>dune</b>. Count the ticks, and write one sentence: “Our model has a lake and a river.”</p><p>Compare with a neighbor. What did they include that you did not?</p><p class="tip">“Our model has a lake and a river.”</p></article>
   </div>
 </section>
 
@@ -470,19 +492,41 @@ window.K5W=window.K5W||(function(){
     <article class="aid">
       <span class="tag diagram">Diagram</span>
       <p>Simple Michigan map with Great Lakes, rivers, snow, and underground water.</p><p class="tip">“Water is in lakes, rivers, snow, and ice.”</p>
-    </article>
+    <!--k5a-start id=2c-where-water-->
+<figure class="k5i k5i-chart" id="fig-2c-where-water"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 280" role="img" aria-labelledby="2c-where-water-t 2c-where-water-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="2c-where-water-t">Where water is</title><desc id="2c-where-water-d">A side view of land. Snow sits on top of a hill, a lake and a river lie on the land, clouds are in the sky, and there is water underground under the soil.</desc><rect width="480" height="280" fill="var(--surface, #fff)"/><rect x="0" y="204" width="480" height="66" rx="0" fill="var(--absorb, #8a5a2b)" stroke="none" stroke-width="0"/><rect x="0" y="242" width="480" height="22" rx="0" fill="var(--reflect, #2B66E8)" stroke="none" stroke-width="0"/><path d="M0 204 L100 120 L200 204 Z" fill="var(--green, #25904F)" stroke="var(--ink, #12172B)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M70 144 L100 120 L132 148 Q100 140 70 144 Z" fill="var(--surface, #fff)" stroke="var(--ink, #12172B)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="210" y="190" width="110" height="16" rx="2" fill="var(--reflect, #2B66E8)" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="214" y="188" width="102" height="6" rx="0" fill="var(--surface, #fff)" stroke="none" stroke-width="0"/><path d="M330 204 q30 0 50 -10 t50 0 t40 0" fill="none" stroke="var(--reflect, #2B66E8)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(400 70) scale(1.1)"><path d="M-30 12 a14 14 0 0 1 4 -27 a18 18 0 0 1 34 -4 a14 14 0 0 1 12 31 z" fill="var(--surface-2, #E8EDF6)" stroke="var(--ink, #12172B)" stroke-width="2" stroke-linejoin="round"/></g><rect x="49.31999999999999" y="84" width="101.36000000000001" height="23" rx="11.5" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="100" y="100" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink, #12172B)">snow (solid)</text><rect x="210.68" y="160" width="108.64000000000001" height="23" rx="11.5" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="265" y="176" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink, #12172B)">lake (liquid)</text><rect x="342.03999999999996" y="160" width="115.92000000000002" height="23" rx="11.5" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="400" y="176" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink, #12172B)">river (liquid)</text><rect x="371.15999999999997" y="16" width="57.68000000000001" height="23" rx="11.5" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="400" y="32" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink, #12172B)">clouds</text><rect x="171.12" y="242" width="137.76" height="23" rx="11.5" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="240" y="258" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink, #12172B)">water underground</text></svg><figcaption>Water is in lakes, rivers, snow, ice, clouds, and underground. Snow and ice are solid water. Lakes and rivers are liquid water.</figcaption><details class="k5i-alt"><summary>Text version of this picture</summary><p>Snowy hill, lake, river, clouds, and underground water.</p></details></figure>
+<!--k5a-end id=2c-where-water-->
+</article>
     <article class="aid">
       <span class="tag try">Try it</span>
       <p>Sort pictures: solid water vs. liquid water.</p><p class="tip">“Snow: solid. Lake: liquid.”</p>
-    </article>
+    <!--k5a-start id=2c-solid-liquid-->
+<figure class="k5i k5i-chart k5i-widget" id="fig-2c-solid-liquid"><div class="k5w" id="w-2c-solid-liquid"></div><figcaption>Sort pictures: solid water or liquid water.</figcaption></figure>
+<script>(function(){var cfg={"intro":"Guess first. Is this water solid or liquid?","rounds":[{"q":"Snow","opts":["Solid","Liquid"],"a":0,"why":"Snow is frozen water, so it is solid."},{"q":"A lake","opts":["Solid","Liquid"],"a":1,"why":"A lake is liquid water that flows and splashes."},{"q":"An icicle","opts":["Solid","Liquid"],"a":0,"why":"An icicle is ice, which is solid water."},{"q":"A river","opts":["Solid","Liquid"],"a":1,"why":"A river is liquid water that flows downhill."},{"q":"Rain in a puddle","opts":["Solid","Liquid"],"a":1,"why":"Rain is liquid water."}]},root=document.getElementById("w-2c-solid-liquid");if(!root)return;var i=0;
+function draw(){root.innerHTML="";var p0=document.createElement("p");p0.className="small";p0.textContent=cfg.intro;root.appendChild(p0);
+if(i>=cfg.rounds.length){var e=document.createElement("p");e.setAttribute("aria-live","polite");e.innerHTML="<b>All done!</b> You sorted all "+cfg.rounds.length+" cards.";root.appendChild(e);var rb=document.createElement("button");rb.type="button";rb.textContent="Play again";rb.onclick=function(){i=0;draw()};var rw=document.createElement("div");rw.className="row";rw.appendChild(rb);root.appendChild(rw);return}
+var r=cfg.rounds[i];var h=document.createElement("p");h.innerHTML="<b>Card "+(i+1)+" of "+cfg.rounds.length+"</b>";root.appendChild(h);
+if(r.icon){var d=document.createElement("div");d.innerHTML=r.icon;d.style.maxWidth="170px";root.appendChild(d)}
+var q=document.createElement("p");q.textContent=r.q;q.style.fontSize="1.1rem";root.appendChild(q);
+var row=document.createElement("div");row.className="row";row.setAttribute("role","group");row.setAttribute("aria-label","Answers");root.appendChild(row);
+var fb=document.createElement("p");fb.setAttribute("aria-live","polite");fb.className="small";root.appendChild(fb);var solved=false;
+r.opts.forEach(function(o,k){var b=document.createElement("button");b.type="button";b.textContent=o;b.onclick=function(){if(solved)return;if(k===r.a){solved=true;b.setAttribute("aria-pressed","true");fb.innerHTML="<b>Yes!</b> "+r.why;var n=document.createElement("button");n.type="button";n.textContent=(i+1<cfg.rounds.length)?"Next card":"Finish";n.onclick=function(){i++;draw()};row.appendChild(n);n.focus()}else{b.disabled=true;fb.textContent="Not this one. Look again and try another."}};row.appendChild(b)});}
+draw()})();</script>
+<!--k5a-end id=2c-solid-liquid-->
+</article>
     <article class="aid">
       <span class="tag data">Data</span>
       <p>Class chart: Where do we find water?</p><p class="tip">“We found water in 5 places.”</p>
-    </article>
+    <!--k5a-start id=2c-water-chart-->
+<figure class="k5i k5i-chart" id="fig-2c-water-chart"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 290" role="img" aria-labelledby="2c-water-chart-t 2c-water-chart-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="2c-water-chart-t">Where do we find water?</title><desc id="2c-water-chart-d">A chart of five places we found water and whether each is solid or liquid. Lake, river and water underground are liquid. Snow and ice on a puddle are solid.</desc><rect width="480" height="290" fill="var(--surface, #fff)"/><text x="16" y="62" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink, #12172B)">Where we found water</text><text x="368" y="62" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink, #12172B)">Solid or liquid?</text><rect x="8" y="72" width="460" height="34" rx="8" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="16" y="94" text-anchor="start" font-size="14" font-weight="700" fill="var(--ink, #12172B)">Lake</text><text x="368" y="94" text-anchor="middle" font-size="14" font-weight="400" fill="var(--ink, #12172B)">liquid</text><rect x="8" y="112" width="460" height="34" rx="8" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="16" y="134" text-anchor="start" font-size="14" font-weight="700" fill="var(--ink, #12172B)">River</text><text x="368" y="134" text-anchor="middle" font-size="14" font-weight="400" fill="var(--ink, #12172B)">liquid</text><rect x="8" y="152" width="460" height="34" rx="8" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="16" y="174" text-anchor="start" font-size="14" font-weight="700" fill="var(--ink, #12172B)">Snow</text><text x="368" y="174" text-anchor="middle" font-size="14" font-weight="400" fill="var(--ink, #12172B)">solid</text><rect x="8" y="192" width="460" height="34" rx="8" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="16" y="214" text-anchor="start" font-size="14" font-weight="700" fill="var(--ink, #12172B)">Ice on a puddle</text><text x="368" y="214" text-anchor="middle" font-size="14" font-weight="400" fill="var(--ink, #12172B)">solid</text><rect x="8" y="232" width="460" height="34" rx="8" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="16" y="254" text-anchor="start" font-size="14" font-weight="700" fill="var(--ink, #12172B)">Water underground (a well)</text><text x="368" y="254" text-anchor="middle" font-size="14" font-weight="400" fill="var(--ink, #12172B)">liquid</text></svg><figcaption>Example class chart: we found water in 5 places. Make your own chart of where you find water.</figcaption><details class="k5i-alt"><summary>Text version of this picture</summary><p>Lake, river, underground: liquid. Snow, ice: solid.</p></details></figure>
+<!--k5a-end id=2c-water-chart-->
+</article>
     <article class="aid">
       <span class="tag real">Real world</span>
       <p>Earth resources include water, soil, trees, rocks, and sand.</p><p class="tip">“Farms use soil and water.”</p>
-    </article>
+    <!--k5a-start id=2c-farm-->
+<figure class="k5i k5i-chart" id="fig-2c-farm"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" role="img" aria-labelledby="2c-farm-t 2c-farm-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="2c-farm-t">A farm uses Earth resources</title><desc id="2c-farm-d">A farm with a barn and rows of crops in soil, with rain falling on them.</desc><rect width="480" height="270" fill="var(--surface, #fff)"/><rect x="0" y="180" width="480" height="70" rx="0" fill="var(--absorb, #8a5a2b)" stroke="none" stroke-width="0"/><line x1="30" y1="180" x2="30" y2="150" stroke="var(--green, #25904F)" stroke-width="5" stroke-linecap="round"/><ellipse cx="30" cy="146" rx="6" ry="9" fill="var(--green, #25904F)" stroke="var(--ink, #12172B)" stroke-width="1"/><line x1="70" y1="180" x2="70" y2="142" stroke="var(--green, #25904F)" stroke-width="5" stroke-linecap="round"/><ellipse cx="70" cy="138" rx="6" ry="9" fill="var(--green, #25904F)" stroke="var(--ink, #12172B)" stroke-width="1"/><line x1="110" y1="180" x2="110" y2="150" stroke="var(--green, #25904F)" stroke-width="5" stroke-linecap="round"/><ellipse cx="110" cy="146" rx="6" ry="9" fill="var(--green, #25904F)" stroke="var(--ink, #12172B)" stroke-width="1"/><line x1="150" y1="180" x2="150" y2="142" stroke="var(--green, #25904F)" stroke-width="5" stroke-linecap="round"/><ellipse cx="150" cy="138" rx="6" ry="9" fill="var(--green, #25904F)" stroke="var(--ink, #12172B)" stroke-width="1"/><line x1="190" y1="180" x2="190" y2="150" stroke="var(--green, #25904F)" stroke-width="5" stroke-linecap="round"/><ellipse cx="190" cy="146" rx="6" ry="9" fill="var(--green, #25904F)" stroke="var(--ink, #12172B)" stroke-width="1"/><line x1="230" y1="180" x2="230" y2="142" stroke="var(--green, #25904F)" stroke-width="5" stroke-linecap="round"/><ellipse cx="230" cy="138" rx="6" ry="9" fill="var(--green, #25904F)" stroke="var(--ink, #12172B)" stroke-width="1"/><rect x="320" y="100" width="70" height="60" rx="3" fill="var(--red, #D93036)" stroke="var(--ink, #12172B)" stroke-width="2"/><path d="M316 100 L355 72 L394 100 Z" fill="var(--absorb, #D6450B)" stroke="var(--ink, #12172B)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="120" y1="50" x2="114" y2="78" stroke="var(--reflect, #2B66E8)" stroke-width="4" stroke-linecap="round"/><line x1="160" y1="50" x2="154" y2="78" stroke="var(--reflect, #2B66E8)" stroke-width="4" stroke-linecap="round"/><line x1="200" y1="50" x2="194" y2="78" stroke="var(--reflect, #2B66E8)" stroke-width="4" stroke-linecap="round"/><rect x="97.32" y="203" width="45.36" height="24" rx="12" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="120" y="220" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink, #12172B)">soil</text><rect x="123.4" y="25" width="53.2" height="24" rx="12" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="150" y="42" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink, #12172B)">water</text><rect x="138.92" y="225" width="202.16000000000003" height="24" rx="12" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="240" y="242" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink, #12172B)">farms use soil and water</text></svg><figcaption>Earth resources include water, soil, trees, rocks, and sand. A farm uses soil and water to grow food.</figcaption><details class="k5i-alt"><summary>Text version of this picture</summary><p>A barn, crop rows in soil, and rain.</p></details></figure>
+<!--k5a-end id=2c-farm-->
+</article>
   </div>
 </section>
 
@@ -501,7 +545,12 @@ window.K5W=window.K5W||(function(){
 
   <div class="aids">
     <article class="aid"><span class="tag try">Try it</span><h3>What you need</h3><p>tray, sand or soil, straw, small cup or dropper, grass clippings/twigs/stones/paper barriers, clay or paper, blue paper, picture cards or printed photos, simple Michigan map, crayons, paper.</p><p class="cap"><b>Safety:</b> Wash hands after sand/soil trays. Do not blow on sand. Use a folded card to fan it and keep sand away from faces and eyes. No coin cells or magnets are required.</p></article>
-    <article class="aid"><span class="tag try">Try it</span><h3>What you do</h3><p>Sort fast/slow Earth-change sources, test erosion guards, build a Michigan-like land/water model, and sort solid/liquid water pictures.</p></article>
+    <article class="aid"><span class="tag try">Try it</span>
+      <h3>What you do</h3>
+      <p><b>1. Fast or slow (10 minutes).</b> Sort picture cards into fast and slow changes, and name the Earth material.</p>
+      <p><b>2. Erosion Guard Test (30 minutes).</b> Put sand in a tray. Fan it gently with a folded card, with no guard, then with grass, stones, or a barrier. Measure how far the sand moved in finger widths. Do each 3 times.</p>
+      <p><b>3. Land and water model (20 minutes).</b> Build a Michigan-like model with a lake, river, hill, and dune.</p>
+      <p><b>4. Solid or liquid (10 minutes).</b> Sort water pictures and make a chart of where you find water.</p></article>
   </div>
   <details class="deep"><summary>No time or no good weather? Use this data</summary><div class="in"><p class="cap">This data is a backup. It lets you practice reading evidence, but the standard expects you to collect your own when you can.</p><p>Real observation log is preferred; this dataset guarantees evidence for quick/slow sorting and erosion-guard comparison. Fast/slow evidence cards: | Event | Clue | Fast or slow? | Earth material/resource shown | |---|---|---|---| | Flood | Moved soil in one night | Fast | Soil, water | | Volcano eruption | New rock and ash appeared quickly | Fast | Rock | | Earthquake | Road cracked quickly | Fast | Rock, soil | | Canyon | River carved rock over many years | Slow | Rock, water | | Dune | Sand moved a little each year | Slow | Sand | | Soil forming | Tiny rock pieces changed over many years | Slow | Soil | Erosion-guard backup data (what is new: this is the first guard test in the series. Each guard is tried three times and measured in finger widths of sand, so one odd try does not decide the answer. Later units use spoonfuls of sediment from different trays, so do not compare their numbers with these): | Guard | Try 1: sand moved | Try 2: sand moved | Try 3: sand moved | Best? | |---|---:|---:|---:|---| | No guard | 4 finger widths | 5 finger widths | 4 finger widths | No | | Grass | 1 finger width | 1 finger width | 2 finger widths | Yes | | Stones | 2 finger widths | 1 finger width | 2 finger widths | Good | | Paper barrier | 3 finger widths | 3 finger widths | 2 finger widths | Sometimes |</p></div></details>
   <p class="cap"><b>Near you:</b> Lake-effect snow near the Great Lakes, icy lake shores, sandy dunes, beach grass, connected Great Lakes, rivers, and shoreline storms. Child text: “Beach grass holds sand.”</p>

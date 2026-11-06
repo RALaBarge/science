@@ -1,0 +1,442 @@
+[
+ {
+  "file": "8th/unit-8.10-simple-machines-and-work.html",
+  "concept": "A lever turns a long, light push into a short, strong lift",
+  "type": "data",
+  "status": "done",
+  "what": "Three drawn lever-class diagrams (fulcrum/load/effort) above the table",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.10-simple-machines-and-work.html",
+  "concept": "A lever turns a long, light push into a short, strong lift",
+  "type": "real",
+  "status": "done",
+  "what": "Forearm third-class lever drawing with elbow, biceps, load, arm lengths; hold-a-book prompt",
+  "check": "Forearm distances (about 4 cm biceps attachment, 35 cm to hand) and the \"roughly eight times\" figure are typical textbook values"
+ },
+ {
+  "file": "8th/unit-8.10-simple-machines-and-work.html",
+  "concept": "A longer path means less force",
+  "type": "try",
+  "status": "done",
+  "what": "Ramp lab now draws a live ramp, crate and push arrow that follow the slider and friction chip; prediction prompt added (also covers the pulley lab)",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.10-simple-machines-and-work.html",
+  "concept": "A longer path means less force",
+  "type": "real",
+  "status": "done",
+  "what": "Wedge, screw, wheel and axle, pulley drawn as four labelled icons above the table",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.11-climate-evidence-and-change.html",
+  "concept": "Several independent measurements agree",
+  "type": "real",
+  "status": "done",
+  "what": "Ice-core 800,000-year CO2 graph plus sea level, glacier and Mauna Loa panels",
+  "check": "Ice-core outline is simplified (peak/trough years approximate); sea level (0, 8, 14, 23 cm at 1900/1950/1993/2020) and glacier (-27 m w.e. 1970-2020) points are approximate, check against NOAA/WGMS"
+ },
+ {
+  "file": "8th/unit-8.11-climate-evidence-and-change.html",
+  "concept": "Why the CO2 rise matches human activity",
+  "type": "analogy",
+  "status": "done",
+  "what": "Two-tub bathtub drawing (tap faster than drain vs equal)",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.11-climate-evidence-and-change.html",
+  "concept": "Why the CO2 rise matches human activity",
+  "type": "data",
+  "status": "done",
+  "what": "Sun output vs temperature 1980-2020 side-by-side graphs",
+  "check": "Solar curve is a simplified 11-year cycle (+-0.5 W/m2 scale); temperature points rounded"
+ },
+ {
+  "file": "8th/unit-8.11-climate-evidence-and-change.html",
+  "concept": "Why the CO2 rise matches human activity",
+  "type": "real",
+  "status": "done",
+  "what": "Emission-sector bar chart: energy 34, industry 24, AFOLU 22, transport 15, buildings 6 (IPCC AR6 WG3, 2019)",
+  "check": "Verify sector percentages"
+ },
+ {
+  "file": "8th/unit-8.11-climate-evidence-and-change.html",
+  "concept": "Several independent measurements agree",
+  "type": "analogy",
+  "status": "done",
+  "what": "Caption points to the added witness graphs below (no separate drawing)",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.11-climate-evidence-and-change.html",
+  "concept": "What it means and what can be done",
+  "type": "try",
+  "status": "done",
+  "what": "Worked example plus wind farm, sea wall, cooling center icons",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.11-climate-evidence-and-change.html",
+  "concept": "What it means and what can be done",
+  "type": "real",
+  "status": "done",
+  "what": "Worked example (LED vs 60 W bulb, Wh and kWh) and measure step",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.8-genetics-and-heredity.html",
+  "concept": "Mitosis copies; meiosis shuffles",
+  "type": "diagram",
+  "status": "done",
+  "what": "Five-stage cell cycle strip (interphase to telophase) drawn above the step list",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.8-genetics-and-heredity.html",
+  "concept": "DNA stores instructions in a 4-letter code",
+  "type": "data",
+  "status": "done",
+  "what": "Retagged Data -> Try it; added DNA ladder with A-T (2 bonds) and C-G (3 bonds)",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.8-genetics-and-heredity.html",
+  "concept": "Two copies of each gene, in different versions",
+  "type": "data",
+  "status": "done",
+  "what": "Stacked percentage bars of Mendel F2 counts above the table",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.8-genetics-and-heredity.html",
+  "concept": "A grid of probabilities",
+  "type": "real",
+  "status": "done",
+  "what": "Snapdragon RR/Rr/rr incomplete-dominance drawing and 1:2:1 note",
+  "check": "Snapdragon 1:2:1 cross of two pink plants"
+ },
+ {
+  "file": "8th/unit-8.9-natural-selection-and-common-ancestry.html",
+  "concept": "Selection we cause on purpose or by accident",
+  "type": "analogy",
+  "status": "done",
+  "what": "One-plant-six-crops drawing (wild mustard parts -> kale, cabbage, sprouts, kohlrabi, broccoli, cauliflower)",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.1-contact-forces-and-collisions.html",
+  "concept": "Forces come in pairs",
+  "type": "data",
+  "status": "done",
+  "what": "Four action/reaction drawings with an arrow on each object",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.1-contact-forces-and-collisions.html",
+  "concept": "Friction and other contact forces",
+  "type": "real",
+  "status": "done",
+  "what": "Friction, normal, tension, drag icons with force arrows",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.1-contact-forces-and-collisions.html",
+  "concept": "Design a safer crash",
+  "type": "real",
+  "status": "done",
+  "what": "Crumple zone, airbag, helmet foam, gym mat icons",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.10-simple-machines-and-work.html",
+  "concept": "Work is force times distance",
+  "type": "real",
+  "status": "done",
+  "what": "Retagged Real world -> Try it; added four scenario drawings (held suitcase, pushed cart, level-carried bag, lifted book) with force and motion arrows and a test rule",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.11-climate-evidence-and-change.html",
+  "concept": "Climate is the long-term pattern",
+  "type": "real",
+  "status": "done",
+  "what": "Retagged Real world -> Try it",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.9-natural-selection-and-common-ancestry.html",
+  "concept": "Body parts and DNA reveal relatives",
+  "type": "analogy",
+  "status": "done",
+  "what": "Retagged Big picture (analogy) -> Diagram",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.5-light-waves-and-information.html",
+  "concept": "Waves carry binary data",
+  "type": "real",
+  "status": "done",
+  "what": "Retagged Encoding (real) -> Data; added code table (A, B, H, i, space, red pixel in binary)",
+  "check": "Check ASCII values: A 65, B 66, H 72, i 105, space 32"
+ },
+ {
+  "file": "8th/unit-8.6-gravity-orbits-and-the-solar-system.html",
+  "concept": "Using gravity to explore",
+  "type": "analogy",
+  "status": "done",
+  "what": "Gravity-assist flyby drawing (planet motion, probe path, slow in / faster out)",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.6-gravity-orbits-and-the-solar-system.html",
+  "concept": "Using gravity to explore",
+  "type": "try",
+  "status": "skipped",
+  "what": "Which-tool cell already has a drawn telescope, rover and flyby probe; no orbiter/lander added",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.7-stars-galaxies-and-the-universe.html",
+  "concept": "Galaxies are huge star collections",
+  "type": "real",
+  "status": "done",
+  "what": "Bar chart of 75,000 vs 6,700 year travel times to Proxima Centauri",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.7-stars-galaxies-and-the-universe.html",
+  "concept": "Plot temperature against brightness",
+  "type": "data",
+  "status": "done",
+  "what": "Added pointer back to the H-R diagram",
+  "check": ""
+ },
+ {
+  "file": "extras/same-shape-everywhere.html",
+  "concept": "Look closely",
+  "type": "real",
+  "status": "done",
+  "what": "Lung airway and blood vessel branching trees drawn in the Hiding-inside-you card",
+  "check": "Real airways split about 23 times (page text, textbook model)"
+ },
+ {
+  "file": "extras/same-shape-everywhere.html",
+  "concept": "Why branch at all?",
+  "type": "analogy",
+  "status": "done",
+  "what": "Star, loop and branching road layouts drawn with eight houses",
+  "check": ""
+ },
+ {
+  "file": "extras/same-shape-everywhere.html",
+  "concept": "Brain cells and the universe",
+  "type": "data",
+  "status": "partial",
+  "what": "Log-scale chart of the two size ranges given on the page (1 um-0.1 mm vs 5-500 million ly, ~27 powers of ten); the study clumpiness curves are not redrawn because no numbers are on the page",
+  "check": "Converted 5 and 500 million light-years to metres (4.7e22 and 4.7e24 m)"
+ },
+ {
+  "file": "extras/how-ai-works.html",
+  "concept": "What is coming, and what no one knows",
+  "type": "try",
+  "status": "done",
+  "what": "Added definitions of evidence/debate/prediction, a worked example, and a quick test before the sort",
+  "check": ""
+ },
+ {
+  "file": "extras/how-ai-works.html",
+  "concept": "AI or not AI?",
+  "type": "try",
+  "status": "done",
+  "what": "Added a rules-versus-learned-model flow diagram and a how-to-tell rule above the six-item quiz",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.10-simple-machines-and-work.html",
+  "concept": "A lever turns a long, light push into a short, strong lift",
+  "type": "analogy",
+  "status": "done",
+  "what": "Balanced-seesaw drawing (300 N x 1 m = 150 N x 2 m) and link to Balance Duel",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.10-simple-machines-and-work.html",
+  "concept": "Machines change the force, not the total work",
+  "type": "data",
+  "status": "done",
+  "what": "Bar chart of the typical efficiencies (range midpoints)",
+  "check": "Midpoints chosen from the ranges on the page"
+ },
+ {
+  "file": "8th/unit-8.10-simple-machines-and-work.html",
+  "concept": "Machines change the force, not the total work",
+  "type": "real",
+  "status": "done",
+  "what": "Design challenge now has a worked start (200 N, 200 J, 2 m minimum, 4 m ramp at friction 0.2 needs about 89 N)",
+  "check": "Check: F = 200 (L-independent) x (sin + 0.2 cos); 4 m gives 200*(0.25+0.2*0.968)=89 N"
+ },
+ {
+  "file": "8th/unit-8.5-light-waves-and-information.html",
+  "concept": "Waves bend when their speed changes",
+  "type": "analogy",
+  "status": "done",
+  "what": "Lawn-mower wavefront drawing (fast to slow region, path bends toward normal, fronts bunch)",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.5-light-waves-and-information.html",
+  "concept": "Total internal reflection traps light in glass",
+  "type": "real",
+  "status": "done",
+  "what": "Fibre ray zigzag drawing (core, cladding); cable photo not added",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.5-light-waves-and-information.html",
+  "concept": "Angle in equals angle out",
+  "type": "real",
+  "status": "done",
+  "what": "Periscope drawing and link to Laser Bounce",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.4-sound-waves.html",
+  "concept": "Sound is vibration travelling through matter",
+  "type": "data",
+  "status": "done",
+  "what": "Bell-in-jar drawing (air vs pumped out) above the table",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.2-energy-transformation-and-conservation.html",
+  "concept": "Where does the energy go?",
+  "type": "analogy",
+  "status": "done",
+  "what": "Leaky bucket drawing with 10 L in, 6 L out, 4 L leaked, 60%",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.2-energy-transformation-and-conservation.html",
+  "concept": "Trading height for speed",
+  "type": "data",
+  "status": "done",
+  "what": "Speed vs drop-height sqrt(2gh) curve with the four table points",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.3-forces-at-a-distance.html",
+  "concept": "Move twice as far, force falls to one-fourth",
+  "type": "analogy",
+  "status": "done",
+  "what": "Spray-paint inverse-square drawing (1 square vs 4 squares)",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.3-forces-at-a-distance.html",
+  "concept": "Current needs a complete loop",
+  "type": "data",
+  "status": "done",
+  "what": "Series and parallel circuit schematics above the table (also covers the water-pipe analogy cell only partly)",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.3-forces-at-a-distance.html",
+  "concept": "Gravity is always attractive",
+  "type": "data",
+  "status": "done",
+  "what": "Weight-on-each-body bars (80, 185, 490, 1240 N)",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.10-simple-machines-and-work.html",
+  "concept": "Work is force times distance",
+  "type": "data",
+  "status": "skipped",
+  "what": "Priority 3, not reached: work-examples picture/joule graph",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.2-energy-transformation-and-conservation.html",
+  "concept": "Efficient design saves money and resources",
+  "type": "analogy",
+  "status": "skipped",
+  "what": "Priority 3, not reached",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.2-energy-transformation-and-conservation.html",
+  "concept": "Efficient design saves money and resources",
+  "type": "real",
+  "status": "skipped",
+  "what": "Priority 3, not reached",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.8-genetics-and-heredity.html",
+  "concept": "Mitosis copies; meiosis shuffles",
+  "type": "real",
+  "status": "skipped",
+  "what": "Priority 3, not reached: breeding/GMO pictures",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.3-forces-at-a-distance.html",
+  "concept": "Current in a coil makes a magnet you can switch off",
+  "type": "real",
+  "status": "done",
+  "what": "Crane, doorbell, maglev icons above the table",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.3-forces-at-a-distance.html",
+  "concept": "A field is a map of force in space",
+  "type": "analogy",
+  "status": "done",
+  "what": "Oven smell rings drawing",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.3-forces-at-a-distance.html",
+  "concept": "Like charges repel, opposites attract",
+  "type": "real",
+  "status": "done",
+  "what": "Balloon-and-wall charge drawing",
+  "check": "Wall near side shows polarized (positive) charge"
+ },
+ {
+  "file": "8th/unit-8.10-simple-machines-and-work.html",
+  "concept": "A longer path means less force",
+  "type": "analogy",
+  "status": "done",
+  "what": "Switchback vs straight-up path drawing",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.9-natural-selection-and-common-ancestry.html",
+  "concept": "Fossils show gradual change",
+  "type": "data",
+  "status": "done",
+  "what": "Five whale-ancestor sketches in age order showing shrinking hind legs",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.3-forces-at-a-distance.html",
+  "concept": "Current needs a complete loop",
+  "type": "analogy",
+  "status": "done",
+  "what": "Water-pipe loop drawing (pump, tap, narrow pipe mapped to battery, switch, resistance)",
+  "check": ""
+ },
+ {
+  "file": "8th/unit-8.6-gravity-orbits-and-the-solar-system.html",
+  "concept": "A collapsing cloud made a Sun and disk",
+  "type": "analogy",
+  "status": "done",
+  "what": "Three-step cloud -> spin -> disk drawing",
+  "check": ""
+ }
+]

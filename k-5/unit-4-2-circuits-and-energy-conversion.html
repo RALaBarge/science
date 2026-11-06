@@ -327,37 +327,37 @@ figure.k5i details.k5i-alt summary{cursor:pointer;padding:2px 0}
 :root[data-theme="dark"] figure.k5i img{filter:brightness(.92)}
 @media (prefers-reduced-motion:reduce){figure.k5i,figure.k5i *{transition:none!important;animation:none!important}}
 </style>
-<script>/* Shared helpers for the small K-5 interactives. inject-images.mjs puts this once on every page that has one. */
-window.K5W=window.K5W||(function(){
- var n=0;
- function h(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
- var C={ink:'var(--ink,#12172b)',muted:'var(--muted,#47506e)',line:'var(--line,#d0d8e8)',surf:'var(--surface,#fff)',surf2:'var(--surface-2,#e8edf6)',beam:'var(--beam,#f2a900)',blue:'var(--reflect,#2b66e8)',red:'var(--absorb,#d6450b)',teal:'var(--transmit,#0b7f70)',shade:'var(--shade,#222a4a)',bad:'#d93036'};
- function a(v){return v==null?'':v;}
- var S={
-  c:function(x,y,r,f,s,w){return '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'"/>';},
-  r:function(x,y,w,hh,f,s,rx,sw){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+hh+'" rx="'+(rx||0)+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(sw||2)+'"/>';},
-  l:function(x1,y1,x2,y2,s,w,dash){return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+(s||C.ink)+'" stroke-width="'+(w||2)+'" stroke-linecap="round"'+(dash?' stroke-dasharray="'+dash+'"':'')+'/>';},
-  t:function(x,y,txt,sz,f,anc,wt){return '<text x="'+x+'" y="'+y+'" font-size="'+(sz||13)+'" fill="'+(f||C.ink)+'" text-anchor="'+(anc||'middle')+'"'+(wt?' font-weight="'+wt+'"':'')+'>'+txt+'</text>';},
-  p:function(pts,f,s,w){return '<polygon points="'+pts+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'" stroke-linejoin="round"/>';},
-  a:function(x1,y1,x2,y2,col,w,hd){w=w||4;hd=hd||11;var an=Math.atan2(y2-y1,x2-x1),hx=x2-Math.cos(an)*hd*.9,hy=y2-Math.sin(an)*hd*.9,px=-Math.sin(an)*hd*.55,py=Math.cos(an)*hd*.55;
-   return '<line x1="'+x1+'" y1="'+y1+'" x2="'+hx.toFixed(1)+'" y2="'+hy.toFixed(1)+'" stroke="'+col+'" stroke-width="'+w+'" stroke-linecap="round"/><polygon points="'+x2+','+y2+' '+(hx+px).toFixed(1)+','+(hy+py).toFixed(1)+' '+(hx-px).toFixed(1)+','+(hy-py).toFixed(1)+'" fill="'+col+'"/>';}
- };
- return {
-  h:h,C:C,S:S,
-  chips:function(box,labels,sel,fn,aria){
-   var g=h('div','row');g.setAttribute('role','group');if(aria)g.setAttribute('aria-label',aria);box.appendChild(g);
-   function draw(){g.innerHTML='';labels.forEach(function(l,i){var b=h('button',null,l);b.type='button';b.setAttribute('aria-pressed',String(i===sel));b.onclick=function(){sel=i;draw();fn(i);};g.appendChild(b);});}
-   draw();return {set:function(i){sel=i;draw();},get:function(){return sel;}};},
-  slider:function(box,label,min,max,step,val,fmt,fn){
-   var id='k5s'+(++n),w=h('div'),l=h('label'),inp=h('input');l.setAttribute('for',id);inp.type='range';inp.id=id;inp.min=min;inp.max=max;inp.step=step;inp.value=val;
-   function upd(){l.innerHTML=label+': <span>'+fmt(+inp.value)+'</span>';}
-   inp.oninput=function(){upd();fn(+inp.value);};upd();w.appendChild(l);w.appendChild(inp);box.appendChild(w);inp.refresh=upd;return inp;},
-  btn:function(box,label,fn){var r=box.querySelector('.row.btns');if(!r){r=h('div','row btns');box.appendChild(r);}var b=h('button',null,label);b.type='button';b.onclick=fn;r.appendChild(b);return b;},
-  svg:function(box,vb,label){var s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox',vb);s.setAttribute('role','img');s.setAttribute('aria-label',label||'');box.appendChild(s);return s;},
-  say:function(box){var p=h('p');p.setAttribute('aria-live','polite');box.appendChild(p);return function(t){p.innerHTML=t;};},
-  note:function(box,t){var p=h('p','small',t);box.appendChild(p);return p;}
- };
-})();
+<script>/* Shared helpers for the small K-5 interactives. inject-images.mjs puts this once on every page that has one. */
+window.K5W=window.K5W||(function(){
+ var n=0;
+ function h(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
+ var C={ink:'var(--ink,#12172b)',muted:'var(--muted,#47506e)',line:'var(--line,#d0d8e8)',surf:'var(--surface,#fff)',surf2:'var(--surface-2,#e8edf6)',beam:'var(--beam,#f2a900)',blue:'var(--reflect,#2b66e8)',red:'var(--absorb,#d6450b)',teal:'var(--transmit,#0b7f70)',shade:'var(--shade,#222a4a)',bad:'#d93036'};
+ function a(v){return v==null?'':v;}
+ var S={
+  c:function(x,y,r,f,s,w){return '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'"/>';},
+  r:function(x,y,w,hh,f,s,rx,sw){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+hh+'" rx="'+(rx||0)+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(sw||2)+'"/>';},
+  l:function(x1,y1,x2,y2,s,w,dash){return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+(s||C.ink)+'" stroke-width="'+(w||2)+'" stroke-linecap="round"'+(dash?' stroke-dasharray="'+dash+'"':'')+'/>';},
+  t:function(x,y,txt,sz,f,anc,wt){return '<text x="'+x+'" y="'+y+'" font-size="'+(sz||13)+'" fill="'+(f||C.ink)+'" text-anchor="'+(anc||'middle')+'"'+(wt?' font-weight="'+wt+'"':'')+'>'+txt+'</text>';},
+  p:function(pts,f,s,w){return '<polygon points="'+pts+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'" stroke-linejoin="round"/>';},
+  a:function(x1,y1,x2,y2,col,w,hd){w=w||4;hd=hd||11;var an=Math.atan2(y2-y1,x2-x1),hx=x2-Math.cos(an)*hd*.9,hy=y2-Math.sin(an)*hd*.9,px=-Math.sin(an)*hd*.55,py=Math.cos(an)*hd*.55;
+   return '<line x1="'+x1+'" y1="'+y1+'" x2="'+hx.toFixed(1)+'" y2="'+hy.toFixed(1)+'" stroke="'+col+'" stroke-width="'+w+'" stroke-linecap="round"/><polygon points="'+x2+','+y2+' '+(hx+px).toFixed(1)+','+(hy+py).toFixed(1)+' '+(hx-px).toFixed(1)+','+(hy-py).toFixed(1)+'" fill="'+col+'"/>';}
+ };
+ return {
+  h:h,C:C,S:S,
+  chips:function(box,labels,sel,fn,aria){
+   var g=h('div','row');g.setAttribute('role','group');if(aria)g.setAttribute('aria-label',aria);box.appendChild(g);
+   function draw(){g.innerHTML='';labels.forEach(function(l,i){var b=h('button',null,l);b.type='button';b.setAttribute('aria-pressed',String(i===sel));b.onclick=function(){sel=i;draw();fn(i);};g.appendChild(b);});}
+   draw();return {set:function(i){sel=i;draw();},get:function(){return sel;}};},
+  slider:function(box,label,min,max,step,val,fmt,fn){
+   var id='k5s'+(++n),w=h('div'),l=h('label'),inp=h('input');l.setAttribute('for',id);inp.type='range';inp.id=id;inp.min=min;inp.max=max;inp.step=step;inp.value=val;
+   function upd(){l.innerHTML=label+': <span>'+fmt(+inp.value)+'</span>';}
+   inp.oninput=function(){upd();fn(+inp.value);};upd();w.appendChild(l);w.appendChild(inp);box.appendChild(w);inp.refresh=upd;return inp;},
+  btn:function(box,label,fn){var r=box.querySelector('.row.btns');if(!r){r=h('div','row btns');box.appendChild(r);}var b=h('button',null,label);b.type='button';b.onclick=fn;r.appendChild(b);return b;},
+  svg:function(box,vb,label){var s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox',vb);s.setAttribute('role','img');s.setAttribute('aria-label',label||'');box.appendChild(s);return s;},
+  say:function(box){var p=h('p');p.setAttribute('aria-live','polite');box.appendChild(p);return function(t){p.innerHTML=t;};},
+  note:function(box,t){var p=h('p','small',t);box.appendChild(p);return p;}
+ };
+})();
 </script><!--k5images-css-end-->
 <header class="hero">
   <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="false">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="true">Retro space</button></div>
@@ -390,7 +390,8 @@ window.K5W=window.K5W||(function(){
     <article class="aid">
       <span class="tag try">Try it</span>
       <h3>Light the LED</h3><p>coin cell, LED, tape, and foil strips.</p><p class="tip">“Connect the battery to the LED in a loop. The LED lights. If it stays dark, flip the LED. It works one way.”</p>
-    </article>
+<!--k5b-start id=b42-led--><p><b>Predict first:</b> If the LED stays dark, what could be wrong?</p><p><b>You need:</b> a coin cell battery, an LED, tape, foil strips. The adult checks the battery and keeps it away from mouths.</p><ol><li>The LED has one long leg (+) and one short leg (-).</li><li>Touch the long leg to the + (flat) side of the battery and the short leg to the other side.</li><li>Hold it with tape or a clip.</li></ol><p><b>What you should see:</b> The LED lights. If it does not, flip the LED around. It works only one way.</p><p class="cap"><b>Why it matters:</b> A circuit needs a complete loop, and an LED needs the right direction.</p><!--k5b-end id=b42-led-->
+</article>
     <article class="aid">
       <span class="tag diagram">Diagram</span>
       <h3>Open vs closed</h3><p>one circuit with a gap and one circuit without a gap.</p><p class="tip">“Open path: no light. Closed path: light.”</p>
@@ -398,7 +399,8 @@ window.K5W=window.K5W||(function(){
     <article class="aid">
       <span class="tag data">Data</span>
       <h3>LED direction log</h3><p>a table with LED direction, Lights? yes/no.</p><p class="tip">“Try both ways. Record which way lights.”</p>
-    </article>
+<!--k5b-start id=b42-log--><table style="border-collapse:collapse;font-size:.92rem;margin:6px 0"><thead><tr><th style="border:1px solid var(--line,#d0d8e8);padding:4px 8px;text-align:left">LED direction</th><th style="border:1px solid var(--line,#d0d8e8);padding:4px 8px;text-align:left">Lights? (yes/no)</th></tr></thead><tbody><tr><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">Long leg on + side</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">yes</td></tr><tr><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">Long leg on - side</td><td style="border:1px solid var(--line,#d0d8e8);padding:4px 8px">no</td></tr></tbody></table><p class="cap">Try both ways and write what you see. The sample answer shows the usual result.</p><!--k5b-end id=b42-log-->
+</article>
   </div>
 </section>
 
@@ -406,27 +408,27 @@ window.K5W=window.K5W||(function(){
   <div><p class="kicker">Concept 2</p><h2>Conductors and insulators</h2></div>
   <p class="idea">Some materials let current flow easily; others do not.</p>
 <!--k5images-start id=w-42-gap-->
-<figure class="k5i k5i-chart k5i-widget" id="fig-w-42-gap"><div class="k5w" id="w42gap"></div>
-<script>(function(){var box=document.getElementById('w42gap'),K=K5W,S=K.S,C=K.C;
- var IT=[['Paper clip',1],['Aluminum foil',1],['Coin',1],['Plastic spoon',0],['Wooden stick',0],['String',0]];
- var sel=-1,svg,say;
- box.appendChild(K.h('p',null,'The circuit has a gap. Pick something to lay across it and see if the bulb lights.'));
- K.chips(box,IT.map(function(x){return x[0];}),-1,function(i){sel=i;draw();},'Material');
- svg=K.svg(box,'0 0 480 220','A circuit with a battery and a bulb and a gap in the top wire.');
- say=K.say(box);
- function draw(){
-  var lit=sel>=0&&IT[sel][1],s=S.l(70,60,200,60,C.ink,4)+S.l(280,60,410,60,C.ink,4)+S.l(70,180,410,180,C.ink,4)+S.l(70,60,70,100,C.ink,4)+S.l(70,140,70,180,C.ink,4)+S.l(410,60,410,96,C.ink,4)+S.l(410,146,410,180,C.ink,4);
-  s+=S.l(52,100,88,100,C.ink,3)+S.l(58,118,82,118,C.ink,7)+S.l(52,136,88,136,C.ink,3);
-  s+=S.c(410,121,24,lit?C.beam:C.surf,C.ink,3);
-  if(lit)for(var i=0;i<10;i++){var a=i/10*6.283;s+=S.l(410+Math.cos(a)*30,121+Math.sin(a)*30,410+Math.cos(a)*42,121+Math.sin(a)*42,C.beam,3);}
-  s+=S.c(200,60,5,C.ink)+S.c(280,60,5,C.ink);
-  if(sel>=0)s+=S.r(186,50,108,20,lit?'#c9ced8':'#e6d3a8',C.ink,10,2.5)+S.t(240,92,IT[sel][0],12,C.ink);
-  else s+=S.t(240,48,'gap',13,C.red,'middle',700);
-  svg.innerHTML=s;
-  say(sel<0?'Pick a material to bridge the gap.':lit?'<b>'+IT[sel][0]+' lets current through</b>, so the loop is complete and the bulb lights. Metals are conductors.':'<b>'+IT[sel][0]+' does not let current through</b>, so the gap stays open and the bulb stays off. It is an insulator.');
-  svg.setAttribute('aria-label',sel<0?'A circuit with a gap. The bulb is off.':IT[sel][0]+' across the gap. The bulb is '+(lit?'on':'off')+'.');
- }
- draw();
+<figure class="k5i k5i-chart k5i-widget" id="fig-w-42-gap"><div class="k5w" id="w42gap"></div>
+<script>(function(){var box=document.getElementById('w42gap'),K=K5W,S=K.S,C=K.C;
+ var IT=[['Paper clip',1],['Aluminum foil',1],['Coin',1],['Plastic spoon',0],['Wooden stick',0],['String',0]];
+ var sel=-1,svg,say;
+ box.appendChild(K.h('p',null,'The circuit has a gap. Pick something to lay across it and see if the bulb lights.'));
+ K.chips(box,IT.map(function(x){return x[0];}),-1,function(i){sel=i;draw();},'Material');
+ svg=K.svg(box,'0 0 480 220','A circuit with a battery and a bulb and a gap in the top wire.');
+ say=K.say(box);
+ function draw(){
+  var lit=sel>=0&&IT[sel][1],s=S.l(70,60,200,60,C.ink,4)+S.l(280,60,410,60,C.ink,4)+S.l(70,180,410,180,C.ink,4)+S.l(70,60,70,100,C.ink,4)+S.l(70,140,70,180,C.ink,4)+S.l(410,60,410,96,C.ink,4)+S.l(410,146,410,180,C.ink,4);
+  s+=S.l(52,100,88,100,C.ink,3)+S.l(58,118,82,118,C.ink,7)+S.l(52,136,88,136,C.ink,3);
+  s+=S.c(410,121,24,lit?C.beam:C.surf,C.ink,3);
+  if(lit)for(var i=0;i<10;i++){var a=i/10*6.283;s+=S.l(410+Math.cos(a)*30,121+Math.sin(a)*30,410+Math.cos(a)*42,121+Math.sin(a)*42,C.beam,3);}
+  s+=S.c(200,60,5,C.ink)+S.c(280,60,5,C.ink);
+  if(sel>=0)s+=S.r(186,50,108,20,lit?'#c9ced8':'#e6d3a8',C.ink,10,2.5)+S.t(240,92,IT[sel][0],12,C.ink);
+  else s+=S.t(240,48,'gap',13,C.red,'middle',700);
+  svg.innerHTML=s;
+  say(sel<0?'Pick a material to bridge the gap.':lit?'<b>'+IT[sel][0]+' lets current through</b>, so the loop is complete and the bulb lights. Metals are conductors.':'<b>'+IT[sel][0]+' does not let current through</b>, so the gap stays open and the bulb stays off. It is an insulator.');
+  svg.setAttribute('aria-label',sel<0?'A circuit with a gap. The bulb is off.':IT[sel][0]+' across the gap. The bulb is '+(lit?'on':'off')+'.');
+ }
+ draw();
 })();</script><figcaption>Lay different materials across a gap to see what lets current through.</figcaption></figure>
 <!--k5images-end id=w-42-gap-->
 
@@ -442,7 +444,8 @@ window.K5W=window.K5W||(function(){
     <article class="aid">
       <span class="tag real">Real world</span>
       <h3>Safe wiring</h3><p>metal wire inside plastic coating.</p><p class="tip">“Metal carries current. Plastic coating keeps it safe.”</p>
-    </article>
+<!--k5b-start id=b42-wire--><figure class="k5i k5i-chart" id="fig-b42-wire"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 266" role="img" aria-labelledby="b42-wire-t b42-wire-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="b42-wire-t">A wire has metal and plastic</title><desc id="b42-wire-d">A cut-open wire shows a metal core in the middle, labelled carries electric current, and a plastic coating around it, labelled keeps you safe.</desc><rect x="0" y="0" width="480" height="266" fill="var(--surface, #fff)"/><text x="240" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="var(--ink, #12172B)">A wire has metal and plastic</text><circle cx="110" cy="140" r="56" fill="var(--reflect, #2B66E8)" fill-opacity=".4" stroke="var(--ink, #12172B)" stroke-width="3"/><circle cx="110" cy="140" r="26" fill="var(--absorb, #D6450B)" stroke="var(--ink, #12172B)" stroke-width="2"/><text x="110" y="222" text-anchor="middle" font-size="12" font-weight="400" fill="var(--muted, #47506E)">end view</text><rect x="220" y="118" width="240" height="44" rx="6" fill="var(--reflect, #2B66E8)" fill-opacity=".4" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="220" y="130" width="240" height="20" rx="4" fill="var(--absorb, #D6450B)" stroke="var(--ink, #12172B)" stroke-width="2"/><text x="340" y="188" text-anchor="middle" font-size="12" font-weight="400" fill="var(--muted, #47506E)">side view</text><line x1="150" y1="92" x2="182.8" y2="75.6" stroke="var(--ink, #12172B)" stroke-width="2.5" stroke-linecap="round"/><polygon points="190,72 185.0,80.0 180.5,71.2" fill="var(--ink, #12172B)"/><text x="240" y="66" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink, #12172B)">plastic coat (blue): keeps you safe</text><line x1="300" y1="230" x2="300.0" y2="160.1" stroke="var(--ink, #12172B)" stroke-width="2.5" stroke-linecap="round"/><polygon points="300,152 304.9,160.1 295.1,160.1" fill="var(--ink, #12172B)"/><text x="300" y="250" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink, #12172B)">metal core (orange): carries current</text></svg><figcaption>Metal is a conductor. The plastic coat is an insulator, so the current stays inside the wire.</figcaption><details class="k5i-alt"><summary>Text version of this diagram</summary><p>A cut-open wire shows a metal core in the middle, labelled carries electric current, and a plastic coating around it, labelled keeps you safe.</p></details></figure><!--k5b-end id=b42-wire-->
+</article>
   </div>
 </section>
 
@@ -450,57 +453,57 @@ window.K5W=window.K5W||(function(){
   <div><p class="kicker">Concept 3</p><h2>Switches open and close circuits</h2></div>
   <p class="idea">A switch controls whether the circuit is complete.</p>
 <!--k5images-start id=w-42-switch-->
-<figure class="k5i k5i-chart k5i-widget" id="fig-w-42-switch"><div class="k5w" id="w42">
-<svg viewBox="0 0 480 250" role="img" aria-label="A circuit with a battery, a switch and a bulb. The switch is open, so the bulb is off.">
-<g id="w42wires" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" color="var(--ink,#12172b)"></g>
-<g id="w42glow"></g>
-<g id="w42arrows"></g>
-<text x="92" y="132" font-size="13" fill="var(--muted,#47506e)">battery</text>
-<text x="388" y="132" text-anchor="end" font-size="13" fill="var(--muted,#47506e)">bulb</text>
-<text x="240" y="92" text-anchor="middle" font-size="13" fill="var(--muted,#47506e)">switch</text>
-</svg>
-<div class="row"><button type="button" id="w42sw" aria-pressed="false">Switch: open (press to close)</button><button type="button" id="w42cut" aria-pressed="false">Cut the bottom wire</button></div>
-<p id="w42r" aria-live="polite"></p>
-</div>
-<script>
-(function(){
- var root=document.getElementById('w42'),svg=root.querySelector('svg'),wires=svg.querySelector('#w42wires'),glow=svg.querySelector('#w42glow'),arr=svg.querySelector('#w42arrows');
- var sw=document.getElementById('w42sw'),cut=document.getElementById('w42cut'),r=document.getElementById('w42r');
- var closed=false,broken=false;
- function draw(){
-  var lit=closed&&!broken,INK='var(--ink,#12172b)';
-  var s='';
-  // left side with battery
-  s+='<path d="M60 60 V108"/><path d="M60 144 V190"/>';
-  s+='<line x1="40" y1="108" x2="80" y2="108"/><line x1="48" y1="124" x2="72" y2="124" stroke-width="8"/><line x1="40" y1="140" x2="80" y2="140"/>';
-  // top wire with the switch
-  s+='<path d="M60 60 H190"/><path d="M290 60 H420 V108"/>';
-  s+=closed?'<path d="M190 60 H290"/>':'<path d="M190 60 L262 22"/>';
-  s+='<circle cx="190" cy="60" r="5" fill="'+INK+'"/><circle cx="290" cy="60" r="5" fill="'+INK+'"/>';
-  // right side to the bulb
-  s+='<path d="M420 148 V190"/>';
-  // bottom wire, with a gap when cut
-  s+=broken?'<path d="M60 190 H210"/><path d="M270 190 H420"/>':'<path d="M60 190 H420"/>';
-  if(broken)s+='<text x="240" y="214" text-anchor="middle" font-size="13" fill="var(--absorb,#d6450b)" stroke="none">gap</text>';
-  wires.innerHTML=s;
-  var g='<circle cx="420" cy="128" r="22" fill="'+(lit?'var(--beam,#f2a900)':'var(--surface,#fff)')+'" stroke="'+INK+'" stroke-width="3"/><path d="M410 138 L416 122 L420 132 L424 122 L430 138" fill="none" stroke="'+INK+'" stroke-width="2"/>';
-  if(lit){for(var i=0;i<10;i++){var a=i/10*6.283;g+='<line x1="'+(420+Math.cos(a)*30).toFixed(1)+'" y1="'+(128+Math.sin(a)*30).toFixed(1)+'" x2="'+(420+Math.cos(a)*42).toFixed(1)+'" y2="'+(128+Math.sin(a)*42).toFixed(1)+'" stroke="var(--beam,#f2a900)" stroke-width="3" stroke-linecap="round"/>';}}
-  glow.innerHTML=g;
-  var A='';
-  if(lit){[[110,60,150,60],[330,60,380,60],[420,70,420,98],[420,160,420,182],[380,190,330,190],[170,190,120,190],[60,170,60,150],[60,100,60,70]].forEach(function(p){
-    var ang=Math.atan2(p[3]-p[1],p[2]-p[0]),hx=p[2]-Math.cos(ang)*8,hy=p[3]-Math.sin(ang)*8,px=-Math.sin(ang)*5,py=Math.cos(ang)*5;
-    A+='<line x1="'+p[0]+'" y1="'+p[1]+'" x2="'+hx.toFixed(1)+'" y2="'+hy.toFixed(1)+'" stroke="var(--absorb,#d6450b)" stroke-width="3"/><polygon points="'+p[2]+','+p[3]+' '+(hx+px).toFixed(1)+','+(hy+py).toFixed(1)+' '+(hx-px).toFixed(1)+','+(hy-py).toFixed(1)+'" fill="var(--absorb,#d6450b)"/>';});}
-  arr.innerHTML=A;
-  sw.textContent='Switch: '+(closed?'closed (press to open)':'open (press to close)');sw.setAttribute('aria-pressed',String(closed));
-  cut.textContent=broken?'Mend the bottom wire':'Cut the bottom wire';cut.setAttribute('aria-pressed',String(broken));
-  r.innerHTML=lit?'<b>The bulb is on.</b> The loop is closed all the way around, so the charges move around it together.':
-   (broken?'<b>The bulb is off.</b> The bottom wire has a gap. One gap anywhere breaks the whole loop, even with the switch closed.':'<b>The bulb is off.</b> The open switch is a gap in the loop. Close it to complete the path.');
-  svg.setAttribute('aria-label','A circuit with a battery, a switch and a bulb. The switch is '+(closed?'closed':'open')+(broken?' and the bottom wire has a gap':'')+', so the bulb is '+(lit?'on':'off')+'.');
- }
- sw.addEventListener('click',function(){closed=!closed;draw();});
- cut.addEventListener('click',function(){broken=!broken;draw();});
- draw();
-})();
+<figure class="k5i k5i-chart k5i-widget" id="fig-w-42-switch"><div class="k5w" id="w42">
+<svg viewBox="0 0 480 250" role="img" aria-label="A circuit with a battery, a switch and a bulb. The switch is open, so the bulb is off.">
+<g id="w42wires" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" color="var(--ink,#12172b)"></g>
+<g id="w42glow"></g>
+<g id="w42arrows"></g>
+<text x="92" y="132" font-size="13" fill="var(--muted,#47506e)">battery</text>
+<text x="388" y="132" text-anchor="end" font-size="13" fill="var(--muted,#47506e)">bulb</text>
+<text x="240" y="92" text-anchor="middle" font-size="13" fill="var(--muted,#47506e)">switch</text>
+</svg>
+<div class="row"><button type="button" id="w42sw" aria-pressed="false">Switch: open (press to close)</button><button type="button" id="w42cut" aria-pressed="false">Cut the bottom wire</button></div>
+<p id="w42r" aria-live="polite"></p>
+</div>
+<script>
+(function(){
+ var root=document.getElementById('w42'),svg=root.querySelector('svg'),wires=svg.querySelector('#w42wires'),glow=svg.querySelector('#w42glow'),arr=svg.querySelector('#w42arrows');
+ var sw=document.getElementById('w42sw'),cut=document.getElementById('w42cut'),r=document.getElementById('w42r');
+ var closed=false,broken=false;
+ function draw(){
+  var lit=closed&&!broken,INK='var(--ink,#12172b)';
+  var s='';
+  // left side with battery
+  s+='<path d="M60 60 V108"/><path d="M60 144 V190"/>';
+  s+='<line x1="40" y1="108" x2="80" y2="108"/><line x1="48" y1="124" x2="72" y2="124" stroke-width="8"/><line x1="40" y1="140" x2="80" y2="140"/>';
+  // top wire with the switch
+  s+='<path d="M60 60 H190"/><path d="M290 60 H420 V108"/>';
+  s+=closed?'<path d="M190 60 H290"/>':'<path d="M190 60 L262 22"/>';
+  s+='<circle cx="190" cy="60" r="5" fill="'+INK+'"/><circle cx="290" cy="60" r="5" fill="'+INK+'"/>';
+  // right side to the bulb
+  s+='<path d="M420 148 V190"/>';
+  // bottom wire, with a gap when cut
+  s+=broken?'<path d="M60 190 H210"/><path d="M270 190 H420"/>':'<path d="M60 190 H420"/>';
+  if(broken)s+='<text x="240" y="214" text-anchor="middle" font-size="13" fill="var(--absorb,#d6450b)" stroke="none">gap</text>';
+  wires.innerHTML=s;
+  var g='<circle cx="420" cy="128" r="22" fill="'+(lit?'var(--beam,#f2a900)':'var(--surface,#fff)')+'" stroke="'+INK+'" stroke-width="3"/><path d="M410 138 L416 122 L420 132 L424 122 L430 138" fill="none" stroke="'+INK+'" stroke-width="2"/>';
+  if(lit){for(var i=0;i<10;i++){var a=i/10*6.283;g+='<line x1="'+(420+Math.cos(a)*30).toFixed(1)+'" y1="'+(128+Math.sin(a)*30).toFixed(1)+'" x2="'+(420+Math.cos(a)*42).toFixed(1)+'" y2="'+(128+Math.sin(a)*42).toFixed(1)+'" stroke="var(--beam,#f2a900)" stroke-width="3" stroke-linecap="round"/>';}}
+  glow.innerHTML=g;
+  var A='';
+  if(lit){[[110,60,150,60],[330,60,380,60],[420,70,420,98],[420,160,420,182],[380,190,330,190],[170,190,120,190],[60,170,60,150],[60,100,60,70]].forEach(function(p){
+    var ang=Math.atan2(p[3]-p[1],p[2]-p[0]),hx=p[2]-Math.cos(ang)*8,hy=p[3]-Math.sin(ang)*8,px=-Math.sin(ang)*5,py=Math.cos(ang)*5;
+    A+='<line x1="'+p[0]+'" y1="'+p[1]+'" x2="'+hx.toFixed(1)+'" y2="'+hy.toFixed(1)+'" stroke="var(--absorb,#d6450b)" stroke-width="3"/><polygon points="'+p[2]+','+p[3]+' '+(hx+px).toFixed(1)+','+(hy+py).toFixed(1)+' '+(hx-px).toFixed(1)+','+(hy-py).toFixed(1)+'" fill="var(--absorb,#d6450b)"/>';});}
+  arr.innerHTML=A;
+  sw.textContent='Switch: '+(closed?'closed (press to open)':'open (press to close)');sw.setAttribute('aria-pressed',String(closed));
+  cut.textContent=broken?'Mend the bottom wire':'Cut the bottom wire';cut.setAttribute('aria-pressed',String(broken));
+  r.innerHTML=lit?'<b>The bulb is on.</b> The loop is closed all the way around, so the charges move around it together.':
+   (broken?'<b>The bulb is off.</b> The bottom wire has a gap. One gap anywhere breaks the whole loop, even with the switch closed.':'<b>The bulb is off.</b> The open switch is a gap in the loop. Close it to complete the path.');
+  svg.setAttribute('aria-label','A circuit with a battery, a switch and a bulb. The switch is '+(closed?'closed':'open')+(broken?' and the bottom wire has a gap':'')+', so the bulb is '+(lit?'on':'off')+'.');
+ }
+ sw.addEventListener('click',function(){closed=!closed;draw();});
+ cut.addEventListener('click',function(){broken=!broken;draw();});
+ draw();
+})();
 </script><figcaption>Close the switch to light the bulb, then cut a wire. One gap anywhere breaks the whole loop.</figcaption></figure>
 <!--k5images-end id=w-42-switch-->
 
@@ -516,7 +519,8 @@ window.K5W=window.K5W||(function(){
     <article class="aid">
       <span class="tag real">Real world</span>
       <h3>Flashlight</h3><p>flashlight switch.</p><p class="tip">“A flashlight has a switch inside.”</p>
-    </article>
+<!--k5b-start id=b42-flash--><figure class="k5i k5i-chart" id="fig-b42-flash"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" role="img" aria-labelledby="b42-flash-t b42-flash-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="b42-flash-t">A flashlight has a switch inside</title><desc id="b42-flash-d">A flashlight drawn from the side. Batteries on the left, a switch on the top, and a bulb on the right joined by a loop of metal. When the switch is closed the loop is complete and the bulb lights.</desc><rect x="0" y="0" width="480" height="270" fill="var(--surface, #fff)"/><text x="240" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="var(--ink, #12172B)">A flashlight has a switch inside</text><rect x="60" y="100" width="280" height="70" rx="14" fill="var(--surface-2, #E8EDF6)" stroke="var(--ink, #12172B)" stroke-width="3"/><rect x="76" y="118" width="60" height="34" rx="4" fill="var(--beam, #F2A900)" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="140" y="118" width="60" height="34" rx="4" fill="var(--beam, #F2A900)" stroke="var(--ink, #12172B)" stroke-width="2"/><text x="138" y="192" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--ink, #12172B)">batteries</text><rect x="230" y="82" width="56" height="18" rx="6" fill="var(--red, #D93036)" stroke="var(--ink, #12172B)" stroke-width="2"/><text x="258" y="74" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--ink, #12172B)">switch</text><path d="M200 135 H230 V100" fill="none" stroke="var(--ink, #12172B)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M286 100 V135 H320" fill="none" stroke="var(--ink, #12172B)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><polygon points="340,92 400,60 400,180 340,148" fill="var(--surface-2, #E8EDF6)" stroke="var(--ink, #12172B)" stroke-width="3" stroke-linejoin="round"/><circle cx="366" cy="120" r="12" fill="var(--beam, #F2A900)" stroke="var(--ink, #12172B)" stroke-width="2"/><line x1="382.0" y1="120.0" x2="392.0" y2="120.0" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="377.3" y1="131.3" x2="384.4" y2="138.4" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="366.0" y1="136.0" x2="366.0" y2="146.0" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="354.7" y1="131.3" x2="347.6" y2="138.4" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="350.0" y1="120.0" x2="340.0" y2="120.0" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="354.7" y1="108.7" x2="347.6" y2="101.6" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="366.0" y1="104.0" x2="366.0" y2="94.0" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><line x1="377.3" y1="108.7" x2="384.4" y2="101.6" stroke="var(--beam, #F2A900)" stroke-width="2.5" stroke-linecap="round"/><text x="366" y="214" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--ink, #12172B)">bulb</text><text x="240" y="250" text-anchor="middle" font-size="13.5" font-weight="700" fill="var(--ink, #12172B)">Press the switch: the loop closes and the bulb lights.</text></svg><figcaption>Pressing the button closes a gap in the loop. Then the current can flow from the battery to the bulb and back.</figcaption><details class="k5i-alt"><summary>Text version of this diagram</summary><p>A flashlight drawn from the side. Batteries on the left, a switch on the top, and a bulb on the right joined by a loop of metal. When the switch is closed the loop is complete and the bulb lights.</p></details></figure><!--k5b-end id=b42-flash-->
+</article>
   </div>
 </section>
 
@@ -524,27 +528,27 @@ window.K5W=window.K5W||(function(){
   <div><p class="kicker">Concept 4</p><h2>Circuits convert energy</h2></div>
   <p class="idea">Electrical energy can change into light, sound, motion, or heat.</p>
 <!--k5images-start id=w-42-led-->
-<figure class="k5i k5i-chart k5i-widget" id="fig-w-42-led"><div class="k5w" id="w42led"></div>
-<script>(function(){var box=document.getElementById('w42led'),K=K5W,S=K.S,C=K.C;
- var flip=false,svg,say,btn;
- svg=K.svg(box,'0 0 480 230','A coin cell and an LED in a loop.');
- btn=K.btn(box,'Flip the LED',function(){flip=!flip;draw();});
- say=K.say(box);
- function draw(){
-  var lit=!flip,s=S.l(80,50,330,50,C.ink,4)+S.l(80,190,330,190,C.ink,4)+S.l(80,50,80,92,C.ink,4)+S.l(80,148,80,190,C.ink,4);
-  s+=S.c(80,120,28,'#b8bcc8',C.ink,3)+S.t(80,127,'+',22,C.ink,'middle',700)+S.t(80,170,'',1)+S.t(46,92,'cell',12,C.muted,'end');
-  // the cell's + side is up. The LED sits at x=330 with legs up and down.
-  var topLong=!flip;
-  s+=S.l(330,50,330,topLong?96:112,C.ink,3)+S.l(330,190,330,topLong?148:132,C.ink,3);
-  s+=S.c(330,122,26,lit?C.red:'#caa',C.ink,3);
-  if(lit)for(var i=0;i<10;i++){var a=i/10*6.283;s+=S.l(330+Math.cos(a)*34,122+Math.sin(a)*34,330+Math.cos(a)*48,122+Math.sin(a)*48,C.beam,3);}
-  s+=S.t(358,56,topLong?'long leg':'short leg',12,C.muted,'start')+S.t(358,198,topLong?'short leg':'long leg',12,C.muted,'start');
-  s+=S.t(104,46,'+ side',12,C.muted,'start');
-  svg.innerHTML=s;
-  say(lit?'<b>The LED lights.</b> Its long leg is toward the + side of the cell. Current can go through an LED in only one direction.':'<b>The LED stays dark.</b> The long leg is toward the wrong side. Flip it around and it will light. An LED works one way only.');
-  svg.setAttribute('aria-label','An LED with its '+(topLong?'long':'short')+' leg toward the plus side of the cell. It is '+(lit?'lit':'dark')+'.');
- }
- draw();
+<figure class="k5i k5i-chart k5i-widget" id="fig-w-42-led"><div class="k5w" id="w42led"></div>
+<script>(function(){var box=document.getElementById('w42led'),K=K5W,S=K.S,C=K.C;
+ var flip=false,svg,say,btn;
+ svg=K.svg(box,'0 0 480 230','A coin cell and an LED in a loop.');
+ btn=K.btn(box,'Flip the LED',function(){flip=!flip;draw();});
+ say=K.say(box);
+ function draw(){
+  var lit=!flip,s=S.l(80,50,330,50,C.ink,4)+S.l(80,190,330,190,C.ink,4)+S.l(80,50,80,92,C.ink,4)+S.l(80,148,80,190,C.ink,4);
+  s+=S.c(80,120,28,'#b8bcc8',C.ink,3)+S.t(80,127,'+',22,C.ink,'middle',700)+S.t(80,170,'',1)+S.t(46,92,'cell',12,C.muted,'end');
+  // the cell's + side is up. The LED sits at x=330 with legs up and down.
+  var topLong=!flip;
+  s+=S.l(330,50,330,topLong?96:112,C.ink,3)+S.l(330,190,330,topLong?148:132,C.ink,3);
+  s+=S.c(330,122,26,lit?C.red:'#caa',C.ink,3);
+  if(lit)for(var i=0;i<10;i++){var a=i/10*6.283;s+=S.l(330+Math.cos(a)*34,122+Math.sin(a)*34,330+Math.cos(a)*48,122+Math.sin(a)*48,C.beam,3);}
+  s+=S.t(358,56,topLong?'long leg':'short leg',12,C.muted,'start')+S.t(358,198,topLong?'short leg':'long leg',12,C.muted,'start');
+  s+=S.t(104,46,'+ side',12,C.muted,'start');
+  svg.innerHTML=s;
+  say(lit?'<b>The LED lights.</b> Its long leg is toward the + side of the cell. Current can go through an LED in only one direction.':'<b>The LED stays dark.</b> The long leg is toward the wrong side. Flip it around and it will light. An LED works one way only.');
+  svg.setAttribute('aria-label','An LED with its '+(topLong?'long':'short')+' leg toward the plus side of the cell. It is '+(lit?'lit':'dark')+'.');
+ }
+ draw();
 })();</script><figcaption>Flip the LED: it lights only one way.</figcaption></figure>
 <!--k5images-end id=w-42-led-->
 
@@ -552,7 +556,8 @@ window.K5W=window.K5W||(function(){
     <article class="aid">
       <span class="tag diagram">Diagram</span>
       <h3>Energy conversion</h3><p>battery to LED with arrows: electrical → light + a little heat.</p><p class="tip">“The battery gives electrical energy. The LED makes light.”</p>
-    </article>
+<!--k5b-start id=b42-conv--><figure class="k5i k5i-chart" id="fig-b42-conv"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 230" role="img" aria-labelledby="b42-conv-t b42-conv-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="b42-conv-t">Energy changes form</title><desc id="b42-conv-d">Three boxes joined by arrows: a battery with stored chemical energy, wires carrying electrical energy, and an LED. From the LED two arrows leave: a big one for light and a small one for a little heat.</desc><rect x="0" y="0" width="480" height="230" fill="var(--surface, #fff)"/><text x="240" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="var(--ink, #12172B)">Energy changes form</text><rect x="14" y="70" width="120" height="70" rx="8" fill="var(--surface-2, #E8EDF6)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="74" y="100" text-anchor="middle" font-size="15" font-weight="700" fill="var(--ink, #12172B)">Battery</text><text x="74" y="122" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--muted, #47506E)">stored energy</text><rect x="180" y="70" width="120" height="70" rx="8" fill="var(--surface-2, #E8EDF6)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="240" y="100" text-anchor="middle" font-size="15" font-weight="700" fill="var(--ink, #12172B)">Wires</text><text x="240" y="122" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--muted, #47506E)">electrical energy</text><rect x="346" y="70" width="120" height="70" rx="8" fill="var(--surface-2, #E8EDF6)" stroke="var(--line, #D0D8E8)" stroke-width="1.5"/><text x="406" y="100" text-anchor="middle" font-size="15" font-weight="700" fill="var(--ink, #12172B)">LED</text><text x="406" y="122" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--muted, #47506E)">changes it</text><line x1="136" y1="105" x2="167.2" y2="105.0" stroke="var(--transmit, #0B7F70)" stroke-width="4" stroke-linecap="round"/><polygon points="178,105 167.2,111.6 167.2,98.4" fill="var(--transmit, #0B7F70)"/><line x1="302" y1="105" x2="333.2" y2="105.0" stroke="var(--transmit, #0B7F70)" stroke-width="4" stroke-linecap="round"/><polygon points="344,105 333.2,111.6 333.2,98.4" fill="var(--transmit, #0B7F70)"/><line x1="406" y1="70" x2="406.0" y2="56.6" stroke="var(--beam, #F2A900)" stroke-width="6" stroke-linecap="round"/><polygon points="406,44 413.7,56.6 398.3,56.6" fill="var(--beam, #F2A900)"/><text x="420" y="52" text-anchor="start" font-size="13" font-weight="700" fill="var(--ink, #12172B)">light</text><line x1="446" y1="140" x2="446.0" y2="168.1" stroke="var(--absorb, #D6450B)" stroke-width="3" stroke-linecap="round"/><polygon points="446,178 439.9,168.1 452.1,168.1" fill="var(--absorb, #D6450B)"/><text x="446" y="198" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--absorb, #D6450B)">a little heat</text></svg><figcaption>The battery stores energy. Electrical energy flows through the loop. The LED turns it into light and a little heat.</figcaption><details class="k5i-alt"><summary>Text version of this diagram</summary><p>Three boxes joined by arrows: a battery with stored chemical energy, wires carrying electrical energy, and an LED. From the LED two arrows leave: a big one for light and a small one for a little heat.</p></details></figure><!--k5b-end id=b42-conv-->
+</article>
     <article class="aid">
       <span class="tag try">Try it</span>
       <h3>Light-up card</h3><p>paper card with foil path and LED.</p><p class="tip">“Close the switch. The card lights up. Electrical energy became light energy.”</p>
@@ -560,7 +565,8 @@ window.K5W=window.K5W||(function(){
     <article class="aid">
       <span class="tag real">Real world</span>
       <h3>Doorbell</h3><p>button and bell.</p><p class="tip">“Electric energy becomes sound.”</p>
-    </article>
+<!--k5b-start id=b42-bell--><figure class="k5i k5i-chart" id="fig-b42-bell"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 230" role="img" aria-labelledby="b42-bell-t b42-bell-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="b42-bell-t">A doorbell changes electric energy to sound</title><desc id="b42-bell-d">Three boxes joined by arrows: a button that closes the circuit, electric current, and a bell. The bell makes sound.</desc><rect x="0" y="0" width="480" height="230" fill="var(--surface, #fff)"/><text x="240" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="var(--ink, #12172B)">A doorbell changes electric energy to sound</text><circle cx="70" cy="110" r="30" fill="var(--red, #D93036)" stroke="var(--ink, #12172B)" stroke-width="3"/><text x="70" y="160" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--ink, #12172B)">push button</text><line x1="110" y1="110" x2="179.2" y2="110.0" stroke="var(--transmit, #0B7F70)" stroke-width="4" stroke-linecap="round"/><polygon points="190,110 179.2,116.6 179.2,103.4" fill="var(--transmit, #0B7F70)"/><text x="150" y="100" text-anchor="middle" font-size="12" font-weight="400" fill="var(--ink, #12172B)">current</text><path d="M250 130 q0 -50 20 -60 q20 10 20 60 z" fill="var(--beam, #F2A900)" stroke="var(--ink, #12172B)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="270" cy="136" r="6" fill="var(--ink, #12172B)" stroke="none" stroke-width="1.5"/><text x="270" y="168" text-anchor="middle" font-size="12.5" font-weight="400" fill="var(--ink, #12172B)">bell</text><line x1="320" y1="100" x2="371.6" y2="79.3" stroke="var(--ink, #12172B)" stroke-width="3" stroke-linecap="round"/><polygon points="380,76 373.7,84.4 369.6,74.2" fill="var(--ink, #12172B)"/><line x1="322" y1="112" x2="387.0" y2="112.0" stroke="var(--ink, #12172B)" stroke-width="3" stroke-linecap="round"/><polygon points="396,112 387.0,117.5 387.0,106.5" fill="var(--ink, #12172B)"/><line x1="320" y1="126" x2="371.6" y2="146.7" stroke="var(--ink, #12172B)" stroke-width="3" stroke-linecap="round"/><polygon points="380,150 369.6,151.8 373.7,141.6" fill="var(--ink, #12172B)"/><text x="430" y="116" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink, #12172B)">sound</text></svg><figcaption>Pressing the button closes the loop. Electric energy shakes the bell, and the bell makes sound.</figcaption><details class="k5i-alt"><summary>Text version of this diagram</summary><p>Three boxes joined by arrows: a button that closes the circuit, electric current, and a bell. The bell makes sound.</p></details></figure><!--k5b-end id=b42-bell-->
+</article>
   </div>
 </section>
 
@@ -576,7 +582,9 @@ window.K5W=window.K5W||(function(){
 
   <div class="aids">
     <article class="aid"><span class="tag try">Try it</span><h3>What you need</h3><p>coin cells, small LEDs, copper tape or aluminum foil, binder clips, paper clips, brass fasteners, index cards, tape, paper, pencil.</p><p class="cap"><b>Safety:</b> coin cells only; never wall current. Tape over coin cells when stored. Check LED orientation; the LED lights only one way. A small LED can run straight from one coin cell because the cell limits the current; never use a bigger battery or wall power. If foil or a coin cell feels warm, unhook it right away: a wire joining both ends of the cell is a short circuit and gets hot. An adult hands out and collects every coin cell; a swallowed coin cell is a medical emergency. Check battery freshness. If magnets are used for extensions, keep magnets away from Chromebooks.</p></article>
-    <article class="aid"><span class="tag try">Try it</span><h3>What you do</h3><p>Build a simple circuit. Test conductors and insulators. Make a paper-clip switch. Design and refine a light-up card.</p></article>
+    <article class="aid"><span class="tag try">Try it</span><h3>What you do</h3><p>Build a simple circuit. Test conductors and insulators. Make a paper-clip switch. Design and refine a light-up card.</p>
+<!--k5b-start id=b42-do--><ol><li>Light the LED with a battery and foil (10 minutes).</li><li>Test five things in the gap: paper clip, foil, string, plastic, wood (10 minutes).</li><li>Make a paper-clip switch and use it to turn the light on and off (10 minutes).</li><li>Make the light-up card. If it stays dark, check: loop closed? LED the right way? Foil touching the battery? (20 minutes).</li></ol><p><b>Notice:</b> A circuit needs an unbroken loop. Metals let current through; plastic and wood do not.</p><p class="cap"><b>Why it matters:</b> Finding why a circuit fails is how real engineers fix them.</p><!--k5b-end id=b42-do-->
+</article>
   </div>
   <details class="deep"><summary>No time or no good weather? Use this data</summary><div class="in"><p class="cap">This data is a backup. It lets you practice reading evidence, but the standard expects you to collect your own when you can.</p><p>material tester backup results paper clip yes, foil yes, string no, plastic no, wood no; switch log open no, closed yes.</p></div></details>
   <p class="cap"><b>Near you:</b> Winter storm power outages: discuss why communities need safe backup lights and why wall electricity is dangerous.</p>

@@ -331,37 +331,37 @@ figure.k5i details.k5i-alt summary{cursor:pointer;padding:2px 0}
 :root[data-theme="dark"] figure.k5i img{filter:brightness(.92)}
 @media (prefers-reduced-motion:reduce){figure.k5i,figure.k5i *{transition:none!important;animation:none!important}}
 </style>
-<script>/* Shared helpers for the small K-5 interactives. inject-images.mjs puts this once on every page that has one. */
-window.K5W=window.K5W||(function(){
- var n=0;
- function h(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
- var C={ink:'var(--ink,#12172b)',muted:'var(--muted,#47506e)',line:'var(--line,#d0d8e8)',surf:'var(--surface,#fff)',surf2:'var(--surface-2,#e8edf6)',beam:'var(--beam,#f2a900)',blue:'var(--reflect,#2b66e8)',red:'var(--absorb,#d6450b)',teal:'var(--transmit,#0b7f70)',shade:'var(--shade,#222a4a)',bad:'#d93036'};
- function a(v){return v==null?'':v;}
- var S={
-  c:function(x,y,r,f,s,w){return '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'"/>';},
-  r:function(x,y,w,hh,f,s,rx,sw){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+hh+'" rx="'+(rx||0)+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(sw||2)+'"/>';},
-  l:function(x1,y1,x2,y2,s,w,dash){return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+(s||C.ink)+'" stroke-width="'+(w||2)+'" stroke-linecap="round"'+(dash?' stroke-dasharray="'+dash+'"':'')+'/>';},
-  t:function(x,y,txt,sz,f,anc,wt){return '<text x="'+x+'" y="'+y+'" font-size="'+(sz||13)+'" fill="'+(f||C.ink)+'" text-anchor="'+(anc||'middle')+'"'+(wt?' font-weight="'+wt+'"':'')+'>'+txt+'</text>';},
-  p:function(pts,f,s,w){return '<polygon points="'+pts+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'" stroke-linejoin="round"/>';},
-  a:function(x1,y1,x2,y2,col,w,hd){w=w||4;hd=hd||11;var an=Math.atan2(y2-y1,x2-x1),hx=x2-Math.cos(an)*hd*.9,hy=y2-Math.sin(an)*hd*.9,px=-Math.sin(an)*hd*.55,py=Math.cos(an)*hd*.55;
-   return '<line x1="'+x1+'" y1="'+y1+'" x2="'+hx.toFixed(1)+'" y2="'+hy.toFixed(1)+'" stroke="'+col+'" stroke-width="'+w+'" stroke-linecap="round"/><polygon points="'+x2+','+y2+' '+(hx+px).toFixed(1)+','+(hy+py).toFixed(1)+' '+(hx-px).toFixed(1)+','+(hy-py).toFixed(1)+'" fill="'+col+'"/>';}
- };
- return {
-  h:h,C:C,S:S,
-  chips:function(box,labels,sel,fn,aria){
-   var g=h('div','row');g.setAttribute('role','group');if(aria)g.setAttribute('aria-label',aria);box.appendChild(g);
-   function draw(){g.innerHTML='';labels.forEach(function(l,i){var b=h('button',null,l);b.type='button';b.setAttribute('aria-pressed',String(i===sel));b.onclick=function(){sel=i;draw();fn(i);};g.appendChild(b);});}
-   draw();return {set:function(i){sel=i;draw();},get:function(){return sel;}};},
-  slider:function(box,label,min,max,step,val,fmt,fn){
-   var id='k5s'+(++n),w=h('div'),l=h('label'),inp=h('input');l.setAttribute('for',id);inp.type='range';inp.id=id;inp.min=min;inp.max=max;inp.step=step;inp.value=val;
-   function upd(){l.innerHTML=label+': <span>'+fmt(+inp.value)+'</span>';}
-   inp.oninput=function(){upd();fn(+inp.value);};upd();w.appendChild(l);w.appendChild(inp);box.appendChild(w);inp.refresh=upd;return inp;},
-  btn:function(box,label,fn){var r=box.querySelector('.row.btns');if(!r){r=h('div','row btns');box.appendChild(r);}var b=h('button',null,label);b.type='button';b.onclick=fn;r.appendChild(b);return b;},
-  svg:function(box,vb,label){var s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox',vb);s.setAttribute('role','img');s.setAttribute('aria-label',label||'');box.appendChild(s);return s;},
-  say:function(box){var p=h('p');p.setAttribute('aria-live','polite');box.appendChild(p);return function(t){p.innerHTML=t;};},
-  note:function(box,t){var p=h('p','small',t);box.appendChild(p);return p;}
- };
-})();
+<script>/* Shared helpers for the small K-5 interactives. inject-images.mjs puts this once on every page that has one. */
+window.K5W=window.K5W||(function(){
+ var n=0;
+ function h(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
+ var C={ink:'var(--ink,#12172b)',muted:'var(--muted,#47506e)',line:'var(--line,#d0d8e8)',surf:'var(--surface,#fff)',surf2:'var(--surface-2,#e8edf6)',beam:'var(--beam,#f2a900)',blue:'var(--reflect,#2b66e8)',red:'var(--absorb,#d6450b)',teal:'var(--transmit,#0b7f70)',shade:'var(--shade,#222a4a)',bad:'#d93036'};
+ function a(v){return v==null?'':v;}
+ var S={
+  c:function(x,y,r,f,s,w){return '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'"/>';},
+  r:function(x,y,w,hh,f,s,rx,sw){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+hh+'" rx="'+(rx||0)+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(sw||2)+'"/>';},
+  l:function(x1,y1,x2,y2,s,w,dash){return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+(s||C.ink)+'" stroke-width="'+(w||2)+'" stroke-linecap="round"'+(dash?' stroke-dasharray="'+dash+'"':'')+'/>';},
+  t:function(x,y,txt,sz,f,anc,wt){return '<text x="'+x+'" y="'+y+'" font-size="'+(sz||13)+'" fill="'+(f||C.ink)+'" text-anchor="'+(anc||'middle')+'"'+(wt?' font-weight="'+wt+'"':'')+'>'+txt+'</text>';},
+  p:function(pts,f,s,w){return '<polygon points="'+pts+'" fill="'+(f||'none')+'" stroke="'+(s||'none')+'" stroke-width="'+(w||2)+'" stroke-linejoin="round"/>';},
+  a:function(x1,y1,x2,y2,col,w,hd){w=w||4;hd=hd||11;var an=Math.atan2(y2-y1,x2-x1),hx=x2-Math.cos(an)*hd*.9,hy=y2-Math.sin(an)*hd*.9,px=-Math.sin(an)*hd*.55,py=Math.cos(an)*hd*.55;
+   return '<line x1="'+x1+'" y1="'+y1+'" x2="'+hx.toFixed(1)+'" y2="'+hy.toFixed(1)+'" stroke="'+col+'" stroke-width="'+w+'" stroke-linecap="round"/><polygon points="'+x2+','+y2+' '+(hx+px).toFixed(1)+','+(hy+py).toFixed(1)+' '+(hx-px).toFixed(1)+','+(hy-py).toFixed(1)+'" fill="'+col+'"/>';}
+ };
+ return {
+  h:h,C:C,S:S,
+  chips:function(box,labels,sel,fn,aria){
+   var g=h('div','row');g.setAttribute('role','group');if(aria)g.setAttribute('aria-label',aria);box.appendChild(g);
+   function draw(){g.innerHTML='';labels.forEach(function(l,i){var b=h('button',null,l);b.type='button';b.setAttribute('aria-pressed',String(i===sel));b.onclick=function(){sel=i;draw();fn(i);};g.appendChild(b);});}
+   draw();return {set:function(i){sel=i;draw();},get:function(){return sel;}};},
+  slider:function(box,label,min,max,step,val,fmt,fn){
+   var id='k5s'+(++n),w=h('div'),l=h('label'),inp=h('input');l.setAttribute('for',id);inp.type='range';inp.id=id;inp.min=min;inp.max=max;inp.step=step;inp.value=val;
+   function upd(){l.innerHTML=label+': <span>'+fmt(+inp.value)+'</span>';}
+   inp.oninput=function(){upd();fn(+inp.value);};upd();w.appendChild(l);w.appendChild(inp);box.appendChild(w);inp.refresh=upd;return inp;},
+  btn:function(box,label,fn){var r=box.querySelector('.row.btns');if(!r){r=h('div','row btns');box.appendChild(r);}var b=h('button',null,label);b.type='button';b.onclick=fn;r.appendChild(b);return b;},
+  svg:function(box,vb,label){var s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox',vb);s.setAttribute('role','img');s.setAttribute('aria-label',label||'');box.appendChild(s);return s;},
+  say:function(box){var p=h('p');p.setAttribute('aria-live','polite');box.appendChild(p);return function(t){p.innerHTML=t;};},
+  note:function(box,t){var p=h('p','small',t);box.appendChild(p);return p;}
+ };
+})();
 </script><!--k5images-css-end-->
 <header class="hero">
   <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="false">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="true">Retro space</button></div>
@@ -387,19 +387,27 @@ window.K5W=window.K5W||(function(){
     <article class="aid">
       <span class="tag analogy">Analogy</span>
       <p>A child on a swing.</p><p class="tip">“A push starts me. A hand stops me.”</p>
-    </article>
+    <!--k5a-start id=ka-swing-->
+<figure class="k5i k5i-chart" id="fig-ka-swing"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 262" role="img" aria-labelledby="ka-swing-t ka-swing-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="ka-swing-t">A child on a swing</title><desc id="ka-swing-d">Two pictures of a child on a swing. In the first, an arrow shows a push starting the swing. In the second, a hand reaches out to stop the swing.</desc><rect width="480" height="262" fill="var(--surface, #fff)"/><line x1="50" y1="40" x2="190" y2="40" stroke="var(--ink, #12172B)" stroke-width="6" stroke-linecap="round"/><line x1="54" y1="40" x2="36" y2="210" stroke="var(--ink, #12172B)" stroke-width="5" stroke-linecap="round"/><line x1="186" y1="40" x2="204" y2="210" stroke="var(--ink, #12172B)" stroke-width="5" stroke-linecap="round"/><line x1="96" y1="40" x2="96" y2="160" stroke="var(--ink, #12172B)" stroke-width="3" stroke-linecap="round"/><line x1="144" y1="40" x2="144" y2="160" stroke="var(--ink, #12172B)" stroke-width="3" stroke-linecap="round"/><rect x="86" y="160" width="68" height="10" rx="3" fill="var(--absorb, #D6450B)" stroke="var(--ink, #12172B)" stroke-width="2"/><circle cx="120" cy="123.19999999999999" r="8" fill="var(--surface-2, #E8EDF6)" stroke="var(--ink, #12172B)" stroke-width="1.5"/><path d="M120 131.2 V153.6 M120 153.6 l-7.2 19.200000000000003 M120 153.6 l7.2 19.200000000000003" fill="none" stroke="var(--reflect, #2B66E8)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><line x1="14" y1="110" x2="57.6" y2="110" stroke="var(--absorb, #D6450B)" stroke-width="7" stroke-linecap="round"/><polygon points="72,110 57.6,118.8 57.6,101.2" fill="var(--absorb, #D6450B)"/><text x="14" y="90" text-anchor="start" font-size="15" font-weight="700" fill="var(--absorb, #D6450B)">push</text><text x="120" y="244" text-anchor="middle" font-size="15" font-weight="400" fill="var(--ink, #12172B)">A push starts the swing.</text><line x1="290" y1="40" x2="430" y2="40" stroke="var(--ink, #12172B)" stroke-width="6" stroke-linecap="round"/><line x1="294" y1="40" x2="276" y2="210" stroke="var(--ink, #12172B)" stroke-width="5" stroke-linecap="round"/><line x1="426" y1="40" x2="444" y2="210" stroke="var(--ink, #12172B)" stroke-width="5" stroke-linecap="round"/><line x1="336" y1="40" x2="336" y2="160" stroke="var(--ink, #12172B)" stroke-width="3" stroke-linecap="round"/><line x1="384" y1="40" x2="384" y2="160" stroke="var(--ink, #12172B)" stroke-width="3" stroke-linecap="round"/><rect x="326" y="160" width="68" height="10" rx="3" fill="var(--absorb, #D6450B)" stroke="var(--ink, #12172B)" stroke-width="2"/><circle cx="360" cy="123.19999999999999" r="8" fill="var(--surface-2, #E8EDF6)" stroke="var(--ink, #12172B)" stroke-width="1.5"/><path d="M360 131.2 V153.6 M360 153.6 l-7.2 19.200000000000003 M360 153.6 l7.2 19.200000000000003" fill="none" stroke="var(--reflect, #2B66E8)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="412" y="140" width="34" height="30" rx="12" fill="var(--surface-2, #E8EDF6)" stroke="var(--ink, #12172B)" stroke-width="1.5"/><line x1="410" y1="155" x2="400.6" y2="155" stroke="var(--red, #D93036)" stroke-width="7" stroke-linecap="round"/><polygon points="388,155 400.6,147.3 400.6,162.7" fill="var(--red, #D93036)"/><text x="430" y="126" text-anchor="middle" font-size="15" font-weight="700" fill="var(--red, #D93036)">hand</text><text x="360" y="244" text-anchor="middle" font-size="15" font-weight="400" fill="var(--ink, #12172B)">A hand stops it.</text></svg><figcaption>A push starts the swing moving. A hand pushing against it makes it stop. Pushes and pulls start and stop motion.</figcaption><details class="k5i-alt"><summary>Text version of this picture</summary><p>Left: child on a swing with a push arrow from behind; the swing starts. Right: child on a swing with a hand stopping it.</p></details></figure>
+<!--k5a-end id=ka-swing-->
+</article>
     <article class="aid">
       <span class="tag diagram">Diagram</span>
       <p>Ball with arrows: push arrow forward, pull arrow back.</p><p class="tip">“The arrow shows the push or pull.”</p>
-    </article>
+    <!--k5a-start id=ka-push-pull-->
+<figure class="k5i k5i-chart" id="fig-ka-push-pull"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 240" role="img" aria-labelledby="ka-push-pull-t ka-push-pull-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="ka-push-pull-t">A push and a pull</title><desc id="ka-push-pull-d">Two pictures of a ball. On the left a hand pushes the ball and a big arrow points away from the hand. On the right a hand pulls the ball on a rope and a big arrow points toward the hand.</desc><rect width="480" height="240" fill="var(--surface, #fff)"/><text x="120" y="58" text-anchor="middle" font-size="22" font-weight="800" fill="var(--absorb, #D6450B)">PUSH</text><text x="360" y="58" text-anchor="middle" font-size="22" font-weight="800" fill="var(--reflect, #2B66E8)">PULL</text><line x1="240" y1="44" x2="240" y2="232" stroke="var(--line, #D0D8E8)" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 6"/><rect x="26" y="120" width="38" height="50" rx="14" fill="var(--surface-2, #E8EDF6)" stroke="var(--ink, #12172B)" stroke-width="1.5"/><circle cx="150" cy="146" r="30" fill="var(--absorb, #D6450B)" stroke="var(--ink, #12172B)" stroke-width="2"/><line x1="72" y1="146" x2="97.6" y2="146" stroke="var(--ink, #12172B)" stroke-width="6" stroke-linecap="round"/><polygon points="112,146 97.6,154.8 97.6,137.2" fill="var(--ink, #12172B)"/><line x1="190" y1="146" x2="214" y2="146" stroke="var(--absorb, #D6450B)" stroke-width="8" stroke-linecap="round"/><polygon points="232,146 214,157 214,135" fill="var(--absorb, #D6450B)"/><text x="120" y="206" text-anchor="middle" font-size="16" font-weight="400" fill="var(--ink, #12172B)">A push moves it</text><text x="120" y="226" text-anchor="middle" font-size="16" font-weight="400" fill="var(--ink, #12172B)">away from you</text><circle cx="410" cy="146" r="30" fill="var(--reflect, #2B66E8)" stroke="var(--ink, #12172B)" stroke-width="2"/><line x1="380" y1="146" x2="296" y2="146" stroke="var(--ink, #12172B)" stroke-width="3" stroke-linecap="round"/><rect x="262" y="126" width="36" height="40" rx="14" fill="var(--surface-2, #E8EDF6)" stroke="var(--ink, #12172B)" stroke-width="1.5"/><line x1="382" y1="108" x2="342" y2="108" stroke="var(--reflect, #2B66E8)" stroke-width="8" stroke-linecap="round"/><polygon points="324,108 342,97 342,119" fill="var(--reflect, #2B66E8)"/><text x="360" y="206" text-anchor="middle" font-size="16" font-weight="400" fill="var(--ink, #12172B)">A pull brings it</text><text x="360" y="226" text-anchor="middle" font-size="16" font-weight="400" fill="var(--ink, #12172B)">toward you</text></svg><figcaption>The arrow shows which way the push or pull goes. A push goes away from you. A pull comes toward you.</figcaption><details class="k5i-alt"><summary>Text version of this picture</summary><p>Left: a hand pushes a ball, arrow points away from the hand. Right: a hand pulls a ball on a rope, arrow points toward the hand.</p></details></figure>
+<!--k5a-end id=ka-push-pull-->
+</article>
     <article class="aid">
       <span class="tag try">Try it</span>
-      <p>Push a toy car gently, then stop it with a hand.</p><p class="tip">“Make it go. Make it stop.”</p>
-    </article>
+      <p><b>Guess first:</b> If you tap a toy car gently, will it go far or not far?</p><p><b>What you need:</b> one toy car, a flat floor or table, a line of tape.</p><p><b>Do:</b> Put the car on the tape line. Give it a gentle push. Watch where it stops. Now roll it back, push again, and this time use your hand to stop it before it goes far.</p><p><b>Look for:</b> The car did not start by itself. Your push made it go. Your hand made it stop.</p><p><b>What it shows:</b> A push can start motion, and a push from your hand can also stop it.</p><p><b>Safety:</b> Keep small cars away from mouths. Roll on the floor, not near stairs.</p><p class="tip">“Make it go. Make it stop.”</p></article>
     <article class="aid">
       <span class="tag real">Real world</span>
       <p>Pulling a zipper, pushing a door.</p><p class="tip">“You pull a zipper. You push a door.”</p>
-    </article>
+    <!--k5a-start id=ka-door-zip-->
+<figure class="k5i k5i-chart" id="fig-ka-door-zip"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 280" role="img" aria-labelledby="ka-door-zip-t ka-door-zip-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="ka-door-zip-t">Pushes and pulls every day</title><desc id="ka-door-zip-d">A door with an arrow showing a push, and a zipper with an arrow showing a pull down.</desc><rect width="480" height="280" fill="var(--surface, #fff)"/><rect x="40" y="50" width="100" height="150" rx="6" fill="var(--surface-2, #E8EDF6)" stroke="var(--ink, #12172B)" stroke-width="3"/><circle cx="122" cy="128" r="6" fill="var(--ink, #12172B)" stroke="none" stroke-width="1.5"/><line x1="10" y1="125" x2="41.6" y2="125" stroke="var(--absorb, #D6450B)" stroke-width="6" stroke-linecap="round"/><polygon points="56,125 41.6,133.8 41.6,116.2" fill="var(--absorb, #D6450B)"/><text x="90" y="224" text-anchor="middle" font-size="14" font-weight="400" fill="var(--ink, #12172B)">Push a door</text><text x="90" y="241.5" text-anchor="middle" font-size="14" font-weight="400" fill="var(--ink, #12172B)">It swings away from you.</text><rect x="310" y="50" width="56" height="160" rx="6" fill="var(--surface-2, #E8EDF6)" stroke="var(--ink, #12172B)" stroke-width="2"/><line x1="338" y1="56" x2="338" y2="150" stroke="var(--ink, #12172B)" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 4"/><rect x="322" y="150" width="32" height="24" rx="5" fill="var(--beam, #F2A900)" stroke="var(--ink, #12172B)" stroke-width="2"/><line x1="338" y1="180" x2="338" y2="211.6" stroke="var(--reflect, #2B66E8)" stroke-width="6" stroke-linecap="round"/><polygon points="338,226 329.2,211.6 346.8,211.6" fill="var(--reflect, #2B66E8)"/><text x="338" y="250" text-anchor="middle" font-size="14" font-weight="400" fill="var(--ink, #12172B)">Pull a zipper</text><text x="338" y="267.5" text-anchor="middle" font-size="14" font-weight="400" fill="var(--ink, #12172B)">It moves the way you pull.</text></svg><figcaption>You push a door open. You pull a zipper down. Pushes and pulls are everywhere.</figcaption><details class="k5i-alt"><summary>Text version of this picture</summary><p>A door with a push arrow pointing in. A zipper with a pull arrow pointing down.</p></details></figure>
+<!--k5a-end id=ka-door-zip-->
+</article>
   </div>
 </section>
 
@@ -407,31 +415,31 @@ window.K5W=window.K5W||(function(){
   <div><p class="kicker">Concept 2</p><h2>Strength and direction matter</h2></div>
   <p class="idea">A stronger push or a different direction can change how far or where an object goes.</p>
 <!--k5images-start id=w-ka-push-->
-<figure class="k5i k5i-chart k5i-widget" id="fig-w-ka-push"><div class="k5w" id="wkapush"></div>
-<script>(function(){var box=document.getElementById('wkapush'),K=K5W,S=K.S,C=K.C;
- var DIST=[2,4,8],NAMES=['soft','medium','hard'],WALLX=300,CARW=40,X0=40,TILE=40;
- var strength=0,wall=0,pos=0,timer=0,svg,say,moved=false;
- K.chips(box,['Soft push','Medium push','Hard push'],0,function(i){strength=i;idle();},'How hard to push');
- K.chips(box,['Open floor','A wall is in the way'],0,function(i){wall=i;idle();},'Floor');
- svg=K.svg(box,'0 0 480 150','A toy car on a row of floor tiles.');
- K.btn(box,'Push!',go);K.btn(box,'Reset',idle);
- say=K.say(box);
- function stop(){return wall?(WALLX-CARW-X0)/TILE:99;}
- function draw(tiles,arrow){
-  var s='',i;
-  for(i=0;i<10;i++)s+=S.r(X0+i*TILE,104,TILE-2,22,C.surf2,C.line,3,1.5);
-  if(wall)s+=S.r(WALLX,50,14,76,C.red,C.ink,3,2)+S.t(WALLX+7,44,'wall',12,C.muted);
-  var x=X0+tiles*TILE;
-  s+=S.r(x,78,CARW,24,C.blue,C.ink,6,2.5)+S.c(x+9,104,6,C.surf,C.ink,2.5)+S.c(x+CARW-9,104,6,C.surf,C.ink,2.5);
-  if(arrow)s+=S.a(x-4-8*(strength+1),90,x-4,90,C.beam,3+strength*2,10);
-  svg.innerHTML=s;
- }
- function idle(){clearInterval(timer);pos=0;moved=false;draw(0,true);say('Pick how hard to push, then press <b>Push!</b>');}
- function go(){clearInterval(timer);pos=0;var goal=Math.min(DIST[strength],stop()),t=0;
-  timer=setInterval(function(){t+=.04;var e=1-Math.pow(1-Math.min(1,t),2);pos=goal*e;draw(pos,false);
-   if(t>=1){clearInterval(timer);var hit=wall&&DIST[strength]>stop();
-    say('A <b>'+NAMES[strength]+'</b> push sent the car '+(hit?'into the wall. The wall stopped it.':'about <b>'+goal.toFixed(0)+' tiles</b>. A stronger push sends it farther.')+' Try another push.');}},30);}
- idle();
+<figure class="k5i k5i-chart k5i-widget" id="fig-w-ka-push"><div class="k5w" id="wkapush"></div>
+<script>(function(){var box=document.getElementById('wkapush'),K=K5W,S=K.S,C=K.C;
+ var DIST=[2,4,8],NAMES=['soft','medium','hard'],WALLX=300,CARW=40,X0=40,TILE=40;
+ var strength=0,wall=0,pos=0,timer=0,svg,say,moved=false;
+ K.chips(box,['Soft push','Medium push','Hard push'],0,function(i){strength=i;idle();},'How hard to push');
+ K.chips(box,['Open floor','A wall is in the way'],0,function(i){wall=i;idle();},'Floor');
+ svg=K.svg(box,'0 0 480 150','A toy car on a row of floor tiles.');
+ K.btn(box,'Push!',go);K.btn(box,'Reset',idle);
+ say=K.say(box);
+ function stop(){return wall?(WALLX-CARW-X0)/TILE:99;}
+ function draw(tiles,arrow){
+  var s='',i;
+  for(i=0;i<10;i++)s+=S.r(X0+i*TILE,104,TILE-2,22,C.surf2,C.line,3,1.5);
+  if(wall)s+=S.r(WALLX,50,14,76,C.red,C.ink,3,2)+S.t(WALLX+7,44,'wall',12,C.muted);
+  var x=X0+tiles*TILE;
+  s+=S.r(x,78,CARW,24,C.blue,C.ink,6,2.5)+S.c(x+9,104,6,C.surf,C.ink,2.5)+S.c(x+CARW-9,104,6,C.surf,C.ink,2.5);
+  if(arrow)s+=S.a(x-4-8*(strength+1),90,x-4,90,C.beam,3+strength*2,10);
+  svg.innerHTML=s;
+ }
+ function idle(){clearInterval(timer);pos=0;moved=false;draw(0,true);say('Pick how hard to push, then press <b>Push!</b>');}
+ function go(){clearInterval(timer);pos=0;var goal=Math.min(DIST[strength],stop()),t=0;
+  timer=setInterval(function(){t+=.04;var e=1-Math.pow(1-Math.min(1,t),2);pos=goal*e;draw(pos,false);
+   if(t>=1){clearInterval(timer);var hit=wall&&DIST[strength]>stop();
+    say('A <b>'+NAMES[strength]+'</b> push sent the car '+(hit?'into the wall. The wall stopped it.':'about <b>'+goal.toFixed(0)+' tiles</b>. A stronger push sends it farther.')+' Try another push.');}},30);}
+ idle();
 })();</script><figcaption>Push a toy car softly, medium or hard, with or without a wall in the way.</figcaption></figure>
 <!--k5images-end id=w-ka-push-->
 
@@ -447,7 +455,10 @@ window.K5W=window.K5W||(function(){
     <article class="aid">
       <span class="tag real">Real world</span>
       <p>Wind pushes a sailboat; a snowplow pushes snow.</p><p class="tip">“Wind can push a boat.”</p>
-    </article>
+    <!--k5a-start id=ka-wind-plow-->
+<figure class="k5i k5i-chart" id="fig-ka-wind-plow"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 250" role="img" aria-labelledby="ka-wind-plow-t ka-wind-plow-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="ka-wind-plow-t">Wind and a snowplow push</title><desc id="ka-wind-plow-d">A sailboat with arrows showing wind pushing its sail, and a snowplow with an arrow showing it pushing a pile of snow.</desc><rect width="480" height="250" fill="var(--surface, #fff)"/><rect x="0" y="150" width="480" height="100" rx="0" fill="var(--surface-2, #E8EDF6)" stroke="none" stroke-width="0"/><path d="M0 200 q20 -12 40 0 t40 0 t40 0 t40 0 t40 0" fill="none" stroke="var(--reflect, #2B66E8)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 170 L100 170 L84 195 L36 195 Z" fill="var(--absorb, #D6450B)" stroke="var(--ink, #12172B)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="60" y1="170" x2="60" y2="60" stroke="var(--ink, #12172B)" stroke-width="3" stroke-linecap="round"/><path d="M60 62 L60 164 L108 164 Z" fill="var(--surface, #fff)" stroke="var(--ink, #12172B)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="6" y1="100" x2="27.4" y2="100" stroke="var(--transmit, #0B7F70)" stroke-width="6" stroke-linecap="round"/><polygon points="40,100 27.4,107.7 27.4,92.3" fill="var(--transmit, #0B7F70)"/><line x1="6" y1="125" x2="27.4" y2="125" stroke="var(--transmit, #0B7F70)" stroke-width="6" stroke-linecap="round"/><polygon points="40,125 27.4,132.7 27.4,117.3" fill="var(--transmit, #0B7F70)"/><text x="8" y="40" text-anchor="start" font-size="14" font-weight="700" fill="var(--ink, #12172B)">Wind pushes the boat</text><rect x="290" y="150" width="120" height="36" rx="6" fill="var(--beam, #F2A900)" stroke="var(--ink, #12172B)" stroke-width="2"/><circle cx="312" cy="192" r="12" fill="var(--ink, #12172B)" stroke="none" stroke-width="1.5"/><circle cx="388" cy="192" r="12" fill="var(--ink, #12172B)" stroke="none" stroke-width="1.5"/><path d="M262 186 L290 150 L290 190 Z" fill="var(--ink, #12172B)" stroke="var(--ink, #12172B)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/><ellipse cx="196" cy="194" rx="34" ry="14" fill="var(--surface, #fff)" stroke="var(--line, #D0D8E8)" stroke-width="2"/><line x1="258" y1="172" x2="244.6" y2="172" stroke="var(--absorb, #D6450B)" stroke-width="6" stroke-linecap="round"/><polygon points="232,172 244.6,164.3 244.6,179.7" fill="var(--absorb, #D6450B)"/><text x="250" y="40" text-anchor="start" font-size="14" font-weight="700" fill="var(--ink, #12172B)">A snowplow pushes snow</text></svg><figcaption>Wind can push a boat on the Great Lakes. A snowplow pushes snow off the road.</figcaption><details class="k5i-alt"><summary>Text version of this picture</summary><p>Left: sailboat with wind arrows pushing the sail. Right: snowplow pushing snow forward.</p></details></figure>
+<!--k5a-end id=ka-wind-plow-->
+</article>
   </div>
 </section>
 
@@ -458,11 +469,13 @@ window.K5W=window.K5W||(function(){
     <article class="aid">
       <span class="tag diagram">Diagram</span>
       <p>Sketch of a ramp and a stopper block.</p><p class="tip">“First draw. Then build. Then test.”</p>
-    </article>
+    <!--k5a-start id=ka-ramp-stopper-->
+<figure class="k5i k5i-chart" id="fig-ka-ramp-stopper"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 312" role="img" aria-labelledby="ka-ramp-stopper-t ka-ramp-stopper-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="ka-ramp-stopper-t">A ramp, a car, and a stopper</title><desc id="ka-ramp-stopper-d">A toy car at the top of a ramp, a flat floor, a finish line and a stopper block at the end. Below, three steps: draw, build, test.</desc><rect width="480" height="312" fill="var(--surface, #fff)"/><path d="M30 120 L250 200 L30 200 Z" fill="var(--surface-2, #E8EDF6)" stroke="var(--ink, #12172B)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(110 149) rotate(20)"><rect x="-22" y="-26" width="44" height="18" rx="5" fill="var(--reflect, #2B66E8)" stroke="var(--ink, #12172B)" stroke-width="2"/><circle cx="-12" cy="-6" r="7" fill="var(--ink, #12172B)" stroke="none" stroke-width="1.5"/><circle cx="12" cy="-6" r="7" fill="var(--ink, #12172B)" stroke="none" stroke-width="1.5"/></g><line x1="250" y1="200" x2="440" y2="200" stroke="var(--ink, #12172B)" stroke-width="3" stroke-linecap="round"/><rect x="372" y="150" width="34" height="50" rx="4" fill="var(--absorb, #D6450B)" stroke="var(--ink, #12172B)" stroke-width="2"/><text x="389" y="142" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink, #12172B)">stopper</text><line x1="332" y1="200" x2="332" y2="222" stroke="var(--red, #D93036)" stroke-width="4" stroke-linecap="round"/><text x="332" y="242" text-anchor="middle" font-size="14" font-weight="700" fill="var(--red, #D93036)">finish line</text><text x="60" y="100" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink, #12172B)">ramp</text><line x1="300" y1="180" x2="337.4" y2="180" stroke="var(--reflect, #2B66E8)" stroke-width="5" stroke-linecap="round"/><polygon points="350,180 337.4,187.7 337.4,172.3" fill="var(--reflect, #2B66E8)"/><rect x="30" y="262" width="120" height="34" rx="17" fill="var(--surface, #fff)" stroke="var(--ink, #12172B)" stroke-width="2"/><text x="90" y="285" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink, #12172B)">1 Draw</text><rect x="180" y="262" width="120" height="34" rx="17" fill="var(--surface, #fff)" stroke="var(--ink, #12172B)" stroke-width="2"/><text x="240" y="285" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink, #12172B)">2 Build</text><rect x="330" y="262" width="120" height="34" rx="17" fill="var(--surface, #fff)" stroke="var(--ink, #12172B)" stroke-width="2"/><text x="390" y="285" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink, #12172B)">3 Test</text></svg><figcaption>The car rolls down the ramp. The stopper block should stop it at the finish line. First draw it, then build it, then test it.</figcaption><details class="k5i-alt"><summary>Text version of this picture</summary><p>A ramp with a toy car at the top, a floor with a finish line and a stopper block. Three steps below: 1 Draw, 2 Build, 3 Test.</p></details></figure>
+<!--k5a-end id=ka-ramp-stopper-->
+</article>
     <article class="aid">
       <span class="tag try">Try it</span>
-      <p>Build a stopper that keeps a toy car from rolling past a line.</p><p class="tip">“Can your block stop the car?”</p>
-    </article>
+      <p><b>Guess first:</b> Will your stopper keep the car from rolling past the line? Draw it first.</p><p><b>What you need:</b> toy car, a ramp (a book with cardboard), tape for the finish line, a foam piece, a paper cup, or a cardboard block.</p><p><b>Do:</b> Tape a finish line on the floor. Roll the car down the ramp with no stopper to see where it goes. Then build a stopper and put it on the line. Roll the car again. Did the car stop before the line?</p><p><b>Look for:</b> A soft stopper (foam) can slow the car gently. A hard one can make it bounce back. Change one thing and test again.</p><p><b>What it shows:</b> A design is an idea you test. If the car rolls past, the design can be fixed.</p><p><b>Safety:</b> Keep small stoppers and cars out of mouths. Wipe up any spills so no one slips.</p><p class="tip">“Can your block stop the car?”</p></article>
     <article class="aid">
       <span class="tag data">Data</span>
       <p>Compare two stoppers over 3 tries.</p><p class="tip">“Foam stopped it 3 times. Cardboard stopped it 1 time.”</p>
@@ -470,7 +483,10 @@ window.K5W=window.K5W||(function(){
     <article class="aid">
       <span class="tag real">Real world</span>
       <p>Bumpers and gates help keep things safe.</p><p class="tip">“A gate can stop a ball.”</p>
-    </article>
+    <!--k5a-start id=ka-gate-->
+<figure class="k5i k5i-chart" id="fig-ka-gate"><svg class="k5i-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 230" role="img" aria-labelledby="ka-gate-t ka-gate-d" font-family="var(--font-body, system-ui, sans-serif)"><title id="ka-gate-t">A gate stops a ball</title><desc id="ka-gate-d">A ball rolling toward a fence gate with an arrow, and the gate stopping it.</desc><rect width="480" height="230" fill="var(--surface, #fff)"/><rect x="0" y="160" width="480" height="70" rx="0" fill="var(--surface-2, #E8EDF6)" stroke="none" stroke-width="0"/><rect x="150" y="90" width="14" height="90" rx="3" fill="var(--absorb, #D6450B)" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="190" y="90" width="14" height="90" rx="3" fill="var(--absorb, #D6450B)" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="230" y="90" width="14" height="90" rx="3" fill="var(--absorb, #D6450B)" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="270" y="90" width="14" height="90" rx="3" fill="var(--absorb, #D6450B)" stroke="var(--ink, #12172B)" stroke-width="2"/><rect x="310" y="90" width="14" height="90" rx="3" fill="var(--absorb, #D6450B)" stroke="var(--ink, #12172B)" stroke-width="2"/><line x1="140" y1="110" x2="330" y2="110" stroke="var(--ink, #12172B)" stroke-width="4" stroke-linecap="round"/><line x1="140" y1="160" x2="330" y2="160" stroke="var(--ink, #12172B)" stroke-width="4" stroke-linecap="round"/><circle cx="70" cy="160" r="20" fill="var(--reflect, #2B66E8)" stroke="var(--ink, #12172B)" stroke-width="2"/><line x1="100" y1="160" x2="127.4" y2="160" stroke="var(--reflect, #2B66E8)" stroke-width="6" stroke-linecap="round"/><polygon points="140,160 127.4,167.7 127.4,152.3" fill="var(--reflect, #2B66E8)"/><text x="400" y="140" text-anchor="middle" font-size="15" font-weight="700" fill="var(--ink, #12172B)">The gate stops</text><text x="400" y="158.75" text-anchor="middle" font-size="15" font-weight="700" fill="var(--ink, #12172B)">the ball.</text></svg><figcaption>A gate or a bumper is a safe design. It stops things that roll before they get to a road or a person.</figcaption><details class="k5i-alt"><summary>Text version of this picture</summary><p>A ball rolls toward a fence; the gate stops it.</p></details></figure>
+<!--k5a-end id=ka-gate-->
+</article>
   </div>
 </section>
 
@@ -489,7 +505,11 @@ window.K5W=window.K5W||(function(){
 
   <div class="aids">
     <article class="aid"><span class="tag try">Try it</span><h3>What you need</h3><p>toy car or spool, cardboard ramp, tape, foam piece, paper cup, cotton ball, paper strips or graph paper.</p><p class="cap"><b>Safety:</b> No coin cells or magnets are needed. Keep small cars and stoppers away from mouths, and clean up spills so no one slips.</p></article>
-    <article class="aid"><span class="tag try">Try it</span><h3>What you do</h3><p>Test gentle and strong pushes, then design and compare two stoppers or two ramp ends.</p></article>
+    <article class="aid"><span class="tag try">Try it</span>
+      <h3>What you do</h3>
+      <p><b>Station 1, pushes (about 10 minutes).</b> Roll a toy car with a soft push and a strong push. Put a sticker where each one stops. Count floor tiles. Which push went farther?</p>
+      <p><b>Station 2, Safe Stopper (about 20 minutes).</b> Draw a ramp and a stopper. Build two different stoppers (for example foam and cardboard). Roll the car 3 times at each and tally how many times it stopped before the line.</p>
+      <p><b>Look for:</b> the stopper that works most of the 3 tries. Say: “Foam stopped it ___ times. Cardboard stopped it ___ times.”</p></article>
   </div>
   <details class="deep"><summary>No time or no good weather? Use this data</summary><div class="in"><p class="cap">This data is a backup. It lets you practice reading evidence, but the standard expects you to collect your own when you can.</p><p>If you cannot run the physical test, use this data: soft push = 2 floor tiles; strong push = 6 floor tiles. Foam stopper stopped the car 3 out of 3 tries. Cardboard stopper stopped the car 1 out of 3 tries.</p></div></details>
   <p class="cap"><b>Near you:</b> Wind can push boats on the Great Lakes; snowplows push snow; children sled down hills and use friction or barriers to stop.</p>

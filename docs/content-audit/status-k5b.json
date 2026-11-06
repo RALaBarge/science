@@ -1,0 +1,1050 @@
+[
+ {
+  "file": "k-5/unit-3-1-forces-motion-and-magnets.html",
+  "concept": "Forces without touching",
+  "type": "diagram",
+  "status": "done",
+  "what": "Drew a bar magnet with field lines and a paper clip being pulled, in the Magnet field cell.",
+  "check": "Field lines drawn schematically (N to S outside the magnet); kid-level, no iron-filings pattern claimed."
+ },
+ {
+  "file": "k-5/unit-3-1-forces-motion-and-magnets.html",
+  "concept": "Forces without touching",
+  "type": "try",
+  "status": "done",
+  "what": "Added predict, steps and expected result to the Magnet explorer.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-3-1-forces-motion-and-magnets.html",
+  "concept": "Forces without touching",
+  "type": "real",
+  "status": "done",
+  "what": "Drew a labelled compass in the Compass cell (no photo; SVG).",
+  "check": "Needle points to magnetic north, which is close to but not exactly geographic north."
+ },
+ {
+  "file": "k-5/unit-3-1-forces-motion-and-magnets.html",
+  "concept": "Magnet design problem",
+  "type": "diagram",
+  "status": "done",
+  "what": "Drew the two-box Criterion and Constraint diagram using the unit's own numbers.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-3-1-forces-motion-and-magnets.html",
+  "concept": "Magnet design problem",
+  "type": "try",
+  "status": "done",
+  "what": "Added predict, steps and result for the paper-clip mover.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-3-1-forces-motion-and-magnets.html",
+  "concept": "Try it at home or in class",
+  "type": "try",
+  "status": "done",
+  "what": "Added timed steps and what to notice to What you do.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-3-2-weather-climate-and-hazards.html",
+  "concept": "Weather is short-term; climate is long-term",
+  "type": "analogy",
+  "status": "done",
+  "what": "Drew the two-face mood-vs-personality picture.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-3-2-weather-climate-and-hazards.html",
+  "concept": "Weather is short-term; climate is long-term",
+  "type": "data",
+  "status": "done",
+  "what": "Drew a paired chart: made-up one-week daily highs against the real Detroit July average (83 F from the page's own dataset).",
+  "check": "Daily values are invented and labelled as made up in the caption; 83 F is the page's Detroit July high."
+ },
+ {
+  "file": "k-5/unit-3-2-weather-climate-and-hazards.html",
+  "concept": "We measure weather",
+  "type": "try",
+  "status": "done",
+  "what": "Added materials, steps and a worked example for the rain gauge.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-3-2-weather-climate-and-hazards.html",
+  "concept": "We measure weather",
+  "type": "try",
+  "status": "done",
+  "what": "Added materials, steps and what to notice for the wind vane.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-3-2-weather-climate-and-hazards.html",
+  "concept": "We measure weather",
+  "type": "real",
+  "status": "done",
+  "what": "Drew four weather-map symbols (SVG) for the Weather report cell.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-3-2-weather-climate-and-hazards.html",
+  "concept": "Different regions have different climates",
+  "type": "diagram",
+  "status": "done",
+  "what": "Drew a simple climate-bands globe (hot, mild, cold).",
+  "check": "Michigan placed in the mild/temperate band; picture is a simplification that ignores oceans and mountains (caption says so)."
+ },
+ {
+  "file": "k-5/unit-3-2-weather-climate-and-hazards.html",
+  "concept": "Different regions have different climates",
+  "type": "data",
+  "status": "done",
+  "what": "Supplied the three region cards as a short clue table.",
+  "check": "Descriptions are general, not data for one named city."
+ },
+ {
+  "file": "k-5/unit-3-2-weather-climate-and-hazards.html",
+  "concept": "Different regions have different climates",
+  "type": "real",
+  "status": "done",
+  "what": "Drew a labelled sketch of the lakes and lake-effect snow (SVG, not to scale).",
+  "check": "Lake-effect snow wording; sketch shapes are not geographic."
+ },
+ {
+  "file": "k-5/unit-3-2-weather-climate-and-hazards.html",
+  "concept": "Designs can reduce weather-hazard harm",
+  "type": "analogy",
+  "status": "done",
+  "what": "Added the mapping: helmet = design, fall = hazard, harm gets smaller.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-3-2-weather-climate-and-hazards.html",
+  "concept": "Designs can reduce weather-hazard harm",
+  "type": "try",
+  "status": "done",
+  "what": "Added predict, materials, steps and example numbers for the barrier test.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-3-2-weather-climate-and-hazards.html",
+  "concept": "Try it at home or in class",
+  "type": "try",
+  "status": "done",
+  "what": "Added timed steps to What you do.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-3-3-life-cycles-and-traits.html",
+  "concept": "Life cycles are diverse but share stages",
+  "type": "diagram",
+  "status": "done",
+  "what": "Drew the frog life cycle as a four-stage loop.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-3-3-life-cycles-and-traits.html",
+  "concept": "Life cycles are diverse but share stages",
+  "type": "data",
+  "status": "done",
+  "what": "Drew the Begin/Grow/Reproduce/End table for frog, bean and mealworm beetle.",
+  "check": "Mealworm = beetle larva; pupa stage between; ok."
+ },
+ {
+  "file": "k-5/unit-3-3-life-cycles-and-traits.html",
+  "concept": "Life cycles are diverse but share stages",
+  "type": "try",
+  "status": "partial",
+  "what": "Supplied the twelve stage cards with the order and what to notice (text cards, not the Big Sort engine).",
+  "check": "Cards given as a text table; not a drag-and-drop sort."
+ },
+ {
+  "file": "k-5/unit-3-3-life-cycles-and-traits.html",
+  "concept": "Offspring inherit traits but vary",
+  "type": "try",
+  "status": "done",
+  "what": "Added bean counts, traits to sort and a tally sheet.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-3-3-life-cycles-and-traits.html",
+  "concept": "Offspring inherit traits but vary",
+  "type": "data",
+  "status": "partial",
+  "what": "Pointed the trait chart to the student's own tally and the sample graph already on the page; no new data invented.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-3-3-life-cycles-and-traits.html",
+  "concept": "Try it at home or in class",
+  "type": "try",
+  "status": "done",
+  "what": "Added timed steps to What you do.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-3-4-survival-fossils-and-change.html",
+  "concept": "Animal groups can help survival",
+  "type": "analogy",
+  "status": "done",
+  "what": "Drew one deer versus a watching herd.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-3-4-survival-fossils-and-change.html",
+  "concept": "Animal groups can help survival",
+  "type": "try",
+  "status": "partial",
+  "what": "Supplied four case cards with what the group does and how it helps.",
+  "check": "Antelope confusing-the-predator claim is a common general explanation (confusion effect); check wording."
+ },
+ {
+  "file": "k-5/unit-3-4-survival-fossils-and-change.html",
+  "concept": "Animal groups can help survival",
+  "type": "data",
+  "status": "done",
+  "what": "Filled the help/cost table with three examples.",
+  "check": "Disease spread in crowded hives is a general statement."
+ },
+ {
+  "file": "k-5/unit-3-4-survival-fossils-and-change.html",
+  "concept": "Fossils show past organisms and environments",
+  "type": "data",
+  "status": "done",
+  "what": "Filled the fossil-site table with three rows.",
+  "check": "Petoskey stones are fossil coral (Hexagonaria) from Devonian seas, ~350 million years ago; fern/swamp row is generic."
+ },
+ {
+  "file": "k-5/unit-3-4-survival-fossils-and-change.html",
+  "concept": "Fossils show past organisms and environments",
+  "type": "try",
+  "status": "partial",
+  "what": "Supplied fossil and place cards with the matching task.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-3-4-survival-fossils-and-change.html",
+  "concept": "Variation can give advantages",
+  "type": "diagram",
+  "status": "done",
+  "what": "Drew the trait -> environment -> survival arrow diagram.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-3-4-survival-fossils-and-change.html",
+  "concept": "Variation can give advantages",
+  "type": "real",
+  "status": "done",
+  "what": "Drew two deer (thick vs thin fur) on a snowy hill (SVG).",
+  "check": "General statement about fur and heat loss; the page's survival numbers are labelled a made-up model."
+ },
+ {
+  "file": "k-5/unit-3-4-survival-fossils-and-change.html",
+  "concept": "Habitats fit some organisms better than others",
+  "type": "data",
+  "status": "done",
+  "what": "Filled the survives-well / less-well / cannot-survive chart with four examples.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-3-4-survival-fossils-and-change.html",
+  "concept": "Habitats fit some organisms better than others",
+  "type": "real",
+  "status": "done",
+  "what": "Drew pond, forest and dune with matching organisms (SVG).",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-3-4-survival-fossils-and-change.html",
+  "concept": "Solutions when environments change",
+  "type": "try",
+  "status": "partial",
+  "what": "Supplied the three place cards with who can live in each; added the task.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-3-4-survival-fossils-and-change.html",
+  "concept": "Solutions when environments change",
+  "type": "try",
+  "status": "done",
+  "what": "Added steps and a worked example for the decision chart.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-3-4-survival-fossils-and-change.html",
+  "concept": "Solutions when environments change",
+  "type": "data",
+  "status": "done",
+  "what": "Added a filled-in sample claim with its evidence.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-3-4-survival-fossils-and-change.html",
+  "concept": "Try it at home or in class",
+  "type": "try",
+  "status": "done",
+  "what": "Added timed steps to What you do.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-1-energy-speed-and-collisions.html",
+  "concept": "Speed and energy",
+  "type": "real",
+  "status": "done",
+  "what": "Drew two sleds on a hill, one high and fast, one low and slow.",
+  "check": "Higher start = faster = more energy of motion (kid level)."
+ },
+ {
+  "file": "k-5/unit-4-1-energy-speed-and-collisions.html",
+  "concept": "Collisions change energy",
+  "type": "diagram",
+  "status": "done",
+  "what": "Drew before/after marble and block with motion arrows.",
+  "check": "Marble may slow rather than stop; sound and heat note is accurate."
+ },
+ {
+  "file": "k-5/unit-4-1-energy-speed-and-collisions.html",
+  "concept": "Collisions change energy",
+  "type": "real",
+  "status": "done",
+  "what": "Drew two bumper cars before and after contact.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-1-energy-speed-and-collisions.html",
+  "concept": "Collisions change energy",
+  "type": "try",
+  "status": "done",
+  "what": "Added predict, materials, steps and result to Marble target.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-1-energy-speed-and-collisions.html",
+  "concept": "Collisions change energy",
+  "type": "data",
+  "status": "partial",
+  "what": "Gave a blank predict/test table to fill in (no numbers invented).",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-1-energy-speed-and-collisions.html",
+  "concept": "Heat moves from warmer to cooler",
+  "type": "try",
+  "status": "done",
+  "what": "Added predict, steps and what to notice to Cup warming.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-1-energy-speed-and-collisions.html",
+  "concept": "Sound and light can move energy",
+  "type": "try",
+  "status": "done",
+  "what": "Added predict, materials, steps and notice for Sound moves rice.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-1-energy-speed-and-collisions.html",
+  "concept": "Sound and light can move energy",
+  "type": "try",
+  "status": "done",
+  "what": "Added predict, steps and what to notice for Light warms a hand.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-1-energy-speed-and-collisions.html",
+  "concept": "Sound and light can move energy",
+  "type": "data",
+  "status": "done",
+  "what": "Filled the energy-transfer chart with the three observations.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-1-energy-speed-and-collisions.html",
+  "concept": "Sound and light can move energy",
+  "type": "real",
+  "status": "done",
+  "what": "Drew sunlight on snow with a melting patch.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-1-energy-speed-and-collisions.html",
+  "concept": "Try it at home or in class",
+  "type": "try",
+  "status": "done",
+  "what": "Added timed steps to What you do.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-2-circuits-and-energy-conversion.html",
+  "concept": "A circuit is a complete loop",
+  "type": "try",
+  "status": "done",
+  "what": "Added predict, materials, steps and result to Light the LED.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-2-circuits-and-energy-conversion.html",
+  "concept": "A circuit is a complete loop",
+  "type": "data",
+  "status": "done",
+  "what": "Gave the LED direction log table with the usual result.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-2-circuits-and-energy-conversion.html",
+  "concept": "Conductors and insulators",
+  "type": "real",
+  "status": "done",
+  "what": "Drew a wire cross-section with metal core and plastic coating.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-2-circuits-and-energy-conversion.html",
+  "concept": "Switches open and close circuits",
+  "type": "real",
+  "status": "done",
+  "what": "Drew a flashlight with battery, switch and bulb in a loop.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-2-circuits-and-energy-conversion.html",
+  "concept": "Circuits convert energy",
+  "type": "diagram",
+  "status": "done",
+  "what": "Drew battery to LED with light and heat arrows.",
+  "check": "LED releases some energy as heat; much less than a regular bulb."
+ },
+ {
+  "file": "k-5/unit-4-2-circuits-and-energy-conversion.html",
+  "concept": "Circuits convert energy",
+  "type": "real",
+  "status": "done",
+  "what": "Drew button to bell chain.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-2-circuits-and-energy-conversion.html",
+  "concept": "Try it at home or in class",
+  "type": "try",
+  "status": "done",
+  "what": "Added timed steps with a debugging checklist.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-3-waves-light-and-information.html",
+  "concept": "Light, reflection, and seeing",
+  "type": "try",
+  "status": "done",
+  "what": "Drew a mirror bounce picture to go with the Mirror bounce activity.",
+  "check": "Angle in = angle out is correct for flat mirrors; \"same angle\" kept visual not measured."
+ },
+ {
+  "file": "k-5/unit-4-3-waves-light-and-information.html",
+  "concept": "Light, reflection, and seeing",
+  "type": "try",
+  "status": "done",
+  "what": "Added predict, steps and result for Mirror bounce.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-3-waves-light-and-information.html",
+  "concept": "Light, reflection, and seeing",
+  "type": "real",
+  "status": "done",
+  "what": "Drew Sun to Moon to eye reflection path.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-3-waves-light-and-information.html",
+  "concept": "Light, reflection, and seeing",
+  "type": "data",
+  "status": "done",
+  "what": "Added drawing instructions for the light-path model.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-3-waves-light-and-information.html",
+  "concept": "Patterns can transfer information",
+  "type": "try",
+  "status": "done",
+  "what": "Added predict, steps and result for Signal code.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-3-waves-light-and-information.html",
+  "concept": "Patterns can transfer information",
+  "type": "real",
+  "status": "done",
+  "what": "Drew a traffic light with meanings.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-3-waves-light-and-information.html",
+  "concept": "Patterns can transfer information",
+  "type": "try",
+  "status": "done",
+  "what": "Added steps and the sample result for Compare two signals.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-3-waves-light-and-information.html",
+  "concept": "Patterns can transfer information",
+  "type": "data",
+  "status": "done",
+  "what": "Drew the 4 of 5 vs 3 of 5 accuracy bars from the page data.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-3-waves-light-and-information.html",
+  "concept": "Try it at home or in class",
+  "type": "try",
+  "status": "done",
+  "what": "Added timed steps to What you do.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-4-structures-senses-and-responses.html",
+  "concept": "External structures have jobs",
+  "type": "diagram",
+  "status": "done",
+  "what": "Drew a labelled plant with four parts and jobs.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-4-structures-senses-and-responses.html",
+  "concept": "External structures have jobs",
+  "type": "real",
+  "status": "done",
+  "what": "Drew a cactus with labelled spines and water-storing stem.",
+  "check": "Spines protect and provide some shade; widely stated."
+ },
+ {
+  "file": "k-5/unit-4-4-structures-senses-and-responses.html",
+  "concept": "External structures have jobs",
+  "type": "try",
+  "status": "partial",
+  "what": "Supplied six structure/job cards.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-4-structures-senses-and-responses.html",
+  "concept": "Internal structures have jobs",
+  "type": "diagram",
+  "status": "done",
+  "what": "Drew a body outline with lungs, heart and skeleton labelled.",
+  "check": "Simplified; heart drawn centred, slightly left in real bodies."
+ },
+ {
+  "file": "k-5/unit-4-4-structures-senses-and-responses.html",
+  "concept": "Internal structures have jobs",
+  "type": "diagram",
+  "status": "done",
+  "what": "Drew a stem with water-up and sugar-down tubes.",
+  "check": "Xylem carries water up, phloem carries sugar; kept to \"tubes\"."
+ },
+ {
+  "file": "k-5/unit-4-4-structures-senses-and-responses.html",
+  "concept": "Internal structures have jobs",
+  "type": "try",
+  "status": "partial",
+  "what": "Supplied the sort cards with an answer table.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-4-structures-senses-and-responses.html",
+  "concept": "Internal structures have jobs",
+  "type": "data",
+  "status": "done",
+  "what": "Added a filled sample sentence.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-4-structures-senses-and-responses.html",
+  "concept": "Senses send information and the body responds",
+  "type": "real",
+  "status": "done",
+  "what": "Drew a deer with ear to brain to legs path.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-4-structures-senses-and-responses.html",
+  "concept": "Senses send information and the body responds",
+  "type": "try",
+  "status": "done",
+  "what": "Added a short worked reading of the ruler mark.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-4-structures-senses-and-responses.html",
+  "concept": "Try it at home or in class",
+  "type": "try",
+  "status": "done",
+  "what": "Added timed steps to What you do.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-5-earths-surface-rocks-maps-erosion-resources.html",
+  "concept": "Earth materials break and move",
+  "type": "try",
+  "status": "done",
+  "what": "Added predict, materials, steps and what to notice for Soil sort.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-5-earths-surface-rocks-maps-erosion-resources.html",
+  "concept": "Earth materials break and move",
+  "type": "try",
+  "status": "done",
+  "what": "Added steps and what to notice for Shake and water tray.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-5-earths-surface-rocks-maps-erosion-resources.html",
+  "concept": "Earth materials break and move",
+  "type": "real",
+  "status": "done",
+  "what": "Drew a rock with copper veins.",
+  "check": "Keweenaw copper mining history is well documented."
+ },
+ {
+  "file": "k-5/unit-4-5-earths-surface-rocks-maps-erosion-resources.html",
+  "concept": "Earth materials break and move",
+  "type": "data",
+  "status": "done",
+  "what": "Filled the property table with three sample rows (graph cell converted to a table).",
+  "check": "Material descriptions are general."
+ },
+ {
+  "file": "k-5/unit-4-5-earths-surface-rocks-maps-erosion-resources.html",
+  "concept": "Rock layers and fossils show landscape change",
+  "type": "diagram",
+  "status": "done",
+  "what": "Drew four stacked rock layers with fossils and oldest/newest labels.",
+  "check": "Law of superposition holds unless layers are tilted or folded; caption says \"usually\"."
+ },
+ {
+  "file": "k-5/unit-4-5-earths-surface-rocks-maps-erosion-resources.html",
+  "concept": "Rock layers and fossils show landscape change",
+  "type": "try",
+  "status": "done",
+  "what": "Added predict, steps and result for Make layers.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-5-earths-surface-rocks-maps-erosion-resources.html",
+  "concept": "Rock layers and fossils show landscape change",
+  "type": "real",
+  "status": "done",
+  "what": "Drew a Petoskey stone with the six-sided coral pattern.",
+  "check": "Petoskey stones are fossil Hexagonaria coral from Devonian seas."
+ },
+ {
+  "file": "k-5/unit-4-5-earths-surface-rocks-maps-erosion-resources.html",
+  "concept": "Rock layers and fossils show landscape change",
+  "type": "data",
+  "status": "done",
+  "what": "Replaced the missing quarry drawing with a reasoning prompt and extra clues.",
+  "check": "The page refers to a drawing that is not shown; the prompt works without it."
+ },
+ {
+  "file": "k-5/unit-4-5-earths-surface-rocks-maps-erosion-resources.html",
+  "concept": "Maps show patterns of Earth’s features",
+  "type": "data",
+  "status": "done",
+  "what": "Gave a model pattern log from the page's own backup map notes.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-5-earths-surface-rocks-maps-erosion-resources.html",
+  "concept": "Energy and fuels come from natural resources",
+  "type": "diagram",
+  "status": "done",
+  "what": "Drew gas storage to homes and wind turbine to lights.",
+  "check": "Generic; no figures claimed."
+ },
+ {
+  "file": "k-5/unit-4-5-earths-surface-rocks-maps-erosion-resources.html",
+  "concept": "Energy and fuels come from natural resources",
+  "type": "real",
+  "status": "done",
+  "what": "Drew four labelled energy source icons.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-5-earths-surface-rocks-maps-erosion-resources.html",
+  "concept": "Energy and fuels come from natural resources",
+  "type": "try",
+  "status": "partial",
+  "what": "Supplied the combine cards as a table drawn from the page's own chart.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-5-earths-surface-rocks-maps-erosion-resources.html",
+  "concept": "Designs can reduce harm from natural Earth processes",
+  "type": "analogy",
+  "status": "done",
+  "what": "Added the mapping helmet = design, fall = hazard.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-5-earths-surface-rocks-maps-erosion-resources.html",
+  "concept": "Designs can reduce harm from natural Earth processes",
+  "type": "real",
+  "status": "done",
+  "what": "Drew a shore with waves, eroded sand and a protective rock wall.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-4-5-earths-surface-rocks-maps-erosion-resources.html",
+  "concept": "Try it at home or in class",
+  "type": "try",
+  "status": "done",
+  "what": "Added timed steps to What you do.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-5-1-matter-mixtures-and-changes.html",
+  "concept": "Matter is made of tiny particles",
+  "type": "diagram",
+  "status": "done",
+  "what": "Drew solid, liquid, gas particle boxes.",
+  "check": "Drawing is a model; particles are not to scale."
+ },
+ {
+  "file": "k-5/unit-5-1-matter-mixtures-and-changes.html",
+  "concept": "Matter is made of tiny particles",
+  "type": "analogy",
+  "status": "done",
+  "what": "Drew the zoomed-out smooth wall vs zoomed-in bricks.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-5-1-matter-mixtures-and-changes.html",
+  "concept": "Matter is made of tiny particles",
+  "type": "try",
+  "status": "done",
+  "what": "Added predict, steps and result for Air takes space.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-5-1-matter-mixtures-and-changes.html",
+  "concept": "Matter is made of tiny particles",
+  "type": "data",
+  "status": "done",
+  "what": "Drew the balance with a full and a flat balloon.",
+  "check": "The tip of a single balloon is very small in a classroom; the page already suggests a ball and scale as a backup."
+ },
+ {
+  "file": "k-5/unit-5-1-matter-mixtures-and-changes.html",
+  "concept": "Solids, liquids, and gases act differently",
+  "type": "diagram",
+  "status": "done",
+  "what": "Drew ice, water and vapor cups.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-5-1-matter-mixtures-and-changes.html",
+  "concept": "Solids, liquids, and gases act differently",
+  "type": "real",
+  "status": "done",
+  "what": "Drew snow -> warm -> water drop.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-5-1-matter-mixtures-and-changes.html",
+  "concept": "Properties help us identify materials",
+  "type": "try",
+  "status": "done",
+  "what": "Added predict, steps, sample result for Property sort.",
+  "check": "Floating of plastic bead depends on the bead type."
+ },
+ {
+  "file": "k-5/unit-5-1-matter-mixtures-and-changes.html",
+  "concept": "Properties help us identify materials",
+  "type": "data",
+  "status": "done",
+  "what": "Filled the property table with sample rows.",
+  "check": "Eraser and bead flotation vary by material."
+ },
+ {
+  "file": "k-5/unit-5-1-matter-mixtures-and-changes.html",
+  "concept": "Properties help us identify materials",
+  "type": "real",
+  "status": "done",
+  "what": "Drew three recycling bins.",
+  "check": "Magnetic separation of steel cans is standard."
+ },
+ {
+  "file": "k-5/unit-5-1-matter-mixtures-and-changes.html",
+  "concept": "Mixtures can be separated",
+  "type": "data",
+  "status": "done",
+  "what": "Filled the before/after table.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-5-1-matter-mixtures-and-changes.html",
+  "concept": "Changes can be physical or chemical, but matter is conserved",
+  "type": "diagram",
+  "status": "done",
+  "what": "Drew melting (physical) vs fizzing bag (chemical).",
+  "check": "Rust and fizzing named as chemical changes."
+ },
+ {
+  "file": "k-5/unit-5-1-matter-mixtures-and-changes.html",
+  "concept": "Changes can be physical or chemical, but matter is conserved",
+  "type": "try",
+  "status": "done",
+  "what": "Added predict, materials, steps and result to Sealed bag reaction.",
+  "check": "Adult supervision; balance should show same mass for a sealed bag."
+ },
+ {
+  "file": "k-5/unit-5-1-matter-mixtures-and-changes.html",
+  "concept": "Changes can be physical or chemical, but matter is conserved",
+  "type": "real",
+  "status": "done",
+  "what": "Drew a shiny nail becoming a rusty nail.",
+  "check": "Rust forms from iron with oxygen and water."
+ },
+ {
+  "file": "k-5/unit-5-1-matter-mixtures-and-changes.html",
+  "concept": "Try it at home or in class",
+  "type": "try",
+  "status": "done",
+  "what": "Added timed steps to What you do.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-5-2-gravity-stars-and-sky-patterns.html",
+  "concept": "The Sun is a star, and distance affects brightness",
+  "type": "analogy",
+  "status": "done",
+  "what": "Drew the same flashlight near and far.",
+  "check": "Simplified; arrows show light spreading out."
+ },
+ {
+  "file": "k-5/unit-5-2-gravity-stars-and-sky-patterns.html",
+  "concept": "The Sun is a star, and distance affects brightness",
+  "type": "data",
+  "status": "done",
+  "what": "Drew Sun near Earth and other stars far away (not to scale).",
+  "check": "Sun is an average star; some stars are far brighter."
+ },
+ {
+  "file": "k-5/unit-5-2-gravity-stars-and-sky-patterns.html",
+  "concept": "Gravity pulls down",
+  "type": "try",
+  "status": "done",
+  "what": "Added predict, steps and result to Drop test.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-5-2-gravity-stars-and-sky-patterns.html",
+  "concept": "Gravity pulls down",
+  "type": "data",
+  "status": "partial",
+  "what": "Filled the three-test table (graph cell is a table on the page already).",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-5-2-gravity-stars-and-sky-patterns.html",
+  "concept": "Shadows and day/night show a daily pattern",
+  "type": "try",
+  "status": "partial",
+  "what": "Added predict, steps and result to Globe and flashlight (widget not placed; text and steps instead).",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-5-2-gravity-stars-and-sky-patterns.html",
+  "concept": "Shadows and day/night show a daily pattern",
+  "type": "real",
+  "status": "done",
+  "what": "Drew a pole with a short noon shadow and a long afternoon shadow.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-5-2-gravity-stars-and-sky-patterns.html",
+  "concept": "Different stars appear in different seasons",
+  "type": "diagram",
+  "status": "done",
+  "what": "Drew Earth at winter and summer positions with the night side facing Orion or Scorpius.",
+  "check": "Orion is high at midnight in Dec-Jan; Scorpius in June-Jul. Orbit drawn as a circle, not to scale."
+ },
+ {
+  "file": "k-5/unit-5-2-gravity-stars-and-sky-patterns.html",
+  "concept": "Different stars appear in different seasons",
+  "type": "try",
+  "status": "partial",
+  "what": "Supplied the four constellation cards with season answers.",
+  "check": "Scorpius is low in Michigan skies; Cygnus is overhead in late summer; page chart assigns Sep-Nov."
+ },
+ {
+  "file": "k-5/unit-5-2-gravity-stars-and-sky-patterns.html",
+  "concept": "Different stars appear in different seasons",
+  "type": "real",
+  "status": "done",
+  "what": "Drew Orion with the three-star belt on a night background.",
+  "check": "Corner stars are Betelgeuse, Rigel etc.; sketch is not to scale."
+ },
+ {
+  "file": "k-5/unit-5-2-gravity-stars-and-sky-patterns.html",
+  "concept": "Review only: Moon phases",
+  "type": "diagram",
+  "status": "done",
+  "what": "Drew the Moon at four positions around Earth with Sun on the left.",
+  "check": "Which half-quarter is waxing vs waning follows the standard top-view diagram; labeled \"half\" with quarters."
+ },
+ {
+  "file": "k-5/unit-5-2-gravity-stars-and-sky-patterns.html",
+  "concept": "Review only: Moon phases",
+  "type": "try",
+  "status": "done",
+  "what": "Added ball positions and what each shows to Ball and flashlight.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-5-2-gravity-stars-and-sky-patterns.html",
+  "concept": "Try it at home or in class",
+  "type": "try",
+  "status": "done",
+  "what": "Added timed steps to What you do.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-5-3-energy-and-matter-in-ecosystems.html",
+  "concept": "Plants build matter from air and water",
+  "type": "real",
+  "status": "done",
+  "what": "Drew a tree and a pond with algae under the Sun.",
+  "check": "Algae are not plants but also photosynthesize."
+ },
+ {
+  "file": "k-5/unit-5-3-energy-and-matter-in-ecosystems.html",
+  "concept": "Food energy came from the Sun",
+  "type": "diagram",
+  "status": "done",
+  "what": "Drew Sun -> corn -> chicken -> child with energy arrows.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-5-3-energy-and-matter-in-ecosystems.html",
+  "concept": "Food energy came from the Sun",
+  "type": "analogy",
+  "status": "done",
+  "what": "Drew the Sun with arrows to an apple and a sandwich.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-5-3-energy-and-matter-in-ecosystems.html",
+  "concept": "Food energy came from the Sun",
+  "type": "try",
+  "status": "partial",
+  "what": "Supplied the three food chains.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-5-3-energy-and-matter-in-ecosystems.html",
+  "concept": "Food energy came from the Sun",
+  "type": "real",
+  "status": "done",
+  "what": "Drew an apple tree with sunlight to leaves.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-5-3-energy-and-matter-in-ecosystems.html",
+  "concept": "Matter cycles through ecosystems",
+  "type": "try",
+  "status": "done",
+  "what": "Added roles, setup and what happens when a part is removed for the String web.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-5-3-energy-and-matter-in-ecosystems.html",
+  "concept": "Matter cycles through ecosystems",
+  "type": "data",
+  "status": "done",
+  "what": "Drew the decomposer bars (100, 35, 55, 10 g) from the page numbers.",
+  "check": "Numbers are the page's sample dataset."
+ },
+ {
+  "file": "k-5/unit-5-3-energy-and-matter-in-ecosystems.html",
+  "concept": "Matter cycles through ecosystems",
+  "type": "real",
+  "status": "done",
+  "what": "Drew an algae -> small fish -> large fish -> birds web with decomposers.",
+  "check": "Simplified; no species claims."
+ },
+ {
+  "file": "k-5/unit-5-3-energy-and-matter-in-ecosystems.html",
+  "concept": "Try it at home or in class",
+  "type": "try",
+  "status": "done",
+  "what": "Added timed steps to What you do.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-5-4-earths-spheres-water-and-communities.html",
+  "concept": "Spheres interact",
+  "type": "real",
+  "status": "done",
+  "what": "Drew a hill with bare soil washing and grass roots holding.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-5-4-earths-spheres-water-and-communities.html",
+  "concept": "Most Earth water is salty, and much fresh water is frozen",
+  "type": "try",
+  "status": "done",
+  "what": "Restated the square-coloring plan with counts.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-5-4-earths-spheres-water-and-communities.html",
+  "concept": "Most Earth water is salty, and much fresh water is frozen",
+  "type": "real",
+  "status": "done",
+  "what": "Drew a one-fifth pictogram for the Great Lakes' share of surface fresh water.",
+  "check": "Great Lakes hold ~20% of world surface fresh water (commonly cited, about 21%). Verify wording."
+ },
+ {
+  "file": "k-5/unit-5-4-earths-spheres-water-and-communities.html",
+  "concept": "Most Earth water is salty, and much fresh water is frozen",
+  "type": "diagram",
+  "status": "partial",
+  "what": "Gave bar heights for the student-made graph (the real graph g-54-water is already in the section).",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-5-4-earths-spheres-water-and-communities.html",
+  "concept": "Communities use science to protect resources",
+  "type": "real",
+  "status": "done",
+  "what": "Supplied the three case cards (rain garden, dune grass, farm fertilizer) as a table.",
+  "check": "Case wording is general."
+ },
+ {
+  "file": "k-5/unit-5-4-earths-spheres-water-and-communities.html",
+  "concept": "Communities use science to protect resources",
+  "type": "try",
+  "status": "done",
+  "what": "Added steps and a worked example row to Combine information.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-5-4-earths-spheres-water-and-communities.html",
+  "concept": "Communities use science to protect resources",
+  "type": "real",
+  "status": "done",
+  "what": "Drew a dune with grass roots holding sand against wind.",
+  "check": ""
+ },
+ {
+  "file": "k-5/unit-5-4-earths-spheres-water-and-communities.html",
+  "concept": "Try it at home or in class",
+  "type": "try",
+  "status": "done",
+  "what": "Added timed steps to What you do.",
+  "check": ""
+ }
+]
