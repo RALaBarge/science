@@ -94,16 +94,31 @@ for (const [f, list] of perPage) {
 }
 
 // Index
+// Every built page is listed (even with nothing flagged), grouped by folder in reading order.
+const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => e.isDirectory() ? walk(path.join(d, e.name)) : e.name.endsWith('.html') ? [path.join(d, e.name)] : []);
+const allPages = walk(out).map((f) => path.relative(out, f).replace(/\\/g, '/')).filter((f) => f !== 'REVIEW-INDEX.html' && !f.startsWith('9th/'));
+const GROUPS = [['Site pages', (f) => !f.includes('/')], ['K-5', (f) => f.startsWith('k-5/')], ['6th grade', (f) => f.startsWith('6th/')], ['7th grade', (f) => f.startsWith('7th/')], ['8th grade', (f) => f.startsWith('8th/')], ['Extras', (f) => f.startsWith('extras/')]];
+const titleOf = (f) => { const m = fs.readFileSync(path.join(out, f), 'utf8').match(/<title>([^<]*)<\/title>/); return m ? m[1].replace(/\s+/g, ' ').trim() : f; };
+const nat = (a, b) => a.localeCompare(b, undefined, { numeric: true });
 let rows = '';
-for (const [f, list] of [...perPage].sort((a, b) => a[0].localeCompare(b[0]))) {
-  rows += `<h3><a href="${f}">${f}</a></h3><ul>` + list.map((x) => `<li><b style="color:${COLORS[x.kind] || '#ff00e6'}">${x.kind}</b> ${esc(x.note)}${x.id ? ` <a href="${f}#${x.id}">jump</a>` : ''}</li>`).join('') + '</ul>';
+let shown = 0;
+for (const [name, test] of GROUPS) {
+  const pages = allPages.filter(test).sort(nat);
+  if (!pages.length) continue;
+  rows += `<h3>${name} (${pages.length})</h3>`;
+  for (const f of pages) {
+    shown++;
+    const list = perPage.get(f) || [];
+    const flags = list.map((x) => `<li><b style="color:${COLORS[x.kind] || '#ff00e6'}">${x.kind}</b> ${esc(x.note)}${x.id ? ` <a href="${f}#${x.id}">jump</a>` : ''}</li>`).join('');
+    rows += `<div class="pg${list.length ? ' flagged' : ''}"><a href="${f}">${esc(titleOf(f))}</a> <span class="fn">${f}${list.length ? ` · ${list.length} flag${list.length === 1 ? '' : 's'}` : ' · nothing flagged'}</span>${flags ? `<ul>${flags}</ul>` : ''}</div>`;
+  }
 }
 fs.writeFileSync(path.join(out, 'REVIEW-INDEX.html'), `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Review index</title>
-<style>body{font:16px/1.5 system-ui,sans-serif;max-width:60rem;margin:0 auto;padding:16px;background:#fff;color:#111}h1{background:#39ff14;padding:8px 12px;border:3px solid #ff00e6}h3{margin:18px 0 4px}li{margin:3px 0}</style>
-<h1>Review index: ${[...perPage.values()].reduce((n, l) => n + l.length, 0)} flags on ${perPage.size} pages</h1>
+<style>body{font:16px/1.5 system-ui,sans-serif;max-width:60rem;margin:0 auto;padding:16px;background:#fff;color:#111}h1{background:#39ff14;padding:8px 12px;border:3px solid #ff00e6}h3{margin:22px 0 6px;border-bottom:3px solid #ff00e6}li{margin:3px 0}.pg{padding:5px 8px;border-left:5px solid #ccc;margin:3px 0}.pg.flagged{border-left-color:#39ff14;background:#f4fff0}.fn{color:#666;font-size:.85rem}.pg ul{margin:4px 0 2px}</style>
+<h1>Review index: ${[...perPage.values()].reduce((n, l) => n + l.length, 0)} flags on ${perPage.size} of ${shown} pages</h1>
 <p>Open the pages from here (this folder is a copy of the built site with highlights; the real site is untouched). DECIDE = your call, MISSING = something was not made, CHECK = please look, READ = new unit needs a human read.</p>
 <h2>General checks (not tied to a spot)</h2><ul>${spec.general.map((g) => `<li>${esc(g)}</li>`).join('')}</ul>
-<h2>By page</h2>${rows}</html>`);
+<h2>By page (all ${shown} pages, in reading order)</h2>${rows}</html>`);
 
 console.log(`review-site: ${[...perPage.values()].reduce((n, l) => n + l.length, 0)} flags on ${perPage.size} pages`);
 if (problems.length) { console.log('PROBLEMS:\n' + problems.join('\n')); process.exitCode = 1; }
