@@ -405,7 +405,7 @@ window.K5W=window.K5W||(function(){
     </article>
     <article class="aid">
       <span class="tag try">Try it</span>
-      <p>Sort objects into hard/soft, bendy/stiff, waterproof/not waterproof.</p><p class="tip">“Put all hard things here.”</p>
+      <p>Sort objects into hard/soft, bendy/stiff, waterproof/not waterproof.</p><p class="tip">“Put all hard things here.”</p><p class="cap">You plan it: choose which property to test and how you will test it, and if a test surprises you, change the class chart to match what you saw.</p>
     </article>
     <article class="aid">
       <span class="tag data">Data</span>
@@ -781,7 +781,7 @@ k5FairTest(document.getElementById("k5-activity"), {"id":"2-a-dry-note","engine"
 <script>
 (function(){
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
-const Q=[{"q":"What is a useful way to sort materials for a job?","o":["By how they look, like their color or shine","By how big or small each piece is","By a property, like waterproof or bendy"],"a":2,"e":"Properties tell us what a material can do, so they help us choose."},{"q":"Which change can be undone by cooling it back down?","o":["Toasting bread","Ice melting into water","Cooking an egg","Baking cake batter"],"a":1,"e":"Melting and freezing can be reversed. Cooking and toasting make new materials."},{"q":"A stick of butter gets soft and runny in the sun. How can you make it firm again?","o":["Cool it in the refrigerator","Heat it more","Nothing can change it back now","Add water to it"],"a":0,"e":"Butter melts when warm and hardens again when cool."},{"q":"Two materials both kept the note dry. What should you do to pick one?","o":["Pick the thicker one, since it is stronger","Pick the one that looks stronger","Pick the one you tested first","Test another property, such as bendiness"],"a":3,"e":"When one test does not decide, test another property that matters for the job."}];
+const Q=[{"q":"What is a useful way to sort materials for a job?","o":["By how they look, like their color or shine","By how big or small each piece is","By a property, like waterproof or bendy"],"a":2,"e":"Properties tell us what a material can do, so they help us choose."},{"q":"Which change can be undone by cooling it back down?","o":["Toasting bread","Ice melting","Cooking an egg","Baking cake batter"],"a":1,"e":"Melting and freezing can be reversed. Cooking and toasting make new materials."},{"q":"A stick of butter gets soft and runny in the sun. How can you make it firm again?","o":["Cool it in the refrigerator","Warm it, because heat will firm it up","Nothing can make it firm again","Add water to it"],"a":0,"e":"Butter melts when warm and hardens again when cool."},{"q":"Two materials both kept the note dry. What should you do to pick one?","o":["Pick the one that looks or feels the strongest","Pick the one that you tested first","Test another property, such as bendiness"],"a":2,"e":"When one test does not decide, test another property that matters for the job."}];
 const box=$('#quiz'), sc=$('#quizScore'); let right=0;
 box.innerHTML=Q.map((x,i)=>`<div class="q item" data-i="${i}" style="display:grid"><h4>${i+1}. ${x.q}</h4><div class="opts">${x.o.map((t,j)=>`<button class="opt" type="button" data-j="${j}">${t}</button>`).join('')}</div><span class="fb" aria-live="polite"></span></div>`).join('');
 box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.disabled)return; const row=b.closest('.q'), x=Q[+row.dataset.i], ok=+b.dataset.j===x.a;

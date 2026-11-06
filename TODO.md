@@ -15,15 +15,9 @@ Scope to cover on every lesson page, the lesson map, and the arcade:
 
 Plan: one lead agent splits the work by grade folder, one sub-agent per folder, then rebuilds `dist/` and runs `node tests/links.test.js`.
 
-## Missing units (moved from the index page's "Not covered yet" card, checked 2026-11-05)
+## Missing units (written 2026-11-05, local branch `k5-flash-pass`)
 
-Checked against the lesson text in 6th to 9th and K-5. All five are still open:
-
-- **Acids and bases:** no lesson teaches pH, indicators or neutralization (the word only appears in passing).
-- **Simple machines and work:** only a mention in K-5 3.1. Nothing in 6th to 8th on levers, pulleys, ramps, work or mechanical advantage.
-- **Data analysis and statistics** as a mini-unit: graphs appear inside lessons, but nothing teaches mean, median, spread, outliers or sample size.
-- **Human body health:** nutrition and disease are only touched (6th Unit 9 has germs and vaccines, 7.4 has nutrients as fuel). A fuller unit is still open.
-- **Climate and climate change** beyond 6th Unit 13: Unit 13 covers the greenhouse effect and Unit 4 covers climate vs weather, but there is no unit on evidence of change over time or regional effects.
+All five are written: 7.10 Acids & Bases, 7.11 Nutrition, Health & Disease, 8.10 Simple Machines & Work, 8.11 Climate Evidence & Change, 6th Unit 15 Data & Statistics. Built from content specs in `docs/new-units/` with `make_unit.py` (the shell is copied from 7.3). Phi-4 checked every passage, interactive and quiz question; the real findings were fixed (the rest was noise, as before). Still open: a human science read, and 8.10/8.11 tutor-note activities have not been run with a student. Not in the question bank or arcade yet.
 
 High school is out of scope.
 
@@ -34,6 +28,10 @@ High school is out of scope.
 - Images (2026-11-04, `k5-images/`): all 23 units have a hero image; 61 images, 34 graphs, 18 diagrams and 31 small interactives (2026-11-05: added diagrams for 5.3 docks, 5.1 dissolve, 3.1 dot tape, 1-C stars, 5.4 hill, 4.3 wave, 4.4 senses, the 4.2 light-up card and 5.4 reservoirs; interactives for nearly every unit, kept in `k5-images/html/` and listed in `interactive-defs.mjs`; redid the Petoskey, road-cut and Pictured Rocks photos for realism). Still missing: raster for the 1-A beam materials and 2-A material samples (the image model could not draw them, SVG covers the beam). All of the Grok review's interactive diagrams are now built (31 small interactives in all); the K-5 pages have no remaining diagram gaps from that list. Illustrated people (13 images, 30 people) skew toward Black, South Asian, Latino/a, Arab, Native American and East/Southeast Asian; only one clearly white person, and some skin tones came out lighter than prompted (see manifest). Ryan should look at the contact sheet before these ship. `k5-activities/inject.mjs` is not byte-idempotent (it adds a blank line each run); harmless.
 - Quizzes are generated from model-written questions: read each for a single defensible answer and add misconception-based distractors where they are weak.
 - K-B (weather calendar), 1-C (daylight log) and 2-B (bean plants) need weeks of lead time; each page offers a provided dataset instead.
+
+### Flash pass (2026-11-05, DeepSeek v4.1 Flash via OpenRouter, branch `k5-flash-pass`)
+
+Done: standards blocks now call a provided dataset a partial path (2-B, 1-C, K-B, 5.1); K-B has a dated 20-day sequence; 3.4 has a "survives less well" case; 5.2 has claim-evidence sentence frames; 2-A has a student-plan line; "what is new" notes on the bean (2-B, 3.3, 5.3) and spoon (2-C, 3.2, 4.5, 5.4) tests; 4.4 ruler drop is a labelled rough comparison (5 tries, middle value); K-2 quiz distractors tightened. Not done: the reasoning-line second read of the activity configs (the run ended without edits), weak activities (K2.0, Big Sort stand-ins, 5.2 gravity round), the Michigan standards check (the MDE PDF returns 403 to automated clients; check by hand), real-kid test, image items.
 
 ### Grok review of the K-5 units (2026-11-03): what is left
 

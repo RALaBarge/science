@@ -6,7 +6,7 @@ Live site: <https://ralabarge.github.io/science/>
 
 The repo has three parts:
 
-- **Lessons.** 56 lesson guides in grade folders (K-5, 6th, 7th, 8th), listed in teaching order on a lesson map.
+- **Lessons.** 61 lesson guides in grade folders (K-5, 6th, 7th, 8th), listed in teaching order on a lesson map.
 - **Science Arcade.** Six standalone browser games that share a bank of 300 science questions, each tagged with a grade so a teacher can cap how hard the questions get.
 - **Extras.** Three stand-alone pages: How AI Works, The Same Shape Everywhere and Pick a Trade.
 
@@ -17,9 +17,9 @@ Open `dist/index.html` for the lesson map or `dist/arcade.html` for the arcade. 
 | Folder | What it holds | Pages |
 | --- | --- | --- |
 | `k-5/` | How Science Works (Unit 0), then 23 grade-tagged units: K2.0 (optional) and K-A to 2-C for kindergarten to grade 2, 3.1 to 5.4 for grades 3 to 5 | 24 |
-| `6th/` | Units 1 to 14: light and matter, thermal energy, forces and motion, weather, plate tectonics, natural hazards, cells, classifying life, body systems, states of matter, Earth in space, ecosystems, energy resources, and where the solar system is going | 14 |
-| `7th/` | Units 7.1 to 7.9: matter, chemical reactions, reaction energy, metabolism, photosynthesis, ecosystems, Earth resources, the electromagnetic spectrum, adaptation and Earth history | 9 |
-| `8th/` | Units 8.1 to 8.9: contact forces and collisions, energy, forces at a distance, sound, light and information, gravity and orbits, stars and galaxies, genetics, natural selection | 9 |
+| `6th/` | Units 1 to 15: light and matter, thermal energy, forces and motion, weather, plate tectonics, natural hazards, cells, classifying life, body systems, states of matter, Earth in space, ecosystems, energy resources, where the solar system is going, and data and statistics | 15 |
+| `7th/` | Units 7.1 to 7.11: matter, chemical reactions, reaction energy, metabolism, photosynthesis, ecosystems, Earth resources, the electromagnetic spectrum, adaptation and Earth history, acids and bases, and nutrition, health and disease | 11 |
+| `8th/` | Units 8.1 to 8.11: contact forces and collisions, energy, forces at a distance, sound, light and information, gravity and orbits, stars and galaxies, genetics, natural selection, simple machines and work, and climate evidence and change | 11 |
 | `extras/` | How AI Works, The Same Shape Everywhere, Pick a Trade | 3 |
 | `games/`, `shared/`, `arcade.html` | The Science Arcade and its shared code | 6 games |
 | `dist/` | The built site (committed so Pages and local links work without a build step) | |
@@ -141,7 +141,7 @@ The games say where they bend reality: Gravity Duel's masses are game-scaled and
 - Balance Duel: the second player wins about 70 % of decided rounds with careful play; the first move alternates each round so a match evens out.
 - There is no shared scoreboard yet. Scores and best times live in each browser.
 - The unit pages are checked in Chrome and headless Edge only.
-- What is not built yet is in `TODO.md`: units on acids and bases, simple machines and work, statistics, human body health and a deeper climate unit, plus a screen-reader pass planned for when the content is final.
+- What is not built yet is in `TODO.md`, mainly a screen-reader pass planned for when the content is final.
 - `reviews/` holds the saved outside reviews (Grok, Hy4, Phi-4) of the K-5 units and quizzes, and `docs/` the design notes.
 
 ## License

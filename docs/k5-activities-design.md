@@ -76,7 +76,7 @@ Each activity records what the student did (choices, trials, the claim) and show
 
 ## Build order
 
-1. **Big Sort**, with K-B and 2-C skins first, since it is the simplest and reused in five units.
+1. **Big Sort**, with the K-B skin first, since it is the simplest and it is the stand-in on 13 of the 23 units (2-C is Fair Test Lab).
 2. **Graph & Sky**, starting with the 1-C day/night spin (stars under the sky wash).
 3. **Push Arena**, starting with K-A.
 4. **Path & Signal**, starting with light into the eye plus four materials in a beam, then the Short Circuit skin for 4.2.
