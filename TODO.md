@@ -15,17 +15,21 @@ Scope to cover on every lesson page, the lesson map, and the arcade:
 
 Plan: one lead agent splits the work by grade folder, one sub-agent per folder, then rebuilds `dist/` and runs `node tests/links.test.js`.
 
-## Missing units (written 2026-11-05, local branch `k5-flash-pass`)
+## New units (written 2026-11-05, merged to main)
 
-All five are written: 7.10 Acids & Bases, 7.11 Nutrition, Health & Disease, 8.10 Simple Machines & Work, 8.11 Climate Evidence & Change, 6th Unit 15 Data & Statistics. Built from content specs in `docs/new-units/` with `make_unit.py` (the shell is copied from 7.3). Phi-4 checked every passage, interactive and quiz question; the real findings were fixed (the rest was noise, as before). Still open: a human science read, and 8.10/8.11 tutor-note activities have not been run with a student. Not in the question bank or arcade yet.
+7.10 Acids & Bases, 7.11 Nutrition, Health & Disease, 8.10 Simple Machines & Work, 8.11 Climate Evidence & Change and 6th Unit 15 Data & Statistics are written, built from the specs in `docs/new-units/` with `make_unit.py`, and checked by Phi-4. Still open:
+
+- A human science read of all five.
+- A student run of the 8.10 and 8.11 tutor-note activities.
+- Add them to the question bank and the arcade.
 
 High school is out of scope.
 
 ## K-5 units (added 2026-11-03)
 
 - Verify every K-5 footer standard against the Michigan Department of Education Science Standards document (codes follow NGSS and are expected to match, not yet checked).
-- Activities: all 23 units have one (`k5-activities/`: Big Sort in 13, Fair Test Lab in 2-A, 2-C, 4.1, 4.5, Push Arena in K-A and 3.1, Graph & Sky in 1-C and 5.2, Path & Signal in 4.2, Scene & Web in K2.0). Weakest: K2.0, the Big Sort stand-ins, the 5.2 gravity round. Still to do: a fun check with real kids (especially grades 5+), a second reader for the reasoning lines (design doc, "Tests and done"), and the unit-text problems in the last report. After regenerating pages run `node k5-activities/inject.mjs` then `node build.mjs`. No custom SVG diagrams yet.
-- Images (2026-11-04, `k5-images/`): all 23 units have a hero image; 61 images, 34 graphs, 18 diagrams and 31 small interactives (2026-11-05: added diagrams for 5.3 docks, 5.1 dissolve, 3.1 dot tape, 1-C stars, 5.4 hill, 4.3 wave, 4.4 senses, the 4.2 light-up card and 5.4 reservoirs; interactives for nearly every unit, kept in `k5-images/html/` and listed in `interactive-defs.mjs`; redid the Petoskey, road-cut and Pictured Rocks photos for realism). Still missing: raster for the 1-A beam materials and 2-A material samples (the image model could not draw them, SVG covers the beam). All of the Grok review's interactive diagrams are now built (31 small interactives in all); the K-5 pages have no remaining diagram gaps from that list. Illustrated people (13 images, 30 people) skew toward Black, South Asian, Latino/a, Arab, Native American and East/Southeast Asian; only one clearly white person, and some skin tones came out lighter than prompted (see manifest). Ryan should look at the contact sheet before these ship. `k5-activities/inject.mjs` is not byte-idempotent (it adds a blank line each run); harmless.
+- Activities: all 23 units have one (`k5-activities/`: Big Sort in 13, Fair Test Lab in 2-A, 2-C, 4.1, 4.5, Push Arena in K-A and 3.1, Graph & Sky in 1-C and 5.2, Path & Signal in 4.2, Scene & Web in K2.0). Weakest: K2.0, the Big Sort stand-ins, the 5.2 gravity round. Still to do: a fun check with real kids (especially grades 5+), a second reader for the reasoning lines (design doc, "Tests and done"), and the unit-text problems in the last report. After regenerating pages run `node k5-activities/inject.mjs` then `node build.mjs`.
+- Images (2026-11-04, `k5-images/`): all 23 units have a hero image; 61 images, 34 graphs, 18 diagrams and 31 small interactives (2026-11-05: added diagrams for 5.3 docks, 5.1 dissolve, 3.1 dot tape, 1-C stars, 5.4 hill, 4.3 wave, 4.4 senses, the 4.2 light-up card and 5.4 reservoirs; interactives for nearly every unit, kept in `k5-images/html/` and listed in `interactive-defs.mjs`; redid the Petoskey, road-cut and Pictured Rocks photos for realism). Still missing: raster for the 1-A beam materials and 2-A material samples (the image model could not draw them, SVG covers the beam). All of the Grok review's interactive diagrams are now built (31 small interactives in all); the K-5 pages have no remaining diagram gaps from that list. Illustrated people (13 images, 30 people) skew toward Black, South Asian, Latino/a, Arab, Native American and East/Southeast Asian; only one clearly white person, and some skin tones came out lighter than prompted (see manifest). Ryan should look at the contact sheet before these ship.
 - Quizzes are generated from model-written questions: read each for a single defensible answer and add misconception-based distractors where they are weak.
 - K-B (weather calendar), 1-C (daylight log) and 2-B (bean plants) need weeks of lead time; each page offers a provided dataset instead.
 
@@ -35,10 +39,11 @@ Done: standards blocks now call a provided dataset a partial path (2-B, 1-C, K-B
 
 ### Grok review of the K-5 units (2026-11-03): what is left
 
-The full review is saved in `reviews/k5-grok-review-2026-11-03.md` (section 1 content, sections 2-4 games/diagrams/build order). Text fixes from sections 1 were applied in two passes (all high items and most medium/low). Still open:
+The full review is in `reviews/k5-grok-review-2026-11-03.md`. Text fixes were applied; the bean and spoon repeats and the 4.4 ruler drop are handled (Flash pass). Still open:
 
-- backup-data paths do not fully earn the verbs for 2-LS2-1, K-ESS2-1, 1-ESS1-1/2, 2-LS4-1 (the pages say the data is a backup).
-- Beans (2-LS2-1, 3-LS3-2, 5-LS1-1) and erosion spoon counts (2-C, 3.2, 4.5, 5.4) recur with different numbers; each page should say what is new so one messy trial is not treated as the finding.
-- 4.4 sound-cue ruler drop depends on the dropper's timing, so the unit calls it a rough comparison.
+- Backup-data paths may not fully earn the verbs for 2-LS2-1, K-ESS2-1, 1-ESS1-1/2, 2-LS4-1 (the pages say the data is a backup). Not confirmed whether the Flash pass covered them.
+- The Playwright-based K-5 tests have not been run (Node Playwright is not installed).
+
+All six activity engines and the diagram lists from the game plan are built; the plan is kept below for reference.
 
 Game plan (six shared engines, build in this order): Big Sort (tap-bin, match, order), Push Arena (one-variable motion, not a duel), Path & Signal (port Laser Bounce and Short Circuit), Fair Test Lab (copy Mystery Machine), Graph & Sky, Scene & Web. Do not reskin Gravity, Football or Balance Duel for these units. First eight builds: Big Sort with K-B and 2-C skins; 1-C day/night spin with stars under the sky wash; K-A Push Pit; light-into-the-eye path plus four materials in a beam; Fair Test Lab with Dry Note and Guard the Sand; 5.3 two-rail matter/energy board; 4.1 heat-arrow-and-coat diagram; Short Circuit skin for 4.2 (polarity, insulator gap, hot-short stop). Ten highest-value diagrams: 5.3 matter vs energy board, 5.3 matter cycle vs one-way energy, 4.3 light into the eye, 1-C day/night spin, 5.4 water reservoirs (ocean, ice, underground, a dot for lakes and rivers), 3.1 balanced forces on a moving object, 4.2 closed loop, 5.1 dissolve and count, 5.2 shadow length and direction, 4.1 heat arrow and coat.
