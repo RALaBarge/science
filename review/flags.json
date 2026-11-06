@@ -1,0 +1,33 @@
+{
+  "general": [
+    "Look at the 7.x pages in the light (Classic) theme: the new figures were only checked in dark.",
+    "Look at the illustrated-people contact sheet in k5-images/ before the K-5 images ship (mix of people, skin tones).",
+    "Real-kid test of the K-5 activities, especially grades 5 and up.",
+    "Run the K-5 standards codes against the Michigan (MDE) document by hand: the PDF refuses automated requests."
+  ],
+  "flags": [
+    { "files": ["8th/unit-8.11-climate-evidence-and-change.html"], "pat": "(?<=<h4>)Sea level[^<]*", "kind": "DECIDE", "note": "Chart is a simplified sketch (about 20 cm since 1901). Keep it labelled as a sketch, or plot real NOAA/CSIRO points?" },
+    { "files": ["8th/unit-8.11-climate-evidence-and-change.html"], "pat": "(?<=<h4>)Ice cores[^<]*", "kind": "DECIDE", "note": "Ice-core outline is simplified, not the real EPICA record. Keep as a labelled sketch, or plot real data?" },
+    { "files": ["7th/unit-7.10-acids-and-bases.html"], "pat": "One dye molecule, two shapes", "kind": "DECIDE", "note": "Is 'the dye molecule changes shape' pitched right for grade 7 (it is a simplification), or should it be softened?" },
+    { "files": ["k-5/unit-2-b-plants-animals-and-habitats.html"], "pat": "earned by this unit\\): 2-LS2-1, 2-LS2-2, 2-LS4-1", "kind": "DECIDE", "note": "The backup data cannot earn 2-LS2-1 'plan and conduct' or 2-LS4-1 'make observations'. Keep both listed as earned (full path = the child does it), or drop/qualify them?" },
+    { "files": ["k-5/unit-k-b-sunlight-weather-and-staying-safe.html"], "pat": "the sample alone does not earn", "kind": "DECIDE", "note": "K-ESS2-1 'use and share observations' is only earned by the child's own weather calendar over weeks. Keep it listed as earned, or qualify it?" },
+    { "files": ["k-5/unit-1-c-sky-patterns.html"], "pat": "The cards only cover the pattern-describing part of 1-ESS1-1", "kind": "DECIDE", "note": "1-ESS1-1 and 1-ESS1-2 need the child's own observations (weeks/year). Keep both listed as earned, or qualify them?" },
+    { "files": ["7th/unit-7.9-adaptation-and-earth-s-history.html"], "pat": "Adaptations match organisms to their homes", "kind": "MISSING", "note": "Michigan organism photos not added (no verified drawings). Supply photos, or approve leaving the text-only version?" },
+    { "files": ["8th/unit-8.8-genetics-and-heredity.html"], "pat": "Mitosis copies; meiosis shuffles", "kind": "MISSING", "note": "Breeding / GMO pictures were not made. Want them, and what should they show?" },
+    { "files": ["extras/same-shape-everywhere.html"], "pat": "Brain cells and the universe", "kind": "DECIDE", "note": "Only the size-range chart exists; the clumpiness curves need numbers that are not on the page. Keep as is, or supply data?" },
+    { "files": ["8th/unit-8.2-energy-transfer-and-efficiency.html", "8th/unit-8.2-*.html"], "pat": "<input id=\"rcH\"", "insert": "before", "kind": "CHECK", "note": "Slider may show an empty value. Does it display a number? Screen readers hear only a bare number if not." },
+    { "files": ["8th/unit-8.4-*.html"], "pat": "<input id=\"vbT\"", "insert": "before", "kind": "CHECK", "note": "Slider may show an empty value. Does it display a number?" },
+    { "files": ["6th/unit-03-*.html"], "pat": "<input id=\"rcX\"", "insert": "before", "kind": "CHECK", "note": "Slider may show an empty value. Does it display a number?" },
+    { "files": ["k-5/unit-00-*.html"], "pat": "<input id=\"ccScrub\"", "insert": "before", "kind": "CHECK", "note": "Slider may show an empty value (hidden until shown). Does it display a number?" },
+    { "files": ["6th/unit-01-*.html"], "pat": "Helium was found on the Sun before it was found on Earth", "kind": "CHECK", "note": "The helium line figure below was never looked at after it was drawn. Does it render right?" },
+    { "files": ["k-5/unit-5-2-*.html"], "pat": "Cygnus", "kind": "CHECK", "note": "Cygnus is listed as a fall constellation here and in the activity (a test freezes it). Confirm that is what you want." },
+    { "files": ["7th/unit-7.11-*.html"], "pat": "Snow, London, 1854 \\(schematic\\)", "kind": "CHECK", "note": "Map dots are generated for a teaching sketch, not John Snow's real data. OK as a labelled schematic?" },
+    { "files": ["k-5/unit-3-2-*.html"], "pat": "A dashed teal line marks the Detroit July typical high of 83 degrees F", "kind": "CHECK", "note": "Detroit climate numbers (83 F July high etc.) were not independently verified." },
+    { "files": ["k-5/unit-5-4-*.html"], "pat": "Graph the water", "kind": "CHECK", "note": "Water-share numbers (ocean / ice / groundwater / lakes) were not independently verified." },
+    { "files": ["k-5/unit-5-2-*.html"], "pat": "(?<=<h[34]>)Shadow length[^<]*", "kind": "CHECK", "note": "Shadow table values and 'sun time vs clock time' note were not independently verified." },
+    { "files": ["k-5/unit-*.html"], "pat": "Michigan Science Standards this unit earns", "kind": "CHECK", "note": "Standard codes not yet compared with the Michigan (MDE) document." },
+    { "files": ["k-5/unit-*.html"], "pat": "(?<=<h2>)Play: [^<]*", "kind": "CHECK", "note": "Play this activity once: is it clear and fun? (weakest were K2.0, the Big Sort ones and the 5.2 gravity round)." },
+    { "files": ["6th/unit-15-*.html", "7th/unit-7.10-*.html", "7th/unit-7.11-*.html", "8th/unit-8.10-*.html", "8th/unit-8.11-*.html"], "banner": "NEW UNIT: needs your science read (written and checked by AI only).", "kind": "READ" },
+    { "files": ["8th/unit-8.10-*.html", "8th/unit-8.11-*.html"], "banner": "Also: the tutor-note activities here were never run with a student.", "kind": "READ" }
+  ]
+}
