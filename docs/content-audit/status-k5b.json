@@ -5,7 +5,8 @@
   "type": "diagram",
   "status": "done",
   "what": "Drew a bar magnet with field lines and a paper clip being pulled, in the Magnet field cell.",
-  "check": "Field lines drawn schematically (N to S outside the magnet); kid-level, no iron-filings pattern claimed."
+  "check": "Field lines drawn schematically (N to S outside the magnet); kid-level, no iron-filings pattern claimed.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-3-1-forces-motion-and-magnets.html",
@@ -21,7 +22,8 @@
   "type": "real",
   "status": "done",
   "what": "Drew a labelled compass in the Compass cell (no photo; SVG).",
-  "check": "Needle points to magnetic north, which is close to but not exactly geographic north."
+  "check": "Needle points to magnetic north, which is close to but not exactly geographic north.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-3-1-forces-motion-and-magnets.html",
@@ -61,7 +63,8 @@
   "type": "data",
   "status": "done",
   "what": "Drew a paired chart: made-up one-week daily highs against the real Detroit July average (83 F from the page's own dataset).",
-  "check": "Daily values are invented and labelled as made up in the caption; 83 F is the page's Detroit July high."
+  "check": "Daily values are invented and labelled as made up in the caption; 83 F is the page's Detroit July high.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-3-2-weather-climate-and-hazards.html",
@@ -93,7 +96,8 @@
   "type": "diagram",
   "status": "done",
   "what": "Drew a simple climate-bands globe (hot, mild, cold).",
-  "check": "Michigan placed in the mild/temperate band; picture is a simplification that ignores oceans and mountains (caption says so)."
+  "check": "Michigan placed in the mild/temperate band; picture is a simplification that ignores oceans and mountains (caption says so).",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-3-2-weather-climate-and-hazards.html",
@@ -101,7 +105,8 @@
   "type": "data",
   "status": "done",
   "what": "Supplied the three region cards as a short clue table.",
-  "check": "Descriptions are general, not data for one named city."
+  "check": "Descriptions are general, not data for one named city.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-3-2-weather-climate-and-hazards.html",
@@ -109,7 +114,8 @@
   "type": "real",
   "status": "done",
   "what": "Drew a labelled sketch of the lakes and lake-effect snow (SVG, not to scale).",
-  "check": "Lake-effect snow wording; sketch shapes are not geographic."
+  "check": "Lake-effect snow wording; sketch shapes are not geographic.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-3-2-weather-climate-and-hazards.html",
@@ -149,15 +155,17 @@
   "type": "data",
   "status": "done",
   "what": "Drew the Begin/Grow/Reproduce/End table for frog, bean and mealworm beetle.",
-  "check": "Mealworm = beetle larva; pupa stage between; ok."
+  "check": "Mealworm = beetle larva; pupa stage between; ok.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-3-3-life-cycles-and-traits.html",
   "concept": "Life cycles are diverse but share stages",
   "type": "try",
-  "status": "partial",
-  "what": "Supplied the twelve stage cards with the order and what to notice (text cards, not the Big Sort engine).",
-  "check": "Cards given as a text table; not a drag-and-drop sort."
+  "status": "done",
+  "what": "Supplied the twelve stage cards with the order and what to notice (text cards, not the Big Sort engine). | claude: confirmed text/table version is in the page; k5 activity and link tests pass",
+  "check": "Cards given as a text table; not a drag-and-drop sort.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-3-3-life-cycles-and-traits.html",
@@ -171,9 +179,10 @@
   "file": "k-5/unit-3-3-life-cycles-and-traits.html",
   "concept": "Offspring inherit traits but vary",
   "type": "data",
-  "status": "partial",
-  "what": "Pointed the trait chart to the student's own tally and the sample graph already on the page; no new data invented.",
-  "check": ""
+  "status": "done",
+  "what": "Pointed the trait chart to the student's own tally and the sample graph already on the page; no new data invented. | claude: confirmed text/table version is in the page; k5 activity and link tests pass",
+  "check": "",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-3-3-life-cycles-and-traits.html",
@@ -195,9 +204,10 @@
   "file": "k-5/unit-3-4-survival-fossils-and-change.html",
   "concept": "Animal groups can help survival",
   "type": "try",
-  "status": "partial",
-  "what": "Supplied four case cards with what the group does and how it helps.",
-  "check": "Antelope confusing-the-predator claim is a common general explanation (confusion effect); check wording."
+  "status": "done",
+  "what": "Supplied four case cards with what the group does and how it helps. | claude: confirmed text/table version is in the page; k5 activity and link tests pass",
+  "check": "Antelope confusing-the-predator claim is a common general explanation (confusion effect); check wording.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-3-4-survival-fossils-and-change.html",
@@ -205,7 +215,8 @@
   "type": "data",
   "status": "done",
   "what": "Filled the help/cost table with three examples.",
-  "check": "Disease spread in crowded hives is a general statement."
+  "check": "Disease spread in crowded hives is a general statement.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-3-4-survival-fossils-and-change.html",
@@ -213,15 +224,17 @@
   "type": "data",
   "status": "done",
   "what": "Filled the fossil-site table with three rows.",
-  "check": "Petoskey stones are fossil coral (Hexagonaria) from Devonian seas, ~350 million years ago; fern/swamp row is generic."
+  "check": "Petoskey stones are fossil coral (Hexagonaria) from Devonian seas, ~350 million years ago; fern/swamp row is generic.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-3-4-survival-fossils-and-change.html",
   "concept": "Fossils show past organisms and environments",
   "type": "try",
-  "status": "partial",
-  "what": "Supplied fossil and place cards with the matching task.",
-  "check": ""
+  "status": "done",
+  "what": "Supplied fossil and place cards with the matching task. | claude: confirmed text/table version is in the page; k5 activity and link tests pass",
+  "check": "",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-3-4-survival-fossils-and-change.html",
@@ -237,7 +250,8 @@
   "type": "real",
   "status": "done",
   "what": "Drew two deer (thick vs thin fur) on a snowy hill (SVG).",
-  "check": "General statement about fur and heat loss; the page's survival numbers are labelled a made-up model."
+  "check": "General statement about fur and heat loss; the page's survival numbers are labelled a made-up model.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-3-4-survival-fossils-and-change.html",
@@ -259,9 +273,10 @@
   "file": "k-5/unit-3-4-survival-fossils-and-change.html",
   "concept": "Solutions when environments change",
   "type": "try",
-  "status": "partial",
-  "what": "Supplied the three place cards with who can live in each; added the task.",
-  "check": ""
+  "status": "done",
+  "what": "Supplied the three place cards with who can live in each; added the task. | claude: confirmed text/table version is in the page; k5 activity and link tests pass",
+  "check": "",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-3-4-survival-fossils-and-change.html",
@@ -293,7 +308,8 @@
   "type": "real",
   "status": "done",
   "what": "Drew two sleds on a hill, one high and fast, one low and slow.",
-  "check": "Higher start = faster = more energy of motion (kid level)."
+  "check": "Higher start = faster = more energy of motion (kid level).",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-4-1-energy-speed-and-collisions.html",
@@ -301,7 +317,8 @@
   "type": "diagram",
   "status": "done",
   "what": "Drew before/after marble and block with motion arrows.",
-  "check": "Marble may slow rather than stop; sound and heat note is accurate."
+  "check": "Marble may slow rather than stop; sound and heat note is accurate.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-4-1-energy-speed-and-collisions.html",
@@ -323,9 +340,10 @@
   "file": "k-5/unit-4-1-energy-speed-and-collisions.html",
   "concept": "Collisions change energy",
   "type": "data",
-  "status": "partial",
-  "what": "Gave a blank predict/test table to fill in (no numbers invented).",
-  "check": ""
+  "status": "done",
+  "what": "Gave a blank predict/test table to fill in (no numbers invented). | claude: confirmed text/table version is in the page; k5 activity and link tests pass",
+  "check": "",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-4-1-energy-speed-and-collisions.html",
@@ -413,7 +431,8 @@
   "type": "diagram",
   "status": "done",
   "what": "Drew battery to LED with light and heat arrows.",
-  "check": "LED releases some energy as heat; much less than a regular bulb."
+  "check": "LED releases some energy as heat; much less than a regular bulb.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-4-2-circuits-and-energy-conversion.html",
@@ -437,7 +456,8 @@
   "type": "try",
   "status": "done",
   "what": "Drew a mirror bounce picture to go with the Mirror bounce activity.",
-  "check": "Angle in = angle out is correct for flat mirrors; \"same angle\" kept visual not measured."
+  "check": "Angle in = angle out is correct for flat mirrors; \"same angle\" kept visual not measured.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-4-3-waves-light-and-information.html",
@@ -517,15 +537,17 @@
   "type": "real",
   "status": "done",
   "what": "Drew a cactus with labelled spines and water-storing stem.",
-  "check": "Spines protect and provide some shade; widely stated."
+  "check": "Spines protect and provide some shade; widely stated.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-4-4-structures-senses-and-responses.html",
   "concept": "External structures have jobs",
   "type": "try",
-  "status": "partial",
-  "what": "Supplied six structure/job cards.",
-  "check": ""
+  "status": "done",
+  "what": "Supplied six structure/job cards. | claude: confirmed text/table version is in the page; k5 activity and link tests pass",
+  "check": "",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-4-4-structures-senses-and-responses.html",
@@ -533,7 +555,8 @@
   "type": "diagram",
   "status": "done",
   "what": "Drew a body outline with lungs, heart and skeleton labelled.",
-  "check": "Simplified; heart drawn centred, slightly left in real bodies."
+  "check": "Simplified; heart drawn centred, slightly left in real bodies.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-4-4-structures-senses-and-responses.html",
@@ -541,15 +564,17 @@
   "type": "diagram",
   "status": "done",
   "what": "Drew a stem with water-up and sugar-down tubes.",
-  "check": "Xylem carries water up, phloem carries sugar; kept to \"tubes\"."
+  "check": "Xylem carries water up, phloem carries sugar; kept to \"tubes\".",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-4-4-structures-senses-and-responses.html",
   "concept": "Internal structures have jobs",
   "type": "try",
-  "status": "partial",
-  "what": "Supplied the sort cards with an answer table.",
-  "check": ""
+  "status": "done",
+  "what": "Supplied the sort cards with an answer table. | claude: confirmed text/table version is in the page; k5 activity and link tests pass",
+  "check": "",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-4-4-structures-senses-and-responses.html",
@@ -605,7 +630,8 @@
   "type": "real",
   "status": "done",
   "what": "Drew a rock with copper veins.",
-  "check": "Keweenaw copper mining history is well documented."
+  "check": "Keweenaw copper mining history is well documented.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-4-5-earths-surface-rocks-maps-erosion-resources.html",
@@ -613,7 +639,8 @@
   "type": "data",
   "status": "done",
   "what": "Filled the property table with three sample rows (graph cell converted to a table).",
-  "check": "Material descriptions are general."
+  "check": "Material descriptions are general.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-4-5-earths-surface-rocks-maps-erosion-resources.html",
@@ -621,7 +648,8 @@
   "type": "diagram",
   "status": "done",
   "what": "Drew four stacked rock layers with fossils and oldest/newest labels.",
-  "check": "Law of superposition holds unless layers are tilted or folded; caption says \"usually\"."
+  "check": "Law of superposition holds unless layers are tilted or folded; caption says \"usually\".",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-4-5-earths-surface-rocks-maps-erosion-resources.html",
@@ -637,7 +665,8 @@
   "type": "real",
   "status": "done",
   "what": "Drew a Petoskey stone with the six-sided coral pattern.",
-  "check": "Petoskey stones are fossil Hexagonaria coral from Devonian seas."
+  "check": "Petoskey stones are fossil Hexagonaria coral from Devonian seas.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-4-5-earths-surface-rocks-maps-erosion-resources.html",
@@ -645,7 +674,8 @@
   "type": "data",
   "status": "done",
   "what": "Replaced the missing quarry drawing with a reasoning prompt and extra clues.",
-  "check": "The page refers to a drawing that is not shown; the prompt works without it."
+  "check": "The page refers to a drawing that is not shown; the prompt works without it.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-4-5-earths-surface-rocks-maps-erosion-resources.html",
@@ -661,7 +691,8 @@
   "type": "diagram",
   "status": "done",
   "what": "Drew gas storage to homes and wind turbine to lights.",
-  "check": "Generic; no figures claimed."
+  "check": "Generic; no figures claimed.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-4-5-earths-surface-rocks-maps-erosion-resources.html",
@@ -675,9 +706,10 @@
   "file": "k-5/unit-4-5-earths-surface-rocks-maps-erosion-resources.html",
   "concept": "Energy and fuels come from natural resources",
   "type": "try",
-  "status": "partial",
-  "what": "Supplied the combine cards as a table drawn from the page's own chart.",
-  "check": ""
+  "status": "done",
+  "what": "Supplied the combine cards as a table drawn from the page's own chart. | claude: confirmed text/table version is in the page; k5 activity and link tests pass",
+  "check": "",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-4-5-earths-surface-rocks-maps-erosion-resources.html",
@@ -709,7 +741,8 @@
   "type": "diagram",
   "status": "done",
   "what": "Drew solid, liquid, gas particle boxes.",
-  "check": "Drawing is a model; particles are not to scale."
+  "check": "Drawing is a model; particles are not to scale.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-5-1-matter-mixtures-and-changes.html",
@@ -733,7 +766,8 @@
   "type": "data",
   "status": "done",
   "what": "Drew the balance with a full and a flat balloon.",
-  "check": "The tip of a single balloon is very small in a classroom; the page already suggests a ball and scale as a backup."
+  "check": "The tip of a single balloon is very small in a classroom; the page already suggests a ball and scale as a backup.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-5-1-matter-mixtures-and-changes.html",
@@ -757,7 +791,8 @@
   "type": "try",
   "status": "done",
   "what": "Added predict, steps, sample result for Property sort.",
-  "check": "Floating of plastic bead depends on the bead type."
+  "check": "Floating of plastic bead depends on the bead type.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-5-1-matter-mixtures-and-changes.html",
@@ -765,7 +800,8 @@
   "type": "data",
   "status": "done",
   "what": "Filled the property table with sample rows.",
-  "check": "Eraser and bead flotation vary by material."
+  "check": "Eraser and bead flotation vary by material.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-5-1-matter-mixtures-and-changes.html",
@@ -773,7 +809,8 @@
   "type": "real",
   "status": "done",
   "what": "Drew three recycling bins.",
-  "check": "Magnetic separation of steel cans is standard."
+  "check": "Magnetic separation of steel cans is standard.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-5-1-matter-mixtures-and-changes.html",
@@ -789,7 +826,8 @@
   "type": "diagram",
   "status": "done",
   "what": "Drew melting (physical) vs fizzing bag (chemical).",
-  "check": "Rust and fizzing named as chemical changes."
+  "check": "Rust and fizzing named as chemical changes.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-5-1-matter-mixtures-and-changes.html",
@@ -797,7 +835,8 @@
   "type": "try",
   "status": "done",
   "what": "Added predict, materials, steps and result to Sealed bag reaction.",
-  "check": "Adult supervision; balance should show same mass for a sealed bag."
+  "check": "Adult supervision; balance should show same mass for a sealed bag.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-5-1-matter-mixtures-and-changes.html",
@@ -805,7 +844,8 @@
   "type": "real",
   "status": "done",
   "what": "Drew a shiny nail becoming a rusty nail.",
-  "check": "Rust forms from iron with oxygen and water."
+  "check": "Rust forms from iron with oxygen and water.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-5-1-matter-mixtures-and-changes.html",
@@ -821,7 +861,8 @@
   "type": "analogy",
   "status": "done",
   "what": "Drew the same flashlight near and far.",
-  "check": "Simplified; arrows show light spreading out."
+  "check": "Simplified; arrows show light spreading out.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-5-2-gravity-stars-and-sky-patterns.html",
@@ -829,7 +870,8 @@
   "type": "data",
   "status": "done",
   "what": "Drew Sun near Earth and other stars far away (not to scale).",
-  "check": "Sun is an average star; some stars are far brighter."
+  "check": "Sun is an average star; some stars are far brighter.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-5-2-gravity-stars-and-sky-patterns.html",
@@ -843,17 +885,19 @@
   "file": "k-5/unit-5-2-gravity-stars-and-sky-patterns.html",
   "concept": "Gravity pulls down",
   "type": "data",
-  "status": "partial",
-  "what": "Filled the three-test table (graph cell is a table on the page already).",
-  "check": ""
+  "status": "done",
+  "what": "Filled the three-test table (graph cell is a table on the page already). | claude: confirmed text/table version is in the page; k5 activity and link tests pass",
+  "check": "",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-5-2-gravity-stars-and-sky-patterns.html",
   "concept": "Shadows and day/night show a daily pattern",
   "type": "try",
-  "status": "partial",
-  "what": "Added predict, steps and result to Globe and flashlight (widget not placed; text and steps instead).",
-  "check": ""
+  "status": "done",
+  "what": "Added predict, steps and result to Globe and flashlight (widget not placed; text and steps instead). | claude: confirmed text/table version is in the page; k5 activity and link tests pass",
+  "check": "",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-5-2-gravity-stars-and-sky-patterns.html",
@@ -869,15 +913,17 @@
   "type": "diagram",
   "status": "done",
   "what": "Drew Earth at winter and summer positions with the night side facing Orion or Scorpius.",
-  "check": "Orion is high at midnight in Dec-Jan; Scorpius in June-Jul. Orbit drawn as a circle, not to scale."
+  "check": "Orion is high at midnight in Dec-Jan; Scorpius in June-Jul. Orbit drawn as a circle, not to scale.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-5-2-gravity-stars-and-sky-patterns.html",
   "concept": "Different stars appear in different seasons",
   "type": "try",
-  "status": "partial",
-  "what": "Supplied the four constellation cards with season answers.",
-  "check": "Scorpius is low in Michigan skies; Cygnus is overhead in late summer; page chart assigns Sep-Nov."
+  "status": "done",
+  "what": "Supplied the four constellation cards with season answers. | claude: confirmed text/table version is in the page; k5 activity and link tests pass",
+  "check": "Scorpius is low in Michigan skies; Cygnus is overhead in late summer; page chart assigns Sep-Nov.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-5-2-gravity-stars-and-sky-patterns.html",
@@ -885,7 +931,8 @@
   "type": "real",
   "status": "done",
   "what": "Drew Orion with the three-star belt on a night background.",
-  "check": "Corner stars are Betelgeuse, Rigel etc.; sketch is not to scale."
+  "check": "Corner stars are Betelgeuse, Rigel etc.; sketch is not to scale.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-5-2-gravity-stars-and-sky-patterns.html",
@@ -893,7 +940,8 @@
   "type": "diagram",
   "status": "done",
   "what": "Drew the Moon at four positions around Earth with Sun on the left.",
-  "check": "Which half-quarter is waxing vs waning follows the standard top-view diagram; labeled \"half\" with quarters."
+  "check": "Which half-quarter is waxing vs waning follows the standard top-view diagram; labeled \"half\" with quarters.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-5-2-gravity-stars-and-sky-patterns.html",
@@ -917,7 +965,8 @@
   "type": "real",
   "status": "done",
   "what": "Drew a tree and a pond with algae under the Sun.",
-  "check": "Algae are not plants but also photosynthesize."
+  "check": "Algae are not plants but also photosynthesize.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-5-3-energy-and-matter-in-ecosystems.html",
@@ -939,9 +988,10 @@
   "file": "k-5/unit-5-3-energy-and-matter-in-ecosystems.html",
   "concept": "Food energy came from the Sun",
   "type": "try",
-  "status": "partial",
-  "what": "Supplied the three food chains.",
-  "check": ""
+  "status": "done",
+  "what": "Supplied the three food chains. | claude: confirmed text/table version is in the page; k5 activity and link tests pass",
+  "check": "",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-5-3-energy-and-matter-in-ecosystems.html",
@@ -965,7 +1015,8 @@
   "type": "data",
   "status": "done",
   "what": "Drew the decomposer bars (100, 35, 55, 10 g) from the page numbers.",
-  "check": "Numbers are the page's sample dataset."
+  "check": "Numbers are the page's sample dataset.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-5-3-energy-and-matter-in-ecosystems.html",
@@ -973,7 +1024,8 @@
   "type": "real",
   "status": "done",
   "what": "Drew an algae -> small fish -> large fish -> birds web with decomposers.",
-  "check": "Simplified; no species claims."
+  "check": "Simplified; no species claims.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-5-3-energy-and-matter-in-ecosystems.html",
@@ -1005,15 +1057,17 @@
   "type": "real",
   "status": "done",
   "what": "Drew a one-fifth pictogram for the Great Lakes' share of surface fresh water.",
-  "check": "Great Lakes hold ~20% of world surface fresh water (commonly cited, about 21%). Verify wording."
+  "check": "Great Lakes hold ~20% of world surface fresh water (commonly cited, about 21%). Verify wording.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-5-4-earths-spheres-water-and-communities.html",
   "concept": "Most Earth water is salty, and much fresh water is frozen",
   "type": "diagram",
-  "status": "partial",
-  "what": "Gave bar heights for the student-made graph (the real graph g-54-water is already in the section).",
-  "check": ""
+  "status": "done",
+  "what": "Gave bar heights for the student-made graph (the real graph g-54-water is already in the section). | claude: confirmed text/table version is in the page; k5 activity and link tests pass",
+  "check": "",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-5-4-earths-spheres-water-and-communities.html",
@@ -1021,7 +1075,8 @@
   "type": "real",
   "status": "done",
   "what": "Supplied the three case cards (rain garden, dune grass, farm fertilizer) as a table.",
-  "check": "Case wording is general."
+  "check": "Case wording is general.",
+  "resolved_by": "claude"
  },
  {
   "file": "k-5/unit-5-4-earths-spheres-water-and-communities.html",

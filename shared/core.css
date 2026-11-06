@@ -51,7 +51,23 @@ button {
   padding: 7px 12px; cursor: pointer;
 }
 button:hover { border-color: var(--muted); }
-button:focus-visible, input:focus-visible, summary:focus-visible { outline: 2px solid var(--code); outline-offset: 2px; }
+button:focus-visible, input:focus-visible, summary:focus-visible, a:focus-visible, select:focus-visible,
+textarea:focus-visible, canvas:focus-visible, [tabindex]:focus-visible { outline: 3px solid var(--code); outline-offset: 2px; }
+main:focus { outline: none; }
+
+.skip-link {
+  position: absolute; left: 8px; top: -64px; z-index: 1000; padding: 10px 16px; border-radius: 8px;
+  background: var(--code); color: #0a0f1f; font-weight: 700; text-decoration: none;
+}
+.skip-link:focus { top: 8px; }
+
+/* Honour the system setting: no decorative animation or smooth scrolling. Game logic is unaffected. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+@media (forced-colors: active) {
+  :focus-visible { outline: 3px solid Highlight; }
+}
 
 .stage {
   position: relative; border: 1px solid var(--line); border-radius: 10px; overflow: hidden;

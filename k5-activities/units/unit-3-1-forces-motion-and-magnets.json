@@ -136,7 +136,7 @@
      "id": "ball",
      "icon": "⚪",
      "label": "Run the model ball",
-     "hint": "look at the gaps: 0 to 10, 10 to 20, 20 to 30. Every gap is the same.",
+     "hint": "look at the gaps between the dots so far. What do you notice about them?",
      "answer": "v40",
      "result": {
       "kind": "dots",
@@ -221,7 +221,7 @@
       "id": "ball",
       "icon": "⚪",
       "label": "Run the model ball",
-      "hint": "each gap is 8 cm. Count on from 24.",
+      "hint": "look at the gap between each pair of dots, then count on from 24.",
       "answer": "v32",
       "result": {
        "kind": "dots",
@@ -287,7 +287,7 @@
      "id": "penny",
      "icon": "🪙",
      "label": "Penny",
-     "hint": "a penny is copper and zinc. Being a metal is not enough.",
+     "hint": "check what a penny is made of. Does a magnet pull everything made of metal?",
      "answer": "no",
      "result": {
       "kind": "pull",
@@ -298,7 +298,7 @@
      "id": "foil",
      "icon": "🥈",
      "label": "Aluminum foil",
-     "hint": "aluminum is a metal, but magnets do not pull every metal.",
+     "hint": "check what foil is made of. Does a magnet pull everything made of metal?",
      "answer": "no",
      "result": {
       "kind": "pull",
@@ -309,7 +309,7 @@
      "id": "eraser",
      "icon": "⬛",
      "label": "Eraser",
-     "hint": "an eraser is not a metal at all.",
+     "hint": "what is an eraser made of?",
      "answer": "no",
      "result": {
       "kind": "pull",

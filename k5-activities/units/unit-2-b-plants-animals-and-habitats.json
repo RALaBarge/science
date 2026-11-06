@@ -121,6 +121,22 @@
      "bin": "moves-seeds",
      "why": "The hooks stuck, so seeds can be carried away.",
      "hint": "Did hooks stick and give something a ride?"
+    },
+    {
+     "id": "hummer",
+     "icon": "🐦",
+     "label": "Hummingbird sipping from a flower",
+     "bin": "moves-pollen",
+     "why": "Pollen rubs onto a hummingbird while it sips nectar, and it carries the pollen to the next flower.",
+     "hint": "is the animal carrying flower powder, or a seed?"
+    },
+    {
+     "id": "dandelion",
+     "icon": "🌬️",
+     "label": "Wind blowing dandelion fluff",
+     "bin": "moves-seeds",
+     "why": "Each fluffy parachute carries one seed away on the wind.",
+     "hint": "is the fluff carrying flower powder, or a seed?"
     }
    ]
   },
@@ -145,7 +161,7 @@
      "label": "White-tailed deer",
      "bin": "forest-set",
      "why": "The forest picture set counted the white-tailed deer.",
-     "hint": "Check which habitat count listed it."
+     "hint": "think of where deer find leaves and trees to hide among."
     },
     {
      "id": "robin",
@@ -153,7 +169,7 @@
      "label": "Robin",
      "bin": "forest-set",
      "why": "The forest picture set counted the robin.",
-     "hint": "Check which habitat count listed it."
+     "hint": "think of where a robin finds worms and a tree for its nest."
     },
     {
      "id": "maple",
@@ -161,7 +177,7 @@
      "label": "Maple tree",
      "bin": "forest-set",
      "why": "The forest picture set counted the maple tree.",
-     "hint": "Check which habitat count listed it."
+     "hint": "think of a tree that turns red and orange in fall."
     },
     {
      "id": "squirrel",
@@ -169,7 +185,7 @@
      "label": "Squirrel",
      "bin": "forest-set",
      "why": "The forest picture set counted the squirrel.",
-     "hint": "Check which habitat count listed it."
+     "hint": "think of where a squirrel finds acorns and tall trees."
     },
     {
      "id": "beetle",
@@ -177,7 +193,7 @@
      "label": "Beetle",
      "bin": "forest-set",
      "why": "The forest picture set counted the beetle.",
-     "hint": "Check which habitat count listed it."
+     "hint": "think of a small animal that lives under logs and leaves."
     },
     {
      "id": "mushroom",
@@ -185,7 +201,7 @@
      "label": "Mushroom",
      "bin": "forest-set",
      "why": "The forest picture set counted the mushroom.",
-     "hint": "Check which habitat count listed it."
+     "hint": "think of what grows in the damp shade on forest logs."
     },
     {
      "id": "beach-grass",
@@ -193,15 +209,15 @@
      "label": "Beach grass",
      "bin": "dune-set",
      "why": "The dune picture set counted beach grass.",
-     "hint": "Check which habitat count listed it."
+     "hint": "think of a plant that holds sand in place."
     },
     {
      "id": "gull",
-     "icon": "🪶",
+     "icon": "🐦",
      "label": "Gull",
      "bin": "dune-set",
      "why": "The dune picture set counted the gull.",
-     "hint": "Check which habitat count listed it."
+     "hint": "think of a bird that flies over sand and the lake shore."
     },
     {
      "id": "insect",
@@ -209,7 +225,7 @@
      "label": "Insect",
      "bin": "dune-set",
      "why": "The dune picture set counted an insect, so it had 3 kinds in all.",
-     "hint": "check which habitat count listed it."
+     "hint": "think of a small animal that crawls or flies near the sand."
     }
    ]
   }

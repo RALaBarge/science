@@ -289,6 +289,7 @@ figure.img8 .credit{display:block;margin-top:4px;font-size:.8rem;opacity:.85}
 .img8-grid .yr{display:block;font-weight:800;color:var(--ink,#12172b);margin-bottom:2px}
 </style>
 <!--img8-css-end-->
+<a class="skip-link" href="#main">Skip to main content</a>
 <header class="hero">
   <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="false">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="true">Retro space</button></div>
   <p class="kicker">Eighth grade science · Unit 8.6</p>
@@ -439,7 +440,7 @@ figure.img8 .credit{display:block;margin-top:4px;font-size:.8rem;opacity:.85}
 </header>
 
 
-<main>
+<main id="main" tabindex="-1">
 <section class="sec" id="s1"><div><p class="kicker">Concept 1 · What is an orbit?</p><h2>An orbit is falling and missing the ground</h2></div><p class="idea">Gravity pulls a moving object toward the planet, but if it moves sideways <mark>fast enough</mark>, the ground curves away as fast as it falls. That endless fall is an <mark>orbit</mark>.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Newton's cannonball</h3><p class="cap">Fire a cannon sideways from a tall mountain: the ball lands farther with more speed. Fast enough, and it never lands.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Launch speed lab</h3><div class="ctl"><label for="ocV">Launch speed (1.0 = circular orbit speed): <span id="ocVV"></span></label><input id="ocV" type="range" min="0.5" max="1.5" step="0.05" value="1"></div><div class="stage"><svg id="ocSvg" viewBox="0 0 480 300" role="img" aria-label="Path of an object launched sideways from a planet."></svg></div><p class="readout" id="ocR" aria-live="polite"></p></article><article class="aid wide"><span class="tag data">Data</span><h3>Real speeds</h3><div class="tw"><table class="tbl" style="min-width:420px"><thead><tr><th>Object</th><th>Speed</th></tr></thead><tbody><tr><td>ISS (low Earth orbit)</td><td>7.7 km/s (27,600 km/h)</td></tr><tr><td>Escape from Earth</td><td>11.2 km/s</td></tr><tr><td>Earth around the Sun</td><td>29.8 km/s</td></tr><tr><td>Moon around Earth</td><td>1.0 km/s</td></tr></tbody></table></div><p class="cap">Astronauts feel "weightless" because they and the station fall together, not because gravity is gone (it is ~90% of its surface value at the ISS).</p></article></div></section>
 <section class="sec" id="s2"><div><p class="kicker">Concept 2 · Kepler's patterns</p><h2>Farther planets move slower and take longer</h2></div><p class="idea">Orbits are <mark>ellipses</mark>. The farther from the Sun, the <mark>weaker the gravity</mark>, so the slower the speed and the <mark>longer the year</mark>. Kepler found that (period)² grows as (distance)³.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Runners on a track</h3><p class="cap">Outer lanes are longer, so a runner at the same speed needs more time per lap. Planets farther out also move slower, so their years are longer still. <b>Where it breaks:</b> real race lanes are staggered so every runner covers the same distance; planet orbits are not.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>The Solar System from above</h3><p class="cap">Look down on the Solar System from far above the Sun's north pole. All eight planets start lined up. Press play, change the speed, and watch the inner planets lap the outer ones. Pick a planet in the table to follow it. At the slowest speed you can watch the planets <b>spin</b> too.</p><div class="chips" id="ssSpeed" role="group" aria-label="Time speed"></div><div class="chips" id="ssScale" role="group" aria-label="Distance scale"></div><div class="btnrow"><button class="btn" type="button" id="ssPlay">Pause</button><button class="btn ghost" type="button" id="ssReset">Back to the start</button><button class="btn ghost" type="button" id="ssYear">+1 Earth year</button></div><div class="stage"><canvas id="ssCv" width="640" height="640" style="width:100%;height:auto;max-width:640px;display:block;margin:0 auto;border-radius:10px" role="img" aria-label="Top-down view of the Sun and the eight planets moving along their orbits."></canvas></div><p class="readout" id="ssClock" aria-live="off"></p><p class="readout" id="ssR" aria-live="polite"></p><div class="tw"><table class="tbl" id="ssT" style="min-width:640px"><thead><tr><th>Planet</th><th>Distance</th><th>Sunlight takes</th><th>Orbit speed</th><th>Year</th><th>Years so far</th><th>Day (spin)</th></tr></thead><tbody></tbody></table></div><p class="cap"><b>Distances.</b> One astronomical unit (AU) is the Earth&ndash;Sun distance, about 150 million km. Sunlight, the fastest thing there is, needs 8 minutes to reach Earth and about 4 hours to reach Neptune. A car driving 100 km/h without stopping would need about 5,000 years to get to Neptune. The planets are tiny compared with the gaps between them, so no picture can show true size and true distance at once: try &ldquo;True distances&rdquo; and notice how the four inner planets crowd close to the Sun.</p><p class="cap"><b>Spin.</b> Every planet also rotates. Most spin in the same direction they orbit, but Venus spins backward, so slowly that its day (243 Earth days) is longer than its year (225 days). Uranus is tipped on its side (98&deg;). Jupiter, the biggest planet, spins fastest, once in under 10 hours. Watch the &ldquo;Years so far&rdquo; column: the farther a planet is, the longer its year, which is Kepler's pattern T&sup2; = a&sup3;.</p></article><article class="aid wide"><span class="tag data">Data</span><h3>Planet years</h3><div class="chips" id="plChips" role="group" aria-label="View"></div><div class="bars" id="plBars"></div></article></div></section>
 <section class="sec" id="s3"><div><p class="kicker">Concept 3 · How the Solar System formed</p><h2>A collapsing cloud made a Sun and disk</h2></div><p class="idea">About 4.6 billion years ago a cloud of gas and dust <mark>collapsed under gravity</mark>, spun faster, and flattened into a <mark>disk</mark>. The Sun formed in the middle; <mark>dust clumped</mark> into planets. Heat sorted the materials: <mark>rock and metal near the Sun</mark>, <mark>gas and ice farther out</mark>.</p>
@@ -1090,5 +1091,82 @@ __mountLessonGame(document.getElementById("lesson-game"), ":host{\n  display:blo
   }));
 })();</script>
 <!-- LESSON GAME:orbit-launcher END -->
+
+<style id="a11y-shared">
+/* Shared accessibility rules, injected last into every built page by build.mjs. */
+.skip-link{position:absolute;left:8px;top:-72px;z-index:2147483647;padding:10px 16px;border-radius:8px;background:#FFD23F;color:#1A1400;font:700 1rem/1.2 system-ui,sans-serif;text-decoration:none;border:2px solid #1A1400}
+.skip-link:focus{top:8px}
+main:focus{outline:none}
+:focus-visible{outline-offset:2px}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+/* Classic, light: tokens that were under 4.5:1 as text on the page backgrounds, and the amber slider accent (under 3:1). */
+@media not (prefers-color-scheme:dark){
+  :root:root:not([data-style="retro"]):not([data-theme="dark"]){--absorb:#B93A07;--green:#1D7A40;--red:#C42229;--transmit:#0A7566}
+  :root:root:not([data-style="retro"]):not([data-theme="dark"]) input[type=range]{accent-color:#B07800}
+}
+:root:root[data-theme="light"]:not([data-style="retro"]){--absorb:#B93A07;--green:#1D7A40;--red:#C42229;--transmit:#0A7566}
+:root:root[data-theme="light"]:not([data-style="retro"]) input[type=range]{accent-color:#B07800}
+/* Forced colors: the Retro heading is transparent text over a clipped gradient, which would disappear. */
+@media (forced-colors:active){
+  html[data-style="retro"] h1{background:none!important;-webkit-text-fill-color:CanvasText!important;color:CanvasText!important}
+  :focus-visible{outline:3px solid Highlight!important}
+  input[type=range]{accent-color:auto}
+}
+</style>
+<script>
+// Shared accessibility script, inlined into every built page by build.mjs.
+// Sets aria-valuetext on range sliders from the page's own readout (the value and unit in the label),
+// so a screen reader says "12 mL" instead of a bare "12". Existing readouts are not touched.
+(function () {
+  'use strict';
+  var VALUE_TAGS = /^(SPAN|OUTPUT|B|STRONG|EM|I|MARK)$/;
+
+  function labelOf(sl) {
+    if (sl.labels && sl.labels.length) return sl.labels[0];
+    return sl.closest ? sl.closest('label') : null;
+  }
+  function clean(s) { return s.replace(/\s+/g, ' ').trim(); }
+
+  // "<label>Base added: <span>12</span> mL (25 mL of acid in the cup)</label>"  ->  "12 mL"
+  function fromLabel(lb) {
+    if (!lb) return '';
+    var els = lb.querySelectorAll('*');
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      if (!VALUE_TAGS.test(el.tagName) || el.children.length || !clean(el.textContent)) continue;
+      var v = clean(el.textContent), rest = '', n = el.nextSibling;
+      while (n) { rest += n.textContent; n = n.nextSibling; }
+      rest = clean(rest.split(/[(,;\u2014\u2013]|\s-\s/)[0]);
+      if (rest && rest.length <= 24) v += ' ' + rest;
+      return v;
+    }
+    return '';
+  }
+  function fromNeighbour(sl) {
+    var id = sl.id, el = id && document.getElementById(id + 'V');
+    if (el && !el.contains(sl) && clean(el.textContent)) return clean(el.textContent);
+    var o = sl.parentNode && sl.parentNode.querySelector('output');
+    return o && clean(o.textContent) ? clean(o.textContent) : '';
+  }
+  function update(sl) {
+    var t = fromLabel(labelOf(sl)) || fromNeighbour(sl);
+    if (t && t.length <= 60) { if (sl.getAttribute('aria-valuetext') !== t) sl.setAttribute('aria-valuetext', t); }
+  }
+  function all() { Array.prototype.forEach.call(document.querySelectorAll('input[type="range"]'), update); }
+
+  var timer = 0;
+  function soon() { clearTimeout(timer); timer = setTimeout(all, 120); }
+  function start() {
+    all();
+    document.addEventListener('input', function (e) { if (e.target && e.target.type === 'range') { update(e.target); soon(); } });
+    document.addEventListener('change', soon);
+    if (window.MutationObserver) new MutationObserver(soon).observe(document.body, { childList: true, subtree: true, characterData: true });
+    window.addEventListener('load', all);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>
 
 </html>

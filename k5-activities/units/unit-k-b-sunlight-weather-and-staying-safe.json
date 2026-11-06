@@ -1,35 +1,165 @@
 {
-  "id": "k-b-sort",
-  "title": "Sun and Weather Sort",
-  "intro": "Sort what sunlight does, then get ready for the forecast.",
-  "note": "This is a model of what you can test outside with a thermometer or your hand. Do the real warm-and-shade test too.",
-  "summary": "Dark surfaces in full sun warm up more than light ones, and shade blocks sunlight so things stay cooler. A forecast tells us what to get ready for.",
-  "stages": [
+ "id": "k-b-sort",
+ "title": "Sun and Weather Sort",
+ "intro": "Sort what sunlight does, then get ready for the forecast.",
+ "note": "This is a model of what you can test outside with a thermometer or your hand. Do the real warm-and-shade test too.",
+ "summary": "Dark surfaces in full sun warm up more than light ones, and shade blocks sunlight so things stay cooler. A forecast tells us what to get ready for.",
+ "stages": [
+  {
+   "prompt": "In full sunlight, which things warm up MORE and which LESS? Compare each card with its partner: blacktop and sidewalk, black and white shirt, a bench in sun and in shade.",
+   "bins": [
     {
-      "prompt": "Sitting in full sunlight for a while, which things warm up MORE and which warm up LESS?",
-      "bins": [{"id":"more","icon":"🔥","label":"Warms up more"},{"id":"less","icon":"❄️","label":"Warms up less"}],
-      "cards": [
-        {"id":"asphalt","icon":"🛣️","label":"Dark blacktop in the sun","bin":"more","why":"Dark surfaces take in more of the sunlight, so they get warmer.","hint":"is it a dark color or a light color?"},
-        {"id":"tshirt","icon":"👕","label":"Black T-shirt in the sun","bin":"more","why":"Dark cloth takes in more sunlight than light cloth.","hint":"is it a dark color or a light color?"},
-        {"id":"bench-sun","icon":"🪑","label":"Bench in full sun","bin":"more","why":"Sunlight lands right on it and warms it.","hint":"is sunlight landing on it, or blocked?"},
-        {"id":"sidewalk","icon":"🚶","label":"Light-colored sidewalk","bin":"less","why":"Light colors take in less of the sunlight, so they stay cooler than dark ones.","hint":"is it a dark color or a light color?"},
-        {"id":"white-shirt","icon":"👚","label":"White T-shirt in the sun","bin":"less","why":"Light colors take in less sunlight than dark colors.","hint":"is it a dark color or a light color?"},
-        {"id":"bench-shade","icon":"🌳","label":"Bench under a tree","bin":"less","why":"Shade blocks sunlight, so the bench is not warmed as much.","hint":"is sunlight landing on it, or blocked?"}
-      ]
+     "id": "more",
+     "icon": "🔥",
+     "label": "Warms up more"
     },
     {
-      "prompt": "The forecast says it is coming. What do you get ready?",
-      "bins": [{"id":"sunny","icon":"☀️","label":"Sunny day"},{"id":"rainy","icon":"🌧️","label":"Rainy day"},{"id":"snowy","icon":"❄️","label":"Snowy day"},{"id":"stormy","icon":"⛈️","label":"Thunderstorm"}],
-      "cards": [
-        {"id":"hat","icon":"🧢","label":"Hat and sunscreen","bin":"sunny","why":"A hat and sunscreen keep too much sunlight off your skin.","hint":"what protects you from bright sun?"},
-        {"id":"shade-spot","icon":"⛱️","label":"Find a shady spot","bin":"sunny","why":"Shade blocks sunlight, so you stay cooler.","hint":"what blocks sunlight?"},
-        {"id":"boots","icon":"🥾","label":"Rain boots","bin":"rainy","why":"Rain boots keep your feet dry in puddles.","hint":"what keeps your feet dry in water?"},
-        {"id":"umbrella","icon":"☂️","label":"Umbrella","bin":"rainy","why":"An umbrella keeps rain off you.","hint":"what keeps falling water off you?"},
-        {"id":"mittens","icon":"🧤","label":"Mittens and snow pants","bin":"snowy","why":"Warm snow clothes keep you warm in snow.","hint":"what keeps you warm in the cold?"},
-        {"id":"sled","icon":"🛷","label":"Sled","bin":"snowy","why":"A sled is for sliding on snow.","hint":"what do you play on in snow?"},
-        {"id":"inside","icon":"🏠","label":"Go inside, away from windows","bin":"stormy","why":"Inside a building is the safe place in a thunderstorm.","hint":"where is the safe place when there is lightning?"},
-        {"id":"plan","icon":"🔦","label":"Follow the safety plan with a grown-up","bin":"stormy","why":"A calm safety plan keeps everyone safe in a storm.","hint":"what do we follow so we stay calm and safe?"}
-      ]
+     "id": "less",
+     "icon": "❄️",
+     "label": "Warms up less"
     }
-  ]
+   ],
+   "cards": [
+    {
+     "id": "asphalt",
+     "icon": "🛣️",
+     "label": "Dark blacktop in the sun",
+     "bin": "more",
+     "why": "Dark surfaces take in more of the sunlight, so they get warmer.",
+     "hint": "is it a dark color or a light color?"
+    },
+    {
+     "id": "tshirt",
+     "icon": "👕",
+     "label": "Black T-shirt in the sun",
+     "bin": "more",
+     "why": "Dark cloth takes in more sunlight than light cloth.",
+     "hint": "is it a dark color or a light color?"
+    },
+    {
+     "id": "bench-sun",
+     "icon": "🪑",
+     "label": "A bench in full sun",
+     "bin": "more",
+     "why": "Sunlight lands right on it and warms it more than the same bench in shade.",
+     "hint": "is sunlight landing on this bench, or is a tree blocking it?"
+    },
+    {
+     "id": "sidewalk",
+     "icon": "🚶",
+     "label": "Light-colored sidewalk",
+     "bin": "less",
+     "why": "Light colors take in less of the sunlight, so they stay cooler than dark ones.",
+     "hint": "is it a dark color or a light color?"
+    },
+    {
+     "id": "white-shirt",
+     "icon": "👚",
+     "label": "White T-shirt in the sun",
+     "bin": "less",
+     "why": "Light colors take in less sunlight than dark colors.",
+     "hint": "is it a dark color or a light color?"
+    },
+    {
+     "id": "bench-shade",
+     "icon": "🌳",
+     "label": "The same bench under a tree",
+     "bin": "less",
+     "why": "The tree's shade blocks sunlight, so the bench is not warmed as much.",
+     "hint": "is sunlight landing on this bench, or is a tree blocking it?"
+    }
+   ]
+  },
+  {
+   "prompt": "The forecast says it is coming. What do you get ready?",
+   "bins": [
+    {
+     "id": "sunny",
+     "icon": "☀️",
+     "label": "Sunny day"
+    },
+    {
+     "id": "rainy",
+     "icon": "🌧️",
+     "label": "Rainy day"
+    },
+    {
+     "id": "snowy",
+     "icon": "❄️",
+     "label": "Snowy day"
+    },
+    {
+     "id": "stormy",
+     "icon": "⛈️",
+     "label": "Thunderstorm"
+    }
+   ],
+   "cards": [
+    {
+     "id": "hat",
+     "icon": "🧢",
+     "label": "Hat and sunscreen",
+     "bin": "sunny",
+     "why": "A hat and sunscreen keep too much sunlight off your skin.",
+     "hint": "what protects you from bright sun?"
+    },
+    {
+     "id": "shade-spot",
+     "icon": "⛱️",
+     "label": "Find a shady spot",
+     "bin": "sunny",
+     "why": "Shade blocks sunlight, so you stay cooler.",
+     "hint": "what blocks sunlight?"
+    },
+    {
+     "id": "boots",
+     "icon": "🥾",
+     "label": "Rain boots",
+     "bin": "rainy",
+     "why": "Rain boots keep your feet dry in puddles.",
+     "hint": "what keeps your feet dry in water?"
+    },
+    {
+     "id": "umbrella",
+     "icon": "☂️",
+     "label": "Umbrella",
+     "bin": "rainy",
+     "why": "An umbrella keeps rain off you.",
+     "hint": "what keeps falling water off you?"
+    },
+    {
+     "id": "mittens",
+     "icon": "🧤",
+     "label": "Mittens and snow pants",
+     "bin": "snowy",
+     "why": "Warm snow clothes keep you warm in snow.",
+     "hint": "what keeps you warm in the cold?"
+    },
+    {
+     "id": "sled",
+     "icon": "🛷",
+     "label": "Sled",
+     "bin": "snowy",
+     "why": "A sled is for sliding on snow.",
+     "hint": "what do you play on in snow?"
+    },
+    {
+     "id": "inside",
+     "icon": "🏠",
+     "label": "Go inside, away from windows",
+     "bin": "stormy",
+     "why": "Inside a building is the safe place in a thunderstorm.",
+     "hint": "where is the safe place when there is lightning?"
+    },
+    {
+     "id": "plan",
+     "icon": "🔦",
+     "label": "Wait inside 30 minutes after the last thunder",
+     "bin": "stormy",
+     "why": "Lightning can still strike after the storm seems to be over, so wait inside until 30 minutes after the last thunder.",
+     "hint": "when is it safe to go back out?"
+    }
+   ]
+  }
+ ]
 }

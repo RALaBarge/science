@@ -55,7 +55,7 @@
      "label": "Invisible water vapor spreading out",
      "bin": "gas",
      "why": "Water vapor is an invisible gas, so it spreads out to fill space.",
-     "hint": "Can you see it, and does it stay in one place?"
+     "hint": "can you see it? Does it stay in one place, or spread out to fill the room?"
     },
     {
      "id": "sealed-air",
@@ -72,6 +72,30 @@
      "bin": "liquid",
      "why": "Salty water still flows and takes the cup's shape.",
      "hint": "What shape does the water in the cup take?"
+    },
+    {
+     "id": "pencil",
+     "icon": "✏️",
+     "label": "A pencil keeps its shape",
+     "bin": "solid",
+     "why": "A pencil is a solid. It keeps its own shape when you pick it up.",
+     "hint": "does it keep its own shape, or flow and spread?"
+    },
+    {
+     "id": "juice",
+     "icon": "🧃",
+     "label": "Juice poured into a glass",
+     "bin": "liquid",
+     "why": "Juice flows and takes the shape of the glass, so it is a liquid.",
+     "hint": "does it keep a shape of its own, or match the glass?"
+    },
+    {
+     "id": "helium",
+     "icon": "🎈",
+     "label": "Helium filling a balloon",
+     "bin": "gas",
+     "why": "Helium is a gas. It spreads out to fill the whole balloon.",
+     "hint": "does it keep its own shape, or spread to fill its container?"
     }
    ]
   },

@@ -277,6 +277,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
   });
 })();
 </script>
+<a class="skip-link" href="#main">Skip to main content</a>
 <header class="hero">
   <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="false">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="true">Retro space</button></div>
   <p class="kicker">Eighth grade science · Unit 8.9</p>
@@ -345,7 +346,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 </header>
 
 
-<main>
+<main id="main" tabindex="-1">
 <section class="sec" id="s1"><div><p class="kicker">Concept 1 · How it works</p><h2>Variation, inheritance, and survival add up</h2></div><p class="idea">Natural selection needs four things: <mark>variation</mark> among individuals, traits that are <mark>inherited</mark>, <mark>more offspring than can survive</mark>, and traits that make some <mark>more likely to survive and reproduce</mark>. Over many generations, the population changes.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>A race with a filter</h3><p class="cap">Imagine a hurdle race in which leg length varies from birth. Taller runners clear the hurdle more often, so they are more likely to finish and have children. The next generation starts with more tall runners, not because anyone trained, but because the tall variants survived and reproduced. <b>Where it breaks:</b> the runners do not "try" to evolve, and strength gained by training is not inherited. Selection edits the variation that is already there.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Beetles on grass</h3><div class="chips" id="beChips" role="group" aria-label="Background"></div><div class="ctl"><label for="beG">Generations: <span id="beGV"></span></label><input id="beG" type="range" min="0" max="20" step="1" value="0"></div><div class="stage"><svg id="beSvg" viewBox="0 0 480 130" role="img" aria-label="A population of beetles, green and brown."></svg></div><p class="readout" id="beR" aria-live="polite"></p></article><article class="aid wide"><span class="tag data">Data</span><h3>Four ingredients</h3><div class="tw"><table class="tbl" style="min-width:440px"><thead><tr><th>Ingredient</th><th>Beetle example</th></tr></thead><tbody><tr><td>Variation</td><td>Some green, some brown</td></tr><tr><td>Heredity</td><td>Color genes pass on</td></tr><tr><td>Overproduction</td><td>Each pair lays 20 eggs</td></tr><tr><td>Selection</td><td>Birds eat the more visible color</td></tr></tbody></table></div></article></div></section>
 <section class="sec" id="s2"><div><p class="kicker">Concept 2 · Evidence in action</p><h2>Natural selection measured in real time</h2></div><p class="idea">Peter and Rosemary Grant spent 40 years measuring finches on Daphne Major. After a <mark>1977 drought</mark> left only <mark>large, hard seeds</mark>, birds with <mark>deeper beaks</mark> survived and had chicks with deeper beaks. Evolution was measured within one lifetime.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Tools for the job</h3><p class="cap">A tiny seed needs tweezers; a hard seed needs nutcrackers. When only nuts are left, the nutcracker-beaked birds eat.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Beak depth data</h3><div class="chips" id="fnChips" role="group" aria-label="Year"></div><div class="stage"><svg id="fnSvg" viewBox="0 0 480 156" role="img" aria-label="A finch beak drawn at the chosen year, with its depth in millimetres."></svg></div><div class="bars" id="fnBars"></div><p class="readout" id="fnR" aria-live="polite"></p></article><article class="aid wide"><span class="tag data">Data</span><h3>Seed types</h3><div class="tw"><table class="tbl" style="min-width:380px"><thead><tr><th>Seed</th><th>Needs</th><th>Available in drought</th></tr></thead><tbody><tr><td>Small, soft</td><td>Small beak</td><td>Gone</td></tr><tr><td>Large, hard</td><td>Deep strong beak</td><td>Left</td></tr></tbody></table></div></article></div></section>
 <section class="sec" id="s3"><div><p class="kicker">Concept 3 · Changes over time</p><h2>Fossils show gradual change</h2></div><p class="idea">Layers of fossils show <mark>transitional forms</mark> between groups. Whale ancestors, for instance, were <mark>four-legged land mammals</mark> that gradually shifted to life in water over about 10 million years. Fossils also show <mark>extinction</mark> and new species appearing.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Flip-book</h3><p class="cap">One page looks the same as the next, but flip through many pages and a figure changes shape. Fossil layers are the pages.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Whale ancestors</h3><div class="chips" id="whChips" role="group" aria-label="Fossil"></div><div class="stage"><svg id="whSvg" viewBox="0 0 480 130" role="img" aria-label="A whale ancestor drawn with the size of its hind legs."></svg></div><div class="card2" id="whCard" aria-live="polite"></div><div class="bars" id="whBars"></div></article><article class="aid wide"><span class="tag data">Data</span><h3>Age and evidence</h3><div class="stage"><svg viewBox="0 0 480 150" role="img" aria-label="Five whale ancestors in order of age: the hind legs get shorter step by step, from Pakicetus 50 million years ago to a modern whale with only small pelvis bones"><title>Whale ancestor sketches</title><desc>Five simple body sketches from oldest at the left to a modern whale at the right. Hind-leg length falls from long to tiny to none.</desc><ellipse cx="48" cy="64" rx="18" ry="12" style="fill:var(--reflect);fill-opacity:.35;stroke:var(--ink);stroke-width:2.5"/><path d="M40 74 v16 M56 74 v16" style="stroke:var(--ink);stroke-width:3;stroke-linecap:round"/><text x="48.0" y="126.0" font-size="11" text-anchor="middle" style="font-weight:700">Pakicetus</text><text x="48.0" y="141.0" font-size="10.5" text-anchor="middle">50 million yr</text><text x="48.0" y="112.0" font-size="9.5" text-anchor="middle">hind legs: long</text><ellipse cx="144" cy="64" rx="22" ry="12" style="fill:var(--reflect);fill-opacity:.35;stroke:var(--ink);stroke-width:2.5"/><path d="M136 74 v14 M152 74 v14" style="stroke:var(--ink);stroke-width:3;stroke-linecap:round"/><text x="144.0" y="126.0" font-size="11" text-anchor="middle" style="font-weight:700">Ambulocetus</text><text x="144.0" y="141.0" font-size="10.5" text-anchor="middle">49</text><text x="144.0" y="112.0" font-size="9.5" text-anchor="middle">hind legs: long</text><ellipse cx="240" cy="64" rx="26" ry="12" style="fill:var(--reflect);fill-opacity:.35;stroke:var(--ink);stroke-width:2.5"/><path d="M232 74 v8 M248 74 v8" style="stroke:var(--ink);stroke-width:3;stroke-linecap:round"/><text x="240.0" y="126.0" font-size="11" text-anchor="middle" style="font-weight:700">Rodhocetus</text><text x="240.0" y="141.0" font-size="10.5" text-anchor="middle">47</text><text x="240.0" y="112.0" font-size="9.5" text-anchor="middle">hind legs: shorter</text><ellipse cx="336" cy="64" rx="30" ry="12" style="fill:var(--reflect);fill-opacity:.35;stroke:var(--ink);stroke-width:2.5"/><path d="M328 74 v3 M344 74 v3" style="stroke:var(--ink);stroke-width:3;stroke-linecap:round"/><text x="336.0" y="126.0" font-size="11" text-anchor="middle" style="font-weight:700">Basilosaurus</text><text x="336.0" y="141.0" font-size="10.5" text-anchor="middle">38</text><text x="336.0" y="112.0" font-size="9.5" text-anchor="middle">hind legs: tiny</text><ellipse cx="432" cy="70" rx="38" ry="16" style="fill:var(--reflect);fill-opacity:.35;stroke:var(--ink);stroke-width:2.5"/><path d="M468 70 L486 58 L486 82 Z" style="fill:var(--reflect);fill-opacity:.35;stroke:var(--ink);stroke-width:2.5"/><path d="M426 82 l-4 14 l14 -4" style="fill:var(--reflect);fill-opacity:.35;stroke:var(--ink);stroke-width:2.5"/><text x="432.0" y="126.0" font-size="11" text-anchor="middle" style="font-weight:700">Modern whale</text><text x="432.0" y="141.0" font-size="10.5" text-anchor="middle">today</text><text x="432.0" y="112.0" font-size="9.5" text-anchor="middle">hind legs: none</text><text x="240.0" y="18.0" font-size="12" text-anchor="middle" style="font-weight:700">Hind legs shrink as the animals move into water (not to scale)</text></svg></div><p class="cap">Simple sketches, not to scale: they show only the trend in hind-leg size listed in the table below.</p><div class="tw"><table class="tbl" style="min-width:520px"><thead><tr><th>Fossil</th><th>Age</th><th>Key feature</th></tr></thead><tbody><tr><td>Pakicetus</td><td>50 million yr</td><td>Wolf-sized land walker; whale-type ear bone</td></tr><tr><td>Ambulocetus</td><td>49</td><td>Walking and swimming; big feet</td></tr><tr><td>Rodhocetus</td><td>47</td><td>Reduced hind legs</td></tr><tr><td>Basilosaurus</td><td>38</td><td>Long body; tiny hind limbs</td></tr><tr><td>Modern whale</td><td>Today</td><td>Flippers; vestigial pelvis bones</td></tr></tbody></table></div></article></div></section>
@@ -899,5 +900,82 @@ __mountLessonGame(document.getElementById("lesson-game"), ":host{\n  display:blo
   }));
 })();</script>
 <!-- LESSON GAME:natural-selection END -->
+
+<style id="a11y-shared">
+/* Shared accessibility rules, injected last into every built page by build.mjs. */
+.skip-link{position:absolute;left:8px;top:-72px;z-index:2147483647;padding:10px 16px;border-radius:8px;background:#FFD23F;color:#1A1400;font:700 1rem/1.2 system-ui,sans-serif;text-decoration:none;border:2px solid #1A1400}
+.skip-link:focus{top:8px}
+main:focus{outline:none}
+:focus-visible{outline-offset:2px}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+/* Classic, light: tokens that were under 4.5:1 as text on the page backgrounds, and the amber slider accent (under 3:1). */
+@media not (prefers-color-scheme:dark){
+  :root:root:not([data-style="retro"]):not([data-theme="dark"]){--absorb:#B93A07;--green:#1D7A40;--red:#C42229;--transmit:#0A7566}
+  :root:root:not([data-style="retro"]):not([data-theme="dark"]) input[type=range]{accent-color:#B07800}
+}
+:root:root[data-theme="light"]:not([data-style="retro"]){--absorb:#B93A07;--green:#1D7A40;--red:#C42229;--transmit:#0A7566}
+:root:root[data-theme="light"]:not([data-style="retro"]) input[type=range]{accent-color:#B07800}
+/* Forced colors: the Retro heading is transparent text over a clipped gradient, which would disappear. */
+@media (forced-colors:active){
+  html[data-style="retro"] h1{background:none!important;-webkit-text-fill-color:CanvasText!important;color:CanvasText!important}
+  :focus-visible{outline:3px solid Highlight!important}
+  input[type=range]{accent-color:auto}
+}
+</style>
+<script>
+// Shared accessibility script, inlined into every built page by build.mjs.
+// Sets aria-valuetext on range sliders from the page's own readout (the value and unit in the label),
+// so a screen reader says "12 mL" instead of a bare "12". Existing readouts are not touched.
+(function () {
+  'use strict';
+  var VALUE_TAGS = /^(SPAN|OUTPUT|B|STRONG|EM|I|MARK)$/;
+
+  function labelOf(sl) {
+    if (sl.labels && sl.labels.length) return sl.labels[0];
+    return sl.closest ? sl.closest('label') : null;
+  }
+  function clean(s) { return s.replace(/\s+/g, ' ').trim(); }
+
+  // "<label>Base added: <span>12</span> mL (25 mL of acid in the cup)</label>"  ->  "12 mL"
+  function fromLabel(lb) {
+    if (!lb) return '';
+    var els = lb.querySelectorAll('*');
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      if (!VALUE_TAGS.test(el.tagName) || el.children.length || !clean(el.textContent)) continue;
+      var v = clean(el.textContent), rest = '', n = el.nextSibling;
+      while (n) { rest += n.textContent; n = n.nextSibling; }
+      rest = clean(rest.split(/[(,;\u2014\u2013]|\s-\s/)[0]);
+      if (rest && rest.length <= 24) v += ' ' + rest;
+      return v;
+    }
+    return '';
+  }
+  function fromNeighbour(sl) {
+    var id = sl.id, el = id && document.getElementById(id + 'V');
+    if (el && !el.contains(sl) && clean(el.textContent)) return clean(el.textContent);
+    var o = sl.parentNode && sl.parentNode.querySelector('output');
+    return o && clean(o.textContent) ? clean(o.textContent) : '';
+  }
+  function update(sl) {
+    var t = fromLabel(labelOf(sl)) || fromNeighbour(sl);
+    if (t && t.length <= 60) { if (sl.getAttribute('aria-valuetext') !== t) sl.setAttribute('aria-valuetext', t); }
+  }
+  function all() { Array.prototype.forEach.call(document.querySelectorAll('input[type="range"]'), update); }
+
+  var timer = 0;
+  function soon() { clearTimeout(timer); timer = setTimeout(all, 120); }
+  function start() {
+    all();
+    document.addEventListener('input', function (e) { if (e.target && e.target.type === 'range') { update(e.target); soon(); } });
+    document.addEventListener('change', soon);
+    if (window.MutationObserver) new MutationObserver(soon).observe(document.body, { childList: true, subtree: true, characterData: true });
+    window.addEventListener('load', all);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>
 
 </html>

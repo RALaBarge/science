@@ -1521,7 +1521,7 @@
     else if (e.key === 'ArrowRight') { setAim(undefined, a.power + step); e.preventDefault(); }
     else if (e.key === 'ArrowLeft') { setAim(undefined, a.power - step); e.preventDefault(); }
     else if (e.key === ' ' || e.key === 'Enter') {
-      if (tag === 'BUTTON') return;
+      if (tag === 'BUTTON' || tag === 'A') return;
       if (state.roundOver) nextRound(); else fire();
       e.preventDefault();
     }

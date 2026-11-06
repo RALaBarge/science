@@ -150,7 +150,7 @@
      "label": "Wolves hunting in a pack",
      "bin": "helps",
      "why": "Wolves hunt in packs, which can help them get food.",
-     "hint": "Is the group meeting a need together, or giving something up?"
+     "hint": "could several wolves together catch food that one wolf could not?"
     },
     {
      "id": "bee-work",
@@ -158,7 +158,7 @@
      "label": "Bees sharing the work",
      "bin": "helps",
      "why": "Bees share work, which can help the group survive.",
-     "hint": "Is the group meeting a need together, or giving something up?"
+     "hint": "what gets done faster when many bees each do a job?"
     },
     {
      "id": "deer-watch",
@@ -166,7 +166,7 @@
      "label": "Many deer watching",
      "bin": "helps",
      "why": "Many eyes can see danger sooner than one deer alone.",
-     "hint": "Is the group meeting a need together, or giving something up?"
+     "hint": "what can many deer see that one deer might miss?"
     },
     {
      "id": "share-food",
@@ -174,15 +174,15 @@
      "label": "Sharing limited food",
      "bin": "trade-off",
      "why": "Groups may have to share food, so there is less for each animal.",
-     "hint": "Is the group meeting a need together, or giving something up?"
+     "hint": "what happens to each animal's share when more animals eat the same food?"
     },
     {
      "id": "share-space",
      "icon": "↔️",
-     "label": "Sharing limited space",
+     "label": "Crowding in limited space",
      "bin": "trade-off",
-     "why": "Groups share space, which is a trade-off of living together.",
-     "hint": "Is the group meeting a need together, or giving something up?"
+     "why": "When many animals live close together they crowd each other, and that can make fighting and sickness spread more easily. That is a cost of living in a group.",
+     "hint": "what happens when many animals need the same small space?"
     }
    ]
   }

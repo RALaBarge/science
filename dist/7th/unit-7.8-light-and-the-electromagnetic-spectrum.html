@@ -277,6 +277,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
   });
 })();
 </script>
+<a class="skip-link" href="#main">Skip to main content</a>
 <header class="hero">
   <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="false">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="true">Retro space</button></div>
   <p class="kicker">Seventh grade science · Unit 7.8</p>
@@ -365,7 +366,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 </header>
 
 
-<main>
+<main id="main" tabindex="-1">
 <section class="sec" id="s1"><div><p class="kicker">Concept 1 · A family of waves</p><h2>Light is one slice of a huge spectrum</h2></div><p class="idea">Electromagnetic (EM) waves travel through empty space at the <mark>speed of light</mark> (300,000 km/s). They differ in <mark>wavelength</mark> and <mark>frequency</mark>: longer wavelength means lower frequency and less energy.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>A piano keyboard</h3><p class="cap">Low notes are slow, long waves; high notes are fast, short waves. The visible light "octave" is a single small part of a very large keyboard.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Tour the spectrum</h3><div class="chips" id="spChips" role="group" aria-label="Band"></div><div class="card2" id="spCard" aria-live="polite"></div><div class="bars" id="spBars"></div></article><article class="aid wide"><span class="tag data">Data</span><h3>Wavelength comparisons</h3><div class="tw"><table class="tbl" style="min-width:440px"><thead><tr><th>Wave</th><th>Wavelength</th><th>Compared to</th></tr></thead><tbody><tr><td>Radio (FM)</td><td>~3 m</td><td>A person</td></tr><tr><td>Microwave</td><td>~12 cm</td><td>A hand</td></tr><tr><td>Infrared</td><td>~10 μm</td><td>A cell</td></tr><tr><td>Visible</td><td>400–700 nm</td><td>A virus</td></tr><tr><td>X-ray</td><td>~0.1 nm</td><td>An atom</td></tr></tbody></table></div></article></div></section>
 <section class="sec" id="s2"><div><p class="kicker">Concept 2 · Measuring waves</p><h2>Wavelength, frequency, amplitude</h2></div><p class="idea"><mark>Wavelength</mark> is crest-to-crest distance. <mark>Frequency</mark> is waves per second. <mark>Amplitude</mark> is wave height (brightness). Speed = wavelength × frequency, and for light the speed is fixed.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Jump rope waves</h3><p class="cap">Shake the rope faster (higher frequency) and the bumps get closer together (shorter wavelength). Shake harder (higher amplitude) and the bumps get taller.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Wave lab</h3><div class="ctl"><label for="wvL">Wavelength: <span id="wvLV"></span> nm</label><input id="wvL" type="range" min="50" max="400" step="10" value="200"></div><div class="ctl"><label for="wvA">Amplitude (brightness): <span id="wvAV"></span></label><input id="wvA" type="range" min="10" max="60" step="5" value="35"></div><div class="stage"><svg id="wvSvg" viewBox="0 0 480 160" role="img" aria-label="A wave drawn with the chosen wavelength and amplitude."></svg></div><p class="readout" id="wvR" aria-live="polite"></p></article><article class="aid wide"><span class="tag data">Data</span><h3>Visible colors</h3><div class="tw"><table class="tbl" style="min-width:340px"><thead><tr><th>Color</th><th>Wavelength (nm)</th></tr></thead><tbody><tr><td>Red</td><td>620–700</td></tr><tr><td>Orange</td><td>590–620</td></tr><tr><td>Yellow</td><td>570–590</td></tr><tr><td>Green</td><td>495–570</td></tr><tr><td>Blue</td><td>450–495</td></tr><tr><td>Violet</td><td>400–450</td></tr></tbody></table></div></article></div></section>
 <section class="sec" id="s3"><div><p class="kicker">Concept 3 · Reflect, absorb, transmit</p><h2>What a material does with each wave</h2></div><p class="idea">Different materials <mark>reflect, absorb, or transmit</mark> different wavelengths. Glass transmits visible light but absorbs much UV; metal reflects radio waves; dark cloth absorbs most visible light.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Sieves of different sizes</h3><p class="cap">A screen door blocks mosquitoes but lets air through: the mesh size matters. A material can also let some electromagnetic waves through and block others, but the rule is usually the wave's energy and the material's electrons, not a physical hole. <b>Where it breaks:</b> light does not need a hole to pass through glass.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Choose a material</h3><div class="chips" id="lmChips" role="group" aria-label="Material"></div><div class="stack" id="lmStack" role="img" aria-label="Fraction reflected, transmitted, absorbed"></div><p class="readout" id="lmR" aria-live="polite"></p></article><article class="aid wide"><span class="tag real">Real world</span><h3>Why it matters</h3><div class="tw"><table class="tbl"><thead><tr><th>Material</th><th>Wave</th><th>Use</th></tr></thead><tbody><tr><td>Window glass</td><td>Visible passes, UV mostly blocked</td><td>Light in, less sunburn</td></tr><tr><td>Metal mesh in microwave door</td><td>Microwaves reflect</td><td>Keeps waves in the oven</td></tr><tr><td>Lead apron</td><td>X-rays absorbed</td><td>Protects at the dentist</td></tr><tr><td>Sunscreen</td><td>UV absorbed</td><td>Protects skin</td></tr></tbody></table></div></article></div></section>
@@ -650,5 +651,82 @@ __mountLessonGame(document.getElementById("lesson-game"), ":host{\n  display:blo
   }));
 })();</script>
 <!-- LESSON GAME:spectrum-tuner END -->
+
+<style id="a11y-shared">
+/* Shared accessibility rules, injected last into every built page by build.mjs. */
+.skip-link{position:absolute;left:8px;top:-72px;z-index:2147483647;padding:10px 16px;border-radius:8px;background:#FFD23F;color:#1A1400;font:700 1rem/1.2 system-ui,sans-serif;text-decoration:none;border:2px solid #1A1400}
+.skip-link:focus{top:8px}
+main:focus{outline:none}
+:focus-visible{outline-offset:2px}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+/* Classic, light: tokens that were under 4.5:1 as text on the page backgrounds, and the amber slider accent (under 3:1). */
+@media not (prefers-color-scheme:dark){
+  :root:root:not([data-style="retro"]):not([data-theme="dark"]){--absorb:#B93A07;--green:#1D7A40;--red:#C42229;--transmit:#0A7566}
+  :root:root:not([data-style="retro"]):not([data-theme="dark"]) input[type=range]{accent-color:#B07800}
+}
+:root:root[data-theme="light"]:not([data-style="retro"]){--absorb:#B93A07;--green:#1D7A40;--red:#C42229;--transmit:#0A7566}
+:root:root[data-theme="light"]:not([data-style="retro"]) input[type=range]{accent-color:#B07800}
+/* Forced colors: the Retro heading is transparent text over a clipped gradient, which would disappear. */
+@media (forced-colors:active){
+  html[data-style="retro"] h1{background:none!important;-webkit-text-fill-color:CanvasText!important;color:CanvasText!important}
+  :focus-visible{outline:3px solid Highlight!important}
+  input[type=range]{accent-color:auto}
+}
+</style>
+<script>
+// Shared accessibility script, inlined into every built page by build.mjs.
+// Sets aria-valuetext on range sliders from the page's own readout (the value and unit in the label),
+// so a screen reader says "12 mL" instead of a bare "12". Existing readouts are not touched.
+(function () {
+  'use strict';
+  var VALUE_TAGS = /^(SPAN|OUTPUT|B|STRONG|EM|I|MARK)$/;
+
+  function labelOf(sl) {
+    if (sl.labels && sl.labels.length) return sl.labels[0];
+    return sl.closest ? sl.closest('label') : null;
+  }
+  function clean(s) { return s.replace(/\s+/g, ' ').trim(); }
+
+  // "<label>Base added: <span>12</span> mL (25 mL of acid in the cup)</label>"  ->  "12 mL"
+  function fromLabel(lb) {
+    if (!lb) return '';
+    var els = lb.querySelectorAll('*');
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      if (!VALUE_TAGS.test(el.tagName) || el.children.length || !clean(el.textContent)) continue;
+      var v = clean(el.textContent), rest = '', n = el.nextSibling;
+      while (n) { rest += n.textContent; n = n.nextSibling; }
+      rest = clean(rest.split(/[(,;\u2014\u2013]|\s-\s/)[0]);
+      if (rest && rest.length <= 24) v += ' ' + rest;
+      return v;
+    }
+    return '';
+  }
+  function fromNeighbour(sl) {
+    var id = sl.id, el = id && document.getElementById(id + 'V');
+    if (el && !el.contains(sl) && clean(el.textContent)) return clean(el.textContent);
+    var o = sl.parentNode && sl.parentNode.querySelector('output');
+    return o && clean(o.textContent) ? clean(o.textContent) : '';
+  }
+  function update(sl) {
+    var t = fromLabel(labelOf(sl)) || fromNeighbour(sl);
+    if (t && t.length <= 60) { if (sl.getAttribute('aria-valuetext') !== t) sl.setAttribute('aria-valuetext', t); }
+  }
+  function all() { Array.prototype.forEach.call(document.querySelectorAll('input[type="range"]'), update); }
+
+  var timer = 0;
+  function soon() { clearTimeout(timer); timer = setTimeout(all, 120); }
+  function start() {
+    all();
+    document.addEventListener('input', function (e) { if (e.target && e.target.type === 'range') { update(e.target); soon(); } });
+    document.addEventListener('change', soon);
+    if (window.MutationObserver) new MutationObserver(soon).observe(document.body, { childList: true, subtree: true, characterData: true });
+    window.addEventListener('load', all);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>
 
 </html>

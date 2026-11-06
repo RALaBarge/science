@@ -278,6 +278,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
   });
 })();
 </script>
+<a class="skip-link" href="#main">Skip to main content</a>
 <header class="hero">
   <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="false">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="true">Retro space</button></div>
   <p class="kicker">Eighth grade science · Unit 8.1</p>
@@ -317,7 +318,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 </header>
 
 
-<main>
+<main id="main" tabindex="-1">
 <section class="sec" id="s1"><div><p class="kicker">Concept 1 · Newton's third law</p><h2>Forces come in pairs</h2></div><p class="idea">When object A pushes on object B, B pushes back on A with an <mark>equal and opposite force</mark>. The two forces act on <mark>different objects</mark>, so they do not cancel each other.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Pushing a wall on skates</h3><p class="cap">If you push on a wall while wearing skates, you roll backward. The wall did not move, but it pushed on you with the same force you pushed on it.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Find the partner force</h3><div class="chips" id="fpChips" role="group" aria-label="Situation"></div><div class="stage"><svg id="fpSvg" viewBox="0 0 480 130" role="img" aria-label="Two arrows of equal size pointing opposite ways, one on each object."></svg></div><div class="card2" id="fpCard" aria-live="polite"></div></article><article class="aid wide"><span class="tag try">Try it</span><h3>Push-back lab</h3><p class="cap">Cart A pushes cart B. First predict, then push. Change the push and the masses and see what stays the same and what changes.</p><p class="cap"><b>Predict:</b> which cart feels the bigger force?</p><div class="chips" id="pbPred" role="group" aria-label="Your prediction"></div><div class="stage"><svg id="pbSvg" viewBox="0 0 480 170" role="img" aria-label="Two carts touching. Press Push."></svg></div><div class="ctl"><label for="pbF">Push strength: <span id="pbFV"></span> N</label><input id="pbF" type="range" min="10" max="100" step="5" value="40"></div><div class="ctl"><label for="pbA">Cart A mass: <span id="pbAV"></span> kg</label><input id="pbA" type="range" min="1" max="10" step="1" value="2"></div><div class="ctl"><label for="pbB">Cart B mass: <span id="pbBV"></span> kg</label><input id="pbB" type="range" min="1" max="10" step="1" value="8"></div><div class="btnrow"><button type="button" class="btn" id="pbGo">Push</button><button type="button" class="btn ghost" id="pbReset">Reset</button></div><p class="readout" id="pbR" aria-live="polite"></p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Pair, balanced, or neither?</h3><p class="cap">Two forces are described each time. Decide how they relate. A third-law pair acts on <b>two different objects</b>. Balanced forces act on <b>one object</b> and cancel.</p><div class="stage"><svg id="pcKey" viewBox="0 0 480 120" role="img" aria-label="Key: a pair acts on two objects; balanced forces act on one object."></svg></div><div class="items" id="pcSort"></div><p class="score" id="pcS">0 of 6 correct</p></article><article class="aid wide"><span class="tag data">Data</span><h3>Force pairs</h3><div class="ic4"><div class="ic"><h4>Foot and ground</h4><svg viewBox="0 0 200 140" role="img" aria-label="Foot and ground: the foot pushes the ground backward (arrow on the ground) and the ground pushes the foot forward (arrow on the foot)"><title>Foot and ground</title><desc>the foot pushes the ground backward (arrow on the ground) and the ground pushes the foot forward (arrow on the foot)</desc><rect x="60" y="26" width="70" height="34" rx="10" style="fill:var(--surface);stroke:var(--ink);stroke-width:2.5"/><text x="95" y="48" font-size="11" text-anchor="middle">foot</text><rect x="10" y="80" width="180" height="32" rx="4" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:2.5"/><text x="100" y="102" font-size="11" text-anchor="middle">ground</text><path d="M140 43 L185 43" marker-end="url(#mReflect)" style="stroke:var(--reflect);stroke-width:4"/><path d="M90 70 L40 70" marker-end="url(#mAbsorb)" style="stroke:var(--absorb);stroke-width:4"/></svg><p>Foot pushes ground back (arrow on the ground). Ground pushes foot forward (arrow on the foot).</p></div><div class="ic"><h4>Rocket and gas</h4><svg viewBox="0 0 200 140" role="img" aria-label="Rocket and gas: the rocket pushes gas down and the gas pushes the rocket up"><title>Rocket and gas</title><desc>the rocket pushes gas down and the gas pushes the rocket up</desc><path d="M100 10 Q120 30 118 60 H82 Q80 30 100 10 Z" style="fill:var(--surface);stroke:var(--ink);stroke-width:2.5"/><text x="100" y="46" font-size="10" text-anchor="middle">rocket</text><path d="M90 64 Q100 120 110 64 Z" style="fill:var(--beam);fill-opacity:.7"/><text x="100" y="134" font-size="11" text-anchor="middle">gas</text><path d="M142 60 L142 14" marker-end="url(#mReflect)" style="stroke:var(--reflect);stroke-width:4"/><path d="M66 70 L66 122" marker-end="url(#mAbsorb)" style="stroke:var(--absorb);stroke-width:4"/></svg><p>Rocket pushes gas down (arrow on the gas). Gas pushes rocket up (arrow on the rocket).</p></div><div class="ic"><h4>Hammer and nail</h4><svg viewBox="0 0 200 140" role="img" aria-label="Hammer and nail: the hammer pushes the nail forward and the nail pushes the hammer back"><title>Hammer and nail</title><desc>the hammer pushes the nail forward and the nail pushes the hammer back</desc><rect x="24" y="40" width="50" height="40" rx="4" style="fill:var(--surface);stroke:var(--ink);stroke-width:2.5"/><text x="49" y="64" font-size="10" text-anchor="middle">hammer</text><rect x="118" y="56" width="60" height="8" rx="2" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:2.5"/><text x="148" y="84" font-size="11" text-anchor="middle">nail</text><path d="M110 36 L150 36" marker-end="url(#mAbsorb)" style="stroke:var(--absorb);stroke-width:4"/><path d="M88 98 L48 98" marker-end="url(#mReflect)" style="stroke:var(--reflect);stroke-width:4"/></svg><p>Hammer pushes nail forward (arrow on the nail). Nail pushes hammer back (arrow on the hammer).</p></div><div class="ic"><h4>Earth and you</h4><svg viewBox="0 0 200 140" role="img" aria-label="Earth and you: Earth pulls you down and you pull Earth up"><title>Earth and you</title><desc>Earth pulls you down and you pull Earth up</desc><circle cx="100" cy="150" r="64" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:2.5"/><text x="100" y="100" font-size="11" text-anchor="middle">Earth</text><circle cx="100" cy="30" r="9" style="fill:var(--surface);stroke:var(--ink);stroke-width:2.5"/><path d="M100 39 V62" style="stroke:var(--ink);stroke-width:2.5"/><text x="128" y="34" font-size="11" text-anchor="start">you</text><path d="M78 32 L78 70" marker-end="url(#mReflect)" style="stroke:var(--reflect);stroke-width:4"/><path d="M122 92 L122 60" marker-end="url(#mAbsorb)" style="stroke:var(--absorb);stroke-width:4"/></svg><p>Earth pulls you down (arrow on you). You pull Earth up (arrow on Earth).</p></div></div><div class="tw"><table class="tbl" style="min-width:440px"><thead><tr><th>Action</th><th>Reaction</th></tr></thead><tbody><tr><td>Foot pushes ground backward</td><td>Ground pushes foot forward</td></tr><tr><td>Rocket pushes gas down</td><td>Gas pushes rocket up</td></tr><tr><td>Hammer hits nail</td><td>Nail pushes on hammer</td></tr><tr><td>Earth pulls you down</td><td>You pull Earth up</td></tr></tbody></table></div></article></div></section>
 <section class="sec" id="s2"><div><p class="kicker">Concept 2 · Net force and acceleration</p><h2>How much a push changes motion</h2></div><p class="idea">The <mark>net force</mark> on an object (all forces added, with direction) equals <mark>mass × acceleration</mark>. The same push gives a big acceleration to a light object and a small one to a heavy object.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Pushing a shopping cart</h3><p class="cap">An empty cart speeds up quickly with a gentle push. A full cart takes a lot more push to get the same speed-up.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Force and mass lab</h3><div class="ctl"><label for="fmF">Net force: <span id="fmFV"></span> N</label><input id="fmF" type="range" min="5" max="100" step="5" value="40"></div><div class="ctl"><label for="fmM">Mass: <span id="fmMV"></span> kg</label><input id="fmM" type="range" min="1" max="20" step="1" value="5"></div><div class="stage"><svg id="fmCart" viewBox="0 0 480 110" role="img" aria-label="A cart pushed by a force arrow; the cart grows with mass."></svg></div><div class="bars" id="fmBars"></div><p class="readout" id="fmR" aria-live="polite"></p></article><article class="aid wide"><span class="tag data">Data</span><h3>Acceleration comparison</h3><div class="stage"><svg id="fmSvg" viewBox="0 0 480 210" role="img" aria-label="Acceleration against mass for a fixed force, falling as mass increases."></svg></div><p class="cap">For a fixed force of 40 N: heavier objects accelerate less. This curve is called an inverse relationship.</p></article></div></section>
 <section class="sec" id="s3"><div><p class="kicker">Concept 3 · Momentum</p><h2>What happens when objects collide</h2></div><p class="idea"><mark>Momentum</mark> = mass × velocity. In a collision the <mark>total momentum before equals the total after</mark> (if no outside force acts). A heavy object that hits a light one changes the light one's motion more.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Bowling ball vs. ping pong ball</h3><p class="cap">A bowling ball hits a ping-pong ball: the ping-pong ball flies away fast and the bowling ball barely slows. Reverse them and the bowling ball barely notices.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Cart crash lab</h3><div class="chips" id="ccChips" role="group" aria-label="Case"></div><div class="stage"><svg id="ccSvg" viewBox="0 0 480 150" role="img" aria-label="Two carts before and after the collision, with speed arrows."></svg></div><div id="ccBars" class="bars"></div><p class="readout" id="ccR" aria-live="polite"></p></article><article class="aid wide"><span class="tag data">Data</span><h3>Momentum before and after</h3><div class="tw"><table class="tbl" style="min-width:460px"><thead><tr><th></th><th>Cart A</th><th>Cart B</th><th>Total</th></tr></thead><tbody><tr><td>Before</td><td>2 kg × 3 m/s = 6</td><td>1 kg × 0 = 0</td><td>6</td></tr><tr><td>After (stick)</td><td>3 kg × 2 m/s = 6 (together)</td><td></td><td>6</td></tr></tbody></table></div><p class="cap">Momentum stays 6 kg·m/s. This is a conservation law like conservation of mass.</p></article></div></section>
@@ -1031,5 +1032,82 @@ __mountLessonGame(document.getElementById("lesson-game"), ":host{\n  display:blo
   }));
 })();</script>
 <!-- LESSON GAME:collision-lab END -->
+
+<style id="a11y-shared">
+/* Shared accessibility rules, injected last into every built page by build.mjs. */
+.skip-link{position:absolute;left:8px;top:-72px;z-index:2147483647;padding:10px 16px;border-radius:8px;background:#FFD23F;color:#1A1400;font:700 1rem/1.2 system-ui,sans-serif;text-decoration:none;border:2px solid #1A1400}
+.skip-link:focus{top:8px}
+main:focus{outline:none}
+:focus-visible{outline-offset:2px}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+/* Classic, light: tokens that were under 4.5:1 as text on the page backgrounds, and the amber slider accent (under 3:1). */
+@media not (prefers-color-scheme:dark){
+  :root:root:not([data-style="retro"]):not([data-theme="dark"]){--absorb:#B93A07;--green:#1D7A40;--red:#C42229;--transmit:#0A7566}
+  :root:root:not([data-style="retro"]):not([data-theme="dark"]) input[type=range]{accent-color:#B07800}
+}
+:root:root[data-theme="light"]:not([data-style="retro"]){--absorb:#B93A07;--green:#1D7A40;--red:#C42229;--transmit:#0A7566}
+:root:root[data-theme="light"]:not([data-style="retro"]) input[type=range]{accent-color:#B07800}
+/* Forced colors: the Retro heading is transparent text over a clipped gradient, which would disappear. */
+@media (forced-colors:active){
+  html[data-style="retro"] h1{background:none!important;-webkit-text-fill-color:CanvasText!important;color:CanvasText!important}
+  :focus-visible{outline:3px solid Highlight!important}
+  input[type=range]{accent-color:auto}
+}
+</style>
+<script>
+// Shared accessibility script, inlined into every built page by build.mjs.
+// Sets aria-valuetext on range sliders from the page's own readout (the value and unit in the label),
+// so a screen reader says "12 mL" instead of a bare "12". Existing readouts are not touched.
+(function () {
+  'use strict';
+  var VALUE_TAGS = /^(SPAN|OUTPUT|B|STRONG|EM|I|MARK)$/;
+
+  function labelOf(sl) {
+    if (sl.labels && sl.labels.length) return sl.labels[0];
+    return sl.closest ? sl.closest('label') : null;
+  }
+  function clean(s) { return s.replace(/\s+/g, ' ').trim(); }
+
+  // "<label>Base added: <span>12</span> mL (25 mL of acid in the cup)</label>"  ->  "12 mL"
+  function fromLabel(lb) {
+    if (!lb) return '';
+    var els = lb.querySelectorAll('*');
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      if (!VALUE_TAGS.test(el.tagName) || el.children.length || !clean(el.textContent)) continue;
+      var v = clean(el.textContent), rest = '', n = el.nextSibling;
+      while (n) { rest += n.textContent; n = n.nextSibling; }
+      rest = clean(rest.split(/[(,;\u2014\u2013]|\s-\s/)[0]);
+      if (rest && rest.length <= 24) v += ' ' + rest;
+      return v;
+    }
+    return '';
+  }
+  function fromNeighbour(sl) {
+    var id = sl.id, el = id && document.getElementById(id + 'V');
+    if (el && !el.contains(sl) && clean(el.textContent)) return clean(el.textContent);
+    var o = sl.parentNode && sl.parentNode.querySelector('output');
+    return o && clean(o.textContent) ? clean(o.textContent) : '';
+  }
+  function update(sl) {
+    var t = fromLabel(labelOf(sl)) || fromNeighbour(sl);
+    if (t && t.length <= 60) { if (sl.getAttribute('aria-valuetext') !== t) sl.setAttribute('aria-valuetext', t); }
+  }
+  function all() { Array.prototype.forEach.call(document.querySelectorAll('input[type="range"]'), update); }
+
+  var timer = 0;
+  function soon() { clearTimeout(timer); timer = setTimeout(all, 120); }
+  function start() {
+    all();
+    document.addEventListener('input', function (e) { if (e.target && e.target.type === 'range') { update(e.target); soon(); } });
+    document.addEventListener('change', soon);
+    if (window.MutationObserver) new MutationObserver(soon).observe(document.body, { childList: true, subtree: true, characterData: true });
+    window.addEventListener('load', all);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>
 
 </html>

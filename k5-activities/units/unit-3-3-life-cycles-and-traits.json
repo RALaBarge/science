@@ -31,10 +31,10 @@
     {
      "id": "oak",
      "icon": "🍃",
-     "label": "The shape of an oak leaf",
+     "label": "The basic shape of an oak leaf",
      "bin": "inherited",
-     "why": "Every oak tree gets its leaf shape from its parent trees.",
-     "hint": "do all oak trees have it, no matter where they grow?"
+     "why": "An acorn grows into an oak with oak leaves, because the leaf shape is passed from the parent tree.",
+     "hint": "will an acorn grow into a tree with oak leaves or maple leaves?"
     },
     {
      "id": "violet",
@@ -83,6 +83,30 @@
      "bin": "env",
      "why": "A plant that does not get enough water stays small, even if its parents grow tall. The environment influenced how it grew.",
      "hint": "if its parents grow tall, what else could keep this plant small?"
+    },
+    {
+     "id": "floppy",
+     "icon": "🐶",
+     "label": "A puppy's floppy ears",
+     "bin": "inherited",
+     "why": "Ear shape is passed from the puppy's parents.",
+     "hint": "was the puppy born with it, like its parents?"
+    },
+    {
+     "id": "sit",
+     "icon": "🐕",
+     "label": "A dog that has learned to sit",
+     "bin": "env",
+     "why": "The dog learned to sit from practice and training. Learning is experience, not something passed from parents.",
+     "hint": "was the dog born knowing it, or did it learn it?"
+    },
+    {
+     "id": "scar",
+     "icon": "🩹",
+     "label": "A scar on a knee",
+     "bin": "env",
+     "why": "A scar comes from an injury during life. It is not passed from parents to children.",
+     "hint": "did the child get it from the parents, or from something that happened?"
     }
    ]
   }

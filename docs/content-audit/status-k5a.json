@@ -1,962 +1,988 @@
 [
- {
-  "file": "k-5/unit-k-a-pushes-and-pulls.html",
-  "concept": "Pushes and pulls start, stop, and change motion",
-  "type": "diagram",
-  "status": "done",
-  "what": "Drew push/pull ball diagram with big arrows",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k-a-pushes-and-pulls.html",
-  "concept": "Pushes and pulls start, stop, and change motion",
-  "type": "analogy",
-  "status": "done",
-  "what": "Drew swing push/stop picture",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k-a-pushes-and-pulls.html",
-  "concept": "Pushes and pulls start, stop, and change motion",
-  "type": "try",
-  "status": "done",
-  "what": "Rewrote with guess, steps, what to notice, safety",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k-a-pushes-and-pulls.html",
-  "concept": "Pushes and pulls start, stop, and change motion",
-  "type": "real",
-  "status": "done",
-  "what": "Drew door push and zipper pull",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k-a-pushes-and-pulls.html",
-  "concept": "Strength and direction matter",
-  "type": "real",
-  "status": "done",
-  "what": "Drew sailboat and snowplow",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k-a-pushes-and-pulls.html",
-  "concept": "We can design things to change motion safely",
-  "type": "diagram",
-  "status": "done",
-  "what": "Drew ramp, car, stopper, finish line, draw-build-test",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k-a-pushes-and-pulls.html",
-  "concept": "We can design things to change motion safely",
-  "type": "try",
-  "status": "done",
-  "what": "Rewrote with steps and what to notice",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k-a-pushes-and-pulls.html",
-  "concept": "We can design things to change motion safely",
-  "type": "real",
-  "status": "done",
-  "what": "Drew gate stopping a ball",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k-a-pushes-and-pulls.html",
-  "concept": "Try it at home or in class",
-  "type": "try",
-  "status": "done",
-  "what": "Station steps and timing added (timings are estimates)",
-  "check": "Station timings are suggestions"
- },
- {
-  "file": "k-5/unit-k-b-sunlight-weather-and-staying-safe.html",
-  "concept": "Sunlight warms and lights surfaces",
-  "type": "analogy",
-  "status": "done",
-  "what": "Drew Sun-as-lamp comparison",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k-b-sunlight-weather-and-staying-safe.html",
-  "concept": "Sunlight warms and lights surfaces",
-  "type": "data",
-  "status": "done",
-  "what": "Drew picture chart of black vs white paper (qualitative, no invented numbers)",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k-b-sunlight-weather-and-staying-safe.html",
-  "concept": "Sunlight warms and lights surfaces",
-  "type": "real",
-  "status": "done",
-  "what": "Drew dark road vs grass",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k-b-sunlight-weather-and-staying-safe.html",
-  "concept": "Shade can keep things cooler",
-  "type": "diagram",
-  "status": "done",
-  "what": "Drew shaded and unshaded ice cubes",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k-b-sunlight-weather-and-staying-safe.html",
-  "concept": "Shade can keep things cooler",
-  "type": "try",
-  "status": "done",
-  "what": "Rewrote with guess, materials, steps, result",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k-b-sunlight-weather-and-staying-safe.html",
-  "concept": "Shade can keep things cooler",
-  "type": "real",
-  "status": "done",
-  "what": "Drew beach umbrella shade",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k-b-sunlight-weather-and-staying-safe.html",
-  "concept": "Weather has patterns over time",
-  "type": "try",
-  "status": "done",
-  "what": "Rewrote with steps",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k-b-sunlight-weather-and-staying-safe.html",
-  "concept": "Weather has patterns over time",
-  "type": "diagram",
-  "status": "done",
-  "what": "Drew four weather symbols",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k-b-sunlight-weather-and-staying-safe.html",
-  "concept": "Forecasts help us get ready and stay safe",
-  "type": "analogy",
-  "status": "done",
-  "what": "Spelled out the mapping (forecast = note)",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k-b-sunlight-weather-and-staying-safe.html",
-  "concept": "Forecasts help us get ready and stay safe",
-  "type": "try",
-  "status": "done",
-  "what": "Built a 3-card picture-sort quiz (go inside / safe room / stay off roads)",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k-b-sunlight-weather-and-staying-safe.html",
-  "concept": "Forecasts help us get ready and stay safe",
-  "type": "data",
-  "status": "done",
-  "what": "Added a made-up three-day forecast card, labelled as an example",
-  "check": "Example temperatures are made up and labelled so"
- },
- {
-  "file": "k-5/unit-k-b-sunlight-weather-and-staying-safe.html",
-  "concept": "Forecasts help us get ready and stay safe",
-  "type": "real",
-  "status": "done",
-  "what": "Drew a winter storm watch card",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k-b-sunlight-weather-and-staying-safe.html",
-  "concept": "Try it at home or in class",
-  "type": "try",
-  "status": "done",
-  "what": "Station steps and timings added",
-  "check": "Timings are suggestions"
- },
- {
-  "file": "k-5/unit-k-c-living-things-and-their-homes.html",
-  "concept": "Plants and animals have needs",
-  "type": "analogy",
-  "status": "done",
-  "what": "Spelled out mapping: needs list = shopping list, plant and animal lists",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k-c-living-things-and-their-homes.html",
-  "concept": "Plants and animals have needs",
-  "type": "try",
-  "status": "done",
-  "what": "Built a 4-card living/nonliving and needs quiz",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k-c-living-things-and-their-homes.html",
-  "concept": "Plants and animals have needs",
-  "type": "data",
-  "status": "done",
-  "what": "Drew needs check chart for bean plant and deer",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k-c-living-things-and-their-homes.html",
-  "concept": "Plants and animals have needs",
-  "type": "real",
-  "status": "done",
-  "what": "Drew a robin with worm, water, and shelter",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k-c-living-things-and-their-homes.html",
-  "concept": "Homes meet needs",
-  "type": "diagram",
-  "status": "done",
-  "what": "Drew pond, forest, dune panels",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k-c-living-things-and-their-homes.html",
-  "concept": "Homes meet needs",
-  "type": "try",
-  "status": "done",
-  "what": "Built a 4-card habitat sort quiz and rewrote the habitat-model try-it cell",
-  "check": "Confirm squirrel/acorn card wording is OK for K"
- },
- {
-  "file": "k-5/unit-k-c-living-things-and-their-homes.html",
-  "concept": "Homes meet needs",
-  "type": "real",
-  "status": "done",
-  "what": "Drew a Great Lakes shore",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k-c-living-things-and-their-homes.html",
-  "concept": "Living things change their environment",
-  "type": "diagram",
-  "status": "done",
-  "what": "Drew beaver dam and new pond",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k-c-living-things-and-their-homes.html",
-  "concept": "Living things change their environment",
-  "type": "try",
-  "status": "done",
-  "what": "Built a 5-card evidence quiz",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k-c-living-things-and-their-homes.html",
-  "concept": "Living things change their environment",
-  "type": "data",
-  "status": "done",
-  "what": "Drew class argument chart (place, evidence, who)",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k-c-living-things-and-their-homes.html",
-  "concept": "Living things change their environment",
-  "type": "real",
-  "status": "done",
-  "what": "Drew before/after houses and road",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k-c-living-things-and-their-homes.html",
-  "concept": "People can reduce harm",
-  "type": "analogy",
-  "status": "done",
-  "what": "Spelled out helper-hands mapping",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k-c-living-things-and-their-homes.html",
-  "concept": "People can reduce harm",
-  "type": "try",
-  "status": "done",
-  "what": "Rewrote with steps, safety, what to notice",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k-c-living-things-and-their-homes.html",
-  "concept": "People can reduce harm",
-  "type": "real",
-  "status": "done",
-  "what": "Drew native flower and bee",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k-c-living-things-and-their-homes.html",
-  "concept": "Try it at home or in class",
-  "type": "try",
-  "status": "done",
-  "what": "Station steps and timings",
-  "check": "Timings are suggestions"
- },
- {
-  "file": "k-5/unit-k-c-living-things-and-their-homes.html",
-  "concept": "Homes meet needs",
-  "type": "data",
-  "status": "skipped",
-  "what": "Not in the gap list",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k2-0-science-noticing-and-asking.html",
-  "concept": "Scientists notice things",
-  "type": "analogy",
-  "status": "done",
-  "what": "Spelled out detective mapping and where it breaks",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k2-0-science-noticing-and-asking.html",
-  "concept": "Scientists notice things",
-  "type": "try",
-  "status": "done",
-  "what": "Rewrote with materials, steps, what to notice",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k2-0-science-noticing-and-asking.html",
-  "concept": "Scientists notice things",
-  "type": "data",
-  "status": "done",
-  "what": "Drew smooth/bumpy picture tally (4 and 5 from the page’s backup data)",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k2-0-science-noticing-and-asking.html",
-  "concept": "Questions help us learn",
-  "type": "analogy",
-  "status": "done",
-  "what": "Spelled out flashlight mapping",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k2-0-science-noticing-and-asking.html",
-  "concept": "Questions help us learn",
-  "type": "try",
-  "status": "done",
-  "what": "Built a 4-card can-we-test-it quiz",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k2-0-science-noticing-and-asking.html",
-  "concept": "Questions help us learn",
-  "type": "real",
-  "status": "done",
-  "what": "Drew weather watcher looking at clouds",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k2-0-science-noticing-and-asking.html",
-  "concept": "We compare one thing at a time and share what we find",
-  "type": "analogy",
-  "status": "done",
-  "what": "Spelled out cookie mapping",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k2-0-science-noticing-and-asking.html",
-  "concept": "We compare one thing at a time and share what we find",
-  "type": "diagram",
-  "status": "done",
-  "what": "Drew Notice-Ask-Problem-Idea boxes",
-  "check": ""
- },
- {
-  "file": "k-5/unit-k2-0-science-noticing-and-asking.html",
-  "concept": "Try it at home or in class",
-  "type": "try",
-  "status": "done",
-  "what": "Station steps and timings",
-  "check": "Timings are suggestions"
- },
- {
-  "file": "k-5/unit-1-a-sound-and-light.html",
-  "concept": "Vibrations make sound; sound makes things vibrate",
-  "type": "diagram",
-  "status": "done",
-  "what": "Drew ruler shaking with sound reaching ear",
-  "check": ""
- },
- {
-  "file": "k-5/unit-1-a-sound-and-light.html",
-  "concept": "Vibrations make sound; sound makes things vibrate",
-  "type": "real",
-  "status": "done",
-  "what": "Drew humming child with hand on throat",
-  "check": ""
- },
- {
-  "file": "k-5/unit-1-a-sound-and-light.html",
-  "concept": "Vibrations make sound; sound makes things vibrate",
-  "type": "data",
-  "status": "done",
-  "what": "Drew observation log table",
-  "check": "Tables are labelled as example results"
- },
- {
-  "file": "k-5/unit-1-a-sound-and-light.html",
-  "concept": "We see only what is lit",
-  "type": "data",
-  "status": "done",
-  "what": "Drew seen-in-dark / seen-with-light table",
-  "check": "Tables are labelled as example results"
- },
- {
-  "file": "k-5/unit-1-a-sound-and-light.html",
-  "concept": "We see only what is lit",
-  "type": "real",
-  "status": "done",
-  "what": "Drew dark vs lit bedroom",
-  "check": ""
- },
- {
-  "file": "k-5/unit-1-a-sound-and-light.html",
-  "concept": "Materials in a light beam",
-  "type": "data",
-  "status": "done",
-  "what": "Drew results table with beam through each material",
-  "check": "Tables are labelled as example results"
- },
- {
-  "file": "k-5/unit-1-a-sound-and-light.html",
-  "concept": "Materials in a light beam",
-  "type": "real",
-  "status": "done",
-  "what": "Drew window and curtain",
-  "check": ""
- },
- {
-  "file": "k-5/unit-1-a-sound-and-light.html",
-  "concept": "Sending messages with light or sound",
-  "type": "analogy",
-  "status": "done",
-  "what": "Spelled out knock/blink mapping",
-  "check": ""
- },
- {
-  "file": "k-5/unit-1-a-sound-and-light.html",
-  "concept": "Sending messages with light or sound",
-  "type": "try",
-  "status": "done",
-  "what": "Rewrote with code example, steps, what to notice",
-  "check": ""
- },
- {
-  "file": "k-5/unit-1-a-sound-and-light.html",
-  "concept": "Sending messages with light or sound",
-  "type": "data",
-  "status": "done",
-  "what": "Drew 3-of-4 signal test",
-  "check": "Tables are labelled as example results"
- },
- {
-  "file": "k-5/unit-1-a-sound-and-light.html",
-  "concept": "Sending messages with light or sound",
-  "type": "real",
-  "status": "done",
-  "what": "Drew lighthouse (SVG, not the raster hero)",
-  "check": ""
- },
- {
-  "file": "k-5/unit-1-a-sound-and-light.html",
-  "concept": "Try it at home or in class",
-  "type": "try",
-  "status": "done",
-  "what": "Station steps and timings",
-  "check": "Timings are suggestions"
- },
- {
-  "file": "k-5/unit-1-b-parts-parents-and-young.html",
-  "concept": "External parts help survival",
-  "type": "diagram",
-  "status": "done",
-  "what": "Drew beaver tail, deer ears, maple leaf with jobs",
-  "check": ""
- },
- {
-  "file": "k-5/unit-1-b-parts-parents-and-young.html",
-  "concept": "External parts help survival",
-  "type": "try",
-  "status": "done",
-  "what": "Built a 4-card part-to-job match quiz",
-  "check": ""
- },
- {
-  "file": "k-5/unit-1-b-parts-parents-and-young.html",
-  "concept": "External parts help survival",
-  "type": "real",
-  "status": "done",
-  "what": "Drew deer with sound reaching its ears",
-  "check": ""
- },
- {
-  "file": "k-5/unit-1-b-parts-parents-and-young.html",
-  "concept": "External parts help survival",
-  "type": "data",
-  "status": "done",
-  "what": "Drew part-to-job chart",
-  "check": ""
- },
- {
-  "file": "k-5/unit-1-b-parts-parents-and-young.html",
-  "concept": "Biomimicry design",
-  "type": "analogy",
-  "status": "done",
-  "what": "Spelled out burr/strap mapping",
-  "check": ""
- },
- {
-  "file": "k-5/unit-1-b-parts-parents-and-young.html",
-  "concept": "Biomimicry design",
-  "type": "try",
-  "status": "done",
-  "what": "Rewrote with problem, parts, steps, what to notice",
-  "check": ""
- },
- {
-  "file": "k-5/unit-1-b-parts-parents-and-young.html",
-  "concept": "Biomimicry design",
-  "type": "data",
-  "status": "done",
-  "what": "Drew test table (example results, includes a failure)",
-  "check": ""
- },
- {
-  "file": "k-5/unit-1-b-parts-parents-and-young.html",
-  "concept": "Parent-offspring behavior",
-  "type": "analogy",
-  "status": "done",
-  "what": "Spelled out blanket mapping and where it breaks",
-  "check": ""
- },
- {
-  "file": "k-5/unit-1-b-parts-parents-and-young.html",
-  "concept": "Parent-offspring behavior",
-  "type": "try",
-  "status": "done",
-  "what": "Built a 3-card what-does-the-parent-do quiz",
-  "check": "Claim: a mother deer leaves her fawn hidden for hours and returns to feed it (standard wildlife fact)"
- },
- {
-  "file": "k-5/unit-1-b-parts-parents-and-young.html",
-  "concept": "Parent-offspring behavior",
-  "type": "data",
-  "status": "done",
-  "what": "Drew parent-action-help chart",
-  "check": ""
- },
- {
-  "file": "k-5/unit-1-b-parts-parents-and-young.html",
-  "concept": "Parent-offspring behavior",
-  "type": "real",
-  "status": "done",
-  "what": "Drew robin feeding chicks at nest",
-  "check": ""
- },
- {
-  "file": "k-5/unit-1-b-parts-parents-and-young.html",
-  "concept": "Young are like, but not exactly like, parents",
-  "type": "try",
-  "status": "done",
-  "what": "Built a 3-card adult-young match quiz",
-  "check": ""
- },
- {
-  "file": "k-5/unit-1-b-parts-parents-and-young.html",
-  "concept": "Young are like, but not exactly like, parents",
-  "type": "data",
-  "status": "done",
-  "what": "Drew alike/different lists for deer and fawn",
-  "check": ""
- },
- {
-  "file": "k-5/unit-1-b-parts-parents-and-young.html",
-  "concept": "Young are like, but not exactly like, parents",
-  "type": "diagram",
-  "status": "done",
-  "what": "Drew deer and spotted fawn with like/different arrows",
-  "check": ""
- },
- {
-  "file": "k-5/unit-1-b-parts-parents-and-young.html",
-  "concept": "Young are like, but not exactly like, parents",
-  "type": "real",
-  "status": "done",
-  "what": "Drew maple tree and seedling",
-  "check": ""
- },
- {
-  "file": "k-5/unit-1-b-parts-parents-and-young.html",
-  "concept": "Try it at home or in class",
-  "type": "try",
-  "status": "done",
-  "what": "Station steps and timings",
-  "check": "Timings are suggestions"
- },
- {
-  "file": "k-5/unit-1-c-sky-patterns.html",
-  "concept": "Day and night repeat",
-  "type": "data",
-  "status": "done",
-  "what": "Rewrote with steps and drew example day and night sky",
-  "check": ""
- },
- {
-  "file": "k-5/unit-1-c-sky-patterns.html",
-  "concept": "Day and night repeat",
-  "type": "real",
-  "status": "done",
-  "what": "Drew noon (bright) and midnight (dark)",
-  "check": ""
- },
- {
-  "file": "k-5/unit-1-c-sky-patterns.html",
-  "concept": "The Moon and stars have patterns",
-  "type": "diagram",
-  "status": "done",
-  "what": "Drew Sun lighting one side of the Moon",
-  "check": ""
- },
- {
-  "file": "k-5/unit-1-c-sky-patterns.html",
-  "concept": "The Moon and stars have patterns",
-  "type": "try",
-  "status": "done",
-  "what": "Built 3-card moon-phase quiz",
-  "check": ""
- },
- {
-  "file": "k-5/unit-1-c-sky-patterns.html",
-  "concept": "The Moon and stars have patterns",
-  "type": "data",
-  "status": "done",
-  "what": "Drew four-week Moon calendar (example)",
-  "check": "Moon calendar phases are a simplified example (weekly steps of a roughly 29.5-day cycle)"
- },
- {
-  "file": "k-5/unit-1-c-sky-patterns.html",
-  "concept": "The Moon and stars have patterns",
-  "type": "real",
-  "status": "done",
-  "what": "Drew day sky hiding stars, night sky showing them",
-  "check": ""
- },
- {
-  "file": "k-5/unit-1-c-sky-patterns.html",
-  "concept": "Seasons change the amount of daylight",
-  "type": "try",
-  "status": "done",
-  "what": "Rewrote with guess, steps, what to notice",
-  "check": ""
- },
- {
-  "file": "k-5/unit-1-c-sky-patterns.html",
-  "concept": "Try it at home or in class",
-  "type": "try",
-  "status": "done",
-  "what": "Station steps and timings",
-  "check": "Timings are suggestions"
- },
- {
-  "file": "k-5/unit-2-a-materials-and-their-uses.html",
-  "concept": "Materials have properties we can observe",
-  "type": "data",
-  "status": "done",
-  "what": "Drew picture chart: 5 waterproof, 3 not",
-  "check": ""
- },
- {
-  "file": "k-5/unit-2-a-materials-and-their-uses.html",
-  "concept": "We choose materials for jobs",
-  "type": "try",
-  "status": "done",
-  "what": "Rewrote with guess, steps, what to notice",
-  "check": ""
- },
- {
-  "file": "k-5/unit-2-a-materials-and-their-uses.html",
-  "concept": "We choose materials for jobs",
-  "type": "real",
-  "status": "done",
-  "what": "Drew raincoat and helmet",
-  "check": ""
- },
- {
-  "file": "k-5/unit-2-a-materials-and-their-uses.html",
-  "concept": "Pieces can be taken apart and rebuilt",
-  "type": "real",
-  "status": "done",
-  "what": "Drew same blocks as house and car",
-  "check": ""
- },
- {
-  "file": "k-5/unit-2-a-materials-and-their-uses.html",
-  "concept": "Heating and cooling can change materials",
-  "type": "analogy",
-  "status": "done",
-  "what": "Spelled out undo-button mapping",
-  "check": ""
- },
- {
-  "file": "k-5/unit-2-a-materials-and-their-uses.html",
-  "concept": "Heating and cooling can change materials",
-  "type": "try",
-  "status": "done",
-  "what": "Rewrote with guess, steps, result",
-  "check": ""
- },
- {
-  "file": "k-5/unit-2-a-materials-and-their-uses.html",
-  "concept": "Heating and cooling can change materials",
-  "type": "data",
-  "status": "done",
-  "what": "Drew claim/evidence table",
-  "check": ""
- },
- {
-  "file": "k-5/unit-2-a-materials-and-their-uses.html",
-  "concept": "Try it at home or in class",
-  "type": "try",
-  "status": "done",
-  "what": "Station steps and timings",
-  "check": "Timings are suggestions"
- },
- {
-  "file": "k-5/unit-2-b-plants-animals-and-habitats.html",
-  "concept": "Do plants need sunlight and water?",
-  "type": "real",
-  "status": "done",
-  "what": "Drew corn field with sun and rain",
-  "check": ""
- },
- {
-  "file": "k-5/unit-2-b-plants-animals-and-habitats.html",
-  "concept": "Animals move seeds and pollen",
-  "type": "analogy",
-  "status": "done",
-  "what": "Spelled out delivery-helper mapping and where it breaks",
-  "check": ""
- },
- {
-  "file": "k-5/unit-2-b-plants-animals-and-habitats.html",
-  "concept": "Animals move seeds and pollen",
-  "type": "diagram",
-  "status": "done",
-  "what": "Drew flower-bee-flower and berry-bird-new-plant",
-  "check": ""
- },
- {
-  "file": "k-5/unit-2-b-plants-animals-and-habitats.html",
-  "concept": "Animals move seeds and pollen",
-  "type": "try",
-  "status": "done",
-  "what": "Rewrote with guess, steps, what to notice",
-  "check": ""
- },
- {
-  "file": "k-5/unit-2-b-plants-animals-and-habitats.html",
-  "concept": "Animals move seeds and pollen",
-  "type": "data",
-  "status": "done",
-  "what": "Drew model test chart (example results)",
-  "check": ""
- },
- {
-  "file": "k-5/unit-2-b-plants-animals-and-habitats.html",
-  "concept": "Different habitats have different living things",
-  "type": "diagram",
-  "status": "done",
-  "what": "Drew pond, forest, dune",
-  "check": ""
- },
- {
-  "file": "k-5/unit-2-b-plants-animals-and-habitats.html",
-  "concept": "Different habitats have different living things",
-  "type": "try",
-  "status": "done",
-  "what": "Built a 5-card habitat sort quiz",
-  "check": ""
- },
- {
-  "file": "k-5/unit-2-b-plants-animals-and-habitats.html",
-  "concept": "Different habitats have different living things",
-  "type": "real",
-  "status": "done",
-  "what": "Drew Great Lakes shore",
-  "check": ""
- },
- {
-  "file": "k-5/unit-2-b-plants-animals-and-habitats.html",
-  "concept": "Try it at home or in class",
-  "type": "try",
-  "status": "done",
-  "what": "Station steps and timings",
-  "check": "Timings are suggestions"
- },
- {
-  "file": "k-5/unit-2-c-land-and-water-fast-and-slow.html",
-  "concept": "Earth events can be quick or slow",
-  "type": "analogy",
-  "status": "done",
-  "what": "Spelled out door-slam / crayon mapping",
-  "check": ""
- },
- {
-  "file": "k-5/unit-2-c-land-and-water-fast-and-slow.html",
-  "concept": "Earth events can be quick or slow",
-  "type": "diagram",
-  "status": "done",
-  "what": "Drew flood (fast) and canyon (slow) as an SVG instead of photo pairs",
-  "check": ""
- },
- {
-  "file": "k-5/unit-2-c-land-and-water-fast-and-slow.html",
-  "concept": "Earth events can be quick or slow",
-  "type": "try",
-  "status": "done",
-  "what": "Built a 5-card fast/slow quiz",
-  "check": ""
- },
- {
-  "file": "k-5/unit-2-c-land-and-water-fast-and-slow.html",
-  "concept": "Earth events can be quick or slow",
-  "type": "data",
-  "status": "done",
-  "what": "Drew evidence chart (event, clue, speed, material)",
-  "check": ""
- },
- {
-  "file": "k-5/unit-2-c-land-and-water-fast-and-slow.html",
-  "concept": "Slowing wind and water",
-  "type": "real",
-  "status": "done",
-  "what": "Drew beach grass holding a dune",
-  "check": ""
- },
- {
-  "file": "k-5/unit-2-c-land-and-water-fast-and-slow.html",
-  "concept": "Model your local land and water",
-  "type": "diagram",
-  "status": "done",
-  "what": "Drew top-view map with lake, river, hill, dune",
-  "check": ""
- },
- {
-  "file": "k-5/unit-2-c-land-and-water-fast-and-slow.html",
-  "concept": "Model your local land and water",
-  "type": "try",
-  "status": "done",
-  "what": "Rewrote with steps and what to notice",
-  "check": ""
- },
- {
-  "file": "k-5/unit-2-c-land-and-water-fast-and-slow.html",
-  "concept": "Model your local land and water",
-  "type": "data",
-  "status": "done",
-  "what": "Rewrote as a model feature checklist with a sentence frame",
-  "check": ""
- },
- {
-  "file": "k-5/unit-2-c-land-and-water-fast-and-slow.html",
-  "concept": "Where water is; solid or liquid",
-  "type": "diagram",
-  "status": "done",
-  "what": "Drew side view of snow, lake, river, clouds, groundwater",
-  "check": "Clouds are drawn as water; check that K-2 framing (clouds are tiny drops/ice) is OK"
- },
- {
-  "file": "k-5/unit-2-c-land-and-water-fast-and-slow.html",
-  "concept": "Where water is; solid or liquid",
-  "type": "try",
-  "status": "done",
-  "what": "Built a 5-card solid/liquid quiz",
-  "check": ""
- },
- {
-  "file": "k-5/unit-2-c-land-and-water-fast-and-slow.html",
-  "concept": "Where water is; solid or liquid",
-  "type": "data",
-  "status": "done",
-  "what": "Drew where-we-found-water chart",
-  "check": ""
- },
- {
-  "file": "k-5/unit-2-c-land-and-water-fast-and-slow.html",
-  "concept": "Where water is; solid or liquid",
-  "type": "real",
-  "status": "done",
-  "what": "Drew farm using soil and water",
-  "check": ""
- },
- {
-  "file": "k-5/unit-2-c-land-and-water-fast-and-slow.html",
-  "concept": "Try it at home or in class",
-  "type": "try",
-  "status": "done",
-  "what": "Station steps and timings",
-  "check": "Timings are suggestions"
- },
- {
-  "file": "k-5/unit-00-how-science-works.html",
-  "concept": "People have always asked \"why?\"",
-  "type": "diagram",
-  "status": "skipped",
-  "what": "Already has an interactive SVG timeline (tlSvg); audit matched the wrong cell",
-  "check": ""
- },
- {
-  "file": "k-5/unit-00-how-science-works.html",
-  "concept": "People have always asked \"why?\"",
-  "type": "real",
-  "status": "done",
-  "what": "Added Earth-centered vs Sun-centered diagram to the Ptolemy/Copernicus cell",
-  "check": "Orbits drawn as circles and not to scale (stated in caption)"
- },
- {
-  "file": "k-5/unit-00-how-science-works.html",
-  "concept": "A loop, not a ladder",
-  "type": "real",
-  "status": "skipped",
-  "what": "Recipe-loop SVG already present in the analogy cell of this section",
-  "check": ""
- },
- {
-  "file": "k-5/unit-00-how-science-works.html",
-  "concept": "Change one thing at a time",
-  "type": "diagram",
-  "status": "skipped",
-  "what": "Cookie-test SVG and fair/unfair interactive already present",
-  "check": ""
- },
- {
-  "file": "k-5/unit-00-how-science-works.html",
-  "concept": "Measure, graph, conclude",
-  "type": "real",
-  "status": "done",
-  "what": "Added five lab-safety pictures above the rules table",
-  "check": ""
- },
- {
-  "file": "k-5/unit-00-how-science-works.html",
-  "concept": "The whole universe in one year",
-  "type": "analogy",
-  "status": "done",
-  "what": "Added cosmic-year bar with a Dec 31 zoom",
-  "check": "Dates used: life Sept, animals mid-Dec, dinosaurs Dec 25-30, humans last 12 minutes, writing last 12 seconds (all taken from the page text)"
- },
- {
-  "file": "k-5/unit-00-how-science-works.html",
-  "concept": "The whole universe in one year",
-  "type": "real",
-  "status": "partial",
-  "what": "Same cosmic-year bar covers this section; no separate picture for the Sagan cell",
-  "check": ""
- }
+  {
+    "file": "k-5/unit-k-a-pushes-and-pulls.html",
+    "concept": "Pushes and pulls start, stop, and change motion",
+    "type": "diagram",
+    "status": "done",
+    "what": "Drew push/pull ball diagram with big arrows",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k-a-pushes-and-pulls.html",
+    "concept": "Pushes and pulls start, stop, and change motion",
+    "type": "analogy",
+    "status": "done",
+    "what": "Drew swing push/stop picture",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k-a-pushes-and-pulls.html",
+    "concept": "Pushes and pulls start, stop, and change motion",
+    "type": "try",
+    "status": "done",
+    "what": "Rewrote with guess, steps, what to notice, safety",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k-a-pushes-and-pulls.html",
+    "concept": "Pushes and pulls start, stop, and change motion",
+    "type": "real",
+    "status": "done",
+    "what": "Drew door push and zipper pull",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k-a-pushes-and-pulls.html",
+    "concept": "Strength and direction matter",
+    "type": "real",
+    "status": "done",
+    "what": "Drew sailboat and snowplow",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k-a-pushes-and-pulls.html",
+    "concept": "We can design things to change motion safely",
+    "type": "diagram",
+    "status": "done",
+    "what": "Drew ramp, car, stopper, finish line, draw-build-test",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k-a-pushes-and-pulls.html",
+    "concept": "We can design things to change motion safely",
+    "type": "try",
+    "status": "done",
+    "what": "Rewrote with steps and what to notice",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k-a-pushes-and-pulls.html",
+    "concept": "We can design things to change motion safely",
+    "type": "real",
+    "status": "done",
+    "what": "Drew gate stopping a ball",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k-a-pushes-and-pulls.html",
+    "concept": "Try it at home or in class",
+    "type": "try",
+    "status": "done",
+    "what": "Station steps and timing added (timings are estimates)",
+    "check": "Station timings are suggestions",
+    "resolved_by": "claude"
+  },
+  {
+    "file": "k-5/unit-k-b-sunlight-weather-and-staying-safe.html",
+    "concept": "Sunlight warms and lights surfaces",
+    "type": "analogy",
+    "status": "done",
+    "what": "Drew Sun-as-lamp comparison",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k-b-sunlight-weather-and-staying-safe.html",
+    "concept": "Sunlight warms and lights surfaces",
+    "type": "data",
+    "status": "done",
+    "what": "Drew picture chart of black vs white paper (qualitative, no invented numbers)",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k-b-sunlight-weather-and-staying-safe.html",
+    "concept": "Sunlight warms and lights surfaces",
+    "type": "real",
+    "status": "done",
+    "what": "Drew dark road vs grass",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k-b-sunlight-weather-and-staying-safe.html",
+    "concept": "Shade can keep things cooler",
+    "type": "diagram",
+    "status": "done",
+    "what": "Drew shaded and unshaded ice cubes",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k-b-sunlight-weather-and-staying-safe.html",
+    "concept": "Shade can keep things cooler",
+    "type": "try",
+    "status": "done",
+    "what": "Rewrote with guess, materials, steps, result",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k-b-sunlight-weather-and-staying-safe.html",
+    "concept": "Shade can keep things cooler",
+    "type": "real",
+    "status": "done",
+    "what": "Drew beach umbrella shade",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k-b-sunlight-weather-and-staying-safe.html",
+    "concept": "Weather has patterns over time",
+    "type": "try",
+    "status": "done",
+    "what": "Rewrote with steps",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k-b-sunlight-weather-and-staying-safe.html",
+    "concept": "Weather has patterns over time",
+    "type": "diagram",
+    "status": "done",
+    "what": "Drew four weather symbols",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k-b-sunlight-weather-and-staying-safe.html",
+    "concept": "Forecasts help us get ready and stay safe",
+    "type": "analogy",
+    "status": "done",
+    "what": "Spelled out the mapping (forecast = note)",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k-b-sunlight-weather-and-staying-safe.html",
+    "concept": "Forecasts help us get ready and stay safe",
+    "type": "try",
+    "status": "done",
+    "what": "Built a 3-card picture-sort quiz (go inside / safe room / stay off roads)",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k-b-sunlight-weather-and-staying-safe.html",
+    "concept": "Forecasts help us get ready and stay safe",
+    "type": "data",
+    "status": "done",
+    "what": "Added a made-up three-day forecast card, labelled as an example",
+    "check": "Example temperatures are made up and labelled so",
+    "resolved_by": "claude"
+  },
+  {
+    "file": "k-5/unit-k-b-sunlight-weather-and-staying-safe.html",
+    "concept": "Forecasts help us get ready and stay safe",
+    "type": "real",
+    "status": "done",
+    "what": "Drew a winter storm watch card",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k-b-sunlight-weather-and-staying-safe.html",
+    "concept": "Try it at home or in class",
+    "type": "try",
+    "status": "done",
+    "what": "Station steps and timings added",
+    "check": "Timings are suggestions",
+    "resolved_by": "claude"
+  },
+  {
+    "file": "k-5/unit-k-c-living-things-and-their-homes.html",
+    "concept": "Plants and animals have needs",
+    "type": "analogy",
+    "status": "done",
+    "what": "Spelled out mapping: needs list = shopping list, plant and animal lists",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k-c-living-things-and-their-homes.html",
+    "concept": "Plants and animals have needs",
+    "type": "try",
+    "status": "done",
+    "what": "Built a 4-card living/nonliving and needs quiz",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k-c-living-things-and-their-homes.html",
+    "concept": "Plants and animals have needs",
+    "type": "data",
+    "status": "done",
+    "what": "Drew needs check chart for bean plant and deer",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k-c-living-things-and-their-homes.html",
+    "concept": "Plants and animals have needs",
+    "type": "real",
+    "status": "done",
+    "what": "Drew a robin with worm, water, and shelter",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k-c-living-things-and-their-homes.html",
+    "concept": "Homes meet needs",
+    "type": "diagram",
+    "status": "done",
+    "what": "Drew pond, forest, dune panels",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k-c-living-things-and-their-homes.html",
+    "concept": "Homes meet needs",
+    "type": "try",
+    "status": "done",
+    "what": "Built a 4-card habitat sort quiz and rewrote the habitat-model try-it cell",
+    "check": "Confirm squirrel/acorn card wording is OK for K",
+    "resolved_by": "claude"
+  },
+  {
+    "file": "k-5/unit-k-c-living-things-and-their-homes.html",
+    "concept": "Homes meet needs",
+    "type": "real",
+    "status": "done",
+    "what": "Drew a Great Lakes shore",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k-c-living-things-and-their-homes.html",
+    "concept": "Living things change their environment",
+    "type": "diagram",
+    "status": "done",
+    "what": "Drew beaver dam and new pond",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k-c-living-things-and-their-homes.html",
+    "concept": "Living things change their environment",
+    "type": "try",
+    "status": "done",
+    "what": "Built a 5-card evidence quiz",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k-c-living-things-and-their-homes.html",
+    "concept": "Living things change their environment",
+    "type": "data",
+    "status": "done",
+    "what": "Drew class argument chart (place, evidence, who)",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k-c-living-things-and-their-homes.html",
+    "concept": "Living things change their environment",
+    "type": "real",
+    "status": "done",
+    "what": "Drew before/after houses and road",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k-c-living-things-and-their-homes.html",
+    "concept": "People can reduce harm",
+    "type": "analogy",
+    "status": "done",
+    "what": "Spelled out helper-hands mapping",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k-c-living-things-and-their-homes.html",
+    "concept": "People can reduce harm",
+    "type": "try",
+    "status": "done",
+    "what": "Rewrote with steps, safety, what to notice",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k-c-living-things-and-their-homes.html",
+    "concept": "People can reduce harm",
+    "type": "real",
+    "status": "done",
+    "what": "Drew native flower and bee",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k-c-living-things-and-their-homes.html",
+    "concept": "Try it at home or in class",
+    "type": "try",
+    "status": "done",
+    "what": "Station steps and timings",
+    "check": "Timings are suggestions",
+    "resolved_by": "claude"
+  },
+  {
+    "file": "k-5/unit-k-c-living-things-and-their-homes.html",
+    "concept": "Homes meet needs",
+    "type": "data",
+    "status": "done",
+    "what": "Not in the gap list | claude: added fill-in tally table for counting kinds of living things",
+    "check": "",
+    "resolved_by": "claude"
+  },
+  {
+    "file": "k-5/unit-k2-0-science-noticing-and-asking.html",
+    "concept": "Scientists notice things",
+    "type": "analogy",
+    "status": "done",
+    "what": "Spelled out detective mapping and where it breaks",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k2-0-science-noticing-and-asking.html",
+    "concept": "Scientists notice things",
+    "type": "try",
+    "status": "done",
+    "what": "Rewrote with materials, steps, what to notice",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k2-0-science-noticing-and-asking.html",
+    "concept": "Scientists notice things",
+    "type": "data",
+    "status": "done",
+    "what": "Drew smooth/bumpy picture tally (4 and 5 from the page’s backup data)",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k2-0-science-noticing-and-asking.html",
+    "concept": "Questions help us learn",
+    "type": "analogy",
+    "status": "done",
+    "what": "Spelled out flashlight mapping",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k2-0-science-noticing-and-asking.html",
+    "concept": "Questions help us learn",
+    "type": "try",
+    "status": "done",
+    "what": "Built a 4-card can-we-test-it quiz",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k2-0-science-noticing-and-asking.html",
+    "concept": "Questions help us learn",
+    "type": "real",
+    "status": "done",
+    "what": "Drew weather watcher looking at clouds",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k2-0-science-noticing-and-asking.html",
+    "concept": "We compare one thing at a time and share what we find",
+    "type": "analogy",
+    "status": "done",
+    "what": "Spelled out cookie mapping",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k2-0-science-noticing-and-asking.html",
+    "concept": "We compare one thing at a time and share what we find",
+    "type": "diagram",
+    "status": "done",
+    "what": "Drew Notice-Ask-Problem-Idea boxes",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-k2-0-science-noticing-and-asking.html",
+    "concept": "Try it at home or in class",
+    "type": "try",
+    "status": "done",
+    "what": "Station steps and timings",
+    "check": "Timings are suggestions",
+    "resolved_by": "claude"
+  },
+  {
+    "file": "k-5/unit-1-a-sound-and-light.html",
+    "concept": "Vibrations make sound; sound makes things vibrate",
+    "type": "diagram",
+    "status": "done",
+    "what": "Drew ruler shaking with sound reaching ear",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-1-a-sound-and-light.html",
+    "concept": "Vibrations make sound; sound makes things vibrate",
+    "type": "real",
+    "status": "done",
+    "what": "Drew humming child with hand on throat",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-1-a-sound-and-light.html",
+    "concept": "Vibrations make sound; sound makes things vibrate",
+    "type": "data",
+    "status": "done",
+    "what": "Drew observation log table",
+    "check": "Tables are labelled as example results",
+    "resolved_by": "claude"
+  },
+  {
+    "file": "k-5/unit-1-a-sound-and-light.html",
+    "concept": "We see only what is lit",
+    "type": "data",
+    "status": "done",
+    "what": "Drew seen-in-dark / seen-with-light table",
+    "check": "Tables are labelled as example results",
+    "resolved_by": "claude"
+  },
+  {
+    "file": "k-5/unit-1-a-sound-and-light.html",
+    "concept": "We see only what is lit",
+    "type": "real",
+    "status": "done",
+    "what": "Drew dark vs lit bedroom",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-1-a-sound-and-light.html",
+    "concept": "Materials in a light beam",
+    "type": "data",
+    "status": "done",
+    "what": "Drew results table with beam through each material",
+    "check": "Tables are labelled as example results",
+    "resolved_by": "claude"
+  },
+  {
+    "file": "k-5/unit-1-a-sound-and-light.html",
+    "concept": "Materials in a light beam",
+    "type": "real",
+    "status": "done",
+    "what": "Drew window and curtain",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-1-a-sound-and-light.html",
+    "concept": "Sending messages with light or sound",
+    "type": "analogy",
+    "status": "done",
+    "what": "Spelled out knock/blink mapping",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-1-a-sound-and-light.html",
+    "concept": "Sending messages with light or sound",
+    "type": "try",
+    "status": "done",
+    "what": "Rewrote with code example, steps, what to notice",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-1-a-sound-and-light.html",
+    "concept": "Sending messages with light or sound",
+    "type": "data",
+    "status": "done",
+    "what": "Drew 3-of-4 signal test",
+    "check": "Tables are labelled as example results",
+    "resolved_by": "claude"
+  },
+  {
+    "file": "k-5/unit-1-a-sound-and-light.html",
+    "concept": "Sending messages with light or sound",
+    "type": "real",
+    "status": "done",
+    "what": "Drew lighthouse (SVG, not the raster hero)",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-1-a-sound-and-light.html",
+    "concept": "Try it at home or in class",
+    "type": "try",
+    "status": "done",
+    "what": "Station steps and timings",
+    "check": "Timings are suggestions",
+    "resolved_by": "claude"
+  },
+  {
+    "file": "k-5/unit-1-b-parts-parents-and-young.html",
+    "concept": "External parts help survival",
+    "type": "diagram",
+    "status": "done",
+    "what": "Drew beaver tail, deer ears, maple leaf with jobs",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-1-b-parts-parents-and-young.html",
+    "concept": "External parts help survival",
+    "type": "try",
+    "status": "done",
+    "what": "Built a 4-card part-to-job match quiz",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-1-b-parts-parents-and-young.html",
+    "concept": "External parts help survival",
+    "type": "real",
+    "status": "done",
+    "what": "Drew deer with sound reaching its ears",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-1-b-parts-parents-and-young.html",
+    "concept": "External parts help survival",
+    "type": "data",
+    "status": "done",
+    "what": "Drew part-to-job chart",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-1-b-parts-parents-and-young.html",
+    "concept": "Biomimicry design",
+    "type": "analogy",
+    "status": "done",
+    "what": "Spelled out burr/strap mapping",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-1-b-parts-parents-and-young.html",
+    "concept": "Biomimicry design",
+    "type": "try",
+    "status": "done",
+    "what": "Rewrote with problem, parts, steps, what to notice",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-1-b-parts-parents-and-young.html",
+    "concept": "Biomimicry design",
+    "type": "data",
+    "status": "done",
+    "what": "Drew test table (example results, includes a failure)",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-1-b-parts-parents-and-young.html",
+    "concept": "Parent-offspring behavior",
+    "type": "analogy",
+    "status": "done",
+    "what": "Spelled out blanket mapping and where it breaks",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-1-b-parts-parents-and-young.html",
+    "concept": "Parent-offspring behavior",
+    "type": "try",
+    "status": "done",
+    "what": "Built a 3-card what-does-the-parent-do quiz",
+    "check": "Claim: a mother deer leaves her fawn hidden for hours and returns to feed it (standard wildlife fact)",
+    "resolved_by": "claude"
+  },
+  {
+    "file": "k-5/unit-1-b-parts-parents-and-young.html",
+    "concept": "Parent-offspring behavior",
+    "type": "data",
+    "status": "done",
+    "what": "Drew parent-action-help chart",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-1-b-parts-parents-and-young.html",
+    "concept": "Parent-offspring behavior",
+    "type": "real",
+    "status": "done",
+    "what": "Drew robin feeding chicks at nest",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-1-b-parts-parents-and-young.html",
+    "concept": "Young are like, but not exactly like, parents",
+    "type": "try",
+    "status": "done",
+    "what": "Built a 3-card adult-young match quiz",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-1-b-parts-parents-and-young.html",
+    "concept": "Young are like, but not exactly like, parents",
+    "type": "data",
+    "status": "done",
+    "what": "Drew alike/different lists for deer and fawn",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-1-b-parts-parents-and-young.html",
+    "concept": "Young are like, but not exactly like, parents",
+    "type": "diagram",
+    "status": "done",
+    "what": "Drew deer and spotted fawn with like/different arrows",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-1-b-parts-parents-and-young.html",
+    "concept": "Young are like, but not exactly like, parents",
+    "type": "real",
+    "status": "done",
+    "what": "Drew maple tree and seedling",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-1-b-parts-parents-and-young.html",
+    "concept": "Try it at home or in class",
+    "type": "try",
+    "status": "done",
+    "what": "Station steps and timings",
+    "check": "Timings are suggestions",
+    "resolved_by": "claude"
+  },
+  {
+    "file": "k-5/unit-1-c-sky-patterns.html",
+    "concept": "Day and night repeat",
+    "type": "data",
+    "status": "done",
+    "what": "Rewrote with steps and drew example day and night sky",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-1-c-sky-patterns.html",
+    "concept": "Day and night repeat",
+    "type": "real",
+    "status": "done",
+    "what": "Drew noon (bright) and midnight (dark)",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-1-c-sky-patterns.html",
+    "concept": "The Moon and stars have patterns",
+    "type": "diagram",
+    "status": "done",
+    "what": "Drew Sun lighting one side of the Moon",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-1-c-sky-patterns.html",
+    "concept": "The Moon and stars have patterns",
+    "type": "try",
+    "status": "done",
+    "what": "Built 3-card moon-phase quiz",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-1-c-sky-patterns.html",
+    "concept": "The Moon and stars have patterns",
+    "type": "data",
+    "status": "done",
+    "what": "Drew four-week Moon calendar (example)",
+    "check": "Moon calendar phases are a simplified example (weekly steps of a roughly 29.5-day cycle)",
+    "resolved_by": "claude"
+  },
+  {
+    "file": "k-5/unit-1-c-sky-patterns.html",
+    "concept": "The Moon and stars have patterns",
+    "type": "real",
+    "status": "done",
+    "what": "Drew day sky hiding stars, night sky showing them",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-1-c-sky-patterns.html",
+    "concept": "Seasons change the amount of daylight",
+    "type": "try",
+    "status": "done",
+    "what": "Rewrote with guess, steps, what to notice",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-1-c-sky-patterns.html",
+    "concept": "Try it at home or in class",
+    "type": "try",
+    "status": "done",
+    "what": "Station steps and timings",
+    "check": "Timings are suggestions",
+    "resolved_by": "claude"
+  },
+  {
+    "file": "k-5/unit-2-a-materials-and-their-uses.html",
+    "concept": "Materials have properties we can observe",
+    "type": "data",
+    "status": "done",
+    "what": "Drew picture chart: 5 waterproof, 3 not",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-2-a-materials-and-their-uses.html",
+    "concept": "We choose materials for jobs",
+    "type": "try",
+    "status": "done",
+    "what": "Rewrote with guess, steps, what to notice",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-2-a-materials-and-their-uses.html",
+    "concept": "We choose materials for jobs",
+    "type": "real",
+    "status": "done",
+    "what": "Drew raincoat and helmet",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-2-a-materials-and-their-uses.html",
+    "concept": "Pieces can be taken apart and rebuilt",
+    "type": "real",
+    "status": "done",
+    "what": "Drew same blocks as house and car",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-2-a-materials-and-their-uses.html",
+    "concept": "Heating and cooling can change materials",
+    "type": "analogy",
+    "status": "done",
+    "what": "Spelled out undo-button mapping",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-2-a-materials-and-their-uses.html",
+    "concept": "Heating and cooling can change materials",
+    "type": "try",
+    "status": "done",
+    "what": "Rewrote with guess, steps, result",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-2-a-materials-and-their-uses.html",
+    "concept": "Heating and cooling can change materials",
+    "type": "data",
+    "status": "done",
+    "what": "Drew claim/evidence table",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-2-a-materials-and-their-uses.html",
+    "concept": "Try it at home or in class",
+    "type": "try",
+    "status": "done",
+    "what": "Station steps and timings",
+    "check": "Timings are suggestions",
+    "resolved_by": "claude"
+  },
+  {
+    "file": "k-5/unit-2-b-plants-animals-and-habitats.html",
+    "concept": "Do plants need sunlight and water?",
+    "type": "real",
+    "status": "done",
+    "what": "Drew corn field with sun and rain",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-2-b-plants-animals-and-habitats.html",
+    "concept": "Animals move seeds and pollen",
+    "type": "analogy",
+    "status": "done",
+    "what": "Spelled out delivery-helper mapping and where it breaks",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-2-b-plants-animals-and-habitats.html",
+    "concept": "Animals move seeds and pollen",
+    "type": "diagram",
+    "status": "done",
+    "what": "Drew flower-bee-flower and berry-bird-new-plant",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-2-b-plants-animals-and-habitats.html",
+    "concept": "Animals move seeds and pollen",
+    "type": "try",
+    "status": "done",
+    "what": "Rewrote with guess, steps, what to notice",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-2-b-plants-animals-and-habitats.html",
+    "concept": "Animals move seeds and pollen",
+    "type": "data",
+    "status": "done",
+    "what": "Drew model test chart (example results)",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-2-b-plants-animals-and-habitats.html",
+    "concept": "Different habitats have different living things",
+    "type": "diagram",
+    "status": "done",
+    "what": "Drew pond, forest, dune",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-2-b-plants-animals-and-habitats.html",
+    "concept": "Different habitats have different living things",
+    "type": "try",
+    "status": "done",
+    "what": "Built a 5-card habitat sort quiz",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-2-b-plants-animals-and-habitats.html",
+    "concept": "Different habitats have different living things",
+    "type": "real",
+    "status": "done",
+    "what": "Drew Great Lakes shore",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-2-b-plants-animals-and-habitats.html",
+    "concept": "Try it at home or in class",
+    "type": "try",
+    "status": "done",
+    "what": "Station steps and timings",
+    "check": "Timings are suggestions",
+    "resolved_by": "claude"
+  },
+  {
+    "file": "k-5/unit-2-c-land-and-water-fast-and-slow.html",
+    "concept": "Earth events can be quick or slow",
+    "type": "analogy",
+    "status": "done",
+    "what": "Spelled out door-slam / crayon mapping",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-2-c-land-and-water-fast-and-slow.html",
+    "concept": "Earth events can be quick or slow",
+    "type": "diagram",
+    "status": "done",
+    "what": "Drew flood (fast) and canyon (slow) as an SVG instead of photo pairs",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-2-c-land-and-water-fast-and-slow.html",
+    "concept": "Earth events can be quick or slow",
+    "type": "try",
+    "status": "done",
+    "what": "Built a 5-card fast/slow quiz",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-2-c-land-and-water-fast-and-slow.html",
+    "concept": "Earth events can be quick or slow",
+    "type": "data",
+    "status": "done",
+    "what": "Drew evidence chart (event, clue, speed, material)",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-2-c-land-and-water-fast-and-slow.html",
+    "concept": "Slowing wind and water",
+    "type": "real",
+    "status": "done",
+    "what": "Drew beach grass holding a dune",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-2-c-land-and-water-fast-and-slow.html",
+    "concept": "Model your local land and water",
+    "type": "diagram",
+    "status": "done",
+    "what": "Drew top-view map with lake, river, hill, dune",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-2-c-land-and-water-fast-and-slow.html",
+    "concept": "Model your local land and water",
+    "type": "try",
+    "status": "done",
+    "what": "Rewrote with steps and what to notice",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-2-c-land-and-water-fast-and-slow.html",
+    "concept": "Model your local land and water",
+    "type": "data",
+    "status": "done",
+    "what": "Rewrote as a model feature checklist with a sentence frame",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-2-c-land-and-water-fast-and-slow.html",
+    "concept": "Where water is; solid or liquid",
+    "type": "diagram",
+    "status": "done",
+    "what": "Drew side view of snow, lake, river, clouds, groundwater",
+    "check": "Clouds are drawn as water; check that K-2 framing (clouds are tiny drops/ice) is OK",
+    "resolved_by": "claude"
+  },
+  {
+    "file": "k-5/unit-2-c-land-and-water-fast-and-slow.html",
+    "concept": "Where water is; solid or liquid",
+    "type": "try",
+    "status": "done",
+    "what": "Built a 5-card solid/liquid quiz",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-2-c-land-and-water-fast-and-slow.html",
+    "concept": "Where water is; solid or liquid",
+    "type": "data",
+    "status": "done",
+    "what": "Drew where-we-found-water chart",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-2-c-land-and-water-fast-and-slow.html",
+    "concept": "Where water is; solid or liquid",
+    "type": "real",
+    "status": "done",
+    "what": "Drew farm using soil and water",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-2-c-land-and-water-fast-and-slow.html",
+    "concept": "Try it at home or in class",
+    "type": "try",
+    "status": "done",
+    "what": "Station steps and timings",
+    "check": "Timings are suggestions",
+    "resolved_by": "claude"
+  },
+  {
+    "file": "k-5/unit-00-how-science-works.html",
+    "concept": "People have always asked \"why?\"",
+    "type": "diagram",
+    "status": "done",
+    "what": "Already has an interactive SVG timeline (tlSvg); audit matched the wrong cell | claude: verified: tlSvg timeline present",
+    "check": "",
+    "resolved_by": "claude"
+  },
+  {
+    "file": "k-5/unit-00-how-science-works.html",
+    "concept": "People have always asked \"why?\"",
+    "type": "real",
+    "status": "done",
+    "what": "Added Earth-centered vs Sun-centered diagram to the Ptolemy/Copernicus cell",
+    "check": "Orbits drawn as circles and not to scale (stated in caption)",
+    "resolved_by": "claude"
+  },
+  {
+    "file": "k-5/unit-00-how-science-works.html",
+    "concept": "A loop, not a ladder",
+    "type": "real",
+    "status": "done",
+    "what": "Recipe-loop SVG already present in the analogy cell of this section | claude: verified: recipe-loop SVG present",
+    "check": "",
+    "resolved_by": "claude"
+  },
+  {
+    "file": "k-5/unit-00-how-science-works.html",
+    "concept": "Change one thing at a time",
+    "type": "diagram",
+    "status": "done",
+    "what": "Cookie-test SVG and fair/unfair interactive already present | claude: verified: cookie-test SVG present",
+    "check": "",
+    "resolved_by": "claude"
+  },
+  {
+    "file": "k-5/unit-00-how-science-works.html",
+    "concept": "Measure, graph, conclude",
+    "type": "real",
+    "status": "done",
+    "what": "Added five lab-safety pictures above the rules table",
+    "check": ""
+  },
+  {
+    "file": "k-5/unit-00-how-science-works.html",
+    "concept": "The whole universe in one year",
+    "type": "analogy",
+    "status": "done",
+    "what": "Added cosmic-year bar with a Dec 31 zoom",
+    "check": "Dates used: life Sept, animals mid-Dec, dinosaurs Dec 25-30, humans last 12 minutes, writing last 12 seconds (all taken from the page text)",
+    "resolved_by": "claude"
+  },
+  {
+    "file": "k-5/unit-00-how-science-works.html",
+    "concept": "The whole universe in one year",
+    "type": "real",
+    "status": "done",
+    "what": "Same cosmic-year bar covers this section; no separate picture for the Sagan cell | claude: verified: cosmic-year SVG (00-cosmic-year) sits inside this section",
+    "check": "",
+    "resolved_by": "claude"
+  }
 ]

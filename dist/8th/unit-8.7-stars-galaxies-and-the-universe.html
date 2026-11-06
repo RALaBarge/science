@@ -289,6 +289,7 @@ figure.img8 .credit{display:block;margin-top:4px;font-size:.8rem;opacity:.85}
 .img8-grid .yr{display:block;font-weight:800;color:var(--ink,#12172b);margin-bottom:2px}
 </style>
 <!--img8-css-end-->
+<a class="skip-link" href="#main">Skip to main content</a>
 <header class="hero">
   <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="false">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="true">Retro space</button></div>
   <p class="kicker">Eighth grade science · Unit 8.7</p>
@@ -300,7 +301,7 @@ figure.img8 .credit{display:block;margin-top:4px;font-size:.8rem;opacity:.85}
 </header>
 
 
-<main>
+<main id="main" tabindex="-1">
 <section class="sec" id="s1"><div><p class="kicker">Concept 1 · Fusion factories</p><h2>Stars shine by fusing atoms</h2></div><p class="idea">A star is a giant ball of gas held together by gravity. In its core, <mark>nuclear fusion</mark> joins hydrogen into helium, releasing huge energy. Apparent brightness depends on <mark>true luminosity</mark> and <mark>distance</mark>.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Headlights in the dark</h3><p class="cap">A car's headlight looks bright up close and a faint dot far away, though it is the same lamp. A star's brightness works the same way.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Distance dimmer</h3><div class="ctl"><label for="sdD">Distance: <span id="sdDV"></span>× the original</label><input id="sdD" type="range" min="1" max="10" step="1" value="1"></div><div class="stage"><svg id="sdSvg" viewBox="0 0 480 190" role="img" aria-label="A star and two screens: the same light lands on one square at distance 1 and spreads over many squares farther away."></svg></div><div class="bars" id="sdBars"></div><p class="readout" id="sdR" aria-live="polite"></p></article><article class="aid wide"><span class="tag data">Data</span><h3>Our Sun in numbers</h3><div class="tw"><table class="tbl" style="min-width:420px"><thead><tr><th>Fact</th><th>Value</th></tr></thead><tbody><tr><td>Mass</td><td>333,000 Earths</td></tr><tr><td>Core temperature</td><td>15 million °C</td></tr><tr><td>Surface temperature</td><td>5,500 °C</td></tr><tr><td>Hydrogen burned per second</td><td>600 million tons</td></tr><tr><td>Age / expected lifetime</td><td>4.6 / ~10 billion years</td></tr></tbody></table></div></article></div></section>
 <section class="sec" id="s2"><div><p class="kicker">Concept 2 · Born, live, die</p><h2>A star's mass decides its life</h2></div><p class="idea">Stars form in <mark>nebulae</mark>, spend most of their lives fusing hydrogen (<mark>main sequence</mark>), then swell and die. <mark>Big stars live fast and die young</mark> in supernovas; <mark>small stars live long</mark>.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Cars and gas tanks</h3><p class="cap">A sports car burns its tank in hours; a small hybrid sips fuel for days. Massive stars burn fuel so fast they last only millions of years.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Follow a star</h3><div class="chips" id="lcChips" role="group" aria-label="Star mass"></div><div class="stage"><svg id="lcSvg" viewBox="0 0 480 150" role="img" aria-label="The stages of the selected star, drawn in order."></svg></div><div class="card2" id="lcCard" aria-live="polite"></div><div class="bars" id="lcBars"></div></article><article class="aid wide"><span class="tag real">Real world</span><h3>We are star stuff</h3><div class="tw"><table class="tbl"><thead><tr><th>Element</th><th>Where it was made</th></tr></thead><tbody><tr><td>Hydrogen, helium</td><td>Big Bang</td></tr><tr><td>Carbon, oxygen</td><td>Fusion inside stars</td></tr><tr><td>Iron</td><td>Massive stars</td></tr><tr><td>Gold, uranium</td><td>Supernovas and neutron-star collisions</td></tr></tbody></table></div></article></div><article class="aid wide"><span class="tag real">Real world</span><h3>The full story: where the atoms in you came from</h3>
 <ol class="steps">
@@ -972,5 +973,82 @@ __mountLessonGame(document.getElementById("lesson-game"), ":host{\n  display:blo
   }));
 })();</script>
 <!-- LESSON GAME:star-life-cycle END -->
+
+<style id="a11y-shared">
+/* Shared accessibility rules, injected last into every built page by build.mjs. */
+.skip-link{position:absolute;left:8px;top:-72px;z-index:2147483647;padding:10px 16px;border-radius:8px;background:#FFD23F;color:#1A1400;font:700 1rem/1.2 system-ui,sans-serif;text-decoration:none;border:2px solid #1A1400}
+.skip-link:focus{top:8px}
+main:focus{outline:none}
+:focus-visible{outline-offset:2px}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+/* Classic, light: tokens that were under 4.5:1 as text on the page backgrounds, and the amber slider accent (under 3:1). */
+@media not (prefers-color-scheme:dark){
+  :root:root:not([data-style="retro"]):not([data-theme="dark"]){--absorb:#B93A07;--green:#1D7A40;--red:#C42229;--transmit:#0A7566}
+  :root:root:not([data-style="retro"]):not([data-theme="dark"]) input[type=range]{accent-color:#B07800}
+}
+:root:root[data-theme="light"]:not([data-style="retro"]){--absorb:#B93A07;--green:#1D7A40;--red:#C42229;--transmit:#0A7566}
+:root:root[data-theme="light"]:not([data-style="retro"]) input[type=range]{accent-color:#B07800}
+/* Forced colors: the Retro heading is transparent text over a clipped gradient, which would disappear. */
+@media (forced-colors:active){
+  html[data-style="retro"] h1{background:none!important;-webkit-text-fill-color:CanvasText!important;color:CanvasText!important}
+  :focus-visible{outline:3px solid Highlight!important}
+  input[type=range]{accent-color:auto}
+}
+</style>
+<script>
+// Shared accessibility script, inlined into every built page by build.mjs.
+// Sets aria-valuetext on range sliders from the page's own readout (the value and unit in the label),
+// so a screen reader says "12 mL" instead of a bare "12". Existing readouts are not touched.
+(function () {
+  'use strict';
+  var VALUE_TAGS = /^(SPAN|OUTPUT|B|STRONG|EM|I|MARK)$/;
+
+  function labelOf(sl) {
+    if (sl.labels && sl.labels.length) return sl.labels[0];
+    return sl.closest ? sl.closest('label') : null;
+  }
+  function clean(s) { return s.replace(/\s+/g, ' ').trim(); }
+
+  // "<label>Base added: <span>12</span> mL (25 mL of acid in the cup)</label>"  ->  "12 mL"
+  function fromLabel(lb) {
+    if (!lb) return '';
+    var els = lb.querySelectorAll('*');
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      if (!VALUE_TAGS.test(el.tagName) || el.children.length || !clean(el.textContent)) continue;
+      var v = clean(el.textContent), rest = '', n = el.nextSibling;
+      while (n) { rest += n.textContent; n = n.nextSibling; }
+      rest = clean(rest.split(/[(,;\u2014\u2013]|\s-\s/)[0]);
+      if (rest && rest.length <= 24) v += ' ' + rest;
+      return v;
+    }
+    return '';
+  }
+  function fromNeighbour(sl) {
+    var id = sl.id, el = id && document.getElementById(id + 'V');
+    if (el && !el.contains(sl) && clean(el.textContent)) return clean(el.textContent);
+    var o = sl.parentNode && sl.parentNode.querySelector('output');
+    return o && clean(o.textContent) ? clean(o.textContent) : '';
+  }
+  function update(sl) {
+    var t = fromLabel(labelOf(sl)) || fromNeighbour(sl);
+    if (t && t.length <= 60) { if (sl.getAttribute('aria-valuetext') !== t) sl.setAttribute('aria-valuetext', t); }
+  }
+  function all() { Array.prototype.forEach.call(document.querySelectorAll('input[type="range"]'), update); }
+
+  var timer = 0;
+  function soon() { clearTimeout(timer); timer = setTimeout(all, 120); }
+  function start() {
+    all();
+    document.addEventListener('input', function (e) { if (e.target && e.target.type === 'range') { update(e.target); soon(); } });
+    document.addEventListener('change', soon);
+    if (window.MutationObserver) new MutationObserver(soon).observe(document.body, { childList: true, subtree: true, characterData: true });
+    window.addEventListener('load', all);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>
 
 </html>

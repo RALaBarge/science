@@ -72,15 +72,15 @@ Every game has:
 
 ### Question bank and levels
 
-`shared/questions.js` holds 300 questions. Each row is `[topic, question, [right answer, wrong, wrong, wrong], explanation, grade]`, where grade is 0 for kindergarten and 1 to 8 for grades 1 to 8. The games shuffle the choices.
+`shared/questions.js` holds 346 questions. Each row is `[topic, question, [right answer, wrong, wrong, wrong], explanation, grade]`, where grade is 0 for kindergarten and 1 to 8 for grades 1 to 8. The games shuffle the choices.
 
 | Grade | K | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Questions | 10 | 17 | 23 | 48 | 63 | 45 | 41 | 28 | 25 |
+| Questions | 10 | 17 | 23 | 48 | 63 | 45 | 50 | 46 | 44 |
 
 Each game and the hub have a **Questions up to** picker next to the Practice quiz button. A game asks only questions up to the chosen grade, so a kindergarten group never meets grade 8 questions. The choice is saved in the browser; `?maxgrade=N` in the address sets it too (for example `arcade.html?maxgrade=3`). Questions are tagged with the earliest grade whose lessons teach the idea, and the 6th to 8th questions mirror the lessons in this repo. Every quiz answer is recorded in `Arcade.answers` with the game, topic and whether it was right, ready for a scoreboard.
 
-The bank grew from 177 to 300 questions in November 2026. The new ones were drafted from the lesson material (Hy4 for grades 3 to 8, written by hand for kindergarten to grade 2) and every one was read for accuracy. A second blind pass, where Hy4 answered the 95 Hy4-written questions without seeing the marked answer, matched every key; its wording flags were fixed. `tests/question-bank.test.js` guards the format and makes sure each grade ceiling has enough questions.
+The bank grew from 177 to 300 questions in November 2026, then to 346 when the five newest units (6th Unit 15, 7.10, 7.11, 8.10, 8.11) got 9 to 10 questions each. The new ones were drafted from the lesson material (Hy4 for grades 3 to 8, written by hand for kindergarten to grade 2) and every one was read for accuracy. A second blind pass, where Hy4 answered the 95 Hy4-written questions without seeing the marked answer, matched every key; its wording flags were fixed. `tests/question-bank.test.js` guards the format and makes sure each grade ceiling has enough questions.
 
 ## Build, deploy and test
 

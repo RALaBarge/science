@@ -196,7 +196,7 @@
      "id": "foam",
      "icon": "🧽",
      "label": "Foam stopper",
-     "hint": "foam is soft and squeezes; it can grab the car.",
+     "hint": "foam is soft and squishes, so it can slow the car gently.",
      "answer": "s3",
      "result": {
       "kind": "tries",

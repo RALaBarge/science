@@ -457,13 +457,13 @@
     if (A.modalOpen()) return;
     const tag = (e.target && e.target.tagName) || '';
     if (tag === 'INPUT' || tag === 'SELECT') return;
-    if (state.roundOver && (e.key === 'Enter' || e.key === ' ')) { if (tag !== 'BUTTON') { state.round++; loadRound(); e.preventDefault(); } return; }
+    if (state.roundOver && (e.key === 'Enter' || e.key === ' ')) { if (tag !== 'BUTTON' && tag !== 'A') { state.round++; loadRound(); e.preventDefault(); } return; }
     if (!humanTurn()) return;
     const p = state.turn, hand = [...new Set(state.hands[p])];
     if (/^[1-9]$/.test(e.key) && hand.includes(+e.key)) { state.selected[p] = +e.key; renderHud(); }
     else if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
       state.hoverSlot = A.clamp((state.hoverSlot === null ? 0 : state.hoverSlot) + (e.key === 'ArrowLeft' ? -1 : 1), -SLOTS, SLOTS); wake(); e.preventDefault();
-    } else if ((e.key === ' ' || e.key === 'Enter') && state.hoverSlot !== null && tag !== 'BUTTON') { place(state.selected[p], state.hoverSlot); e.preventDefault(); }
+    } else if ((e.key === ' ' || e.key === 'Enter') && state.hoverSlot !== null && tag !== 'BUTTON' && tag !== 'A') { place(state.selected[p], state.hoverSlot); e.preventDefault(); }
   });
   $('next-btn').addEventListener('click', () => { state.round++; loadRound(); });
   $('pivot-btn').addEventListener('click', askPivotTrick);

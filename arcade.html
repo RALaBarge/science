@@ -16,7 +16,8 @@
     display: grid; grid-template-rows: auto auto 1fr auto; gap: 8px; padding: 16px; text-decoration: none; color: var(--text);
     background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
   }
-  .game-card:hover, .game-card:focus-visible { border-color: var(--gc); outline: none; }
+  .game-card:hover, .game-card:focus-visible { border-color: var(--gc); }
+  .game-card:focus-visible { outline: 3px solid var(--gc); outline-offset: 3px; }
   .game-card svg { width: 100%; height: auto; border-radius: 8px; background: var(--space); display: block; }
   .game-card h2 { margin: 0; font-size: 24px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.02em; color: var(--gc); }
   .game-card p { margin: 0; font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.45; color: var(--text); }
@@ -26,7 +27,7 @@
 </style>
 </head>
 <body>
-<div class="wrap">
+<main class="wrap" id="main">
   <header class="bar">
     <h1>Science Arcade <span>play · learn · repeat</span></h1>
   </header>
@@ -82,7 +83,7 @@
     <span class="sep" aria-hidden="true">|</span>
     <button type="button" class="linkish" id="practice-btn">Practice quiz</button>
   </div>
-</div>
+</main>
 <script src="shared/questions.js"></script>
 <script src="shared/facts.js"></script>
 <script src="shared/core.js"></script>

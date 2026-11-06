@@ -58,6 +58,6 @@ h = h.replace(/<!--retro-switch-->.*?<!--\/retro-switch-->\n?/, '');
 const t = h.indexOf('</title>');
 if (t < 0) throw new Error('no <title> in index.html');
 h = h.slice(0, t + 8) + '\n' + SNIPPET + h.slice(t + 8);
-h = h.replace('<div class="wrap">\n', '<div class="wrap">\n<!--retro-switch-->' + SWITCH + '<!--/retro-switch-->\n');
+h = h.replace('<main class="wrap" id="main">\n', '<main class="wrap" id="main">\n<!--retro-switch-->' + SWITCH + '<!--/retro-switch-->\n');
 writeFileSync(idx, crlf ? h.replace(/\n/g, '\r\n') : h);
 console.log('retro look applied to index.html');

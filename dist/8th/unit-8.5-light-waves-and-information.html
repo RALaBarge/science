@@ -278,6 +278,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
   });
 })();
 </script>
+<a class="skip-link" href="#main">Skip to main content</a>
 <header class="hero">
   <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="false">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="true">Retro space</button></div>
   <p class="kicker">Eighth grade science · Unit 8.5</p>
@@ -324,7 +325,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 </header>
 
 
-<main>
+<main id="main" tabindex="-1">
 <section class="sec" id="s1"><div><p class="kicker">Concept 1 · Bouncing waves</p><h2>Angle in equals angle out</h2></div><p class="idea">When a wave hits a smooth surface it <mark>reflects</mark>: the <mark>angle of incidence equals the angle of reflection</mark>, both measured from the <mark>normal</mark> (a line perpendicular to the surface).</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>A pool shot</h3><p class="cap">A billiard ball hitting the rail at a shallow angle bounces off at the same shallow angle on the other side.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Mirror lab</h3><div class="ctl"><label for="rfA">Angle of incidence: <span id="rfAV"></span>°</label><input id="rfA" type="range" min="10" max="80" step="5" value="40"></div><div class="stage"><svg id="rfSvg" viewBox="0 0 480 220" role="img" aria-label="A ray hits a mirror and reflects."></svg></div><p class="readout" id="rfR" aria-live="polite"></p></article><article class="aid wide"><span class="tag real">Real world</span><h3>Uses of reflection</h3><div class="stage" style="max-width:320px;margin:0 auto"><svg viewBox="0 0 300 216" role="img" aria-label="A periscope: light from the scene hits a mirror at the top, travels down the tube, hits a second mirror at the bottom and goes out sideways to your eye"><title>Periscope</title><desc>A tall tube has a 45 degree mirror at the top and another at the bottom. A light ray enters sideways at the top, reflects down the tube, reflects again and exits sideways at the bottom toward the viewer.</desc><rect x="70" y="8" width="60" height="194" rx="6" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:2.5"/><path d="M82 50 L118 14" style="stroke:var(--ink);stroke-width:7;stroke-linecap:round"/><path d="M78 176 L122 196" style="display:none"/><path d="M78 196 L122 176" style="display:none"/><path d="M170 30 H100 V186 H30" style="fill:none;stroke:var(--beam);stroke-width:3.5;stroke-linejoin:round" marker-end="url(#mAbsorb)"/><path d="M82 204 L118 168" style="stroke:var(--ink);stroke-width:7;stroke-linecap:round"/><text x="180.0" y="26.0" font-size="11" text-anchor="start" style="font-weight:700">light from the scene</text><text x="150.0" y="100.0" font-size="11" text-anchor="start">top mirror</text><text x="150.0" y="114.0" font-size="11" text-anchor="start">at 45 degrees</text><text x="150.0" y="160.0" font-size="11" text-anchor="start">bottom mirror</text><text x="20.0" y="206.0" font-size="11" text-anchor="start" style="font-weight:700">to your eye</text></svg></div><p class="cap">Each mirror turns the light through 90 degrees, because the angle in equals the angle out. Two turns let you see over a wall. Try the same bounces in <a href="../laser-bounce.html">Laser Bounce</a>.</p><div class="tw"><table class="tbl"><thead><tr><th>Use</th><th>How</th></tr></thead><tbody><tr><td>Periscope</td><td>Two mirrors bounce light around a corner</td></tr><tr><td>Bike reflector</td><td>Corner shapes send light straight back</td></tr><tr><td>Radar</td><td>Radio waves bounce off aircraft</td></tr><tr><td>Sonar</td><td>Sound waves bounce off the sea floor</td></tr></tbody></table></div></article></div></section>
 <section class="sec" id="s2"><div><p class="kicker">Concept 2 · Bending waves</p><h2>Waves bend when their speed changes</h2></div><p class="idea">Light <mark>slows down</mark> in materials like water or glass and <mark>bends toward the normal</mark> when it enters them (<mark>refraction</mark>). The slower it goes (the higher the index <mark>n</mark>), the more it bends.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>A lawn mower on grass</h3><div class="stage"><svg viewBox="0 0 480 220" role="img" aria-label="Wavefronts cross from fast pavement to slow grass: the front slows on the grass side first, so the path bends toward the normal and the fronts bunch closer together"><title>Lawn mower and refraction</title><desc>Wavefronts are drawn as short lines. In the fast region they are far apart; after crossing into the slow region they are closer together and the path turns toward the vertical normal line.</desc><defs><clipPath id="clpa"><rect x="0" y="0" width="480" height="100"/></clipPath><clipPath id="clpb"><rect x="0" y="100" width="480" height="120"/></clipPath></defs><rect x="0" y="0" width="480" height="100" style="fill:var(--surface-2)"/><rect x="0" y="100" width="480" height="120" style="fill:var(--transmit);fill-opacity:.28"/><path d="M0.0 100.0 L480.0 100.0" style="stroke:var(--ink);stroke-width:2.5;stroke-linecap:round"/><text x="12.0" y="18.0" font-size="12" text-anchor="start" style="font-weight:700">pavement (fast)</text><text x="12.0" y="212.0" font-size="12" text-anchor="start" style="font-weight:700">grass (slow)</text><path d="M240 20 V190" style="stroke:var(--muted);stroke-width:1.5;stroke-dasharray:5 4"/><text x="246.0" y="34.0" font-size="10" text-anchor="start">normal</text><path d="M196.4 113.0 L245.3 54.8" style="stroke:var(--reflect);stroke-width:3;stroke-linecap:round" clip-path="url(#clpa)"/><path d="M173.4 93.8 L222.3 35.5" style="stroke:var(--reflect);stroke-width:3;stroke-linecap:round" clip-path="url(#clpa)"/><path d="M150.5 74.5 L199.3 16.3" style="stroke:var(--reflect);stroke-width:3;stroke-linecap:round" clip-path="url(#clpa)"/><path d="M127.5 55.2 L176.3 -3.0" style="stroke:var(--reflect);stroke-width:3;stroke-linecap:round" clip-path="url(#clpa)"/><path d="M219.6 132.6 L278.4 98.6" style="stroke:var(--reflect);stroke-width:3;stroke-linecap:round" clip-path="url(#clpb)"/><path d="M228.6 148.2 L287.4 114.2" style="stroke:var(--reflect);stroke-width:3;stroke-linecap:round" clip-path="url(#clpb)"/><path d="M237.6 163.8 L296.4 129.8" style="stroke:var(--reflect);stroke-width:3;stroke-linecap:round" clip-path="url(#clpb)"/><path d="M246.6 179.4 L305.4 145.4" style="stroke:var(--reflect);stroke-width:3;stroke-linecap:round" clip-path="url(#clpb)"/><path d="M255.6 194.9 L314.4 160.9" style="stroke:var(--reflect);stroke-width:3;stroke-linecap:round" clip-path="url(#clpb)"/><path d="M155.7 29.3 L226.2 88.4" marker-end="url(#mAbsorb)" style="stroke:var(--absorb);stroke-width:3"/><path d="M245.0 108.7 L295.0 195.3" marker-end="url(#mAbsorb)" style="stroke:var(--absorb);stroke-width:3"/><text x="70.0" y="70.0" font-size="11" text-anchor="start">wavefronts far apart</text><text x="300.0" y="196.0" font-size="11" text-anchor="start">closer together: slower</text><text x="135.0" y="130.0" font-size="11" text-anchor="start" style="font-weight:700">bends toward the normal</text></svg></div><p class="cap">Think of the mower&rsquo;s front axle as a wavefront. The wheel that reaches the grass first slows down, so the line of wheels swings round and the path turns toward the normal. Light entering water or glass does the same.</p><p class="cap">Push a lawn mower from pavement onto grass at an angle: one wheel slows first, so the mower turns. Light entering water does the same.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Refraction lab</h3><div class="chips" id="rcChips" role="group" aria-label="Material"></div><div class="ctl"><label for="rcA">Angle of incidence (in air): <span id="rcAV"></span>°</label><input id="rcA" type="range" min="0" max="80" step="5" value="45"></div><div class="stage"><svg id="rcSvg" viewBox="0 0 480 240" role="img" aria-label="A ray bends at the boundary between air and another material."></svg></div><p class="readout" id="rcR" aria-live="polite"></p></article><article class="aid wide"><span class="tag data">Data</span><h3>Index of refraction</h3><div class="tw"><table class="tbl" style="min-width:420px"><thead><tr><th>Material</th><th>n</th><th>Light speed</th></tr></thead><tbody><tr><td>Vacuum / air</td><td>1.00</td><td>300,000 km/s</td></tr><tr><td>Water</td><td>1.33</td><td>226,000 km/s</td></tr><tr><td>Glass</td><td>1.5</td><td>200,000 km/s</td></tr><tr><td>Diamond</td><td>2.42</td><td>124,000 km/s</td></tr></tbody></table></div><p class="cap">A straw looks bent in a glass of water because of refraction.</p></article></div></section>
 <section class="sec" id="s3"><div><p class="kicker">Concept 3 · Trapped light</p><h2>Total internal reflection traps light in glass</h2></div><p class="idea">If light inside glass hits the edge at a <mark>glancing enough angle</mark> (far from the perpendicular), none escapes: it reflects completely. This <mark>total internal reflection</mark> lets <mark>optical fibers</mark> carry light around bends for kilometers.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Skipping a stone</h3><p class="cap">Throw a stone at a pond at a shallow angle and it skips off. Throw it straight down and it sinks. Light in a fiber is a stone that always skips.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Escape or trapped?</h3><div class="ctl"><label for="tiA">Angle inside the glass (from the normal): <span id="tiAV"></span>°</label><input id="tiA" type="range" min="10" max="80" step="5" value="30"></div><div class="stage"><svg id="tiSvg" viewBox="0 0 480 220" role="img" aria-label="A ray inside glass either escapes into air or is totally reflected."></svg></div><p class="readout" id="tiR" aria-live="polite"></p></article><article class="aid wide"><span class="tag real">Real world</span><h3>Fiber in the real world</h3><div class="stage"><svg viewBox="0 0 480 165" role="img" aria-label="A light ray zigzags down a glass fibre core, reflecting totally at each wall and staying inside"><title>Light in an optical fibre</title><desc>A strip of glass core between two cladding walls. A light ray enters at the left, hits the wall at a glancing angle, reflects back and forth and stays inside along the whole fibre.</desc><rect x="10" y="40" width="440" height="80" style="fill:var(--reflect);fill-opacity:.18"/><path d="M10 40 H450 M10 120 H450" style="stroke:var(--ink);stroke-width:3"/><text x="20.0" y="34.0" font-size="11" text-anchor="start">cladding (glass with lower n)</text><text x="20.0" y="138.0" font-size="11" text-anchor="start">cladding</text><text x="20.0" y="84.0" font-size="11" text-anchor="start" style="font-weight:700">core</text><path d="M20 62 L90 98 L160 62 L230 98 L300 62 L370 98 L440 62" style="fill:none;stroke:var(--beam);stroke-width:3.5;stroke-linejoin:round"/><path d="M14.0 60.0 L28.0 67.0" marker-end="url(#mAbsorb)" style="stroke:var(--absorb);stroke-width:3"/><circle cx="90" cy="98" r="4.5" style="fill:var(--absorb)"/><circle cx="160" cy="62" r="4.5" style="fill:var(--absorb)"/><circle cx="230" cy="98" r="4.5" style="fill:var(--absorb)"/><circle cx="300" cy="62" r="4.5" style="fill:var(--absorb)"/><circle cx="370" cy="98" r="4.5" style="fill:var(--absorb)"/><text x="440.0" y="156.0" font-size="11" text-anchor="end" style="font-weight:700">light bounces at every wall: no leaks</text><path d="M400 146 L440 150" style="display:none"/></svg></div><div class="tw"><table class="tbl" style="min-width:420px"><thead><tr><th>Fact</th><th>Number</th></tr></thead><tbody><tr><td>Fiber thickness</td><td>About a human hair (0.125 mm)</td></tr><tr><td>Speed of data in fiber</td><td>About 200,000 km/s</td></tr><tr><td>Transatlantic cables</td><td>Over 400 on the sea floor</td></tr><tr><td>One fiber can carry</td><td>Many terabits per second</td></tr></tbody></table></div></article></div></section>
@@ -1060,5 +1061,82 @@ __mountLessonGame(document.getElementById("lesson-game"), ":host{\n  display:blo
   }));
 })();</script>
 <!-- LESSON GAME:fiber-optic END -->
+
+<style id="a11y-shared">
+/* Shared accessibility rules, injected last into every built page by build.mjs. */
+.skip-link{position:absolute;left:8px;top:-72px;z-index:2147483647;padding:10px 16px;border-radius:8px;background:#FFD23F;color:#1A1400;font:700 1rem/1.2 system-ui,sans-serif;text-decoration:none;border:2px solid #1A1400}
+.skip-link:focus{top:8px}
+main:focus{outline:none}
+:focus-visible{outline-offset:2px}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+/* Classic, light: tokens that were under 4.5:1 as text on the page backgrounds, and the amber slider accent (under 3:1). */
+@media not (prefers-color-scheme:dark){
+  :root:root:not([data-style="retro"]):not([data-theme="dark"]){--absorb:#B93A07;--green:#1D7A40;--red:#C42229;--transmit:#0A7566}
+  :root:root:not([data-style="retro"]):not([data-theme="dark"]) input[type=range]{accent-color:#B07800}
+}
+:root:root[data-theme="light"]:not([data-style="retro"]){--absorb:#B93A07;--green:#1D7A40;--red:#C42229;--transmit:#0A7566}
+:root:root[data-theme="light"]:not([data-style="retro"]) input[type=range]{accent-color:#B07800}
+/* Forced colors: the Retro heading is transparent text over a clipped gradient, which would disappear. */
+@media (forced-colors:active){
+  html[data-style="retro"] h1{background:none!important;-webkit-text-fill-color:CanvasText!important;color:CanvasText!important}
+  :focus-visible{outline:3px solid Highlight!important}
+  input[type=range]{accent-color:auto}
+}
+</style>
+<script>
+// Shared accessibility script, inlined into every built page by build.mjs.
+// Sets aria-valuetext on range sliders from the page's own readout (the value and unit in the label),
+// so a screen reader says "12 mL" instead of a bare "12". Existing readouts are not touched.
+(function () {
+  'use strict';
+  var VALUE_TAGS = /^(SPAN|OUTPUT|B|STRONG|EM|I|MARK)$/;
+
+  function labelOf(sl) {
+    if (sl.labels && sl.labels.length) return sl.labels[0];
+    return sl.closest ? sl.closest('label') : null;
+  }
+  function clean(s) { return s.replace(/\s+/g, ' ').trim(); }
+
+  // "<label>Base added: <span>12</span> mL (25 mL of acid in the cup)</label>"  ->  "12 mL"
+  function fromLabel(lb) {
+    if (!lb) return '';
+    var els = lb.querySelectorAll('*');
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      if (!VALUE_TAGS.test(el.tagName) || el.children.length || !clean(el.textContent)) continue;
+      var v = clean(el.textContent), rest = '', n = el.nextSibling;
+      while (n) { rest += n.textContent; n = n.nextSibling; }
+      rest = clean(rest.split(/[(,;\u2014\u2013]|\s-\s/)[0]);
+      if (rest && rest.length <= 24) v += ' ' + rest;
+      return v;
+    }
+    return '';
+  }
+  function fromNeighbour(sl) {
+    var id = sl.id, el = id && document.getElementById(id + 'V');
+    if (el && !el.contains(sl) && clean(el.textContent)) return clean(el.textContent);
+    var o = sl.parentNode && sl.parentNode.querySelector('output');
+    return o && clean(o.textContent) ? clean(o.textContent) : '';
+  }
+  function update(sl) {
+    var t = fromLabel(labelOf(sl)) || fromNeighbour(sl);
+    if (t && t.length <= 60) { if (sl.getAttribute('aria-valuetext') !== t) sl.setAttribute('aria-valuetext', t); }
+  }
+  function all() { Array.prototype.forEach.call(document.querySelectorAll('input[type="range"]'), update); }
+
+  var timer = 0;
+  function soon() { clearTimeout(timer); timer = setTimeout(all, 120); }
+  function start() {
+    all();
+    document.addEventListener('input', function (e) { if (e.target && e.target.type === 'range') { update(e.target); soon(); } });
+    document.addEventListener('change', soon);
+    if (window.MutationObserver) new MutationObserver(soon).observe(document.body, { childList: true, subtree: true, characterData: true });
+    window.addEventListener('load', all);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>
 
 </html>

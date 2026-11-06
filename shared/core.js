@@ -243,6 +243,10 @@
   A.topicCounts = () => BANK.reduce((m, b) => { m[b[0]] = (m[b[0]] || 0) + 1; return m; }, {});
   const quiz = (A.quiz = { isOpen: false });
   let qo = null, items = [], qi = 0, correct = 0, answered = false, finished = false;
+  // Remember what had focus when a dialog opened and hand focus back when it closes.
+  let opener = null;
+  const rememberOpener = () => { const a = document.activeElement; opener = a && a !== document.body ? a : null; };
+  const restoreOpener = () => { const o = opener; opener = null; if (o && o.isConnected && !o.disabled) { try { o.focus({ preventScroll: true }); } catch (e) {} } };
 
   // opts: { game, player, color, title, intro, count, topics,
   //         lastLabel, resultScore(n, count), resultText(n, count), doneLabel(n), singleLabel(right), onClose(n) }
@@ -252,6 +256,7 @@
     if (!BANK.length) { if (qo.onClose) qo.onClose(qo.count); return; }
     items = Array.from({ length: qo.count }, () => drawQuestion(qo.topics));
     qi = 0; correct = 0; finished = false;
+    rememberOpener();
     quiz.isOpen = true;
     $('quiz').querySelector('.quiz-card').style.setProperty('--qc', qo.color);
     $('quiz-who').textContent = qo.title;
@@ -350,9 +355,10 @@
     quiz.isOpen = false;
     const cb = qo.onClose, n = correct;
     modalChanged();
+    restoreOpener();
     if (cb) cb(n);
   }
-  quiz.close = function () { if (quiz.isOpen) { $('quiz').hidden = true; quiz.isOpen = false; modalChanged(); } }; // abandon, no callback
+  quiz.close = function () { if (quiz.isOpen) { $('quiz').hidden = true; quiz.isOpen = false; modalChanged(); restoreOpener(); } }; // abandon, no callback
   $('quiz-next').addEventListener('click', next);
   quiz.answer = answer; // for keyboard and tests
 
@@ -365,6 +371,7 @@
     const all = factOpts.facts || [];
     if (!all.length) return;
     if (factDeck.length < 3) factDeck = A.shuffled(all);
+    if (!facts.isOpen) rememberOpener();
     facts.isOpen = true;
     $('facts-card').style.setProperty('--qc', factOpts.color || '#ffd166');
     $('facts-kicker').textContent = factOpts.kicker || 'Science facts';
@@ -384,20 +391,31 @@
     $('facts').hidden = true;
     facts.isOpen = false;
     modalChanged();
+    restoreOpener();
     if (factOpts && factOpts.onClose) factOpts.onClose();
   };
   $('facts-more').addEventListener('click', () => facts.show(null, true));
   $('facts-close').addEventListener('click', facts.close);
+
+  // Keep Tab inside the open dialog.
+  function trapTab(e, root) {
+    const f = Array.from(root.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')).filter((x) => !x.disabled && !x.hidden && x.offsetParent !== null);
+    if (!f.length) { e.preventDefault(); return; }
+    const first = f[0], last = f[f.length - 1], a = document.activeElement;
+    if (!root.contains(a)) { first.focus(); e.preventDefault(); }
+    else if (e.shiftKey && a === first) { last.focus(); e.preventDefault(); }
+    else if (!e.shiftKey && a === last) { first.focus(); e.preventDefault(); }
+  }
 
   // While a quiz or facts card is open, it owns the keyboard: 1–4 answer, Enter continues, Escape closes facts.
   window.addEventListener('keydown', (e) => {
     if (quiz.isOpen) {
       if (/^[1-4]$/.test(e.key)) { answer(+e.key - 1); e.preventDefault(); }
       else if (e.key === 'Enter' && !$('quiz-next').hidden && document.activeElement !== $('quiz-next')) { next(); e.preventDefault(); }
-      if (e.key !== 'Tab') e.stopImmediatePropagation();
+      if (e.key === 'Tab') trapTab(e, $('quiz')); else e.stopImmediatePropagation();
     } else if (facts.isOpen) {
       if (e.key === 'Escape') { facts.close(); e.preventDefault(); }
-      if (e.key !== 'Tab') e.stopImmediatePropagation();
+      if (e.key === 'Tab') trapTab(e, $('facts')); else e.stopImmediatePropagation();
     }
   }, true);
 
@@ -428,7 +446,7 @@
   function demoInput(e) {
     if (!demo.active || A.modalOpen()) return;
     if (e.type === 'keydown' && (e.key === 'Tab' || e.altKey || e.ctrlKey || e.metaKey)) return;
-    if (e.target && e.target.closest && e.target.closest('[data-demo-keep]')) return;
+    if (e.target && e.target.closest && e.target.closest('[data-demo-keep], .skip-link')) return;
     const onStage = demoOpts.stage && demoOpts.stage.contains(e.target);
     if (e.type === 'keydown' || onStage) { e.preventDefault(); e.stopPropagation(); }
     demo.stop();

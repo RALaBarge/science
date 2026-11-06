@@ -277,6 +277,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
   });
 })();
 </script>
+<a class="skip-link" href="#main">Skip to main content</a>
 <header class="hero">
   <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="false">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="true">Retro space</button></div>
   <p class="kicker">Seventh grade science · Unit 7.6</p>
@@ -288,7 +289,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 </header>
 
 
-<main>
+<main id="main" tabindex="-1">
 <section class="sec" id="s1"><div><p class="kicker">Concept 1 · Biotic and abiotic</p><h2>Living and nonliving parts interact</h2></div><p class="idea"><mark>Biotic</mark> factors are living (or once living); <mark>abiotic</mark> factors are nonliving (sunlight, water, temperature, soil). Together they make up the <mark>ecosystem</mark>.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>A school</h3><p class="cap">Students and teachers are the biotic parts; the building, schedule, heat, and lunch menu are abiotic. Remove the heat in winter and attendance changes!</p></article><article class="aid"><span class="tag try">Try it</span><h3>Biotic or abiotic?</h3><div class="items" id="baS"></div><p class="score" id="baSS">0 of 8 correct</p></article><article class="aid wide"><span class="tag data">Data</span><h3>What the pond needs</h3><div class="tw"><table class="tbl" style="min-width:440px"><thead><tr><th>Abiotic factor</th><th>Effect on living things</th></tr></thead><tbody><tr><td>Temperature</td><td>Fish need cool water with dissolved oxygen</td></tr><tr><td>Sunlight</td><td>Algae need it to photosynthesize</td></tr><tr><td>Water chemistry (pH)</td><td>Frog eggs are sensitive</td></tr><tr><td>Depth</td><td>Decides which plants root</td></tr></tbody></table></div></article></div></section>
 <section class="sec" id="s2"><div><p class="kicker">Concept 2 · Relationships</p><h2>Competition, predation, and teamwork</h2></div><p class="idea">Organisms <mark>compete</mark> for resources, <mark>prey</mark> on each other, or form <mark>mutually helpful (mutualism)</mark>, <mark>parasitic</mark>, or <mark>commensal</mark> partnerships. These shape who can live where.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Sharing a lunchroom</h3><p class="cap">Two students want the same last slice (competition). One steals another's fries (predation-like). Two classmates swap food so both are happy (mutualism).</p></article><article class="aid"><span class="tag try">Try it</span><h3>Name the relationship</h3><div class="items" id="irS"></div><p class="score" id="irSS">0 of 6 correct</p></article><article class="aid wide"><span class="tag data">Data</span><h3>Effects table</h3><div class="tw"><table class="tbl" style="min-width:340px"><thead><tr><th>Relationship</th><th>A</th><th>B</th></tr></thead><tbody><tr><td>Competition</td><td>−</td><td>−</td></tr><tr><td>Predation</td><td>+</td><td>−</td></tr><tr><td>Parasitism</td><td>+</td><td>−</td></tr><tr><td>Mutualism</td><td>+</td><td>+</td></tr><tr><td>Commensalism</td><td>+</td><td>0</td></tr></tbody></table></div><p class="cap">+ helped, − harmed, 0 not affected.</p></article></div></section>
 <section class="sec" id="s3"><div><p class="kicker">Concept 3 · Carrying capacity</p><h2>Resources limit population size</h2></div><p class="idea">A population can grow quickly at first, but food, water, space, and disease set the <mark>carrying capacity</mark>, the largest number the environment can support.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>A restaurant with 50 seats</h3><p class="cap">Sixty customers cannot all sit down. Some leave or wait: the population stops growing even if more are coming.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Change the resources</h3><div class="ctl"><label for="ccR">Resource level: <span id="ccRV"></span>%</label><input id="ccR" type="range" min="20" max="100" step="10" value="60"></div><div class="stage"><svg id="ccSvg" viewBox="0 0 480 220" role="img" aria-label="Population grows and levels off at carrying capacity."></svg></div><p class="readout" id="ccRd" aria-live="polite"></p></article><article class="aid wide"><span class="tag data">Data</span><h3>Deer population on an island</h3><div class="stage"><svg id="dpSvg" viewBox="0 0 480 200" role="img" aria-label="Deer on an island: boom then crash."></svg></div><p class="cap">Reindeer introduced to St. Matthew Island (1944) grew to thousands, overate lichen, and crashed. A real example of overshoot.</p></article></div></section>
@@ -549,5 +550,82 @@ __mountLessonGame(document.getElementById("lesson-game"), ":host{\n  display:blo
   }));
 })();</script>
 <!-- LESSON GAME:meadow-manager END -->
+
+<style id="a11y-shared">
+/* Shared accessibility rules, injected last into every built page by build.mjs. */
+.skip-link{position:absolute;left:8px;top:-72px;z-index:2147483647;padding:10px 16px;border-radius:8px;background:#FFD23F;color:#1A1400;font:700 1rem/1.2 system-ui,sans-serif;text-decoration:none;border:2px solid #1A1400}
+.skip-link:focus{top:8px}
+main:focus{outline:none}
+:focus-visible{outline-offset:2px}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+/* Classic, light: tokens that were under 4.5:1 as text on the page backgrounds, and the amber slider accent (under 3:1). */
+@media not (prefers-color-scheme:dark){
+  :root:root:not([data-style="retro"]):not([data-theme="dark"]){--absorb:#B93A07;--green:#1D7A40;--red:#C42229;--transmit:#0A7566}
+  :root:root:not([data-style="retro"]):not([data-theme="dark"]) input[type=range]{accent-color:#B07800}
+}
+:root:root[data-theme="light"]:not([data-style="retro"]){--absorb:#B93A07;--green:#1D7A40;--red:#C42229;--transmit:#0A7566}
+:root:root[data-theme="light"]:not([data-style="retro"]) input[type=range]{accent-color:#B07800}
+/* Forced colors: the Retro heading is transparent text over a clipped gradient, which would disappear. */
+@media (forced-colors:active){
+  html[data-style="retro"] h1{background:none!important;-webkit-text-fill-color:CanvasText!important;color:CanvasText!important}
+  :focus-visible{outline:3px solid Highlight!important}
+  input[type=range]{accent-color:auto}
+}
+</style>
+<script>
+// Shared accessibility script, inlined into every built page by build.mjs.
+// Sets aria-valuetext on range sliders from the page's own readout (the value and unit in the label),
+// so a screen reader says "12 mL" instead of a bare "12". Existing readouts are not touched.
+(function () {
+  'use strict';
+  var VALUE_TAGS = /^(SPAN|OUTPUT|B|STRONG|EM|I|MARK)$/;
+
+  function labelOf(sl) {
+    if (sl.labels && sl.labels.length) return sl.labels[0];
+    return sl.closest ? sl.closest('label') : null;
+  }
+  function clean(s) { return s.replace(/\s+/g, ' ').trim(); }
+
+  // "<label>Base added: <span>12</span> mL (25 mL of acid in the cup)</label>"  ->  "12 mL"
+  function fromLabel(lb) {
+    if (!lb) return '';
+    var els = lb.querySelectorAll('*');
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      if (!VALUE_TAGS.test(el.tagName) || el.children.length || !clean(el.textContent)) continue;
+      var v = clean(el.textContent), rest = '', n = el.nextSibling;
+      while (n) { rest += n.textContent; n = n.nextSibling; }
+      rest = clean(rest.split(/[(,;\u2014\u2013]|\s-\s/)[0]);
+      if (rest && rest.length <= 24) v += ' ' + rest;
+      return v;
+    }
+    return '';
+  }
+  function fromNeighbour(sl) {
+    var id = sl.id, el = id && document.getElementById(id + 'V');
+    if (el && !el.contains(sl) && clean(el.textContent)) return clean(el.textContent);
+    var o = sl.parentNode && sl.parentNode.querySelector('output');
+    return o && clean(o.textContent) ? clean(o.textContent) : '';
+  }
+  function update(sl) {
+    var t = fromLabel(labelOf(sl)) || fromNeighbour(sl);
+    if (t && t.length <= 60) { if (sl.getAttribute('aria-valuetext') !== t) sl.setAttribute('aria-valuetext', t); }
+  }
+  function all() { Array.prototype.forEach.call(document.querySelectorAll('input[type="range"]'), update); }
+
+  var timer = 0;
+  function soon() { clearTimeout(timer); timer = setTimeout(all, 120); }
+  function start() {
+    all();
+    document.addEventListener('input', function (e) { if (e.target && e.target.type === 'range') { update(e.target); soon(); } });
+    document.addEventListener('change', soon);
+    if (window.MutationObserver) new MutationObserver(soon).observe(document.body, { childList: true, subtree: true, characterData: true });
+    window.addEventListener('load', all);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>
 
 </html>

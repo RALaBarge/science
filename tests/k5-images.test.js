@@ -60,7 +60,12 @@ for (const f of units) {
   // The built copy matches the source copy.
   const built = path.join(root, 'dist', 'k-5', base + '.html');
   // The build wraps each page with a doctype, lang and viewport, so strip that before comparing.
-  const unwrap = (s) => s.replace(/^<!doctype html>\n<html lang="en">\n<meta charset="utf-8">\n<meta name="viewport"[^\n]*\n/, '').replace(/\n<\/html>\n$/, '');
+  // It also adds the shared accessibility step (skip link, main id, a11y style and script), so strip those too.
+  const unwrap = (s) => s.replace(/^<!doctype html>\n<html lang="en">\n<meta charset="utf-8">\n<meta name="viewport"[^\n]*\n/, '')
+    .replace(/<a class="skip-link" href="#main">[^\n]*<\/a>\n/, '')
+    .replace('<main id="main" tabindex="-1">', '<main>')
+    .replace(/<style id="a11y-shared">[\s\S]*?<\/style>\n<script>\n\/\/ Shared accessibility script[\s\S]*?<\/script>\n/, '')
+    .replace(/\n<\/html>\n+$/, '');
   if (fs.existsSync(built)) ok(unwrap(fs.readFileSync(built, 'utf8')) === html, base + ' dist copy is current');
 }
 console.log('  ' + figs + ' figures, largest data URI about ' + Math.round(maxData / 1024) + ' KB');

@@ -277,6 +277,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
   });
 })();
 </script>
+<a class="skip-link" href="#main">Skip to main content</a>
 <header class="hero">
   <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="false">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="true">Retro space</button></div>
   <p class="kicker">Seventh grade science · Unit 7.10</p>
@@ -302,7 +303,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 </svg></div>
 </header>
 
-<main>
+<main id="main" tabindex="-1">
 <section class="sec" id="s1"><div><p class="kicker">Concept 1 · Acids, bases and the pH scale</p><h2>A scale from 0 to 14</h2></div><p class="idea">Liquids can be sorted by how <mark>acidic</mark> or <mark>basic</mark> they are. The <mark>pH scale</mark> gives that a number: below 7 is acidic, 7 is <mark>neutral</mark> (pure water), above 7 is basic. <b>Never taste or sniff an unknown liquid to find out.</b></p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>A tug-of-war with a flag in the middle</h3><p class="cap">Think of pH 7 as a flag at the center of a rope. Acids pull it toward 0 and bases pull it toward 14. Pure water is a tie, so the flag stays at 7.</p><div class="stage"><svg viewBox="0 0 360 170" role="img" aria-label="Tug-of-war rope from pH 0 to pH 14 with a flag at 7 in the middle, an acid team pulling left and a base team pulling right">
 <title>Tug-of-war with a flag at pH 7</title>
 <desc>A rope runs from pH 0 on the left to pH 14 on the right. A flag sits at 7 in the middle. The acid team pulls left toward 0 and the base team pulls right toward 14. Faded flags show where the flag would sit if acids win or bases win.</desc>
@@ -458,7 +459,83 @@ const d=()=>{ const v=+sl.value; $('#tiVV').textContent=v; const pts=[]; for(let
 sl.addEventListener('input',d); d();
 });
 
-finalQuiz([{"q": "A liquid has a pH of 3. It is...", "o": ["Basic", "Neutral", "Acidic"], "a": 2, "e": "Below 7 is acidic."}, {"q": "Red cabbage juice turns blue-green in a clear liquid. The liquid is probably...", "o": ["A strong acid", "Neutral water", "A base"], "a": 2, "e": "Blue and green mean pH above 7."}, {"q": "How many times more hydrogen ions does pH 3 have than pH 5?", "o": ["2 times", "10 times", "100 times"], "a": 2, "e": "Each step is 10 times, and two steps make 100."}, {"q": "When an acid and a base neutralize each other, the products are...", "o": ["Hydrogen gas only", "Water and a salt", "Two new acids"], "a": 1, "e": "H+ and OH- make water; the other ions form a salt."}, {"q": "Why can you eat lemon juice but not drain cleaner?", "o": ["Lemon juice has no pH", "Strength matters: lemon juice is a weak acid and drain cleaner is a strong base", "Bases are never dangerous"], "a": 1, "e": "How strong a substance is matters as much as which side of 7 it is on."}, {"q": "A lake has a pH of 5. Which fix is most sensible?", "o": ["Add vinegar", "Add lime (a base) a little at a time", "Add more rain"], "a": 1, "e": "A base raises the pH. Add small amounts and test again."}]);
+finalQuiz([{"q": "A liquid has a pH of 3. It is...", "o": ["Basic", "Acidic", "Neutral"], "a": 1, "e": "Below 7 is acidic."}, {"q": "Red cabbage juice turns blue-green in a clear liquid. The liquid is probably...", "o": ["A base", "A strong acid", "Neutral water"], "a": 0, "e": "Blue and green mean pH above 7."}, {"q": "How many times more hydrogen ions does pH 3 have than pH 5?", "o": ["2 times", "10 times", "100 times"], "a": 2, "e": "Each step is 10 times, and two steps make 100."}, {"q": "When an acid and a base neutralize each other, the products are...", "o": ["Hydrogen gas only", "Water and a salt", "Two new acids"], "a": 1, "e": "H+ and OH- make water; the other ions form a salt."}, {"q": "Why can you eat lemon juice but not drain cleaner?", "o": ["Lemon juice is neutral, but drain cleaner is acidic", "Bases are never dangerous", "Strength matters: lemon juice is a weak acid and drain cleaner is a strong base"], "a": 2, "e": "How strong a substance is matters as much as which side of 7 it is on."}, {"q": "A lake has a pH of 5. Which fix is most sensible?", "o": ["Add lime (a base) a little at a time", "Add vinegar", "Add more rain"], "a": 0, "e": "A base raises the pH. Add small amounts and test again."}]);
+})();
+</script>
+<style id="a11y-shared">
+/* Shared accessibility rules, injected last into every built page by build.mjs. */
+.skip-link{position:absolute;left:8px;top:-72px;z-index:2147483647;padding:10px 16px;border-radius:8px;background:#FFD23F;color:#1A1400;font:700 1rem/1.2 system-ui,sans-serif;text-decoration:none;border:2px solid #1A1400}
+.skip-link:focus{top:8px}
+main:focus{outline:none}
+:focus-visible{outline-offset:2px}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+/* Classic, light: tokens that were under 4.5:1 as text on the page backgrounds, and the amber slider accent (under 3:1). */
+@media not (prefers-color-scheme:dark){
+  :root:root:not([data-style="retro"]):not([data-theme="dark"]){--absorb:#B93A07;--green:#1D7A40;--red:#C42229;--transmit:#0A7566}
+  :root:root:not([data-style="retro"]):not([data-theme="dark"]) input[type=range]{accent-color:#B07800}
+}
+:root:root[data-theme="light"]:not([data-style="retro"]){--absorb:#B93A07;--green:#1D7A40;--red:#C42229;--transmit:#0A7566}
+:root:root[data-theme="light"]:not([data-style="retro"]) input[type=range]{accent-color:#B07800}
+/* Forced colors: the Retro heading is transparent text over a clipped gradient, which would disappear. */
+@media (forced-colors:active){
+  html[data-style="retro"] h1{background:none!important;-webkit-text-fill-color:CanvasText!important;color:CanvasText!important}
+  :focus-visible{outline:3px solid Highlight!important}
+  input[type=range]{accent-color:auto}
+}
+</style>
+<script>
+// Shared accessibility script, inlined into every built page by build.mjs.
+// Sets aria-valuetext on range sliders from the page's own readout (the value and unit in the label),
+// so a screen reader says "12 mL" instead of a bare "12". Existing readouts are not touched.
+(function () {
+  'use strict';
+  var VALUE_TAGS = /^(SPAN|OUTPUT|B|STRONG|EM|I|MARK)$/;
+
+  function labelOf(sl) {
+    if (sl.labels && sl.labels.length) return sl.labels[0];
+    return sl.closest ? sl.closest('label') : null;
+  }
+  function clean(s) { return s.replace(/\s+/g, ' ').trim(); }
+
+  // "<label>Base added: <span>12</span> mL (25 mL of acid in the cup)</label>"  ->  "12 mL"
+  function fromLabel(lb) {
+    if (!lb) return '';
+    var els = lb.querySelectorAll('*');
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      if (!VALUE_TAGS.test(el.tagName) || el.children.length || !clean(el.textContent)) continue;
+      var v = clean(el.textContent), rest = '', n = el.nextSibling;
+      while (n) { rest += n.textContent; n = n.nextSibling; }
+      rest = clean(rest.split(/[(,;\u2014\u2013]|\s-\s/)[0]);
+      if (rest && rest.length <= 24) v += ' ' + rest;
+      return v;
+    }
+    return '';
+  }
+  function fromNeighbour(sl) {
+    var id = sl.id, el = id && document.getElementById(id + 'V');
+    if (el && !el.contains(sl) && clean(el.textContent)) return clean(el.textContent);
+    var o = sl.parentNode && sl.parentNode.querySelector('output');
+    return o && clean(o.textContent) ? clean(o.textContent) : '';
+  }
+  function update(sl) {
+    var t = fromLabel(labelOf(sl)) || fromNeighbour(sl);
+    if (t && t.length <= 60) { if (sl.getAttribute('aria-valuetext') !== t) sl.setAttribute('aria-valuetext', t); }
+  }
+  function all() { Array.prototype.forEach.call(document.querySelectorAll('input[type="range"]'), update); }
+
+  var timer = 0;
+  function soon() { clearTimeout(timer); timer = setTimeout(all, 120); }
+  function start() {
+    all();
+    document.addEventListener('input', function (e) { if (e.target && e.target.type === 'range') { update(e.target); soon(); } });
+    document.addEventListener('change', soon);
+    if (window.MutationObserver) new MutationObserver(soon).observe(document.body, { childList: true, subtree: true, characterData: true });
+    window.addEventListener('load', all);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
 })();
 </script>
 </body>

@@ -332,6 +332,7 @@ figure.k5i details.k5i-alt summary{cursor:pointer;padding:2px 0}
 @media (prefers-reduced-motion:reduce){figure.k5i,figure.k5i *{transition:none!important;animation:none!important}}
 </style>
 <!--k5images-css-end-->
+<a class="skip-link" href="#main">Skip to main content</a>
 <header class="hero">
   <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="false">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="true">Retro space</button></div>
   <p class="kicker">Grade 3 · Unit 3.3</p>
@@ -346,7 +347,7 @@ figure.k5i details.k5i-alt summary{cursor:pointer;padding:2px 0}
 </header>
 
 
-<main>
+<main id="main" tabindex="-1">
 
 <section class="sec" id="s1">
   <div><p class="kicker">Concept 1</p><h2>Life cycles are diverse but share stages</h2></div>
@@ -635,7 +636,7 @@ function k5BigSort(host, cfg) {
 }
 
 
-k5BigSort(document.getElementById("k5-activity"), {"id":"3-3-sort","title":"Trait Family","intro":"Some traits come from parents. Others change because of where and how a living thing lives. Which is which?","note":"This is a model. A real plant grown in the sun and one in the shade give you evidence of your own.","summary":"Traits like eye color and leaf shape are inherited from parents. Other traits, such as a thin, pale stem grown in the dark or shade, or a small plant grown without enough water, are influenced by the environment.","stages":[{"prompt":"Is this trait inherited from parents, or did the environment or experience change it?","bins":[{"id":"inherited","icon":"🧬","label":"Inherited from parents"},{"id":"env","icon":"🌦️","label":"Changed by environment or experience"}],"cards":[{"id":"eyes","icon":"👁️","label":"A child's eye color","bin":"inherited","why":"Eye color is passed from parents to their children.","hint":"was the child born with it, from the parents?"},{"id":"oak","icon":"🍃","label":"The shape of an oak leaf","bin":"inherited","why":"Every oak tree gets its leaf shape from its parent trees.","hint":"do all oak trees have it, no matter where they grow?"},{"id":"violet","icon":"💜","label":"A violet's flower color","bin":"inherited","why":"Flower color is passed from parent plants to their seeds.","hint":"does the plant get it from its parent plants?"},{"id":"tabby","icon":"🐱","label":"A kitten's striped fur","bin":"inherited","why":"Fur pattern is inherited from the kitten's parents.","hint":"was the kitten born with it?"},{"id":"pale-bean","icon":"🌱","label":"A bean grown in the dark is pale and thin","bin":"env","why":"A bean plant grown without light is pale and weak. The same kind of bean in the sun is green and sturdy.","hint":"what was different about where the bean grew?"},{"id":"shade-bean","icon":"🌱","label":"Shade bean: tall, thin, pale","bin":"env","why":"The shade plant stretched to 22 cm, but its stem was thin, pale and its leaves small. Same seeds, same water: the shade changed how it grew.","hint":"the seeds and water were the same. What was different?"},{"id":"sun-bean","icon":"🌿","label":"Sun bean: thick green stem","bin":"env","why":"The sun plant had a thick green stem and wide leaves. The same kind of bean looked different in the shade, so the environment changed how it grew.","hint":"the same kind of bean looks different in shade. What changed?"},{"id":"dry-plant","icon":"🥀","label":"A plant that stays small without enough water","bin":"env","why":"A plant that does not get enough water stays small, even if its parents grow tall. The environment influenced how it grew.","hint":"if its parents grow tall, what else could keep this plant small?"}]}]});
+k5BigSort(document.getElementById("k5-activity"), {"id":"3-3-sort","title":"Trait Family","intro":"Some traits come from parents. Others change because of where and how a living thing lives. Which is which?","note":"This is a model. A real plant grown in the sun and one in the shade give you evidence of your own.","summary":"Traits like eye color and leaf shape are inherited from parents. Other traits, such as a thin, pale stem grown in the dark or shade, or a small plant grown without enough water, are influenced by the environment.","stages":[{"prompt":"Is this trait inherited from parents, or did the environment or experience change it?","bins":[{"id":"inherited","icon":"🧬","label":"Inherited from parents"},{"id":"env","icon":"🌦️","label":"Changed by environment or experience"}],"cards":[{"id":"eyes","icon":"👁️","label":"A child's eye color","bin":"inherited","why":"Eye color is passed from parents to their children.","hint":"was the child born with it, from the parents?"},{"id":"oak","icon":"🍃","label":"The basic shape of an oak leaf","bin":"inherited","why":"An acorn grows into an oak with oak leaves, because the leaf shape is passed from the parent tree.","hint":"will an acorn grow into a tree with oak leaves or maple leaves?"},{"id":"violet","icon":"💜","label":"A violet's flower color","bin":"inherited","why":"Flower color is passed from parent plants to their seeds.","hint":"does the plant get it from its parent plants?"},{"id":"tabby","icon":"🐱","label":"A kitten's striped fur","bin":"inherited","why":"Fur pattern is inherited from the kitten's parents.","hint":"was the kitten born with it?"},{"id":"pale-bean","icon":"🌱","label":"A bean grown in the dark is pale and thin","bin":"env","why":"A bean plant grown without light is pale and weak. The same kind of bean in the sun is green and sturdy.","hint":"what was different about where the bean grew?"},{"id":"shade-bean","icon":"🌱","label":"Shade bean: tall, thin, pale","bin":"env","why":"The shade plant stretched to 22 cm, but its stem was thin, pale and its leaves small. Same seeds, same water: the shade changed how it grew.","hint":"the seeds and water were the same. What was different?"},{"id":"sun-bean","icon":"🌿","label":"Sun bean: thick green stem","bin":"env","why":"The sun plant had a thick green stem and wide leaves. The same kind of bean looked different in the shade, so the environment changed how it grew.","hint":"the same kind of bean looks different in shade. What changed?"},{"id":"dry-plant","icon":"🥀","label":"A plant that stays small without enough water","bin":"env","why":"A plant that does not get enough water stays small, even if its parents grow tall. The environment influenced how it grew.","hint":"if its parents grow tall, what else could keep this plant small?"},{"id":"floppy","icon":"🐶","label":"A puppy's floppy ears","bin":"inherited","why":"Ear shape is passed from the puppy's parents.","hint":"was the puppy born with it, like its parents?"},{"id":"sit","icon":"🐕","label":"A dog that has learned to sit","bin":"env","why":"The dog learned to sit from practice and training. Learning is experience, not something passed from parents.","hint":"was the dog born knowing it, or did it learn it?"},{"id":"scar","icon":"🩹","label":"A scar on a knee","bin":"env","why":"A scar comes from an injury during life. It is not passed from parents to children.","hint":"did the child get it from the parents, or from something that happened?"}]}]});
 </script>
 </section>
 <!--k5-activity-end-->
@@ -654,6 +655,82 @@ box.innerHTML=Q.map((x,i)=>`<div class="q item" data-i="${i}" style="display:gri
 box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.disabled)return; const row=b.closest('.q'), x=Q[+row.dataset.i], ok=+b.dataset.j===x.a;
   $$('.opt',row).forEach(o=>{ o.disabled=true; if(+o.dataset.j===x.a)o.classList.add('good'); }); if(!ok)b.classList.add('bad'); else right++;
   $('.fb',row).textContent=(ok?'Correct. ':'Not quite. ')+x.e; sc.textContent=`${right} of ${Q.length} correct`; });
+})();
+</script>
+<style id="a11y-shared">
+/* Shared accessibility rules, injected last into every built page by build.mjs. */
+.skip-link{position:absolute;left:8px;top:-72px;z-index:2147483647;padding:10px 16px;border-radius:8px;background:#FFD23F;color:#1A1400;font:700 1rem/1.2 system-ui,sans-serif;text-decoration:none;border:2px solid #1A1400}
+.skip-link:focus{top:8px}
+main:focus{outline:none}
+:focus-visible{outline-offset:2px}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+/* Classic, light: tokens that were under 4.5:1 as text on the page backgrounds, and the amber slider accent (under 3:1). */
+@media not (prefers-color-scheme:dark){
+  :root:root:not([data-style="retro"]):not([data-theme="dark"]){--absorb:#B93A07;--green:#1D7A40;--red:#C42229;--transmit:#0A7566}
+  :root:root:not([data-style="retro"]):not([data-theme="dark"]) input[type=range]{accent-color:#B07800}
+}
+:root:root[data-theme="light"]:not([data-style="retro"]){--absorb:#B93A07;--green:#1D7A40;--red:#C42229;--transmit:#0A7566}
+:root:root[data-theme="light"]:not([data-style="retro"]) input[type=range]{accent-color:#B07800}
+/* Forced colors: the Retro heading is transparent text over a clipped gradient, which would disappear. */
+@media (forced-colors:active){
+  html[data-style="retro"] h1{background:none!important;-webkit-text-fill-color:CanvasText!important;color:CanvasText!important}
+  :focus-visible{outline:3px solid Highlight!important}
+  input[type=range]{accent-color:auto}
+}
+</style>
+<script>
+// Shared accessibility script, inlined into every built page by build.mjs.
+// Sets aria-valuetext on range sliders from the page's own readout (the value and unit in the label),
+// so a screen reader says "12 mL" instead of a bare "12". Existing readouts are not touched.
+(function () {
+  'use strict';
+  var VALUE_TAGS = /^(SPAN|OUTPUT|B|STRONG|EM|I|MARK)$/;
+
+  function labelOf(sl) {
+    if (sl.labels && sl.labels.length) return sl.labels[0];
+    return sl.closest ? sl.closest('label') : null;
+  }
+  function clean(s) { return s.replace(/\s+/g, ' ').trim(); }
+
+  // "<label>Base added: <span>12</span> mL (25 mL of acid in the cup)</label>"  ->  "12 mL"
+  function fromLabel(lb) {
+    if (!lb) return '';
+    var els = lb.querySelectorAll('*');
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      if (!VALUE_TAGS.test(el.tagName) || el.children.length || !clean(el.textContent)) continue;
+      var v = clean(el.textContent), rest = '', n = el.nextSibling;
+      while (n) { rest += n.textContent; n = n.nextSibling; }
+      rest = clean(rest.split(/[(,;\u2014\u2013]|\s-\s/)[0]);
+      if (rest && rest.length <= 24) v += ' ' + rest;
+      return v;
+    }
+    return '';
+  }
+  function fromNeighbour(sl) {
+    var id = sl.id, el = id && document.getElementById(id + 'V');
+    if (el && !el.contains(sl) && clean(el.textContent)) return clean(el.textContent);
+    var o = sl.parentNode && sl.parentNode.querySelector('output');
+    return o && clean(o.textContent) ? clean(o.textContent) : '';
+  }
+  function update(sl) {
+    var t = fromLabel(labelOf(sl)) || fromNeighbour(sl);
+    if (t && t.length <= 60) { if (sl.getAttribute('aria-valuetext') !== t) sl.setAttribute('aria-valuetext', t); }
+  }
+  function all() { Array.prototype.forEach.call(document.querySelectorAll('input[type="range"]'), update); }
+
+  var timer = 0;
+  function soon() { clearTimeout(timer); timer = setTimeout(all, 120); }
+  function start() {
+    all();
+    document.addEventListener('input', function (e) { if (e.target && e.target.type === 'range') { update(e.target); soon(); } });
+    document.addEventListener('change', soon);
+    if (window.MutationObserver) new MutationObserver(soon).observe(document.body, { childList: true, subtree: true, characterData: true });
+    window.addEventListener('load', all);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
 })();
 </script>
 </body>

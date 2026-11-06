@@ -62,7 +62,23 @@ button {
   padding: 7px 12px; cursor: pointer;
 }
 button:hover { border-color: var(--muted); }
-button:focus-visible, input:focus-visible, summary:focus-visible { outline: 2px solid var(--code); outline-offset: 2px; }
+button:focus-visible, input:focus-visible, summary:focus-visible, a:focus-visible, select:focus-visible,
+textarea:focus-visible, canvas:focus-visible, [tabindex]:focus-visible { outline: 3px solid var(--code); outline-offset: 2px; }
+main:focus { outline: none; }
+
+.skip-link {
+  position: absolute; left: 8px; top: -64px; z-index: 1000; padding: 10px 16px; border-radius: 8px;
+  background: var(--code); color: #0a0f1f; font-weight: 700; text-decoration: none;
+}
+.skip-link:focus { top: 8px; }
+
+/* Honour the system setting: no decorative animation or smooth scrolling. Game logic is unaffected. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+@media (forced-colors: active) {
+  :focus-visible { outline: 3px solid Highlight; }
+}
 
 .stage {
   position: relative; border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
@@ -330,7 +346,9 @@ kbd { font-family: var(--mono); font-size: 12px; border: 1px solid var(--line); 
 </style>
 </head>
 <body>
-<div class="wrap">
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<main class="wrap" id="main" tabindex="-1">
   <header class="bar">
     <h1>Laser Bounce <span>light puzzles</span></h1>
     <div class="seed">
@@ -394,7 +412,7 @@ kbd { font-family: var(--mono); font-size: 12px; border: 1px solid var(--line); 
       <p>Share a puzzle code and your friends get the same levels. Every level is built by the game and checked by its solver before you see it.</p>
     </div>
   </details>
-</div>
+</main>
 <script>
 // ===================== QUESTION BANK =====================
 // Format: [topic, question, [CORRECT answer first, then 3 wrong answers], explanation, grade]
@@ -727,6 +745,57 @@ window.QUESTION_BANK = [
   ["Skills", "In a claim backed by evidence, the evidence is...", ["Data or observations that support the claim", "Your opinion", "A guess", "The title of your report"], "Evidence is what you measured or saw.", 5],
   ["Skills", "A town wants a defensible energy choice using cost, reliability, pollution, and land use. Which plan uses those criteria and data most fairly?", ["Score both options for cost, reliability, pollution, and land use.", "Pick the option with the lowest cost alone.", "Pick the option most people name in a quick vote.", "Assume both options have equal pollution and equal reliability."], "Clear criteria and data make the trade-offs visible for both options. A single criterion, a quick vote, or a guess in place of data hides evidence that the town needs.", 6],
   ["Skills", "A prototype is tested at 20 °C. The next trial changes iron amount, salt amount, and cloth type together. Why is this a weak test?", ["The result could come from any of the three changes.", "Fair tests require every variable to change.", "The first trial becomes a new constraint.", "Changing many variables gives more data in one trial."], "Fair iteration changes one variable, tests it, and compares the result with the criteria. Changing several at once leaves the team unsure which change affected temperature or warming time.", 7],
+  // ---- Data and statistics (6th Unit 15) ----
+  ["Skills", "What is the median of a data set?", ["The middle value when the data are in order", "The sum divided by the count", "The most common value", "Largest minus smallest"], "The mean is the sum divided by the count, the mode is the most common value, and the range is largest minus smallest.", 6],
+  ["Skills", "Plant heights are mostly near 17 cm, and then one 38 cm plant is added. What happens?", ["The mean rises a lot and the median barely moves", "The median rises a lot and the mean barely moves", "Both stay exactly the same", "The mode moves to 38 cm"], "An outlier drags the mean toward it, while the median only shifts to the next value in the line.", 6],
+  ["Skills", "Why do news reports often use the median for house prices?", ["A few very expensive houses would pull the mean up", "The median is always bigger than the mean", "The median uses every number", "Houses have no mode"], "Skewed data with extreme values is where the median is the better summary.", 6],
+  ["Skills", "What are the mean and the range of 4, 6, 8, 10, 12?", ["Mean 8, range 8", "Mean 8, range 12", "Mean 6, range 8", "Mean 10, range 4"], "The sum is 40 and 40 / 5 = 8. The range is 12 - 4 = 8.", 6],
+  ["Skills", "Two plant groups both have a mean height of 20 cm. Group A runs from 17 to 23 cm and Group B from 10 to 30 cm. What does that tell you?", ["Group B has more spread, so its plants are harder to predict", "Group A has more spread", "The groups are identical", "Group B must have the larger mean"], "The same mean can hide different spread. A mean without a spread tells only half the story.", 6],
+  ["Skills", "Which graph is best for showing change over time, such as daily temperature for a month?", ["Line graph", "Histogram", "Scatter plot", "Dot plot"], "A line graph shows change over time. A bar graph compares categories and a scatter plot shows how two numbers relate.", 6],
+  ["Skills", "A bar graph's axis starts at 90 instead of 0 for bars of 92 and 96. What does that do?", ["Makes a small difference look huge", "Makes the bars look equal", "Makes the data more accurate", "Changes the values"], "Bar length should match the amount. Start bar graphs at zero so differences look as big as they are.", 6],
+  ["Skills", "A fair coin is flipped in runs of 10 and in runs of 1,000. Which runs usually land closer to 50% heads?", ["Runs of 1,000 flips", "Runs of 10 flips", "Both are equally close", "Neither ever gets near 50%"], "A larger sample gives a result closer to the true share. Runs of 10 can easily give 20% to 80%.", 6],
+  ["Skills", "A measurement looks like a mistake. What should a scientist do first?", ["Find out why before dropping it", "Delete it right away", "Keep only that value", "Change it to match the others"], "Never delete numbers just because they are inconvenient. An odd value might be a mistake or something real.", 6],
+  // ---- Acids and bases (7th Unit 7.10) ----
+  ["Chemistry", "On the pH scale, which pH is neutral, like pure water?", ["7", "0", "10", "14"], "Below 7 is acidic, 7 is neutral and above 7 is basic.", 7],
+  ["Chemistry", "A liquid has a pH of 3. Is it acidic or basic?", ["Acidic, because it is below 7", "Basic, because it is a small number", "Neutral", "It cannot be told without tasting it"], "A pH below 7 means acidic. Never taste an unknown liquid to find out.", 7],
+  ["Chemistry", "How does litmus paper show an acid?", ["It turns red", "It turns blue", "It turns pink", "It turns colorless"], "Litmus is red in acid and blue in base.", 7],
+  ["Chemistry", "A liquid with pH 3 has how many times as many hydrogen ions as one with pH 5?", ["100 times as many", "2 times as many", "10 times as many", "Half as many"], "Each pH step is a factor of ten, so two steps is 10 x 10 = 100. A lower pH means more hydrogen ions.", 7],
+  ["Chemistry", "What do an acid and a base make when they neutralize each other?", ["Water and a salt", "Hydrogen gas and a metal", "Only a stronger acid", "Only carbon dioxide"], "Hydrogen ions and hydroxide ions join to make water, and the other ions make a salt.", 7],
+  ["Chemistry", "In HCl + NaOH, which product is table salt?", ["NaCl", "H2O", "HCl", "NaOH"], "Hydrochloric acid plus sodium hydroxide makes sodium chloride (table salt) and water.", 7],
+  ["Chemistry", "Why is red cabbage juice useful for testing liquids?", ["It changes color across a range of pH values", "It turns red in every liquid", "It measures temperature", "It never changes color"], "Cabbage juice is an indicator. It runs from red in strong acid to yellow-green in strong base.", 7],
+  ["Chemistry", "Why can antacid tablets calm heartburn?", ["A base in the tablet neutralizes excess stomach acid", "They add more acid", "They remove water from the stomach", "They raise the pH of the blood to 14"], "Calcium carbonate or magnesium hydroxide is a base that reacts with stomach acid.", 7],
+  ["Chemistry", "Why must you never mix household cleaners?", ["Bleach mixed with acids or ammonia makes toxic gases", "They always explode", "They always turn into pure water", "Mixing makes them stronger cleaners"], "Mixing cleaners can release toxic gases, so use one at a time.", 7],
+  // ---- Nutrition, health and disease (7th Unit 7.11) ----
+  ["Body", "About how many Calories does one gram of fat give?", ["About 9", "About 4", "About 1", "About 20"], "Fat gives about 9 Calories per gram, while carbohydrate and protein give about 4.", 7],
+  ["Body", "What is the main job of protein in food?", ["Growth and repair of tissues", "Carrying nutrients through the body", "Keeping digestion moving", "Being the only source of vitamins"], "Protein is mostly building material, like lumber and nails for a house under repair.", 7],
+  ["Body", "A snack has 10 g carbohydrate, 5 g protein and 4 g fat. About how many Calories is that?", ["96", "19", "54", "140"], "10 x 4 + 5 x 4 + 4 x 9 = 40 + 20 + 36 = 96 Calories.", 7],
+  ["Body", "Not enough vitamin C for a long time causes which problem?", ["Scurvy", "Rickets", "Goiter", "Anemia"], "Scurvy brings bleeding gums and slow healing. Citrus fruit, strawberries and peppers supply vitamin C.", 7],
+  ["Body", "Which kind of germ do antibiotics work on?", ["Bacteria", "Viruses", "Fungi", "Parasites"], "Antibiotics work on bacteria but not on viruses. Using them when not needed helps bacteria evolve resistance.", 7],
+  ["Body", "What does a vaccine do?", ["Trains the body's defenses before the real germ arrives", "Kills every germ in the air", "Replaces white blood cells", "Works only after you are sick"], "A vaccine shows the immune system a harmless form of the germ in advance.", 7],
+  ["Body", "Which habit cuts the chain of infection at the route step?", ["Washing hands with soap for 20 seconds", "Eating more fat", "Sleeping less", "Skipping vaccines"], "Washing hands stops germs moving from hands to the mouth, eyes or food.", 7],
+  ["Body", "Which is the strongest health claim?", ["A large group split into a treatment group and a comparison group", "One friend felt better", "An ad from the company that sells it", "A story with no numbers"], "A strong claim has a comparison group, many people and a fair test.", 7],
+  ["Body", "A friend felt better three days after drinking a detox tea. Why is that weak evidence?", ["Most colds end on their own, and there is no comparison group", "Tea can never help", "Three days is too long to check", "Feeling better cannot be measured"], "Without a comparison group you cannot tell whether the tea or time did it.", 7],
+  // ---- Simple machines and work (8th Unit 8.10) ----
+  ["Forces", "In physics, how is work calculated?", ["Force times distance moved in the direction of the force", "Mass times speed", "Force divided by time", "Distance divided by force"], "With force in newtons and distance in meters, work is in joules.", 8],
+  ["Energy", "You push a crate with 50 N for 4 m. How much work do you do?", ["200 J", "54 J", "12.5 J", "46 J"], "Work = force x distance = 50 N x 4 m = 200 J.", 8],
+  ["Forces", "You hold a heavy box still for a minute. How much work do you do on the box?", ["None, because it does not move", "A lot, because the force is large", "Its weight in joules", "One joule for each second held"], "Work needs the object to move in the direction of the force. Your muscles still use energy.", 8],
+  ["Forces", "How does a lever make a lift easier when the effort is far from the fulcrum?", ["The longer effort arm means less force is needed", "The bar becomes lighter", "The load moves farther than your hand", "Less work is done"], "Ideal mechanical advantage = effort arm / load arm. Distance from the fulcrum matters as much as the push.", 8],
+  ["Forces", "A wheelbarrow has the load between the fulcrum and the effort. Which class of lever is it?", ["Second class", "First class", "Third class", "It is not a lever"], "In a second-class lever the load is in the middle, so it always gives a force gain.", 8],
+  ["Forces", "Your forearm is a third-class lever. What is the trade-off?", ["It needs more force than the load but moves the hand far and fast", "It makes the load feel lighter", "It gives a mechanical advantage above 1", "It does not move the load"], "The biceps pulls close to the elbow, so it works hard and moves a little while the hand moves a lot.", 8],
+  ["Forces", "What happens to the push you need if you double the length of a ramp that reaches the same height?", ["It gets smaller", "It doubles", "It stays the same", "It becomes zero"], "A longer path means less force, though ideally the work stays the same.", 8],
+  ["Forces", "A pulley system has 4 rope sections holding the load. How is the pull changed?", ["The force is about 4 times smaller and the rope you pull is 4 times longer", "The force is 4 times bigger", "The rope you pull is shorter", "Nothing changes"], "With n rope sections the force is cut by about n and the rope you pull is n times longer.", 8],
+  ["Energy", "You lift a 300 N crate 1.2 m, or push it up a frictionless 6 m ramp. Compared with lifting straight up, how much work does the ramp need?", ["The same, 360 J", "Half as much", "Five times as much", "None"], "Lifting takes 300 x 1.2 = 360 J. The ramp needs 60 N over 6 m, also 360 J. A machine reduces force, not work.", 8],
+  ["Energy", "Why is the work out of a real machine always less than the work in?", ["Friction turns some work into thermal energy", "Energy is destroyed", "Machines add energy", "Work out is always equal"], "Energy is conserved, but the missing work became thermal energy. Efficiency = work out / work in.", 8],
+  // ---- Climate evidence and change (8th Unit 8.11) ----
+  ["Climate", "Which statement describes climate rather than weather?", ["Seattle has wet winters and dry summers", "It is drizzly in Seattle on Tuesday", "It snowed this morning", "It is hot today"], "Climate is the pattern of weather over many years, usually 30 years or more.", 8],
+  ["Climate", "One cold winter week happens. Why does that not disprove a warming climate?", ["It is weather, one sample, not a long-term pattern", "Cold weather proves warming", "Weather and climate are the same", "Thermometers fail in winter"], "A cold day does not disprove a warming climate, just as one sunny day does not make a desert.", 8],
+  ["Climate", "About how much has carbon dioxide in the air risen from before the Industrial Revolution to today?", ["From about 280 ppm to about 420 ppm", "From about 280 ppm to about 300 ppm", "From about 420 ppm to about 600 ppm", "It has not changed"], "Ice cores show about 180 to 300 ppm for 800,000 years, and today it is about 420 ppm.", 8],
+  ["Climate", "Why is evidence from thermometers, satellites, ocean buoys and ice cores strong?", ["Many independent records point the same way", "One record is enough", "They are all the same instrument", "They were all made by one group"], "Like many witnesses telling the same story, independent measurements agreeing makes the evidence strong.", 8],
+  ["Climate", "Why can the Sun not explain the warming of the last 50 years?", ["Satellites show its output flat or slightly down while temperature rose", "The Sun is too far away to matter at all", "Its output rose faster than temperature", "The Sun only affects the oceans"], "Natural factors do change climate, but the Sun's output has not risen along with temperature.", 8],
+  ["Climate", "How can the carbon in fossil-fuel CO2 be recognized?", ["It has a chemical signature that matches ancient plants", "It is colored", "It is heavier than all other CO2", "It cannot be told apart"], "Its signature, plus the amount, matches the rise in CO2.", 8],
+  ["Climate", "In the bathtub analogy for CO2, what do the oceans and plants represent?", ["The drain", "The tap", "The water level", "The tub"], "Emissions are the tap, oceans and plants are a partly open drain, and CO2 in the air is the water level.", 8],
+  ["Climate", "A town builds a sea wall. Is that mitigation or adaptation?", ["Adaptation, because it protects people from change already coming", "Mitigation, because it cuts CO2", "Mitigation, because it is big", "Neither"], "Mitigation reduces the cause. Adaptation reduces the harm. A sea wall does nothing to the CO2.", 8],
+  ["Climate", "A wind farm replaces a coal power plant. Is that mitigation or adaptation?", ["Mitigation, because it makes less greenhouse gas", "Adaptation, because it makes people safer", "Adaptation, because it is a building", "Neither"], "It reduces the cause, so it is mitigation.", 8],
 ];
 </script>
 <script>
@@ -1235,6 +1304,10 @@ window.SCIENCE_FACTS.football = [
   A.topicCounts = () => BANK.reduce((m, b) => { m[b[0]] = (m[b[0]] || 0) + 1; return m; }, {});
   const quiz = (A.quiz = { isOpen: false });
   let qo = null, items = [], qi = 0, correct = 0, answered = false, finished = false;
+  // Remember what had focus when a dialog opened and hand focus back when it closes.
+  let opener = null;
+  const rememberOpener = () => { const a = document.activeElement; opener = a && a !== document.body ? a : null; };
+  const restoreOpener = () => { const o = opener; opener = null; if (o && o.isConnected && !o.disabled) { try { o.focus({ preventScroll: true }); } catch (e) {} } };
 
   // opts: { game, player, color, title, intro, count, topics,
   //         lastLabel, resultScore(n, count), resultText(n, count), doneLabel(n), singleLabel(right), onClose(n) }
@@ -1244,6 +1317,7 @@ window.SCIENCE_FACTS.football = [
     if (!BANK.length) { if (qo.onClose) qo.onClose(qo.count); return; }
     items = Array.from({ length: qo.count }, () => drawQuestion(qo.topics));
     qi = 0; correct = 0; finished = false;
+    rememberOpener();
     quiz.isOpen = true;
     $('quiz').querySelector('.quiz-card').style.setProperty('--qc', qo.color);
     $('quiz-who').textContent = qo.title;
@@ -1342,9 +1416,10 @@ window.SCIENCE_FACTS.football = [
     quiz.isOpen = false;
     const cb = qo.onClose, n = correct;
     modalChanged();
+    restoreOpener();
     if (cb) cb(n);
   }
-  quiz.close = function () { if (quiz.isOpen) { $('quiz').hidden = true; quiz.isOpen = false; modalChanged(); } }; // abandon, no callback
+  quiz.close = function () { if (quiz.isOpen) { $('quiz').hidden = true; quiz.isOpen = false; modalChanged(); restoreOpener(); } }; // abandon, no callback
   $('quiz-next').addEventListener('click', next);
   quiz.answer = answer; // for keyboard and tests
 
@@ -1357,6 +1432,7 @@ window.SCIENCE_FACTS.football = [
     const all = factOpts.facts || [];
     if (!all.length) return;
     if (factDeck.length < 3) factDeck = A.shuffled(all);
+    if (!facts.isOpen) rememberOpener();
     facts.isOpen = true;
     $('facts-card').style.setProperty('--qc', factOpts.color || '#ffd166');
     $('facts-kicker').textContent = factOpts.kicker || 'Science facts';
@@ -1376,20 +1452,31 @@ window.SCIENCE_FACTS.football = [
     $('facts').hidden = true;
     facts.isOpen = false;
     modalChanged();
+    restoreOpener();
     if (factOpts && factOpts.onClose) factOpts.onClose();
   };
   $('facts-more').addEventListener('click', () => facts.show(null, true));
   $('facts-close').addEventListener('click', facts.close);
+
+  // Keep Tab inside the open dialog.
+  function trapTab(e, root) {
+    const f = Array.from(root.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')).filter((x) => !x.disabled && !x.hidden && x.offsetParent !== null);
+    if (!f.length) { e.preventDefault(); return; }
+    const first = f[0], last = f[f.length - 1], a = document.activeElement;
+    if (!root.contains(a)) { first.focus(); e.preventDefault(); }
+    else if (e.shiftKey && a === first) { last.focus(); e.preventDefault(); }
+    else if (!e.shiftKey && a === last) { first.focus(); e.preventDefault(); }
+  }
 
   // While a quiz or facts card is open, it owns the keyboard: 1–4 answer, Enter continues, Escape closes facts.
   window.addEventListener('keydown', (e) => {
     if (quiz.isOpen) {
       if (/^[1-4]$/.test(e.key)) { answer(+e.key - 1); e.preventDefault(); }
       else if (e.key === 'Enter' && !$('quiz-next').hidden && document.activeElement !== $('quiz-next')) { next(); e.preventDefault(); }
-      if (e.key !== 'Tab') e.stopImmediatePropagation();
+      if (e.key === 'Tab') trapTab(e, $('quiz')); else e.stopImmediatePropagation();
     } else if (facts.isOpen) {
       if (e.key === 'Escape') { facts.close(); e.preventDefault(); }
-      if (e.key !== 'Tab') e.stopImmediatePropagation();
+      if (e.key === 'Tab') trapTab(e, $('facts')); else e.stopImmediatePropagation();
     }
   }, true);
 
@@ -1420,7 +1507,7 @@ window.SCIENCE_FACTS.football = [
   function demoInput(e) {
     if (!demo.active || A.modalOpen()) return;
     if (e.type === 'keydown' && (e.key === 'Tab' || e.altKey || e.ctrlKey || e.metaKey)) return;
-    if (e.target && e.target.closest && e.target.closest('[data-demo-keep]')) return;
+    if (e.target && e.target.closest && e.target.closest('[data-demo-keep], .skip-link')) return;
     const onStage = demoOpts.stage && demoOpts.stage.contains(e.target);
     if (e.type === 'keydown' || onStage) { e.preventDefault(); e.stopPropagation(); }
     demo.stop();
@@ -2054,14 +2141,14 @@ window.SCIENCE_FACTS.football = [
     if (A.modalOpen()) return;
     const tag = (e.target && e.target.tagName) || '';
     if (tag === 'INPUT' || tag === 'SELECT') return;
-    if (state.solved && (e.key === 'Enter' || e.key === ' ')) { if (tag !== 'BUTTON') { nextLevel(); e.preventDefault(); } return; }
+    if (state.solved && (e.key === 'Enter' || e.key === ' ')) { if (tag !== 'BUTTON' && tag !== 'A') { nextLevel(); e.preventDefault(); } return; }
     const moves = { ArrowRight: 1, ArrowLeft: -1, ArrowDown: COLS, ArrowUp: -COLS };
     if (moves[e.key] !== undefined) {
       if (state.cursor < 0) state.cursor = Math.floor(ROWS / 2) * COLS + Math.floor(COLS / 2);
       const n = state.cursor + moves[e.key];
       if (n >= 0 && n < N && !(Math.abs(moves[e.key]) === 1 && Math.floor(n / COLS) !== Math.floor(state.cursor / COLS))) state.cursor = n;
       wake(); e.preventDefault();
-    } else if ((e.key === ' ' || e.key === 'Enter') && state.cursor >= 0 && tag !== 'BUTTON') { cycleCell(state.cursor); e.preventDefault(); }
+    } else if ((e.key === ' ' || e.key === 'Enter') && state.cursor >= 0 && tag !== 'BUTTON' && tag !== 'A') { cycleCell(state.cursor); e.preventDefault(); }
   });
   $('clear-btn').addEventListener('click', () => { if (!state.solved) { state.mirrors.clear(); state.moves++; retrace(); } });
   $('hint-btn').addEventListener('click', askHint);
@@ -2086,6 +2173,82 @@ window.SCIENCE_FACTS.football = [
     code: 'the puzzle code',
     answers: 'every quiz answer so far'
   }, ['game.grid', 'game.budget = 10   (more mirrors... but the game notices)']);
+})();
+</script>
+<style id="a11y-shared">
+/* Shared accessibility rules, injected last into every built page by build.mjs. */
+.skip-link{position:absolute;left:8px;top:-72px;z-index:2147483647;padding:10px 16px;border-radius:8px;background:#FFD23F;color:#1A1400;font:700 1rem/1.2 system-ui,sans-serif;text-decoration:none;border:2px solid #1A1400}
+.skip-link:focus{top:8px}
+main:focus{outline:none}
+:focus-visible{outline-offset:2px}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+/* Classic, light: tokens that were under 4.5:1 as text on the page backgrounds, and the amber slider accent (under 3:1). */
+@media not (prefers-color-scheme:dark){
+  :root:root:not([data-style="retro"]):not([data-theme="dark"]){--absorb:#B93A07;--green:#1D7A40;--red:#C42229;--transmit:#0A7566}
+  :root:root:not([data-style="retro"]):not([data-theme="dark"]) input[type=range]{accent-color:#B07800}
+}
+:root:root[data-theme="light"]:not([data-style="retro"]){--absorb:#B93A07;--green:#1D7A40;--red:#C42229;--transmit:#0A7566}
+:root:root[data-theme="light"]:not([data-style="retro"]) input[type=range]{accent-color:#B07800}
+/* Forced colors: the Retro heading is transparent text over a clipped gradient, which would disappear. */
+@media (forced-colors:active){
+  html[data-style="retro"] h1{background:none!important;-webkit-text-fill-color:CanvasText!important;color:CanvasText!important}
+  :focus-visible{outline:3px solid Highlight!important}
+  input[type=range]{accent-color:auto}
+}
+</style>
+<script>
+// Shared accessibility script, inlined into every built page by build.mjs.
+// Sets aria-valuetext on range sliders from the page's own readout (the value and unit in the label),
+// so a screen reader says "12 mL" instead of a bare "12". Existing readouts are not touched.
+(function () {
+  'use strict';
+  var VALUE_TAGS = /^(SPAN|OUTPUT|B|STRONG|EM|I|MARK)$/;
+
+  function labelOf(sl) {
+    if (sl.labels && sl.labels.length) return sl.labels[0];
+    return sl.closest ? sl.closest('label') : null;
+  }
+  function clean(s) { return s.replace(/\s+/g, ' ').trim(); }
+
+  // "<label>Base added: <span>12</span> mL (25 mL of acid in the cup)</label>"  ->  "12 mL"
+  function fromLabel(lb) {
+    if (!lb) return '';
+    var els = lb.querySelectorAll('*');
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      if (!VALUE_TAGS.test(el.tagName) || el.children.length || !clean(el.textContent)) continue;
+      var v = clean(el.textContent), rest = '', n = el.nextSibling;
+      while (n) { rest += n.textContent; n = n.nextSibling; }
+      rest = clean(rest.split(/[(,;\u2014\u2013]|\s-\s/)[0]);
+      if (rest && rest.length <= 24) v += ' ' + rest;
+      return v;
+    }
+    return '';
+  }
+  function fromNeighbour(sl) {
+    var id = sl.id, el = id && document.getElementById(id + 'V');
+    if (el && !el.contains(sl) && clean(el.textContent)) return clean(el.textContent);
+    var o = sl.parentNode && sl.parentNode.querySelector('output');
+    return o && clean(o.textContent) ? clean(o.textContent) : '';
+  }
+  function update(sl) {
+    var t = fromLabel(labelOf(sl)) || fromNeighbour(sl);
+    if (t && t.length <= 60) { if (sl.getAttribute('aria-valuetext') !== t) sl.setAttribute('aria-valuetext', t); }
+  }
+  function all() { Array.prototype.forEach.call(document.querySelectorAll('input[type="range"]'), update); }
+
+  var timer = 0;
+  function soon() { clearTimeout(timer); timer = setTimeout(all, 120); }
+  function start() {
+    all();
+    document.addEventListener('input', function (e) { if (e.target && e.target.type === 'range') { update(e.target); soon(); } });
+    document.addEventListener('change', soon);
+    if (window.MutationObserver) new MutationObserver(soon).observe(document.body, { childList: true, subtree: true, characterData: true });
+    window.addEventListener('load', all);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
 })();
 </script>
 </body>

@@ -1,194 +1,204 @@
 [
- {
-  "file": "7th/unit-7.10-acids-and-bases.html",
-  "concept": "A scale from 0 to 14",
-  "type": "data",
-  "status": "done",
-  "what": "Full-width pH strip with all 15 table liquids placed on a 0-14 color bar.",
-  "check": "Bar colors are approximate universal-indicator colors; liquid positions use the table midpoints."
- },
- {
-  "file": "7th/unit-7.10-acids-and-bases.html",
-  "concept": "A scale from 0 to 14",
-  "type": "analogy",
-  "status": "done",
-  "what": "Rope-and-flag SVG: acid team pulls toward 0, base team toward 14, flag at 7.",
-  "check": ""
- },
- {
-  "file": "7th/unit-7.10-acids-and-bases.html",
-  "concept": "Reading pH with a color change",
-  "type": "analogy",
-  "status": "done",
-  "what": "Schematic dye molecule, bent/red at low pH and straight/blue at high pH, labelled \"not the real structure\".",
-  "check": "Anthocyanin red vs blue forms: is \"shape change\" wording right for grade 7 (flavylium vs quinoidal base)?"
- },
- {
-  "file": "7th/unit-7.10-acids-and-bases.html",
-  "concept": "Reading pH with a color change",
-  "type": "data",
-  "status": "done",
-  "what": "Seven drawn color swatches for pH 2-12 above the cabbage table.",
-  "check": "Swatch hex values are illustrative, matched to the table names and the page tube colors."
- },
- {
-  "file": "7th/unit-7.10-acids-and-bases.html",
-  "concept": "Reading pH with a color change",
-  "type": "real",
-  "status": "done",
-  "what": "Drawn litmus strips, pH paper with color chart and a pH meter.",
-  "check": ""
- },
- {
-  "file": "7th/unit-7.10-acids-and-bases.html",
-  "concept": "Each step on the scale is ten times",
-  "type": "data",
-  "status": "done",
-  "what": "Log-axis bar chart (10^-1 ... 10^-11) for pH 1,3,5,7,9,11 from the table values.",
-  "check": ""
- },
- {
-  "file": "7th/unit-7.10-acids-and-bases.html",
-  "concept": "Each step on the scale is ten times",
-  "type": "real",
-  "status": "done",
-  "what": "Zoomed 6.5-8.5 strip: blood 7.35-7.45 band, seawater 8.1, ghost band at 8.2.",
-  "check": "Seawater about 8.2 before the 1800s (widely quoted pre-industrial value); 0.1 drop = ~26% more H+ already on page."
- },
- {
-  "file": "7th/unit-7.10-acids-and-bases.html",
-  "concept": "Mixing an acid with a base",
-  "type": "analogy",
-  "status": "done",
-  "what": "Ion sketch: H+ and OH- pair into H2O; Na+ and Cl- stay dissolved.",
-  "check": ""
- },
- {
-  "file": "7th/unit-7.10-acids-and-bases.html",
-  "concept": "Mixing an acid with a base",
-  "type": "data",
-  "status": "done",
-  "what": "Added atom-count table (H, O, Na, Cl) and the ionic equation to the HCl + NaOH cell.",
-  "check": ""
- },
- {
-  "file": "7th/unit-7.11-nutrition-health-and-disease.html",
-  "concept": "What food is made of and what it does",
-  "type": "real",
-  "status": "done",
-  "what": "Annotated Nutrition Facts label with numbered callouts (serving size, Calories, sodium, fiber, added sugars); cell widened.",
-  "check": "Label values are the FDA sample label numbers (230 Cal, 160 mg sodium = 7%, 4 g fiber = 14%, 10 g added sugars = 20%); verify against the current FDA label and Daily Values (2,300 mg sodium, 28 g fiber, 50 g added sugar)."
- },
- {
-  "file": "7th/unit-7.11-nutrition-health-and-disease.html",
-  "concept": "How infections spread and how the body fights back",
-  "type": "analogy",
-  "status": "done",
-  "what": "Three nested rings: walls (skin, mucus), guards (white blood cells), wanted posters (antibodies), with a germ entering.",
-  "check": ""
- },
- {
-  "file": "7th/unit-7.11-nutrition-health-and-disease.html",
-  "concept": "How infections spread and how the body fights back",
-  "type": "real",
-  "status": "done",
-  "what": "Chain-of-infection figure (source, route, host) with the action that breaks each link; the table now names the link for each action.",
-  "check": ""
- },
- {
-  "file": "7th/unit-7.11-nutrition-health-and-disease.html",
-  "concept": "How to tell a strong health claim from a weak one",
-  "type": "data",
-  "status": "done",
-  "what": "Before/after bars for Semmelweis (about 10% to about 2%) and a labelled-schematic pump map for Snow.",
-  "check": "Pump map dots are generated for illustration, not Snow's data (stated on the figure). Polio trial numbers not drawn because I could not confirm exact figures."
- },
- {
-  "file": "7th/unit-7.11-nutrition-health-and-disease.html",
-  "concept": "How to tell a strong health claim from a weak one",
-  "type": "real",
-  "status": "done",
-  "what": "Worked example of a weak claim (made-up juice) run through the four checklist questions, plus what a strong test would look like.",
-  "check": ""
- },
- {
-  "file": "7th/unit-7.4-metabolic-reactions-and-the-body.html",
-  "concept": "Digestion: from sandwich to small molecules",
-  "type": "try",
-  "status": "done",
-  "what": "Digestive-tract SVG; the organ chip highlights the matching organ and updates the aria-label.",
-  "check": ""
- },
- {
-  "file": "7th/unit-7.5-photosynthesis-and-matter-cycling.html",
-  "concept": "Plants build sugar from air and water",
-  "type": "try",
-  "status": "done",
-  "what": "Leaf diagram (light, CO2, water in; sugar, O2 out); arrow strength follows the light slider and the limiting-factor chip.",
-  "check": ""
- },
- {
-  "file": "7th/unit-7.5-photosynthesis-and-matter-cycling.html",
-  "concept": "A carbon atom's journey",
-  "type": "try",
-  "status": "done",
-  "what": "Carbon cycle map with five stops and labelled arrows; the chosen stop is highlighted.",
-  "check": ""
- },
- {
-  "file": "7th/unit-7.7-earth-resources-and-human-impact.html",
-  "concept": "Earth is a heat engine",
-  "type": "analogy",
-  "status": "done",
-  "what": "Mantle convection-cell figure: hot rising, spreading under plates, cool sinking, plates carried along.",
-  "check": ""
- },
- {
-  "file": "7th/unit-7.7-earth-resources-and-human-impact.html",
-  "concept": "Earth is a heat engine",
-  "type": "try",
-  "status": "done",
-  "what": "Half cross-section of Earth; the layer chip highlights the layer.",
-  "check": "Depth boundaries 2,900 km and 5,150 km, crust thickened for legibility (stated on figure)."
- },
- {
-  "file": "7th/unit-7.8-light-and-the-electromagnetic-spectrum.html",
-  "concept": "Light colors add, pigments subtract",
-  "type": "real",
-  "status": "done",
-  "what": "Ray diagram of the red apple: R,G,B arrive, G and B absorbed as heat, red reflected to the eye.",
-  "check": ""
- },
- {
-  "file": "7th/unit-7.9-adaptation-and-earth-s-history.html",
-  "concept": "Reading the layers: older below, younger above",
-  "type": "data",
-  "status": "done",
-  "what": "Four-panel figure: superposition, original horizontality, cross-cutting dike, inclusions.",
-  "check": ""
- },
- {
-  "file": "7th/unit-7.9-adaptation-and-earth-s-history.html",
-  "concept": "Fossils show who lived when",
-  "type": "real",
-  "status": "done",
-  "what": "Four-panel burial-to-exposure fossil sequence.",
-  "check": ""
- },
- {
-  "file": "7th/unit-7.1-structure-and-properties-of-matter.html",
-  "concept": "The building blocks of everything",
-  "type": "real",
-  "status": "done",
-  "what": "Log-scale size ladder: atom, flu virus, bacterium, hair width, salt grain.",
-  "check": "Sizes: atom ~0.2 nm, flu virus ~100 nm, bacterium ~2 um, hair ~70 um, salt grain ~0.3 mm."
- },
- {
-  "file": "7th/unit-7.9-adaptation-and-earth-s-history.html",
-  "concept": "Adaptations match organisms to their homes",
-  "type": "real",
-  "status": "skipped",
-  "what": "Photos of Michigan organisms not added: no raster images allowed and no verified drawings of those species.",
-  "check": ""
- }
+  {
+    "file": "7th/unit-7.10-acids-and-bases.html",
+    "concept": "A scale from 0 to 14",
+    "type": "data",
+    "status": "done",
+    "what": "Full-width pH strip with all 15 table liquids placed on a 0-14 color bar.",
+    "check": "Bar colors are approximate universal-indicator colors; liquid positions use the table midpoints.",
+    "resolved_by": "claude"
+  },
+  {
+    "file": "7th/unit-7.10-acids-and-bases.html",
+    "concept": "A scale from 0 to 14",
+    "type": "analogy",
+    "status": "done",
+    "what": "Rope-and-flag SVG: acid team pulls toward 0, base team toward 14, flag at 7.",
+    "check": ""
+  },
+  {
+    "file": "7th/unit-7.10-acids-and-bases.html",
+    "concept": "Reading pH with a color change",
+    "type": "analogy",
+    "status": "done",
+    "what": "Schematic dye molecule, bent/red at low pH and straight/blue at high pH, labelled \"not the real structure\".",
+    "check": "Anthocyanin red vs blue forms: is \"shape change\" wording right for grade 7 (flavylium vs quinoidal base)?",
+    "resolved_by": "claude"
+  },
+  {
+    "file": "7th/unit-7.10-acids-and-bases.html",
+    "concept": "Reading pH with a color change",
+    "type": "data",
+    "status": "done",
+    "what": "Seven drawn color swatches for pH 2-12 above the cabbage table.",
+    "check": "Swatch hex values are illustrative, matched to the table names and the page tube colors.",
+    "resolved_by": "claude"
+  },
+  {
+    "file": "7th/unit-7.10-acids-and-bases.html",
+    "concept": "Reading pH with a color change",
+    "type": "real",
+    "status": "done",
+    "what": "Drawn litmus strips, pH paper with color chart and a pH meter.",
+    "check": ""
+  },
+  {
+    "file": "7th/unit-7.10-acids-and-bases.html",
+    "concept": "Each step on the scale is ten times",
+    "type": "data",
+    "status": "done",
+    "what": "Log-axis bar chart (10^-1 ... 10^-11) for pH 1,3,5,7,9,11 from the table values.",
+    "check": ""
+  },
+  {
+    "file": "7th/unit-7.10-acids-and-bases.html",
+    "concept": "Each step on the scale is ten times",
+    "type": "real",
+    "status": "done",
+    "what": "Zoomed 6.5-8.5 strip: blood 7.35-7.45 band, seawater 8.1, ghost band at 8.2.",
+    "check": "Seawater about 8.2 before the 1800s (widely quoted pre-industrial value); 0.1 drop = ~26% more H+ already on page.",
+    "resolved_by": "claude"
+  },
+  {
+    "file": "7th/unit-7.10-acids-and-bases.html",
+    "concept": "Mixing an acid with a base",
+    "type": "analogy",
+    "status": "done",
+    "what": "Ion sketch: H+ and OH- pair into H2O; Na+ and Cl- stay dissolved.",
+    "check": ""
+  },
+  {
+    "file": "7th/unit-7.10-acids-and-bases.html",
+    "concept": "Mixing an acid with a base",
+    "type": "data",
+    "status": "done",
+    "what": "Added atom-count table (H, O, Na, Cl) and the ionic equation to the HCl + NaOH cell.",
+    "check": ""
+  },
+  {
+    "file": "7th/unit-7.11-nutrition-health-and-disease.html",
+    "concept": "What food is made of and what it does",
+    "type": "real",
+    "status": "done",
+    "what": "Annotated Nutrition Facts label with numbered callouts (serving size, Calories, sodium, fiber, added sugars); cell widened.",
+    "check": "Label values are the FDA sample label numbers (230 Cal, 160 mg sodium = 7%, 4 g fiber = 14%, 10 g added sugars = 20%); verify against the current FDA label and Daily Values (2,300 mg sodium, 28 g fiber, 50 g added sugar).",
+    "resolved_by": "claude"
+  },
+  {
+    "file": "7th/unit-7.11-nutrition-health-and-disease.html",
+    "concept": "How infections spread and how the body fights back",
+    "type": "analogy",
+    "status": "done",
+    "what": "Three nested rings: walls (skin, mucus), guards (white blood cells), wanted posters (antibodies), with a germ entering.",
+    "check": ""
+  },
+  {
+    "file": "7th/unit-7.11-nutrition-health-and-disease.html",
+    "concept": "How infections spread and how the body fights back",
+    "type": "real",
+    "status": "done",
+    "what": "Chain-of-infection figure (source, route, host) with the action that breaks each link; the table now names the link for each action.",
+    "check": ""
+  },
+  {
+    "file": "7th/unit-7.11-nutrition-health-and-disease.html",
+    "concept": "How to tell a strong health claim from a weak one",
+    "type": "data",
+    "status": "done",
+    "what": "Before/after bars for Semmelweis (about 10% to about 2%) and a labelled-schematic pump map for Snow.",
+    "check": "Pump map dots are generated for illustration, not Snow's data (stated on the figure). Polio trial numbers not drawn because I could not confirm exact figures.",
+    "resolved_by": "claude"
+  },
+  {
+    "file": "7th/unit-7.11-nutrition-health-and-disease.html",
+    "concept": "How to tell a strong health claim from a weak one",
+    "type": "real",
+    "status": "done",
+    "what": "Worked example of a weak claim (made-up juice) run through the four checklist questions, plus what a strong test would look like.",
+    "check": ""
+  },
+  {
+    "file": "7th/unit-7.4-metabolic-reactions-and-the-body.html",
+    "concept": "Digestion: from sandwich to small molecules",
+    "type": "try",
+    "status": "done",
+    "what": "Digestive-tract SVG; the organ chip highlights the matching organ and updates the aria-label.",
+    "check": ""
+  },
+  {
+    "file": "7th/unit-7.5-photosynthesis-and-matter-cycling.html",
+    "concept": "Plants build sugar from air and water",
+    "type": "try",
+    "status": "done",
+    "what": "Leaf diagram (light, CO2, water in; sugar, O2 out); arrow strength follows the light slider and the limiting-factor chip.",
+    "check": ""
+  },
+  {
+    "file": "7th/unit-7.5-photosynthesis-and-matter-cycling.html",
+    "concept": "A carbon atom's journey",
+    "type": "try",
+    "status": "done",
+    "what": "Carbon cycle map with five stops and labelled arrows; the chosen stop is highlighted.",
+    "check": ""
+  },
+  {
+    "file": "7th/unit-7.7-earth-resources-and-human-impact.html",
+    "concept": "Earth is a heat engine",
+    "type": "analogy",
+    "status": "done",
+    "what": "Mantle convection-cell figure: hot rising, spreading under plates, cool sinking, plates carried along.",
+    "check": ""
+  },
+  {
+    "file": "7th/unit-7.7-earth-resources-and-human-impact.html",
+    "concept": "Earth is a heat engine",
+    "type": "try",
+    "status": "done",
+    "what": "Half cross-section of Earth; the layer chip highlights the layer.",
+    "check": "Depth boundaries 2,900 km and 5,150 km, crust thickened for legibility (stated on figure).",
+    "resolved_by": "claude"
+  },
+  {
+    "file": "7th/unit-7.8-light-and-the-electromagnetic-spectrum.html",
+    "concept": "Light colors add, pigments subtract",
+    "type": "real",
+    "status": "done",
+    "what": "Ray diagram of the red apple: R,G,B arrive, G and B absorbed as heat, red reflected to the eye.",
+    "check": ""
+  },
+  {
+    "file": "7th/unit-7.9-adaptation-and-earth-s-history.html",
+    "concept": "Reading the layers: older below, younger above",
+    "type": "data",
+    "status": "done",
+    "what": "Four-panel figure: superposition, original horizontality, cross-cutting dike, inclusions.",
+    "check": ""
+  },
+  {
+    "file": "7th/unit-7.9-adaptation-and-earth-s-history.html",
+    "concept": "Fossils show who lived when",
+    "type": "real",
+    "status": "done",
+    "what": "Four-panel burial-to-exposure fossil sequence.",
+    "check": ""
+  },
+  {
+    "file": "7th/unit-7.1-structure-and-properties-of-matter.html",
+    "concept": "The building blocks of everything",
+    "type": "real",
+    "status": "done",
+    "what": "Log-scale size ladder: atom, flu virus, bacterium, hair width, salt grain.",
+    "check": "Sizes: atom ~0.2 nm, flu virus ~100 nm, bacterium ~2 um, hair ~70 um, salt grain ~0.3 mm.",
+    "resolved_by": "claude"
+  },
+  {
+    "file": "7th/unit-7.9-adaptation-and-earth-s-history.html",
+    "concept": "Adaptations match organisms to their homes",
+    "type": "real",
+    "status": "skipped",
+    "what": "Photos of Michigan organisms not added: no raster images allowed and no verified drawings of those species.",
+    "check": "",
+    "resolved_by": "claude",
+    "needs_human": " needs verified photos of Michigan organisms; not drawn"
+  }
 ]

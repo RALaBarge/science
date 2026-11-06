@@ -662,7 +662,7 @@
     if (A.modalOpen()) return;
     const tag = (e.target && e.target.tagName) || '';
     if (tag === 'INPUT' || tag === 'SELECT') return;
-    if (state.world && state.world.won && (e.key === 'Enter' || e.key === ' ')) { if (tag !== 'BUTTON') { nextLevel(); e.preventDefault(); } return; }
+    if (state.world && state.world.won && (e.key === 'Enter' || e.key === ' ')) { if (tag !== 'BUTTON' && tag !== 'A') { nextLevel(); e.preventDefault(); } return; }
     if (KEYMAP[e.key]) { state.keys[KEYMAP[e.key]] = true; e.preventDefault(); wake(); }
     else if (e.key === 'h' || e.key === 'H') { state.pending.heat = true; wake(); }
     else if (e.key === 'c' || e.key === 'C') { state.pending.cold = true; wake(); }

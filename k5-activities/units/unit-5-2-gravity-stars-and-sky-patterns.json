@@ -3,7 +3,7 @@
  "engine": "graphsky",
  "title": "Shadow Tracker",
  "intro": "Move the Sun across the sky and record the stick's shadow, place the constellations in their seasons, and pick which way down points on a globe. Then read the patterns you just built.",
- "note": "This is a model that uses the lesson's backup data (the 10 cm stick shadow table and the monthly constellation chart). The real shadow clock from the lesson still counts. The pictures are simple sketches.",
+ "note": "This is a model that uses the lesson's backup data (the 10 cm stick shadow table and the monthly constellation chart). The real shadow clock from the lesson still counts. The pictures are simple sketches. The shadow times are sun time: with daylight saving time the Sun is highest a little after 12:00 on a clock, so on your real shadow clock the shortest shadow may come about an hour later.",
  "summary": "Shadows are long in the morning and evening, shortest near noon, and always point away from the Sun: west in the morning, north at noon, east in the afternoon, because Earth rotates. Earth orbits the Sun, so different constellations appear in different seasons. Gravity pulls every object down, toward the center of Earth, wherever you stand.",
  "rounds": [
   {
@@ -315,8 +315,8 @@
        13
       ]
      ],
-     "hint": "this one belongs to the months when school starts again.",
-     "why": "Cygnus is often seen on fall nights, Sep-Nov."
+     "hint": "this one is high overhead on early-autumn evenings, after the summer ends.",
+     "why": "Cygnus is high in the sky on early-autumn evenings, Sep-Nov. Part of it can be seen in late summer too."
     }
    ],
    "reads": [
@@ -411,78 +411,120 @@
   },
   {
    "kind": "gravity",
-   "question": "Which way is down, wherever you stand on Earth?",
+   "question": "Which way is down, wherever you stand on Earth? Use what happens to a dropped ball as your evidence.",
    "spots": [
     {
      "id": "top",
-     "label": "standing at the top of the globe",
+     "label": "at the top, where a dropped ball lands on the ground at your feet",
      "deg": 0,
      "choices": [
       {
-       "label": "Toward the center of Earth",
+       "label": "Toward the center of Earth, the way the ball moves to the ground",
        "ok": true,
-       "why": "Yes. Down means toward Earth's center, wherever you stand."
+       "why": "Yes. The ball falls to the ground under your feet, and that direction is toward Earth's center."
       },
       {
        "label": "Up into the sky",
        "ok": false,
-       "why": "That way things would fall into the sky. Dropped things fall toward the ground under your feet, which is toward Earth's center."
+       "why": "The evidence says the opposite: the ball moved down to the ground, not up into the sky."
       },
       {
        "label": "Sideways",
        "ok": false,
-       "why": "A dropped ball falls straight down, toward the ground under your feet, not sideways."
+       "why": "The ball did not move sideways. It landed on the ground right under your feet."
       }
      ]
     },
     {
      "id": "bottom",
-     "label": "standing at the bottom of the globe",
+     "label": "at the bottom, where people on the far side of Earth also see a dropped ball land on the ground at their feet",
      "deg": 180,
      "choices": [
       {
        "label": "Toward the middle of the globe, even at the bottom",
        "ok": true,
-       "why": "Yes. At the bottom of the globe, down still means toward Earth's center. People there do not fall off."
+       "why": "Yes. Their ball lands on the ground at their feet too, and for them that is toward the middle of the globe. People there do not fall off."
       },
       {
        "label": "Away from the center, off the bottom",
        "ok": false,
-       "why": "Then everything there would fall off Earth. It does not; their down points toward the center, just like yours."
+       "why": "Then their ball would fall off Earth into space. The evidence is that it lands on the ground, just like yours."
       },
       {
        "label": "Gravity needs air, so there is no down there",
        "ok": false,
-       "why": "Gravity works even without air. It pulls everywhere on Earth."
+       "why": "Gravity works even without air. The ball still lands on the ground there."
       }
      ]
     },
     {
      "id": "side",
-     "label": "standing on the side of the globe",
+     "label": "on the side, where a dropped ball still lands on the ground at the feet",
      "deg": 90,
      "choices": [
       {
        "label": "Straight in, toward the center of Earth",
        "ok": true,
-       "why": "Yes. Every arrow points to the center. That is what down means."
+       "why": "Yes. The ball lands on the ground at the feet, which is straight in toward the center."
       },
       {
        "label": "Toward the bottom of the picture",
        "ok": false,
-       "why": "Down is not about the picture. It is toward Earth's center, wherever you stand."
+       "why": "The ball does not fall toward the bottom of the picture. It lands on the ground where the person stands."
       },
       {
        "label": "Out into space",
        "ok": false,
-       "why": "Things fall to the ground, not into space. Their down points at the center."
+       "why": "The ball does not fly off into space. It lands on the ground."
+      }
+     ]
+    },
+    {
+     "id": "toss",
+     "label": "lower left, where a ball tossed sideways curves and comes down to the ground",
+     "deg": 225,
+     "choices": [
+      {
+       "label": "Toward the center of Earth, which is why the toss curves down",
+       "ok": true,
+       "why": "Yes. Even a sideways toss ends on the ground, so the pull is toward Earth's center."
+      },
+      {
+       "label": "Sideways, the way it was tossed",
+       "ok": false,
+       "why": "The toss started sideways, but it curved down. The pull is down, not sideways."
+      },
+      {
+       "label": "Up, because it was thrown",
+       "ok": false,
+       "why": "The ball came down at the end. A throw does not change which way the pull points."
       }
      ]
     }
    ],
    "reads": [
     {
-     "q": "What do all three arrows have in common?",
+     "q": "Someone says, \"Down is always the bottom of the page.\" Which evidence from the globe shows that is wrong?",
+     "choices": [
+      {
+       "label": "At every spot a dropped ball lands on the ground at the feet, so down points to the center, not to the bottom of the page",
+       "ok": true,
+       "why": "Yes. On the page the arrows point different ways, but on the globe they all point to the center."
+      },
+      {
+       "label": "People at the bottom are lighter, so they float",
+       "ok": false,
+       "why": "There is no evidence of that. A ball dropped at the bottom lands on the ground too."
+      },
+      {
+       "label": "Nobody lives at the bottom of the globe",
+       "ok": false,
+       "why": "People live all around Earth, and a ball dropped anywhere lands on the ground."
+      }
+     ]
+    },
+    {
+     "q": "What do all four arrows have in common?",
      "choices": [
       {
        "label": "Every arrow points toward the center of Earth",
@@ -497,7 +539,7 @@
       {
        "label": "Gravity only works at the top of the globe",
        "ok": false,
-       "why": "Gravity pulls everywhere. That is why all three spots have a down."
+       "why": "Gravity pulls everywhere. That is why all four spots have a down."
       }
      ]
     },
@@ -527,9 +569,9 @@
      "lead": "We placed",
      "choices": [
       {
-       "label": "down arrows at three spots on a globe",
+       "label": "down arrows at four spots on a globe",
        "ok": true,
-       "why": "Right. Top, bottom and side."
+       "why": "Right. Top, bottom, side and lower left."
       },
       {
        "label": "arrows only where we live",
@@ -539,17 +581,17 @@
      ]
     },
     {
-     "lead": "Then",
+     "lead": "Our evidence is that",
      "choices": [
       {
-       "label": "every arrow pointed toward the center of Earth",
+       "label": "a dropped ball lands on the ground at the feet at every spot, and so does a tossed ball",
        "ok": true,
-       "why": "Yes. Look at the globe: all three arrows aim at the middle."
+       "why": "Yes. That is the evidence behind every arrow, and it matches the lesson's toss table."
       },
       {
-       "label": "the arrows pointed every which way",
+       "label": "the arrows all pointed the same way on the page",
        "ok": false,
-       "why": "They look different on the page, but each one points to the center."
+       "why": "They point different ways on the page. What they share is the center of the globe."
       }
      ]
     },
@@ -557,9 +599,9 @@
      "lead": "So",
      "choices": [
       {
-       "label": "Earth's gravity pulls objects down, toward Earth's center, wherever you stand",
+       "label": "down means toward the center of Earth, wherever you stand",
        "ok": true,
-       "why": "Yes. That is the argument the toss table supports too: no matter how you toss it, it comes back down."
+       "why": "Yes. Every arrow aims at the middle. That is the argument the toss table supports too."
       },
       {
        "label": "gravity pulls toward the nearest picture edge",

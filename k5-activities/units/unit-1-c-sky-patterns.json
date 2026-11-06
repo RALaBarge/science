@@ -248,7 +248,7 @@
      "id": "s9",
      "slot": "dec",
      "squares": 9,
-     "hint": "in Michigan, winter afternoons get dark early. Which month has the least daylight?",
+     "hint": "in Michigan, winter afternoons get dark early. Which month is that?",
      "fact": "Yes. December: about 9 squares of daylight, the shortest of the three."
     },
     {
@@ -262,7 +262,7 @@
      "id": "s15",
      "slot": "jun",
      "squares": 15,
-     "hint": "in Michigan, summer evenings stay light late. Which month has the most daylight?",
+     "hint": "in Michigan, summer evenings stay light late. Which month is that?",
      "fact": "Yes. June: about 15 squares of daylight, the longest of the three."
     }
    ],

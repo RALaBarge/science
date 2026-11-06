@@ -15,13 +15,47 @@ mkdirSync(out, { recursive: true });
 
 const GRADES = ['k-5', '6th', '7th', '8th', 'extras'];
 
+// Shared accessibility layer (shared/a11y.css, shared/a11y.js): a skip link, a focus target for it, the Classic
+// contrast tokens, reduced-motion and forced-colors rules, and aria-valuetext on sliders. Added to every built page
+// here so the 60+ lesson pages do not each carry a copy.
+const A11Y_CSS = readFileSync(join(root, 'shared', 'a11y.css'), 'utf8');
+const A11Y_JS = readFileSync(join(root, 'shared', 'a11y.js'), 'utf8').replace(/<\/script/gi, '<\/script');
+const SKIP = '<a class="skip-link" href="#main">Skip to main content</a>\n';
+
+function a11y(html) {
+  if (html.includes('class="skip-link"')) return html;
+  // Walk the markup, skipping script and style bodies, to find the first <header>, <main> and <h1>.
+  const at = {};
+  const re = /<script\b[\s\S]*?<\/script>|<style\b[\s\S]*?<\/style>|<(header|main|h1)\b[^>]*>/gi;
+  for (let m; (m = re.exec(html)); ) if (m[1] && !at[m[1].toLowerCase()]) at[m[1].toLowerCase()] = m;
+  // The skip target: <main>, or the h1 when a page has no <main>.
+  const t = at.main || at.h1;
+  if (!t) return html;
+  let tag = t[0];
+  if (!/\sid=/.test(tag)) tag = tag.replace(/>$/, ' id="main">');
+  if (!/\stabindex=/.test(tag)) tag = tag.replace(/>$/, ' tabindex="-1">');
+  if (!/\sid="main"/.test(tag)) return html; // the target already has a different id
+  html = html.slice(0, t.index) + tag + html.slice(t.index + t[0].length);
+  const body = /<body\b[^>]*>/i.exec(html);
+  if (body) html = html.slice(0, body.index + body[0].length) + '\n' + SKIP + html.slice(body.index + body[0].length);
+  else {
+    // Insert before the first <header> or <main> (or the target), whichever comes first.
+    let a = Math.min(...[at.header, at.main, at.h1].filter(Boolean).map((x) => x.index));
+    html = html.slice(0, a) + SKIP + html.slice(a);
+  }
+  const tail = '<style id="a11y-shared">\n' + A11Y_CSS + '</style>\n<script>\n' + A11Y_JS + '</script>\n';
+  const end = html.lastIndexOf('</body>');
+  return end >= 0 ? html.slice(0, end) + tail + html.slice(end) : html + '\n' + tail;
+}
+
 // Pages were authored as fragments (no doctype, charset, viewport or lang). Wrap them so phones scale the
 // page, screen readers get the language and the browser uses standards mode.
 function wrap(html) {
+  html = a11y(html);
   if (/^\s*<!doctype/i.test(html)) return html;
   return '<!doctype html>\n<html lang="en">\n<meta charset="utf-8">\n' +
     '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n' +
-    html.replace(/^\uFEFF/, '') + '\n</html>\n';
+    html.replace(/^﻿/, '') + '\n</html>\n';
 }
 
 function inline(file) {

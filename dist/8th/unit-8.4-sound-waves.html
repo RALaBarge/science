@@ -278,6 +278,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
   });
 })();
 </script>
+<a class="skip-link" href="#main">Skip to main content</a>
 <header class="hero">
   <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="false">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="true">Retro space</button></div>
   <p class="kicker">Eighth grade science · Unit 8.4</p>
@@ -450,7 +451,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 </header>
 
 
-<main>
+<main id="main" tabindex="-1">
 <section class="sec" id="s1"><div><p class="kicker">Concept 1 · What is sound?</p><h2>Sound is vibration travelling through matter</h2></div><p class="idea">A vibrating object pushes and pulls on the particles around it, making areas of <mark>compression</mark> (crowded) and <mark>rarefaction</mark> (spread out) that travel outward as a <mark>longitudinal wave</mark>. The particles only jiggle back and forth; the wave moves on.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>A slinky and a stadium wave</h3><p class="cap">Push and pull one end of a slinky and bunches travel along it. In a stadium wave, people just stand up and sit down; the wave travels around, but nobody changes seats.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Watch the compressions</h3><div class="ctl"><label for="vbT">Time: <span id="vbTV"></span></label><input id="vbT" type="range" min="0" max="100" step="2" value="0"></div><div class="stage"><svg id="vbSvg" viewBox="0 0 480 130" role="img" aria-label="A row of air particles bunching and spreading as a sound wave passes."></svg></div><p class="readout" id="vbR" aria-live="polite"></p></article><article class="aid wide"><span class="tag data">Data</span><h3>Why no sound in space?</h3><div class="stage"><svg viewBox="0 0 480 182" role="img" aria-label="Left: a bell rings inside a jar full of air, with particles carrying the vibration to the glass and out to your ear. Right: the air has been pumped out, the bell still shakes, but with no particles to pass the vibration on there is no sound"><title>Bell in a jar</title><desc>Two jars each with a bell. The left jar is full of air particles and sound waves leave the bell. The right jar has the air removed: the bell moves but no sound waves leave it.</desc><g><path d="M20 150 V50 Q20 10 100 10 Q180 10 180 50 V150" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:2.5"/><path d="M10 150 H190" style="stroke:var(--ink);stroke-width:2.5"/><path d="M100 10 V50" style="stroke:var(--ink);stroke-width:2"/><path d="M82 80 Q82 52 100 52 Q118 52 118 80 Z" style="fill:var(--beam);fill-opacity:.8;stroke:var(--ink);stroke-width:2.5"/><circle cx="40" cy="30" r="3" style="fill:var(--muted)"/><circle cx="77" cy="83" r="3" style="fill:var(--muted)"/><circle cx="114" cy="36" r="3" style="fill:var(--muted)"/><circle cx="41" cy="89" r="3" style="fill:var(--muted)"/><circle cx="78" cy="42" r="3" style="fill:var(--muted)"/><circle cx="115" cy="95" r="3" style="fill:var(--muted)"/><circle cx="42" cy="48" r="3" style="fill:var(--muted)"/><circle cx="79" cy="101" r="3" style="fill:var(--muted)"/><circle cx="116" cy="54" r="3" style="fill:var(--muted)"/><circle cx="43" cy="107" r="3" style="fill:var(--muted)"/><circle cx="80" cy="60" r="3" style="fill:var(--muted)"/><circle cx="117" cy="113" r="3" style="fill:var(--muted)"/><circle cx="44" cy="66" r="3" style="fill:var(--muted)"/><circle cx="81" cy="119" r="3" style="fill:var(--muted)"/><path d="M76 70 q-8 6 0 14 M124 70 q8 6 0 14" style="fill:none;stroke:var(--reflect);stroke-width:2.5"/><text x="100.0" y="172.0" font-size="12" text-anchor="middle" style="font-weight:700">Air inside: you hear it</text></g><g><path d="M270 150 V50 Q270 10 350 10 Q430 10 430 50 V150" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:2.5"/><path d="M260 150 H440" style="stroke:var(--ink);stroke-width:2.5"/><path d="M350 10 V50" style="stroke:var(--ink);stroke-width:2"/><path d="M332 80 Q332 52 350 52 Q368 52 368 80 Z" style="fill:var(--beam);fill-opacity:.8;stroke:var(--ink);stroke-width:2.5"/><text x="350.0" y="172.0" font-size="12" text-anchor="middle" style="font-weight:700">Air pumped out: silence</text></g></svg></div><p class="cap">The dots are air particles. Sound is the vibration passed from particle to particle. With no particles, the vibration has nothing to travel through, which is why space is silent.</p><div class="tw"><table class="tbl" style="min-width:400px"><thead><tr><th>Place</th><th>Matter?</th><th>Sound?</th></tr></thead><tbody><tr><td>Air</td><td>Yes</td><td>Yes</td></tr><tr><td>Water</td><td>Yes</td><td>Yes, faster</td></tr><tr><td>Steel</td><td>Yes</td><td>Yes, fastest</td></tr><tr><td>Space (vacuum)</td><td>No</td><td>No: no particles to push</td></tr></tbody></table></div></article></div></section>
 <section class="sec" id="s2"><div><p class="kicker">Concept 2 · Wave properties</p><h2>Frequency sets pitch; amplitude sets loudness</h2></div><p class="idea"><mark>Frequency</mark> (vibrations per second, in hertz) is heard as <mark>pitch</mark>: higher frequency, higher note. <mark>Amplitude</mark> is the wave height, heard as <mark>loudness</mark> (measured in decibels).</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>A guitar string</h3><p class="cap">A short, tight string vibrates fast (high note). Pluck harder and the swing is larger (louder), but the note stays the same.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Sound lab</h3><div class="ctl"><label for="pvF">Frequency: <span id="pvFV"></span> Hz</label><input id="pvF" type="range" min="100" max="1000" step="50" value="440"></div><div class="ctl"><label for="pvA">Amplitude (loudness): <span id="pvAV"></span></label><input id="pvA" type="range" min="10" max="60" step="5" value="30"></div><div class="btnrow"><button class="btn" type="button" id="pvPlay">Play it</button><span class="cap" id="pvNote">Turn your volume down first. The tone stops by itself after 8 seconds.</span></div><div class="stage"><svg id="pvSvg" viewBox="0 0 480 160" role="img" aria-label="Waveform of a tone."></svg></div><p class="readout" id="pvR" aria-live="polite"></p></article><article class="aid wide"><span class="tag data">Data</span><h3>How loud is that?</h3><div class="bars" id="dbBars"></div><p class="cap">Decibels (dB). The scale is logarithmic, not linear: every +10 dB is ten times more sound energy, but we hear it as only roughly twice as loud. So 80 dB is not "twice" 40 dB; it is 10,000 times the energy. Over 85 dB for hours can damage hearing.</p></article></div></section>
 <section class="sec" id="s3"><div><p class="kicker">Concept 3 · How fast sound travels</p><h2>Faster in solids and liquids than gases</h2></div><p class="idea">Sound moves fastest through <mark>solids</mark> (particles close together pass the push quickly), slower in liquids, slowest in gases. It also speeds up as <mark>temperature</mark> rises.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Dominos close vs. far</h3><p class="cap">Tightly packed dominos pass a tip quickly. Spread them out and the signal takes longer to reach the end.</p></article><article class="aid wide"><span class="tag data">Data</span><h3>Speed of sound</h3><div class="bars" id="spdBars"></div><p class="cap">Meters per second. Light is about 300,000,000 m/s: lightning is seen before thunder is heard.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Thunder calculator</h3><div class="ctl"><label for="thS">Seconds between flash and thunder: <span id="thSV"></span> s</label><input id="thS" type="range" min="1" max="30" step="1" value="5"></div><div class="stage"><svg id="thSvg" viewBox="0 0 480 150" role="img" aria-label="Lightning far away: the light arrives at once, the thunder arrives later."></svg></div><p class="readout" id="thR" aria-live="polite"></p></article></div></section>
@@ -999,5 +1000,82 @@ __mountLessonGame(document.getElementById("lesson-game"), ":host{\n  display:blo
   }));
 })();</script>
 <!-- LESSON GAME:sound-lab END -->
+
+<style id="a11y-shared">
+/* Shared accessibility rules, injected last into every built page by build.mjs. */
+.skip-link{position:absolute;left:8px;top:-72px;z-index:2147483647;padding:10px 16px;border-radius:8px;background:#FFD23F;color:#1A1400;font:700 1rem/1.2 system-ui,sans-serif;text-decoration:none;border:2px solid #1A1400}
+.skip-link:focus{top:8px}
+main:focus{outline:none}
+:focus-visible{outline-offset:2px}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+/* Classic, light: tokens that were under 4.5:1 as text on the page backgrounds, and the amber slider accent (under 3:1). */
+@media not (prefers-color-scheme:dark){
+  :root:root:not([data-style="retro"]):not([data-theme="dark"]){--absorb:#B93A07;--green:#1D7A40;--red:#C42229;--transmit:#0A7566}
+  :root:root:not([data-style="retro"]):not([data-theme="dark"]) input[type=range]{accent-color:#B07800}
+}
+:root:root[data-theme="light"]:not([data-style="retro"]){--absorb:#B93A07;--green:#1D7A40;--red:#C42229;--transmit:#0A7566}
+:root:root[data-theme="light"]:not([data-style="retro"]) input[type=range]{accent-color:#B07800}
+/* Forced colors: the Retro heading is transparent text over a clipped gradient, which would disappear. */
+@media (forced-colors:active){
+  html[data-style="retro"] h1{background:none!important;-webkit-text-fill-color:CanvasText!important;color:CanvasText!important}
+  :focus-visible{outline:3px solid Highlight!important}
+  input[type=range]{accent-color:auto}
+}
+</style>
+<script>
+// Shared accessibility script, inlined into every built page by build.mjs.
+// Sets aria-valuetext on range sliders from the page's own readout (the value and unit in the label),
+// so a screen reader says "12 mL" instead of a bare "12". Existing readouts are not touched.
+(function () {
+  'use strict';
+  var VALUE_TAGS = /^(SPAN|OUTPUT|B|STRONG|EM|I|MARK)$/;
+
+  function labelOf(sl) {
+    if (sl.labels && sl.labels.length) return sl.labels[0];
+    return sl.closest ? sl.closest('label') : null;
+  }
+  function clean(s) { return s.replace(/\s+/g, ' ').trim(); }
+
+  // "<label>Base added: <span>12</span> mL (25 mL of acid in the cup)</label>"  ->  "12 mL"
+  function fromLabel(lb) {
+    if (!lb) return '';
+    var els = lb.querySelectorAll('*');
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      if (!VALUE_TAGS.test(el.tagName) || el.children.length || !clean(el.textContent)) continue;
+      var v = clean(el.textContent), rest = '', n = el.nextSibling;
+      while (n) { rest += n.textContent; n = n.nextSibling; }
+      rest = clean(rest.split(/[(,;\u2014\u2013]|\s-\s/)[0]);
+      if (rest && rest.length <= 24) v += ' ' + rest;
+      return v;
+    }
+    return '';
+  }
+  function fromNeighbour(sl) {
+    var id = sl.id, el = id && document.getElementById(id + 'V');
+    if (el && !el.contains(sl) && clean(el.textContent)) return clean(el.textContent);
+    var o = sl.parentNode && sl.parentNode.querySelector('output');
+    return o && clean(o.textContent) ? clean(o.textContent) : '';
+  }
+  function update(sl) {
+    var t = fromLabel(labelOf(sl)) || fromNeighbour(sl);
+    if (t && t.length <= 60) { if (sl.getAttribute('aria-valuetext') !== t) sl.setAttribute('aria-valuetext', t); }
+  }
+  function all() { Array.prototype.forEach.call(document.querySelectorAll('input[type="range"]'), update); }
+
+  var timer = 0;
+  function soon() { clearTimeout(timer); timer = setTimeout(all, 120); }
+  function start() {
+    all();
+    document.addEventListener('input', function (e) { if (e.target && e.target.type === 'range') { update(e.target); soon(); } });
+    document.addEventListener('change', soon);
+    if (window.MutationObserver) new MutationObserver(soon).observe(document.body, { childList: true, subtree: true, characterData: true });
+    window.addEventListener('load', all);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>
 
 </html>

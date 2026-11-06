@@ -1,35 +1,181 @@
 {
-  "id": "4-4-sort",
-  "title": "Body Part Match",
-  "intro": "Match structures to their jobs, then trace how an animal senses danger or food and responds.",
-  "note": "This is a model. The ruler-drop test in the lesson measures a real reaction.",
-  "summary": "Structures have jobs: some hold up or protect, some take in or make what the living thing needs, and some sense information. Information goes from a sense organ to the brain, and the brain sends a response to the muscles.",
-  "stages": [
+ "id": "4-4-sort",
+ "title": "Body Part Match",
+ "intro": "Match structures to their jobs, then trace how an animal senses danger or food and responds.",
+ "note": "This is a model. The ruler-drop test in the lesson measures a real reaction.",
+ "summary": "Structures have jobs: some hold up or protect, some take in or make what the living thing needs, and some sense information. Information goes from a sense organ to the brain, and the brain sends a response to the muscles.",
+ "stages": [
+  {
+   "prompt": "What job does each structure do?",
+   "bins": [
     {
-      "prompt": "What job does each structure do?",
-      "bins": [{"id":"protect","icon":"🛡️","label":"Holds up or protects"},{"id":"supply","icon":"🌿","label":"Takes in or makes what the living thing needs"},{"id":"sense","icon":"👁️","label":"Senses information"}],
-      "cards": [
-        {"id":"bark","icon":"🌲","label":"Tree bark","bin":"protect","why":"Bark protects the inside of a tree.","hint":"it covers the outside of the trunk."},
-        {"id":"skull","icon":"💀","label":"Skull","bin":"protect","why":"The skull protects the brain.","hint":"what does it surround?"},
-        {"id":"thorn","icon":"🌹","label":"Rose thorns","bin":"protect","why":"Thorns protect a plant from animals that would eat it.","hint":"what do they keep away?"},
-        {"id":"roots","icon":"🥕","label":"Plant roots","bin":"supply","why":"Roots take in water and minerals from the soil.","hint":"what do they take in from the ground?"},
-        {"id":"leaves","icon":"🍃","label":"Leaves","bin":"supply","why":"Leaves use light to make food for the plant.","hint":"what do they use light to make?"},
-        {"id":"eyes","icon":"👁️","label":"Eyes","bin":"sense","why":"Eyes sense light and send that information to the brain.","hint":"what do they sense?"},
-        {"id":"ears","icon":"👂","label":"Ears","bin":"sense","why":"Ears sense sound and send the information to the brain.","hint":"what do they sense?"},
-        {"id":"nose","icon":"👃","label":"Nose","bin":"sense","why":"A nose senses smells and sends the information to the brain.","hint":"what does it sense?"}
-      ]
+     "id": "protect",
+     "icon": "🛡️",
+     "label": "Holds up or protects"
     },
     {
-      "prompt": "Follow the path: a deer hears a snap and a robin sees a worm. Where does each step happen?",
-      "bins": [{"id":"sense","icon":"👂","label":"Sense organ takes in information"},{"id":"brain","icon":"🧠","label":"Brain decides"},{"id":"body","icon":"💪","label":"Muscles respond"}],
-      "cards": [
-        {"id":"deer-hear","icon":"🦌","label":"The deer's ears hear a snap","bin":"sense","why":"The ears take in the sound. That is information coming in.","hint":"is this the part that takes in information?"},
-        {"id":"robin-see","icon":"🐦","label":"The robin's eyes see a worm","bin":"sense","why":"The eyes take in light from the worm.","hint":"is this the part that takes in information?"},
-        {"id":"deer-think","icon":"🧠","label":"The brain decides: danger","bin":"brain","why":"The brain uses the information to decide what to do.","hint":"which part decides?"},
-        {"id":"robin-think","icon":"🧠","label":"The brain decides: food","bin":"brain","why":"The brain uses the information to decide what to do.","hint":"which part decides?"},
-        {"id":"deer-run","icon":"🏃","label":"The deer's leg muscles run","bin":"body","why":"The brain sends the message to the muscles and the deer runs away.","hint":"which part actually moves?"},
-        {"id":"robin-hop","icon":"🪱","label":"The robin hops and grabs the worm","bin":"body","why":"The brain sends the message to the muscles and the robin grabs the worm.","hint":"which part actually moves?"}
-      ]
+     "id": "supply",
+     "icon": "🌿",
+     "label": "Takes in or makes what the living thing needs"
+    },
+    {
+     "id": "sense",
+     "icon": "👁️",
+     "label": "Senses information"
     }
-  ]
+   ],
+   "cards": [
+    {
+     "id": "bark",
+     "icon": "🌲",
+     "label": "Tree bark",
+     "bin": "protect",
+     "why": "Bark protects the inside of a tree.",
+     "hint": "it covers the outside of the trunk."
+    },
+    {
+     "id": "skull",
+     "icon": "💀",
+     "label": "Skull",
+     "bin": "protect",
+     "why": "The skull protects the brain.",
+     "hint": "what does it surround?"
+    },
+    {
+     "id": "thorn",
+     "icon": "🌹",
+     "label": "Rose thorns",
+     "bin": "protect",
+     "why": "Thorns protect a plant from animals that would eat it.",
+     "hint": "what do they keep away?"
+    },
+    {
+     "id": "roots",
+     "icon": "🥕",
+     "label": "Plant roots",
+     "bin": "supply",
+     "why": "Roots take in water and minerals from the soil.",
+     "hint": "what do they take in from the ground?"
+    },
+    {
+     "id": "leaves",
+     "icon": "🍃",
+     "label": "Leaves",
+     "bin": "supply",
+     "why": "Leaves use light to make food for the plant.",
+     "hint": "what do they use light to make?"
+    },
+    {
+     "id": "eyes",
+     "icon": "👁️",
+     "label": "Eyes",
+     "bin": "sense",
+     "why": "Eyes sense light and send that information to the brain.",
+     "hint": "what do they sense?"
+    },
+    {
+     "id": "ears",
+     "icon": "👂",
+     "label": "Ears",
+     "bin": "sense",
+     "why": "Ears sense sound and send the information to the brain.",
+     "hint": "what do they sense?"
+    },
+    {
+     "id": "nose",
+     "icon": "👃",
+     "label": "Nose",
+     "bin": "sense",
+     "why": "A nose senses smells and sends the information to the brain.",
+     "hint": "what does it sense?"
+    },
+    {
+     "id": "bones",
+     "icon": "🦴",
+     "label": "Leg bones",
+     "bin": "protect",
+     "why": "Leg bones hold the body up.",
+     "hint": "what holds the body up?"
+    },
+    {
+     "id": "shell",
+     "icon": "🐢",
+     "label": "Turtle shell",
+     "bin": "protect",
+     "why": "A turtle shell covers and protects the turtle's soft body.",
+     "hint": "what covers the soft body?"
+    }
+   ]
+  },
+  {
+   "prompt": "Follow the path: a deer hears a snap and a robin sees a worm. Where does each step happen?",
+   "bins": [
+    {
+     "id": "sense",
+     "icon": "👂",
+     "label": "Sense organ takes in information"
+    },
+    {
+     "id": "brain",
+     "icon": "🧠",
+     "label": "Brain decides"
+    },
+    {
+     "id": "body",
+     "icon": "💪",
+     "label": "Muscles respond"
+    }
+   ],
+   "cards": [
+    {
+     "id": "deer-hear",
+     "icon": "🦌",
+     "label": "The deer's ears hear a snap",
+     "bin": "sense",
+     "why": "The ears take in the sound. That is information coming in.",
+     "hint": "is this the part that takes in information?"
+    },
+    {
+     "id": "robin-see",
+     "icon": "🐦",
+     "label": "The robin's eyes see a worm",
+     "bin": "sense",
+     "why": "The eyes take in light from the worm.",
+     "hint": "is this the part that takes in information?"
+    },
+    {
+     "id": "deer-think",
+     "icon": "🧠",
+     "label": "The brain decides: danger",
+     "bin": "brain",
+     "why": "The brain uses the information to decide what to do.",
+     "hint": "which part decides?"
+    },
+    {
+     "id": "robin-think",
+     "icon": "🧠",
+     "label": "The brain decides: food",
+     "bin": "brain",
+     "why": "The brain uses the information to decide what to do.",
+     "hint": "which part decides?"
+    },
+    {
+     "id": "deer-run",
+     "icon": "🏃",
+     "label": "The deer's leg muscles run",
+     "bin": "body",
+     "why": "The brain sends the message to the muscles and the deer runs away.",
+     "hint": "which part actually moves?"
+    },
+    {
+     "id": "robin-hop",
+     "icon": "🪱",
+     "label": "The robin hops and grabs the worm",
+     "bin": "body",
+     "why": "The brain sends the message to the muscles and the robin grabs the worm.",
+     "hint": "which part actually moves?"
+    }
+   ]
+  }
+ ]
 }

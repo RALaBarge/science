@@ -363,6 +363,7 @@ window.K5W=window.K5W||(function(){
  };
 })();
 </script><!--k5images-css-end-->
+<a class="skip-link" href="#main">Skip to main content</a>
 <header class="hero">
   <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="false">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="true">Retro space</button></div>
   <p class="kicker">Grade 3 · Unit 3.4</p>
@@ -377,7 +378,7 @@ window.K5W=window.K5W||(function(){
 </header>
 
 
-<main>
+<main id="main" tabindex="-1">
 
 <section class="sec" id="s1">
   <div><p class="kicker">Concept 1</p><h2>Animal groups can help survival</h2></div>
@@ -726,7 +727,7 @@ function k5BigSort(host, cfg) {
 }
 
 
-k5BigSort(document.getElementById("k5-activity"), {"id":"3-4-survival-sort","title":"Survival, Fossils, and Change","intro":"Sort fossil clues, how well organisms fit a place, and what animal groups give and cost.","note":"This is a sorting game model, and the real habitat-change claim, comparing a solution's benefits and costs, still counts.","summary":"Fossils such as Michigan Petoskey stones show past organisms and environments, and a habitat fits some organisms well but not others. Groups can help animals survive, but they also bring trade-offs, and a winter model showed 8 thick-fur deer surviving compared with 2 thin-fur deer.","stages":[{"prompt":"What past environment does this fossil evidence support?","bins":[{"id":"shallow-sea","icon":"🌊","label":"Warm shallow sea"},{"id":"wet-land","icon":"🌿","label":"Wet land"},{"id":"ancient-water","icon":"🐟","label":"Ancient water, unsure which"}],"cards":[{"id":"petoskey-stone","icon":"🪨","label":"Petoskey stone","bin":"shallow-sea","why":"A Petoskey stone is fossil coral. Coral needs shallow water, so this shows an ancient sea in Michigan.","hint":"What kind of place does coral need?"},{"id":"fossil-coral","icon":"🪸","label":"Fossil coral","bin":"shallow-sea","why":"Coral needs shallow water, so the place was once a warm shallow sea.","hint":"What kind of place does coral need?"},{"id":"fern-leaf","icon":"🌿","label":"Fern leaf fossil","bin":"wet-land","why":"A fern leaf fossil points to wet land.","hint":"What kind of place does a fern need?"},{"id":"fish-fossil","icon":"🐟","label":"Fish fossil","bin":"ancient-water","why":"A fish needed water, but this fossil does not tell us if it was a lake or a sea.","hint":"what does a fish need, and does the fossil say more?"}]},{"prompt":"How well does this organism survive in this place?","bins":[{"id":"survives-well","icon":"✅","label":"Survives well"},{"id":"survives-less","icon":"🟡","label":"Survives less well"},{"id":"cannot-survive","icon":"❌","label":"Cannot survive"}],"cards":[{"id":"frog-pond","icon":"🐸","label":"Frog in a pond","bin":"survives-well","why":"A frog survives well in a pond because it needs water.","hint":"does this place give the animal what it needs?"},{"id":"deer-forest","icon":"🦌","label":"Deer in a forest","bin":"survives-well","why":"A deer survives well in a forest because it finds food and cover.","hint":"What can a deer find in this place?"},{"id":"beach-grass-dune","icon":"🌾","label":"Beach grass on a dune","bin":"survives-well","why":"Beach grass fits the dune.","hint":"Does this plant fit this kind of place?"},{"id":"fish-on-land","icon":"🐟","label":"Fish on dry land","bin":"cannot-survive","why":"A fish cannot survive on land because its gills only work in water.","hint":"What do gills need in order to work?"},{"id":"deer-dune","icon":"🦌","label":"Deer on a bare sand dune","bin":"survives-less","why":"A bare dune has little of the food and cover a deer needs, so it survives less well there than in a forest.","hint":"how much of the food and cover it needs does this place give?"},{"id":"grass-shade","icon":"🌾","label":"Beach grass in a shady forest","bin":"survives-less","why":"Beach grass fits sunny, sandy dunes. In a shady forest it gets less of what it needs, so it survives less well.","hint":"does this place give the plant the light and sand it fits?"}]},{"prompt":"Does this show a way the group helps, or a trade-off?","bins":[{"id":"helps","icon":"👀","label":"Helps survival"},{"id":"trade-off","icon":"⚖️","label":"Trade-off cost"}],"cards":[{"id":"wolf-pack","icon":"🐺","label":"Wolves hunting in a pack","bin":"helps","why":"Wolves hunt in packs, which can help them get food.","hint":"Is the group meeting a need together, or giving something up?"},{"id":"bee-work","icon":"🐝","label":"Bees sharing the work","bin":"helps","why":"Bees share work, which can help the group survive.","hint":"Is the group meeting a need together, or giving something up?"},{"id":"deer-watch","icon":"🦌","label":"Many deer watching","bin":"helps","why":"Many eyes can see danger sooner than one deer alone.","hint":"Is the group meeting a need together, or giving something up?"},{"id":"share-food","icon":"🍖","label":"Sharing limited food","bin":"trade-off","why":"Groups may have to share food, so there is less for each animal.","hint":"Is the group meeting a need together, or giving something up?"},{"id":"share-space","icon":"↔️","label":"Sharing limited space","bin":"trade-off","why":"Groups share space, which is a trade-off of living together.","hint":"Is the group meeting a need together, or giving something up?"}]}]});
+k5BigSort(document.getElementById("k5-activity"), {"id":"3-4-survival-sort","title":"Survival, Fossils, and Change","intro":"Sort fossil clues, how well organisms fit a place, and what animal groups give and cost.","note":"This is a sorting game model, and the real habitat-change claim, comparing a solution's benefits and costs, still counts.","summary":"Fossils such as Michigan Petoskey stones show past organisms and environments, and a habitat fits some organisms well but not others. Groups can help animals survive, but they also bring trade-offs, and a winter model showed 8 thick-fur deer surviving compared with 2 thin-fur deer.","stages":[{"prompt":"What past environment does this fossil evidence support?","bins":[{"id":"shallow-sea","icon":"🌊","label":"Warm shallow sea"},{"id":"wet-land","icon":"🌿","label":"Wet land"},{"id":"ancient-water","icon":"🐟","label":"Ancient water, unsure which"}],"cards":[{"id":"petoskey-stone","icon":"🪨","label":"Petoskey stone","bin":"shallow-sea","why":"A Petoskey stone is fossil coral. Coral needs shallow water, so this shows an ancient sea in Michigan.","hint":"What kind of place does coral need?"},{"id":"fossil-coral","icon":"🪸","label":"Fossil coral","bin":"shallow-sea","why":"Coral needs shallow water, so the place was once a warm shallow sea.","hint":"What kind of place does coral need?"},{"id":"fern-leaf","icon":"🌿","label":"Fern leaf fossil","bin":"wet-land","why":"A fern leaf fossil points to wet land.","hint":"What kind of place does a fern need?"},{"id":"fish-fossil","icon":"🐟","label":"Fish fossil","bin":"ancient-water","why":"A fish needed water, but this fossil does not tell us if it was a lake or a sea.","hint":"what does a fish need, and does the fossil say more?"}]},{"prompt":"How well does this organism survive in this place?","bins":[{"id":"survives-well","icon":"✅","label":"Survives well"},{"id":"survives-less","icon":"🟡","label":"Survives less well"},{"id":"cannot-survive","icon":"❌","label":"Cannot survive"}],"cards":[{"id":"frog-pond","icon":"🐸","label":"Frog in a pond","bin":"survives-well","why":"A frog survives well in a pond because it needs water.","hint":"does this place give the animal what it needs?"},{"id":"deer-forest","icon":"🦌","label":"Deer in a forest","bin":"survives-well","why":"A deer survives well in a forest because it finds food and cover.","hint":"What can a deer find in this place?"},{"id":"beach-grass-dune","icon":"🌾","label":"Beach grass on a dune","bin":"survives-well","why":"Beach grass fits the dune.","hint":"Does this plant fit this kind of place?"},{"id":"fish-on-land","icon":"🐟","label":"Fish on dry land","bin":"cannot-survive","why":"A fish cannot survive on land because its gills only work in water.","hint":"What do gills need in order to work?"},{"id":"deer-dune","icon":"🦌","label":"Deer on a bare sand dune","bin":"survives-less","why":"A bare dune has little of the food and cover a deer needs, so it survives less well there than in a forest.","hint":"how much of the food and cover it needs does this place give?"},{"id":"grass-shade","icon":"🌾","label":"Beach grass in a shady forest","bin":"survives-less","why":"Beach grass fits sunny, sandy dunes. In a shady forest it gets less of what it needs, so it survives less well.","hint":"does this place give the plant the light and sand it fits?"}]},{"prompt":"Does this show a way the group helps, or a trade-off?","bins":[{"id":"helps","icon":"👀","label":"Helps survival"},{"id":"trade-off","icon":"⚖️","label":"Trade-off cost"}],"cards":[{"id":"wolf-pack","icon":"🐺","label":"Wolves hunting in a pack","bin":"helps","why":"Wolves hunt in packs, which can help them get food.","hint":"could several wolves together catch food that one wolf could not?"},{"id":"bee-work","icon":"🐝","label":"Bees sharing the work","bin":"helps","why":"Bees share work, which can help the group survive.","hint":"what gets done faster when many bees each do a job?"},{"id":"deer-watch","icon":"🦌","label":"Many deer watching","bin":"helps","why":"Many eyes can see danger sooner than one deer alone.","hint":"what can many deer see that one deer might miss?"},{"id":"share-food","icon":"🍖","label":"Sharing limited food","bin":"trade-off","why":"Groups may have to share food, so there is less for each animal.","hint":"what happens to each animal's share when more animals eat the same food?"},{"id":"share-space","icon":"↔️","label":"Crowding in limited space","bin":"trade-off","why":"When many animals live close together they crowd each other, and that can make fighting and sickness spread more easily. That is a cost of living in a group.","hint":"what happens when many animals need the same small space?"}]}]});
 </script>
 </section>
 <!--k5-activity-end-->
@@ -745,6 +746,82 @@ box.innerHTML=Q.map((x,i)=>`<div class="q item" data-i="${i}" style="display:gri
 box.addEventListener('click',e=>{ const b=e.target.closest('.opt'); if(!b||b.disabled)return; const row=b.closest('.q'), x=Q[+row.dataset.i], ok=+b.dataset.j===x.a;
   $$('.opt',row).forEach(o=>{ o.disabled=true; if(+o.dataset.j===x.a)o.classList.add('good'); }); if(!ok)b.classList.add('bad'); else right++;
   $('.fb',row).textContent=(ok?'Correct. ':'Not quite. ')+x.e; sc.textContent=`${right} of ${Q.length} correct`; });
+})();
+</script>
+<style id="a11y-shared">
+/* Shared accessibility rules, injected last into every built page by build.mjs. */
+.skip-link{position:absolute;left:8px;top:-72px;z-index:2147483647;padding:10px 16px;border-radius:8px;background:#FFD23F;color:#1A1400;font:700 1rem/1.2 system-ui,sans-serif;text-decoration:none;border:2px solid #1A1400}
+.skip-link:focus{top:8px}
+main:focus{outline:none}
+:focus-visible{outline-offset:2px}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+/* Classic, light: tokens that were under 4.5:1 as text on the page backgrounds, and the amber slider accent (under 3:1). */
+@media not (prefers-color-scheme:dark){
+  :root:root:not([data-style="retro"]):not([data-theme="dark"]){--absorb:#B93A07;--green:#1D7A40;--red:#C42229;--transmit:#0A7566}
+  :root:root:not([data-style="retro"]):not([data-theme="dark"]) input[type=range]{accent-color:#B07800}
+}
+:root:root[data-theme="light"]:not([data-style="retro"]){--absorb:#B93A07;--green:#1D7A40;--red:#C42229;--transmit:#0A7566}
+:root:root[data-theme="light"]:not([data-style="retro"]) input[type=range]{accent-color:#B07800}
+/* Forced colors: the Retro heading is transparent text over a clipped gradient, which would disappear. */
+@media (forced-colors:active){
+  html[data-style="retro"] h1{background:none!important;-webkit-text-fill-color:CanvasText!important;color:CanvasText!important}
+  :focus-visible{outline:3px solid Highlight!important}
+  input[type=range]{accent-color:auto}
+}
+</style>
+<script>
+// Shared accessibility script, inlined into every built page by build.mjs.
+// Sets aria-valuetext on range sliders from the page's own readout (the value and unit in the label),
+// so a screen reader says "12 mL" instead of a bare "12". Existing readouts are not touched.
+(function () {
+  'use strict';
+  var VALUE_TAGS = /^(SPAN|OUTPUT|B|STRONG|EM|I|MARK)$/;
+
+  function labelOf(sl) {
+    if (sl.labels && sl.labels.length) return sl.labels[0];
+    return sl.closest ? sl.closest('label') : null;
+  }
+  function clean(s) { return s.replace(/\s+/g, ' ').trim(); }
+
+  // "<label>Base added: <span>12</span> mL (25 mL of acid in the cup)</label>"  ->  "12 mL"
+  function fromLabel(lb) {
+    if (!lb) return '';
+    var els = lb.querySelectorAll('*');
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      if (!VALUE_TAGS.test(el.tagName) || el.children.length || !clean(el.textContent)) continue;
+      var v = clean(el.textContent), rest = '', n = el.nextSibling;
+      while (n) { rest += n.textContent; n = n.nextSibling; }
+      rest = clean(rest.split(/[(,;\u2014\u2013]|\s-\s/)[0]);
+      if (rest && rest.length <= 24) v += ' ' + rest;
+      return v;
+    }
+    return '';
+  }
+  function fromNeighbour(sl) {
+    var id = sl.id, el = id && document.getElementById(id + 'V');
+    if (el && !el.contains(sl) && clean(el.textContent)) return clean(el.textContent);
+    var o = sl.parentNode && sl.parentNode.querySelector('output');
+    return o && clean(o.textContent) ? clean(o.textContent) : '';
+  }
+  function update(sl) {
+    var t = fromLabel(labelOf(sl)) || fromNeighbour(sl);
+    if (t && t.length <= 60) { if (sl.getAttribute('aria-valuetext') !== t) sl.setAttribute('aria-valuetext', t); }
+  }
+  function all() { Array.prototype.forEach.call(document.querySelectorAll('input[type="range"]'), update); }
+
+  var timer = 0;
+  function soon() { clearTimeout(timer); timer = setTimeout(all, 120); }
+  function start() {
+    all();
+    document.addEventListener('input', function (e) { if (e.target && e.target.type === 'range') { update(e.target); soon(); } });
+    document.addEventListener('change', soon);
+    if (window.MutationObserver) new MutationObserver(soon).observe(document.body, { childList: true, subtree: true, characterData: true });
+    window.addEventListener('load', all);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
 })();
 </script>
 </body>

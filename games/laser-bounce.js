@@ -594,14 +594,14 @@
     if (A.modalOpen()) return;
     const tag = (e.target && e.target.tagName) || '';
     if (tag === 'INPUT' || tag === 'SELECT') return;
-    if (state.solved && (e.key === 'Enter' || e.key === ' ')) { if (tag !== 'BUTTON') { nextLevel(); e.preventDefault(); } return; }
+    if (state.solved && (e.key === 'Enter' || e.key === ' ')) { if (tag !== 'BUTTON' && tag !== 'A') { nextLevel(); e.preventDefault(); } return; }
     const moves = { ArrowRight: 1, ArrowLeft: -1, ArrowDown: COLS, ArrowUp: -COLS };
     if (moves[e.key] !== undefined) {
       if (state.cursor < 0) state.cursor = Math.floor(ROWS / 2) * COLS + Math.floor(COLS / 2);
       const n = state.cursor + moves[e.key];
       if (n >= 0 && n < N && !(Math.abs(moves[e.key]) === 1 && Math.floor(n / COLS) !== Math.floor(state.cursor / COLS))) state.cursor = n;
       wake(); e.preventDefault();
-    } else if ((e.key === ' ' || e.key === 'Enter') && state.cursor >= 0 && tag !== 'BUTTON') { cycleCell(state.cursor); e.preventDefault(); }
+    } else if ((e.key === ' ' || e.key === 'Enter') && state.cursor >= 0 && tag !== 'BUTTON' && tag !== 'A') { cycleCell(state.cursor); e.preventDefault(); }
   });
   $('clear-btn').addEventListener('click', () => { if (!state.solved) { state.mirrors.clear(); state.moves++; retrace(); } });
   $('hint-btn').addEventListener('click', askHint);

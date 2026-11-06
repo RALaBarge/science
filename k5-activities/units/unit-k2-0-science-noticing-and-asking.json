@@ -2,9 +2,9 @@
  "id": "k2-0-notice-walk",
  "engine": "sceneweb",
  "title": "Notice Walk Detective",
- "intro": "Look around a Michigan backyard. Tap what you notice, then pick the questions we can test.",
+ "intro": "Look around a Michigan backyard. Tap each thing you notice and watch your tally grow. Then pick the questions we can test and the ones we cannot.",
  "note": "This is a model of a real notice walk. Go outside or look around your room and notice real things too, then do the paper-towel test from the lesson. Do it with a grown-up.",
- "summary": "Noticing and asking are science, and your tally is data — just like the class chart of 4 smooth things and 5 bumpy things. A question we can test changes one thing and measures one thing, like the towel test: Towel A held 5 drops, Towel B held 8 drops.",
+ "summary": "Noticing and asking are science, and your tally is data: 4 smooth things and 5 bumpy things, 5 from nature and 4 made by people. A question we can test changes one thing and measures one thing, like the towel test: Towel A held 5 drops, Towel B held 8 drops. A fair test keeps everything else the same, and opinions and big \"why\" questions are not tests yet.",
  "scene": {
   "w": 400,
   "h": 250,
@@ -60,83 +60,92 @@
    {
     "id": "stone",
     "icon": "🪨",
-    "label": "Lake-smooth stone",
+    "label": "Lake stone",
     "notices": {
-     "feel": "smooth"
+     "feel": "smooth",
+     "source": "nature"
     },
-    "say": "A lake-smooth stone. Smooth!"
+    "say": "A stone from the lake shore. Smooth! It is from nature."
    },
    {
-    "id": "driftwood",
-    "icon": "🪵",
-    "label": "Wave-smooth driftwood",
+    "id": "marble",
+    "icon": "🔮",
+    "label": "Glass marble",
     "notices": {
-     "feel": "smooth"
+     "feel": "smooth",
+     "source": "made"
     },
-    "say": "Driftwood the waves smoothed. Smooth!"
+    "say": "A glass marble. Smooth! People made it."
    },
    {
-    "id": "acorn",
-    "icon": "🌰",
-    "label": "Acorn nut",
+    "id": "button",
+    "icon": "🔘",
+    "label": "Button",
     "notices": {
-     "feel": "smooth"
+     "feel": "smooth",
+     "source": "made"
     },
-    "say": "An acorn nut. Smooth!"
+    "say": "A button. Smooth! People made it."
    },
    {
-    "id": "glass",
-    "icon": "🔷",
-    "label": "Beach glass",
+    "id": "mapleleaf",
+    "icon": "🍁",
+    "label": "Maple leaf",
     "notices": {
-     "feel": "smooth"
+     "feel": "smooth",
+     "source": "nature"
     },
-    "say": "A piece of beach glass from the lake. Smooth!"
+    "say": "A maple leaf. Smooth! It is from a tree."
    },
    {
     "id": "cone",
     "icon": "🌲",
     "label": "Pine cone",
     "notices": {
-     "feel": "bumpy"
+     "feel": "bumpy",
+     "source": "nature"
     },
-    "say": "A pine cone. Bumpy!"
+    "say": "A pine cone. Bumpy! It is from a tree."
    },
    {
     "id": "bark",
     "icon": "🪵",
     "label": "Tree bark",
     "notices": {
-     "feel": "bumpy"
+     "feel": "bumpy",
+     "source": "nature"
     },
-    "say": "Tree bark. Bumpy!"
+    "say": "Tree bark. Bumpy! It is from a tree."
    },
    {
-    "id": "rock",
-    "icon": "⛰️",
-    "label": "Rough rock",
+    "id": "acorncap",
+    "icon": "🌰",
+    "label": "Acorn cap",
     "notices": {
-     "feel": "bumpy"
+     "feel": "bumpy",
+     "source": "nature"
     },
-    "say": "A rough rock. Bumpy!"
+    "say": "An acorn cap. Bumpy! It is from an oak tree."
+   },
+   {
+    "id": "sponge",
+    "icon": "🧽",
+    "label": "Kitchen sponge",
+    "notices": {
+     "feel": "bumpy",
+     "source": "made"
+    },
+    "say": "A kitchen sponge. Bumpy! People made it."
    },
    {
     "id": "brick",
     "icon": "🧱",
     "label": "Old brick",
     "notices": {
-     "feel": "bumpy"
+     "feel": "bumpy",
+     "source": "made"
     },
-    "say": "An old brick. Rough and bumpy."
-   },
-   {
-    "id": "crinkle",
-    "icon": "🍂",
-    "label": "Dry crinkly leaf",
-    "notices": {
-     "feel": "bumpy"
-    },
-    "say": "A dry, crinkly leaf. Bumpy!"
+    "say": "An old brick. Rough and bumpy. People made it."
    }
   ]
  },
@@ -154,6 +163,22 @@
      "id": "bumpy",
      "icon": "🪵",
      "label": "Bumpy"
+    }
+   ]
+  },
+  {
+   "id": "source",
+   "label": "Where does it come from?",
+   "bins": [
+    {
+     "id": "nature",
+     "icon": "🌳",
+     "label": "Nature"
+    },
+    {
+     "id": "made",
+     "icon": "🛠️",
+     "label": "Made by people"
     }
    ]
   }
@@ -176,6 +201,26 @@
      "label": "Is blue the prettiest color?",
      "ok": false,
      "why": "Prettiest is an opinion. A test measures something we can count or compare."
+    }
+   ]
+  },
+  {
+   "q": "Look at your tally of smooth and bumpy things. Which question can we test?",
+   "choices": [
+    {
+     "label": "Does a marble roll farther on smooth paper or on a bumpy brick?",
+     "ok": true,
+     "why": "Yes! Change one thing: the surface. Measure one thing: how far the marble rolls. Keep the same marble and the same push."
+    },
+    {
+     "label": "Which is the nicest bumpy thing?",
+     "ok": false,
+     "why": "Nicest is an opinion. A test measures something we can count or compare."
+    },
+    {
+     "label": "Why did we find more bumpy things than smooth things?",
+     "ok": false,
+     "why": "We just picked what was in the yard. There is nothing to change and measure, so this is not a test."
     }
    ]
   },
@@ -216,6 +261,26 @@
      "label": "Are pine cones nicer than stones?",
      "ok": false,
      "why": "Nicer is an opinion. A test measures something we can count or compare."
+    }
+   ]
+  },
+  {
+   "q": "Which question is a fair test of paper towels?",
+   "choices": [
+    {
+     "label": "Which of two same-size towels holds more drops from the same dropper?",
+     "ok": true,
+     "why": "Yes! Only the towel changes. The size and the dropper stay the same, so the towel is the only thing that can explain a different count."
+    },
+    {
+     "label": "Does a big towel with big drops hold more than a small towel with small drops?",
+     "ok": false,
+     "why": "That changes two things at once, the towel size and the drop size. If the counts differ, we could not tell which one did it. A fair test changes one thing and keeps the rest the same."
+    },
+    {
+     "label": "Which towel do we like best?",
+     "ok": false,
+     "why": "Liking is an opinion. A test measures something we can count or compare."
     }
    ]
   }
