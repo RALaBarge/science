@@ -28,6 +28,18 @@
     { "files": ["k-5/unit-*.html"], "pat": "Michigan Science Standards this unit earns", "kind": "CHECK", "note": "Standard codes not yet compared with the Michigan (MDE) document." },
     { "files": ["k-5/unit-*.html"], "pat": "(?<=<h2>)Play: [^<]*", "kind": "CHECK", "note": "Play this activity once: is it clear and fun? (weakest were K2.0, the Big Sort ones and the 5.2 gravity round)." },
     { "files": ["6th/unit-15-*.html", "7th/unit-7.10-*.html", "7th/unit-7.11-*.html", "8th/unit-8.10-*.html", "8th/unit-8.11-*.html"], "banner": "NEW UNIT: needs your science read (written and checked by AI only).", "kind": "READ" },
-    { "files": ["8th/unit-8.10-*.html", "8th/unit-8.11-*.html"], "banner": "Also: the tutor-note activities here were never run with a student.", "kind": "READ" }
+    { "files": ["8th/unit-8.10-*.html", "8th/unit-8.11-*.html"], "banner": "Also: the tutor-note activities here were never run with a student.", "kind": "READ" },
+    { "files": ["8th/unit-8.8-genetics-and-heredity.html"], "pat": "Editing genes: what people hope for[^<]*", "kind": "READ", "note": "NEW biotech section (needs your science read): GMO / CRISPR / gene therapy balance. Check the 2016 National Academies finding wording, the 2023 CRISPR sickle cell approval, Bt corn and papaya examples, and that the both-sides framing is fair." },
+    { "files": ["8th/unit-8.9-natural-selection-and-common-ancestry.html"], "pat": "One wild plant, many foods", "kind": "CHECK", "note": "NEW: wild cabbage to kale/broccoli/cauliflower/sprouts/kohlrabi. Confirm part-selected list." },
+    { "files": ["7th/unit-7.4-metabolic-reactions-and-the-body.html"], "pat": "No oxygen\\? Fermentation", "kind": "READ", "note": "NEW: fermentation (yeast, lactic acid bacteria, biomanufacturing). Check equation and wording for grade 7." },
+    { "files": ["7th/unit-7.11-nutrition-health-and-disease.html"], "pat": "Medicines that come from biology", "kind": "READ", "note": "NEW: antibiotics, vaccine types incl. mRNA, protein medicines. Check accuracy and tone." },
+    { "files": ["7th/unit-7.6-ecosystem-dynamics.html"], "pat": "Variety in farm crops", "kind": "CHECK", "note": "NEW: crop diversity, seed banks, breeding with DNA tests." },
+    { "files": ["7th/unit-7.7-earth-resources-and-human-impact.html"], "pat": "Microbes as a clean-up crew", "kind": "CHECK", "note": "NEW: composting, wastewater, bioremediation." },
+    { "files": ["6th/unit-07-cells.html"], "pat": "Tiny cells that work for us", "kind": "READ", "note": "NEW: yeast, yogurt bacteria, insulin from microbes at grade 6 level." },
+    { "files": ["6th/unit-09-body-systems-and-homeostasis.html"], "pat": "Where does insulin medicine come from\\?", "kind": "CHECK", "note": "NEW: insulin from animals, then microbes since early 1980s. Confirm date wording." },
+    { "files": ["k-5/unit-3-3-life-cycles-and-traits.html"], "pat": "Dogs and farm plants", "kind": "CHECK", "note": "NEW K-5: breeding dogs and crops, concrete wording." },
+    { "files": ["k-5/unit-5-3-energy-and-matter-in-ecosystems.html"], "pat": "Compost pile", "kind": "CHECK", "note": "NEW K-5: compost microbes, with hand-washing safety note." },
+    { "files": ["k-5/unit-5-1-matter-mixtures-and-changes.html"], "pat": "Bread dough and yogurt", "kind": "CHECK", "note": "NEW K-5: yeast and yogurt as chemical change; check that it is fair to call both chemical changes at grade 5." },
+    { "files": ["extras/pick-a-trade.html"], "pat": "Careers near biology and biotechnology", "kind": "READ", "note": "NEW: biotech careers list, no numbers. Add real BLS codes/figures if wanted." }
   ]
 }
