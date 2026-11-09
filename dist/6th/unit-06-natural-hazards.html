@@ -66,9 +66,16 @@ h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
 .sec h2{font-size:clamp(1.9rem,6vw,2.7rem);font-weight:800;letter-spacing:-.02em}
 .idea{font-family:var(--font-display);font-size:clamp(1.25rem,4.4vw,1.75rem);line-height:1.25;font-weight:700;text-wrap:balance;max-width:28em}
 .idea mark{background:none;color:var(--reflect);font-weight:700}
+.sec p.bg{max-width:44em;font-size:1.05rem;line-height:1.6;color:var(--ink)}
+.sec p.bg b{font-weight:700}
 .aids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
 .aid{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
 .aid.wide{grid-column:1/-1}
+/* Layout-aware centering: side-by-side cards of different height center vertically; a card alone in its row (next to a wide card) sits centered at half width. */
+@media (min-width:761px){
+.aids{align-items:center}
+.aid:not(.wide):only-child,.aid:not(.wide):first-child:has(+ .aid.wide),.aid.wide + .aid:not(.wide):has(+ .aid.wide),.aid.wide + .aid:not(.wide):last-child{grid-column:1/-1;justify-self:center;width:calc((100% - 16px)/2)}
+}
 .aid h3{font-size:1.2rem;font-weight:700}
 .aid p.cap{font-size:.95rem;color:var(--muted)}
 .aid p.cap b{color:var(--ink)}
@@ -789,7 +796,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s1">
   <div><p class="kicker">Concept 1 · Hazard and risk</p><h2>A hazard isn't a disaster</h2></div>
-  <p class="idea">A <mark>hazard</mark> is a natural event that could cause harm. A <mark>disaster</mark> is what happens when it hits people who weren't ready. <mark>Risk</mark> = how strong the hazard is × how many are exposed × how vulnerable they are.</p>
+  <p class="idea">A <mark>hazard</mark> is a natural event that could cause harm. A <mark>disaster</mark> is what happens when it hits people who weren't ready. <mark>Risk</mark> = how strong the hazard is × how many are exposed × how vulnerable they are.</p><p class="bg">A <b>natural hazard</b> is a natural event, such as an earthquake, flood, or storm, that could harm people or property. It becomes a <b>disaster</b> when it strikes where people are unprepared and causes serious damage. The same hazard can have very different results in different places. <b>Risk</b> is the chance of harm, and it depends on three things: how strong or likely the hazard is, how many people and buildings are exposed to it, and how vulnerable they are, meaning how well they can withstand it and recover. A strong earthquake in an empty desert is a hazard but not a disaster. Reducing exposure or vulnerability, for example by building stronger houses or planning evacuation routes, reduces risk even though we cannot control the hazard itself.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -831,7 +838,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s2">
   <div><p class="kicker">Concept 2 · Making buildings safer</p><h2>Resonance: the shaking that matches</h2></div>
-  <p class="idea">Every building has a <mark>natural sway rate</mark>. If the ground shakes at about that rate, the building sways bigger and bigger: <mark>resonance</mark>. Engineers design to avoid it or absorb it.</p>
+  <p class="idea">Every building has a <mark>natural sway rate</mark>. If the ground shakes at about that rate, the building sways bigger and bigger: <mark>resonance</mark>. Engineers design to avoid it or absorb it.</p><p class="bg">Any object that can swing or vibrate has a <b>natural frequency</b>, the rate at which it likes to move back and forth. A child on a swing is a good example. If you give pushes that match the swing's natural rate, the swing goes higher with each push. This effect is called <b>resonance</b>. Buildings have natural frequencies too, and an earthquake that shakes the ground at about that rate can make a building sway more and more and become badly damaged. Engineers reduce the danger in several ways. They make buildings stiffer or heavier to change the natural frequency, add weights that move opposite to the sway, and place flexible bases between a building and the ground. Testing models on shake tables lets them try out designs before building the real thing.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -892,7 +899,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s3">
   <div><p class="kicker">Concept 3 · Tsunamis</p><h2>Giant, fast, shallow-water waves</h2></div>
-  <p class="idea">A tsunami is a train of waves from an underwater earthquake or landslide. In deep ocean it is <mark>fast and low</mark>. In shallow water it <mark>slows and grows tall</mark>.</p>
+  <p class="idea">A tsunami is a train of waves from an underwater earthquake or landslide. In deep ocean it is <mark>fast and low</mark>. In shallow water it <mark>slows and grows tall</mark>.</p><p class="bg">A <b>tsunami</b> is a series of very long ocean waves, usually caused when an underwater earthquake, landslide, or volcanic eruption suddenly moves a large volume of water. In deep water the waves are only about a meter high but spread out over many kilometers, and they travel as fast as a jet airplane, around 800 kilometers per hour (500 miles per hour). As a tsunami reaches shallow water near shore, the front of the wave slows down while the water behind keeps arriving, so the wave bunches up and grows much taller. Often the first sign is the sea pulling back from the shore. A tsunami is not a single wave, and later waves can be larger. Because they cross oceans in hours, warning systems can give people far away time to move to high ground.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -938,7 +945,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s4">
   <div><p class="kicker">Concept 4 · Floods and landslides</p><h2>Water and slopes</h2></div>
-  <p class="idea">Rain that can't soak in <mark>runs off fast</mark> and floods. Water-soaked slopes <mark>lose their grip</mark> and slide. Pavement and bare slopes make both worse.</p>
+  <p class="idea">Rain that can't soak in <mark>runs off fast</mark> and floods. Water-soaked slopes <mark>lose their grip</mark> and slide. Pavement and bare slopes make both worse.</p><p class="bg"><b>Floods</b> happen when more water arrives than the ground and rivers can handle. Soil and plants soak up rain, but pavement, roofs, bare soil, and frozen or already soaked ground cannot, so the water <b>runs off</b> quickly into streams and rivers, which then overflow. Heavy rain, rapid snowmelt, and storm surges are common causes. <b>Landslides</b> happen when gravity pulls soil or rock down a slope. Water adds weight and reduces the friction that holds material in place, so steep slopes with wet soil are most at risk. Removing trees and plants, whose roots hold soil together, makes it worse. Because floods and landslides often follow storms, communities can lower the risk by keeping wetlands and vegetation, building retaining walls, and not building in the most dangerous places.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -1505,7 +1512,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s5">
   <div><p class="kicker">Concept 5 · Warnings and preparing</p><h2>Seconds, minutes, and a plan</h2></div>
-  <p class="idea">We can't stop hazards, but <mark>warnings</mark> and <mark>preparation</mark> save lives. The more lead time and the better the plan, the less harm.</p>
+  <p class="idea">We can't stop hazards, but <mark>warnings</mark> and <mark>preparation</mark> save lives. The more lead time and the better the plan, the less harm.</p><p class="bg">We cannot prevent most natural hazards, but we can reduce the harm they do. <b>Warning systems</b> use measurements and forecasts to alert people before a hazard arrives: weather radar and satellites track storms, seismometers detect earthquake waves, and ocean buoys detect tsunamis. Warnings can be hours, minutes, or just seconds, and the more lead time people have, the more they can do. <b>Preparedness</b> means having a plan ahead of time, such as a family meeting place, an emergency kit with water, food, a flashlight, and medicine, and knowing where to shelter. Michigan's main hazards are tornadoes, severe thunderstorms, floods, and winter storms. Knowing the hazard season and the local warning signals helps people act quickly and safely.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>

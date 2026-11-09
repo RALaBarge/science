@@ -66,9 +66,16 @@ h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
 .sec h2{font-size:clamp(1.9rem,6vw,2.7rem);font-weight:800;letter-spacing:-.02em}
 .idea{font-family:var(--font-display);font-size:clamp(1.25rem,4.4vw,1.75rem);line-height:1.25;font-weight:700;text-wrap:balance;max-width:28em}
 .idea mark{background:none;color:var(--reflect);font-weight:700}
+.sec p.bg{max-width:44em;font-size:1.05rem;line-height:1.6;color:var(--ink)}
+.sec p.bg b{font-weight:700}
 .aids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
 .aid{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
 .aid.wide{grid-column:1/-1}
+/* Layout-aware centering: side-by-side cards of different height center vertically; a card alone in its row (next to a wide card) sits centered at half width. */
+@media (min-width:761px){
+.aids{align-items:center}
+.aid:not(.wide):only-child,.aid:not(.wide):first-child:has(+ .aid.wide),.aid.wide + .aid:not(.wide):has(+ .aid.wide),.aid.wide + .aid:not(.wide):last-child{grid-column:1/-1;justify-self:center;width:calc((100% - 16px)/2)}
+}
 .aid h3{font-size:1.2rem;font-weight:700}
 .aid p.cap{font-size:.95rem;color:var(--muted)}
 .aid p.cap b{color:var(--ink)}
@@ -344,7 +351,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s1">
   <div><p class="kicker">Concept 1 · Inside Earth</p><h2>Earth has layers</h2></div>
-  <p class="idea">Earth is built in layers: a thin <mark>crust</mark>, a thick flowing <mark>mantle</mark>, a liquid <mark>outer core</mark>, and a solid <mark>inner core</mark>. It gets hotter and more squeezed the deeper you go.</p>
+  <p class="idea">Earth is built in layers: a thin <mark>crust</mark>, a thick flowing <mark>mantle</mark>, a liquid <mark>outer core</mark>, and a solid <mark>inner core</mark>. It gets hotter and more squeezed the deeper you go.</p><p class="bg">Earth is made of layers that differ in composition and temperature. The <b>crust</b> is the thin, rigid outer layer that we live on. Below it, the <b>mantle</b> is a thick layer of hot rock that is solid but flows very slowly over long times. Beneath that, the <b>outer core</b> is liquid metal, mostly iron and nickel, and the <b>inner core</b> is solid metal, kept solid by enormous pressure even though it is extremely hot. Temperature and pressure both increase with depth. We know the layers from the way earthquake waves travel through the planet, since no one has drilled through the crust, let alone to the core. Motion in the liquid outer core also makes Earth's magnetic field, and slow motion in the mantle helps move the plates on the surface.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -390,7 +397,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s2">
   <div><p class="kicker">Concept 2 · Moving plates</p><h2>The ground is a slow puzzle</h2></div>
-  <p class="idea">Earth's crust and top of the mantle break into <mark>plates</mark> that creep a few centimeters a year, about as fast as <mark>fingernails grow</mark>. Over millions of years they carried one giant continent, <mark>Pangaea</mark>, apart into the continents we know. Plates meet at <mark>three kinds of boundaries</mark>.</p>
+  <p class="idea">Earth's crust and top of the mantle break into <mark>plates</mark> that creep a few centimeters a year, about as fast as <mark>fingernails grow</mark>. Over millions of years they carried one giant continent, <mark>Pangaea</mark>, apart into the continents we know. Plates meet at <mark>three kinds of boundaries</mark>.</p><p class="bg">The crust and the rigid top of the mantle are broken into large pieces called <b>tectonic plates</b>. The plates ride on the softer, slowly flowing mantle below and move a few centimeters a year. Over millions of years that adds up to thousands of kilometers, and the continents were once joined in one supercontinent, <b>Pangaea</b>, which formed about 300 million years ago and began breaking apart about 200 million years ago. Evidence includes the matching coastlines of South America and Africa, matching rocks and fossils on separate continents, and the pattern of earthquakes and volcanoes. Plates meet at three kinds of boundaries. At a <b>divergent</b> boundary they move apart, at a <b>convergent</b> boundary they push together, and at a <b>transform</b> boundary they slide past each other. What happens at the edges shapes mountains, ocean basins, and the hazards covered next.</p>
   <div class="aids">
     <article class="aid wide">
       <span class="tag try">Try it</span>
@@ -445,7 +452,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s3">
   <div><p class="kicker">Concept 3 · Earthquakes and volcanoes</p><h2>What happens at the edges</h2></div>
-  <p class="idea">Plates snag on each other, stress builds, then they suddenly slip: an <mark>earthquake</mark>. Where one plate sinks, the water it carries down helps melt the rock above it, and the magma rises: a <mark>volcano</mark>. Most of both happen along plate boundaries.</p>
+  <p class="idea">Plates snag on each other, stress builds, then they suddenly slip: an <mark>earthquake</mark>. Where one plate sinks, the water it carries down helps melt the rock above it, and the magma rises: a <mark>volcano</mark>. Most of both happen along plate boundaries.</p><p class="bg">Most earthquakes and volcanoes occur along plate boundaries. Plates do not slide smoothly. Friction makes their edges stick while the rest of the plate keeps moving, so stress builds in the rock. When the stress exceeds what the rock can hold, it breaks and slips, releasing energy as waves. That is an <b>earthquake</b>. The point underground where it begins is the focus, and the point on the surface above it is the epicenter. At a subduction zone, where one plate sinks beneath another, water carried down with the plate lowers the melting point of the mantle above it. The melted rock, <b>magma</b>, rises and may erupt at the surface as a <b>volcano</b>. The Ring of Fire around the Pacific Ocean has most of Earth's volcanoes and strongest earthquakes because many plate boundaries lie there.</p>
   <div class="aids">
     <article class="aid wide">
       <span class="tag analogy">Analogy</span>
@@ -1271,7 +1278,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s4">
   <div><p class="kicker">Concept 4 · The rock cycle</p><h2>Rocks recycle</h2></div>
-  <p class="idea">Rocks slowly change from one type to another: <mark>igneous</mark> (cooled magma), <mark>sedimentary</mark> (squeezed pieces), <mark>metamorphic</mark> (changed by heat and pressure). No rock is permanent.</p>
+  <p class="idea">Rocks slowly change from one type to another: <mark>igneous</mark> (cooled magma), <mark>sedimentary</mark> (squeezed pieces), <mark>metamorphic</mark> (changed by heat and pressure). No rock is permanent.</p><p class="bg">Earth's rocks are constantly being changed from one type to another over very long times in the <b>rock cycle</b>. <b>Igneous</b> rock forms when magma or lava cools and hardens. Slow cooling underground makes large crystals, and fast cooling at the surface makes small ones. <b>Sedimentary</b> rock forms when pieces of other rocks, called sediments, are laid down in layers, buried, pressed together, and cemented. It often contains fossils. <b>Metamorphic</b> rock forms when existing rock is changed by heat and pressure without melting, as limestone becomes marble. Any rock can become any other type, and there is no fixed order. Weathering, erosion, burial, melting, and uplift all move material around the cycle, and the energy for it comes from both Earth's interior and the Sun.</p>
   <div class="aids">
     <article class="aid wide">
       <span class="tag analogy">Analogy</span>
@@ -1339,7 +1346,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s5">
   <div><p class="kicker">Concept 5 · Shaping the surface</p><h2>Break, carry, drop</h2></div>
-  <p class="idea"><mark>Weathering</mark> breaks rock into pieces, <mark>erosion</mark> carries the pieces away, and <mark>deposition</mark> drops them somewhere new. Water, wind, and ice do the work.</p>
+  <p class="idea"><mark>Weathering</mark> breaks rock into pieces, <mark>erosion</mark> carries the pieces away, and <mark>deposition</mark> drops them somewhere new. Water, wind, and ice do the work.</p><p class="bg">Earth's surface is always changing. <b>Weathering</b> breaks rock into smaller pieces, either physically, such as water freezing in a crack and widening it, or chemically, such as acid rain slowly dissolving limestone. <b>Erosion</b> moves the pieces away through the action of water, wind, ice, or gravity. <b>Deposition</b> happens where the moving material slows down and drops its load, building features such as deltas, sand dunes, and beaches. Flowing water is the most powerful shaper of land, carving valleys and curving river channels. Glaciers shape land too: large ice sheets covered Michigan during the last ice age, and when they melted, starting about 15,000 years ago they left behind the Great Lakes, boulders, and the sandy soils and hills found across the state.</p>
   <div class="aids">
     <article class="aid wide">
       <span class="tag analogy">Analogy</span>

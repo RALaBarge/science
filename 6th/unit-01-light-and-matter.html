@@ -62,9 +62,16 @@ h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
 .sec h2{font-size:clamp(1.9rem,6vw,2.7rem);font-weight:800;letter-spacing:-.02em}
 .idea{font-family:var(--font-display);font-size:clamp(1.25rem,4.4vw,1.75rem);line-height:1.25;font-weight:700;text-wrap:balance;max-width:28em}
 .idea mark{background:none;color:var(--reflect);font-weight:700}
+.sec p.bg{max-width:44em;font-size:1.05rem;line-height:1.6;color:var(--ink)}
+.sec p.bg b{font-weight:700}
 .aids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
 .aid{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
 .aid.wide{grid-column:1/-1}
+/* Layout-aware centering: side-by-side cards of different height center vertically; a card alone in its row (next to a wide card) sits centered at half width. */
+@media (min-width:761px){
+.aids{align-items:center}
+.aid:not(.wide):only-child,.aid:not(.wide):first-child:has(+ .aid.wide),.aid.wide + .aid:not(.wide):has(+ .aid.wide),.aid.wide + .aid:not(.wide):last-child{grid-column:1/-1;justify-self:center;width:calc((100% - 16px)/2)}
+}
 .aid h3{font-size:1.2rem;font-weight:700}
 .aid p.cap{font-size:.95rem;color:var(--muted)}
 .aid p.cap b{color:var(--ink)}
@@ -302,7 +309,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
     <p class="kicker">Concept 1 · How light travels</p>
     <h2>Light goes straight</h2>
   </div>
-  <p class="idea">In one uniform material (like air), light travels in <mark>straight lines called rays</mark> until something gets in its way. That is why shadows exist. Light can bend where it crosses from one material into another, but that comes later in this unit.</p>
+  <p class="idea">In one uniform material (like air), light travels in <mark>straight lines called rays</mark> until something gets in its way. That is why shadows exist. Light can bend where it crosses from one material into another, but that comes later in this unit.</p><p class="bg"><b>Light</b> is a form of energy that travels from a source, such as the Sun, a lamp, or a flame, out in all directions. In a single uniform material like air, water, or clear glass, light moves in straight lines. A single line of light is called a <b>ray</b>, and a drawing of rays is a handy way to predict where light will go. Because rays do not curve around objects, anything opaque that blocks them leaves a <b>shadow</b>, a region the light cannot reach. You can see the straight-line rule at work whenever sunbeams come through a gap in the clouds or dusty air shows a flashlight beam. Light moves extremely fast, about 300,000 kilometers every second, so it seems to arrive the instant a switch is flipped. The pinhole box and shadow activities below let you check the straight-line idea yourself.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -361,7 +368,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
     <p class="kicker">Concept 2 · What light does when it hits something</p>
     <h2>Bounce, pass, or soak</h2>
   </div>
-  <p class="idea">When light hits a material it can be <mark>reflected, transmitted, or absorbed</mark>. Usually it does a mix of all three.</p>
+  <p class="idea">When light hits a material it can be <mark>reflected, transmitted, or absorbed</mark>. Usually it does a mix of all three.</p><p class="bg">When light reaches an object, three things can happen. It can be <b>reflected</b>, bouncing off the surface. It can be <b>transmitted</b>, passing through. Or it can be <b>absorbed</b>, with its energy soaked into the material. Most objects do some of each. A mirror reflects nearly all the light that hits it, clear glass transmits most of it, and a black shirt absorbs most of it. Smooth surfaces reflect light in an orderly way, so you see an image. Rough surfaces scatter it in many directions, so you see the object but not a reflection. Light that is neither reflected nor transmitted is absorbed, and that energy has to go somewhere, which is where the next concepts pick up.</p>
   <div class="aids">
     <article class="aid wide">
       <span class="tag analogy">Analogy</span>
@@ -416,7 +423,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
     <p class="kicker">Concept 3 · Why materials are different</p>
     <h2>See-through, sort of, or not at all</h2>
   </div>
-  <p class="idea">Materials are <mark>transparent, translucent, or opaque</mark> depending on how their tiny particles handle light.</p>
+  <p class="idea">Materials are <mark>transparent, translucent, or opaque</mark> depending on how their tiny particles handle light.</p><p class="bg">Whether a material lets light through depends on how its particles interact with the light. A <b>transparent</b> material, such as clear glass or water, transmits most light in straight paths, so you can see clearly through it. A <b>translucent</b> material, such as wax paper or frosted glass, lets light through but scatters it, so you see brightness but not clear shapes. An <b>opaque</b> material, such as wood, metal, or cardboard, blocks light by absorbing or reflecting nearly all of it. The same substance can fall into different groups depending on thickness: a thin sheet of paper is translucent, but a thick stack of it is opaque. Many materials sort differently for different kinds of light too, which is why glass blocks some ultraviolet light even though you can see through it.</p>
   <div class="aids">
     <article class="aid wide">
       <span class="tag analogy">Analogy</span>
@@ -492,7 +499,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
     <p class="kicker">Concept 4 · Color</p>
     <h2>Why a banana looks yellow</h2>
   </div>
-  <p class="idea">White light is a <mark>mix of colors</mark>. An object bounces back some colors and soaks up the rest. The colors that reach your eye are the color you see.</p>
+  <p class="idea">White light is a <mark>mix of colors</mark>. An object bounces back some colors and soaks up the rest. The colors that reach your eye are the color you see.</p><p class="bg">Sunlight and lamp light look white, but <b>white light</b> is a mixture of all the colors of the rainbow. A glass prism can spread white light into its colors because each color bends by a slightly different amount. The color of an object depends on which colors it reflects and which it absorbs. A banana reflects yellow light to your eyes and absorbs most of the others, so it looks yellow. A white shirt reflects nearly all colors, and a black shirt absorbs nearly all of them. Light color matters too: under pure red light a banana looks dark, because there is no yellow light for it to reflect. So color is not only a property of the object. It is the result of the light shining on it and what the object does with that light.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -565,7 +572,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
     <p class="kicker">Concept 5 · Light is energy</p>
     <h2>Absorbed light becomes heat</h2>
   </div>
-  <p class="idea">Light carries <mark>energy</mark>. When a material absorbs it, the material's particles jiggle faster and the object gets warmer.</p>
+  <p class="idea">Light carries <mark>energy</mark>. When a material absorbs it, the material's particles jiggle faster and the object gets warmer.</p><p class="bg">Light carries <b>energy</b>, and when a material absorbs light, that energy goes into the material. The material's particles move faster, which we notice as a rise in temperature. This is why a dark car seat gets hot in the sun: dark surfaces absorb more of the light that hits them, while light surfaces reflect more and heat up less. Solar panels, solar ovens, and greenhouse windows all use this idea. The energy was not created. It was carried by light from the Sun, absorbed, and changed into thermal energy. Next unit digs into thermal energy itself. For now the key point is that absorbing light is one way of transferring energy from one place to another.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -636,7 +643,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 <!-- =============== 6 =============== -->
 <section class="sec" id="s6">
   <div><p class="kicker">Concept 6 · Reading light from far away</p><h2>How do we know what a star is made of?</h2></div>
-  <p class="idea">Nobody has ever visited a star, yet we know what the Sun is made of. The secret: <mark>light carries a fingerprint</mark> of whatever made it.</p>
+  <p class="idea">Nobody has ever visited a star, yet we know what the Sun is made of. The secret: <mark>light carries a fingerprint</mark> of whatever made it.</p><p class="bg">Astronomers cannot visit stars, so they study the light that reaches Earth. When a hot material gives off light, or when light passes through a cool gas, only certain colors appear or go missing, depending on which elements are present. A tool called a <b>spectroscope</b> spreads the light out so those colors show as thin lines, a pattern called a <b>spectrum</b>. Every element has its own pattern of lines, like a barcode that no other element shares. By matching a star's lines against the barcodes of elements measured in labs on Earth, scientists can tell what the star is made of. The method also revealed helium on the Sun in 1868, decades before anyone found it on Earth. Light from a faraway object is a message, and the spectrum is how scientists read it.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>

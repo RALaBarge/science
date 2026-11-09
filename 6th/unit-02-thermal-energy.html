@@ -62,9 +62,16 @@ h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
 .sec h2{font-size:clamp(1.9rem,6vw,2.7rem);font-weight:800;letter-spacing:-.02em}
 .idea{font-family:var(--font-display);font-size:clamp(1.25rem,4.4vw,1.75rem);line-height:1.25;font-weight:700;text-wrap:balance;max-width:28em}
 .idea mark{background:none;color:var(--reflect);font-weight:700}
+.sec p.bg{max-width:44em;font-size:1.05rem;line-height:1.6;color:var(--ink)}
+.sec p.bg b{font-weight:700}
 .aids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
 .aid{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
 .aid.wide{grid-column:1/-1}
+/* Layout-aware centering: side-by-side cards of different height center vertically; a card alone in its row (next to a wide card) sits centered at half width. */
+@media (min-width:761px){
+.aids{align-items:center}
+.aid:not(.wide):only-child,.aid:not(.wide):first-child:has(+ .aid.wide),.aid.wide + .aid:not(.wide):has(+ .aid.wide),.aid.wide + .aid:not(.wide):last-child{grid-column:1/-1;justify-self:center;width:calc((100% - 16px)/2)}
+}
 .aid h3{font-size:1.2rem;font-weight:700}
 .aid p.cap{font-size:.95rem;color:var(--muted)}
 .aid p.cap b{color:var(--ink)}
@@ -311,7 +318,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s1">
   <div><p class="kicker">Concept 1 · What heat is</p><h2>Temperature is average motion energy</h2></div>
-  <p class="idea">Everything is made of tiny particles that never stop moving. <mark>Temperature</mark> tells you how much motion energy they have on average: hotter means faster jiggling. <mark>Thermal energy</mark> is the total of all that motion.</p>
+  <p class="idea">Everything is made of tiny particles that never stop moving. <mark>Temperature</mark> tells you how much motion energy they have on average: hotter means faster jiggling. <mark>Thermal energy</mark> is the total of all that motion.</p><p class="bg">All matter is made of particles, such as atoms and molecules, and those particles are always moving. <b>Temperature</b> measures the average motion energy of the particles: the faster they move, the higher the temperature. <b>Thermal energy</b> is the total motion energy of all the particles in an object, so it depends on how many particles there are as well as how fast they move. That is why a bathtub of warm water holds far more thermal energy than a cup of boiling water, even though the cup is hotter. A tiny spark is hot but has few particles, so it carries little energy. What we call <b>heat</b> is thermal energy moving from one place to another. Keeping temperature, thermal energy, and heat apart is the key to the rest of this unit.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -364,7 +371,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s2">
   <div><p class="kicker">Concept 2 · How heat travels</p><h2>Three paths for heat</h2></div>
-  <p class="idea">Heat moves three ways: <mark>conduction</mark> (touching), <mark>convection</mark> (moving fluid), and <mark>radiation</mark> (light, no touching needed).</p>
+  <p class="idea">Heat moves three ways: <mark>conduction</mark> (touching), <mark>convection</mark> (moving fluid), and <mark>radiation</mark> (light, no touching needed).</p><p class="bg">Heat moves in three ways. In <b>conduction</b>, particles bump into their neighbors and pass energy along, as in a metal spoon sitting in hot soup. It works best in solids, where particles are packed close. In <b>convection</b>, a warmed liquid or gas moves from place to place and carries the energy with it. Warm fluid is less dense, so it rises, cooler fluid sinks, and a loop forms. Convection explains rising hot air and the churning of boiling water. In <b>radiation</b>, energy travels as light and similar waves, so no material is needed in between. Radiation is how the Sun warms Earth across empty space. Most real situations use more than one path at once, such as a campfire that warms you by radiation while heating the air above it by convection.</p>
   <div class="aids">
     <article class="aid wide">
       <span class="tag diagram">Diagram</span>
@@ -444,7 +451,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s3">
   <div><p class="kicker">Concept 3 · Conductors and insulators</p><h2>Why metal feels cold</h2></div>
-  <p class="idea">Some materials pass heat fast (<mark>conductors</mark>) and some pass it slowly (<mark>insulators</mark>). Metal feels cold because it pulls heat out of your hand quickly.</p>
+  <p class="idea">Some materials pass heat fast (<mark>conductors</mark>) and some pass it slowly (<mark>insulators</mark>). Metal feels cold because it pulls heat out of your hand quickly.</p><p class="bg">Materials differ in how well they pass heat along. A <b>conductor</b>, such as a metal, passes thermal energy quickly because its particles transfer energy to neighbors easily. An <b>insulator</b>, such as wood, foam, plastic, or air, passes it slowly. Metal feels colder than wood in a room because both are at room temperature, but metal draws heat out of your hand faster, and your skin senses the rate of heat leaving, not the temperature. Insulation works by slowing heat flow. A winter coat traps still air, a thermos adds a gap with almost no air to slow conduction and convection, and a cooler keeps ice from melting too fast. Engineers pick conductors when they want heat to move, as in a cooking pan, and insulators when they want to keep it in or out.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -534,7 +541,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s4">
   <div><p class="kicker">Concept 4 · Which way does heat go?</p><h2>Always hot to cold</h2></div>
-  <p class="idea">Heat always flows from <mark>hot to cold</mark> until both are the same temperature. That is called <mark>thermal equilibrium</mark>.</p>
+  <p class="idea">Heat always flows from <mark>hot to cold</mark> until both are the same temperature. That is called <mark>thermal equilibrium</mark>.</p><p class="bg">Thermal energy always flows from the hotter object to the colder one, never the other way on its own. The hot object's particles lose energy while the cold object's particles gain it, so the hot one cools and the cold one warms. This continues until both have the same temperature, which is called <b>thermal equilibrium</b>. At that point energy still moves between the particles, but there is no net flow in either direction. It explains why a hot drink cools to room temperature and a cold drink warms up, and why an ice cube in your hand melts while your hand gets cooler. A refrigerator seems to break the rule, but it uses electrical energy to pump heat out of the cold space, and it warms the kitchen a little as it does.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -577,7 +584,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s5">
   <div><p class="kicker">Concept 5 · Heating and changing state</p><h2>Why ice stays at 0 °C (32 °F) while it melts</h2></div>
-  <p class="idea">While a substance melts or boils, the energy you add goes into <mark>loosening the bonds between particles</mark>, not into speeding them up. So the temperature stops rising.</p>
+  <p class="idea">While a substance melts or boils, the energy you add goes into <mark>loosening the bonds between particles</mark>, not into speeding them up. So the temperature stops rising.</p><p class="bg">When you add thermal energy to a solid, its particles usually vibrate faster and the temperature rises. But at a melting or boiling point, something different happens. The added energy goes into loosening or breaking the attractions that hold particles together, so the substance changes state while its temperature stays the same. Ice at 0 °C (32 °F) stays at 0 °C until all of it has melted, and boiling water stays at 100 °C (212 °F) until it has all turned to gas. The graph of temperature against energy added shows this as flat sections, or plateaus. After the change is complete, extra energy again speeds the particles up and the temperature rises. When a substance cools, the same thing happens in reverse, and it gives energy back to its surroundings as it freezes or condenses.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>

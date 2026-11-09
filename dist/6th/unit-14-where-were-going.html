@@ -50,9 +50,16 @@ h1{font-size:clamp(2.4rem,9vw,4.2rem);font-weight:800;letter-spacing:-.025em}
 .sec h2{font-size:clamp(1.8rem,6vw,2.5rem);font-weight:800;letter-spacing:-.02em}
 .idea{font-family:var(--font-display);font-size:clamp(1.2rem,4.2vw,1.65rem);line-height:1.25;font-weight:700;text-wrap:balance;max-width:28em}
 .idea mark{background:none;color:var(--reflect);font-weight:700}
+.sec p.bg{max-width:44em;font-size:1.05rem;line-height:1.6;color:var(--ink)}
+.sec p.bg b{font-weight:700}
 .aids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
 .aid{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
 .aid.wide{grid-column:1/-1}
+/* Layout-aware centering: side-by-side cards of different height center vertically; a card alone in its row (next to a wide card) sits centered at half width. */
+@media (min-width:761px){
+.aids{align-items:center}
+.aid:not(.wide):only-child,.aid:not(.wide):first-child:has(+ .aid.wide),.aid.wide + .aid:not(.wide):has(+ .aid.wide),.aid.wide + .aid:not(.wide):last-child{grid-column:1/-1;justify-self:center;width:calc((100% - 16px)/2)}
+}
 .aid h3{font-size:1.2rem;font-weight:700}
 .aid p.cap,.cap{font-size:.95rem;color:var(--muted)}
 .aid p.cap b,.cap b{color:var(--ink)}
@@ -201,7 +208,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="ride">
   <h2>Concept 1 &middot; You&rsquo;re on a very long ride</h2>
-  <p class="idea">The Sun and everything near it <mark>circle the center of the Milky Way</mark>. One lap takes about 230 million years.</p>
+  <p class="idea">The Sun and everything near it <mark>circle the center of the Milky Way</mark>. One lap takes about 230 million years.</p><p class="bg">The Sun is one of a few hundred billion stars in the <b>Milky Way</b>, a spiral-shaped galaxy. All of these stars, along with gas, dust, and planets, orbit around the center of the galaxy, in a similar way to how planets orbit the Sun. The Sun and the solar system travel at about 230 kilometers per second, which is fast, but the galaxy is so huge that one trip around takes about 230 million years. The last time the solar system was at this place in its orbit, dinosaurs were just appearing. The solar system also moves slightly up and down through the galaxy's disk as it goes around. We do not feel any of this motion, just as passengers in a smooth airplane do not feel its speed.</p>
   <div class="aids">
     <div class="aid wide">
       <span class="tag try">Try it</span>
@@ -284,7 +291,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="orbit">
   <h2>Concept 2 &middot; What are we orbiting?</h2>
-  <p class="idea">Gravity pulls between <mark>anything that has mass</mark>, so the Sun feels the pull of every star, cloud of gas and clump of dark matter. We orbit <mark>the combined pull of everything inside our orbit</mark>, not just the black hole in the middle.</p>
+  <p class="idea">Gravity pulls between <mark>anything that has mass</mark>, so the Sun feels the pull of every star, cloud of gas and clump of dark matter. We orbit <mark>the combined pull of everything inside our orbit</mark>, not just the black hole in the middle.</p><p class="bg">Gravity is a pull between any two objects with mass, so each star in the galaxy pulls on every other one. The Sun does not orbit just one object at the center. It follows the combined pull of all the matter inside its orbit, which includes billions of stars, large clouds of gas and dust, and <b>dark matter</b>, a form of matter that we cannot see but can detect by its gravity. There is a very massive <b>black hole</b> at the center of the Milky Way, but it makes up only a tiny part of the total mass, so the galaxy would still hold together without it. If a black hole replaced the Sun, Earth would keep orbiting just the same, since the pull depends on mass and distance.</p>
   <div class="aids">
     <div class="aid wide">
       <span class="tag try">Try it</span>
@@ -305,7 +312,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="formation">
   <h2>Concept 3 &middot; How the solar system began</h2>
-  <p class="idea">About 4.6 billion years ago, a cloud of gas and dust <mark>collapsed into a Sun and a spinning disk</mark>. The planets grew out of that disk.</p>
+  <p class="idea">About 4.6 billion years ago, a cloud of gas and dust <mark>collapsed into a Sun and a spinning disk</mark>. The planets grew out of that disk.</p><p class="bg">Scientists think the solar system formed about 4.6 billion years ago from a huge cloud of gas and dust. Something, perhaps a nearby exploding star, caused part of the cloud to collapse under its own gravity. As it shrank, it spun faster and flattened into a spinning disk, in the same way that an ice skater spins faster when pulling in their arms. Most of the material fell to the center and became the Sun. In the disk, bits of dust stuck together into larger and larger clumps, which grew into planets, moons, and asteroids. Near the Sun it was hot, so only rock and metal could form solid planets. Farther out it was cold enough for ice, and the planets grew into giants with thick layers of gas.</p>
   <div class="aids">
     <div class="aid wide">
       <span class="tag try">Try it</span>
@@ -412,7 +419,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="know">
   <h2>Concept 4 &middot; What we know, and what we are still arguing about</h2>
-  <p class="idea">Science is full of settled facts and open questions, and <mark>good scientists can tell which is which</mark>.</p>
+  <p class="idea">Science is full of settled facts and open questions, and <mark>good scientists can tell which is which</mark>.</p><p class="bg">Science is made up of ideas that are very well supported by evidence and ideas that are still being investigated. Settled facts, such as Earth orbiting the Sun and the Sun being a star, have been tested many times by many people. Open questions, such as exactly how the planets formed, what dark matter is, and whether life exists elsewhere, are still being studied, and new data can change scientists' answers. Telling the two apart is a key skill. A good scientist asks what evidence supports a claim, how strong it is, whether other scientists have checked it, and what would count as evidence against it. Not knowing everything is not a weakness of science. It is how science keeps moving.</p>
   <div class="aids">
     <div class="aid wide">
       <span class="tag know">Evidence check</span>

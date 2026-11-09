@@ -62,9 +62,16 @@ h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
 .sec h2{font-size:clamp(1.9rem,6vw,2.7rem);font-weight:800;letter-spacing:-.02em}
 .idea{font-family:var(--font-display);font-size:clamp(1.25rem,4.4vw,1.75rem);line-height:1.25;font-weight:700;text-wrap:balance;max-width:28em}
 .idea mark{background:none;color:var(--reflect);font-weight:700}
+.sec p.bg{max-width:44em;font-size:1.05rem;line-height:1.6;color:var(--ink)}
+.sec p.bg b{font-weight:700}
 .aids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
 .aid{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
 .aid.wide{grid-column:1/-1}
+/* Layout-aware centering: side-by-side cards of different height center vertically; a card alone in its row (next to a wide card) sits centered at half width. */
+@media (min-width:761px){
+.aids{align-items:center}
+.aid:not(.wide):only-child,.aid:not(.wide):first-child:has(+ .aid.wide),.aid.wide + .aid:not(.wide):has(+ .aid.wide),.aid.wide + .aid:not(.wide):last-child{grid-column:1/-1;justify-self:center;width:calc((100% - 16px)/2)}
+}
 .aid h3{font-size:1.2rem;font-weight:700}
 .aid p.cap{font-size:.95rem;color:var(--muted)}
 .aid p.cap b{color:var(--ink)}
@@ -355,7 +362,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s1">
   <div><p class="kicker">Concept 1 · The atmosphere</p><h2>An ocean of air</h2></div>
-  <p class="idea">We live at the bottom of an <mark>ocean of air</mark>. Air has mass and it flows like water, so the more air above you, the more pressure. Climb up and there is less air above you, so the air is <mark>thinner</mark> and the <mark>pressure is lower</mark>.</p>
+  <p class="idea">We live at the bottom of an <mark>ocean of air</mark>. Air has mass and it flows like water, so the more air above you, the more pressure. Climb up and there is less air above you, so the air is <mark>thinner</mark> and the <mark>pressure is lower</mark>.</p><p class="bg">The <b>atmosphere</b> is the layer of gases surrounding Earth. It is about 78 percent nitrogen and 21 percent oxygen, with small amounts of other gases such as carbon dioxide and water vapor. Air has mass, and gravity holds it close to the planet, so the air near the ground is squeezed by all the air above it. That squeezing is <b>air pressure</b>. As you go higher, there is less air above, so pressure and density drop, and the air gets thinner. Scientists divide the atmosphere into five layers based on how temperature changes with height. Almost all weather happens in the lowest layer, the troposphere. Air pressure is the basic idea behind winds and storms in the rest of this unit.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -492,7 +499,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s2">
   <div><p class="kicker">Concept 2 · The water cycle</p><h2>The same water, over and over</h2></div>
-  <p class="idea">The Sun's energy drives the cycle: water <mark>evaporates</mark> into the air and warm, moist air rises, <mark>condensation</mark> makes clouds, <mark>precipitation</mark> brings it down, and <mark>collection</mark> sends it back. No water is made or lost, so the water in your glass is very old: some of it was probably once a dinosaur's drink.</p>
+  <p class="idea">The Sun's energy drives the cycle: water <mark>evaporates</mark> into the air and warm, moist air rises, <mark>condensation</mark> makes clouds, <mark>precipitation</mark> brings it down, and <mark>collection</mark> sends it back. No water is made or lost, so the water in your glass is very old: some of it was probably once a dinosaur's drink.</p><p class="bg">The water cycle describes how water moves between the ocean, land, and air, powered by energy from the Sun. Sunlight causes liquid water to <b>evaporate</b> into water vapor, a gas. As the vapor rises into cooler air, it <b>condenses</b> into tiny droplets that form clouds. When droplets grow large enough, they fall as <b>precipitation</b>: rain, snow, sleet, or hail. The water then runs off over the ground, soaks in, or collects in lakes, rivers, and oceans, and the cycle starts again. Plants also release water vapor through their leaves. The amount of water on Earth stays about the same, so the water you drink has been recycled many times. Most of Earth's water is salty ocean water, and only a small share is fresh water that people can easily use.</p>
   <div class="aids">
     <article class="aid wide">
       <span class="tag analogy">Analogy</span>
@@ -567,7 +574,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s3">
   <div><p class="kicker">Concept 3 · Pressure and fronts</p><h2>Why the weather changes</h2></div>
-  <p class="idea">Warm air is light and rises, which leaves <mark>low pressure</mark> behind. Cold air is heavy and sinks, which makes <mark>high pressure</mark>. Wind blows from high toward low, and a <mark>front</mark> is where a warm air mass and a cold air mass meet. A falling barometer usually means <mark>a storm is coming</mark>.</p>
+  <p class="idea">Warm air is light and rises, which leaves <mark>low pressure</mark> behind. Cold air is heavy and sinks, which makes <mark>high pressure</mark>. Wind blows from high toward low, and a <mark>front</mark> is where a warm air mass and a cold air mass meet. A falling barometer usually means <mark>a storm is coming</mark>.</p><p class="bg">Air pressure differs from place to place because the Sun heats Earth unevenly. Warm air expands, becomes less dense, and rises, which leaves an area of <b>low pressure</b> at the ground and often brings clouds and rain. Cool air is denser and sinks, creating <b>high pressure</b>, which usually brings clear, calm weather. Wind is air moving from high pressure toward low pressure. A large body of air with similar temperature and moisture is an <b>air mass</b>, and a <b>front</b> is the boundary where two different air masses meet. At a cold front, cold air pushes under warm air and forces it up quickly, often causing short, strong storms. At a warm front, warm air slides gradually over cold air and brings longer, lighter rain. A barometer measures air pressure, and a falling reading is a sign of a storm approaching.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag diagram">Diagram</span>
@@ -742,7 +749,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s4">
   <div><p class="kicker">Concept 4 · Why the wind blows</p><h2>Sun heats ground unevenly</h2></div>
-  <p class="idea">Land warms and cools faster than water. The warm air over land rises, cool air from the water rushes in, and that is a <mark>sea breeze</mark>. At night the pattern <mark>flips</mark>.</p>
+  <p class="idea">Land warms and cools faster than water. The warm air over land rises, cool air from the water rushes in, and that is a <mark>sea breeze</mark>. At night the pattern <mark>flips</mark>.</p><p class="bg">Land and water absorb the Sun's energy differently. Land heats up and cools down quickly, while water warms and cools slowly, because water takes a lot more energy to change its temperature. On a sunny day the land warms faster than a nearby lake, the air over the land heats and rises, and cooler air from over the water moves in to replace it. That flow is a <b>sea breeze</b> (or lake breeze). At night the land cools faster than the water, and the pattern reverses into a land breeze. The same principle, uneven heating of Earth's surface, drives global winds as well, because the equator receives more direct sunlight than the poles. Michigan's lakes strongly affect the local weather, including cooler summer afternoons near the shore and heavy lake-effect snow in winter.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -847,7 +854,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s5">
   <div><p class="kicker">Concept 5 · Weather vs climate</p><h2>One day vs. thirty years</h2></div>
-  <p class="idea"><mark>Weather</mark> is what the atmosphere is doing today. <mark>Climate</mark> is the pattern over many years, usually 30 or more. Climate tells you what to pack; weather tells you what to wear today.</p>
+  <p class="idea"><mark>Weather</mark> is what the atmosphere is doing today. <mark>Climate</mark> is the pattern over many years, usually 30 or more. Climate tells you what to pack; weather tells you what to wear today.</p><p class="bg"><b>Weather</b> is the condition of the atmosphere in a specific place over a short time: temperature, wind, humidity, clouds, and precipitation today or this week. <b>Climate</b> is the average pattern of weather in a region over a long time, usually 30 years or more. A single cold day does not change the climate of a place, just as one hot day does not prove the climate is warming. Climate depends on factors such as latitude, elevation, distance from the ocean, and ocean currents. Earth's average temperature is also set by the <b>greenhouse effect</b>: gases like carbon dioxide and water vapor absorb some of the heat leaving Earth and send part of it back, keeping the planet warmer than it would otherwise be. Without any of it, Earth would be far too cold for most life.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>

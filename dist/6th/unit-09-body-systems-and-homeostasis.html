@@ -66,9 +66,16 @@ h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
 .sec h2{font-size:clamp(1.9rem,6vw,2.7rem);font-weight:800;letter-spacing:-.02em}
 .idea{font-family:var(--font-display);font-size:clamp(1.25rem,4.4vw,1.75rem);line-height:1.25;font-weight:700;text-wrap:balance;max-width:28em}
 .idea mark{background:none;color:var(--reflect);font-weight:700}
+.sec p.bg{max-width:44em;font-size:1.05rem;line-height:1.6;color:var(--ink)}
+.sec p.bg b{font-weight:700}
 .aids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
 .aid{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
 .aid.wide{grid-column:1/-1}
+/* Layout-aware centering: side-by-side cards of different height center vertically; a card alone in its row (next to a wide card) sits centered at half width. */
+@media (min-width:761px){
+.aids{align-items:center}
+.aid:not(.wide):only-child,.aid:not(.wide):first-child:has(+ .aid.wide),.aid.wide + .aid:not(.wide):has(+ .aid.wide),.aid.wide + .aid:not(.wide):last-child{grid-column:1/-1;justify-self:center;width:calc((100% - 16px)/2)}
+}
 .aid h3{font-size:1.2rem;font-weight:700}
 .aid p.cap{font-size:.95rem;color:var(--muted)}
 .aid p.cap b{color:var(--ink)}
@@ -292,7 +299,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s1">
   <div><p class="kicker">Concept 1 · Working together</p><h2>Cells, tissues, organs, systems</h2></div>
-  <p class="idea">Similar cells form a <mark>tissue</mark>, tissues form an <mark>organ</mark>, and organs that share a job form an <mark>organ system</mark>. No system works alone: each one depends on the others.</p>
+  <p class="idea">Similar cells form a <mark>tissue</mark>, tissues form an <mark>organ</mark>, and organs that share a job form an <mark>organ system</mark>. No system works alone: each one depends on the others.</p><p class="bg">The human body is organized in levels. Similar cells working together form a <b>tissue</b>, and different tissues working together form an <b>organ</b>. A group of organs that carry out a major job form an <b>organ system</b>. Examples are the digestive system, which breaks down food, the respiratory system, which brings in oxygen, and the circulatory system, which moves blood. The skeletal and muscular systems support and move the body, and the nervous system controls it. No system works alone. Muscles need oxygen from the lungs, blood to carry it, nutrients from the digestive system, and signals from nerves. Because the systems depend on one another, a problem in one can affect all of the others.</p>
   <p class="cap"><b>Where this fits:</b> this lesson is the organs-and-systems view of the body. <a href="../7th/unit-7.4-metabolic-reactions-and-the-body.html">Unit 7.4</a> covers the same body at the level of molecules and enzymes.</p>
   <div class="aids">
     <article class="aid">
@@ -334,7 +341,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s2">
   <div><p class="kicker">Concept 2 · Delivery</p><h2>Heart, blood, and lungs</h2></div>
-  <p class="idea">The <mark>lungs</mark> add oxygen to blood and remove carbon dioxide. The <mark>heart</mark> pumps that blood to every cell. Muscles working harder need more oxygen, so heart rate and breathing rise together.</p>
+  <p class="idea">The <mark>lungs</mark> add oxygen to blood and remove carbon dioxide. The <mark>heart</mark> pumps that blood to every cell. Muscles working harder need more oxygen, so heart rate and breathing rise together.</p><p class="bg">Your cells need a steady supply of oxygen and nutrients and must get rid of carbon dioxide. The <b>respiratory system</b> brings oxygen into the lungs, where it passes into the blood through tiny air sacs, and carbon dioxide passes out of the blood to be breathed out. The <b>circulatory system</b> carries the blood around the body. The <b>heart</b> is a muscular pump that pushes blood through blood vessels, which are arteries, veins, and tiny capillaries, so blood delivers oxygen and nutrients to every cell and carries wastes away. When you exercise, your muscle cells use more oxygen and make more carbon dioxide, so your breathing and heart rate speed up to deliver more oxygen. After you stop, they slow down again as your body recovers.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -382,7 +389,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s3">
   <div><p class="kicker">Concept 3 · Fuel</p><h2>Digestion and nutrients</h2></div>
-  <p class="idea">Digestion breaks food into pieces small enough to pass into the blood. <mark>Mechanical</mark> digestion (chewing, churning) tears food apart; <mark>chemical</mark> digestion (acids, enzymes) breaks it down into nutrients.</p>
+  <p class="idea">Digestion breaks food into pieces small enough to pass into the blood. <mark>Mechanical</mark> digestion (chewing, churning) tears food apart; <mark>chemical</mark> digestion (acids, enzymes) breaks it down into nutrients.</p><p class="bg">Food contains <b>nutrients</b>, such as carbohydrates, proteins, fats, vitamins, and minerals, but they are too big to enter your blood directly. The digestive system breaks them down in two ways. <b>Mechanical digestion</b> is physical: teeth chew food and the stomach muscles churn it into smaller pieces. <b>Chemical digestion</b> uses substances such as saliva, stomach acid, and <b>enzymes</b>, proteins that speed up the breakdown of food into small molecules. Most digestion and nearly all absorption take place in the small intestine, which is long and lined with tiny folds called villi that give it a huge surface area for absorbing nutrients into the blood. The large intestine absorbs water, and what cannot be digested leaves the body as waste.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -424,7 +431,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s4">
   <div><p class="kicker">Concept 4 · Messages</p><h2>Nerves, senses, and reaction time</h2></div>
-  <p class="idea">Your <mark>nervous system</mark> collects information from <mark>senses</mark>, your brain interprets it, and nerves tell muscles what to do. Messages are electrochemical signals and travel faster than a cheetah.</p>
+  <p class="idea">Your <mark>nervous system</mark> collects information from <mark>senses</mark>, your brain interprets it, and nerves tell muscles what to do. Messages are electrochemical signals and travel faster than a cheetah.</p><p class="bg">The <b>nervous system</b> lets you sense your surroundings and react. <b>Sense organs</b> such as the eyes, ears, skin, nose, and tongue have receptors that detect light, sound, touch, temperature, chemicals, and more. Receptors send signals along <b>nerves</b> to the <b>brain</b> and spinal cord, which interpret the information and send signals back along other nerves to muscles or glands. Nerve signals are electrical and chemical and travel at up to about 120 meters per second in the fastest nerves, which is fast but not instant, so there is always a small delay called <b>reaction time</b>. A reflex, such as pulling your hand off a hot stove, is faster because the signal turns around in the spinal cord without waiting for the brain to decide.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -463,7 +470,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s5">
   <div><p class="kicker">Concept 5 · Keeping balance</p><h2>Homeostasis: the body's thermostat</h2></div>
-  <p class="idea"><mark>Homeostasis</mark> is keeping conditions inside your body in a narrow, healthy range. It works by <mark>negative feedback</mark>: when something drifts too far one way, the body pushes it back the other way.</p>
+  <p class="idea"><mark>Homeostasis</mark> is keeping conditions inside your body in a narrow, healthy range. It works by <mark>negative feedback</mark>: when something drifts too far one way, the body pushes it back the other way.</p><p class="bg">Your cells work properly only when conditions inside the body, such as temperature, blood sugar, and water content, stay within a narrow range. Keeping them there is called <b>homeostasis</b>. The body does this with <b>negative feedback</b>: when a condition drifts away from its set point, a sensor detects the change and the body responds in a way that pushes it back. This works like a thermostat in a house. If you get too hot, you sweat and blood vessels in the skin widen to release heat, and if you get too cold, you shiver to make heat. After a meal, blood sugar rises and the hormone <b>insulin</b> helps cells take up sugar, bringing the level back down. People with diabetes cannot regulate blood sugar this way, so they may need insulin medicine.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -521,7 +528,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s5b">
   <div><p class="kicker">Optional extra · Staying healthy</p><h2>Defending the body</h2></div>
-  <p class="idea">Some tiny living things and viruses, called <mark>germs</mark>, can make you sick. Your body defends itself in layers: <mark>barriers</mark> keep germs out, <mark>white blood cells</mark> fight the ones that get in, and a <mark>vaccine</mark> trains those cells ahead of time.</p>
+  <p class="idea">Some tiny living things and viruses, called <mark>germs</mark>, can make you sick. Your body defends itself in layers: <mark>barriers</mark> keep germs out, <mark>white blood cells</mark> fight the ones that get in, and a <mark>vaccine</mark> trains those cells ahead of time.</p><p class="bg"><b>Germs</b> are tiny organisms, such as bacteria, and viruses that can cause disease. Not all microbes are harmful, and many bacteria in your gut help digest food. The body has three layers of defense. First are <b>barriers</b> such as skin, mucus, and stomach acid that keep most germs out. Second, if germs get in, <b>white blood cells</b> and other responses find and destroy them, which can cause a fever, swelling, or other symptoms. Third, the <b>immune system</b> remembers specific germs it has defeated, so it can fight them faster next time. A <b>vaccine</b> uses a harmless piece or weakened form of a germ to train the immune system in advance, which can prevent illness. Washing hands and staying home when sick also help stop germs spreading.</p>
   <div class="aids">
     <article class="aid wide">
       <span class="tag real">Picture</span>

@@ -62,9 +62,16 @@ h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
 .sec h2{font-size:clamp(1.9rem,6vw,2.7rem);font-weight:800;letter-spacing:-.02em}
 .idea{font-family:var(--font-display);font-size:clamp(1.25rem,4.4vw,1.75rem);line-height:1.25;font-weight:700;text-wrap:balance;max-width:28em}
 .idea mark{background:none;color:var(--reflect);font-weight:700}
+.sec p.bg{max-width:44em;font-size:1.05rem;line-height:1.6;color:var(--ink)}
+.sec p.bg b{font-weight:700}
 .aids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
 .aid{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
 .aid.wide{grid-column:1/-1}
+/* Layout-aware centering: side-by-side cards of different height center vertically; a card alone in its row (next to a wide card) sits centered at half width. */
+@media (min-width:761px){
+.aids{align-items:center}
+.aid:not(.wide):only-child,.aid:not(.wide):first-child:has(+ .aid.wide),.aid.wide + .aid:not(.wide):has(+ .aid.wide),.aid.wide + .aid:not(.wide):last-child{grid-column:1/-1;justify-self:center;width:calc((100% - 16px)/2)}
+}
 .aid h3{font-size:1.2rem;font-weight:700}
 .aid p.cap{font-size:.95rem;color:var(--muted)}
 .aid p.cap b{color:var(--ink)}
@@ -312,7 +319,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s1">
   <div><p class="kicker">Concept 1 · The particle idea</p><h2>Matter is made of tiny moving particles</h2></div>
-  <p class="idea"><mark>Matter</mark> is anything that has mass and takes up space. All matter is made of <mark>particles</mark> (atoms and molecules) that are always moving, with empty space between them.</p>
+  <p class="idea"><mark>Matter</mark> is anything that has mass and takes up space. All matter is made of <mark>particles</mark> (atoms and molecules) that are always moving, with empty space between them.</p><p class="bg"><b>Matter</b> is anything that has mass and takes up space. The <b>particle model</b> says that all matter is made of very small particles, atoms and molecules, that are always moving, with empty space between them. The particles are far too small to see, even with a regular microscope, but there is good evidence for them. A drop of dye spreads through still water because water particles are bumping the dye around, and you can smell a perfume across a room because its particles travel through the air. This model helps explain nearly everything about matter, including its states, how it changes, and why it has different properties. In this unit, each idea about matter is explained by how its particles move and how close together they are.</p>
   <p class="cap"><b>Heat and phase changes:</b> for the energy side of melting, freezing, boiling and condensing, see <a href="unit-02-thermal-energy.html">Unit 2: Thermal Energy</a>.</p>
   <div class="aids">
     <article class="aid">
@@ -362,7 +369,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s2">
   <div><p class="kicker">Concept 2 · Solid, liquid, gas</p><h2>Same particles, different arrangement</h2></div>
-  <p class="idea">In a <mark>solid</mark>, particles vibrate in fixed places. In a <mark>liquid</mark>, they slide past each other but stay close. In a <mark>gas</mark>, they fly apart and fill whatever space they have.</p>
+  <p class="idea">In a <mark>solid</mark>, particles vibrate in fixed places. In a <mark>liquid</mark>, they slide past each other but stay close. In a <mark>gas</mark>, they fly apart and fill whatever space they have.</p><p class="bg">Matter on Earth is commonly found in three <b>states</b>. In a <b>solid</b>, particles are packed tightly and vibrate in place, so a solid keeps its own shape and volume. In a <b>liquid</b>, particles are still close together but can slide past one another, so a liquid keeps its volume but takes the shape of its container. In a <b>gas</b>, particles are far apart and move quickly in all directions, so a gas fills any container and has no fixed shape or volume. The particles themselves are the same in each state. What differs is how much energy they have and how strongly they are attracted to each other. Some materials, like gels, foams, and slime, do not fit neatly into one state.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -416,7 +423,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s3">
   <div><p class="kicker">Concept 3 · Changes of state</p><h2>Adding or removing thermal energy</h2></div>
-  <p class="idea">Adding thermal energy can melt or boil a substance; removing it can freeze or condense it. The <mark>particles are the same</mark>; only their motion and spacing change. That's why <mark>mass is conserved</mark> when ice melts.</p>
+  <p class="idea">Adding thermal energy can melt or boil a substance; removing it can freeze or condense it. The <mark>particles are the same</mark>; only their motion and spacing change. That's why <mark>mass is conserved</mark> when ice melts.</p><p class="bg">A <b>change of state</b> happens when thermal energy is added to or removed from a substance. Adding energy makes particles move faster: a solid <b>melts</b> into a liquid, and a liquid <b>boils</b> or <b>evaporates</b> into a gas. Removing energy slows the particles: a gas <b>condenses</b> into a liquid, and a liquid <b>freezes</b> into a solid. A solid can also change directly into a gas, called <b>sublimation</b>, and a gas can become a solid, called <b>deposition</b>. These changes are physical, not chemical, because the particles stay the same. Nothing is added or lost, so the mass stays the same: an ice cube weighs the same after it melts. Each substance has its own melting and boiling temperatures, which is how you can tell substances apart.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag diagram">Diagram</span>
@@ -462,7 +469,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s4">
   <div><p class="kicker">Concept 4 · Density and gases</p><h2>Why things float, and why gases squeeze</h2></div>
-  <p class="idea"><mark>Density</mark> is mass per volume (how tightly packed the particles are). An object floats if it is <mark>less dense than the liquid</mark>. Squeezing a gas into less volume makes its pressure rise, and heating a gas makes it push harder or take up more room.</p>
+  <p class="idea"><mark>Density</mark> is mass per volume (how tightly packed the particles are). An object floats if it is <mark>less dense than the liquid</mark>. Squeezing a gas into less volume makes its pressure rise, and heating a gas makes it push harder or take up more room.</p><p class="bg"><b>Density</b> is the amount of mass in a given volume, such as grams per cubic centimeter. A material is dense when its particles are packed closely or are heavy. An object floats in a liquid if it is less dense than the liquid, and sinks if it is denser. Ships made of steel float because their hollow shape makes the whole ship, including the air inside, less dense than water. Gases behave differently from solids and liquids because their particles are far apart and can be pushed closer. If you squeeze a gas into a smaller volume, its particles hit the container walls more often, so the pressure rises. If you heat a gas, its particles move faster and hit harder, so it pushes harder or expands if it can.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -527,7 +534,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s5">
   <div><p class="kicker">Concept 5 · Mixtures and properties</p><h2>Mixtures, solutions, and separating them</h2></div>
-  <p class="idea">A <mark>pure substance</mark> has one kind of particle. A <mark>mixture</mark> combines substances that keep their own properties, so you can separate them using <mark>physical properties</mark> such as size, magnetism, or boiling point. A <mark>solution</mark> is a mixture that is the same all the way through (a <mark>homogeneous</mark> mixture). A mixture with parts you can see is <mark>heterogeneous</mark>.</p>
+  <p class="idea">A <mark>pure substance</mark> has one kind of particle. A <mark>mixture</mark> combines substances that keep their own properties, so you can separate them using <mark>physical properties</mark> such as size, magnetism, or boiling point. A <mark>solution</mark> is a mixture that is the same all the way through (a <mark>homogeneous</mark> mixture). A mixture with parts you can see is <mark>heterogeneous</mark>.</p><p class="bg">A <b>pure substance</b> has only one kind of particle, like distilled water or pure gold. A <b>mixture</b> is two or more substances that are mixed but not chemically joined, so each keeps its own properties. In a <b>heterogeneous</b> mixture, such as trail mix or sand and water, you can see the different parts. In a <b>homogeneous</b> mixture, the parts are evenly spread and look like one substance. A <b>solution</b> is a homogeneous mixture in which one substance, the solute, is dissolved in another, the solvent, as when sugar dissolves in water. Because the parts of a mixture keep their properties, you can separate them with physical methods: a magnet for iron, a filter for solids in liquid, evaporation for dissolved salt, and distillation for liquids with different boiling points.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>

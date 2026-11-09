@@ -66,9 +66,16 @@ h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
 .sec h2{font-size:clamp(1.9rem,6vw,2.7rem);font-weight:800;letter-spacing:-.02em}
 .idea{font-family:var(--font-display);font-size:clamp(1.25rem,4.4vw,1.75rem);line-height:1.25;font-weight:700;text-wrap:balance;max-width:28em}
 .idea mark{background:none;color:var(--reflect);font-weight:700}
+.sec p.bg{max-width:44em;font-size:1.05rem;line-height:1.6;color:var(--ink)}
+.sec p.bg b{font-weight:700}
 .aids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
 .aid{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
 .aid.wide{grid-column:1/-1}
+/* Layout-aware centering: side-by-side cards of different height center vertically; a card alone in its row (next to a wide card) sits centered at half width. */
+@media (min-width:761px){
+.aids{align-items:center}
+.aid:not(.wide):only-child,.aid:not(.wide):first-child:has(+ .aid.wide),.aid.wide + .aid:not(.wide):has(+ .aid.wide),.aid.wide + .aid:not(.wide):last-child{grid-column:1/-1;justify-self:center;width:calc((100% - 16px)/2)}
+}
 .aid h3{font-size:1.2rem;font-weight:700}
 .aid p.cap{font-size:.95rem;color:var(--muted)}
 .aid p.cap b{color:var(--ink)}
@@ -294,7 +301,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s1">
   <div><p class="kicker">Concept 1 · Where energy comes from</p><h2>Renewable and non-renewable resources</h2></div>
-  <p class="idea"><mark>Non-renewable</mark> resources (coal, oil, natural gas, uranium) take millions of years to form, so we use them up faster than they are replaced. <mark>Renewable</mark> resources (sunlight, wind, flowing water, heat from underground, plants) are replaced naturally on a human timescale.</p>
+  <p class="idea"><mark>Non-renewable</mark> resources (coal, oil, natural gas, uranium) take millions of years to form, so we use them up faster than they are replaced. <mark>Renewable</mark> resources (sunlight, wind, flowing water, heat from underground, plants) are replaced naturally on a human timescale.</p><p class="bg">People get most of their energy from natural resources. <b>Non-renewable</b> resources, such as coal, oil, natural gas, and uranium, exist in limited amounts and take millions of years to form, so once we use them they are effectively gone. Coal, oil, and natural gas are called <b>fossil fuels</b> because they formed from ancient living things. <b>Renewable</b> resources, such as sunlight, wind, moving water, geothermal heat, and biomass, are replaced naturally within a human lifetime, so they will not run out. The mix of sources used to make electricity in the United States has changed over time. Coal has declined and natural gas, wind, and solar have grown. Each kind of resource has its own costs and benefits, and no source works best everywhere.</p>
   <p class="cap"><b>Going deeper:</b> <a href="../7th/unit-7.7-earth-resources-and-human-impact.html">Unit 7.7: Earth Resources &amp; Human Impact</a> covers these same topics in more depth.</p>
   <div class="aids">
     <article class="aid">
@@ -344,7 +351,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s2">
   <div><p class="kicker">Concept 2 · Fossil fuels and climate</p><h2>Burning carbon warms the planet</h2></div>
-  <p class="idea">Fossil fuels formed from ancient plants and plankton buried for millions of years (Unit 7.7). Burning them releases the stored carbon as <mark>carbon dioxide (CO₂)</mark>. CO₂ is a <mark>greenhouse gas</mark>: it absorbs heat rays leaving Earth and sends some back down, so more CO₂ means a warmer planet.</p>
+  <p class="idea">Fossil fuels formed from ancient plants and plankton buried for millions of years (Unit 7.7). Burning them releases the stored carbon as <mark>carbon dioxide (CO₂)</mark>. CO₂ is a <mark>greenhouse gas</mark>: it absorbs heat rays leaving Earth and sends some back down, so more CO₂ means a warmer planet.</p><p class="bg">Fossil fuels contain carbon that plants and plankton pulled from the air millions of years ago. When people burn fossil fuels for electricity, heating, and transportation, this carbon is released back into the air as <b>carbon dioxide</b> (CO&#8322;), faster than natural processes can remove it. CO&#8322; is a <b>greenhouse gas</b>, which means it absorbs some of the heat energy leaving Earth and sends part of it back toward the surface. This natural greenhouse effect keeps Earth warm enough for life, but adding more greenhouse gases traps more heat and raises the average temperature. Scientists measure CO&#8322; levels in the air and in ancient ice, and the data show a rapid rise since the Industrial Revolution. Warmer temperatures can melt ice, raise sea level, and change weather patterns.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -386,7 +393,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s3">
   <div><p class="kicker">Concept 3 · Renewable energy</p><h2>Sun, wind, and water</h2></div>
-  <p class="idea">Renewable sources convert natural flows of energy into electricity. Each has strengths and limits: <mark>solar</mark> works only when the Sun is up, and wind power grows with the <mark>cube of wind speed</mark>.</p>
+  <p class="idea">Renewable sources convert natural flows of energy into electricity. Each has strengths and limits: <mark>solar</mark> works only when the Sun is up, and wind power grows with the <mark>cube of wind speed</mark>.</p><p class="bg"><b>Renewable energy</b> technologies turn natural flows of energy into electricity. <b>Solar panels</b> convert sunlight directly into electricity, but they work best in bright sun and make less in winter or at night. <b>Wind turbines</b> use moving air to turn a generator. Wind power increases sharply with wind speed, so a small increase in speed gives a large increase in power. <b>Hydropower</b> uses falling or flowing water to spin turbines. Each has strengths and limits, such as cost, where it can be used, and whether the energy is available all the time. Because the Sun and wind vary, electric grids may use batteries or other storage and combine several sources. Renewable sources produce little or no carbon dioxide while operating.</p>
   <div class="aids">
     <article class="aid wide">
       <span class="tag analogy">Analogy</span>
@@ -455,7 +462,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s4">
   <div><p class="kicker">Concept 4 · Using less</p><h2>Efficiency and conservation</h2></div>
-  <p class="idea">The cheapest, cleanest energy is the energy you don't use. <mark>Efficiency</mark> means getting the same job done with less energy; <mark>conservation</mark> means using less. Power (watts) × time (hours) = energy (watt-hours).</p>
+  <p class="idea">The cheapest, cleanest energy is the energy you don't use. <mark>Efficiency</mark> means getting the same job done with less energy; <mark>conservation</mark> means using less. Power (watts) × time (hours) = energy (watt-hours).</p><p class="bg">The cheapest and cleanest energy is the energy we do not use. <b>Energy efficiency</b> means doing the same job with less energy, such as using an LED bulb in place of an old bulb that gives off most of its energy as heat. <b>Conservation</b> means using less energy overall, such as turning off lights and lowering the thermostat. Energy use can be measured. <b>Power</b>, in watts, is how fast energy is used, and energy is power multiplied by time, often measured in watt-hours or kilowatt-hours, which are used on electric bills. A 10-watt bulb running for 5 hours uses 50 watt-hours. Efficient products may cost more at first but save money over their lifetime, so engineers and shoppers often compare total cost, not just the price tag.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -490,7 +497,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s5">
   <div><p class="kicker">Concept 5 · Making choices</p><h2>Weigh costs, benefits, and trade-offs</h2></div>
-  <p class="idea">Engineers and communities choose among energy options using <mark>criteria</mark> (cost, reliability, pollution, land use) and <mark>trade-offs</mark>: no option is perfect. Clear criteria and data make a decision defensible, even when people weigh criteria differently.</p>
+  <p class="idea">Engineers and communities choose among energy options using <mark>criteria</mark> (cost, reliability, pollution, land use) and <mark>trade-offs</mark>: no option is perfect. Clear criteria and data make a decision defensible, even when people weigh criteria differently.</p><p class="bg">Every energy choice involves <b>trade-offs</b>, because no source is perfect. Engineers and communities compare options using <b>criteria</b>, which are the things that matter, such as cost, reliability, pollution, safety, and how much land is needed. One option may be cheap but polluting, and another clean but dependent on weather. Different people can weigh the criteria differently, so a good decision uses clear criteria and real data, not just opinion, and explains why one criterion matters more than another. People can also take action locally, from home efficiency to supporting community solar projects. Comparing sources on a fair basis, such as the greenhouse gases released per unit of electricity over a source's whole life, helps in making a decision that can be defended.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>

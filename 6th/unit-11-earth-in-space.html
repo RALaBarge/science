@@ -62,9 +62,16 @@ h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
 .sec h2{font-size:clamp(1.9rem,6vw,2.7rem);font-weight:800;letter-spacing:-.02em}
 .idea{font-family:var(--font-display);font-size:clamp(1.25rem,4.4vw,1.75rem);line-height:1.25;font-weight:700;text-wrap:balance;max-width:28em}
 .idea mark{background:none;color:var(--reflect);font-weight:700}
+.sec p.bg{max-width:44em;font-size:1.05rem;line-height:1.6;color:var(--ink)}
+.sec p.bg b{font-weight:700}
 .aids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
 .aid{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
 .aid.wide{grid-column:1/-1}
+/* Layout-aware centering: side-by-side cards of different height center vertically; a card alone in its row (next to a wide card) sits centered at half width. */
+@media (min-width:761px){
+.aids{align-items:center}
+.aid:not(.wide):only-child,.aid:not(.wide):first-child:has(+ .aid.wide),.aid.wide + .aid:not(.wide):has(+ .aid.wide),.aid.wide + .aid:not(.wide):last-child{grid-column:1/-1;justify-self:center;width:calc((100% - 16px)/2)}
+}
 .aid h3{font-size:1.2rem;font-weight:700}
 .aid p.cap{font-size:.95rem;color:var(--muted)}
 .aid p.cap b{color:var(--ink)}
@@ -284,7 +291,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s1">
   <div><p class="kicker">Concept 1 · Earth spins</p><h2>Rotation gives us day and night</h2></div>
-  <p class="idea">Earth <mark>rotates</mark> once about every 24 hours around its axis. The side facing the Sun has day; the side facing away has night. The Sun doesn't move across the sky; <mark>we do</mark>.</p>
+  <p class="idea">Earth <mark>rotates</mark> once about every 24 hours around its axis. The side facing the Sun has day; the side facing away has night. The Sun doesn't move across the sky; <mark>we do</mark>.</p><p class="bg">Earth <b>rotates</b>, or spins, on an imaginary line through the North and South Poles called its <b>axis</b>. One full turn takes about 24 hours, which gives us the cycle of day and night. The half of Earth facing the Sun has daytime, and the half facing away has night. From the ground, the Sun appears to rise in the east and set in the west, but that is because Earth is turning toward the east, not because the Sun is moving around us. Because Earth is round and spinning, different places have noon at different times, which is why we have time zones. The changing length and direction of shadows during the day also come from Earth's rotation, which is how sundials work.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag try">Try it</span>
@@ -328,7 +335,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s2">
   <div><p class="kicker">Concept 2 · Earth orbits</p><h2>The seasons come from tilt, not distance</h2></div>
-  <p class="idea">Earth orbits the Sun once a year with its axis <mark>tilted 23.4°</mark>. When the Northern Hemisphere tilts toward the Sun, sunlight hits more directly and days are longer: summer. Earth is actually <mark>closest to the Sun in early January</mark>.</p>
+  <p class="idea">Earth orbits the Sun once a year with its axis <mark>tilted 23.4°</mark>. When the Northern Hemisphere tilts toward the Sun, sunlight hits more directly and days are longer: summer. Earth is actually <mark>closest to the Sun in early January</mark>.</p><p class="bg">Earth also <b>revolves</b>, or orbits, around the Sun once about every 365 days, which is one year. Earth's axis is tilted about 23.4 degrees compared to its orbit and always points in the same direction in space. So during part of the year the Northern Hemisphere leans toward the Sun, and during the other part it leans away. When it leans toward the Sun, sunlight strikes more directly, so energy is concentrated, and days are longer, which makes summer. When it leans away, sunlight strikes at a slant, so energy is spread out, and days are shorter, which makes winter. The seasons are opposite in the Southern Hemisphere. Distance from the Sun is not the cause, since Earth is actually closest to the Sun during the Northern Hemisphere's winter.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -373,7 +380,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s3">
   <div><p class="kicker">Concept 3 · The Moon</p><h2>Moon phases</h2></div>
-  <p class="idea">The Moon always has one half lit by the Sun. As it orbits Earth, the cycle of phases repeats about every <mark>29.5 days</mark>, and we see different amounts of the lit half. Phases are <mark>not</mark> caused by Earth's shadow.</p>
+  <p class="idea">The Moon always has one half lit by the Sun. As it orbits Earth, the cycle of phases repeats about every <mark>29.5 days</mark>, and we see different amounts of the lit half. Phases are <mark>not</mark> caused by Earth's shadow.</p><p class="bg">The Moon does not make its own light. It reflects sunlight, and half of it is always lit by the Sun. The Moon orbits Earth about once every 27 days, but the cycle of phases takes about 29.5 days because Earth is also moving around the Sun. As the Moon moves around Earth, we see different amounts of its lit side. At <b>new moon</b> the lit side faces away from us, and at <b>full moon</b> we see the whole lit side. In between are crescent, quarter, and gibbous phases, which grow (<b>waxing</b>) and then shrink (<b>waning</b>). A common mistake is to think the phases come from Earth's shadow on the Moon. They do not: the phases come from our changing view of the lit half.</p>
   <div class="aids">
     <article class="aid wide">
       <span class="tag analogy">Analogy</span>
@@ -422,7 +429,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s4">
   <div><p class="kicker">Concept 4 · Alignments</p><h2>Eclipses and tides</h2></div>
-  <p class="idea">An <mark>eclipse</mark> happens when the Sun, Moon, and Earth line up. The Moon's gravity also pulls on ocean water, causing <mark>tides</mark>, and the biggest tides come when the Sun and Moon pull along the same line.</p>
+  <p class="idea">An <mark>eclipse</mark> happens when the Sun, Moon, and Earth line up. The Moon's gravity also pulls on ocean water, causing <mark>tides</mark>, and the biggest tides come when the Sun and Moon pull along the same line.</p><p class="bg">An <b>eclipse</b> happens when Earth, the Moon, and the Sun line up. In a <b>solar eclipse</b>, the Moon passes between the Sun and Earth and its shadow falls on part of Earth. In a <b>lunar eclipse</b>, Earth passes between the Sun and the Moon and Earth's shadow falls on the Moon. Eclipses do not occur every month because the Moon's orbit is tilted compared to Earth's orbit, so the three bodies usually do not line up exactly. <b>Tides</b> are the rise and fall of ocean water, mainly caused by the Moon's gravity pulling on Earth, with a smaller pull from the Sun. Most places have two high tides and two low tides each day. When the Sun and Moon pull along the same line, at new and full moon, the tides are highest, called spring tides.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag diagram">Diagram</span>
@@ -460,7 +467,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s5">
   <div><p class="kicker">Concept 5 · Gravity and scale</p><h2>The solar system is mostly empty space</h2></div>
-  <p class="idea"><mark>Gravity</mark> holds planets in orbit around the Sun and the Moon around Earth. Planets farther out move slower and take longer to orbit. The distances are so vast that a <mark>scale model</mark> is the only way to feel them.</p>
+  <p class="idea"><mark>Gravity</mark> holds planets in orbit around the Sun and the Moon around Earth. Planets farther out move slower and take longer to orbit. The distances are so vast that a <mark>scale model</mark> is the only way to feel them.</p><p class="bg"><b>Gravity</b> is the attraction between any two objects with mass, and it is stronger for larger masses and shorter distances. The Sun's gravity holds all the planets in orbit, and Earth's gravity holds the Moon. Planets are always moving sideways while falling toward the Sun, which keeps them going around instead of falling in or flying off. Planets closer to the Sun feel stronger gravity, so they move faster and have shorter years, and farther planets move slower along bigger paths, so their years are much longer. The solar system is mostly empty space. If the Sun were the size of a grapefruit, Earth would be a speck of dust many steps away, which is why scale models are needed. Your weight, the pull of gravity on you, differs on other worlds because their masses and sizes differ, but your mass stays the same.</p>
   <div class="intro5">
     <p><b>Have you ever wondered how things stay up in the air, or how the planets stay in their paths?</b> Things do not really stay up by themselves. Throw a ball and it falls back down. The planets are falling too, but they are moving sideways so fast that they keep missing the Sun. Here are the key words before the analogy.</p>
     <ul><li><b>Force:</b> a push or a pull on an object (more in Unit 3).</li><li><b>Gravity:</b> the pull every object has on every other object. Bigger objects pull harder, so you feel Earth pulling you but not your desk.</li><li><b>Motion:</b> how fast and in what direction something is moving. Without a pull, a moving object just keeps going in a straight line.</li><li><b>Orbit:</b> the curved path an object takes around another because gravity keeps bending its straight-line motion into a loop, like the Moon around Earth.</li><li><b>Scale model:</b> a smaller copy that keeps distances in proportion, so huge space distances fit into a room or a field.</li></ul>

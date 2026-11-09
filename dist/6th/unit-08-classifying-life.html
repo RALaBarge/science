@@ -66,9 +66,16 @@ h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
 .sec h2{font-size:clamp(1.9rem,6vw,2.7rem);font-weight:800;letter-spacing:-.02em}
 .idea{font-family:var(--font-display);font-size:clamp(1.25rem,4.4vw,1.75rem);line-height:1.25;font-weight:700;text-wrap:balance;max-width:28em}
 .idea mark{background:none;color:var(--reflect);font-weight:700}
+.sec p.bg{max-width:44em;font-size:1.05rem;line-height:1.6;color:var(--ink)}
+.sec p.bg b{font-weight:700}
 .aids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
 .aid{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
 .aid.wide{grid-column:1/-1}
+/* Layout-aware centering: side-by-side cards of different height center vertically; a card alone in its row (next to a wide card) sits centered at half width. */
+@media (min-width:761px){
+.aids{align-items:center}
+.aid:not(.wide):only-child,.aid:not(.wide):first-child:has(+ .aid.wide),.aid.wide + .aid:not(.wide):has(+ .aid.wide),.aid.wide + .aid:not(.wide):last-child{grid-column:1/-1;justify-self:center;width:calc((100% - 16px)/2)}
+}
 .aid h3{font-size:1.2rem;font-weight:700}
 .aid p.cap{font-size:.95rem;color:var(--muted)}
 .aid p.cap b{color:var(--ink)}
@@ -321,7 +328,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s1">
   <div><p class="kicker">Concept 1 · Sorting life</p><h2>From broad groups to one species</h2></div>
-  <p class="idea">Scientists sort living things into <mark>nested groups</mark>, from huge to tiny: domain, kingdom, phylum, class, order, family, <mark>genus</mark>, <mark>species</mark>. Each living thing gets a <mark>two-part scientific name</mark>: genus + species.</p>
+  <p class="idea">Scientists sort living things into <mark>nested groups</mark>, from huge to tiny: domain, kingdom, phylum, class, order, family, <mark>genus</mark>, <mark>species</mark>. Each living thing gets a <mark>two-part scientific name</mark>: genus + species.</p><p class="bg">There are millions of kinds of living things, so scientists need a system to organize them. <b>Taxonomy</b> sorts organisms into groups based on shared features and evolutionary relationships. The groups are nested, like boxes inside boxes, with the largest group first: domain, kingdom, phylum, class, order, family, genus, and species. A <b>species</b> is a group of organisms that can mate and have fertile offspring. Each kind of organism has a two-part scientific name, using the genus and species, such as <i>Homo sapiens</i> for humans. This system, called <b>binomial nomenclature</b>, was developed by Carl Linnaeus in the 1700s. Scientific names are in Latin and are the same worldwide, so scientists can be sure which organism is meant even when common names differ, as with a cougar, puma, and mountain lion.</p>
   <p class="cap"><b>Good to know:</b> these groups are tools people made to organize what we see. Modern grouping follows evolutionary relationships (who shares a recent ancestor), not just traits you can see. Two animals can look alike and still be only distant relatives.</p>
   <div class="aids">
     <article class="aid">
@@ -370,7 +377,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s2">
   <div><p class="kicker">Concept 2 · The big groups</p><h2>Three domains, six kingdoms</h2></div>
-  <p class="idea">Life splits into <mark>three domains</mark>. One of them, <mark>Eukarya</mark> (cells with a nucleus), holds four kingdoms: protists, fungi, plants, animals. The other two, Bacteria and Archaea, are single cells without a nucleus.</p>
+  <p class="idea">Life splits into <mark>three domains</mark>. One of them, <mark>Eukarya</mark> (cells with a nucleus), holds four kingdoms: protists, fungi, plants, animals. The other two, Bacteria and Archaea, are single cells without a nucleus.</p><p class="bg">Scientists group all life into three <b>domains</b>. Two of them, <b>Bacteria</b> and <b>Archaea</b>, are made of single cells with no nucleus. Archaea often live in extreme places, like hot springs or very salty water. The third, <b>Eukarya</b>, includes all organisms whose cells have a nucleus, and it is divided into four kingdoms. <b>Protists</b> are mostly single-celled and include amoebas and algae. <b>Fungi</b>, like mushrooms and molds, absorb nutrients from dead or living matter. <b>Plants</b> make their own food by photosynthesis. <b>Animals</b> are many-celled organisms that eat other organisms. Scientists decide which group a living thing belongs to by asking how many cells it has, whether those cells have a nucleus, and how it gets food.</p>
   <div class="aids">
     <article class="aid wide">
       <span class="tag analogy">Analogy</span>
@@ -442,7 +449,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s3">
   <div><p class="kicker">Concept 3 · Identifying living things</p><h2>Dichotomous keys</h2></div>
-  <p class="idea">A <mark>dichotomous key</mark> is a series of two-choice questions. Each answer sends you down one branch until you reach a name. Every question should be about something you can <mark>observe</mark>.</p>
+  <p class="idea">A <mark>dichotomous key</mark> is a series of two-choice questions. Each answer sends you down one branch until you reach a name. Every question should be about something you can <mark>observe</mark>.</p><p class="bg">A <b>dichotomous key</b> is a tool for identifying an unknown organism. <i>Dichotomous</i> means "divided into two parts": at each step the key gives two choices about a physical trait, and your choice sends you to the next step or to a final name. The questions must be about features you can observe clearly, such as whether a leaf is needle-like or flat, or whether the leaf edge is smooth or toothed, rather than opinions like "pretty." Following the steps in order narrows down the possibilities until only one remains. Field guides, scientists, and park rangers use keys to identify trees, insects, birds, and rocks. You can also write your own key by looking for traits that split a group of objects into two smaller groups at each step.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -484,7 +491,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s4">
   <div><p class="kicker">Concept 4 · Animals with backbones</p><h2>Five vertebrate groups</h2></div>
-  <p class="idea">Animals with backbones fall into five groups: <mark>fish, amphibians, reptiles, birds, mammals</mark>. Think of a branching tree, not a ladder: each branch keeps the traits it inherited and adds its own.</p>
+  <p class="idea">Animals with backbones fall into five groups: <mark>fish, amphibians, reptiles, birds, mammals</mark>. Think of a branching tree, not a ladder: each branch keeps the traits it inherited and adds its own.</p><p class="bg"><b>Vertebrates</b> are animals with a backbone. There are five main groups. <b>Fish</b> live in water, breathe with gills, and have scales. <b>Amphibians</b>, like frogs, spend part of life in water and part on land and have moist skin. <b>Reptiles</b> have dry, scaly skin and lay eggs with leathery shells. <b>Birds</b> have feathers, wings, and hard-shelled eggs, and they are warm-blooded. <b>Mammals</b> have hair or fur, feed their young milk, and are also warm-blooded. Scientists show how the groups are related using a branching tree. Each new branch keeps the features from earlier branches and adds new ones, which reflects shared ancestry. Vertebrates are a small share of animals, since most animal species, such as insects, are <b>invertebrates</b> with no backbone.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -529,7 +536,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s5">
   <div><p class="kicker">Concept 5 · Biodiversity</p><h2>Why variety matters</h2></div>
-  <p class="idea"><mark>Biodiversity</mark> is the variety of life in a place. More variety makes ecosystems <mark>more stable</mark>, and bigger habitats <mark>hold more species</mark>.</p>
+  <p class="idea"><mark>Biodiversity</mark> is the variety of life in a place. More variety makes ecosystems <mark>more stable</mark>, and bigger habitats <mark>hold more species</mark>.</p><p class="bg"><b>Biodiversity</b> is the variety of living things in an area, including the number of different species, the genetic variety within each species, and the variety of habitats. Places with high biodiversity, like a coral reef or a rainforest, usually have many different kinds of producers, consumers, and decomposers. This makes the ecosystem more stable, because if one species declines, others can fill its role. Larger habitats can generally support more species, and when habitats are broken into small pieces by roads and buildings, many species disappear. Biodiversity also helps people through food, clean water, medicines, and materials. Michigan has a wide range of living things, from dune grasses and wetland plants to forest mammals and Great Lakes fish, and protecting their habitats protects the variety of life.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>

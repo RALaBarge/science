@@ -62,9 +62,16 @@ h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
 .sec h2{font-size:clamp(1.9rem,6vw,2.7rem);font-weight:800;letter-spacing:-.02em}
 .idea{font-family:var(--font-display);font-size:clamp(1.25rem,4.4vw,1.75rem);line-height:1.25;font-weight:700;text-wrap:balance;max-width:28em}
 .idea mark{background:none;color:var(--reflect);font-weight:700}
+.sec p.bg{max-width:44em;font-size:1.05rem;line-height:1.6;color:var(--ink)}
+.sec p.bg b{font-weight:700}
 .aids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
 .aid{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
 .aid.wide{grid-column:1/-1}
+/* Layout-aware centering: side-by-side cards of different height center vertically; a card alone in its row (next to a wide card) sits centered at half width. */
+@media (min-width:761px){
+.aids{align-items:center}
+.aid:not(.wide):only-child,.aid:not(.wide):first-child:has(+ .aid.wide),.aid.wide + .aid:not(.wide):has(+ .aid.wide),.aid.wide + .aid:not(.wide):last-child{grid-column:1/-1;justify-self:center;width:calc((100% - 16px)/2)}
+}
 .aid h3{font-size:1.2rem;font-weight:700}
 .aid p.cap{font-size:.95rem;color:var(--muted)}
 .aid p.cap b{color:var(--ink)}
@@ -318,7 +325,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s1">
   <div><p class="kicker">Concept 1 · What is life?</p><h2>Everything alive is made of cells</h2></div>
-  <p class="idea">Living things grow, use energy, respond to their surroundings, and reproduce. <mark>All living things are made of cells</mark>, and <mark>all cells come from other cells</mark>.</p>
+  <p class="idea">Living things grow, use energy, respond to their surroundings, and reproduce. <mark>All living things are made of cells</mark>, and <mark>all cells come from other cells</mark>.</p><p class="bg">All living things share certain features: they grow and develop, use energy, respond to their surroundings, reproduce, and are made of cells. The <b>cell theory</b> summarizes this. All living things are made of one or more cells. The cell is the basic unit of structure and function in living things. And all cells come from other cells that already existed. Most cells are far too small to see without a microscope. Robert Hooke first used the word <i>cell</i> in the 1600s when he looked at thin slices of cork, and Anton van Leeuwenhoek soon saw living single-celled organisms in pond water. Some organisms, like bacteria, are a single cell. Others, such as people and trees, are made of trillions of them.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -368,7 +375,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s2">
   <div><p class="kicker">Concept 2 · Parts of a cell</p><h2>A tiny city</h2></div>
-  <p class="idea">Cells contain little structures called <mark>organelles</mark>, each with a job. Plant cells have three extras: <mark>a cell wall, chloroplasts, and a big vacuole</mark>.</p>
+  <p class="idea">Cells contain little structures called <mark>organelles</mark>, each with a job. Plant cells have three extras: <mark>a cell wall, chloroplasts, and a big vacuole</mark>.</p><p class="bg">Cells contain small structures called <b>organelles</b>, each with a job. The <b>nucleus</b> holds the cell's DNA, the instructions for building and running the cell. <b>Mitochondria</b> release usable energy from sugar. The <b>cell membrane</b> surrounds the cell and controls what goes in and out. <b>Ribosomes</b> build proteins, and the cytoplasm is the jelly-like fluid that fills the cell. Plant cells have all of these plus a stiff <b>cell wall</b> for support, <b>chloroplasts</b> that capture light energy for making food, and a large <b>vacuole</b> that stores water. Animal cells lack those three. Cells that do a lot of work, like muscle cells, have many more mitochondria than cells that do less. Bacteria are simpler: they have no nucleus or other membrane-bound organelles.</p>
   <div class="aids">
     <article class="aid wide">
       <span class="tag analogy">Analogy</span>
@@ -405,7 +412,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s3">
   <div><p class="kicker">Concept 3 · Cell energy</p><h2>Making and using food energy</h2></div>
-  <p class="idea"><mark>Photosynthesis</mark> turns light, water, and carbon dioxide into sugar and oxygen. <mark>Cellular respiration</mark> turns sugar and oxygen back into usable energy. Plants do both; animals only do respiration.</p>
+  <p class="idea"><mark>Photosynthesis</mark> turns light, water, and carbon dioxide into sugar and oxygen. <mark>Cellular respiration</mark> turns sugar and oxygen back into usable energy. Plants do both; animals only do respiration.</p><p class="bg">Cells need a constant supply of energy. <b>Photosynthesis</b> happens in the chloroplasts of plants and algae. It uses light energy to turn carbon dioxide and water into <b>glucose</b>, a sugar, and oxygen. The light energy is stored as chemical energy in the sugar. <b>Cellular respiration</b> happens in the mitochondria of nearly all living cells. It uses oxygen to break down glucose and releases the energy in a form the cell can use, with carbon dioxide and water as products. The two processes are close to opposites, and each one makes what the other needs. Plants do both: they make sugar by photosynthesis and use it for respiration. Animals cannot photosynthesize, so they get glucose by eating plants or other animals.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -457,7 +464,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s4">
   <div><p class="kicker">Concept 4 · Moving in and out</p><h2>The membrane is a picky gate</h2></div>
-  <p class="idea">Particles <mark>spread out from crowded to less crowded</mark> places (diffusion). Water does too (osmosis). The <mark>cell membrane</mark> lets some things through and keeps others out.</p>
+  <p class="idea">Particles <mark>spread out from crowded to less crowded</mark> places (diffusion). Water does too (osmosis). The <mark>cell membrane</mark> lets some things through and keeps others out.</p><p class="bg">Cells must take in materials like oxygen and nutrients and get rid of wastes, and the <b>cell membrane</b> controls this traffic. It is <b>selectively permeable</b>, meaning it lets some substances through and blocks others. <b>Diffusion</b> is the spreading of particles from an area where they are crowded to an area where they are less crowded. It happens on its own, with no energy needed, and continues until the particles are evenly spread. <b>Osmosis</b> is the diffusion of water across a membrane. If a cell is placed in very salty water, water leaves the cell and it shrinks, and in fresh water, water enters and the cell swells. This is why a celery stick turns limp in salt water and crisp in plain water, and why plants wilt when they lack water.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -495,7 +502,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s5">
   <div><p class="kicker">Concept 5 · Many cells</p><h2>From one cell to a whole body</h2></div>
-  <p class="idea">Cells divide to grow and to repair. Living things can be <mark>one cell</mark> or <mark>trillions</mark>. In big organisms, cells team up in levels: <mark>cells → tissues → organs → organ systems → organism</mark>.</p>
+  <p class="idea">Cells divide to grow and to repair. Living things can be <mark>one cell</mark> or <mark>trillions</mark>. In big organisms, cells team up in levels: <mark>cells → tissues → organs → organ systems → organism</mark>.</p><p class="bg">Single-celled organisms do everything in one cell, but large organisms are made of many cells that have different jobs. Cells divide to grow and to replace those that are worn out or damaged, which is how a cut heals. In many-celled organisms, cells of one type working together form a <b>tissue</b>, such as muscle tissue. Different tissues work together as an <b>organ</b>, such as the heart. Organs that share a job form an <b>organ system</b>, such as the circulatory system, and all the systems together make up the whole <b>organism</b>. This building up in levels is called levels of organization. Each level can do things that the smaller pieces cannot, in the same way a team can do more than one player alone.</p>
   <div class="aids">
     <article class="aid wide">
       <span class="tag analogy">Analogy</span>
@@ -540,7 +547,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s5b">
   <div><p class="kicker">Concept 6 · Making more cells</p><h2>Cells make more cells</h2></div>
-  <p class="idea">A cell goes around a loop called the <mark>cell cycle</mark>: it <mark>grows</mark>, <mark>copies its DNA</mark>, then <mark>divides</mark> in two. The DNA is packed into <mark>chromosomes</mark>, and the division step is called <mark>mitosis</mark>. Each new cell gets a full, matching set.</p>
+  <p class="idea">A cell goes around a loop called the <mark>cell cycle</mark>: it <mark>grows</mark>, <mark>copies its DNA</mark>, then <mark>divides</mark> in two. The DNA is packed into <mark>chromosomes</mark>, and the division step is called <mark>mitosis</mark>. Each new cell gets a full, matching set.</p><p class="bg">Cells make more cells through the <b>cell cycle</b>. First the cell grows and copies its <b>DNA</b>, so there are two full sets of instructions. The DNA is organized into structures called <b>chromosomes</b>, and each chromosome is copied. Then in <b>mitosis</b>, the copies are pulled apart so each end of the cell gets one complete set. Finally the cell splits in two, and the result is two new cells that are genetically identical to the original. Mitosis is how organisms grow, how a wound heals, and how single-celled organisms like amoebas reproduce. Cells in different parts of the body divide at different rates. Skin cells divide often, and many nerve cells hardly divide at all. When cell division goes out of control, the result can be a tumor, as in cancer.</p>
   <div class="aids">
     <article class="aid wide">
       <span class="tag real">Picture</span>

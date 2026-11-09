@@ -62,9 +62,16 @@ h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
 .sec h2{font-size:clamp(1.9rem,6vw,2.7rem);font-weight:800;letter-spacing:-.02em}
 .idea{font-family:var(--font-display);font-size:clamp(1.25rem,4.4vw,1.75rem);line-height:1.25;font-weight:700;text-wrap:balance;max-width:28em}
 .idea mark{background:none;color:var(--reflect);font-weight:700}
+.sec p.bg{max-width:44em;font-size:1.05rem;line-height:1.6;color:var(--ink)}
+.sec p.bg b{font-weight:700}
 .aids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
 .aid{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
 .aid.wide{grid-column:1/-1}
+/* Layout-aware centering: side-by-side cards of different height center vertically; a card alone in its row (next to a wide card) sits centered at half width. */
+@media (min-width:761px){
+.aids{align-items:center}
+.aid:not(.wide):only-child,.aid:not(.wide):first-child:has(+ .aid.wide),.aid.wide + .aid:not(.wide):has(+ .aid.wide),.aid.wide + .aid:not(.wide):last-child{grid-column:1/-1;justify-self:center;width:calc((100% - 16px)/2)}
+}
 .aid h3{font-size:1.2rem;font-weight:700}
 .aid p.cap{font-size:.95rem;color:var(--muted)}
 .aid p.cap b{color:var(--ink)}
@@ -299,7 +306,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s1">
   <div><p class="kicker">Concept 1 · Describing motion</p><h2>Speed is distance per time</h2></div>
-  <p class="idea">Speed tells you how far something goes <mark>in each second</mark>: speed = distance ÷ time. On a distance–time graph, a <mark>steeper line means faster</mark>.</p>
+  <p class="idea">Speed tells you how far something goes <mark>in each second</mark>: speed = distance ÷ time. On a distance–time graph, a <mark>steeper line means faster</mark>.</p><p class="bg"><b>Motion</b> is a change in position, and it is described by how far an object goes and how long it takes. <b>Speed</b> is the distance traveled divided by the time, so a car that covers 100 kilometers in 2 hours averages 50 kilometers per hour. Speed alone does not say which way something is going. <b>Velocity</b> is speed with a direction. A <b>distance&ndash;time graph</b> plots how far an object has gone as time passes. A flat line means the object is not moving, a straight sloped line means constant speed, and a steeper line means a higher speed. Real objects rarely move at one steady speed, so a calculated speed is usually an average over the whole trip.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -360,7 +367,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s2">
   <div><p class="kicker">Concept 2 · What changes motion</p><h2>Balanced and unbalanced forces</h2></div>
-  <p class="idea">A <mark>force</mark> is a push or a pull. If forces are balanced, motion doesn't change. If they're unbalanced, the object <mark>speeds up, slows down, or turns</mark>. A bigger net force or a smaller mass means more acceleration. Mass also measures <mark>inertia</mark>: how hard something is to start moving or to stop. A full cart is harder to get going <i>and</i> harder to stop.</p>
+  <p class="idea">A <mark>force</mark> is a push or a pull. If forces are balanced, motion doesn't change. If they're unbalanced, the object <mark>speeds up, slows down, or turns</mark>. A bigger net force or a smaller mass means more acceleration. Mass also measures <mark>inertia</mark>: how hard something is to start moving or to stop. A full cart is harder to get going <i>and</i> harder to stop.</p><p class="bg">A <b>force</b> is a push or pull, measured in newtons. Every object usually has several forces acting on it at once. When they are <b>balanced</b>, they cancel out, and the object's motion does not change: a resting object stays at rest and a moving one keeps going at the same speed in the same direction. When the forces are <b>unbalanced</b>, there is a net force and the object accelerates, meaning it speeds up, slows down, or changes direction. A bigger net force produces a bigger change in motion, and a more massive object changes motion less for the same force. <b>Inertia</b> is the tendency of any object to keep doing what it is already doing, and mass is the measure of how much inertia it has. This is why a loaded cart is harder to start and harder to stop than an empty one.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -562,7 +569,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s3">
   <div><p class="kicker">Concept 3 · Two forces you always meet</p><h2>Friction and gravity</h2></div>
-  <p class="idea"><mark>Sliding friction</mark> pushes against sliding between surfaces. <mark>Gravity</mark> pulls everything toward the center of Earth. Together they explain why things stop and why things fall. Friction can also help things move: it is what lets your shoes grip the floor when you walk and your tires grip the road.</p>
+  <p class="idea"><mark>Sliding friction</mark> pushes against sliding between surfaces. <mark>Gravity</mark> pulls everything toward the center of Earth. Together they explain why things stop and why things fall. Friction can also help things move: it is what lets your shoes grip the floor when you walk and your tires grip the road.</p><p class="bg"><b>Friction</b> is a force between two surfaces that touch, and it acts against sliding or the tendency to slide. Rough surfaces and heavy pressing together make more friction, and smooth, slippery surfaces make less. Friction slows moving objects down and turns some of their motion energy into thermal energy, which is why rubbing your hands together warms them. But friction is also useful: without it, your shoes would slip on the floor and car tires would not grip the road. <b>Gravity</b> is a force of attraction between objects with mass. Near Earth it pulls everything toward the center of the planet, which we experience as weight. An object on a surface is also pushed up by the surface, which balances gravity so it does not fall through.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -658,7 +665,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s4">
   <div><p class="kicker">Concept 4 · Two kinds of energy</p><h2>Stored and moving</h2></div>
-  <p class="idea"><mark>Potential energy</mark> is stored energy (height makes gravitational potential energy). <mark>Kinetic energy</mark> is energy of motion. A roller coaster trades one for the other all ride long.</p>
+  <p class="idea"><mark>Potential energy</mark> is stored energy (height makes gravitational potential energy). <mark>Kinetic energy</mark> is energy of motion. A roller coaster trades one for the other all ride long.</p><p class="bg"><b>Energy</b> is the ability to cause change, and it comes in different forms. <b>Kinetic energy</b> is the energy of motion, and it grows with both mass and speed. <b>Potential energy</b> is stored energy that has the potential to be turned into motion. An object lifted higher has more gravitational potential energy, and a stretched spring or rubber band stores elastic potential energy. Energy can move back and forth between the two. On a roller coaster, climbing the first hill stores potential energy, and rolling down turns it into kinetic energy, so the car is fastest at the bottom. Then the car climbs again and trades the speed back for height. The total of the two stays about the same, aside from small losses explained in the next concept.</p>
   <div class="aids">
     <article class="aid wide">
       <span class="tag diagram">Diagram</span>
@@ -735,7 +742,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s5">
   <div><p class="kicker">Concept 5 · Where energy goes</p><h2>Energy changes form</h2></div>
-  <p class="idea">When energy changes form, some of it always ends up as <mark>thermal energy</mark> (heat) and sound that we cannot easily use.</p>
+  <p class="idea">When energy changes form, some of it always ends up as <mark>thermal energy</mark> (heat) and sound that we cannot easily use.</p><p class="bg">Energy is never created or destroyed. It only changes form or moves from one object to another, a rule called <b>conservation of energy</b>. A lamp changes electrical energy into light and heat. A person changes the chemical energy in food into motion. In each change, some energy ends up as thermal energy that spreads out into the surroundings and sound, and this part is hard to use again. That is why a bouncing ball does not return to its starting height, and why a roller coaster cannot climb a second hill higher than the first. The energy is not gone, but some of it has become warmer air, warmer track, and sound. Tracking where all the energy ends up is how scientists and engineers check their ideas.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -804,7 +811,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s6c">
   <div><p class="kicker">Concept 6 · When things collide</p><h2>Equal pushes, softer stops</h2></div>
-  <p class="idea">When two things collide, they push on each other with <mark>equal and opposite forces</mark>. That's Newton's third law. You can't make the force go away, but you can make it smaller by <mark>stretching the stop over more time</mark>.</p>
+  <p class="idea">When two things collide, they push on each other with <mark>equal and opposite forces</mark>. That's Newton's third law. You can't make the force go away, but you can make it smaller by <mark>stretching the stop over more time</mark>.</p><p class="bg">Whenever two objects push on each other, such as in a collision, the forces are equal in size and opposite in direction. This is <b>Newton's third law</b>. In a crash between a heavy truck and a small car, each pushes on the other with the same force, but the car changes its motion much more because it has less mass. The size of the force on an object depends on how quickly its motion changes. If the stop happens over a longer time, the force is smaller, which is why a catcher's glove pulls back as it catches a ball. Safety equipment such as helmets, air bags, crumple zones, and padded floors all work by stretching out the stopping time to reduce the force on a person.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>

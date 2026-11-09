@@ -62,9 +62,16 @@ h1{font-size:clamp(2.6rem,10vw,4.6rem);font-weight:800;letter-spacing:-.025em}
 .sec h2{font-size:clamp(1.9rem,6vw,2.7rem);font-weight:800;letter-spacing:-.02em}
 .idea{font-family:var(--font-display);font-size:clamp(1.25rem,4.4vw,1.75rem);line-height:1.25;font-weight:700;text-wrap:balance;max-width:28em}
 .idea mark{background:none;color:var(--reflect);font-weight:700}
+.sec p.bg{max-width:44em;font-size:1.05rem;line-height:1.6;color:var(--ink)}
+.sec p.bg b{font-weight:700}
 .aids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
 .aid{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
 .aid.wide{grid-column:1/-1}
+/* Layout-aware centering: side-by-side cards of different height center vertically; a card alone in its row (next to a wide card) sits centered at half width. */
+@media (min-width:761px){
+.aids{align-items:center}
+.aid:not(.wide):only-child,.aid:not(.wide):first-child:has(+ .aid.wide),.aid.wide + .aid:not(.wide):has(+ .aid.wide),.aid.wide + .aid:not(.wide):last-child{grid-column:1/-1;justify-self:center;width:calc((100% - 16px)/2)}
+}
 .aid h3{font-size:1.2rem;font-weight:700}
 .aid p.cap{font-size:.95rem;color:var(--muted)}
 .aid p.cap b{color:var(--ink)}
@@ -293,7 +300,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s1">
   <div><p class="kicker">Concept 1 · What is an ecosystem?</p><h2>Living and non-living parts, working together</h2></div>
-  <p class="idea">An <mark>ecosystem</mark> includes all the <mark>living (biotic)</mark> and <mark>non-living (abiotic)</mark> things in an area and how they interact. Scientists study life at nested levels, from one organism up to the whole planet.</p>
+  <p class="idea">An <mark>ecosystem</mark> includes all the <mark>living (biotic)</mark> and <mark>non-living (abiotic)</mark> things in an area and how they interact. Scientists study life at nested levels, from one organism up to the whole planet.</p><p class="bg">An <b>ecosystem</b> is all of the living and nonliving things in an area and the way they interact. The living parts are <b>biotic</b> factors, such as plants, animals, fungi, and bacteria. The nonliving parts are <b>abiotic</b> factors, such as sunlight, water, temperature, soil, and air. An ecosystem can be as small as a puddle or as large as a lake or forest. Scientists study life at nested levels: an <b>organism</b> is one living thing, a <b>population</b> is all the members of one species in an area, a <b>community</b> is all the populations living together, an ecosystem adds the nonliving parts, and the <b>biosphere</b> is all of Earth where life exists. Each level depends on the others.</p>
   <p class="cap"><b>Going deeper:</b> <a href="../7th/unit-7.6-ecosystem-dynamics.html">Unit 7.6: Ecosystem Dynamics</a> covers these same ideas in more depth.</p>
   <div class="aids">
     <article class="aid">
@@ -334,7 +341,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s2">
   <div><p class="kicker">Concept 2 · Food and energy</p><h2>Producers, consumers, and decomposers</h2></div>
-  <p class="idea"><mark>Producers</mark> (plants, algae) capture sunlight and make food. <mark>Consumers</mark> eat other organisms. <mark>Decomposers</mark> (fungi, bacteria) break down dead things. Energy flows one way and <mark>roughly 10% moves up</mark> to the next level on average (a teaching average, not a law; real food chains range from a few percent to about 20%).</p>
+  <p class="idea"><mark>Producers</mark> (plants, algae) capture sunlight and make food. <mark>Consumers</mark> eat other organisms. <mark>Decomposers</mark> (fungi, bacteria) break down dead things. Energy flows one way and <mark>roughly 10% moves up</mark> to the next level on average (a teaching average, not a law; real food chains range from a few percent to about 20%).</p><p class="bg">Energy enters most ecosystems as sunlight. <b>Producers</b>, such as plants and algae, capture it by photosynthesis and store it in sugars. <b>Consumers</b> get energy by eating other organisms: herbivores eat plants, carnivores eat animals, and omnivores eat both. <b>Decomposers</b>, such as fungi and bacteria, break down dead organisms and wastes. A <b>food chain</b> shows one path of energy, and a <b>food web</b> shows the many connected paths. At each step in the chain, most of the energy is used by the organism for life processes or lost as heat, and only about 10 percent is stored in the body and passed on. For that reason there are far fewer top predators than plants, and an energy pyramid gets narrower toward the top.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -382,7 +389,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s3">
   <div><p class="kicker">Concept 3 · Recycling matter</p><h2>Matter cycles; energy flows</h2></div>
-  <p class="idea">Unlike energy, <mark>matter is reused</mark>. The carbon in your body was once in a plant, and before that, in the air. Decomposers return nutrients to the soil so new plants can grow.</p>
+  <p class="idea">Unlike energy, <mark>matter is reused</mark>. The carbon in your body was once in a plant, and before that, in the air. Decomposers return nutrients to the soil so new plants can grow.</p><p class="bg">Energy flows through an ecosystem in one direction, and much of it is lost as heat, but <b>matter</b> is used over and over. The atoms in your body, like carbon, hydrogen, oxygen, and nitrogen, have been part of many other organisms. In the <b>carbon cycle</b>, plants take in carbon dioxide from the air and build it into sugars by photosynthesis. Animals eat the plants and use the carbon, and both plants and animals release carbon dioxide through respiration. When organisms die, decomposers break them down, returning carbon to the air and nutrients to the soil, where new plants take them up. Burning fossil fuels also puts carbon in the air. Without decomposers, nutrients would stay locked in dead material and ecosystems would run out of what they need.</p>
   <div class="aids">
     <article class="aid wide">
       <span class="tag analogy">Analogy</span>
@@ -417,7 +424,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s4">
   <div><p class="kicker">Concept 4 · Populations</p><h2>Why population sizes rise and fall</h2></div>
-  <p class="idea">A population grows quickly when resources are plentiful, then levels off at the <mark>carrying capacity</mark>, the number the environment can support. Predators and prey keep each other's numbers in <mark>cycles</mark>.</p>
+  <p class="idea">A population grows quickly when resources are plentiful, then levels off at the <mark>carrying capacity</mark>, the number the environment can support. Predators and prey keep each other's numbers in <mark>cycles</mark>.</p><p class="bg">A <b>population</b> is all the members of one species living in the same area. When food, water, and space are plentiful, a population can grow quickly. But resources are limited, so growth eventually slows and levels off near the <b>carrying capacity</b>, the largest population the environment can support over time. <b>Limiting factors</b> such as food, space, water, disease, and predators keep populations from growing forever. Predators and prey also affect each other's numbers. When prey are plentiful, predators have more food and increase, then they eat more prey and the prey decrease, which leads to fewer predators, and the cycle repeats. Organisms also interact in other ways: competition for the same resource, <b>mutualism</b> where both benefit, and <b>parasitism</b> where one benefits and the other is harmed.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
@@ -460,7 +467,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="s5">
   <div><p class="kicker">Concept 5 · Changing ecosystems</p><h2>Remove one species, and the web shifts</h2></div>
-  <p class="idea">Take away or add a species and the whole web can shift. Removing or adding a species, like an <mark>invasive species</mark>, causes a <mark>ripple effect</mark> through the food web. Many Great Lakes problems came from species that arrived from other places.</p>
+  <p class="idea">Take away or add a species and the whole web can shift. Removing or adding a species, like an <mark>invasive species</mark>, causes a <mark>ripple effect</mark> through the food web. Many Great Lakes problems came from species that arrived from other places.</p><p class="bg">Ecosystems are connected, so a change to one species can affect many others, a ripple effect. If a species is removed, the organisms that depended on it for food may decline, and the ones it ate may increase. A <b>keystone species</b> has an especially large effect, as sea otters do by eating sea urchins that would otherwise destroy kelp forests. An <b>invasive species</b> is one brought from another place, by accident or on purpose, that spreads quickly because it has no natural predators or diseases there. Zebra mussels, sea lampreys, and Asian carp have harmed Great Lakes food webs. Ecosystems can recover when people take action, such as controlling invasive species, protecting habitat, and restoring native species, though it can take many years.</p>
   <div class="aids">
     <article class="aid">
       <span class="tag analogy">Analogy</span>
