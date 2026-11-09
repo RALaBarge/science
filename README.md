@@ -52,7 +52,7 @@ To change content, edit the lesson HTML in its grade folder, or add a row to `sh
 
 ## Feedback
 
-If something looks wrong or you want an update, open an issue or send a pull request.
+If something looks wrong or you want an update, open an issue or send a pull request.  I've read through these in full multiple times but im sure there is stuff I missed or could be better.
 
 ## License
 
