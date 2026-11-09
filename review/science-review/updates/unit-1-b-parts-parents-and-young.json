@@ -206,5 +206,29 @@
   "pat": "backup case cards",
   "kind": "UPDATED",
   "note": "Backup data: run-on text made a list."
+ },
+ {
+  "files": [
+   "k-5/unit-1-b-parts-parents-and-young.html"
+  ],
+  "pat": "Each part has a job\\. A beaver",
+  "kind": "UPDATED",
+  "note": "Parts picture redrawn: the deer is now a doe (no antlers, plain coat)."
+ },
+ {
+  "files": [
+   "k-5/unit-1-b-parts-parents-and-young.html"
+  ],
+  "pat": "Example tally for a deer and a fawn",
+  "kind": "UPDATED",
+  "note": "Picture redrawn: plain adult doe beside a spotted fawn."
+ },
+ {
+  "files": [
+   "k-5/unit-1-b-parts-parents-and-young.html"
+  ],
+  "pat": "The fawn is like the deer: same body shape",
+  "kind": "UPDATED",
+  "note": "Picture redrawn: plain adult doe, spotted fawn."
  }
 ]

@@ -49,3 +49,7 @@ Minor: a small smile appears on the cup (`1a-log`), the lamp (`1a-lamp`) and the
 - `1a-beam4` (four-materials picture, IMG-9): failed after 3 tries (beams drawn as the materials, flashlights as megaphones, no wax paper). Not used. The existing drawn diagram stays, with "Foil" instead of "Mirror", so standing order 1 is not met for this one. File `1a-beam4.webp` is unused. If Ryan has the diagram from his stack, use that.
 - Verify: lighthouses flash distinct patterns (U.S. Coast Guard Light List); "Unit 1: Light & Matter" and "Unit 3: Forces, Motion & Energy" in Connections; standards codes against MDE (removed from the page).
 - Run the injector so `1a-light-path`, the drum caption and the restored beam diagram land (the old beam block was removed from the page and comes back from the JSON).
+
+## Image fixes (second pass)
+
+- `1a-beam4` fixed (best of 4 tries, seed 14): a flashlight beam on a table meets clear glass, wax paper, a cardboard block (with shadow) and a mirror. No text. It replaces the drawn four-material SVG (`d-1a-beam`) in the page and in the unit JSON (figure now `kind: image`). The glass and wax paper lie flat rather than standing, which is a little weak. The picture shows a mirror; the page text and the beam widget still say clear plastic and foil, and the caption says "shiny foil does the same". Ryan: decide whether the text should say glass/mirror too.

@@ -20,3 +20,8 @@ Q1 triad read as proposed; Q2 physical/chemical kept; Q3 optional triad skipped,
 - Helmet wording: verify with a helmet maker.
 - Dragging not tested in a browser; hand-checked only.
 - Skipped IP-7/IP-9/IP-10/IP-11 (optional).
+
+## Image fixes (second pass)
+
+- Diagram image (`2a-blocks-before-after-t4`) fixed (seed 202, retouched): five cubes spread apart on the left, a five-cube house (three below, two on top) on the right. The diffusion roof triangle was painted out to keep the count at five, so the cube tops are cut flat.
+- House image (`2a-blocks-house-car-t3`) fixed in a different way (seed 302): it now shows a house and a car made of toy blocks. Diffusion cannot count blocks reliably (the house has a roof and the car has wheels), so the Real world sentence no longer says "five": "Blocks can make a house. Take them apart, and the same blocks can make a car." The five-block count lives in the Diagram and the pieces widget only.

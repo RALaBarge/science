@@ -64,3 +64,7 @@ Tries: deer used all 3 (every try shows a few spots on the flank; kept the antle
 - `comfy_gen.py` always adds "simple friendly faces", which puts smiley faces on cacti and stems; passing `"raw": true` with your own style text avoids it. Worth documenting in the brief. Also the brief does not say how to restore a previous try: re-running a seed with `force` overwrites the file.
 - The brief's "pat matches the built HTML" is easy to test: I ran `injectInto` into a scratch file (not the repo) and checked every pattern. A supplied check script would help.
 - Preview of the finished page was rendered with headless Edge from a scratch copy (`injectInto` output), not from the repo; nothing in `dist\`, `review-site\` or the page was built by me.
+
+## Image fixes (second pass)
+
+- `44-chain-skin` fixed (seed 403, try 3): one open hand pulled up above a hot frying pan with steam, handle empty, no second hand. Replaced in the page and in `k5-images/html/w-44-chain.html` (the widget copy), at 320x240. The hand is adult-sized; the model does not draw a clearly child's hand.

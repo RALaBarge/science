@@ -33,3 +33,8 @@ Not remade: the diffusion model keeps adding antlers/spots to the adult deer; sa
 ## Verify
 - De Mestral burr story details; fawn spots fading; beaver tail steering/balance.
 - 1b-parts deer has antlers (a buck); 1b-seedling shows a maple tree trunk with seedling, leaves yellow in autumn.
+
+## Image fixes (second pass)
+
+- `1b-parts`, `1b-same-diff`, `1b-like-diff` fixed: the adult deer is now a doe (no antlers, plain tan-brown coat), fawn spotted in the two pair pictures. The model kept adding antlers or a few rump spots to the doe, so after 4 tries each I painted out the antlers (`1b-parts`) and a handful of stray spots (all three) in PIL. Seeds in the manifest are the diffusion seeds (404, 2314, 3313); the manifest prompt notes the retouch.
+- Alt text now says "doe". In `1b-like-diff` both arrows point the same way (left); kept, as the HTML list beneath explains green = like, orange = different.

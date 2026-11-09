@@ -182,5 +182,45 @@
   "pat": "Written for read-aloud and independent reading with a grown-up nearby\\.",
   "kind": "UPDATED",
   "note": "Standards codes removed from footer, tutor notes; kit blocks, Try it at home section and LED-on-coin-cell claim removed."
+ },
+ {
+  "files": [
+   "k-5/unit-4-2-circuits-and-energy-conversion.html"
+  ],
+  "pat": "The bulb lights only when the loop is closed all the way around",
+  "kind": "UPDATED",
+  "note": "Loop picture redrawn: complete ring with battery and bulb."
+ },
+ {
+  "files": [
+   "k-5/unit-4-2-circuits-and-energy-conversion.html"
+  ],
+  "pat": "Open path: no light\\. Closed path: light\\.",
+  "kind": "UPDATED",
+  "note": "Open-loop picture redrawn with a clear gap."
+ },
+ {
+  "files": [
+   "k-5/unit-4-2-circuits-and-energy-conversion.html"
+  ],
+  "pat": "Here the switch is closed",
+  "kind": "UPDATED",
+  "note": "Switch picture is now the closed state; text matched."
+ },
+ {
+  "files": [
+   "k-5/unit-4-2-circuits-and-energy-conversion.html"
+  ],
+  "pat": "The battery gives electrical energy from its \\+ and - terminals",
+  "kind": "UPDATED",
+  "note": "Battery and LED picture redrawn as a complete loop."
+ },
+ {
+  "files": [
+   "k-5/unit-4-2-circuits-and-energy-conversion.html"
+  ],
+  "pat": "A card circuit puts a coin cell and an LED",
+  "kind": "UPDATED",
+  "note": "Light-up card picture redrawn as a complete copper-tape loop."
  }
 ]

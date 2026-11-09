@@ -1,31 +1,242 @@
 [
-  { "files": ["k-5/unit-4-4-structures-senses-and-responses.html"], "pat": "A sense organ is a body part that gathers information", "kind": "UPDATED", "note": "Plain-word lead-up for 'sense organ' before the deer photo." },
-  { "files": ["k-5/unit-4-4-structures-senses-and-responses.html"], "pat": "A structure is a body part with a job\\. An external structure", "kind": "UPDATED", "note": "Plain-word lead-up for structure, external, internal before the first photo." },
-  { "files": ["k-5/unit-4-4-structures-senses-and-responses.html"], "pat": "Each plant part has a job\\. Roots hold and soak up water", "kind": "UPDATED", "note": "Plant structures: new diffusion picture with HTML labels (flower, leaf, stem, roots) replaces the drawn SVG." },
-  { "files": ["k-5/unit-4-4-structures-senses-and-responses.html"], "pat": "Roots, stem, leaf, and flower\\.", "kind": "UPDATED", "note": "Fragment line made a full sentence." },
-  { "files": ["k-5/unit-4-4-structures-senses-and-responses.html"], "pat": "A cactus is built for a dry place", "kind": "UPDATED", "note": "Cactus: new diffusion picture replaces the drawn SVG (cactus kept, see notes)." },
-  { "files": ["k-5/unit-4-4-structures-senses-and-responses.html"], "pat": "Spine of a cactus: protects the plant", "kind": "UPDATED", "note": "Structure match: table changed to a bulleted list, job after a colon." },
-  { "files": ["k-5/unit-4-4-structures-senses-and-responses.html"], "pat": "Plant transport tubes move water and sugar inside a plant", "kind": "UPDATED", "note": "Plain-word lead-up for plant transport tubes before the stem picture." },
-  { "files": ["k-5/unit-4-4-structures-senses-and-responses.html"], "pat": "The skeleton supports you and protects what is inside", "kind": "UPDATED", "note": "Human inside: new diffusion picture with HTML labels replaces the drawn SVG." },
-  { "files": ["k-5/unit-4-4-structures-senses-and-responses.html"], "pat": "Inside the stem, tiny tubes carry water up and sugar down", "kind": "UPDATED", "note": "Plant stem inside: new diffusion picture with HTML labels replaces the drawn SVG." },
-  { "files": ["k-5/unit-4-4-structures-senses-and-responses.html"], "pat": "Spine of a cactus(?=</li>\\s*<li>Root)", "kind": "UPDATED", "note": "Inside/outside sort: table changed to two bulleted lists; names match the card list." },
-  { "files": ["k-5/unit-4-4-structures-senses-and-responses.html"], "pat": "A claim is a statement you think is true", "kind": "UPDATED", "note": "Plain-word lead-up for claim and evidence before the sentence frame." },
-  { "files": ["k-5/unit-4-4-structures-senses-and-responses.html"], "pat": "A reaction is how quickly your body answers something you notice\\.(?=\\s*</p>\\s*<p class=\"idea\">Sense organs)", "kind": "UPDATED", "note": "'Reaction' defined once in the Concept 3 intro." },
-  { "files": ["k-5/unit-4-4-structures-senses-and-responses.html"], "pat": "A sense takes in information, the brain works on it, and then the body responds\\.", "kind": "UPDATED", "note": "Three-row chain: now three diffusion pictures with HTML boxes and arrows instead of a drawn SVG." },
-  { "files": ["k-5/unit-4-4-structures-senses-and-responses.html"], "pat": "Muscles are the body parts that pull to make you move", "kind": "UPDATED", "note": "Plain-word lead-up for 'muscles' in the Path model." },
-  { "files": ["k-5/unit-4-4-structures-senses-and-responses.html"], "pat": "A predator is an animal that hunts other animals for food", "kind": "UPDATED", "note": "Deer hears predator: 'predator' explained under the title." },
-  { "files": ["k-5/unit-4-4-structures-senses-and-responses.html"], "pat": "ears pick up a sound\\. Its brain says danger", "kind": "UPDATED", "note": "Deer hears predator: new diffusion picture (your feedback) replaces the drawn SVG." },
-  { "files": ["k-5/unit-4-4-structures-senses-and-responses.html"], "pat": "A fair test changes only one thing at a time", "kind": "UPDATED", "note": "Hands-on: lead-up for 'fair test' and 'reaction'." },
-  { "files": ["k-5/unit-4-4-structures-senses-and-responses.html"], "pat": "This fair-test investigation asks", "kind": "UPDATED", "note": "Hands-on: ruler-drop intro folded in here (the separate Ruler-drop Try it block is gone); label wording made one pattern." },
-  { "files": ["k-5/unit-4-4-structures-senses-and-responses.html"], "pat": "Write each catch mark for 5 tries with sight", "kind": "UPDATED", "note": "Reaction data now sits under the Try it at home or in class block; short instructions, full procedure only in the Hands-on block." },
-  { "files": ["k-5/unit-4-4-structures-senses-and-responses.html"], "pat": "Compare the middle marks, not single catches", "kind": "UPDATED", "note": "Worked reading fixed: it no longer compares single catches." },
-  { "files": ["k-5/unit-4-4-structures-senses-and-responses.html"], "pat": "Backup dataset</b> \\(3 tries for each cue, not 5\\)", "kind": "UPDATED", "note": "Backup data trial count fixed (3 tries, not 5) and inches added." },
-  { "files": ["k-5/unit-4-4-structures-senses-and-responses.html"], "pat": "Distance the ruler fell before it was caught\\. Farther down means slower\\. Sight: 12 cm \\(about 4\\.7 in\\)", "kind": "UPDATED", "note": "Bar graph: inches added beside cm (right-hand axis, caption, text version)." },
-  { "files": ["k-5/unit-4-4-structures-senses-and-responses.html"], "pat": "String \\(optional\\)", "kind": "UPDATED", "note": "What you need: run-on list changed to a bulleted list." },
-  { "files": ["k-5/unit-4-4-structures-senses-and-responses.html"], "pat": "Use the backup data in the Reaction data block above", "kind": "UPDATED", "note": "No time section now points to the one copy of the backup data." },
-  { "files": ["k-5/unit-4-4-structures-senses-and-responses.html"], "pat": "White pines keep their needles all year", "kind": "UPDATED", "note": "Near you facts reworded (verify the robin and state-tree claims)." },
-  { "files": ["k-5/unit-4-4-structures-senses-and-responses.html"], "pat": "Tutor notes: misconceptions and pacing", "kind": "UPDATED", "note": "Standards list removed from tutor notes and footer." },
-  { "files": ["k-5/unit-4-4-structures-senses-and-responses.html"], "pat": "Written for read-aloud and independent reading", "kind": "UPDATED", "note": "Footer: standards codes removed." },
-  { "files": ["k-5/unit-4-4-structures-senses-and-responses.html"], "pat": "gap between tries\\.</li>", "kind": "UPDATED", "note": "Limits and cautions: review-note sentence removed." },
-  { "files": ["k-5/unit-4-4-structures-senses-and-responses.html"], "pat": "an organ that processes information", "kind": "UPDATED", "note": "Words to know: small wording fix." }
+ {
+  "files": [
+   "k-5/unit-4-4-structures-senses-and-responses.html"
+  ],
+  "pat": "A sense organ is a body part that gathers information",
+  "kind": "UPDATED",
+  "note": "Plain-word lead-up for 'sense organ' before the deer photo."
+ },
+ {
+  "files": [
+   "k-5/unit-4-4-structures-senses-and-responses.html"
+  ],
+  "pat": "A structure is a body part with a job\\. An external structure",
+  "kind": "UPDATED",
+  "note": "Plain-word lead-up for structure, external, internal before the first photo."
+ },
+ {
+  "files": [
+   "k-5/unit-4-4-structures-senses-and-responses.html"
+  ],
+  "pat": "Each plant part has a job\\. Roots hold and soak up water",
+  "kind": "UPDATED",
+  "note": "Plant structures: new diffusion picture with HTML labels (flower, leaf, stem, roots) replaces the drawn SVG."
+ },
+ {
+  "files": [
+   "k-5/unit-4-4-structures-senses-and-responses.html"
+  ],
+  "pat": "Roots, stem, leaf, and flower\\.",
+  "kind": "UPDATED",
+  "note": "Fragment line made a full sentence."
+ },
+ {
+  "files": [
+   "k-5/unit-4-4-structures-senses-and-responses.html"
+  ],
+  "pat": "A cactus is built for a dry place",
+  "kind": "UPDATED",
+  "note": "Cactus: new diffusion picture replaces the drawn SVG (cactus kept, see notes)."
+ },
+ {
+  "files": [
+   "k-5/unit-4-4-structures-senses-and-responses.html"
+  ],
+  "pat": "Spine of a cactus: protects the plant",
+  "kind": "UPDATED",
+  "note": "Structure match: table changed to a bulleted list, job after a colon."
+ },
+ {
+  "files": [
+   "k-5/unit-4-4-structures-senses-and-responses.html"
+  ],
+  "pat": "Plant transport tubes move water and sugar inside a plant",
+  "kind": "UPDATED",
+  "note": "Plain-word lead-up for plant transport tubes before the stem picture."
+ },
+ {
+  "files": [
+   "k-5/unit-4-4-structures-senses-and-responses.html"
+  ],
+  "pat": "The skeleton supports you and protects what is inside",
+  "kind": "UPDATED",
+  "note": "Human inside: new diffusion picture with HTML labels replaces the drawn SVG."
+ },
+ {
+  "files": [
+   "k-5/unit-4-4-structures-senses-and-responses.html"
+  ],
+  "pat": "Inside the stem, tiny tubes carry water up and sugar down",
+  "kind": "UPDATED",
+  "note": "Plant stem inside: new diffusion picture with HTML labels replaces the drawn SVG."
+ },
+ {
+  "files": [
+   "k-5/unit-4-4-structures-senses-and-responses.html"
+  ],
+  "pat": "Spine of a cactus(?=</li>\\s*<li>Root)",
+  "kind": "UPDATED",
+  "note": "Inside/outside sort: table changed to two bulleted lists; names match the card list."
+ },
+ {
+  "files": [
+   "k-5/unit-4-4-structures-senses-and-responses.html"
+  ],
+  "pat": "A claim is a statement you think is true",
+  "kind": "UPDATED",
+  "note": "Plain-word lead-up for claim and evidence before the sentence frame."
+ },
+ {
+  "files": [
+   "k-5/unit-4-4-structures-senses-and-responses.html"
+  ],
+  "pat": "A reaction is how quickly your body answers something you notice\\.(?=\\s*</p>\\s*<p class=\"idea\">Sense organs)",
+  "kind": "UPDATED",
+  "note": "'Reaction' defined once in the Concept 3 intro."
+ },
+ {
+  "files": [
+   "k-5/unit-4-4-structures-senses-and-responses.html"
+  ],
+  "pat": "A sense takes in information, the brain works on it, and then the body responds\\.",
+  "kind": "UPDATED",
+  "note": "Three-row chain: now three diffusion pictures with HTML boxes and arrows instead of a drawn SVG."
+ },
+ {
+  "files": [
+   "k-5/unit-4-4-structures-senses-and-responses.html"
+  ],
+  "pat": "Muscles are the body parts that pull to make you move",
+  "kind": "UPDATED",
+  "note": "Plain-word lead-up for 'muscles' in the Path model."
+ },
+ {
+  "files": [
+   "k-5/unit-4-4-structures-senses-and-responses.html"
+  ],
+  "pat": "A predator is an animal that hunts other animals for food",
+  "kind": "UPDATED",
+  "note": "Deer hears predator: 'predator' explained under the title."
+ },
+ {
+  "files": [
+   "k-5/unit-4-4-structures-senses-and-responses.html"
+  ],
+  "pat": "ears pick up a sound\\. Its brain says danger",
+  "kind": "UPDATED",
+  "note": "Deer hears predator: new diffusion picture (your feedback) replaces the drawn SVG."
+ },
+ {
+  "files": [
+   "k-5/unit-4-4-structures-senses-and-responses.html"
+  ],
+  "pat": "A fair test changes only one thing at a time",
+  "kind": "UPDATED",
+  "note": "Hands-on: lead-up for 'fair test' and 'reaction'."
+ },
+ {
+  "files": [
+   "k-5/unit-4-4-structures-senses-and-responses.html"
+  ],
+  "pat": "This fair-test investigation asks",
+  "kind": "UPDATED",
+  "note": "Hands-on: ruler-drop intro folded in here (the separate Ruler-drop Try it block is gone); label wording made one pattern."
+ },
+ {
+  "files": [
+   "k-5/unit-4-4-structures-senses-and-responses.html"
+  ],
+  "pat": "Write each catch mark for 5 tries with sight",
+  "kind": "UPDATED",
+  "note": "Reaction data now sits under the Try it at home or in class block; short instructions, full procedure only in the Hands-on block."
+ },
+ {
+  "files": [
+   "k-5/unit-4-4-structures-senses-and-responses.html"
+  ],
+  "pat": "Compare the middle marks, not single catches",
+  "kind": "UPDATED",
+  "note": "Worked reading fixed: it no longer compares single catches."
+ },
+ {
+  "files": [
+   "k-5/unit-4-4-structures-senses-and-responses.html"
+  ],
+  "pat": "Backup dataset</b> \\(3 tries for each cue, not 5\\)",
+  "kind": "UPDATED",
+  "note": "Backup data trial count fixed (3 tries, not 5) and inches added."
+ },
+ {
+  "files": [
+   "k-5/unit-4-4-structures-senses-and-responses.html"
+  ],
+  "pat": "Distance the ruler fell before it was caught\\. Farther down means slower\\. Sight: 12 cm \\(about 4\\.7 in\\)",
+  "kind": "UPDATED",
+  "note": "Bar graph: inches added beside cm (right-hand axis, caption, text version)."
+ },
+ {
+  "files": [
+   "k-5/unit-4-4-structures-senses-and-responses.html"
+  ],
+  "pat": "String \\(optional\\)",
+  "kind": "UPDATED",
+  "note": "What you need: run-on list changed to a bulleted list."
+ },
+ {
+  "files": [
+   "k-5/unit-4-4-structures-senses-and-responses.html"
+  ],
+  "pat": "Use the backup data in the Reaction data block above",
+  "kind": "UPDATED",
+  "note": "No time section now points to the one copy of the backup data."
+ },
+ {
+  "files": [
+   "k-5/unit-4-4-structures-senses-and-responses.html"
+  ],
+  "pat": "White pines keep their needles all year",
+  "kind": "UPDATED",
+  "note": "Near you facts reworded (verify the robin and state-tree claims)."
+ },
+ {
+  "files": [
+   "k-5/unit-4-4-structures-senses-and-responses.html"
+  ],
+  "pat": "Tutor notes: misconceptions and pacing",
+  "kind": "UPDATED",
+  "note": "Standards list removed from tutor notes and footer."
+ },
+ {
+  "files": [
+   "k-5/unit-4-4-structures-senses-and-responses.html"
+  ],
+  "pat": "Written for read-aloud and independent reading",
+  "kind": "UPDATED",
+  "note": "Footer: standards codes removed."
+ },
+ {
+  "files": [
+   "k-5/unit-4-4-structures-senses-and-responses.html"
+  ],
+  "pat": "gap between tries\\.</li>",
+  "kind": "UPDATED",
+  "note": "Limits and cautions: review-note sentence removed."
+ },
+ {
+  "files": [
+   "k-5/unit-4-4-structures-senses-and-responses.html"
+  ],
+  "pat": "an organ that processes information",
+  "kind": "UPDATED",
+  "note": "Words to know: small wording fix."
+ },
+ {
+  "files": [
+   "k-5/unit-4-4-structures-senses-and-responses.html"
+  ],
+  "pat": "A sense takes in information, the brain works on it, and then the body responds",
+  "kind": "UPDATED",
+  "note": "Skin row picture redrawn: one hand pulled back from the hot pan."
+ }
 ]

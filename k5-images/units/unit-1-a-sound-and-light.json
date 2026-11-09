@@ -20,10 +20,10 @@
   {
    "id": "d-1a-beam",
    "after": "s3",
-   "kind": "svg",
-   "file": "d-1a-beam.svg",
-   "alt": "Four rows. In each, a flashlight on the left sends a beam to a material. Clear plastic: the light passes straight through. Wax paper: some light passes through and spreads out, so it is blurry. Cardboard: the light is blocked and there is a shadow behind it. Foil: the light bounces back toward the flashlight.",
-   "caption": "What a beam of light does to four materials: passes through, spreads, is blocked, or bounces."
+   "kind": "image",
+   "file": "1a-beam4.webp",
+   "alt": "A flashlight on a table shines a beam toward a row of four things: a clear glass pane, a sheet of white wax paper, a thick brown cardboard block with a dark shadow behind it, and a shiny round mirror.",
+   "caption": "A beam of light meets four things in a row: clear glass lets it through, wax paper spreads it, cardboard blocks it and makes a shadow, and a shiny mirror bounces it back (shiny foil does the same)."
   },
   {
    "id": "w-1a-pluck",

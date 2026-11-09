@@ -182,5 +182,21 @@
   "pat": "Blocks, beads, or paper chains work best",
   "kind": "UPDATED",
   "note": "Standards codes removed from Tutor notes, footer and heading."
+ },
+ {
+  "files": [
+   "k-5/unit-2-a-materials-and-their-uses.html"
+  ],
+  "pat": "The same five pieces, before and after",
+  "kind": "UPDATED",
+  "note": "Before and after picture redrawn: five cubes apart, then a five-cube house."
+ },
+ {
+  "files": [
+   "k-5/unit-2-a-materials-and-their-uses.html"
+  ],
+  "pat": "Blocks can make a house",
+  "kind": "UPDATED",
+  "note": "House picture now shows a house and a car; text no longer says five."
  }
 ]

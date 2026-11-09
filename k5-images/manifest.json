@@ -1755,13 +1755,13 @@
   {
    "id": "44-chain-skin",
    "unit": "unit-4-4-structures-senses-and-responses",
-   "prompt": "A child's hand pulling back quickly from a hot frying pan on a stove, hand held up in the air above the pan with the fingers open and not touching it, small wavy heat lines rising from the pan, the hand and the pan both fully in the frame, plain background.",
-   "seed": 4417,
+   "prompt": "Flat vector children's science book illustration, muted palette, plain background, no text, no faces. A black frying pan with its handle pointing left on a stove burner, small wavy heat lines rising from it. A single small child's hand with five spread fingers, palm open, raised up high above the pan, quickly pulled back from the heat, forearm coming from the top right. Only one hand in the picture.",
+   "seed": 403,
    "candidate": "44-chain-skin",
    "model": "z-image-turbo",
    "accepted": true,
    "reason": "Science Review pass: Concept 3, chain row 2",
-   "bytes": 13008
+   "bytes": 9788
   },
   {
    "id": "44-chain-ears",
@@ -2030,24 +2030,24 @@
   {
    "id": "1b-same-diff",
    "unit": "unit-1-b-parts-parents-and-young",
-   "prompt": "children's picture book illustration, flat colors. A mother deer whose whole body is one uniform solid reddish-brown color, completely plain like a smooth brown coat, standing beside her smaller baby deer. The baby deer has white polka dots on its back. Both seen from the side in a soft green forest.",
-   "seed": 1312,
+   "prompt": "A gentle adult doe standing in profile on the left, hornless, smooth head with only two large ears, one flat solid tan-brown plain coat with no markings. Next to her on the right a small baby fawn whose back is covered with white polka dots. Soft green forest background. (Retouched: four stray coat spots on the doe painted out.)",
+   "seed": 2314,
    "candidate": "1b-same-diff",
    "model": "z-image-turbo",
    "accepted": true,
    "reason": "Science Review pass: Concept 4, Data",
-   "bytes": 25842
+   "bytes": 9302
   },
   {
    "id": "1b-like-diff",
    "unit": "unit-1-b-parts-parents-and-young",
-   "prompt": "children's picture book illustration, flat colors, plain light cream background. On the left a larger mother deer whose whole body is one uniform solid reddish-brown color, plain and smooth. On the right a smaller baby deer with white polka dots on its back. Between them a green curved arrow on top and an orange curved arrow below.",
-   "seed": 1313,
+   "prompt": "On the left a larger adult doe in profile facing right, hornless, smooth head with only two large ears, one flat solid tan-brown plain coat with no markings. On the right a small baby fawn facing left with white polka dots on its back. Between their heads a green curved arrow above and an orange curved arrow below. Plain light cream background. (Retouched: one stray spot painted out.)",
+   "seed": 3313,
    "candidate": "1b-like-diff",
    "model": "z-image-turbo",
    "accepted": true,
    "reason": "Science Review pass: Concept 4, Diagram",
-   "bytes": 13802
+   "bytes": 11504
   },
   {
    "id": "2a-card-paper-t3",
@@ -2063,13 +2063,13 @@
   {
    "id": "2a-blocks-before-after-t4",
    "unit": "unit-2-a-materials-and-their-uses",
-   "prompt": "Flat vector children's book illustration, muted palette, plain white background, two groups side by side. Left group: exactly five square toy blocks spread out apart from each other with space between them, one red, one blue, one yellow, one green, one orange. Right group: five square toy blocks in the same colors built into a house shape, three in the bottom row and two on top, touching. Plain cubes only, no roof, no faces, no text.",
-   "seed": 242,
+   "prompt": "Five wooden toy cubes (red, blue, yellow, green, orange) scattered apart on the left; the same five cubes in the same colors stacked into a house shape on the right, three in the bottom row and two on top. Plain white background, flat vector. (Retouched: roof triangle painted out so the house is exactly five cubes.)",
+   "seed": 202,
    "candidate": "2a-blocks-before-after-t4",
    "model": "z-image-turbo",
    "accepted": true,
    "reason": "Science Review pass: Concept 3 Diagram",
-   "bytes": 4574
+   "bytes": 10660
   },
   {
    "id": "ka-stopper4",
@@ -2283,13 +2283,13 @@
   {
    "id": "1a-beam4",
    "unit": "unit-1-a-sound-and-light",
-   "prompt": "Flat children's vector illustration on a plain pale background, no faces. A 2 by 2 grid of four small scenes. Each scene: a gray flashlight on the left shines a yellow beam at a thin upright sheet in the middle. Scene one: a clear see-through plastic sheet, the yellow beam passes straight through to the right. Scene two: a frosted white sheet, a soft blurry glow on the right. Scene three: a thick brown cardboard block, a dark gray shadow on the right and no light. Scene four: a shiny silver foil sheet, a yellow beam bounces back to the left.",
-   "seed": 3204,
+   "prompt": "Flat vector children's science book illustration, muted palette, no text, no faces. A wooden table seen from the side. A gray flashlight on the left lies flat on the table and shines a horizontal yellow beam to the right. In a row on the table: a clear glass pane, then a white wax paper sheet, then a thick opaque brown cardboard block with a dark gray shadow on the table behind it, then a round shiny mirror.",
+   "seed": 14,
    "candidate": "1a-beam4",
    "model": "z-image-turbo",
    "accepted": true,
    "reason": "Science Review pass, checked by the unit agent",
-   "bytes": 9604
+   "bytes": 9552
   },
   {
    "id": "1a-hum",
@@ -2415,13 +2415,13 @@
   {
    "id": "1b-parts",
    "unit": "unit-1-b-parts-parents-and-young",
-   "prompt": "three separate items spaced apart on a plain light cream background. On the left, a brown beaver swimming with its wide flat paddle-shaped tail resting on blue water. In the middle, a brown deer with a white tail standing, with very large ears turned up and forward. On the right, a large green sugar maple leaf in bright sunlight with small yellow rays of light touching it. Simple shapes, warm colors, open space above each item.",
-   "seed": 1101,
+   "prompt": "three separate items on a plain light cream background: a brown beaver swimming with its wide flat tail on blue water; an adult doe standing, hornless, smooth head with two large ears, one flat solid plain tan-brown coat with no markings; a large green sugar maple leaf with yellow sun rays. (Retouched: antlers and a few coat spots painted out.)",
+   "seed": 404,
    "candidate": "1b-parts",
    "model": "z-image-turbo",
    "accepted": true,
    "reason": "Science Review pass, checked by the unit agent",
-   "bytes": 14806
+   "bytes": 13984
   },
   {
    "id": "1b-pattern-chart",
@@ -2624,13 +2624,13 @@
   {
    "id": "2a-blocks-house-car-t3",
    "unit": "unit-2-a-materials-and-their-uses",
-   "prompt": "Flat vector children's book illustration, muted palette, soft daylight: five square wooden toy blocks in different colors built into a small house shape on a child's wooden table, three blocks on the bottom row and two on top. Only plain square cubes, no faces, no text, no people.",
-   "seed": 153,
+   "prompt": "Flat vector children's book illustration, muted palette, wooden child's table, soft daylight, no text, no faces. Two things built from colored wooden toy cubes: a small house on the left, a small toy car with wheels on the right.",
+   "seed": 302,
    "candidate": "2a-blocks-house-car-t3",
    "model": "z-image-turbo",
    "accepted": true,
    "reason": "Science Review pass, checked by the unit agent",
-   "bytes": 7722
+   "bytes": 9182
   },
   {
    "id": "2a-blocks-house-car-t4",
@@ -3383,13 +3383,13 @@
   {
    "id": "42-img1",
    "unit": "unit-4-2-circuits-and-energy-conversion",
-   "prompt": "flat vector children's science textbook illustration, bright friendly colors, clean outlines, soft even lighting, plain light background, no text, no letters. A closed rectangular loop made of one continuous thick dark wire, with no breaks anywhere. A green battery sits in the middle of the left side of the loop and a round yellow glowing light bulb sits in the middle of the right side of the loop, both joined into the wire. Small orange dots are spread along the wire around the loop. Short yellow rays around the bulb.",
-   "seed": 31,
+   "prompt": "flat vector children's science textbook illustration, plain light background, no text. A simple complete circuit seen from the front: one green battery on the left side and one small round red bulb on the right side, joined by two thin dark wires, one along the top and one along the bottom, forming a closed rectangle ring with no gaps. Short yellow rays around the bulb.",
+   "seed": 71,
    "candidate": "42-img1",
    "model": "z-image-turbo",
    "accepted": true,
    "reason": "Science Review pass, checked by the unit agent",
-   "bytes": 10114
+   "bytes": 5008
   },
   {
    "id": "42-img10",
@@ -3416,13 +3416,13 @@
   {
    "id": "42-img2",
    "unit": "unit-4-2-circuits-and-energy-conversion",
-   "prompt": "flat vector children's science textbook illustration, bright friendly colors, clean outlines, soft even lighting, plain light background, no text, no letters. A rectangular loop of thick dark wire with a green battery in the middle of the left side and a round dark grey unlit light bulb in the middle of the right side. The wire along the top edge is cut into two pieces that are pulled far apart, leaving a wide empty gap in the middle of the top edge. Two small round dots mark the cut wire ends.",
-   "seed": 32,
+   "prompt": "flat vector children's science textbook illustration, plain light background, no text. A simple open circuit seen from the front: green battery on the left and a dark gray unlit bulb on the right, joined by thin dark wires into a rectangle, but the top wire is cut in the middle leaving a wide clear gap. The bottom wire is complete. (Retouched: a stray vertical wire and the dark rays painted out, bottom wire joined to the battery.)",
+   "seed": 71,
    "candidate": "42-img2",
    "model": "z-image-turbo",
    "accepted": true,
    "reason": "Science Review pass, checked by the unit agent",
-   "bytes": 9388
+   "bytes": 4316
   },
   {
    "id": "42-img3",
@@ -3449,13 +3449,13 @@
   {
    "id": "42-img6",
    "unit": "unit-4-2-circuits-and-energy-conversion",
-   "prompt": "flat vector children's science textbook illustration, bright friendly colors, clean outlines, soft even lighting, plain light background, no text, no letters, no symbols. Side view of a simple knife switch on a wooden base: one short metal arm hinged on the left pad, swung up and away at an angle, leaving a clear empty gap above the right pad. Large and simple, one switch only.",
-   "seed": 51,
+   "prompt": "flat vector children's science textbook illustration, plain light background, no text. Side view of a simple closed switch on a small wooden board: one single flat silver metal strip lies flat along the board, held by a brass screw at its left end and resting on a second brass screw at its right end, touching both. Thin dark wires run away from each brass screw. Large and simple.",
+   "seed": 103,
    "candidate": "42-img6",
    "model": "z-image-turbo",
    "accepted": true,
    "reason": "Science Review pass, checked by the unit agent",
-   "bytes": 9474
+   "bytes": 16472
   },
   {
    "id": "42-img7",
@@ -3471,24 +3471,24 @@
   {
    "id": "42-img8",
    "unit": "unit-4-2-circuits-and-energy-conversion",
-   "prompt": "flat vector children's science textbook illustration, bright friendly colors, clean outlines, soft even lighting, plain light background, no text, no letters, no symbols. One green battery lying on its side on the left, with a red metal cap on its right end and a blue metal cap on its left end. A thin dark wire loops from each cap to a round red LED lamp on the right, forming a loop. The LED glows with yellow light rays pointing up and right, and three short wavy red heat lines rise above the LED. Small orange dots sit on the wires. Plain background.",
-   "seed": 63,
+   "prompt": "flat vector children's science textbook illustration, plain light background, no text. A simple complete circuit loop from the front: a green battery on the left with a thin dark wire attached to its top and another to its bottom, running right to the two legs of a small red LED, a bullet-shaped red plastic dome with a flat rim and two metal legs. One closed rectangle with no gaps. Short yellow rays around the LED.",
+   "seed": 122,
    "candidate": "42-img8",
    "model": "z-image-turbo",
    "accepted": true,
    "reason": "Science Review pass, checked by the unit agent",
-   "bytes": 11612
+   "bytes": 5736
   },
   {
    "id": "42-img9",
    "unit": "unit-4-2-circuits-and-energy-conversion",
-   "prompt": "flat vector children's science textbook illustration, bright friendly colors, clean outlines, soft even lighting, plain light background, no text, no letters, no symbols. Top view of a white index card on a wooden table. On the card: a round silver coin battery at the left, a red LED lamp in the middle, and a paper clip with two brass round fasteners at the right. Thick copper tape strips run from the coin battery to the LED, from the LED to the paper clip, and from the paper clip back along the bottom edge to the coin battery, making one unbroken loop.",
-   "seed": 53,
+   "prompt": "flat vector children's science textbook illustration, no text. Top view of a white index card on a wooden table. On the card a rectangle ring made of one unbroken strip of orange copper tape; a round silver coin battery on the left of the ring; a small red LED (bullet-shaped red dome with two flat metal legs) with its legs on the tape on the right. The ring is complete with no gaps. Short yellow rays around the LED.",
+   "seed": 112,
    "candidate": "42-img9",
    "model": "z-image-turbo",
    "accepted": true,
    "reason": "Science Review pass, checked by the unit agent",
-   "bytes": 13696
+   "bytes": 9256
   },
   {
    "id": "43-compare",

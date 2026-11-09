@@ -14,7 +14,7 @@
    "after": "s1",
    "kind": "image",
    "file": "42-img1.webp",
-   "alt": "A rectangular loop of wire with a green battery and a glowing yellow bulb. Orange dots along the wire show current moving around the closed loop.",
+   "alt": "A rectangular loop of wire with a green battery on the left and a glowing red bulb on the right, joined by a top wire and a bottom wire with no gaps.",
    "caption": "The bulb lights only when the loop is closed all the way around. A gap anywhere stops the current in the whole loop."
   },
   {

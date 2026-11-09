@@ -31,3 +31,12 @@ Q1 light-up card plus energy picture both get - labels. Q2 triad read as the rep
 
 - 42-img1: battery sits inside the loop without clear wire joins. 42-img8: single wire only; the + and - chips sit on the battery ends, picture is weak. 42-img9: loop is not fully drawn and the LED is a bulb shape. 42-img2 and 42-img6 show only the open state. Regenerate if wanted.
 - Verify: whether to give a heat percentage for porch bulbs; coin cell + face on real cells.
+
+## Image fixes (second pass)
+
+- `42-img1` fixed (seed 71): clean rectangle ring, battery and bulb joined by top and bottom wires. It has no orange current dots now; alt and JSON alt updated.
+- `42-img2` fixed (seed 71, retouched): clear open loop, wide gap in the top wire, dark bulb. Retouched to remove a stray vertical wire and join the bottom wire to the battery. A faint rectangle patch may show on close look. Image 1 (closed, lit) then image 2 (open) read as a pair.
+- `42-img6` fixed (seed 103): now the closed state, a flat metal strip touching both brass screws with a wire at each end. The Diagram text above it was changed to say the switch is closed and lifting the strip opens it.
+- `42-img8` fixed (seed 122): battery wired in a complete loop to a red LED (dome with two legs, not a bulb). "+" and "-" HTML chips moved to the top and bottom of the battery. The model never drew the battery lying on its side; it is upright.
+- `42-img9` fixed (seed 112): index card with one unbroken copper-tape loop, a coin cell and a red LED with legs. The tape is thick and the loop is oval. No paper clip switch is drawn, so the lead-up now says a paper clip can be added to make a switch. "+" and "-" chips moved above and below the coin cell.
+- The LED in `42-img8` and `42-img9` took about 6 tries to get; `42-img1` uses a red bulb (the page text there says bulb).

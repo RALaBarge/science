@@ -42,8 +42,8 @@
   "where": "Concept 3, chain row 1"
  },
  "44-chain-skin": {
-  "prompt": "A child's hand pulling back quickly from a hot frying pan on a stove, hand held up in the air above the pan with the fingers open and not touching it, small wavy heat lines rising from the pan, the hand and the pan both fully in the frame, plain background.",
-  "seed": 4417,
+  "prompt": "one hand pulled back above a hot pan, pan handle empty (redo)",
+  "seed": 403,
   "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\44-chain-skin.webp",
   "unit": "unit-4-4-structures-senses-and-responses",
   "where": "Concept 3, chain row 2"
