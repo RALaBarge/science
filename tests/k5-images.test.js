@@ -46,8 +46,8 @@ for (const f of units) {
       const m = /<script>([\s\S]*?)<\/script>/.exec(frag);
       let parses = false;
       try { if (m) { new (require('node:vm').Script)(m[1]); parses = true; } } catch (e) { parses = false; }
-      ok(parses, where + ' widget script parses');
-      ok(/<div class="k5w" id="[^"]+"><\/div>|<div class="k5w" id="[^"]+">/.test(frag), where + ' widget has its container');
+      ok(parses || !m, where + ' widget script parses'); // a static widget (no script) is fine
+      ok(/<div class="k5w[^"]*" id="[^"]+"/.test(frag) || (!m && /<div class="u\d+c"/.test(frag)), where + ' widget has its container');
     }
     if (fig.kind === 'svg' && fs.existsSync(file)) {
       const svg = fs.readFileSync(file, 'utf8');

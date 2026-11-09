@@ -6,7 +6,7 @@
    "after": "hero",
    "kind": "image",
    "file": "52-hero.webp",
-   "alt": "Photo of a Michigan field in early morning with the Sun low behind a row of trees, and long tree shadows stretching across the grass toward the viewer.",
+   "alt": "Illustration of a Michigan field in early morning with the Sun low behind a row of trees, and long tree shadows stretching across the grass toward the viewer.",
    "caption": "When the Sun is low, shadows are long and point away from the Sun."
   },
   {
@@ -14,31 +14,23 @@
    "after": "s4",
    "kind": "image",
    "file": "52-stars.webp",
-   "alt": "Photo of the Milky Way and many stars over a dark lakeshore with pine trees in silhouette.",
-   "caption": "The night sky changes by season because Earth orbits the Sun."
+   "alt": "Illustration of the Milky Way and many stars over a dark lakeshore with pine trees in silhouette.",
+   "caption": "The Milky Way is our galaxy, seen as a faint band of many stars. The night sky changes by season because Earth orbits the Sun."
   },
   {
    "id": "52-stick",
    "after": "kit",
    "kind": "image",
    "file": "52-stick.webp",
-   "alt": "Photo of a pencil stuck in clay on a white paper in strong sunlight, with its long shadow falling across the paper.",
+   "alt": "Illustration of a pencil stuck in clay on white paper in strong sunlight, with its long shadow falling across the paper, a few chalk marks along the shadow, and a ruler beside the paper.",
    "caption": "The shadow-clock kit: mark the tip of the shadow at different times and see how its length and direction change."
-  },
-  {
-   "id": "d-52-shadow",
-   "after": "s3",
-   "kind": "svg",
-   "file": "d-52-shadow.svg",
-   "alt": "Top view of a 10 centimeter stick with five shadow arrows to scale. 8:30 am: 34 cm pointing west. 10:00 am: 20 cm northwest. 12:00 pm: 9 cm north, the shortest. 2:00 pm: 18 cm northeast. 3:30 pm: 30 cm pointing east. The shadow points away from the Sun, which is in the south at noon, and is longest when the Sun is low.",
-   "caption": "The shadow table from this page drawn from above. Both the length and the direction change through the day."
   },
   {
    "id": "w-52-down",
    "after": "s2",
    "kind": "html",
    "file": "w-52-down.html",
-   "alt": "Interactive: a slider moves a ball around a globe and a button drops it. The arrow always points to the center of Earth.",
+   "alt": "Interactive: a slider moves a ball around a picture of Earth and a button drops it. The arrow always points to the center of Earth.",
    "caption": "Move around the globe and drop the ball from anywhere: it always falls toward the center of Earth."
   },
   {
@@ -54,8 +46,8 @@
    "after": "s3",
    "kind": "svg",
    "file": "g-52-shadow.svg",
-   "alt": "Bar graph of shadow length of a 10 cm stick with direction. 8:30 am: 34 cm, west. 10:00 am: 20 cm, northwest. 12:00 pm: 9 cm, north. 2:00 pm: 18 cm, northeast. 3:30 pm: 30 cm, east. Shortest at noon.",
-   "caption": "Shadow of a 10 cm stick on a sunny day in about March or September. The shadow is shortest at noon (9 cm, pointing north) and long in the morning and afternoon. It points west in the morning and east in the afternoon, away from the Sun."
+   "alt": "Bar graph of shadow length of a 10 cm (about 4 inch) stick with direction. 8:30 am: 34 cm (about 13 inches), west. 10:00 am: 20 cm (about 8 inches), northwest. 12:00 pm: 9 cm (about 3.5 inches), north. 2:00 pm: 18 cm (about 7 inches), northeast. 3:30 pm: 30 cm (about 1 foot), east. Shortest at noon.",
+   "caption": "Shadow of a 10 cm (about 4 inches) stick on a sunny day in about March or September. The shadow is shortest at noon (9 cm, about 3.5 inches, pointing north) and long in the morning and afternoon (34 cm, about 13 inches, at 8:30 am). It points west in the morning and east in the afternoon, away from the Sun."
   }
  ]
 }

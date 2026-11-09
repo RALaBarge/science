@@ -26,11 +26,11 @@
    "caption": "The ruler-drop test: the farther the stick falls before it is caught, the slower the response."
   },
   {
-   "id": "d-44-senses",
+   "id": "w-44-chain",
    "after": "s3",
-   "kind": "svg",
-   "file": "d-44-senses.svg",
-   "alt": "Three rows, each a chain of three boxes with arrows pointing left to right: a sense takes in information, the brain works on it, and the body responds. Row 1: eyes see a ball coming, the brain gets the message, the hands move to catch it. Row 2: skin feels a hot pan, the brain gets the message, the hand pulls away. Row 3: ears hear a bell, the brain gets the message, you walk to the door. Information goes in first, then the brain works on it, then the body responds, in one direction.",
+   "kind": "html",
+   "file": "w-44-chain.html",
+   "alt": "Three rows, each with a small picture and a chain of three boxes joined by arrows pointing left to right: a sense takes in information, the brain works on it, and the body responds. Row 1: eyes see a ball coming, the brain gets the message, the hands move to catch it. Row 2: skin feels a hot pan, the brain gets the message, the hand pulls away. Row 3: ears hear a bell, the brain gets the message, you walk to the door.",
    "caption": "A sense takes in information, the brain works on it, and then the body responds."
   },
   {
@@ -46,8 +46,8 @@
    "after": "kit",
    "kind": "svg",
    "file": "g-44-reaction.svg",
-   "alt": "Grouped bar graph of how far the ruler fell in cm. Sight: 12, 10, 9. Sound cue: 14, 12, 13. Farther means a slower reaction.",
-   "caption": "Distance the ruler fell before it was caught. Farther down means slower. Sight: 12, 10, 9 cm. Sound cue: 14, 12, 13 cm."
+   "alt": "Grouped bar graph of how far the ruler fell, in cm and inches. Sight: 12 cm (about 4.7 in), 10 cm (about 4 in), 9 cm (about 3.5 in). Sound cue: 14 cm (about 5.5 in), 12 cm (about 4.7 in), 13 cm (about 5 in). Farther means a slower reaction.",
+   "caption": "Distance the ruler fell before it was caught. Farther down means slower. Sight: 12 cm (about 4.7 in), 10 cm (about 4 in), 9 cm (about 3.5 in). Sound cue: 14 cm (about 5.5 in), 12 cm (about 4.7 in), 13 cm (about 5 in)."
   }
  ]
 }

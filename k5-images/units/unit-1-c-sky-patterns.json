@@ -6,7 +6,7 @@
    "after": "hero",
    "kind": "image",
    "file": "1c-hero.webp",
-   "alt": "Photo of a calm Michigan lake at night under a crescent moon and stars, with pine trees along the shore.",
+   "alt": "Illustration of a calm Michigan lake at night under a crescent moon and stars, with pine trees along the shore.",
    "caption": "The Moon and the stars show up at night. In the day the bright sky hides the stars."
   },
   {
@@ -30,24 +30,24 @@
    "after": "kit",
    "kind": "image",
    "file": "1c-sundial.webp",
-   "alt": "Photo of a paper plate with a straw standing in its center on a sunny sidewalk. The straw shadow falls across the plate, away from the Sun.",
+   "alt": "Illustration of a paper plate with a straw standing in its center on a sunny sidewalk. The straw shadow falls across the plate, away from the Sun.",
    "caption": "Paper-plate sundial: the shadow points away from the Sun, and it moves as the day goes on."
   },
   {
-   "id": "d-1c-spin",
+   "id": "1c-diag-spin",
    "after": "s1",
-   "kind": "svg",
-   "file": "d-1c-spin.svg",
-   "alt": "Two pictures of the Sun on the left and Earth in the middle. The Sun lights the half of Earth that faces it. Top picture: a red dot for your place is on the lit side, so it is day. After Earth spins half way, the bottom picture shows the red dot on the dark side, so it is night. The Sun did not turn off, your place turned away from it.",
+   "kind": "image",
+   "file": "1c-diag-spin.webp",
+   "alt": "The Sun on the left shines on a round Earth. The half of Earth facing the Sun is bright and the other half is dark. A curved arrow shows Earth turning, so a place on the bright side turns into the dark side.",
    "caption": "The Sun stays put and Earth spins. A place facing the Sun has day. When Earth turns that place away, it has night."
   },
   {
-   "id": "d-1c-stars",
+   "id": "1c-diag-stars",
    "after": "s2",
-   "kind": "svg",
-   "file": "d-1c-stars.svg",
-   "alt": "Two sky pictures side by side with the same star positions. Left, night: a dark sky with stars and a crescent Moon, so the stars can be seen. Right, day: a bright blue sky with the Sun and no visible stars, but dashed circles show where the stars still are. Stars do not turn off in the day. They are faraway suns, and the bright daytime sky hides them.",
-   "caption": "The stars are still in the sky in the daytime. The bright sky hides them."
+   "kind": "image",
+   "file": "1c-diag-stars.webp",
+   "alt": "Two sky pictures side by side. Left, night: a dark sky with stars and a crescent Moon. Right, day: a bright blue sky with the Sun, no stars visible, and dashed circles where the stars still are.",
+   "caption": "The stars are still in the sky in the daytime. Stars are faraway suns, and the bright sky hides them."
   },
   {
    "id": "w-1c-spin",

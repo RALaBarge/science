@@ -7,7 +7,7 @@
    "kind": "image",
    "file": "1b-hero.webp",
    "alt": "Photo of a mother deer and her spotted fawn standing among ferns in a forest.",
-   "caption": "A fawn looks like its mother, but it has spots she does not have."
+   "caption": "A fawn (a baby deer) looks like its mother, but it has spots that its mother does not have."
   },
   {
    "id": "1b-burr",
@@ -15,15 +15,15 @@
    "kind": "image",
    "file": "1b-burr.webp",
    "alt": "Close photo of a spiky burr stuck to a gray wool sock, with its tiny hooks caught in the knit.",
-   "caption": "A burr has tiny hooks that grab fabric. People copied that idea to make hook-and-loop fasteners."
+   "caption": "A burr has tiny hooks that grab fabric. People copied that idea to make hook-and-loop fasteners (straps with hooks on one side and loops on the other)."
   },
   {
    "id": "1b-duck",
    "after": "s3",
    "kind": "image",
    "file": "1b-duck.webp",
-   "alt": "Photo of a mother duck walking at a pond edge followed by four ducklings in a line.",
-   "caption": "Some animal parents guide their young. The ducklings follow their mother."
+   "alt": "Photo of a mother mallard duck walking at a pond edge followed by four ducklings in a line.",
+   "caption": "A mother mallard, a common Michigan pond duck, walks with her ducklings. The ducklings follow her."
   }
  ]
 }

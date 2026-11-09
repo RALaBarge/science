@@ -6,15 +6,15 @@
    "after": "hero",
    "kind": "image",
    "file": "33-hero.webp",
-   "alt": "Photo of a green frog on a lily pad with a tadpole swimming in the water below.",
-   "caption": "A frog begins as a tadpole. Its life cycle has stages."
+   "alt": "Illustration of a green frog on a lily pad with a tadpole swimming in the water below.",
+   "caption": "A green frog, which lives in many Michigan ponds, starts as an egg. It hatches into a tadpole, and its life cycle has stages."
   },
   {
    "id": "33-bean",
    "after": "s3",
    "kind": "image",
    "file": "33-bean.webp",
-   "alt": "Photo of two bean plants in clear cups. The left one is short with a thick stem and wide leaves. The right one is taller with a thin stem and small leaves.",
+   "alt": "Illustration of two bean plants in clear cups. The left one is short with a thick stem and wide leaves. The right one is taller with a thin stem and small leaves.",
    "caption": "The same kind of bean looks different in sun and in shade. Environment changes how a trait shows up."
   },
   {
@@ -31,7 +31,7 @@
    "kind": "svg",
    "file": "g-33-parents.svg",
    "alt": "Grouped bar graph of 10 offspring seeds per parent. Yellow parent: 8 yellow, 2 green. Green parent: 9 green, 1 yellow. Spotted parent: 6 spotted, 4 yellow.",
-   "caption": "Each parent bean made 10 offspring seeds. Most look like the parent, but not all."
+   "caption": "Each parent bean made 10 offspring seeds (sample numbers). Most look like the parent, but not all."
   },
   {
    "id": "g-33-sunshade",
@@ -39,7 +39,7 @@
    "kind": "svg",
    "file": "g-33-sunshade.svg",
    "alt": "Bar graph, Bean height after two weeks. Sun plant 18 cm, Shade plant 22 cm.",
-   "caption": "After two weeks the shade plant was taller (22 cm) than the sun plant (18 cm), but thin, pale and with small leaves. The sun plant had a thick green stem and wide leaves."
+   "caption": "After two weeks the shade plant was taller (22 cm, about 9 in) than the sun plant (18 cm, about 7 in), but thin, pale and with small leaves. The sun plant had a thick green stem and wide leaves. These are sample numbers."
   }
  ]
 }

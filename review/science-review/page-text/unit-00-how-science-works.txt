@@ -1,0 +1,276 @@
+REVIEW COPY: 2 things on this page need your call (highlighted neon green / badges). All flagsCHECK: Slider may show an empty value (hidden until shown). Does it display a number? (jump)
+CHECK: Play this activity once: is it clear and fun? (weakest were K2.0, the Big Sort ones and the 5.2 gravity round). (jump)
+How Science Works
+ [SVG IMAGE] 
+Skip to main content
+ Style ClassicRetro space
+ Start here · Unit 0
+ How Science Works
+ Science is not a pile of facts to memorize. It is a way of finding things out that people have been improving for thousands of years: ask a question, make a prediction, test it fairly, and let the evidence decide. Every other unit uses these steps, so learn them first.
+ Science is a way of finding things out, and people everywhere have done it for a very long time. This unit follows the habit from the first "why?" through a testable prediction and a fair test, then to measuring, graphing and explaining what the data show. You will also see how big the universe's history is by squeezing it into one year.
+ In this lesson
+Origins (deep dive)
+The method
+Hypotheses
+Fair tests
+Data to claim
+Deep time (deep dive)
+Check yourself
+Game
+ Start here. Before any content unit, this page explains where science came from and how scientists work: asking a question, making a testable hypothesis, running a fair test, and writing a claim with evidence and reasoning. Every later unit has a Method link in its tutor notes that points back to this page, so come back to it whenever a student asks "how do we know that?"
+ [IMG: A student in a classroom studies a green plant through a magnifying glass.] Science can start very close: a leaf under a magnifier.
+ [IMG: A telescope on a hill under a night sky full of stars and the Milky Way.] Or very far: a telescope pointed at the night sky.
+ [SVG IMAGE] 
+ Look for the tags AnalogyDiagramTry itDataReal world
+ Deep dive (optional) · Where science came from
+People have always asked "why?"
+ Deep dive (optional): this section is extra. You can skip it and still follow the rest of the unit; come back when you are curious.
+ Science grew out of a simple habit: look carefully, explain with natural causes, and check the explanation against the world. No single person or culture invented it. Egypt, Babylon, Greece, China, India, the Islamic world, the Maya, and many others each added tools and ideas.
+ Diagram
+ A timeline of discovering how to discover
+ [SVG IMAGE] 
+ Analogy
+ Gossip vs. detective
+ Gossip
+"I heard the cafeteria is serving pizza!" It is exciting, so it spreads. Nobody checks the menu, and being wrong does not slow it down.
+ A detective
+Walks to the cafeteria. Reads the menu. Asks the lunch staff. If the sign says tacos, the pizza story is dropped, no matter how many people repeated it.
+ Science is that second move. A claim is kept only if it survives a check against the world, not because it is popular or exciting.
+ Try it
+ Measure the Earth with a stick
+ [SVG IMAGE] 
+ Shadow angle in Alexandria: °
+ Real world
+ When evidence beat tradition: handwashing, 1847
+ Dr. Ignaz Semmelweis noticed far more mothers died in the Vienna hospital ward staffed by doctors than in the ward staffed by midwives. He guessed doctors were carrying "cadaverous particles" from autopsies on their hands, made them wash with chlorine, and deaths fell sharply. The germ theory that explained why came later (Pasteur, Lister). Approximate figures. Evidence can be right before the explanation is complete.
+ Real world
+ Who is at the center? A 1,400-year argument settled by evidence
+ For most of history, almost everyone assumed the Earth sat still in the middle and the Sun, Moon, planets and stars circled it. It matches what your eyes tell you: you do not feel the ground move, and the Sun rises and sets. About 150 CE the Greek-Egyptian astronomer Ptolemy wrote it up as a mathematical model so good at predicting where the planets would be that it was used for well over a thousand years.
+ Earth-centered (Ptolemy)
+In this model, planets ride on small circles that ride on big circles around the Earth. It works for predictions, but it needs a pile of extra circles to explain why planets sometimes seem to move backward in the sky.
+ Sun-centered (Copernicus)
+In 1543 Nicolaus Copernicus published a model with the Sun in the middle and the Earth as one planet among several. The backward loops happen naturally: when Earth, on its faster inner track, passes a slower outer planet like Mars, that planet seems to slide backward for a while, like a car you pass on the highway. A Greek thinker, Aristarchus, had suggested something similar around 270 BCE, but there was no evidence yet.
+ Two ideas, both able to predict planet positions. The difference had to be settled by new evidence, not by which idea sounded right or which one more people believed.
+ [SVG IMAGE] Both models could predict where planets would be. Evidence like Galileo’s Venus phases decided between them. Simplified: not to scale, real orbits are ovals.Text version of this picture
+Left: Earth in the middle, other objects circle it. Right: Sun in the middle, Earth and planets circle it.
+ Try it
+ Galileo's test: what phase can Venus show?
+ Sun-centered (Copernicus)Earth-centered (Ptolemy)
+ [SVG IMAGE] 
+ Where Venus is on its path: °
+ Jump to what Galileo saw
+ Through the fall of 1610 Galileo watched Venus through his telescope. It went through phases like our Moon, from a thin crescent to nearly full. In Ptolemy's model Venus always stays between us and the Sun, so it can never be more than a crescent. Venus looking nearly full means it can be on the far side of the Sun, which only fits a model where Venus circles the Sun.
+ Try it
+ Four moons that change places
+ [SVG IMAGE] 
+ Night: 
+ In January 1610 Galileo saw "stars" next to Jupiter that changed places from night to night. He realized they were four moons orbiting Jupiter. So not everything circled the Earth. (Positions here are illustrative; the orbit times are real.)
+ Data
+ How the evidence piled up
+ ClaimThe Earth and the other planets orbit the Sun.
+ EvidenceJupiter's moons (1610). Venus's phases (1610). Planets travel in ovals called ellipses (Kepler, 1609), which fit Tycho Brahe's careful measurements.
+ ReasoningVenus's phases rule out Ptolemy's model. A third model (Tycho Brahe's, where the planets circle the Sun but the Sun circles Earth) also fit them, so the case was not closed overnight. Newton's gravity (1687) explained why planets orbit the Sun, and in 1838 astronomers measured stars shifting slightly as the Earth moves (parallax), which finished it.
+ The pattern: the model changed because the evidence changed, even though many people did not want it to. That is science correcting itself.
+ Concept 2 · The scientific method
+A loop, not a ladder
+ The scientific method is the set of steps scientists use to answer questions with evidence: question, research, hypothesis, experiment, analyze, conclude, share. Real scientists loop back and forth, because a conclusion usually raises a new question.
+ Analogy
+ Perfecting a recipe
+ [SVG IMAGE] 
+ Tasting the soup is collecting data. "It needs salt" is a hypothesis. One pinch is changing one variable. Tasting again is analyzing; if the soup is still bland, the loop repeats.
+ Where it breaks: the cook can taste the soup directly. Scientists often measure something they cannot see, so they need instruments and careful records.
+ Try it
+ Walk through one investigation
+ Question: Does the amount of light change how tall bean plants grow?
+ [SVG IMAGE] 
+ BackNext step
+ Data
+ Seven steps at a glance
+ #StepWhat you doA question to ask yourself
+ 1QuestionNotice something and ask a specific question.Can I measure the answer?
+ 2ResearchFind out what is already known.Has someone already tested this?
+ 3HypothesisWrite a testable prediction with a reason.What would prove me wrong?
+ 4ExperimentTest one variable while controlling the others.Is the test fair?
+ 5AnalyzeOrganize data in tables and graphs.What pattern do I see?
+ 6ConcludeDecide if the evidence supports the hypothesis.What is my evidence?
+ 7Share and repeatReport results; others try to repeat them.What new question did I find?
+ Real world
+ Not a straight line: sometimes you change the test
+ When a test gives no answer, the idea is not always the problem. Sometimes the test is. A better tool, a bigger sample, or a smarter way to measure can turn "we can't tell" into a clear result. Scientists change the test, and the idea gets a fair chance.
+ [SVG IMAGE] 
+ Fix the testMeasure more carefully, or use a better instrument.
+ Change the ideaThe evidence points somewhere new, so revise the hypothesis.
+ Ask a new questionEvery answer leads to more questions.
+ Galileo tried to time lantern flashes between distant hills, but light is far too fast for people to time. In 1676, Ole Rømer noticed that eclipses of Jupiter's moon Io ran late when Jupiter was farther from Earth, and used that delay to estimate how fast light travels: about 220,000 km/s, roughly three-quarters of the true value of 299,792 km/s. The question never changed. The test did.
+ Real world
+ Science also begins by accident
+ In 1928, Alexander Fleming returned from vacation to find a mold (Penicillium) had landed on one of his bacteria dishes, and the bacteria around it had died. He observed, asked "why?", and tested the mold. It became the first antibiotic, penicillin, which has saved hundreds of millions of lives. His luck only mattered because he was paying attention and asked a question.
+ Concept 3 · Questions and hypotheses
+Make a prediction you can test
+ A hypothesis is a testable explanation or prediction. A strong one follows the pattern "If [we change this], then [this will happen], because [reason]." It must be possible to measure, and possible to prove wrong.
+ Analogy
+ A forecast you can check
+ Weak predictionStrong prediction
+ "The weather will be interesting.""If the front arrives tonight, then tomorrow's high will be below 10 °C, because cold air follows the front."
+ Can never be wrongCan be checked with a thermometer
+ A prediction that cannot fail tells you nothing. A hypothesis is a forecast with a test attached: it says what will happen and what evidence would prove it wrong.
+ Try it
+ Build a hypothesis
+ If we…
+ Try it
+ Is it testable?
+ 0 of 6 correct
+ Science can answer questions about the natural world that can be measured. Opinions (best flavor), values (what is fair), and things nobody can observe are outside what an experiment can settle.
+ Data
+ Hypothesis, theory, law: what's the difference?
+ WordMeaning in scienceExample
+ HypothesisA testable prediction, not yet confirmed."Plants in more light will grow taller."
+ LawA description of a pattern that always holds.Newton's law of gravity describes what happens.
+ TheoryA well-tested explanation backed by lots of evidence. It is not "just a guess".Plate tectonics, germ theory, evolution.
+ A hypothesis does not "graduate" into a theory. A theory explains why; a law describes what.
+ Concept 4 · Fair testing
+Change one thing at a time
+ In a fair test you change only the independent variable, measure the dependent variable, and keep everything else the same (controlled variables). Then repeat enough times to trust the result.
+ Analogy
+ Cookie test
+ [SVG IMAGE] 
+ Sugar is the only difference between the batches, so it is the only thing that can explain a difference in taste. One change at a time is what makes a test fair.
+ Where it breaks: a real oven has hot spots. A careful baker would run several batches and compare averages, not judge from one cookie.
+ Try it
+ Fair vs. unfair test
+ Change only lightChange light, water, and pot
+ [SVG IMAGE] 
+ Try it
+ Why we repeat: the average settles down
+ [SVG IMAGE] 
+ Run 1 trialRun 10 trialsReset
+ Teaching simulation. Each trial of a plant's growth has natural variation (the true average is 20 cm). One trial can mislead; the average of many is far more reliable.
+ Real world
+ Clinical trials
+ New medicines are tested on thousands of people split randomly into two groups. One gets the medicine, the control group gets a look-alike without it. Neither the patients nor often the doctors know who gets which, a "double-blind" design, so expectations can't bias the result. The variable changed: the medicine. Everything else is balanced by chance and large numbers.
+ Concept 5 · From data to claim
+Measure, graph, conclude
+ Scientists measure in metric units (SI), show data in the right kind of graph, and explain conclusions with claim, evidence, reasoning. Two things happening together (correlation) do not prove one causes the other.
+ Data toolbox (open when you need it)
+ Units: always write the unit with a number (4.6 m, not just 4.6). Use metric: meters, grams, liters, seconds.
+ Repeat trials: do the same test several times. One try can be a fluke.
+ Average (mean): add all the results, then divide by how many there are.
+ Variability: repeats are never exactly the same, because of small differences in your throw, the air, or how you measure. The range (smallest to biggest) shows how much they differ.
+ Pick the graph: bar graph to compare groups, line graph for change over time, scatter plot to see if two measurements go together.
+ Correlation is not causation: two things changing together does not prove one causes the other. Ice cream sales and sunburns both rise in summer; the hot sunny weather causes both.
+ Uncertainty: every measurement is a little bit off. Say "about 4.6 m, give or take 0.8 m" instead of pretending to be exact.
+ Tiny example: you throw a paper plane 5 times and measure 4.2, 5.0, 4.6, 3.8 and 5.4 meters. Total = 23.0 m. Average = 23.0 ÷ 5 = 4.6 m. Range = 3.8 m to 5.4 m, which is 1.6 m wide. So you could report: "about 4.6 m, and throws varied by about 1.6 m."
+ Data
+ Metric lengths from ant to bridge
+ Log scale: each step is ×10 or more. Prefixes: milli (1/1000), centi (1/100), kilo (1000×).
+ Try it
+ Pick the right graph
+ 0 of 6 correct
+ Analogy
+ Claim, Evidence, Reasoning (CER)
+ ClaimBean plants given more light grew taller.
+ EvidenceAfter 14 days the 12-hour group averaged 18 cm and the 4-hour group averaged 9 cm, across 10 plants each.
+ ReasoningPlants use light energy to make food (photosynthesis), so more light gives more food for growth. Everything else was kept the same.
+ Like a lawyer in court: do not just say what you think. Show the evidence, then explain why that evidence supports the claim. A claim with no evidence is just an opinion.
+ Data
+ Correlation is not causation
+ [SVG IMAGE] 
+ Ice cream and swimming accidentsAdd temperature
+ Illustrative, with each line scaled 0–100 over the year. Ice cream does not cause accidents. A hidden third factor (summer heat) drives both.
+ Real world
+ Lab safety, quick rules
+ RuleWhy
+ Goggles on when heating, mixing, or launchingEyes cannot be replaced.
+ Tie back hair, no loose sleeves near flamesThey can catch fire or knock things over.
+ Never taste or sniff unknown substancesSome are poisonous or irritating.
+ Tell an adult about any spill or breakGlass and chemicals need proper cleanup.
+ Wash hands afterwardRemoves anything you touched.
+ [SVG IMAGE] The five rules in the table, as pictures.Text version of this picture
+Goggles on; hair tied back; do not taste unknown substances; tell an adult; wash hands.
+ Deep dive (optional) · Deep time
+The whole universe in one year
+ Deep dive (optional): this section is extra. You can skip it and still follow the rest of the unit; come back when you are curious.
+ The universe is about 13.8 billion years old. That number is too big to feel, so let's squash all of time into one calendar year and find where your birthday lands.
+ Try it
+ Step 1: Find your birthday on the cosmic calendar
+ The Big Bang is midnight at the start of January 1. Right now is the last instant of December 31. Pick your birthday (no year needed) and see what was happening in the universe that day.
+ Month
+ Day
+ Show my day
+ Skip (use today's date)
+ Your birthday is only used on this page to place a marker. It is not saved or sent anywhere.
+ Diagram
+ Step 2: Zoom out and watch the whole year
+ The scale: 13.8 billion years squeezed into 365 days. One cosmic day is about 38 million real years. One cosmic second is about 438 real years.
+ [SVG IMAGE] 
+ Slide through time: CHECK 1: Slider may show an empty value (hidden until shown). Does it display a number?
+ Zoom out a levelZoom in a level
+ Data
+ When does life show up?
+ You might have heard that "all of life happened in the last hour of the year." The real picture is a little different, and just as surprising:
+ Life starts in September, but for most of the year it is tiny single cells. Animals arrive in mid-December. Dinosaurs rule from about December 25 to 30. Humans do not show up until roughly the last 12 minutes of December 31, and everything written down in human history, from the first writing to today, fits in the last 12 seconds.
+ Real world
+ Where did this idea come from?
+ Astronomer Carl Sagan popularized the Cosmic Calendar in his 1977 book The Dragons of Eden and in his 1980 TV series Cosmos. It came back in the 2014 series Cosmos: A Spacetime Odyssey, hosted by astrophysicist Neil deGrasse Tyson. Different versions place events at slightly different times because scientists keep refining the dates. Treat the times here as close estimates, not exact clock readings.
+ Analogy
+ How long is one cosmic second?
+ About 438 real years. That means the last cosmic second stretches back to roughly the year 1588: Galileo's lifetime. Every telescope, every airplane, every president and every phone fit inside a single tick of the clock.
+ By the same scale, your whole life so far (about 12 years) is less than one thirtieth of a second.
+ [SVG IMAGE] The same times as on this page, drawn along one year. Dates are close estimates, and the bar is not drawn to exact scale at the end.Text version of this picture
+Year bar: life in September, animals mid-December, dinosaurs Dec 25 to 30; humans in the last 12 minutes of Dec 31; written history in the last 12 seconds.
+ How many people have ever lived?
+ Demographers estimate about 117 billion people have ever been born. About 7 in every 100 of them are alive right now.
+ Try it
+ Everyone who has ever lived
+ Each square is 1% of all the people who have ever been born (about 1.2 billion people). Blue squares were born by the year you picked. The estimates come from the Population Reference Bureau and use population guesses for the distant past, so treat them as rough: they say that no demographic data exist for more than 99% of the time humans have been around. Earlier versions of this estimate were lower, around 108 billion in 2015, and they keep being updated as the data improves.
+ Analogy
+ Too many to picture? Try these
+ One person per secondCounting one person every second, non-stop, would take about 3,700 years.
+ StadiumsA big stadium holds 100,000 people. You would need about 1.2 million sold-out stadiums.
+ A lineStanding shoulder to shoulder (about half a meter each), the line would be about 58 million km long: to the Moon and back about 76 times.
+ Data
+ Alive today
+ Of every 100 people who ever lived, about 7 are alive right now (about 8 billion people). Around 4 more babies are born every second. The other 93 are our ancestors, and every one of them was a person with a story.
+ Check yourself
+Can you explain it?
+ A classmate says: "My plants grew taller with fertilizer, so fertilizer works!" But they used a bigger pot and a sunnier window for the fertilizer plants. What is wrong with the test, and how would you fix it?
+ Show a model answer
+ The test is unfair because fertilizer wasn't the only thing that changed: the pot size and the amount of light also differed, so any of them could explain the taller plants. To fix it, keep pot, soil, water, light, and starting size identical in both groups, change only the fertilizer, include a control group with none, and grow several plants per group so the average is trustworthy.
+ 0 of 8 correct
+ Words to know
+ observationInformation gathered with your senses or instruments.
+ hypothesisA testable prediction with a reason.
+ independent variableThe one thing you change on purpose.
+ dependent variableWhat you measure to see the effect.
+ controlled variableA factor you keep the same in every group.
+ control groupThe comparison group that doesn't get the change.
+ dataMeasurements and observations collected in a test.
+ conclusionWhat the evidence shows about the hypothesis.
+ theoryA well-tested explanation backed by a lot of evidence.
+ replicationRepeating a test to see if you get the same result.
+ heliocentricSun-centered. (Geocentric means Earth-centered.)
+ cosmic calendarThe 13.8-billion-year history of the universe squeezed into one year.
+ Tutor notes: hands-on kit, misconceptions, pacing
+ Kit (about $8): bean seeds, 6 clear cups, potting soil, a metric ruler, a stopwatch, paper clips and string, a small ramp (book + cardboard) and a toy car, graph paper.
+ Concept 1: do the shadow-stick measurement outside at noon (the Earth-size demo works with any two cities and the same angle idea). Discuss why a claim like "the Earth is flat" can be tested.
+ Concept 2: start the bean-light investigation on day one so there is real data to analyze in Concept 5.
+ Concept 3: rewrite 5 weak hypotheses into "If…then…because" form.
+ Concept 4: ramp and car: change only ramp height, measure distance rolled, run 5 trials per height.
+ Concept 5: graph the ramp data; write a CER paragraph.
+ Concept 6: have students enter their birthday, then write one sentence about what was happening in the universe that day. Mark the cosmic calendar on a hallway strip of paper (1 meter of paper = 1 year is easy to fold).
+ Common misconceptions:
+ "There is one scientific method with fixed steps." Scientists loop, skip, and repeat; the steps describe common practice.
+ "A hypothesis is an educated guess you must prove right." A hypothesis can be wrong, and learning that is a result.
+ "A theory is just a guess." In science it is a strongly supported explanation.
+ "Experiments are the only kind of science." Observation, modeling, and comparison (e.g. astronomy, geology) are also science.
+ Pacing: about five 30-minute sessions, with the bean experiment running alongside them. Refer back: in later units, ask students which step of the method each Try it follows.
+After the lesson · Game
+Play: Mystery MachineCHECK 2: Play this activity once: is it clear and fun? (weakest were K2.0, the Big Sort ones and the 5.2 gravity round).
+A plant-growing machine has five knobs, but only some of them matter. Run fair tests with a limited number of trials, then make a claim your data can back up.
+Keep exploring
+Related lessons
+ Up next: Unit 1: Light & Matter. Overlap alert: ideas you have already met are marked above as "you may already have learned".
+Unit 1: Light & MatterPut the method to work on a first topic: light and matter.
+Unit 10: States of MatterTest ideas about states of matter.
+Unit 12: Ecosystems & Food WebsSampling and data in ecosystems.
+Built for sixth-grade tutoring. Aligned with NGSS Science and Engineering Practices (asking questions, planning investigations, analyzing data, constructing explanations, engaging in argument from evidence). Dates and figures are approximate.

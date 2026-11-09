@@ -215,7 +215,7 @@ function beam(id) {
     ['Clear plastic', 'light passes through', 'clear'],
     ['Wax paper', 'some light passes, blurry', 'wax'],
     ['Cardboard', 'blocks the light', 'card'],
-    ['Mirror', 'bounces light back', 'mirror'],
+    ['Foil', 'bounces light back', 'mirror'],
   ];
   let s = '';
   rows.forEach(([name, out, kind], i) => {
@@ -233,7 +233,7 @@ function beam(id) {
     if (kind === 'mirror') s += arrow(186, m + 8, 96, m + 8, BEAM, 4, 12);
     s += T(312, m - 4, name, { a: 'start', w: 700, s: 14 }) + T(312, m + 14, out, { a: 'start', s: 12.5, f: MUTED });
   });
-  return wrap(id, 'Four materials in a light beam', 'Four rows. In each, a flashlight on the left sends a beam to a material. Clear plastic: the light passes straight through. Wax paper: some light passes through and spreads out, so it is blurry. Cardboard: the light is blocked and there is a shadow behind it. Mirror: the light bounces back toward the flashlight.', 396, s);
+  return wrap(id, 'Four materials in a light beam', 'Four rows. In each, a flashlight on the left sends a beam to a material. Clear plastic: the light passes straight through. Wax paper: some light passes through and spreads out, so it is blurry. Cardboard: the light is blocked and there is a shadow behind it. Foil: the light bounces back toward the flashlight.', 396, s);
 }
 
 // ---------- 3.1 magnet and paper clip kit ----------

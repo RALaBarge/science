@@ -1,18 +1,18 @@
 <div class="k5w" id="w2apieces"></div>
 <script>(function(){var box=document.getElementById('w2apieces'),K=K5W,S=K.S,C=K.C;
- var COL=[C.blue,C.red,C.teal,C.beam],L=['Tower','House','Train','Square'],svg,say;
- var POS=[[[210,150],[210,120],[210,90],[210,60]],[[165,150],[195,150],[225,150],[195,120]],[[120,150],[160,150],[200,150],[240,150]],[[195,120],[225,120],[195,150],[225,150]]];
+ var COL=[C.blue,C.red,C.teal,C.beam,'#25904F'],L=['Tower','House','Train','Plus sign'],svg,say;
+ var POS=[[[210,150],[210,120],[210,90],[210,60],[210,30]],[[150,150],[180,150],[210,150],[165,120],[195,120]],[[130,150],[162,150],[194,150],[226,150],[258,150]],[[195,150],[195,120],[195,90],[165,120],[225,120]]];
  var sel=0;
- box.appendChild(K.h('p',null,'Same four pieces. Build something different each time.'));
+ box.appendChild(K.h('p',null,'Same five blocks. Build something different each time.'));
  K.chips(box,L,0,function(i){sel=i;draw();},'What to build');
- svg=K.svg(box,'0 0 420 190','Four blocks arranged to make a shape.');
+ svg=K.svg(box,'0 0 420 190','Five blocks arranged to make a shape.');
  say=K.say(box);
  function draw(){
   var s=S.l(40,182,380,182,C.ink,3);
   POS[sel].forEach(function(p,i){s+=S.r(p[0],p[1],30,30,COL[i],C.ink,3,2.5)+S.t(p[0]+15,p[1]+21,String(i+1),15,'#fff','middle',700);});
   svg.innerHTML=s;
-  say('A <b>'+L[sel].toLowerCase()+'</b> made of 4 pieces. Count: <b>4 = 4</b>. Taking things apart and building something new does not make pieces appear or disappear.');
-  svg.setAttribute('aria-label','A '+L[sel].toLowerCase()+' built from the same four blocks.');
+  say('A <b>'+L[sel].toLowerCase()+'</b> made of 5 blocks. Count: <b>5 = 5</b>. Taking things apart and building something new does not make pieces appear or disappear.');
+  svg.setAttribute('aria-label','A '+L[sel].toLowerCase()+' built from the same five blocks.');
  }
  draw();
 })();</script>

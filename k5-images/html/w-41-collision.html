@@ -13,7 +13,7 @@
  function draw(){
   var m=B[i][1],h=100-m;
   c.innerHTML=B.map(function(b,j){return '<button type="button" data-i="'+j+'" aria-pressed="'+(j===i)+'">'+b[0]+'</button>';}).join('');
-  bars.innerHTML=bar('Before the drop: energy of motion',[[100,'var(--reflect,#2b66e8)','motion 100']])+
+  bars.innerHTML=bar('Before the drop: motion energy',[[100,'var(--reflect,#2b66e8)','motion 100']])+
    bar('After it hits the floor',[[m,'var(--reflect,#2b66e8)',m>=14?'motion '+m:''],[h,'var(--absorb,#d6450b)','heat, sound, bending '+h]]);
   r.innerHTML=B[i][2]+' About <b>'+m+'</b> of the 100 units stays as motion. The other <b>'+h+'</b> shows up as a little heat, a little sound and some bending. Before: 100. After: '+m+' + '+h+' = <b>100</b>. Nothing was deleted.';
  }

@@ -26,22 +26,6 @@
    "caption": "January in Michigan: cold, with snow and ice. Seasons make a climate pattern."
   },
   {
-   "id": "32-barrier",
-   "after": "kit",
-   "kind": "image",
-   "file": "32-barrier.webp",
-   "alt": "Photo of a plastic tray with a soil slope and a strip of grass at its base while someone pours water from a cup at the top.",
-   "caption": "A flood-barrier test: same amount of water each time, then compare how much soil moves."
-  },
-  {
-   "id": "32-lab",
-   "after": "kit",
-   "kind": "image",
-   "file": "32-lab.webp",
-   "alt": "Illustration of a classroom flood-barrier test: a student pours water onto a soil slope with a grass strip while another records results and a teacher watches.",
-   "caption": "Testing a barrier: the same amount of water each time, then compare how much soil moves."
-  },
-  {
    "id": "w-32-highs",
    "after": "s3",
    "kind": "html",
@@ -54,16 +38,24 @@
    "after": "s3",
    "kind": "svg",
    "file": "g-32-temp.svg",
-   "alt": "Bar graph of typical average daily high temperature in Detroit by month, in degrees F. Jan 32, Feb 35, Mar 45, Apr 58, May 69, Jun 79, Jul 83, Aug 81, Sep 74, Oct 62, Nov 50, Dec 38. Summer months are tall, winter months are short.",
-   "caption": "Typical average daily HIGH temperature by month for Detroit, rounded to the nearest degree. A given year can differ by several degrees. July is the warmest at 83 F and January the coldest at 32 F."
+   "alt": "Bar graph of typical average daily high temperature in Detroit by month, in degrees Fahrenheit (°F). Jan 32, Feb 35, Mar 45, Apr 58, May 69, Jun 79, Jul 83, Aug 81, Sep 74, Oct 62, Nov 50, Dec 38. Summer months are tall, winter months are short.",
+   "caption": "Typical average daily HIGH temperature by month for Detroit, in °F, rounded to the nearest degree. A given year can differ by several degrees. July is the warmest at 83°F (28°C) and January the coldest at 32°F (0°C)."
+  },
+  {
+   "id": "32-hands",
+   "after": "kit",
+   "kind": "image",
+   "file": "32-hands.webp",
+   "alt": "Three kids and a teacher around a table with a tilted tray: soil at the top, a grass strip at the bottom, and one child pouring water slowly from a cup.",
+   "caption": "A flood-barrier test: the same amount of water each time, then compare how much soil moves."
   },
   {
    "id": "g-32-rain",
    "after": "s3",
    "kind": "svg",
    "file": "g-32-rain.svg",
-   "alt": "Bar graph of typical precipitation in Detroit by month, in inches. Jan 2, Feb 1.9, Mar 2.4, Apr 3, May 3, Jun 3.2, Jul 3.1, Aug 3.2, Sep 3, Oct 2.6, Nov 2.7, Dec 2.2. Every month is between about 1.9 and 3.2 inches.",
-   "caption": "Typical precipitation by month for Detroit, in inches. It is fairly even through the year, from about 1.9 inches in February to 3.2 in June and August."
+   "alt": "Bar graph of typical precipitation in Detroit by month, in inches. Jan 2, Feb 1.9, Mar 2.4, Apr 3, May 3, Jun 3.2, Jul 3.1, Aug 3.2, Sep 3, Oct 2.6, Nov 2.7, Dec 2.2. Every month is between about 1.9 inches (5 cm) and 3.2 inches (8 cm).",
+   "caption": "Typical precipitation by month for Detroit, in inches. It is fairly even through the year, from about 1.9 inches (5 cm) in February to 3.2 inches (8 cm) in June and August."
   },
   {
    "id": "g-32-barrier",

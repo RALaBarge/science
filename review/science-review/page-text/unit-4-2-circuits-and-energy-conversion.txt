@@ -1,0 +1,171 @@
+REVIEW COPY: 2 things on this page need your call (highlighted neon green / badges). All flagsCHECK: Standard codes not yet compared with the Michigan (MDE) document. (jump)
+CHECK: Play this activity once: is it clear and fun? (weakest were K2.0, the Big Sort ones and the 5.2 gravity round). (jump)
+Circuits and Energy Conversion
+ [SVG IMAGE] 
+Skip to main content
+ Style ClassicRetro space
+ Grade 4 · Unit 4.2
+ Circuits and Energy Conversion
+ How can we make a safe circuit that changes electrical energy into useful light?
+ A working circuit is a complete loop, and building one safely shows how electrical energy changes into other kinds. You will test which materials let current flow, use switches to open and close a circuit, and see electrical energy turn into light, sound, motion or heat.
+ In this lesson
+A circuit is a complete loop
+Conductors and insulators
+Switches open and close circuits
+Circuits convert energy
+Try it at home
+Check yourself
+Play: Circuit Builder
+ [IMG: Photo of a house in a snowy Michigan neighborhood at dusk with warm light glowing in the windows.] Electricity makes lights glow, but only when the circuit is a complete loop.
+ Concept 1
+A circuit is a complete loop
+ Electric current flows only in a closed path.
+ [SVG IMAGE] The bulb lights only when the loop is closed all the way around. A gap anywhere stops the current in the whole loop.Text version of this diagram
+Two circuits made of a battery, a bulb and wire. Top: the loop has a gap on the right, so the bulb is off. Bottom: the loop is complete, orange arrows show charges moving around the whole loop together, and the bulb glows with rays around it.
+ Analogy
+ Train track
+a looped track with a small train.
+“If the track is broken, the train stops. If the wire path breaks, the current stops.”
+ Try it
+ Light the LED
+coin cell, LED, tape, and foil strips.
+“Connect the battery to the LED in a loop. The LED lights. If it stays dark, flip the LED. It works one way.”
+Predict first: If the LED stays dark, what could be wrong?
+You need: a coin cell battery, an LED, tape, foil strips. The adult checks the battery and keeps it away from mouths.
+The LED has one long leg (+) and one short leg (-).
+Touch the long leg to the + (flat) side of the battery and the short leg to the other side.
+Hold it with tape or a clip.
+What you should see: The LED lights. If it does not, flip the LED around. It works only one way.
+Why it matters: A circuit needs a complete loop, and an LED needs the right direction.
+ Diagram
+ Open vs closed
+one circuit with a gap and one circuit without a gap.
+“Open path: no light. Closed path: light.”
+ Data
+ LED direction log
+a table with LED direction, Lights? yes/no.
+“Try both ways. Record which way lights.”
+LED directionLights? (yes/no)
+Long leg on + sideyes
+Long leg on - sideno
+Try both ways and write what you see. The sample answer shows the usual result.
+ Concept 2
+Conductors and insulators
+ Some materials let current flow easily; others do not.
+Lay different materials across a gap to see what lets current through.
+ Try it
+ Material tester
+paper clip, foil, string, plastic, wood placed in the circuit gap.
+“Put each material in the circuit. Does the LED light?”
+ Data
+ Conductor table
+table with Material and Lights? columns, plus real observation log.
+“Metals conduct. Plastic does not. Real log: test each material. Provided dataset: paper clip yes, foil yes, string no, plastic no, wood no.”
+ Real world
+ Safe wiring
+metal wire inside plastic coating.
+“Metal carries current. Plastic coating keeps it safe.”
+ [SVG IMAGE] Metal is a conductor. The plastic coat is an insulator, so the current stays inside the wire.Text version of this diagram
+A cut-open wire shows a metal core in the middle, labelled carries electric current, and a plastic coating around it, labelled keeps you safe.
+ Concept 3
+Switches open and close circuits
+ A switch controls whether the circuit is complete.
+ [SVG IMAGE] 
+Switch: open (press to close)Cut the bottom wire
+Close the switch to light the bulb, then cut a wire. One gap anywhere breaks the whole loop.
+ Try it
+ Paper clip switch
+two brass fasteners and a paper clip.
+“Move the clip to touch both fasteners. The light turns on.”
+ Diagram
+ Switch open and closed
+switch touching one fastener, then both.
+“Open switch: path broken. Closed switch: path complete.”
+ Real world
+ Flashlight
+flashlight switch.
+“A flashlight has a switch inside.”
+ [SVG IMAGE] Pressing the button closes a gap in the loop. Then the current can flow from the battery to the bulb and back.Text version of this diagram
+A flashlight drawn from the side. Batteries on the left, a switch on the top, and a bulb on the right joined by a loop of metal. When the switch is closed the loop is complete and the bulb lights.
+ Concept 4
+Circuits convert energy
+ Electrical energy can change into light, sound, motion, or heat.
+Flip the LED: it lights only one way.
+ Diagram
+ Energy conversion
+battery to LED with arrows: electrical → light + a little heat.
+“The battery gives electrical energy. The LED makes light.”
+ [SVG IMAGE] The battery stores energy. Electrical energy flows through the loop. The LED turns it into light and a little heat.Text version of this diagram
+Three boxes joined by arrows: a battery with stored chemical energy, wires carrying electrical energy, and an LED. From the LED two arrows leave: a big one for light and a small one for a little heat.
+ Try it
+ Light-up card
+paper card with foil path and LED.
+“Close the switch. The card lights up. Electrical energy became light energy.”
+ Real world
+ Doorbell
+button and bell.
+“Electric energy becomes sound.”
+ [SVG IMAGE] Pressing the button closes the loop. Electric energy shakes the bell, and the bell makes sound.Text version of this diagram
+Three boxes joined by arrows: a button that closes the circuit, electric current, and a bell. The bell makes sound.
+ Hands-on · Design or investigate
+Try it at home or in class
+ Design a “light-up card” with a switch. Criteria: the light turns on when the switch is closed. Constraints: one coin cell, one LED, foil or copper tape, paper. Students test, find why it fails if it is dark, and refine the circuit.
+ [SVG IMAGE] What the light-up card looks like: tape, coin cell, LED and a paper clip switch in one loop.Text version of this diagram
+Top view of an index card with a coin cell on the left, an LED in the middle and a paper clip switch on the right. Strips of copper tape connect them in one loop: from the plus side of the cell to the LED long leg, from the LED short leg to the first brass fastener, then through the paper clip to the second fastener and back along the bottom to the cell. When the clip touches both fasteners the loop is complete and the LED lights. When the clip is swung away the loop is open and the LED is off. The LED lights only when its long leg is toward the plus side of the cell.
+ [SVG IMAGE] Material tester: paper clip and foil let the bulb light. String, plastic and wood did not. The switch closed lit the bulb and open did not.Text version of this graph
+Table drawn with dots. Bulb lit with paper clip: yes. Foil: yes. String: no. Plastic: no. Wood: no. Switch closed: yes. Switch open: no.
+ Try itWhat you need
+coin cells, small LEDs, copper tape or aluminum foil, binder clips, paper clips, brass fasteners, index cards, tape, paper, pencil.
+Safety: coin cells only; never wall current. Tape over coin cells when stored. Check LED orientation; the LED lights only one way. A small LED can run straight from one coin cell because the cell limits the current; never use a bigger battery or wall power. If foil or a coin cell feels warm, unhook it right away: a wire joining both ends of the cell is a short circuit and gets hot. An adult hands out and collects every coin cell; a swallowed coin cell is a medical emergency. Check battery freshness. If magnets are used for extensions, keep magnets away from Chromebooks.
+ Try itWhat you do
+Build a simple circuit. Test conductors and insulators. Make a paper-clip switch. Design and refine a light-up card.
+Light the LED with a battery and foil (10 minutes).
+Test five things in the gap: paper clip, foil, string, plastic, wood (10 minutes).
+Make a paper-clip switch and use it to turn the light on and off (10 minutes).
+Make the light-up card. If it stays dark, check: loop closed? LED the right way? Foil touching the battery? (20 minutes).
+Notice: A circuit needs an unbroken loop. Metals let current through; plastic and wood do not.
+Why it matters: Finding why a circuit fails is how real engineers fix them.
+ No time or no good weather? Use this data
+This data is a backup. It lets you practice reading evidence, but the standard expects you to collect your own when you can.
+material tester backup results paper clip yes, foil yes, string no, plastic no, wood no; switch log open no, closed yes.
+ Near you: Winter storm power outages: discuss why communities need safe backup lights and why wall electricity is dangerous.
+ Check yourself
+What did you learn?
+ 0 of 4 correct
+ Words to know
+ circuita complete path for electric current.
+currentmoving electric charge.
+batterydevice that provides electrical energy.
+conductormaterial that lets current flow easily.
+insulatormaterial that blocks current.
+switchdevice that opens or closes a circuit.
+open circuitbroken path; no current.
+closed circuitcomplete path; current flows.
+energy conversionenergy changing form.
+LEDa small light that uses electric current and works one way.
+ Tutor notes: misconceptions, standards, pacing
+ Pacing: five 30-minute sessions.
+ Common misconceptions to listen for:
+“Electricity is used up in the bulb.” Correct: energy transfers; current flows in a loop.
+“One wire is enough.” Correct: a complete path is needed.
+“The battery stores current like water.” Correct: batteries store chemical energy; current is moving charge.
+“All circuits are dangerous.” Correct: small battery circuits are safe, but wall electricity is dangerous.
+“LEDs work either direction.” Correct: LED lights only one way; flip it if it is dark.
+“Plastic and wood conduct electricity like metal.” Correct: metals conduct; plastic and wood are insulators.
+“An open switch still lets current flow.” Correct: an open switch breaks the path.
+ Limits and cautions:
+4-PS3-2 is partly earned here; sound, light, and heat transfer belong in 4.1.
+Coin cells are safe for this grade, but they are a swallowing hazard for younger siblings; tape them when stored.
+LEDs can stay dark if reversed or if the battery is weak; check orientation and battery freshness.
+The unit does not teach voltage, series/parallel circuits, or current measurement.
+ Michigan Science Standards this unit earnsCHECK 1: Standard codes not yet compared with the Michigan (MDE) document.:
+4-PS3-2: Observe that energy can be transferred by sound, light, heat, and electric currents.
+4-PS3-4: Apply scientific ideas to design, test, and refine a device that converts energy from one form to another.
+ Connections: Builds on: Unit 0: How Science Works; 2-A Materials and Their Uses; 4.1 Energy, Speed, and Collisions. Builds toward: Unit 8.3 Forces at a Distance; Unit 8.2 Energy Transformation & Conservation; Unit 13 Energy Resources & Human Impact.
+After the lesson · Activity
+Play: Circuit BuilderCHECK 2: Play this activity once: is it clear and fun? (weakest were K2.0, the Big Sort ones and the 5.2 gravity round).
+Build a closed loop with a cell, wires, a switch and an LED. Then test materials in a gap, and run light and sound at once.
+Keep exploring
+More lessons
+Before this: 4.1 Energy, Speed, and Collisions. Up next: 4.3 Waves, Light, and Information. Unit 0: How Science Works explains the method every Try it uses.
+Michigan Science Standards (performance expectations earned by this unit): 4-PS3-2, 4-PS3-4. Written for read-aloud and independent reading with a grown-up nearby; hands-on parts use cheap kit materials.

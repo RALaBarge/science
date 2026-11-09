@@ -14,15 +14,15 @@
    "after": "s1",
    "kind": "image",
    "file": "1a-drum.webp",
-   "alt": "Photo of a drum with a pile of rice grains and a wooden spoon resting on the drum skin.",
-   "caption": "Set up before the test: rice on the drum skin. Tap the drum skin gently and watch the rice."
+   "alt": "Picture of a drum with a pile of rice grains and a wooden spoon resting on the drum skin.",
+   "caption": "A drum with rice grains on its skin. Tap the drum gently and watch the rice."
   },
   {
    "id": "d-1a-beam",
    "after": "s3",
    "kind": "svg",
    "file": "d-1a-beam.svg",
-   "alt": "Four rows. In each, a flashlight on the left sends a beam to a material. Clear plastic: the light passes straight through. Wax paper: some light passes through and spreads out, so it is blurry. Cardboard: the light is blocked and there is a shadow behind it. Mirror: the light bounces back toward the flashlight.",
+   "alt": "Four rows. In each, a flashlight on the left sends a beam to a material. Clear plastic: the light passes straight through. Wax paper: some light passes through and spreads out, so it is blurry. Cardboard: the light is blocked and there is a shadow behind it. Foil: the light bounces back toward the flashlight.",
    "caption": "What a beam of light does to four materials: passes through, spreads, is blocked, or bounces."
   },
   {
@@ -32,6 +32,14 @@
    "file": "w-1a-pluck.html",
    "alt": "Interactive: pluck a rubber band softly or hard, watch it vibrate and the rice jump, and touch it to stop the sound.",
    "caption": "Pluck a rubber band: it shakes and makes sound. Touch it and the sound stops."
+  },
+  {
+   "id": "1a-light-path",
+   "after": "s2",
+   "kind": "image",
+   "file": "1a-light-path.webp",
+   "alt": "A flashlight on the left shines a beam onto a small red toy car, and the light bounces from the car to a child’s eye.",
+   "caption": "The flashlight sends light to the toy. The light bounces off the toy into your eye, so you can see it. “Light bounces into your eye.”"
   },
   {
    "id": "w-1a-box",
@@ -47,7 +55,7 @@
    "kind": "html",
    "file": "w-1a-beam.html",
    "alt": "Interactive: choose a material and see the flashlight beam pass through, spread out, stop with a shadow, or bounce back.",
-   "caption": "Shine a beam on clear plastic, wax paper, cardboard or a mirror."
+   "caption": "Shine a beam on clear plastic, wax paper, cardboard or foil."
   }
  ]
 }

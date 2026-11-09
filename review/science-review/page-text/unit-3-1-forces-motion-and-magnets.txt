@@ -1,0 +1,184 @@
+REVIEW COPY: 2 things on this page need your call (highlighted neon green / badges). All flagsCHECK: Standard codes not yet compared with the Michigan (MDE) document. (jump)
+CHECK: Play this activity once: is it clear and fun? (weakest were K2.0, the Big Sort ones and the 5.2 gravity round). (jump)
+Forces, Motion, and Magnets
+ [SVG IMAGE] 
+Skip to main content
+ Style ClassicRetro space
+ Grade 3 · Unit 3.1
+ Forces, Motion, and Magnets
+ Why do objects speed up, slow down, turn, or stay still?
+ Forces explain why things speed up, slow down, turn or stay put. You will compare balanced and unbalanced forces, use patterns in motion to predict what happens next, explore magnets and static electricity that push and pull without touching, and design a way to move something using magnets.
+ In this lesson
+Balanced and unbalanced forces
+Motion patterns help predict
+Forces without touching
+Magnet design problem
+Try it at home
+Check yourself
+Play: Force Track: Push, Roll, Pull
+ Look for the tags AnalogyDiagramTry itDataReal world
+ [IMG: Illustration of two teams of teenagers pulling on a rope in a tug of war. The red ribbon at the middle of the rope has not moved from the center.] Equal pulls in opposite directions are balanced. The rope does not change its motion.
+ Concept 1
+Balanced and unbalanced forces
+ Balanced forces keep motion the same; unbalanced forces change motion.
+ [SVG IMAGE] Balanced forces do not change motion. An object can be moving and still have balanced forces. Unbalanced forces change the motion.Text version of this diagram
+Two pictures of an object with force arrows. Top: a push forward and friction backward are the same length, so the forces are balanced and the object keeps moving at the same steady speed. Bottom: the push forward is longer than the friction arrow, so the forces are unbalanced and the object speeds up.
+Push a puck from both sides and see what balanced and unbalanced forces do.
+ Try it
+ Fair-test and CER refresher
+two toy cars on the same ramp and sentence cards labeled Claim, Evidence, Reasoning.
+“Change one thing at a time, like the ramp height. If we change the car and the ramp together, we do not know which one changed the distance.”
+“Claim: What we think. Evidence: What we measured. Reasoning: Why it fits.”
+You did this before / what is new: You used fair tests and CER cards in Unit 0; now you use them to investigate forces.
+ Analogy
+ Tug-of-war
+equal teams vs unequal teams.
+“Equal pulls balance. Unequal pulls move the rope.”
+ Try it
+ Push the car
+toy car on table.
+“Push gently. Push harder. Watch the motion change.”
+“Now flick a marble across a very smooth tray and mark its position every second. When friction is small, the gaps between marks stay almost the same: the forces on it are nearly balanced, so its motion hardly changes. On rough carpet the gaps shrink quickly, because friction is a force against the motion and nothing balances it.”
+You did this before / what is new: You pushed and pulled objects in K-A; now you collect evidence about balanced and unbalanced forces.
+ Diagram
+ Force arrows
+box with equal arrows and unequal arrows.
+“Same arrows: no change. Different arrows: motion changes.”
+ Concept 2
+Motion patterns help predict
+ If motion repeats, we can predict what happens next.
+ [SVG IMAGE] Equal gaps between dots mean steady speed. A real ball on a floor slows down, so its dots bunch closer together.Text version of this diagram
+Two dot tapes, each showing a ball position every second from 0 to 4 seconds. Top, a model ball with no friction: the dots are equally far apart, so the speed is steady. Bottom, a real ball on a floor: the gaps between dots get smaller each second, so the ball is slowing down, and friction pushes against the motion. Close dots mean slow and far apart dots mean fast.
+Roll a ball on ice or on a real floor and read the dot tape.
+ [SVG IMAGE] Backup set 1 for a model ball with no friction: 0, 10, 20 and 30 cm at 0, 1, 2 and 3 seconds. The open dot is the prediction, 40 cm at 4 seconds. A real ball on a floor slows down, so its dots would bunch closer.Text version of this graph
+Line graph of a model ball with no friction. Position is 0 cm at 0 s, 10 at 1 s, 20 at 2 s, 30 at 3 s, in a straight line. The prediction for 4 s is 40 cm, shown as an open dot.
+ [SVG IMAGE] Backup set 2: 0, 8, 16 and 24 cm at 0, 1, 2 and 3 seconds. The open dot predicts 32 cm at 4 seconds.Text version of this graph
+Line graph. Position is 0 cm at 0 s, 8 at 1 s, 16 at 2 s, 24 at 3 s, in a straight line. The prediction for 4 s is 32 cm, shown as an open dot.
+ Try it
+ Rolling ball track
+ball rolling down a ramp and across floor.
+“Mark where the ball stops. Repeat. Find the pattern.”
+You did this before / what is new: You moved objects in K-A; now you use repeated motion to make a prediction.
+ Data
+ Dot diagram
+ball positions each second.
+“Close dots mean slow. Far dots mean fast.”
+ Data
+ Provided dot table
+a table showing ball positions at 0, 1, 2, and 3 seconds.
+“If the pattern keeps going, we can predict the next dot.”
+ Concept 3
+Forces without touching
+ Magnets and static electricity can push or pull without direct touch.
+ [IMG: Photo of a red horseshoe magnet holding two steel paper clips. A penny and a piece of aluminum foil lie beside it, not touching it.] A magnet pulls steel paper clips. The penny and the foil do not stick.
+Test which things a magnet pulls, from how far, and through paper.
+ Try it
+ Magnet explorer
+magnet near paper clip, penny, foil, eraser.
+“Test many objects. Which ones stick? Write yes or no for each one.”
+Predict first: Which things will stick? Write yes or no for each before you test.
+Line up a paper clip, a penny, a piece of foil and an eraser.
+Hold the magnet to each one. Does it stick or get pulled?
+Write yes or no in a small table.
+What you should see: The paper clip sticks. The penny, foil and eraser do not. Magnets pull on things with iron in them, not on every metal.
+Why it matters: Seeing which things a magnet pulls helps you sort materials by what they do.
+ Try it
+ Static demo
+rubbed balloon near paper bits or a thin stream of water.
+“Rub the balloon. Hold it near paper bits. The paper jumps. Ask: What happens when the balloon is farther away?”
+ Diagram
+ Magnet field
+magnet with curved field lines.
+“The force is strongest near the ends. It can pass through thin paper.”
+ [SVG IMAGE] The curved lines are a drawing of the magnet's reach (its magnetic field). They are not real strings. Where they bunch up, the magnet pulls hardest.Text version of this diagram
+A bar magnet with a red north end and a blue south end. Curved lines loop from end to end. They are closest together at the ends, where the pull is strongest. A paper clip near the north end is pulled toward the magnet.
+ Real world
+ Compass
+compass needle.
+“Earth acts like a giant magnet. The compass points north.”
+ [SVG IMAGE] A compass needle is a small magnet. Earth's own magnetism turns it so the red end points about north.Text version of this diagram
+A compass from above with the needle's red end pointing to N. A blue arrow marks Earth's magnetism pulling the needle north.
+ Concept 4
+Magnet design problem
+ We can use magnet ideas to move something without touching it directly.
+ Try it
+ Paper-clip mover
+paper clip, card, magnet under the card.
+“Move the clip without touching it. Plan. Test. Improve.”
+Predict first: Will a magnet under the card still move the clip on top? How far apart can they be?
+Put the clip on the card. Hold the magnet under the card.
+Slide the magnet slowly. Watch the clip follow.
+Measure how far the clip travels. Is it 20 cm or more?
+Change one thing (thicker card, or a different path) and test again.
+What you should see: The clip follows because the magnet pulls through the card. A thinner card gives a stronger pull.
+Why it matters: This is design: test, find what failed, change one thing, test again.
+ Diagram
+ Criteria and constraints
+two boxes labeled Criterion and Constraint.
+“Criterion: What it must do. Constraint: What you must use.”
+ [SVG IMAGE] Criteria say what your design has to do. Constraints say what you are allowed to use.Text version of this diagram
+Two boxes. Criterion: the clip moves at least 20 cm and no hand touches it. Constraint: one magnet, one paper clip, paper or card.
+ Hands-on · Design or investigate
+Try it at home or in class
+ Design a paper-clip mover that moves a paper clip at least 20 cm without touching the clip directly. Criteria: the clip moves the full distance. Constraints: one magnet, one paper clip, paper or card, and no direct touching. Students test, record evidence, and improve the design.
+ [SVG IMAGE] What the paper-clip mover kit looks like from the side.Text version of this diagram
+Side view. A cardboard sheet rests like a bridge on two stacks of books. A paper clip sits on top of the cardboard at the start line. A magnet is held under the cardboard and moved along, and the clip follows it toward the finish line, at least 20 centimeters away. Nobody touches the clip.
+ Try itWhat you need
+toy car, cardboard ramp, books, tape, small ball, index cards, pencil, paper, 2 ring or bar magnets, paper clips, balloon, small paper bits, string.
+Safety: keep magnets away from Chromebooks and other electronics. Use only large ceramic or ferrite magnets; small, very strong magnets can be swallowed and are dangerous. Keep every magnet out of mouths. Do the water-stream static demo over a tray, keep water away from Chromebooks, and dry hands before touching a keyboard.
+ Try itWhat you do
+test gentle vs harder pushes; roll a ball and mark positions; make a dot diagram; test magnets on objects; do the balloon static demo; design a paper-clip mover that moves without direct touch.
+Push a toy car gently, then harder. Say which push changed its motion more (10 minutes).
+Roll a ball down a ramp and mark where it is each second. Draw the dots (10 minutes).
+Test a magnet on a few objects. Write yes or no (10 minutes).
+Do the balloon demo: rub it on hair, hold it over paper bits (5 minutes).
+Design the paper-clip mover. Test, change one thing, test again (20 minutes).
+Notice: Close dots mean slow. Far-apart dots mean fast. A magnet and a charged balloon both act without touching.
+Why it matters: Each step gives you evidence for balanced forces, patterns in motion, and pushes or pulls at a distance.
+ No time or no good weather? Use this data
+This data is a backup. It lets you practice reading evidence, but the standard expects you to collect your own when you can.
+students record ball or car positions and magnet tests.
+dot-position table for a model ball with no friction (a real ball on a floor slows down, so its dots get closer together; students should notice this in their own data): 0 cm, 10 cm, 20 cm, 30 cm at 0, 1, 2, 3 seconds; students predict 40 cm. A second backup set, also a model ball with no friction: 0 cm, 8 cm, 16 cm, 24 cm; predict 32 cm. Both sets are models: even gaps mean balanced forces. A real ball on carpet has friction, so its gaps shrink, for example 0, 9, 16, 21 cm (gaps 9, 7, 5). Do not predict 40 cm for a real ball; predict a smaller gap each second.
+ Near you: Upper Peninsula iron mining: magnetism and iron ore connect to Michigan history.
+ Check yourself
+What did you learn?
+ 0 of 4 correct
+ Words to know
+ forcea push or pull.
+balanced forcesforces that cancel, so motion does not change.
+unbalanced forcesforces that cause a change in motion.
+motionchange in position.
+patternsomething that repeats.
+magnetobject that attracts some metals.
+attractpull toward.
+repelpush away.
+static electricitya charge that can make small objects move without touch.
+criterionwhat success looks like.
+ Tutor notes: misconceptions, standards, pacing
+ Pacing: six 30-minute sessions.
+ Common misconceptions to listen for:
+“A force is needed to keep an object moving.” Correct: unbalanced forces change motion; balanced forces do not change motion.
+“Magnets attract all metals.” Correct: magnets attract things made of iron and some steels; most other metals, like aluminum foil and copper, do not stick.
+“Forces only work when objects touch.” Correct: magnetic and static-electric forces can act without touching.
+“A bigger push always makes an object go forever.” Correct: forces can change motion, but friction and other forces can slow objects.
+ Limits and cautions:
+Gravity is not taught here; it moves to 5.2.
+Simple machines are not a grade 3 PE in this unit. They appear only as an application note if the teacher chooses: “A ramp spreads a lift over a longer path.”
+Static-electricity demos can fail on humid days; the provided question prompts and magnet investigation still earn 3-PS2-3.
+Friction is simplified as a force that can slow motion. Deeper force models come in later grades.
+ Michigan Science Standards this unit earnsCHECK 1: Standard codes not yet compared with the Michigan (MDE) document.:
+3-PS2-1: Plan and carry out an investigation to determine the effect of balanced and unbalanced forces on motion.
+3-PS2-2: Make observations or measurements of an object’s motion to show that a pattern can predict future motion.
+3-PS2-3: Ask questions about electric or magnetic interactions between objects that are not touching.
+3-PS2-4: Define a simple design problem that can be solved using magnet ideas.
+3-5-ETS1-1: Define a simple design problem with criteria and constraints.
+3-5-ETS1-2: Generate and compare possible solutions.
+3-5-ETS1-3: Plan and carry out fair tests.
+ Connections: Builds on: K-A Pushes and Pulls; Unit 0: How Science Works. Builds toward: 4.1 Energy, Speed, and Collisions; 5.2 Gravity, Stars, and Sky Patterns; Unit 3 Forces, Motion & Energy; Unit 8.1 Contact Forces & Collisions; Unit 8.3 Forces at a Distance.
+After the lesson · Activity
+Play: Force Track: Push, Roll, PullCHECK 2: Play this activity once: is it clear and fun? (weakest were K2.0, the Big Sort ones and the 5.2 gravity round).
+Push a box, track a rolling ball, and test a magnet that never touches anything. Change one thing, predict, release.
+Keep exploring
+More lessons
+Up next: 3.2 Weather, Climate, and Hazards. Unit 0: How Science Works explains the method every Try it uses.
+Michigan Science Standards (performance expectations earned by this unit): 3-PS2-1, 3-PS2-2, 3-PS2-3, 3-PS2-4, 3-5-ETS1-1, 3-5-ETS1-2, 3-5-ETS1-3. Written for read-aloud and independent reading with a grown-up nearby; hands-on parts use cheap kit materials.

@@ -5,9 +5,9 @@
    "id": "54-hero",
    "after": "hero",
    "kind": "image",
-   "file": "54-hero.webp",
-   "alt": "Photo of a forest hillside in rain with a muddy brown stream cutting a bank held together by tree roots.",
-   "caption": "Water moves soil downhill while roots hold some of it in place."
+   "file": "54-top.webp",
+   "alt": "A Michigan lakeshore on a rainy spring day. Blue-green lake water and a sandy beach lie on the left. A grassy hill slopes down to the shore with a few bare brown streaks of soil and a small muddy stream running toward the lake. A grey rain cloud hangs overhead.",
+   "caption": "Rain runs down a Michigan lakeshore hill: bare soil washes toward the lake while grass holds the slope."
   },
   {
    "id": "54-raingarden",
@@ -28,17 +28,17 @@
   {
    "id": "d-54-hill",
    "after": "s1",
-   "kind": "svg",
-   "file": "d-54-hill.svg",
-   "alt": "A hillside in the rain. 1 Atmosphere: rain falls from a cloud. 2 Hydrosphere: water runs down the bare right slope and cuts a channel. 3 Geosphere: soil and rock are carried downhill, and a rock sits at the bottom. 4 Biosphere: grass on the left slope has roots that hold the soil in place. The four spheres touch and change each other in one place.",
+   "kind": "image",
+   "file": "54-spheres.webp",
+   "alt": "A rainy hillside shown from the side. A grey rain cloud drops rain at the top. On the right, a bare brown slope has muddy water running down it and a grey rock sits at the bottom. On the left, a green grassy slope has roots under the grass that hold the soil in place.",
    "caption": "One rainy hill shows all four spheres at work: air, water, rock and soil, and living things."
   },
   {
    "id": "d-54-reservoirs",
    "after": "s2",
-   "kind": "svg",
-   "file": "d-54-reservoirs.svg",
-   "alt": "A side view of Earth’s water. On the left is the ocean, salt water, about 97 percent of all water. On the right are land, a mountain with ice and glaciers on top, a layer of fresh groundwater under the ground, and a small lake and river. About 3 percent of Earth’s water is fresh. Most of that fresh water is frozen in ice or underground. Lakes and rivers hold only a tiny part.",
+   "kind": "image",
+   "file": "54-water.webp",
+   "alt": "A cutaway side view of where Earth’s water is. On the left is a large blue ocean with waves. On the right is land with a grey mountain topped by white snow and glacier ice, a layer of light blue groundwater under the soil, and a small lake and a thin river on the green ground.",
    "caption": "Where Earth’s water is: mostly salty ocean. The fresh water is mostly ice or underground, and lakes and rivers hold very little."
   },
   {
@@ -62,8 +62,8 @@
    "after": "kit",
    "kind": "svg",
    "file": "g-54-sediment.svg",
-   "alt": "Bar graph, Sediment moved in the stream tray. No plants 12 spoonfuls, Stones model 7 spoonfuls, Grass model 4 spoonfuls.",
-   "caption": "Stream-tray test, sediment moved: no plants 12 spoonfuls, stones model 7, grass model 4."
+   "alt": "Bar graph, Sediment moved in the stream tray. No plants 12 spoonfuls, Stones 7 spoonfuls, Grass 4 spoonfuls.",
+   "caption": "Stream-tray test, sediment moved: no plants 12 spoonfuls, stones 7, grass 4."
   },
   {
    "id": "g-54-water",

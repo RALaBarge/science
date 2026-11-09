@@ -1,0 +1,218 @@
+[
+ {
+  "files": [
+   "k-5/unit-k-a-pushes-and-pulls.html"
+  ],
+  "pat": "A fair test changes one thing and keeps everything else the same\\. A stopper is something",
+  "kind": "UPDATED",
+  "note": "Intro: 'What is new' defines fair test and stopper."
+ },
+ {
+  "files": [
+   "k-5/unit-k-a-pushes-and-pulls.html"
+  ],
+  "pat": "Look for these tags",
+  "kind": "UPDATED",
+  "note": "Tags line now a punctuated list."
+ },
+ {
+  "files": [
+   "k-5/unit-k-a-pushes-and-pulls.html"
+  ],
+  "pat": "A girl pushes a wagon away from her\\. A boy pulls",
+  "kind": "UPDATED",
+  "note": "New diffusion hero picture; push/pull sentence now above it."
+ },
+ {
+  "files": [
+   "k-5/unit-k-a-pushes-and-pulls.html"
+  ],
+  "pat": "Motion means moving\\.",
+  "kind": "UPDATED",
+  "note": "Concept 1 Analogy: plain definition of motion."
+ },
+ {
+  "files": [
+   "k-5/unit-k-a-pushes-and-pulls.html"
+  ],
+  "pat": "A push starts the swing moving\\. A hand can stop it, too",
+  "kind": "UPDATED",
+  "note": "Swing: new diffusion picture."
+ },
+ {
+  "files": [
+   "k-5/unit-k-a-pushes-and-pulls.html"
+  ],
+  "pat": "Look at the arrows\\. An arrow shows which way",
+  "kind": "UPDATED",
+  "note": "Concept 1 Diagram lead line is kid text."
+ },
+ {
+  "files": [
+   "k-5/unit-k-a-pushes-and-pulls.html"
+  ],
+  "pat": "A push goes away from you\\. A pull comes toward you\\.(?=</figcaption>)",
+  "kind": "UPDATED",
+  "note": "Push/pull diagram: two new diffusion pictures with HTML labels."
+ },
+ {
+  "files": [
+   "k-5/unit-k-a-pushes-and-pulls.html"
+  ],
+  "pat": "Pull a sled up a snowy hill",
+  "kind": "UPDATED",
+  "note": "Real world: sled and door (Michigan winter), new pictures."
+ },
+ {
+  "files": [
+   "k-5/unit-k-a-pushes-and-pulls.html"
+  ],
+  "pat": "Here is how far the car rolled \\(example data\\)",
+  "kind": "UPDATED",
+  "note": "Concept 2 Data: lead, quote, metric, picture graph with tile squares."
+ },
+ {
+  "files": [
+   "k-5/unit-k-a-pushes-and-pulls.html"
+  ],
+  "pat": "Will a strong blow move a cotton ball farther",
+  "kind": "UPDATED",
+  "note": "Cotton-ball Try it rewritten in the standard pattern with safety."
+ },
+ {
+  "files": [
+   "k-5/unit-k-a-pushes-and-pulls.html"
+  ],
+  "pat": "Wind can push a sailboat on the Great Lakes\\. A snowplow pushes snow off a Michigan road",
+  "kind": "UPDATED",
+  "note": "Sailboat and snowplow: two new diffusion pictures."
+ },
+ {
+  "files": [
+   "k-5/unit-k-a-pushes-and-pulls.html"
+  ],
+  "pat": "slow, stop, or turn motion on purpose",
+  "kind": "UPDATED",
+  "note": "'Redirect' replaced; stopper defined."
+ },
+ {
+  "files": [
+   "k-5/unit-k-a-pushes-and-pulls.html"
+  ],
+  "pat": "Look at the ramp and the stopper\\.",
+  "kind": "UPDATED",
+  "note": "Concept 3 Diagram: lead line, bulleted Draw/Build/Test, new picture."
+ },
+ {
+  "files": [
+   "k-5/unit-k-a-pushes-and-pulls.html"
+  ],
+  "pat": "a piece of cardboard leaning on it",
+  "kind": "UPDATED",
+  "note": "Concept 3 Try it: wording fixed, What you need bulleted."
+ },
+ {
+  "files": [
+   "k-5/unit-k-a-pushes-and-pulls.html"
+  ],
+  "pat": "Here is what happened when we tested two stoppers 3 times",
+  "kind": "UPDATED",
+  "note": "Concept 3 Data: out of 3 wording and tally."
+ },
+ {
+  "files": [
+   "k-5/unit-k-a-pushes-and-pulls.html"
+  ],
+  "pat": "A gate at a backyard fence can stop a ball",
+  "kind": "UPDATED",
+  "note": "Gate: new lead, quote, caption and picture."
+ },
+ {
+  "files": [
+   "k-5/unit-k-a-pushes-and-pulls.html"
+  ],
+  "pat": "You sketch, build, and test two stoppers",
+  "kind": "UPDATED",
+  "note": "Hands-on intro addressed to 'you'."
+ },
+ {
+  "files": [
+   "k-5/unit-k-a-pushes-and-pulls.html"
+  ],
+  "pat": "A finished test: a cardboard ramp, a toy car",
+  "kind": "UPDATED",
+  "note": "Hands-on picture redone, caption reworded."
+ },
+ {
+  "files": [
+   "k-5/unit-k-a-pushes-and-pulls.html"
+  ],
+  "pat": "a sticker or a small piece of tape to mark each stop",
+  "kind": "UPDATED",
+  "note": "Hands-on What you need: bulleted, sticker added, cotton ball removed, no battery/magnet line."
+ },
+ {
+  "files": [
+   "k-5/unit-k-a-pushes-and-pulls.html"
+  ],
+  "pat": "Each tile is about 30 centimeters \\(1 foot\\) long",
+  "kind": "UPDATED",
+  "note": "Station 1/2 wording and metric."
+ },
+ {
+  "files": [
+   "k-5/unit-k-a-pushes-and-pulls.html"
+  ],
+  "pat": "Zero is on the right\\.",
+  "kind": "UPDATED",
+  "note": "Distance graph redrawn with zero on the right."
+ },
+ {
+  "files": [
+   "k-5/unit-k-a-pushes-and-pulls.html"
+  ],
+  "pat": "Collecting your own data is best",
+  "kind": "UPDATED",
+  "note": "Backup data wording, metric, marked as example."
+ },
+ {
+  "files": [
+   "k-5/unit-k-a-pushes-and-pulls.html"
+  ],
+  "pat": "Snowplows push snow off the road",
+  "kind": "UPDATED",
+  "note": "Near you: bulleted, friction dropped."
+ },
+ {
+  "files": [
+   "k-5/unit-k-a-pushes-and-pulls.html"
+  ],
+  "pat": "Data is information we collect from tests",
+  "kind": "UPDATED",
+  "note": "Words to know: stopper, fair test, data added; full sentences."
+ },
+ {
+  "files": [
+   "k-5/unit-k-a-pushes-and-pulls.html"
+  ],
+  "pat": "Use the same tile size or strip length for every test",
+  "kind": "UPDATED",
+  "note": "Tutor notes: empty design-choice item filled."
+ },
+ {
+  "files": [
+   "k-5/unit-k-a-pushes-and-pulls.html"
+  ],
+  "pat": "Builds toward:",
+  "kind": "UPDATED",
+  "note": "Connections split into bullets, 'and' used."
+ },
+ {
+  "files": [
+   "k-5/unit-k-a-pushes-and-pulls.html"
+  ],
+  "pat": "hands-on parts use everyday materials",
+  "kind": "UPDATED",
+  "note": "Footer: no standards codes, no 'kit'."
+ }
+]

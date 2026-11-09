@@ -47,7 +47,7 @@
    "kind": "svg",
    "file": "g-2b-beans.svg",
    "alt": "Grouped bar graph of bean height in paper clips. Sun and water: 4 on day 7, 9 on day 14. No sun, water: 4 and 7. Sun, no water: 1 and 1. No sun, no water: 1 and 1.",
-   "caption": "Bean heights in paper clips on day 7 and day 14. Sun + water grew most (9). No sun + water grew to 7 but was pale yellow and floppy. Without water the beans stayed at 1."
+   "caption": "Example: bean heights in paper clips on day 7 and day 14. Sun + water grew most (9). No sun + water grew to 7 but was pale yellow and floppy. Without water, the beans stayed at 1."
   },
   {
    "id": "g-2b-habitats",

@@ -1,6 +1,6 @@
 <div class="k5w" id="w32highs"></div>
 <script>(function(){var box=document.getElementById('w32highs'),K=K5W,S=K.S,C=K.C;
- var MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],T=[32,35,45,58,69,79,83,81,74,62,50,38];
+ var MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],T=[32,35,45,58,69,79,83,81,74,62,50,38],TC=[0,2,7,14,21,26,28,27,23,17,10,3];
  var sel=6,svg,say,chips;
  box.appendChild(K.h('p',null,'Detroit&rsquo;s typical daily <b>high</b> for each month. Pick a month.'));
  chips=K.chips(box,MO,6,function(i){sel=i;draw();},'Month');
@@ -12,7 +12,7 @@
   T.forEach(function(v,i){var x=52+i*34,hh=v*1.8;s+=S.r(x,180-hh,26,hh,i===sel?C.beam:C.blue,C.ink,3,i===sel?3:1.5)+S.t(x+13,198,MO[i],11,C.ink);});
   s+=S.t(250,214,'month',12,C.muted);
   svg.innerHTML=s;
-  say('In <b>'+MO[sel]+'</b>, Detroit&rsquo;s typical daily high is <b>'+T[sel]+' F</b>. That is the warmest part of a typical day, so it is <b>not</b> the average for the whole day. Nights are cooler. July is highest (83 F) and January lowest (32 F).');
+  say('In <b>'+MO[sel]+'</b>, Detroit&rsquo;s typical daily high is <b>'+T[sel]+'°F ('+TC[sel]+'°C)</b>. That is the warmest part of a typical day, so it is <b>not</b> the average for the whole day. Nights are cooler. July is highest (83°F, 28°C) and January lowest (32°F, 0°C).');
  }
  draw();
 })();</script>

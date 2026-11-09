@@ -1,0 +1,324 @@
+{
+ "44-deer": {
+  "prompt": "A children's science book illustration, flat vector shapes, muted autumn palette. An adult buck deer with a plain brown coat and small antlers, tall ears pointed forward toward a sound, standing alert in a Michigan forest on an autumn morning, soft light through the trees, fallen orange leaves on the ground, the whole deer visible, open space on the right. No text.",
+  "seed": 4421,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\44-deer.webp",
+  "unit": "unit-4-4-structures-senses-and-responses",
+  "where": "Concept 3, Real world, Deer hears predator"
+ },
+ "44-plant-parts": {
+  "prompt": "A single young green plant in a clear glass cup of brown soil, the cup side clear so the long white roots spreading down through the soil are clearly visible, a green stem, two broad green leaves, and one small yellow flower on top, simple side view, plain white background, bright colors, space around the plant.",
+  "seed": 4412,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\44-plant-parts.webp",
+  "unit": "unit-4-4-structures-senses-and-responses",
+  "where": "Concept 1, Diagram, Plant structures"
+ },
+ "44-cactus": {
+  "prompt": "A children's science book illustration, flat vector shapes, muted warm palette. A plump green saguaro-style cactus with many long sharp spines, standing in dry sandy ground in the sun with a few small stones, plain cream background. A plain plant, no text.",
+  "seed": 4423,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\44-cactus.webp",
+  "unit": "unit-4-4-structures-senses-and-responses",
+  "where": "Concept 1, Real world, Cactus spines"
+ },
+ "44-body": {
+  "prompt": "A simple see-through outline of a child's torso from the shoulders to the waist, seen from the front with no head, showing two pink lungs on the left and right of the chest, one red heart in the middle between them, and curved white ribs and a backbone, soft warm colors, plain light background, the whole torso visible.",
+  "seed": 4414,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\44-body.webp",
+  "unit": "unit-4-4-structures-senses-and-responses",
+  "where": "Concept 2, Diagram, Human inside"
+ },
+ "44-stem": {
+  "prompt": "A children's science book illustration, flat vector shapes. A close-up of a thick green plant stem cut open lengthwise, filling the frame, showing a bundle of long thin parallel tubes inside, the tubes on the left are blue and the tubes on the right are orange, plain cream background. No text.",
+  "seed": 4425,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\44-stem.webp",
+  "unit": "unit-4-4-structures-senses-and-responses",
+  "where": "Concept 2, Diagram, Plant stem inside"
+ },
+ "44-chain-eyes": {
+  "prompt": "A child looking up with wide open eyes, watching a red ball flying toward them, bright colors, plain background.",
+  "seed": 4406,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\44-chain-eyes.webp",
+  "unit": "unit-4-4-structures-senses-and-responses",
+  "where": "Concept 3, chain row 1"
+ },
+ "44-chain-skin": {
+  "prompt": "A child's hand pulling back quickly from a hot frying pan on a stove, hand held up in the air above the pan with the fingers open and not touching it, small wavy heat lines rising from the pan, the hand and the pan both fully in the frame, plain background.",
+  "seed": 4417,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\44-chain-skin.webp",
+  "unit": "unit-4-4-structures-senses-and-responses",
+  "where": "Concept 3, chain row 2"
+ },
+ "44-chain-ears": {
+  "prompt": "A child tilting their head toward a brass bell on a wall, ears shown clearly, small curved sound-wave lines around the bell, plain background.",
+  "seed": 4408,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\44-chain-ears.webp",
+  "unit": "unit-4-4-structures-senses-and-responses",
+  "where": "Concept 3, chain row 3"
+ },
+ "2c-r-cliffs": {
+  "prompt": "children's science book illustration, clean flat vector shapes, muted sophisticated palette, subtle paper texture, no text, no letters, no labels. Tall sandstone cliffs beside a deep blue lake shoreline. The rock shows flat, parallel, horizontal layers of tan, rust-orange and gray-green stone, every band level and running straight across the cliff face, pine trees along the top edge, sunny day, no people.",
+  "seed": 1000,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\2c-r-cliffs.webp",
+  "unit": "unit-2-c-land-and-water-fast-and-slow",
+  "where": "Concept 1, intro"
+ },
+ "2c-r-flood-canyon": {
+  "prompt": "children's science book illustration, clean flat vector shapes, muted sophisticated palette, subtle paper texture, no text, no letters, no labels. A split picture with two scenes side by side. Left: a farm field after a flood, brown muddy water spread over the ground and a pile of soil washed against a wooden fence. Right: a deep canyon of layered tan and red rock with a blue river at the bottom. Bright, friendly, no people.",
+  "seed": 1001,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\2c-r-flood-canyon.webp",
+  "unit": "unit-2-c-land-and-water-fast-and-slow",
+  "where": "Concept 1, Diagram"
+ },
+ "2c-r-sort-kids": {
+  "prompt": "children's science book illustration, clean flat vector shapes, muted sophisticated palette, subtle paper texture, no text, no letters, no labels. Three children at a classroom table sorting picture cards into two piles, a few cards in each pile, the cards show simple pictures of a flood, a volcano, a canyon and a dune. Bright classroom, friendly.",
+  "seed": 1002,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\2c-r-sort-kids.webp",
+  "unit": "unit-2-c-land-and-water-fast-and-slow",
+  "where": "Concept 1, Data"
+ },
+ "33-frog-egg": {
+  "prompt": "Children's science book illustration, clean flat vector shapes, muted palette, plain pale cream background, no text. A cluster of round frog eggs, each a small dark dot inside clear jelly, floating in a clump at the surface of calm green pond water, a few green pond plants. Close up, simple, centered.",
+  "seed": 3301,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\33-frog-egg.webp",
+  "unit": "unit-3-3-life-cycles-and-traits",
+  "where": "Concept 1, Diagram, stage 1"
+ },
+ "33-frog-tadpole": {
+  "prompt": "Children's science book illustration, clean flat vector shapes, muted palette, plain pale cream background, no text. A single dark olive-brown tadpole with a round head and a long flat tail, no legs, swimming in clear blue-green pond water with a few pond weeds. Side view, centered, simple.",
+  "seed": 3302,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\33-frog-tadpole.webp",
+  "unit": "unit-3-3-life-cycles-and-traits",
+  "where": "Concept 1, Diagram, stage 2"
+ },
+ "33-frog-froglet": {
+  "prompt": "Children's science book illustration, clean flat vector shapes, muted palette, plain pale cream background, no text. A single young green froglet swimming in pond water, with four small legs and a very short tail stub, small round body, side view, centered, simple.",
+  "seed": 3303,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\33-frog-froglet.webp",
+  "unit": "unit-3-3-life-cycles-and-traits",
+  "where": "Concept 1, Diagram, stage 3"
+ },
+ "33-frog-adult": {
+  "prompt": "Children's science book illustration, clean flat vector shapes, muted palette, plain pale cream background, no text. A single adult green frog with a pale belly sitting on a floating lily pad on calm pond water, four legs, no tail, side view, centered, simple.",
+  "seed": 3304,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\33-frog-adult.webp",
+  "unit": "unit-3-3-life-cycles-and-traits",
+  "where": "Concept 1, Diagram, stage 4"
+ },
+ "52-flash": {
+  "prompt": "Children's science book illustration, clean flat vector shapes, muted sophisticated palette, soft daylight colors, no text, no letters, no numbers, no labels. Two side-by-side panels of the same yellow flashlight pointed at a white index card. Left panel: the flashlight close to the card, five bright yellow arrows of light reaching the card, the card glowing bright. Right panel: the flashlight far away from the card, the same light spread wide over a bigger area, the card looking dim and gray. Plain pale background.",
+  "seed": 5201,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\52-flash.webp",
+  "unit": "unit-5-2-gravity-stars-and-sky-patterns",
+  "where": "Concept 1, Analogy"
+ },
+ "54-lake-superior": {
+  "prompt": "Lake Superior, the largest and northernmost Great Lake, with its irregular rocky north shore, the Keweenaw Peninsula pointing into the lake, and a few islands. Deep blue water, dark green forest on land. natural-color satellite photograph taken from space, top-down overhead view, wispy white clouds, no text, no labels, no borders, no map lines. ",
+  "seed": 601,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\54-lake-superior.webp",
+  "unit": "unit-5-4-earths-spheres-water-and-communities",
+  "where": "Concept 2 Great Lakes"
+ },
+ "54-lake-michigan": {
+  "prompt": "Lake Michigan, a long narrow lake running north to south, with the Michigan shoreline on the east side and the Wisconsin shoreline on the west, sandy dunes along the east coast, green land. Blue-green water. natural-color satellite photograph taken from space, top-down overhead view, wispy white clouds, no text, no labels, no borders, no map lines. ",
+  "seed": 602,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\54-lake-michigan.webp",
+  "unit": "unit-5-4-earths-spheres-water-and-communities",
+  "where": "Concept 2 Great Lakes"
+ },
+ "54-lake-huron": {
+  "prompt": "Lake Huron with the thumb-shaped Saginaw Bay on the western Michigan side, the big Georgian Bay to the north-east, and islands in the north. Blue water, green land. natural-color satellite photograph taken from space, top-down overhead view, wispy white clouds, no text, no labels, no borders, no map lines. ",
+  "seed": 603,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\54-lake-huron.webp",
+  "unit": "unit-5-4-earths-spheres-water-and-communities",
+  "where": "Concept 2 Great Lakes"
+ },
+ "54-lake-erie": {
+  "prompt": "Lake Erie, a long shallow lake running west to east, wider at the west end, narrower at the east end, green farmland shorelines. Blue-green water. natural-color satellite photograph taken from space, top-down overhead view, wispy white clouds, no text, no labels, no borders, no map lines. ",
+  "seed": 604,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\54-lake-erie.webp",
+  "unit": "unit-5-4-earths-spheres-water-and-communities",
+  "where": "Concept 2 Great Lakes"
+ },
+ "54-lake-ontario": {
+  "prompt": "Lake Ontario, a smaller oval-shaped lake with farms and forests along its shore. Blue-grey water. natural-color satellite photograph taken from space, top-down overhead view, wispy white clouds, no text, no labels, no borders, no map lines. ",
+  "seed": 605,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\54-lake-ontario.webp",
+  "unit": "unit-5-4-earths-spheres-water-and-communities",
+  "where": "Concept 2 Great Lakes"
+ },
+ "ka-hero2": {
+  "prompt": "children's science book illustration, clean flat vector shapes, muted sophisticated palette, subtle paper texture, no text, no letters, no labels, objects have no faces. A sunny playground with green grass, a maple tree and a blue sky. On the left, a girl with a ponytail walks forward pushing a red wagon ahead of her. On the right, a boy walks backward facing his blue wagon and pulls it toward himself by its rope handle, the wagon follows behind his hands.",
+  "seed": 111,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\ka-hero2.webp",
+  "unit": "unit-k-a-pushes-and-pulls",
+  "where": "Intro hero"
+ },
+ "ka-push": {
+  "prompt": "children's science book illustration, clean flat vector shapes, muted sophisticated palette, subtle paper texture, no text, no letters, no labels, objects have no faces. A child's two hands pushing a big red ball along a floor away from the child, a thick orange arrow on the floor pointing away from the child in the direction the ball rolls. Plain white background, side view, simple.",
+  "seed": 121,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\ka-push.webp",
+  "unit": "unit-k-a-pushes-and-pulls",
+  "where": "Concept 1, Diagram (push)"
+ },
+ "ka-pull": {
+  "prompt": "children's science book illustration, clean flat vector shapes, muted sophisticated palette, subtle paper texture, no text, no letters, no labels, objects have no faces. A child holding a rope tied to a blue toy wagon, pulling the wagon toward the child, a thick orange arrow on the floor pointing toward the child. Plain white background, side view, simple.",
+  "seed": 122,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\ka-pull.webp",
+  "unit": "unit-k-a-pushes-and-pulls",
+  "where": "Concept 1, Diagram (pull)"
+ },
+ "ka-sled": {
+  "prompt": "children's science book illustration, clean flat vector shapes, muted sophisticated palette, subtle paper texture, no text, no letters, no labels, objects have no faces. A child in an orange coat pulls a red sled up a snowy hill by its rope, bare trees and a bright blue winter sky, a thick orange arrow pointing up the hill in the direction of the pull.",
+  "seed": 131,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\ka-sled.webp",
+  "unit": "unit-k-a-pushes-and-pulls",
+  "where": "Concept 1, Real world (sled)"
+ },
+ "ka-door": {
+  "prompt": "children's science book illustration, clean flat vector shapes, muted sophisticated palette, subtle paper texture, no text, no letters, no labels, objects have no faces. A child's hand pushes open a wooden school door, the door swinging away from the child. A thick orange arrow points in the direction the door moves, away from the child. Simple, bright hallway.",
+  "seed": 132,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\ka-door.webp",
+  "unit": "unit-k-a-pushes-and-pulls",
+  "where": "Concept 1, Real world (door)"
+ },
+ "ka-plow": {
+  "prompt": "children's science book illustration, clean flat vector shapes, muted sophisticated palette, subtle paper texture, no text, no letters, no labels, objects have no faces. Side view of an orange snowplow truck driving to the right and pushing a pile of white snow in front of it along a road, snow banks and green pine trees beside the road, blue sky, thick orange arrow pointing right.",
+  "seed": 141,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\ka-plow.webp",
+  "unit": "unit-k-a-pushes-and-pulls",
+  "where": "Concept 2, Real world (snowplow)"
+ },
+ "k20-step1": {
+  "prompt": "Flat vector children's science book illustration, muted palette, no text. A child with dark hair seen from the side, sitting at a wooden table, watching three colorful markers roll across the table top. Simple room, soft light.",
+  "seed": 2021,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\k20-step1.webp",
+  "unit": "unit-k2-0-science-noticing-and-asking",
+  "where": "Concept 3, Diagram, Notice"
+ },
+ "kc-flowers": {
+  "prompt": "children's science book illustration, clean flat vector shapes, muted palette, subtle paper texture, no text, no letters. A sunny meadow of wildflowers with plain petals and no faces: purple coneflowers with pink-purple drooping petals and a spiky orange-brown cone center, and yellow black-eyed Susans with dark brown centers, one yellow-and-black striped bee on a flower, one orange-and-black monarch butterfly on a flower.",
+  "seed": 808,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\kc-flowers.webp",
+  "unit": "unit-k-c-living-things-and-their-homes",
+  "where": "Concept 4, Real world"
+ },
+ "kc-evidence3": {
+  "prompt": "children's science book illustration, clean flat vector shapes, muted palette, subtle paper texture, no text, no letters. Three equal panels side by side in a row, same style and light. Left panel: a stream blocked by a dam of sticks, with one brown beaver with a flat paddle-shaped tail and big orange front teeth beside it. Middle panel: a cross-section of brown soil with tunnels and one pink earthworm, long and segmented, no legs. Right panel: a tree branch with a round bird's nest and one small bird sitting in it.",
+  "seed": 909,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\kc-evidence3.webp",
+  "unit": "unit-k-c-living-things-and-their-homes",
+  "where": "Concept 3, Data"
+ },
+ "kc-habitats3": {
+  "prompt": "Three equal panels side by side in a row, same style. Left panel, a pond: one grey-blue fish, one green frog on a lily pad, brown cattails, a white water lily flower. Middle panel, a forest: one brown deer, one tall maple tree with orange leaves, one green fern, one grey squirrel on a branch, one small orange-red robin, one white three-petal trillium flower on the ground. Right panel, a sand dune by a lake: green beach grass, one white gull flying, one small black beetle on the sand, nothing else.",
+  "seed": 414,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\kc-habitats3.webp",
+  "unit": "unit-k-c-living-things-and-their-homes",
+  "where": "Concept 2, Diagram"
+ },
+ "1b-same-diff": {
+  "prompt": "children's picture book illustration, flat colors. A mother deer whose whole body is one uniform solid reddish-brown color, completely plain like a smooth brown coat, standing beside her smaller baby deer. The baby deer has white polka dots on its back. Both seen from the side in a soft green forest.",
+  "seed": 1312,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\1b-same-diff.webp",
+  "unit": "unit-1-b-parts-parents-and-young",
+  "where": "Concept 4, Data"
+ },
+ "1b-like-diff": {
+  "prompt": "children's picture book illustration, flat colors, plain light cream background. On the left a larger mother deer whose whole body is one uniform solid reddish-brown color, plain and smooth. On the right a smaller baby deer with white polka dots on its back. Between them a green curved arrow on top and an orange curved arrow below.",
+  "seed": 1313,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\1b-like-diff.webp",
+  "unit": "unit-1-b-parts-parents-and-young",
+  "where": "Concept 4, Diagram"
+ },
+ "2a-card-paper-t3": {
+  "prompt": "Flat vector children's book illustration, muted palette: a plain blank white sheet of paper lying flat on a light blue-gray surface, slightly tilted, seen from above, nothing printed on it, no text, no drawings.",
+  "seed": 223,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\2a-card-paper-t3.webp",
+  "unit": "unit-2-a-materials-and-their-uses",
+  "where": "Concept 1 Try it, card"
+ },
+ "2a-blocks-before-after-t4": {
+  "prompt": "Flat vector children's book illustration, muted palette, plain white background, two groups side by side. Left group: exactly five square toy blocks spread out apart from each other with space between them, one red, one blue, one yellow, one green, one orange. Right group: five square toy blocks in the same colors built into a house shape, three in the bottom row and two on top, touching. Plain cubes only, no roof, no faces, no text.",
+  "seed": 242,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\2a-blocks-before-after-t4.webp",
+  "unit": "unit-2-a-materials-and-their-uses",
+  "where": "Concept 3 Diagram"
+ },
+ "ka-stopper4": {
+  "prompt": "children's science book illustration, clean flat vector shapes, muted sophisticated palette, subtle paper texture, no text, no letters, no labels, objects have no faces. Side view on a light tile floor, left to right: a cardboard ramp sloping down, then a small red toy car that has just rolled off the bottom of the ramp onto the floor and is touching a soft blue foam block, which stands upright on the floor to the right of the car. A strip of tape on the floor marks the finish line beside the foam block. A paper cup on the floor in the background.",
+  "seed": 173,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\ka-stopper4.webp",
+  "unit": "unit-k-a-pushes-and-pulls",
+  "where": "retry"
+ },
+ "52-down": {
+  "prompt": "Children's science book illustration, clean flat vector shapes, muted sophisticated palette, soft daylight colors, no text, no letters, no numbers, no labels. A globe of Earth in the middle of the picture on a plain pale background. Four thick red arrows start far outside the globe and point inward, each arrowhead touching the globe surface: one coming down from the top, one coming up from the bottom, one coming in from the left, one coming in from the right. The arrow tips point at the globe, the arrow tails are away from it. A small white dot marks the center of the globe.",
+  "seed": 5304,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\52-down.webp",
+  "unit": "unit-5-2-gravity-stars-and-sky-patterns",
+  "where": "Concept 2, Diagram Down direction map"
+ },
+ "52-topview": {
+  "prompt": "Children's science book illustration, clean flat vector shapes, muted sophisticated palette, soft daylight colors, no text, no letters, no numbers, no labels. Looking straight down from above on a sunny green lawn. A small round stick top at the center of the picture. Five dark gray shadow strokes start at the stick and fan out like rays, all touching the stick: a very long one going left, a medium one going up and left, a short one going straight up, a medium one going up and right, and a long one going right. Flat friendly illustration.",
+  "seed": 5306,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\52-topview.webp",
+  "unit": "unit-5-2-gravity-stars-and-sky-patterns",
+  "where": "Concept 3, Diagram top view"
+ },
+ "52-shadows3": {
+  "prompt": "Children's science book illustration, clean flat vector shapes, muted sophisticated palette, soft daylight colors, no text, no letters, no numbers, no labels. Three small panels side by side, each showing the same single thin stick standing in green grass. Left panel: a yellow sun low in the sky on the right, the straight stick has a long shadow stretching to the left. Middle panel: a yellow sun high overhead, the straight stick has a tiny shadow at its base. Right panel: a yellow sun low in the sky on the left, the straight stick has a long shadow stretching to the right. Every panel has a yellow sun. Each shadow starts at the base of the stick. Friendly illustration.",
+  "seed": 5309,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\52-shadows3.webp",
+  "unit": "unit-5-2-gravity-stars-and-sky-patterns",
+  "where": "Concept 3, Data bar graph illustration"
+ },
+ "52-noon": {
+  "prompt": "Children's science book illustration, clean flat vector shapes, muted sophisticated palette, soft daylight colors, no text, no letters, no numbers, no labels. Two panels side by side of a school playground with green grass and maple trees. Left panel: a tall gray metal pole in the grass, the yellow Sun at the very top of the sky directly above, the pole stands straight with a tiny small dark oval of shadow touching its base, no long shadow. Right panel: the same pole, the yellow Sun low near the horizon at the far left edge of the sky with an orange tint, the pole has a very long shadow stretching all the way across the grass to the right edge. Friendly illustration.",
+  "seed": 5510,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\52-noon.webp",
+  "unit": "unit-5-2-gravity-stars-and-sky-patterns",
+  "where": "Concept 3, Real world Michigan noon"
+ },
+ "52-orion": {
+  "prompt": "Children's science book illustration, clean flat vector shapes, muted sophisticated palette, soft daylight colors, no text, no letters, no numbers, no labels. A dark winter night sky over a snowy field in Michigan. A row of dark pine trees in silhouette at the edge of the field. Seven large bright white stars in the sky forming a tall hourglass-like figure: two stars at the top, two stars at the bottom, and three stars in a short diagonal row exactly in the middle between them. A few tiny faint stars elsewhere.",
+  "seed": 5312,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\52-orion.webp",
+  "unit": "unit-5-2-gravity-stars-and-sky-patterns",
+  "where": "Concept 4, Real world Michigan winter night"
+ },
+ "52-moonphases": {
+  "prompt": "Children's science book illustration, clean flat vector shapes, muted sophisticated palette, soft daylight colors, no text, no letters, no numbers, no labels. A top-down view in dark blue space. One glowing yellow Sun at the far left edge. A blue Earth in the center. A dashed circle around Earth with four small gray cratered Moons on it, all the same size and all gray: the Moon nearest the Sun is dark and unlit, the Moon at the top of the circle is lit on its left half, the Moon at the bottom of the circle is lit on its left half, the Moon on the far right of the circle is fully lit gray. There is only one Sun.",
+  "seed": 5317,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\52-moonphases.webp",
+  "unit": "unit-5-2-gravity-stars-and-sky-patterns",
+  "where": "Concept 5, Diagram Moon phases"
+ },
+ "1c-moon-cal": {
+  "prompt": "children's science book illustration, clean flat vector shapes, muted sophisticated palette, subtle paper texture, clear outlines, no text, no letters, no labels, no numbers. Four round Moon pictures in a row on a cream background. First: a very thin crescent Moon, a narrow sliver. Second: a half Moon, a perfect semicircle D-shape, the flat edge straight and vertical, lit side on the right. Third: a full Moon, a complete bright round circle. Fourth: a half Moon, a perfect semicircle D-shape, the flat edge straight and vertical, lit side on the left. Pale yellow lit parts on dark navy discs, flat simple shapes.",
+  "seed": 51,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\1c-moon-cal.webp",
+  "unit": "unit-1-c-sky-patterns",
+  "where": "mooncal"
+ },
+ "52-hero": {
+  "prompt": "Children's science book illustration, clean flat vector shapes, muted sophisticated palette, soft daylight colors, no text, no letters, no numbers, no labels. A Michigan farm field in early morning, the yellow Sun low just above a row of tall green trees on the left, long dark tree shadows stretching across the green grass toward the viewer, a few dew drops on the grass, soft golden light, wide calm sky.",
+  "seed": 5301,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\52-hero.webp",
+  "unit": "unit-5-2-gravity-stars-and-sky-patterns",
+  "where": "Lead image"
+ },
+ "52-stars": {
+  "prompt": "Children's science book illustration, clean flat vector shapes, muted sophisticated palette, soft daylight colors, no text, no letters, no numbers, no labels. A dark Michigan lakeshore at night. Dark pine trees in silhouette along the shore on the left. Calm water reflecting the stars. The Milky Way drawn as a soft glowing band of many tiny stars across the sky.",
+  "seed": 5302,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\52-stars.webp",
+  "unit": "unit-5-2-gravity-stars-and-sky-patterns",
+  "where": "Concept 4, Milky Way"
+ },
+ "52-stick": {
+  "prompt": "Children's science book illustration, clean flat vector shapes, muted sophisticated palette, soft daylight colors, no text, no letters, no numbers, no labels. A brown pencil stuck upright in a lump of gray clay on a sheet of white paper in strong sunlight. One long soft shadow of the pencil falls across the paper. Three small chalk dots sit along the shadow. A wooden ruler lies beside the paper.",
+  "seed": 5303,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\52-stick.webp",
+  "unit": "unit-5-2-gravity-stars-and-sky-patterns",
+  "where": "Try it at home shadow clock"
+ }
+}

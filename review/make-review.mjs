@@ -8,9 +8,12 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = path.join(root, 'dist');
 const out = path.join(root, 'review-site');
 const spec = JSON.parse(fs.readFileSync(path.join(root, 'review', 'flags.json'), 'utf8'));
+// Applied changes from the Science Review pass: review/science-review/updates/<unit>.json, same shape as flags, kind UPDATED.
+const updDir = path.join(root, 'review', 'science-review', 'updates');
+if (fs.existsSync(updDir)) for (const f of fs.readdirSync(updDir).filter((x) => x.endsWith('.json'))) spec.flags.push(...JSON.parse(fs.readFileSync(path.join(updDir, f), 'utf8')));
 
 const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-const COLORS = { DECIDE: '#ff00e6', MISSING: '#ff6a00', CHECK: '#00b3ff', READ: '#ff00e6' };
+const COLORS = { DECIDE: '#ff00e6', MISSING: '#ff6a00', CHECK: '#00b3ff', READ: '#ff00e6', UPDATED: '#14a800' };
 
 fs.rmSync(out, { recursive: true, force: true });
 fs.cpSync(dist, out, { recursive: true });
@@ -84,7 +87,7 @@ for (const [f, list] of perPage) {
   const depth = f.split('/').length - 1;
   const idx = (depth ? '../'.repeat(depth) : '') + 'REVIEW-INDEX.html';
   const items = list.map((x) => `<li>${x.kind}: ${esc(x.note)}${x.id ? ` <a href="#${x.id}">(jump)</a>` : ''}</li>`).join('');
-  const banner = `<div id="rv-banner">REVIEW COPY: ${list.length} thing${list.length === 1 ? '' : 's'} on this page need your call (highlighted neon green / badges). <a href="${idx}">All flags</a><ol>${items}</ol></div>`;
+  const banner = `<div id="rv-banner">REVIEW COPY: ${list.length} thing${list.length === 1 ? '' : 's'} on this page are flagged or updated (highlighted neon green / badges). <a href="${idx}">All flags</a><ol>${items}</ol></div>`;
   // Built lesson pages have no <head>/<body> wrapper, so put the style and banner right after the viewport meta.
   const top = CSS + banner;
   if (/<body[^>]*>/.test(html)) html = html.replace(/<body[^>]*>/, (m) => m + top);

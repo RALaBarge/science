@@ -21,9 +21,9 @@
    "id": "kb-shade",
    "after": "kit",
    "kind": "image",
-   "file": "kb-shade.webp",
-   "alt": "Photo of two ice cubes in small metal trays on a sunny windowsill. One has a small paper shade held up by a craft stick. The other is uncovered.",
-   "caption": "The finished Sun-Safe Beach Helper test: one shaded ice cube, one uncovered control, same window."
+   "file": "kb-shade-test.webp",
+   "alt": "Illustration of a child's hands building a small craft-stick shade over one ice cube on a tray on a sunny windowsill, with an uncovered ice cube on a second tray and a toy beach umbrella nearby.",
+   "caption": "The finished Sun-Safe Beach Helper test: one shaded ice cube, one uncovered control, same sunny window."
   },
   {
    "id": "w-kb-paper",
@@ -31,7 +31,15 @@
    "kind": "html",
    "file": "w-kb-paper.html",
    "alt": "Interactive: a light paper and a dark paper with thermometers, in the sun or the shade, with a slider for how many minutes they stay there.",
-   "caption": "Put light and dark paper in the sun or the shade and watch the thermometers."
+   "caption": "Put light and dark paper in the sun or the shade and compare the thermometers."
+  },
+  {
+   "id": "kb-calendar",
+   "after": "s3",
+   "kind": "image",
+   "file": "kb-calendar.webp",
+   "alt": "Illustration of a classroom weather calendar with a grid of sticker pictures: many suns, some gray clouds, some rain clouds, and a few snowflakes.",
+   "caption": "A class weather calendar filled in with stickers. Count each kind to find the pattern."
   },
   {
    "id": "g-kb-weather",

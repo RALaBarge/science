@@ -5,17 +5,17 @@
    "id": "ka-hero",
    "after": "hero",
    "kind": "image",
-   "file": "ka-hero.webp",
-   "alt": "Illustration of a girl pushing a red wagon away from her while a boy pulls a blue wagon toward himself on a playground.",
-   "caption": "A push sends something away from you. A pull brings it toward you."
+   "file": "ka-hero3.webp",
+   "alt": "A girl pushes a red wagon away from her while a boy pulls a blue wagon toward himself on a sunny playground.",
+   "caption": "A girl pushes a wagon away from her. A boy pulls a wagon toward him."
   },
   {
    "id": "ka-stopper",
    "after": "kit",
    "kind": "image",
-   "file": "ka-stopper.webp",
-   "alt": "Photo of a toy car on a cardboard ramp on a tile floor, with soft foam blocks placed as stoppers at the end of the ramp.",
-   "caption": "What a finished Safe Stopper test can look like: a ramp, a car, and a foam stopper."
+   "file": "ka-stopper4.webp",
+   "alt": "A cardboard ramp on a tile floor with a small red toy car at the bottom and a soft blue foam block at the end of the ramp, with tape marking the finish line and a paper cup nearby.",
+   "caption": "A finished test: a cardboard ramp, a toy car, and a foam stopper at the finish line. Your test can look a little different."
   },
   {
    "id": "w-ka-push",
@@ -23,22 +23,22 @@
    "kind": "html",
    "file": "w-ka-push.html",
    "alt": "Interactive: choose a soft, medium or hard push and whether a wall is in the way, then push a toy car along floor tiles and see how far it goes.",
-   "caption": "Push a toy car softly, medium or hard, with or without a wall in the way."
+   "caption": "Push a toy car softly or hard and see how far it goes."
   },
   {
    "id": "g-ka-push",
    "after": "kit",
    "kind": "svg",
    "file": "g-ka-push.svg",
-   "alt": "Bar graph, How far the car rolled. Soft push 2 floor tiles, Strong push 6 floor tiles.",
-   "caption": "A soft push sent the car 2 floor tiles. A strong push sent it 6 tiles."
+   "alt": "Bar graph, How far the car rolled. The number line starts at 0 on the right. Soft push 2 floor tiles, about 60 centimeters. Strong push 6 floor tiles, about 180 centimeters.",
+   "caption": "A soft push sent the car 2 floor tiles (about 60 centimeters, or 2 feet). A strong push sent it 6 tiles (about 180 centimeters, or 6 feet). Zero is on the right."
   },
   {
    "id": "g-ka-stopper",
    "after": "kit",
    "kind": "svg",
    "file": "g-ka-stopper.svg",
-   "alt": "Bar graph, Times the car was stopped (3 tries). Foam stopper 3 stops out of 3 tries, Cardboard stopper 1 stops out of 3 tries.",
+   "alt": "Bar graph, Times the car was stopped (3 tries). Foam stopper 3 times out of 3 tries, Cardboard stopper 1 time out of 3 tries.",
    "caption": "The foam stopper stopped the car 3 times out of 3. The cardboard stopper stopped it 1 time out of 3."
   }
  ]

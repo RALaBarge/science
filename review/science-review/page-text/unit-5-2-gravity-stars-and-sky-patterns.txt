@@ -1,0 +1,215 @@
+REVIEW COPY: 4 things on this page need your call (highlighted neon green / badges). All flagsCHECK: Cygnus is listed as a fall constellation here and in the activity (a test freezes it). Confirm that is what you want. (jump)
+CHECK: Shadow table values and 'sun time vs clock time' note were not independently verified. (jump)
+CHECK: Standard codes not yet compared with the Michigan (MDE) document. (jump)
+CHECK: Play this activity once: is it clear and fun? (weakest were K2.0, the Big Sort ones and the 5.2 gravity round). (jump)
+Gravity, Stars, and Sky Patterns
+ [SVG IMAGE] 
+Skip to main content
+ Style ClassicRetro space
+ Grade 5 · Unit 5.2
+ Gravity, Stars, and Sky Patterns
+ How do Earth’s motions, gravity, and distances create patterns we can observe?
+ Gravity, distance and Earth's motions explain patterns we can watch in the sky. You will see why the Sun looks so bright, why gravity pulls things toward Earth's center, how Earth's spin makes day, night and changing shadows, and why different stars show up in different seasons.
+ In this lesson
+The Sun is a star, and distance affects brightness
+Gravity pulls down
+Shadows and day/night show a daily pattern
+Different stars appear in different seasons
+Review only: Moon phases
+Try it at home
+Check yourself
+Play: Shadow Tracker
+ [IMG: Photo of a Michigan field in early morning with the Sun low behind a row of trees, and long tree shadows stretching across the grass toward the viewer.] When the Sun is low, shadows are long and point away from the Sun.
+ Concept 1
+The Sun is a star, and distance affects brightness
+ The Sun looks bright because it is much closer than other stars.
+ Analogy
+ Flashlight near/far
+flashlight close to face and far away.
+“The same flashlight looks brighter when close.”
+ [SVG IMAGE] The same flashlight looks brighter when it is close and dimmer when it is far, because the light spreads out as it travels.Text version of this diagram
+Two pictures of the same flashlight pointed at a card. Close up, five bright arrows reach the card, so it looks bright. Far away, the light is spread over a larger area, so the card looks dim.
+ Data
+ Star distances
+Sun close, other stars far.
+“The Sun is not the biggest star. It looks brightest to us because it is the closest star. Some far stars give off more light than the Sun, but they are too far away to look bright.”
+Say it as an argument: “The Sun looks brighter because ______, my evidence is ______.”
+ [SVG IMAGE] The Sun is a star. It looks the brightest because it is the closest. Many other stars give off as much light, or more, but they are far too far away to look bright. The distances are not to scale.Text version of this diagram
+The Sun is drawn close to Earth on the left, with a short arrow. A long dotted gap leads to several small stars on the right, drawn far away. A note says it is not to scale.
+ Concept 2
+Gravity pulls down
+ Earth’s gravitational force on objects is directed down, toward Earth’s center.
+ [SVG IMAGE] 
+Where you stand on Earth: 
+Drop the ballPut it back
+Move around the globe and drop the ball from anywhere: it always falls toward the center of Earth.
+ Try it
+ Drop test
+dropped ball and sideways toss.
+“Both fall down. Gravity pulls down.”
+You did this before / what is new: You may have seen drop tests with forces; now you write an argument that “down” means toward Earth’s center.
+Predict first: If you toss a ball sideways, will it fall down like a dropped ball?
+You need: a soft ball or bean bag.
+Drop the ball from shoulder height. Watch where it goes.
+Toss it gently sideways. Watch it curve.
+Toss it up. Watch it come back.
+What you should see: All three come down. Gravity pulls toward the ground, which is toward the center of Earth.
+Why it matters: It does not matter how you toss it. Gravity pulls toward Earth.
+ Diagram
+ Down direction map
+a globe with arrows at the top, bottom, and sides, every arrow pointing to the center of the globe.
+“Down means toward the center of Earth, wherever you stand.”
+ Data
+ Argument evidence
+table with three toss tests: dropped, tossed up, tossed sideways. Each test ends “came back down.”
+“No matter how I toss it, it comes back down.”
+Say it as an argument: “Down means ______, my evidence is ______.”
+TestWhat happened
+Droppedcame down
+Tossed upcame back down
+Tossed sidewayscurved and came down
+ Concept 3
+Shadows and day/night show a daily pattern
+ Earth spins once each day; the side facing the Sun has day, and shadow length changes in a pattern.
+ [SVG IMAGE] The shadow table from this page drawn from above. Both the length and the direction change through the day.Text version of this diagram
+Top view of a 10 centimeter stick with five shadow arrows to scale. 8:30 am: 34 cm pointing west. 10:00 am: 20 cm northwest. 12:00 pm: 9 cm north, the shortest. 2:00 pm: 18 cm northeast. 3:30 pm: 30 cm pointing east. The shadow points away from the Sun, which is in the south at noon, and is longest when the Sun is low.
+ [SVG IMAGE] 
+Time of day: 
+Top view, north at the top. Sun time: 12:00 is when the Sun is highest. The values come from the shadow table on this page; the times in between are estimated.
+Slide the time of day and watch the shadow change length and direction while the Sun moves.
+ [SVG IMAGE] Shadow of a 10 cm stick on a sunny day in about March or September. The shadow is shortest at noon (9 cm, pointing north) and long in the morning and afternoon. It points west in the morning and east in the afternoon, away from the Sun.Text version of this graph
+Bar graph of shadow length of a 10 cm stick with direction. 8:30 am: 34 cm, west. 10:00 am: 20 cm, northwest. 12:00 pm: 9 cm, north. 2:00 pm: 18 cm, northeast. 3:30 pm: 30 cm, east. Shortest at noon.
+ Try it
+ Globe and flashlight
+globe and flashlight Sun.
+“Turn the globe slowly. One side is day. One side is night.”
+You did this before / what is new: You used day/night models in 1-C; now you add measured shadow data.
+Predict first: When you spin the globe, will the lit side stay in the same place?
+You need: a globe or ball, a flashlight in a dark room, a sticker for Michigan.
+Put the sticker on Michigan. Shine the flashlight on the globe.
+Turn the globe slowly counter-clockwise (the way Earth spins, seen from above the North Pole).
+Say "day" when Michigan is lit and "night" when it is dark.
+What you should see: The flashlight lights half the globe all the time. Spinning moves your sticker from day to night and back.
+Why it matters: It is Earth that spins. The Sun does not go around us.
+ Data
+ Shadow lengthCHECK 2: Shadow table values and 'sun time vs clock time' note were not independently verified.
+a 10 cm stick on a sunny spring or fall day in Michigan, with morning, noon, evening shadows and a table: 8:30 am 34 cm pointing west, 10:00 am 20 cm pointing northwest, 12:00 pm 9 cm pointing north (times are sun time: 12:00 is when the Sun is highest), 2:00 pm 18 cm pointing northeast, 3:30 pm 30 cm pointing east.
+“Shadows are long in the morning and evening. They are short near noon. The shadow points west in the morning, north around the middle of the day, and east in the afternoon, always away from the Sun.”
+ Real world
+ Michigan noon
+a playground pole at noon and after school.
+“The Sun’s position changes. The shadow changes too.”
+ [SVG IMAGE] At noon the Sun is highest, so shadows are short. Later in the day the Sun is lower, so shadows get long.Text version of this diagram
+Two pictures of a playground pole. At noon the Sun is high and the shadow is short. In the afternoon the Sun is lower and the shadow is long and points the other way.
+ Concept 4
+Different stars appear in different seasons
+ Earth orbits the Sun once each year, so the night sky changes by season.
+ [IMG: Photo of the Milky Way and many stars over a dark lakeshore with pine trees in silhouette.] The night sky changes by season because Earth orbits the Sun.
+ Diagram
+ Earth orbit and night side
+Earth around the Sun with the night side facing different star groups.
+“In winter, our night side faces one star group. In summer, it faces another.”
+ [SVG IMAGE] Earth's night side points toward different stars as Earth moves around the Sun. In winter you see Orion at night. In summer you see Scorpius.Text version of this diagram
+The Sun in the middle with a dashed oval for Earth's orbit. Earth is drawn twice: on the left in winter, with its dark night side facing away from the Sun toward the Orion stars, and on the right in summer, with its night side facing the opposite direction toward the Scorpius stars.
+ Try it
+ Constellation card sort
+picture cards for Orion, Leo, Scorpius, CygnusCHECK 1: Cygnus is listed as a fall constellation here and in the activity (a test freezes it). Confirm that is what you want..
+“Sort the cards by season.”
+CardSeason (best seen in Michigan evenings)
+OrionWinter (Dec to Feb)
+LeoSpring (Mar to May)
+ScorpiusSummer (Jun to Aug)
+CygnusFall (Sep to Nov), also summer
+Draw each constellation on a card, mix them, and sort. Sample answers use the page's chart.
+ Data
+ Provided monthly visibility chart
+Dec-Feb: Orion; Mar-May: Leo; Jun-Aug: Scorpius; Sep-Nov: Cygnus.
+“Orion appears most in winter. Scorpius appears most in summer.”
+ Real world
+ Michigan winter night
+a clear winter sky with Orion.
+“In Michigan winter, Orion is easy to find.”
+ [SVG IMAGE] A simple sketch of Orion: four bright stars at the corners and three in a row for the belt. It is easy to spot on clear Michigan winter evenings.Text version of this diagram
+A dark night sky with four bright stars at the corners and three stars in a short row in the middle. The row is labeled Orion's belt.
+ Concept 5
+Review only: Moon phases
+ The Moon reflects sunlight and changes appearance; this is review, not a new grade-5 PE claim.
+ Try it
+ Ball and flashlight
+ball as Moon, flashlight as Sun.
+“Move the ball. Only the sunlit side shines.”
+You did this before / what is new: You saw Moon cards in 1-C; this is review only.
+Predict first: Where should the ball be, compared with the flashlight, to see it all lit? To see none lit?
+You need: a ball, a flashlight in a dark room.
+Put the ball at arm's length from you, with the flashlight behind you shining past you onto the ball: you see the full lit face (full Moon).
+Move the ball to your right or left, a quarter turn around you: you see half lit.
+Put the ball between you and the flashlight so the lit side faces away: you see almost none lit (new Moon).
+What you should see: Only the half of the ball facing the flashlight shines. What you see depends on where you stand.
+Why it matters: This is review. The lit half is always half; the angle changes what we see.
+ Diagram
+ Moon phases
+crescent, half, full.
+“We see different amounts of the lit side.”
+ [SVG IMAGE] Seen from above: the lit half of each Moon always faces the Sun. As the Moon moves around Earth, we see more or less of the lit half. This is review only. Not to scale.Text version of this diagram
+Looking down on Earth in the middle with the Sun on the left shining rays. The Moon is drawn at four spots on a dashed circle around Earth: new on the Sun side, half on the bottom, full on the far side, half on top. The Sun always lights half of the Moon; what changes is how much of the lit half faces Earth.
+ Hands-on · Design or investigate
+Try it at home or in class
+ Build a shadow clock: mark a pencil’s shadow at several times and use it to tell approximate time. Criteria: at least three labeled marks, same stick, same spot. If the sky is cloudy, use the provided dataset to make the shadow-clock graph.
+ [IMG: Photo of a pencil stuck in clay on a white paper in strong sunlight, with its long shadow falling across the paper.] The shadow-clock kit: mark the tip of the shadow at different times and see how its length and direction change.
+ Try itWhat you need
+flashlight, foam ball, pencil/clay, paper, tape, string, small globe or ball, two small balls, meter stick or ruler, index cards.
+Safety: if a flashlight uses a coin cell, keep the cell taped shut and away from younger siblings; never use wall current; do not shine flashlights into eyes. For drop tests use soft balls, clear a floor or table zone, and never toss toward faces or devices.
+ Try itWhat you do
+model day/night, measure or graph shadow data, test drops/tosses, sort constellation cards, review Moon phases with ball and flashlight.
+Stick a pencil upright in clay in a sunny spot. Mark the shadow's tip with chalk at three times (10 minutes each).
+Label each mark with the time. Measure the length with a ruler.
+Drop and toss a ball three ways (10 minutes).
+Sort constellation cards by season (10 minutes).
+Notice: The shadow is longest in the morning and evening and shortest around noon. It points away from the Sun.
+Why it matters: A shadow clock shows the Sun moves in a pattern we can use to tell time.
+ No time or no good weather? Use this data
+This data is a backup. It lets you practice reading evidence, but the standard expects you to collect your own when you can.
+Real observation log: On a sunny day, measure a pencil or stick shadow at several times, mark which way it points (use a compass or a landmark), and graph the lengths. Provided dataset if it is cloudy (a 10 cm stick on a sunny day in about March or September in Michigan; in summer the noon shadow is shorter, in winter much longer): | Time | Shadow length and direction | |---|---:| | 8:30 am | 34 cm, west | | 10:00 am | 20 cm, northwest | | 12:00 pm (Sun highest) | 9 cm, north | | 2:00 pm | 18 cm, northeast | | 3:30 pm | 30 cm, east | Provided seasonal star chart: | Months | Constellation often seen at night | |---|---| | Dec-Feb | Orion | | Mar-May | Leo | | Jun-Aug | Scorpius | | Sep-Nov | Cygnus | Child reads: “We can graph the shadow. We can graph the seasons.” STRONG
+ Near you: Michigan’s long winter nights and short summer nights show seasonal daylight changes; winter constellations differ from summer ones. On a clear winter night in Michigan, Orion is often easy to see.
+ Check yourself
+What did you learn?
+ 0 of 4 correct
+ Words to know
+ starhuge ball of hot gas that gives off light.
+Sunthe star closest to Earth.
+rotatespin around an axis.
+orbitmove around another object.
+shadowplace where light is blocked.
+gravityEarth’s downward pull.
+apparent brightnesshow bright something looks from where we are.
+constellationa pattern of stars people name.
+axisimaginary line through Earth’s center.
+datainformation collected.
+ Tutor notes: misconceptions, standards, pacing
+ Pacing: five 30-minute sessions.
+ Common misconceptions to listen for:
+“The Sun is bright because it is the biggest star.” Correct: it looks bright because it is close.
+“Day and night happen because the Sun moves around Earth.” Correct: Earth rotates.
+“Seasons happen because Earth is closer to the Sun in summer.” Correct: tilt changes sunlight spread and day length.
+“The Moon makes its own light.” Correct: it reflects sunlight.
+“Gravity needs air to work.” Correct: gravity works even without air.
+“Heavier objects always fall faster.” Correct: gravity pulls down on all objects; air resistance can change falling.
+“Down is just toward the nearest ground.” Correct: down is toward Earth’s center.
+“Stars turn off in summer.” Correct: Earth’s orbit changes which stars we see at night.
+ Limits and cautions:
+Moon phases are review only and do not earn a new grade-5 PE.
+Solar-system scale is not taught here; it belongs later in Unit 8.6.
+Air resistance is mentioned but not deeply taught; the grade-5 argument is about the direction “down.”
+Seasonal star visibility depends on latitude, clouds, and light pollution; the provided chart guarantees evidence even without night observing.
+ Michigan Science Standards this unit earnsCHECK 3: Standard codes not yet compared with the Michigan (MDE) document.:
+5-ESS1-1: Argue that differences in apparent brightness of the Sun and stars are due to distance.
+5-ESS1-2: Represent data to reveal patterns of daily shadow changes, day/night, and seasonal appearance of stars.
+5-PS2-1: Argue that Earth’s gravitational force on objects is directed down.
+ Connections: Builds on: 1-C Sky Patterns; K–5 Unit 0: How Science Works. Builds toward: 5.4 Earth’s Spheres, Water, and Communities; Unit 8.6 Gravity, Orbits & the Solar System; Unit 11 Earth in Space.
+After the lesson · Activity
+Play: Shadow TrackerCHECK 4: Play this activity once: is it clear and fun? (weakest were K2.0, the Big Sort ones and the 5.2 gravity round).
+Move the Sun across the sky and record the stick's shadow, place the constellations in their seasons, and pick which way down points on a globe. Then read the patterns you just built.
+Keep exploring
+More lessons
+Before this: 5.1 Matter, Mixtures, and Changes. Up next: 5.3 Energy and Matter in Ecosystems. Unit 0: How Science Works explains the method every Try it uses.
+Michigan Science Standards (performance expectations earned by this unit): 5-ESS1-1, 5-ESS1-2, 5-PS2-1. Written for read-aloud and independent reading with a grown-up nearby; hands-on parts use cheap kit materials.

@@ -1,0 +1,217 @@
+<div class="k5w sb31" id="w31sandbox">
+<style>
+.sb31 .sb31-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.sb31 canvas{display:block;width:100%;aspect-ratio:560/340;touch-action:none;cursor:grab;border-radius:10px;background:var(--surface-2,#e8edf6);border:1px solid var(--line,#d0d8e8);user-select:none;-webkit-user-select:none}
+.sb31 canvas:active{cursor:grabbing}
+.sb31 button.sb31-reset{min-height:48px;min-width:120px;font-weight:700}
+.sb31 .sb31-say{min-height:2.9em;font-size:1rem;margin:0}
+</style>
+<p class="sb31-help">Drag the magnet around the table. Things that stick jump to the magnet. Things that do not stick stay still.</p>
+<canvas id="w31sbc" width="560" height="340" tabindex="0" role="img" aria-label="Magnet sandbox. A horseshoe magnet you can drag around a table. On the table are a paper clip, a steel nail, a steel key, iron filings, a wooden block, a plastic cap, a penny, an eraser, a piece of aluminum foil, a Petoskey stone and a piece of copper. You can also move the magnet with the arrow keys."></canvas>
+<div class="sb31-bar"><button type="button" class="sb31-reset" id="w31sbr">Reset</button></div>
+<p class="sb31-say" id="w31sbs" role="status" aria-live="polite">Pick up the magnet and bring it close to something.</p>
+<script>
+(function(){
+/* ---- Core logic: no DOM, so it can be tested in Node. ---- */
+function makeWorld(opts){
+  opts=opts||{};
+  var W=560,H=340,REACH=170,MAGR=30,A=2.4,STICTION=.06,DAMP=.82;
+  var reduced=!!opts.reduced;
+  var DEFS=[
+    {key:'clip',name:'paper clip',mag:1,r:13,m:1,x:470,y:60,kind:'clip'},
+    {key:'nail',name:'steel nail',mag:1,r:15,m:3,x:330,y:250,kind:'nail'},
+    {key:'key',name:'steel key',mag:1,r:16,m:2.5,x:500,y:225,kind:'key'},
+    {key:'fil',name:'iron filings',mag:1,r:4,m:.5,x:300,y:70,kind:'fil',n:6},
+    {key:'wood',name:'wooden block',mag:0,r:17,m:1,x:150,y:70,kind:'wood',why:'Wood is not magnetic.'},
+    {key:'cap',name:'plastic cap',mag:0,r:15,m:1,x:410,y:150,kind:'cap',why:'Plastic is not magnetic.'},
+    {key:'penny',name:'penny',mag:0,r:14,m:1,x:200,y:205,kind:'penny',why:'A penny is not pulled by a magnet.'},
+    {key:'eraser',name:'eraser',mag:0,r:16,m:1,x:430,y:300,kind:'eraser',why:'An eraser is not magnetic.'},
+    {key:'foil',name:'aluminum foil',mag:0,r:15,m:1,x:250,y:300,kind:'foil',why:'Aluminum foil is not magnetic.'},
+    {key:'stone',name:'Petoskey stone',mag:0,r:17,m:1,x:115,y:170,kind:'stone',why:'A Petoskey stone is not magnetic.'},
+    {key:'copper',name:'piece of copper',mag:0,r:14,m:1,x:365,y:60,kind:'copper',why:'Copper is not magnetic.'}
+  ];
+  var START={x:60,y:290};
+  var w={W:W,H:H,REACH:REACH,MAGR:MAGR,magnet:{x:START.x,y:START.y},bodies:[],log:[]};
+  function reset(){
+    w.magnet.x=START.x;w.magnet.y=START.y;w.bodies=[];w.announced={};w.log=[];
+    DEFS.forEach(function(d){
+      var n=d.n||1;
+      for(var i=0;i<n;i++){
+        var ox=n>1?Math.cos(i*2.1)*(10+i*3):0,oy=n>1?Math.sin(i*2.1)*(8+i*3):0;
+        w.bodies.push({key:d.key,name:d.name,mag:d.mag,r:d.r,m:d.m,kind:d.kind,why:d.why,
+          x0:d.x+ox,y0:d.y+oy,x:d.x+ox,y:d.y+oy,vx:0,vy:0,stuck:false,ox:0,oy:0,moving:false,rot:i*1.3});
+      }
+    });
+  }
+  /* Pull force on a magnetic body at distance d. Strong when close, zero beyond REACH. */
+  w.pull=function(d){var t=Math.max(0,1-d/REACH);return A*t*t;};
+  w.setMagnet=function(x,y){
+    w.magnet.x=Math.max(MAGR,Math.min(W-MAGR,x));w.magnet.y=Math.max(MAGR,Math.min(H-MAGR,y));
+  };
+  function say(type,b){
+    var tag=type+':'+b.key;
+    if(w.announced[tag])return;
+    w.announced[tag]=1;
+    var t;
+    if(type==='moving')t='The '+b.name+' is being pulled toward the magnet.';
+    else if(type==='stuck')t='The '+b.name+' jumped to the magnet and stuck.';
+    else t='The '+b.name+' did not move. '+b.why;
+    w.log.push({type:type,key:b.key,text:t});
+  }
+  /* One animation step. Returns true while anything is still moving. */
+  w.step=function(){
+    var mx=w.magnet.x,my=w.magnet.y,busy=false;
+    w.bodies.forEach(function(b){
+      if(b.stuck){b.x=mx+b.ox;b.y=my+b.oy;return;}
+      var dx=mx-b.x,dy=my-b.y,d=Math.sqrt(dx*dx+dy*dy)||.001,contact=MAGR+b.r*.6;
+      if(!b.mag){
+        if(d<contact+b.r)say('ignored',b);
+        return;
+      }
+      var acc=w.pull(d)/b.m;
+      if(d<=contact||(reduced&&acc>STICTION)){
+        var ux=(b.x-mx)/d,uy=(b.y-my)/d;
+        if(d>contact||d<1){ux=ux||1;}
+        b.ox=ux*contact;b.oy=uy*contact;b.stuck=true;b.vx=b.vy=0;b.x=mx+b.ox;b.y=my+b.oy;
+        say('stuck',b);return;
+      }
+      if(acc>STICTION){
+        if(!b.moving){b.moving=true;say('moving',b);}
+        b.vx+=acc*dx/d;b.vy+=acc*dy/d;
+      }else b.moving=false;
+      b.vx*=DAMP;b.vy*=DAMP;
+      if(Math.abs(b.vx)+Math.abs(b.vy)>.02){b.x+=b.vx;b.y+=b.vy;busy=true;}
+    });
+    return busy;
+  };
+  w.reset=reset;
+  reset();
+  return w;
+}
+if(typeof document==='undefined'){globalThis.K31Sandbox={makeWorld:makeWorld};return;}
+
+/* ---- Drawing and input ---- */
+var cv=document.getElementById('w31sbc'),box=document.getElementById('w31sandbox'),
+    sayEl=document.getElementById('w31sbs'),resetBtn=document.getElementById('w31sbr');
+var mq=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)');
+var reduced=!!(mq&&mq.matches);
+var world=makeWorld({reduced:reduced});
+if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){reduced=e.matches;world=makeWorld({reduced:reduced});announce('Pick up the magnet and bring it close to something.');kick();});
+var dpr=Math.min(2,window.devicePixelRatio||1);
+cv.width=Math.round(world.W*dpr);cv.height=Math.round(world.H*dpr);
+var ctx=cv.getContext('2d');
+var dragging=false,grab={x:0,y:0},sched=false,lastSay=0,pending=null,sayTimer=0;
+
+function col(cs,n,fb){var v=cs.getPropertyValue(n).trim();return v||fb;}
+function draw(){
+  var cs=getComputedStyle(cv),ink=col(cs,'--ink','#12172b'),surf=col(cs,'--surface','#fff'),muted=col(cs,'--muted','#47506e'),
+      red=col(cs,'--red','#d93036'),blue=col(cs,'--reflect','#2b66e8');
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.clearRect(0,0,world.W,world.H);
+  ctx.lineJoin='round';ctx.lineCap='round';
+  var m=world.magnet;
+  /* pull halo: stronger near the magnet, gone at the edge of its reach */
+  var g=ctx.createRadialGradient(m.x,m.y,world.MAGR,m.x,m.y,world.REACH);
+  g.addColorStop(0,'rgba(217,48,54,.30)');g.addColorStop(1,'rgba(217,48,54,0)');
+  ctx.fillStyle=g;ctx.beginPath();ctx.arc(m.x,m.y,world.REACH,0,6.2832);ctx.fill();
+  ctx.font='12px sans-serif';ctx.textAlign='center';
+  var labelled={};
+  /* non-magnetic first, so the magnet and stuck things draw on top */
+  var order=world.bodies.slice().sort(function(a,b){return (a.mag-b.mag)||(a.stuck-b.stuck);});
+  order.forEach(function(b){
+    drawBody(b,ink,surf);
+    if(!labelled[b.key]){labelled[b.key]=1;
+      if(!b.stuck){ctx.fillStyle=muted;ctx.fillText(b.name,b.x,b.y+b.r+14);}
+    }
+  });
+  drawMagnet(m,ink,red,blue);
+}
+function drawMagnet(m,ink,red,blue){
+  ctx.save();ctx.translate(m.x,m.y);
+  ctx.lineWidth=15;ctx.strokeStyle=red;ctx.beginPath();ctx.arc(0,2,17,Math.PI*.95,Math.PI*1.5);ctx.stroke();
+  ctx.strokeStyle=blue;ctx.beginPath();ctx.arc(0,2,17,Math.PI*1.5,Math.PI*2.05);ctx.stroke();
+  /* flat tips */
+  ctx.lineWidth=15;ctx.lineCap='butt';
+  ctx.strokeStyle=red;ctx.beginPath();ctx.moveTo(-17,2);ctx.lineTo(-17,22);ctx.stroke();
+  ctx.strokeStyle=blue;ctx.beginPath();ctx.moveTo(17,2);ctx.lineTo(17,22);ctx.stroke();
+  ctx.lineCap='round';
+  ctx.strokeStyle='#e9edf5';ctx.lineWidth=6;
+  ctx.beginPath();ctx.moveTo(-17,16);ctx.lineTo(-17,24);ctx.moveTo(17,16);ctx.lineTo(17,24);ctx.stroke();
+  ctx.lineWidth=2;ctx.strokeStyle=ink;
+  ctx.beginPath();ctx.arc(0,2,24.5,Math.PI*.95,Math.PI*2.05);ctx.stroke();
+  ctx.beginPath();ctx.arc(0,2,9.5,Math.PI,Math.PI*2);ctx.stroke();
+  ctx.restore();
+}
+function poly(pts,fill,ink){ctx.beginPath();pts.forEach(function(p,i){i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]);});ctx.closePath();ctx.fillStyle=fill;ctx.fill();ctx.lineWidth=1.5;ctx.strokeStyle=ink;ctx.stroke();}
+function drawBody(b,ink,surf){
+  ctx.save();ctx.translate(b.x,b.y);ctx.lineWidth=2;ctx.strokeStyle=ink;
+  var k=b.kind,r=b.r;
+  if(k==='clip'){ctx.rotate(-.5);ctx.strokeStyle='#8a94a8';ctx.lineWidth=2.5;
+    rr(-12,-6,24,12,6);ctx.stroke();rr(-7,-2,19,8,4);ctx.stroke();}
+  else if(k==='nail'){ctx.rotate(.3);ctx.strokeStyle='#6b7385';ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(-14,0);ctx.lineTo(14,0);ctx.stroke();
+    ctx.lineWidth=7;ctx.beginPath();ctx.moveTo(-14,0);ctx.lineTo(-12,0);ctx.stroke();}
+  else if(k==='key'){ctx.rotate(-.4);ctx.strokeStyle='#6b7385';ctx.lineWidth=3;ctx.beginPath();ctx.arc(-9,0,6,0,6.2832);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(-3,0);ctx.lineTo(15,0);ctx.moveTo(10,0);ctx.lineTo(10,6);ctx.moveTo(15,0);ctx.lineTo(15,5);ctx.stroke();}
+  else if(k==='fil'){ctx.rotate(b.rot);ctx.fillStyle='#3a3f4c';ctx.fillRect(-3,-1,6,2);}
+  else if(k==='wood'){ctx.fillStyle='#b98a54';ctx.fillRect(-r,-r,2*r,2*r);ctx.strokeRect(-r,-r,2*r,2*r);ctx.lineWidth=1;ctx.strokeStyle='#8a6034';
+    ctx.beginPath();ctx.moveTo(-r+4,-4);ctx.lineTo(r-4,-4);ctx.moveTo(-r+4,4);ctx.lineTo(r-4,4);ctx.stroke();}
+  else if(k==='cap'){ctx.fillStyle='#2f9fd6';ctx.beginPath();ctx.arc(0,0,r,0,6.2832);ctx.fill();ctx.stroke();ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(0,0,r-5,0,6.2832);ctx.stroke();}
+  else if(k==='penny'){ctx.fillStyle='#c9763c';ctx.beginPath();ctx.arc(0,0,r,0,6.2832);ctx.fill();ctx.stroke();ctx.lineWidth=1.2;ctx.beginPath();ctx.arc(0,0,r-4,0,6.2832);ctx.stroke();}
+  else if(k==='eraser'){ctx.fillStyle='#f2a0b8';rr(-r,-9,2*r,18,5);ctx.fill();ctx.stroke();ctx.fillStyle='#4a6fd0';ctx.fillRect(-r+9,-8.5,8,17);}
+  else if(k==='foil'){poly([[-14,-4],[-7,-14],[2,-9],[12,-13],[15,-2],[8,12],[-3,8],[-12,13]],'#d7dde6',ink);}
+  else if(k==='stone'){ctx.fillStyle='#8c7a66';ctx.beginPath();ctx.ellipse(0,0,r,r*.8,.4,0,6.2832);ctx.fill();ctx.stroke();
+    ctx.lineWidth=1;ctx.strokeStyle='#5d4f40';for(var i=0;i<4;i++){ctx.beginPath();ctx.arc(-6+i*4,-3+(i%2)*6,3.2,0,6.2832);ctx.stroke();}}
+  else if(k==='copper'){poly([[-12,-3],[-6,-12],[5,-10],[13,-1],[8,10],[-5,12]],'#d9824a',ink);}
+  ctx.restore();
+}
+function rr(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();}
+
+function announce(t){
+  /* at most one new message about every 700 ms, so a screen reader is not flooded */
+  var now=Date.now();pending=t;
+  if(now-lastSay>=700){flushSay();}
+  else if(!sayTimer){sayTimer=setTimeout(function(){sayTimer=0;flushSay();},700-(now-lastSay));}
+}
+function flushSay(){if(pending==null)return;sayEl.textContent=pending;pending=null;lastSay=Date.now();}
+
+function frame(){
+  sched=false;
+  var busy=world.step();
+  if(world.log.length){
+    var texts=world.log.map(function(e){return e;});world.log.length=0;
+    var stuck=texts.filter(function(e){return e.type==='stuck';});
+    var pick=stuck.length?stuck[stuck.length-1]:texts[texts.length-1];
+    announce(pick.text);
+  }
+  draw();
+  if(busy||dragging)kick();
+}
+function kick(){if(!sched){sched=true;requestAnimationFrame(frame);}}
+
+function pos(e){var rc=cv.getBoundingClientRect();return {x:(e.clientX-rc.left)*world.W/rc.width,y:(e.clientY-rc.top)*world.H/rc.height};}
+cv.addEventListener('pointerdown',function(e){
+  var p=pos(e);dragging=true;
+  /* a finger hides the magnet, so for touch the magnet rides a little above the fingertip */
+  grab.x=0;grab.y=e.pointerType==='touch'?-34:0;
+  try{cv.setPointerCapture(e.pointerId);}catch(err){}
+  world.setMagnet(p.x+grab.x,p.y+grab.y);
+  e.preventDefault();kick();
+});
+cv.addEventListener('pointermove',function(e){
+  if(!dragging)return;
+  var p=pos(e);world.setMagnet(p.x+grab.x,p.y+grab.y);kick();
+});
+function up(e){dragging=false;try{cv.releasePointerCapture(e.pointerId);}catch(err){}kick();}
+cv.addEventListener('pointerup',up);cv.addEventListener('pointercancel',up);
+cv.addEventListener('keydown',function(e){
+  var s=e.shiftKey?40:16,dx=0,dy=0;
+  if(e.key==='ArrowLeft')dx=-s;else if(e.key==='ArrowRight')dx=s;else if(e.key==='ArrowUp')dy=-s;else if(e.key==='ArrowDown')dy=s;else return;
+  e.preventDefault();world.setMagnet(world.magnet.x+dx,world.magnet.y+dy);kick();
+});
+resetBtn.addEventListener('click',function(){
+  world.reset();dragging=false;pending=null;announce('Everything is back where it started. Pick up the magnet and try again.');flushSay();draw();kick();
+});
+draw();
+})();
+</script>
+</div>

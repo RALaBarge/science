@@ -1,0 +1,442 @@
+[
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "Never taste unknown substances",
+  "kind": "UPDATED",
+  "note": "Lab safety: taste and smell are now two separate rules."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "Never smell unknown substances",
+  "kind": "UPDATED",
+  "note": "Lab safety: new smell rule with waft instruction."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "The six rules in the table, as pictures",
+  "kind": "UPDATED",
+  "note": "Lab safety picture: new six-panel diffusion picture."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "Back of the envelope: rough conversions",
+  "kind": "UPDATED",
+  "note": "New box of rough imperial-to-metric conversions after the Data toolbox."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "Give the imperial amount in parentheses",
+  "kind": "UPDATED",
+  "note": "Units reminder: imperial in parentheses."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "about 14 feet\\), 5\\.0 m",
+  "kind": "UPDATED",
+  "note": "Paper plane example: imperial added to every value."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "The Big Bang, the start of the universe, is midnight",
+  "kind": "UPDATED",
+  "note": "Big Bang defined before the birthday picker."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "Step 1: Find your birthday on the cosmic calendar \\(optional\\)",
+  "kind": "UPDATED",
+  "note": "Birthday is optional."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "Skip \\(show the whole year\\)",
+  "kind": "UPDATED",
+  "note": "Skip button now shows the whole year."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "Showing: January 1 to December 31",
+  "kind": "UPDATED",
+  "note": "Zoom view now starts on the whole year and shows its value at load."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "Most of the cosmic year is empty sky",
+  "kind": "UPDATED",
+  "note": "Zoom picture added."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "Zoom into July to December",
+  "kind": "UPDATED",
+  "note": "Zoom levels now start with whole year, then July to December; birthday only places a marker."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "the nearest milestone is",
+  "kind": "UPDATED",
+  "note": "Birthday result line added."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "A Petoskey stone on the cosmic calendar",
+  "kind": "UPDATED",
+  "note": "Michigan example: Petoskey stone on the cosmic calendar (verify age)."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "people who count and study populations",
+  "kind": "UPDATED",
+  "note": "Demographers defined."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "for the distant past the data are very rough",
+  "kind": "UPDATED",
+  "note": "Softened the demographic data claim (verify source)."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "about 36 million miles",
+  "kind": "UPDATED",
+  "note": "Imperial added to the line of people."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "people who have died, and every one of them",
+  "kind": "UPDATED",
+  "note": "Fixed the claim about the other 93."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "have students look at the whole-year view",
+  "kind": "UPDATED",
+  "note": "Tutor note: birthday optional, whole-year default."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "about 3 feet\\) = 1 year",
+  "kind": "UPDATED",
+  "note": "Tutor note: hallway strip in feet."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "The year bar|September: life starts",
+  "kind": "UPDATED",
+  "note": "Year bar uses full month names."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "Built for K-5 tutoring",
+  "kind": "UPDATED",
+  "note": "Footer audience line and NGSS text removed."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "Dates and figures are approximate\\.<\\/footer>",
+  "kind": "UPDATED",
+  "note": "Standards text removed from footer."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "Tools of discovery, from the pyramids",
+  "kind": "UPDATED",
+  "note": "Timeline: new diffusion picture."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "About 270 BCE: Aristarchus suggests",
+  "kind": "UPDATED",
+  "note": "Timeline: text list of dates added."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "Stand a 1 meter stick \\(about 3 feet\\)",
+  "kind": "UPDATED",
+  "note": "Stick measurement: instructions added."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "For reference: at noon on the same day, Syene",
+  "kind": "UPDATED",
+  "note": "Stick measurement: reference added."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "The same noon Sun makes shadows",
+  "kind": "UPDATED",
+  "note": "Stick picture added."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "Evidence like Galileo's Venus phases decided between them",
+  "kind": "UPDATED",
+  "note": "Two-model picture replaced with a diffusion picture."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "A phase is the shape of the lit part of a ball",
+  "kind": "UPDATED",
+  "note": "Venus: phase explained and instruction added."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "Venus changes shape in the sky",
+  "kind": "UPDATED",
+  "note": "Venus picture added."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "Watch the four moon dots change places",
+  "kind": "UPDATED",
+  "note": "Moons: instruction added."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "Jupiter and its four biggest moons",
+  "kind": "UPDATED",
+  "note": "Moons picture added."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "Planets travel in ovals called ellipses \\(Kepler, 1609\\)",
+  "kind": "UPDATED",
+  "note": "Evidence is now a bulleted list."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "The bean test: the same plants and cups",
+  "kind": "UPDATED",
+  "note": "Investigation picture added."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "Lanterns on hills<\\/b> \\(Galileo",
+  "kind": "UPDATED",
+  "note": "Not-a-straight-line: three tests as a list, drawn SVG removed."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "Scientists use different tools to look at the same question",
+  "kind": "UPDATED",
+  "note": "Not-a-straight-line picture added."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "about 137,000 miles per second",
+  "kind": "UPDATED",
+  "note": "Imperial added to the speed of light."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "has saved millions of lives",
+  "kind": "UPDATED",
+  "note": "Softened penicillin claim."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "chlorinated lime",
+  "kind": "UPDATED",
+  "note": "Semmelweis: chlorinated lime."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "below 10 °C \\(50 °F\\)",
+  "kind": "UPDATED",
+  "note": "Imperial added to forecast temperature."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "Pick a scenario, then choose what we change",
+  "kind": "UPDATED",
+  "note": "Build a hypothesis: instructions and sentence frame."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "Is Lake Michigan colder in February than in July",
+  "kind": "UPDATED",
+  "note": "Michigan item added to the testable quiz."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "Hypothesis:<\\/b> A testable prediction",
+  "kind": "UPDATED",
+  "note": "Hypothesis, theory, law is now a bulleted list."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "is the one thing you change on purpose\\. The",
+  "kind": "UPDATED",
+  "note": "Plain-word variables before the cookie test."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "A cookie test: only the sugar changes",
+  "kind": "UPDATED",
+  "note": "Cookie picture replaces the drawn SVG."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "Tap each option\\. Which one is a fair test",
+  "kind": "UPDATED",
+  "note": "Fair vs. unfair: instruction added."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "A fair test: the pots, soil and water stay the same",
+  "kind": "UPDATED",
+  "note": "Fair-test picture added."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "Press Run 1 trial a few times",
+  "kind": "UPDATED",
+  "note": "Why we repeat: instruction added."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "A log scale is a number line",
+  "kind": "UPDATED",
+  "note": "Lead-up for log scale and prefixes."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "Ant: about 3 mm",
+  "kind": "UPDATED",
+  "note": "Metric lengths: imperial list added."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "Lake Michigan's water level over 10 years",
+  "kind": "UPDATED",
+  "note": "Michigan item added to the graph quiz."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "Example numbers: after 14 days",
+  "kind": "UPDATED",
+  "note": "CER example labeled and imperial added."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "Each line is stretched or squeezed to fit 0 to 100",
+  "kind": "UPDATED",
+  "note": "Correlation chart: plain-word scaling note moved before the chart."
+ },
+ {
+  "files": [
+   "k-5/unit-00-how-science-works.html"
+  ],
+  "pat": "phase<\\/dt>|The shape of the lit part of a ball seen from far away",
+  "kind": "UPDATED",
+  "note": "Words to know: phase and log scale added."
+ }
+]

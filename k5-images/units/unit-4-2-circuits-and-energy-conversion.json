@@ -10,20 +10,12 @@
    "caption": "Electricity makes lights glow, but only when the circuit is a complete loop."
   },
   {
-   "id": "d-42-loop",
+   "id": "42-loop",
    "after": "s1",
-   "kind": "svg",
-   "file": "d-42-loop.svg",
-   "alt": "Two circuits made of a battery, a bulb and wire. Top: the loop has a gap on the right, so the bulb is off. Bottom: the loop is complete, orange arrows show charges moving around the whole loop together, and the bulb glows with rays around it.",
+   "kind": "image",
+   "file": "42-img1.webp",
+   "alt": "A rectangular loop of wire with a green battery and a glowing yellow bulb. Orange dots along the wire show current moving around the closed loop.",
    "caption": "The bulb lights only when the loop is closed all the way around. A gap anywhere stops the current in the whole loop."
-  },
-  {
-   "id": "d-42-kit",
-   "after": "kit",
-   "kind": "svg",
-   "file": "d-42-kit.svg",
-   "alt": "Top view of an index card with a coin cell on the left, an LED in the middle and a paper clip switch on the right. Strips of copper tape connect them in one loop: from the plus side of the cell to the LED long leg, from the LED short leg to the first brass fastener, then through the paper clip to the second fastener and back along the bottom to the cell. When the clip touches both fasteners the loop is complete and the LED lights. When the clip is swung away the loop is open and the LED is off. The LED lights only when its long leg is toward the plus side of the cell.",
-   "caption": "What the light-up card looks like: tape, coin cell, LED and a paper clip switch in one loop."
   },
   {
    "id": "w-42-switch",
@@ -48,14 +40,6 @@
    "file": "w-42-gap.html",
    "alt": "Interactive: choose a paper clip, foil, coin, plastic spoon, wooden stick or string to bridge a gap in a circuit and see if the bulb lights.",
    "caption": "Lay different materials across a gap to see what lets current through."
-  },
-  {
-   "id": "g-42-tester",
-   "after": "kit",
-   "kind": "svg",
-   "file": "g-42-tester.svg",
-   "alt": "Table drawn with dots. Bulb lit with paper clip: yes. Foil: yes. String: no. Plastic: no. Wood: no. Switch closed: yes. Switch open: no.",
-   "caption": "Material tester: paper clip and foil let the bulb light. String, plastic and wood did not. The switch closed lit the bulb and open did not."
   }
  ]
 }

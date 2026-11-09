@@ -5,8 +5,8 @@
    "id": "41-hero",
    "after": "hero",
    "kind": "image",
-   "file": "41-hero.webp",
-   "alt": "Illustration of two teenagers on a sled speeding down a snowy hill, with motion lines.",
+   "file": "41-hero2.webp",
+   "alt": "Illustration of two kids in winter coats and hats riding a red sled fast down a snowy hill, with snow flying up behind and short motion lines.",
    "caption": "A fast sled has more motion energy than a slow one."
   },
   {
@@ -14,16 +14,8 @@
    "after": "kit",
    "kind": "image",
    "file": "41-ramp.webp",
-   "alt": "Photo of a wooden ramp propped on a stack of books with a marble at the top, a paper cup lying on its side at the bottom as a target and a strip of tape with tick marks on the floor.",
+   "alt": "Picture of a wooden ramp propped on a stack of books with a marble at the top, a paper cup lying on its side at the bottom as a target and a strip of tape with tick marks on the floor.",
    "caption": "What the Ramp test can look like: change only the ramp height and measure how far the target moves."
-  },
-  {
-   "id": "d-41-coat",
-   "after": "s3",
-   "kind": "svg",
-   "file": "d-41-coat.svg",
-   "alt": "Top: a warm cup and a spoon, with a heat arrow along the spoon from the warm cup toward the cooler end. Bottom: two rows with a warm body on the left and cold air on the right. With no coat the heat arrow is thick and heat leaves fast. With a coat in between, the heat arrow is thin, so heat leaves slowly. A coat does not make heat; it slows the heat leaving.",
-   "caption": "Heat always moves from warmer to cooler. A coat does not add cold or heat: it slows the heat leaving your body."
   },
   {
    "id": "w-41-collision",
@@ -31,7 +23,7 @@
    "kind": "html",
    "file": "w-41-collision.html",
    "alt": "Interactive: pick a clay ball, a hard ball or a super ball and see bars for energy before and after a bounce. The total is always 100.",
-   "caption": "Pick a ball and see that its energy of motion becomes a little heat, sound and bending. The total stays the same."
+   "caption": "Pick a ball and see that its motion energy becomes a little heat, sound and bending. The total stays the same."
   },
   {
    "id": "w-41-ramp",
@@ -40,22 +32,6 @@
    "file": "w-41-ramp.html",
    "alt": "Interactive: a slider sets the ramp height and a toy car rolls down to push a block, farther from a higher ramp.",
    "caption": "Raise the ramp and see how far the same car pushes the block."
-  },
-  {
-   "id": "g-41-ramp",
-   "after": "kit",
-   "kind": "svg",
-   "file": "g-41-ramp.svg",
-   "alt": "Grouped bar graph of target distance in cm. Low ramp: 2, 2, 3. High ramp: 7, 8, 8.",
-   "caption": "The target moved 2, 2 and 3 cm from the low ramp, and 7, 8 and 8 cm from the high ramp. Same marble, same target: only the ramp height changed."
-  },
-  {
-   "id": "g-41-cool",
-   "after": "s3",
-   "kind": "svg",
-   "file": "g-41-cool.svg",
-   "alt": "Line graph of temperature in degrees C over three readings: 40, 37 and 35. The line slopes down.",
-   "caption": "A warm object cooled from 40 C to 37 C to 35 C over three readings, as heat moved to the cooler air around it."
   }
  ]
 }

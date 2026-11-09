@@ -42,12 +42,20 @@
    "caption": "Find a mountain range, a plain and connected lakes on a map."
   },
   {
+   "id": "45-sandpiles",
+   "after": "kit",
+   "kind": "image",
+   "file": "45-sandpiles.webp",
+   "alt": "Three blue plastic trays in a row, each with a sand bank. The left tray has a big spilled pile of sand, the middle tray has a medium pile with craft sticks beside it, and the right tray has the smallest pile with a small green grass plant. A glass of water stands behind them.",
+   "caption": "Three model shorelines: no barrier (most sand moved), a wall (some sand moved) and grass (least sand moved). The graph below shows the counts."
+  },
+  {
    "id": "g-45-sediment",
    "after": "kit",
    "kind": "svg",
    "file": "g-45-sediment.svg",
-   "alt": "Bar graph, Sediment moved by waves. No barrier 12 spoonfuls, Wall 7 spoonfuls, Grass 5 spoonfuls.",
-   "caption": "Sediment lost in the shoreline tray: no barrier 12 spoons, wall 7 spoons, grass 5 spoons."
+   "alt": "Bar graph, Sediment moved by waves. No barrier 12 spoonfuls, Grass 5 spoonfuls, Wall 7 spoonfuls.",
+   "caption": "Sediment lost in the shoreline tray: no barrier 12 spoonfuls, grass 5 spoonfuls, wall 7 spoonfuls (a teaspoon is about 5 milliliters)."
   }
  ]
 }

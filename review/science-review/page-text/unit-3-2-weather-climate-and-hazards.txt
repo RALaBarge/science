@@ -1,0 +1,213 @@
+REVIEW COPY: 3 things on this page need your call (highlighted neon green / badges). All flagsCHECK: Detroit climate numbers (83 F July high etc.) were not independently verified. (jump)
+CHECK: Standard codes not yet compared with the Michigan (MDE) document. (jump)
+CHECK: Play this activity once: is it clear and fun? (weakest were K2.0, the Big Sort ones and the 5.2 gravity round). (jump)
+Weather, Climate, and Hazards
+ [SVG IMAGE] 
+Skip to main content
+ Style ClassicRetro space
+ Grade 3 · Unit 3.2
+ Weather, Climate, and Hazards
+ What weather can we expect in different places and seasons, and how can we reduce harm from weather hazards?
+ Weather is what happens today, and climate is the pattern over many years. This unit shows how weather is measured, how graphs reveal seasonal patterns, why different places have different climates, and how designs can reduce the damage from storms and floods but never remove every risk.
+ In this lesson
+Weather is short-term; climate is long-term
+We measure weather
+Graphs show seasonal weather patterns
+Different regions have different climates
+Designs can reduce weather-hazard harm
+Try it at home
+Check yourself
+Play: Weather, Climate, and Hazards Sort
+ [IMG: Photo of dark storm clouds over Lake Michigan with a curtain of rain falling in the distance and a sandy beach in front.] A storm is weather. Weather is what happens on one day.
+ Concept 1
+Weather is short-term; climate is long-term
+ Weather is what happens today; climate is the pattern over many years.
+ Analogy
+ Mood vs personality
+two faces: “today” and “usually.”
+“Weather is your mood today. Climate is what people expect most of the time.”
+ [SVG IMAGE] Weather is like a mood: it changes day to day. Climate is like a personality: what a place is usually like.Text version of this diagram
+Left, a face under a rain cloud labelled weather, like your mood today. Right, a smiling face under the Sun labelled climate, like your personality: what it is like most years.
+ Data
+ Daily vs monthly
+one day temperature card vs many-year average.
+“One day can be weird. Many years show climate.”
+ [SVG IMAGE] The seven daily highs are made up to show the idea. The 83 F line is the typical July high for Detroit (the same number as the bar graph below). Single days bounce around; the average over many years is the climate.Text version of this diagram
+Seven made-up daily July highs: 78, 86, 81, 90, 75, 84, 83 degrees F. A dashed line shows the typical Detroit July high, 83 F. Days are above and below the line.
+ Concept 2
+We measure weather
+ Scientists measure temperature, precipitation, wind, and clouds.
+ Try it
+ Rain gauge
+cup with ruler.
+“After rain, measure how deep the water is.”
+You did this before / what is new: You noticed weather in K-B; now you measure it and record data.
+Predict first: How deep will the water be after a rain? A little, or a lot?
+You need: a clear cup or jar with straight sides, a ruler, tape, a pencil, paper.
+Tape the ruler on the cup with the 0 at the bottom.
+Put it outside in an open spot, away from roofs and trees.
+After it rains, read the line where the water stops, in centimeters.
+Write the date and the number. Pour out the water.
+Do it for at least five rainy days.
+What you should see: You will get small numbers, such as 0.5 cm one day and 1 cm another. Rain amounts change from day to day.
+Why it matters: Weather people measure rain the same way so they can compare days and months.
+ Try it
+ Wind vane
+paper arrow on pencil.
+“A wind vane points into the wind. The wind comes FROM that way. Put the tail on the other end.”
+Predict first: Which way will the arrow point when the wind blows from the west?
+You need: a pencil with an eraser, a pin or thumbtack, a straw, paper, tape, a card with N, E, S, W.
+Cut a paper arrow head and a bigger tail. Tape them to the ends of a straw.
+Push the pin through the middle of the straw into the pencil eraser.
+Take it outside and hold it up. Use the card to find north.
+Wait until it stops moving. The arrowhead points to where the wind comes FROM.
+Notice: The big tail catches the wind and swings away, so the head points into the wind.
+Why it matters: Knowing the wind direction helps us tell what weather may come next.
+ Real world
+ Weather report
+weather map icons.
+“Symbols show rain, snow, sun, and wind.”
+ [SVG IMAGE] These are simple pictures of weather symbols. Real weather maps use similar pictures.Text version of this diagram
+Four symbols labelled Sun, Rain, Snow and Wind.
+ Concept 3
+Graphs show seasonal weather patterns
+ Tables and graphs show typical weather by month or season.
+ [IMG: Photo of a Michigan lakeside park in July with green leafy trees, a bench and blue sky.] July in Michigan: warm and green.
+ [IMG: Photo of a Michigan lakeside park in January with snow on the ground and trees and ice along the shore.] January in Michigan: cold, with snow and ice. Seasons make a climate pattern.
+Pick a month to read Detroit’s typical daily high.
+ [SVG IMAGE] Typical average daily HIGH temperature by month for Detroit, rounded to the nearest degree. A given year can differ by several degrees. July is the warmest at 83 F and January the coldest at 32 F.Text version of this graph
+Bar graph of typical average daily high temperature in Detroit by month, in degrees F. Jan 32, Feb 35, Mar 45, Apr 58, May 69, Jun 79, Jul 83, Aug 81, Sep 74, Oct 62, Nov 50, Dec 38. Summer months are tall, winter months are short.
+ [SVG IMAGE] Typical precipitation by month for Detroit, in inches. It is fairly even through the year, from about 1.9 inches in February to 3.2 in June and August.Text version of this graph
+Bar graph of typical precipitation in Detroit by month, in inches. Jan 2, Feb 1.9, Mar 2.4, Apr 3, May 3, Jun 3.2, Jul 3.1, Aug 3.2, Sep 3, Oct 2.6, Nov 2.7, Dec 2.2. Every month is between about 1.9 and 3.2 inches.
+ Diagram
+ Monthly bar graph
+bars for monthly high temperatures.
+“July bars are tall. January bars are short.”
+ Try it
+ Graph your class data
+student-entered temperatures or precipitation.
+“Make a bar for each month.”
+ Data
+ Provided Michigan weather dataset
+a table of typical monthly temperature and precipitation for a Michigan city.
+“Use the numbers. Make bars. Find the warm months and cold months.”
+ Concept 4
+Different regions have different climates
+ Climate depends on location, including nearness to large lakes or oceans.
+ Diagram
+ Climate map
+simple map with cold, temperate, and hot regions.
+“Near the equator is warmer. Near the poles is colder.”
+ [SVG IMAGE] Near the equator the Sun shines more directly, so it is warmer. Near the poles it is colder. Real climates also depend on oceans, mountains and wind, so this is a simple picture.Text version of this diagram
+A circle for Earth with a hot band at the equator, mild bands on each side, and cold bands near the poles. Michigan is in the mild band.
+ Data
+ Region cards
+cards for a tropical place, a polar place, and a Michigan place.
+“Combine the clues. What is usually true there?”
+Three cards to read (words only):
+PlaceUsual clues
+A tropical placeHot all year. Rains a lot. Plants grow all year.
+A polar placeCold all year. Little snow or rain. The ground is frozen.
+A Michigan placeHot summers, cold snowy winters. Rain all year.
+Try it: cover the Place column. Read only the clues and guess which place is which. Why did the clues work?
+ Real world
+ Michigan and the Great Lakes
+Michigan surrounded by lakes.
+“The Great Lakes make Michigan weather milder near shore and snowier in some places.”
+ [SVG IMAGE] A rough sketch, not a map to scale. Lake water changes temperature slowly, which keeps shore towns milder and makes extra snow downwind of the lakes.Text version of this diagram
+A sketch of Lake Superior, Lake Huron and the Lower Peninsula with an arrow of cold air blowing over a lake. Lake water warms and cools slowly, so shores are milder, and cold air over warm lake water brings lake-effect snow.
+ Concept 5
+Designs can reduce weather-hazard harm
+ Solutions such as barriers, drains, and rules can reduce damage, but they cannot remove all risk.
+ Analogy
+ Helmet
+bicycle helmet.
+“A helmet does not stop falls. It reduces harm.”
+What matches what: the helmet is the design (a barrier, a safe room, a strong roof). A fall is the hazard (a flood, a tornado, a storm). Neither stops the hazard from happening. Both make the harm smaller.
+ Try it
+ Barrier test
+soil slope, water, cardboard/foil barriers.
+“Test barriers. Which one keeps soil in place?”
+You did this before / what is new: You tested erosion guards in 2-C; now the question is a design problem: which barrier reduces harm from a flood? The new measurement is spoonfuls of sediment moved, and you compare a no-barrier run with a cardboard fence and a grass model. One messy trial is not the finding: test each barrier several times the same way and compare before you claim.
+Predict first: Which will keep more soil in place, a cardboard fence or a grass patch?
+You need: a tray with soil piled at one end, a cup, a spoon, cardboard, foil, a piece of sod or grass.
+Tilt the tray a little. Pour one cup of water the same slow way each time.
+Run one trial with no barrier. Count spoonfuls of soil that washed to the low end.
+Add one barrier and repeat. Keep the water and slope the same.
+Run each barrier at least three times and take the middle number.
+What you should see: With no barrier you might move about 12 spoonfuls. A barrier should move fewer. Your numbers will differ.
+Why it matters: Real towns test designs like this before they build one to protect a river bank.
+ Data
+ Before/after erosion
+measured sediment with and without barrier.
+“Less sediment means the barrier helped.”
+ Try it
+ Claim frame
+sentence frame on paper.
+“I claim ___ reduces harm from ___ because our data show ___.”
+ Hands-on · Design or investigate
+Try it at home or in class
+ Test a flood-barrier design. Use the same amount of water each time. Compare how much soil moves. Then write: “I claim ___ reduces harm from flooding because our data show ___.”
+ [IMG: Photo of a plastic tray with a soil slope and a strip of grass at its base while someone pours water from a cup at the top.] A flood-barrier test: same amount of water each time, then compare how much soil moves.
+ [IMG: Illustration of a classroom flood-barrier test: a student pours water onto a soil slope with a grass strip while another records results and a teacher watches.] Testing a barrier: the same amount of water each time, then compare how much soil moves.
+ [SVG IMAGE] Spoonfuls of sediment moved: no barrier 8, cardboard fence 5, grass model 2.Text version of this graph
+Bar graph, Sediment moved by flood water. No barrier 8 spoonfuls, Cardboard fence 5 spoonfuls, Grass model 2 spoonfuls.
+ Try itWhat you need
+paper cup, ruler, straw, paper, tape, pencil, thermometer if possible, shallow tray, soil or sand, small cardboard or foil barriers, craft sticks, spoon.
+Safety: wash hands after soil or sand trays. Keep trays and water away from Chromebooks, wipe up spills, and let an adult control how much water is poured.
+ Try itWhat you do
+make a rain gauge and wind vane; record daily weather; graph class data or provided data; compare climate cards; test a flood barrier with the same amount of water each time.
+Make the rain gauge and wind vane and put them outside (15 minutes).
+Record the weather for a week: sky, wind direction, rain in cm.
+Make a bar graph from your numbers or the Michigan table (15 minutes).
+Read the three climate cards. Match each to a place (10 minutes).
+Test one barrier against no barrier with the same water each time (20 minutes).
+Notice: One day does not show climate. Many days, over many years, do.
+Why it matters: You use measurements to describe weather and to check whether a design reduces harm.
+ No time or no good weather? Use this data
+This data is a backup. It lets you practice reading evidence, but the standard expects you to collect your own when you can.
+daily or weekly weather calendar.
+typical average daily HIGH temperature by month for Detroit, Michigan, rounded to the nearest degree (a given year can differ by several degrees): Jan 32°F, Feb 35°F, Mar 45°F, Apr 58°F, May 69°F, Jun 79°F, Jul 83°F, Aug 81°F, Sep 74°F, Oct 62°F, Nov 50°F, Dec 38°F; precipitation about 2.0, 1.9, 2.4, 3.0, 3.0, 3.2, 3.1, 3.2, 3.0, 2.6, 2.7, 2.2 inches. Backup barrier dataset: no barrier moves 8 spoonfuls of sediment; grass model moves 2; cardboard fence moves 5. What is new here: 2-C counted finger widths of sand; this slope test counts spoonfuls and asks which barrier cuts harm from a flood. These are one run each, so a different tray can give different counts. Repeat each barrier at least three times and use the usual size of the difference, not one run. Other units (4.5, 5.4) use their own trays, so their numbers do not belong to this table. GUESS for exact numbers, STRONG for the seasonal pattern.
+ Near you: Lake-effect snow: cold air moves over warmer Great Lakes water, picks up moisture, and drops heavy snow on nearby land.
+ Check yourself
+What did you learn?
+ 0 of 4 correct
+ Words to know
+ weathershort-term condition of the air.
+climatetypical weather over a long time.
+temperaturehow hot or cold something is.
+precipitationrain, snow, sleet, or hail.
+windmoving air.
+seasonpart of the year with typical weather patterns.
+patternsomething that repeats.
+datainformation collected.
+hazardsomething that can cause harm.
+flood barriera design that slows or blocks flood water.
+ Tutor notes: misconceptions, standards, pacing
+ Pacing: five 30-minute sessions.
+ Common misconceptions to listen for:
+“Weather and climate are the same.” Correct: weather is short-term; climate is long-term.
+“One cold day means climate changed.” Correct: climate needs long-term patterns.
+“Seasons happen because Earth is closer to the Sun in summer.” Correct: tilt causes seasons; detailed cause comes later.
+“Clouds make cold.” Correct: clouds can block sunlight or trap heat.
+“Hazards cannot be reduced.” Correct: designs can reduce harm, but they cannot eliminate all risk.
+ Limits and cautions:
+This unit does not fully teach the water cycle; Unit 4 does that.
+It does not teach climate change; later units handle human impact.
+Cause of seasons is simplified here and handled more fully later.
+Barrier tests are models; real flood control involves engineering, land use, and public policy.
+ Michigan Science Standards this unit earnsCHECK 2: Standard codes not yet compared with the Michigan (MDE) document.:
+3-ESS2-1: Represent data to describe typical weather expected by month or season.
+3-ESS2-2: Obtain and combine information to describe climates in different regions.
+3-ESS3-1: Make a claim about the merit of a design solution that reduces the impacts of a weather-related hazard.
+3-5-ETS1-1: Define a design problem with criteria and constraints.
+3-5-ETS1-2: Generate and compare solutions.
+3-5-ETS1-3: Plan and carry out fair tests.
+ Connections: Builds on: K-B Sunlight, Weather, and Staying Safe; Unit 0: How Science Works. Builds toward: 5.4 Earth’s Spheres, Water, and Communities; Unit 4 Weather & the Water Cycle; Unit 6 Natural Hazards.
+After the lesson · Activity
+Play: Weather, Climate, and Hazards SortCHECK 3: Play this activity once: is it clear and fun? (weakest were K2.0, the Big Sort ones and the 5.2 gravity round).
+Sort short-term weather, long-term climate, and what reduces hazard harm.
+Keep exploring
+More lessons
+Before this: 3.1 Forces, Motion, and Magnets. Up next: 3.3 Life Cycles and Traits. Unit 0: How Science Works explains the method every Try it uses.
+Michigan Science Standards (performance expectations earned by this unit): 3-ESS2-1, 3-ESS2-2, 3-ESS3-1, 3-5-ETS1-1, 3-5-ETS1-2, 3-5-ETS1-3. Written for read-aloud and independent reading with a grown-up nearby; hands-on parts use cheap kit materials.

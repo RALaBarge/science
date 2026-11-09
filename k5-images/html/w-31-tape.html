@@ -3,14 +3,14 @@
  var mode=0,svg,say,timer=0,n=0;
  var POS=[[40,130,220,310,400],[40,150,240,305,340]];
  K.chips(box,['Slippery ice (no friction)','Real floor (friction)'],0,function(i){mode=i;idle();},'Surface');
- svg=K.svg(box,'0 0 480 170','A dot tape showing where a rolling ball is each second.');
+ svg=K.svg(box,'0 0 480 170','A tape showing where a rolling ball is each second, marked with circles.');
  K.btn(box,'Roll the ball',go);K.btn(box,'Reset',idle);
  say=K.say(box);
  function draw(k){var s=S.l(24,100,456,100,C.line,3);
   for(var i=0;i<k;i++){s+=S.c(POS[mode][i],100,9,i?C.blue:C.surf,C.ink,2.5)+S.t(POS[mode][i],130,i+' s',13,C.ink);}
   if(k>1)s+=S.a(POS[mode][0]+12,72,POS[mode][k-1]+4,72,C.muted,2.5,9);
   svg.innerHTML=s;}
- function idle(){clearInterval(timer);draw(0);say('Pick a surface, then press <b>Roll the ball</b>. A dot drops every second.');}
- function go(){clearInterval(timer);n=0;timer=setInterval(function(){n++;draw(n);if(n>=5){clearInterval(timer);say(mode===0?'<b>Equal gaps</b> between the dots mean a <b>steady speed</b>. That only happens when nothing slows the ball.':'The gaps get <b>smaller</b>, so the ball is <b>slowing down</b>. Friction on a real floor pushes against the motion.');}},600);}
+ function idle(){clearInterval(timer);draw(0);say('Pick a surface, then press <b>Roll the ball</b>. A mark drops every second.');}
+ function go(){clearInterval(timer);n=0;timer=setInterval(function(){n++;draw(n);if(n>=5){clearInterval(timer);say(mode===0?'<b>Equal distances</b> between the marks mean a <b>steady speed</b>. That only happens when nothing slows the ball.':'The distances between marks get <b>smaller</b>, so the ball is <b>slowing down</b>. Friction on a real floor pushes against the motion.');}},600);}
  idle();
 })();</script>

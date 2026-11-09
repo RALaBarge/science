@@ -5,33 +5,33 @@
    "id": "51-hero",
    "after": "hero",
    "kind": "image",
-   "file": "51-hero.webp",
-   "alt": "Photo of a sugar cube dissolving in a glass of clear water with grains swirling off it.",
-   "caption": "Sugar spreads out into the water. It is still there, in tiny pieces too small to see."
+   "file": "51-hero-b.webp",
+   "alt": "A sugar cube sitting in a glass of clear water, with white specks spreading out from it into the water.",
+   "caption": "A sugar cube spreads out into the water as it dissolves. Once it has dissolved, the sugar is still in the water, in tiny pieces too small to see."
   },
   {
    "id": "51-sep",
    "after": "kit",
    "kind": "image",
-   "file": "51-sep.webp",
-   "alt": "Photo of a science table with sand mixed with iron filings in a bowl, a magnet in a plastic bag pulling up the filings, a funnel with filter paper over a cup and a dark plate with white salt crystals.",
-   "caption": "The separation kit: magnet for iron, water and a filter for sand, and drying to get the salt back."
+   "file": "51-sep-b.webp",
+   "alt": "A science table with sand mixed with iron filings in a bowl, a magnet in a plastic bag pulling up the filings, a funnel with filter paper over a cup, and a dark plate with white salt crystals.",
+   "caption": "The separation kit: a magnet for iron, water and a filter for sand, and drying to get the salt back."
   },
   {
    "id": "51-lab",
    "after": "kit",
    "kind": "image",
-   "file": "51-lab.webp",
-   "alt": "Illustration of three people at a science table separating a mixture: one holds a magnet in a plastic bag, one pours water and one holds a funnel steady over a cup.",
-   "caption": "Separating a mixture takes steps: magnet for iron, water to dissolve the salt, a filter for the sand."
+   "file": "51-lab-b.webp",
+   "alt": "Three kids at a science table separating a mixture: one holds a magnet in a plastic bag, one pours water, and one holds a funnel steady over a cup.",
+   "caption": "Separating a mixture takes steps: a magnet for iron, water to dissolve the salt, and a filter for the sand."
   },
   {
    "id": "d-51-dissolve",
    "after": "s4",
-   "kind": "svg",
-   "file": "d-51-dissolve.svg",
-   "alt": "Four steps left to right. 1 Mix: salt grains and sand in a cup of water. 2 Stir: the salt dissolves, so the salt bits spread through the water as dots too small to see, and the sand stays at the bottom. 3 Filter: the sand stays on the filter paper and the salt water drips into the cup below. 4 Evaporate: the water leaves a dish and white salt crystals remain. Dissolved salt is not gone. Filtering takes out the sand, and evaporating brings the salt back.",
-   "caption": "Salt that dissolves is still in the water as bits too small to see. Filtering removes the sand, and evaporating leaves the salt behind."
+   "kind": "image",
+   "file": "51-dissolve.webp",
+   "alt": "Four panels left to right. Mix: sand and salt on the table by a cup of water. Stir: the water is clear and the sand has settled on the bottom. Filter: sand stays on the filter paper and clear salt water drips into the cup below. Evaporate: white salt crystals are left in a dish.",
+   "caption": "Four steps, left to right. 1 Mix: sand and salt in a cup of water. 2 Stir: the salt disappears into the water, and the sand settles on the bottom. 3 Filter: the sand stays on the filter paper, and clear salt water drips into the cup below. 4 Evaporate (the water turns into invisible gas and leaves): white salt crystals stay in the dish. Dissolved salt is not gone. Filtering takes out the sand, and evaporating brings the salt back."
   },
   {
    "id": "w-51-particles",
@@ -39,7 +39,7 @@
    "kind": "html",
    "file": "w-51-particles.html",
    "alt": "Interactive: twenty particles move as a solid, liquid or gas, and a temperature slider changes their speed but not their size.",
-   "caption": "Watch 20 particles in a solid, a liquid and a gas, and heat them."
+   "caption": "Watch 20 particles in a solid, a liquid, and a gas, and heat them."
   },
   {
    "id": "w-51-salt",
@@ -47,15 +47,15 @@
    "kind": "html",
    "file": "w-51-salt.html",
    "alt": "Interactive: step through mixing, stirring, filtering and evaporating salt and sand, with a zoom view that shows the dissolved salt bits.",
-   "caption": "Mix, stir, filter and evaporate, and zoom in on the salt."
+   "caption": "Mix, stir, filter, and evaporate. Then zoom in on the salt to see that it is still there."
   },
   {
    "id": "g-51-mass",
    "after": "s5",
    "kind": "svg",
    "file": "g-51-mass.svg",
-   "alt": "Grouped bar graph of mass in grams. Sealed cup of ice melting: 82 before, 82 after. Sealed bag with baking soda and vinegar: 45 before, 45 after. Each pair is the same height.",
-   "caption": "Mass before and after. The sealed cup of melting ice stays 82 g. The sealed bag with baking soda and vinegar stays 45 g. Each pair of bars is the same height: matter did not disappear."
+   "alt": "Grouped bar graph of sample mass in grams (not measured). Sealed cup of ice melting: 82 before, 82 after. Sealed bag with baking soda and vinegar: 45 before, 45 after. Each pair is the same height.",
+   "caption": "Sample data (not measured): mass before and after. The sealed cup of melting ice stays 82 g (about 3 ounces). The sealed bag with baking soda and vinegar stays 45 g (about 1 1/2 ounces). Each pair of bars is the same height: matter did not disappear."
   }
  ]
 }

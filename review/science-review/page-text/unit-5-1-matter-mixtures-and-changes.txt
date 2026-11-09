@@ -1,0 +1,229 @@
+REVIEW COPY: 3 things on this page need your call (highlighted neon green / badges). All flagsCHECK: Standard codes not yet compared with the Michigan (MDE) document. (jump)
+CHECK: Play this activity once: is it clear and fun? (weakest were K2.0, the Big Sort ones and the 5.2 gravity round). (jump)
+CHECK: NEW K-5: yeast and yogurt as chemical change; check that it is fair to call both chemical changes at grade 5. (jump)
+Matter, Mixtures, and Changes
+ [SVG IMAGE] 
+Skip to main content
+ Style ClassicRetro space
+ Grade 5 · Unit 5.1
+ Matter, Mixtures, and Changes
+ What is stuff made of, and how can we tell if it changed?
+ All matter is made of particles too small to see, and that idea explains a lot. This unit connects particles to solids, liquids and gases, uses properties to identify materials, separates mixtures such as salt and sand, and shows that when things change or dissolve the total amount of matter stays the same.
+ In this lesson
+Matter is made of tiny particles
+Solids, liquids, and gases act differently
+Properties help us identify materials
+Mixtures can be separated
+Changes can be physical or chemical, but matter is conserved
+Try it at home
+Check yourself
+Play: Matter, Mixtures, and Changes Sort
+ Look for the tags AnalogyDiagramTry itDataReal world
+ [IMG: Photo of a sugar cube dissolving in a glass of clear water with grains swirling off it.] Sugar spreads out into the water. It is still there, in tiny pieces too small to see.
+ Concept 1
+Matter is made of tiny particles
+ All matter is made of particles too small to see.
+ Analogy
+ LEGO bricks from far away
+a LEGO wall, then a zoomed-out view.
+“From far away it looks smooth. Up close it is made of pieces.”
+ [SVG IMAGE] A wall of bricks is a model of matter: smooth from far away, many small pieces up close. Real particles are far too small to see even with a classroom microscope.Text version of this diagram
+Left: a wall of blocks seen from far away looks like one smooth block. Right: the same wall zoomed in shows it is made of many small bricks. Matter is similar: it looks smooth but is made of tiny particles.
+ Diagram
+ Particle boxes
+solid particles close together, liquid particles sliding, gas particles far apart.
+“Particles in a solid are close. Particles in a liquid can slide. Particles in a gas spread out.”
+ [SVG IMAGE] A model of particles too small to see. In a solid they are packed. In a liquid they slide. In a gas they are far apart.Text version of this diagram
+Three boxes. Solid: particles packed in rows, jiggling in place. Liquid: particles touching but sliding past each other. Gas: particles far apart, moving fast in all directions. They are the same particles; only spacing and movement differ.
+ Try it
+ Air takes space
+a zip bag being blown up and sealed.
+“Blow air into a bag. Seal it. Press it. The air takes space.”
+Predict first: Will the sealed bag feel empty or full? Can you squash it flat?
+You need: a zip bag.
+Open the bag and sweep it through the air. Zip it nearly closed.
+Blow air in and seal it quickly.
+Press on it with your hands. Try to squash it flat.
+What you should see: The bag stays puffy. You can squeeze it a little but not flat, because air takes up space.
+Why it matters: Air is a gas, and gases are matter too even though we cannot see them.
+ Data
+ Air has mass
+two balloons on a straw balance, one inflated.
+“The inflated balloon tips down a little. If it does not, try a pumped-up ball and a flat ball on a kitchen scale. Air is matter.”
+ [SVG IMAGE] A full balloon has more matter in it than a flat one, so its side tips down. The tip is small, so be gentle and be patient; a kitchen scale and a ball can show it too.Text version of this diagram
+A stick balanced on a stand. A full balloon hangs from one end and a flat balloon from the other end. The side with the full balloon tips down a little.
+ Concept 2
+Solids, liquids, and gases act differently
+ The state of matter depends on how particles move and stay together.
+Watch 20 particles in a solid, a liquid and a gas, and heat them.
+ Diagram
+ Three cups
+ice cube, water, and water vapor (the gas you cannot see).
+“Ice keeps its shape. Water takes the cup’s shape. Water vapor, an invisible gas, spreads out. The white cloud over a kettle is tiny droplets.”
+ [SVG IMAGE] The same water can be a solid, a liquid or a gas. Water vapor is invisible. The white cloud over a kettle is tiny droplets, not vapor.Text version of this diagram
+Three cups. The first holds an ice cube that keeps its own shape. The second holds liquid water that fills the bottom of the cup. The third has a few scattered dots for water vapor, an invisible gas that spreads through the whole cup.
+ Try it
+ Safe warming
+ice cube in a cup, then water. Adult may help with warm water.
+“Warm ice melts. It is still water.”
+ Real world
+ Michigan snow
+snowy yard melting.
+“Snow is solid water. When it warms, it becomes liquid water.”
+ [SVG IMAGE] Snow is solid water. When it warms, it melts into liquid water. It is still water.Text version of this diagram
+Three steps left to right: a snowflake (solid water), a drop (liquid water) after warming, with an arrow labeled warm between them. It is still water at every step.
+ Concept 3
+Properties help us identify materials
+ We can identify materials by observing properties like hardness, magnetism, solubility, and texture.
+ Try it
+ Property sort
+objects: paper clip, eraser, wood chip, plastic bead.
+“Sort by hard/soft, magnetic/not magnetic, sinks/floats.”
+Predict first: Which of the four things will be magnetic? Which will float?
+You need: a paper clip, an eraser, a wood chip, a plastic bead, a magnet, a bowl of water.
+Hold the magnet to each object. Is it magnetic? Write yes or no.
+Drop each object in water. Does it sink or float?
+Press each object. Hard or soft?
+What you should see: The paper clip is magnetic and sinks. The wood chip floats. The eraser is soft. The plastic bead is hard and usually sinks.
+Why it matters: Properties are clues that tell materials apart.
+ Data
+ Property table
+table with columns: Object, Magnetic?, Sinks?, Dissolves?
+“Properties are clues.”
+ObjectMagnetic?Sinks?Dissolves?
+Paper clipyesyesno
+Erasernono (floats on many)no
+Wood chipnonono
+Plastic beadnoyes (most)no
+Saltnoyesyes
+Sample answers. Test your own and fill your own table.
+ Real world
+ Recycling
+bins with paper, metal, plastic.
+“Recycling uses properties to sort materials.”
+ [SVG IMAGE] Recycling plants sort by properties: a magnet can pull out steel cans; water or air can separate light plastic from heavy things.Text version of this diagram
+Three recycling bins labeled paper, metal and plastic with examples in each. A note says properties like magnetism and floating help sort materials.
+ Concept 4
+Mixtures can be separated
+ A mixture keeps the properties of its parts, so we can often separate it.
+ [SVG IMAGE] Salt that dissolves is still in the water as bits too small to see. Filtering removes the sand, and evaporating leaves the salt behind.Text version of this diagram
+Four steps left to right. 1 Mix: salt grains and sand in a cup of water. 2 Stir: the salt dissolves, so the salt bits spread through the water as dots too small to see, and the sand stays at the bottom. 3 Filter: the sand stays on the filter paper and the salt water drips into the cup below. 4 Evaporate: the water leaves a dish and white salt crystals remain. Dissolved salt is not gone. Filtering takes out the sand, and evaporating brings the salt back.
+Mix, stir, filter and evaporate, and zoom in on the salt.
+ Analogy
+ Trail mix
+raisins, peanuts, cereal.
+“You can pick trail mix apart. The pieces do not become one new thing.”
+ Try it
+ Sand and salt
+cup with sand and salt, water, filter, spoon.
+“Add water. Salt dissolves. Sand does not. Filter the sand.”
+ Data
+ Before/after table
+drawings of mixture, filtered sand, salt water.
+“The salt is still there, even when we cannot see it.”
+StageWhat you seeWhat is true
+Mixture (sand + salt + water)cloudy, grittysand and salt are both still there
+After filteringclear water, sand on the papersand separated; salt is dissolved in the water
+After the water drieswhite crystals leftthe salt came back
+ Concept 5
+Changes can be physical or chemical, but matter is conserved
+ Heating, cooling, mixing, and dissolving may change appearance, but total matter stays the same; some changes make new substances.
+ [SVG IMAGE] Mass before and after. The sealed cup of melting ice stays 82 g. The sealed bag with baking soda and vinegar stays 45 g. Each pair of bars is the same height: matter did not disappear.Text version of this graph
+Grouped bar graph of mass in grams. Sealed cup of ice melting: 82 before, 82 after. Sealed bag with baking soda and vinegar: 45 before, 45 after. Each pair is the same height.
+ Diagram
+ Physical vs chemical
+ice melting vs fizzing bag.
+“Melting is still water. Fizzing can make a new gas.”
+ [SVG IMAGE] A physical change changes form or shape, but not what the stuff is. A chemical change makes new stuff.Text version of this diagram
+Two panels. Physical change: ice melts into water, which is still water and can freeze again. Chemical change: vinegar and baking soda in a bag make bubbles of new gas, a new substance.
+ Try it
+ Sealed bag reaction
+zip bag with vinegar and baking soda sealed inside.
+“Mix inside the bag. The bag puffs with gas. If sealed, nothing escapes.”
+Predict first: What will happen when the vinegar and baking soda meet? Will the bag weigh more, less, or the same?
+You need: a zip bag, 2 spoons baking soda, a small cup with 1/4 cup vinegar, a kitchen scale, safety glasses.
+Put the baking soda in the bag. Stand the cup of vinegar upright inside without spilling it. Zip the bag.
+Weigh the whole bag and write the number.
+Tip the cup over to mix inside the bag. Watch.
+Weigh the sealed bag again.
+What you should see: The bag puffs up and the number on the scale stays the same (or nearly).
+Why it matters: Matter is not lost in a change. The gas that formed is still in the bag.
+ Data
+ Balance stays level
+simple hanger balance before and after mixing.
+“The gas has mass. The total stays the same.”
+ Real world
+ Rust
+rusty bike.
+“Iron changes into rust. It is a new substance.”
+ [SVG IMAGE] Iron slowly joins with oxygen and water to make rust, a new substance. Rust is flaky and not like iron.Text version of this diagram
+A shiny iron nail on the left and a rusty, orange-brown nail on the right with an arrow between them labeled air and water over time.
+ Real world
+ Bread dough and yogurtCHECK 3: NEW K-5: yeast and yogurt as chemical change; check that it is fair to call both chemical changes at grade 5.
+dough that puffs up; milk that turns into yogurt.
+“Yeast is a tiny living thing that eats sugar in dough and makes gas bubbles, so the dough rises. Other tiny living things change milk into thick, sour yogurt. New substances are made, so these are chemical changes.”
+ Hands-on · Design or investigate
+Try it at home or in class
+ Design a method to separate a mixture of sand, salt, and small iron filings. Use a magnet for iron, water to dissolve salt, filtering for sand, then let the salty water dry on a dark plate so the salt comes back. Record steps and evidence. Criteria: separate all three materials. Constraints: one cup, one filter, one magnet, limited water.
+ [IMG: Photo of a science table with sand mixed with iron filings in a bowl, a magnet in a plastic bag pulling up the filings, a funnel with filter paper over a cup and a dark plate with white salt crystals.] The separation kit: magnet for iron, water and a filter for sand, and drying to get the salt back.
+ [IMG: Illustration of three people at a science table separating a mixture: one holds a magnet in a plastic bag, one pours water and one holds a funnel steady over a cup.] Separating a mixture takes steps: magnet for iron, water to dissolve the salt, a filter for the sand.
+ Try itWhat you need
+zip bags, cups, spoons, salt, sugar, sand, coffee filters, rubber bands, small bags of baking soda and vinegar, two balloons, straw or hanger for balance, paper clips, small magnet, paper towels.
+Safety: wash hands after sand/soil/salt work; adult handles warm water; keep magnets away from Chromebooks; keep iron filings in a closed bag and hands away from eyes; use a spoonful of baking soda and a splash of vinegar so the sealed bag puffs without popping; seal it over a tray and look away from the bag while it fizzes. An open bag lets gas escape, so its mass drops: that is a leak, not proof that gas weighs nothing.
+ Try itWhat you do
+Mix and separate sand/salt; observe dissolving; test air takes space; do sealed baking soda-vinegar bag and compare balance before/after. 
+ You did this before / what is new: You sorted materials in 2-A; in 5.1 you use property tests to identify unknowns and record a data table. 
+ You did this before / what is new: You used fair-test habits in Unit 0; here you use repeated measurements and graphs to show matter is conserved.
+Blow up a zip bag and press it. Hang two balloons on a stick to see whether air has mass (10 minutes).
+Test four objects for magnetic, sink or float, hard or soft (10 minutes).
+Stir sand and salt in water, filter out the sand, then let the water dry on a dark plate (20 minutes plus drying).
+Weigh a sealed bag before and after the vinegar and baking soda react (10 minutes).
+Notice: The same matter is there after a change. Salt returns after the water dries. The sealed bag weighs the same.
+Why it matters: These tests show matter is made of particles and is not lost when it changes.
+ No time or no good weather? Use this data
+This data is a backup. It lets you practice reading evidence, but the standard expects you to collect your own when you can.
+Real observation log: If a scale is available, weigh a sealed cup of ice before and after melting, then graph the before/after mass. Provided dataset if no scale is available (partial path: analysis of provided data, not measuring). | Test | Before | After | |---|---:|---:| | Sealed cup of ice melting | 82 g | 82 g | | Sealed bag with baking soda + vinegar | 45 g | 45 g | Child reads: “The numbers stay the same. Matter did not disappear.” Students graph two pairs of bars. The bars are the same height. STRONG
+ Near you: Great Lakes sand dunes and road salt: sand can be separated by size; salt dissolves in water and can change freezing/melting.
+ Check yourself
+What did you learn?
+ 0 of 4 correct
+ Words to know
+ matteranything that has mass and takes space.
+particlea tiny piece of matter.
+solidmatter with a fixed shape.
+liquidmatter that flows and takes the shape of its container.
+gasmatter that spreads out to fill space.
+mixturetwo or more substances mixed but not chemically joined.
+solutiona mixture where one substance dissolves.
+propertya clue like color, hardness, or magnetism.
+dissolvewhen a substance breaks into tiny pieces in a liquid.
+conserveto stay the same total amount.
+ Tutor notes: misconceptions, standards, pacing
+ Pacing: five 30-minute sessions.
+ Common misconceptions to listen for:
+“Air is nothing.” Correct: air is matter; it has mass and takes space.
+“Only things you can see are matter.” Correct: matter includes things you cannot see, like air.
+“Dissolved stuff disappears.” Correct: it is still there as tiny particles.
+“Dissolved stuff becomes air or water.” Correct: it remains as the same substance, mixed in tiny pieces.
+“Dissolving makes a new substance.” Correct: dissolving is a mixture; the substances stay themselves.
+“Particles get bigger when heated.” Correct: particles move more; the substance may expand.
+“Melting makes a new substance.” Correct: melting is a physical change; it is still the same substance.
+“Gas has no weight.” Correct: gas has mass.
+ Limits and cautions:
+Without a good balance, conservation of mass is harder to show. A homemade hanger balance helps but is less precise. The full path is weighing and graphing your own measurements; the provided dataset is only a partial path (graphing given numbers), not measuring.
+Chemical reactions are simplified: students observe signs of change but do not identify all products.
+This unit does not cover temperature scales or detailed heat transfer; those belong in later energy units.
+If magnets are used, keep them away from Chromebooks and cards.
+ Michigan Science Standards this unit earnsCHECK 1: Standard codes not yet compared with the Michigan (MDE) document.:
+5-PS1-1: Develop a model that matter is made of particles too small to see.
+5-PS1-2: Measure and graph quantities to show that total weight is conserved during heating, cooling, or mixing. Full path: students weigh before and after and graph their own measurements. Partial path: the provided mass dataset, where students only graph provided data (analysis of provided data) and do not measure.
+5-PS1-3: Identify materials by properties.
+5-PS1-4: Investigate whether mixing substances makes new substances.
+ Connections: Builds on: K–5 Unit 0: How Science Works; 2-A Materials and Their Uses. Builds toward: 5.3 Energy and Matter in Ecosystems; Unit 2 Thermal Energy; Unit 10 States of Matter; 7.1 Structure & Properties of Matter; 7.2 Chemical Reactions & Matter.
+After the lesson · Activity
+Play: Matter, Mixtures, and Changes SortCHECK 2: Play this activity once: is it clear and fun? (weakest were K2.0, the Big Sort ones and the 5.2 gravity round).
+Sort how materials act, what kind of change you see, and what the mass evidence shows.
+Keep exploring
+More lessons
+Up next: 5.2 Gravity, Stars, and Sky Patterns. Unit 0: How Science Works explains the method every Try it uses.
+Michigan Science Standards (performance expectations earned by this unit): 5-PS1-1, 5-PS1-2, 5-PS1-3, 5-PS1-4. Written for read-aloud and independent reading with a grown-up nearby; hands-on parts use cheap kit materials.

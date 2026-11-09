@@ -15,31 +15,15 @@
    "kind": "image",
    "file": "2a-ice.webp",
    "alt": "Photo of ice cubes melting in a glass bowl with a puddle of water, and a pat of butter softening in a pan.",
-   "caption": "Warming melts ice and butter. These changes can be undone by cooling."
-  },
-  {
-   "id": "w-2a-bins",
-   "after": "s1",
-   "kind": "html",
-   "file": "w-2a-bins.html",
-   "alt": "Interactive: pick a property bin and tap the items that belong in it, then check your bin. An item can be in more than one bin.",
-   "caption": "Sort everyday things into waterproof, bendy and hard bins."
+   "caption": "Warming melts ice and softens butter. Both are physical changes, and cooling can change them back."
   },
   {
    "id": "w-2a-pieces",
    "after": "s3",
    "kind": "html",
    "file": "w-2a-pieces.html",
-   "alt": "Interactive: four numbered blocks are rearranged into different shapes while the count stays four.",
-   "caption": "Build four pieces into a tower, a house, a train or a square."
-  },
-  {
-   "id": "g-2a-rainproof",
-   "after": "kit",
-   "kind": "svg",
-   "file": "g-2a-rainproof.svg",
-   "alt": "Table drawn with colored dots. Plastic wrap: dry, dry, dry. Foil: dry, dry, dry. Cloth: damp, wet, wet. Paper: wet, wet, wet.",
-   "caption": "Rainproof Note backup data. Plastic wrap and foil stayed dry all 3 tries; cloth got damp then wet; paper was wet every time."
+   "alt": "Interactive: five numbered blocks are rearranged into different shapes while the count stays five.",
+   "caption": "Build five blocks into a tower, a house, a train, or a plus sign."
   }
  ]
 }

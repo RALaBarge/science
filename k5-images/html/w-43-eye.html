@@ -2,7 +2,7 @@
 <script>(function(){var box=document.getElementById('w43eye'),K=K5W,S=K.S,C=K.C;
  var lamp=true,wrong=false,svg,say;
  K.chips(box,['Lamp on','Lamp off'],0,function(i){lamp=i===0;draw();},'Lamp');
- K.chips(box,['How seeing works','A wrong idea: eye beams'],0,function(i){wrong=i===1;draw();},'Idea');
+ K.chips(box,['How seeing works','A wrong idea: light from the eye'],0,function(i){wrong=i===1;draw();},'Idea');
  svg=K.svg(box,'0 0 480 230','A lamp, an apple and an eye.');
  say=K.say(box);
  function draw(){
@@ -13,11 +13,11 @@
   if(!wrong){
    if(lamp)s+=S.a(78,84,206,134,C.beam,4,12)+S.a(266,150,366,150,C.blue,4,12)+S.t(232,92,'1 light from the lamp hits the apple',11,C.ink,'start')+S.t(316,136,'2 light bounces into the eye',11,C.ink,'middle');
   }else{
-   s+=S.a(366,150,270,150,C.bad,3,10).replace('<line ','<line stroke-dasharray="6 5" ')+S.t(316,136,'eye beam?',12,C.bad,'middle',700)+S.l(300,134,330,166,C.bad,4)+S.l(330,134,300,166,C.bad,4);
+   s+=S.a(366,150,270,150,C.bad,3,10).replace('<line ','<line stroke-dasharray="6 5" ')+S.t(316,136,'light from eye?',12,C.bad,'middle',700)+S.l(300,134,330,166,C.bad,4)+S.l(330,134,300,166,C.bad,4);
   }
   svg.innerHTML=s;
   say(wrong?'<b>This is a wrong idea.</b> Eyes do <b>not</b> shoot out beams. Nothing leaves the eye. Turn the lamp off: the apple is still not seen, which shows the light has to come from somewhere else first.':lamp?'Light from the lamp <b>hits the apple</b> and <b>bounces into the eye</b>. That is how we see it. The apple does not make its own light and nothing comes out of the eye.':'With the lamp off there is no light to bounce, so you cannot see the apple. We see things because <b>light comes in</b>.');
-  svg.setAttribute('aria-label',wrong?'A wrong idea of an eye beam, crossed out.':lamp?'Light goes from the lamp to the apple and bounces into the eye.':'The lamp is off, so no light reaches the eye.');
+  svg.setAttribute('aria-label',wrong?'A wrong idea of light coming out of the eye, crossed out.':lamp?'Light goes from the lamp to the apple and bounces into the eye.':'The lamp is off, so no light reaches the eye.');
  }
  draw();
 })();</script>

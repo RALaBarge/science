@@ -5,7 +5,7 @@
  var BARE=[60,90,40,110,70,130,50,100,80,120,45,95,75,105],HELD=[0,0,22,0,0,0,0,18,0,0,0,25,0,0];
  K.chips(box,['Bare sand','Sand with grass'],0,function(i){grass=i;idle();},'Ground');
  svg=K.svg(box,'0 0 480 200','A mound of sand with wind blowing across it.');
- K.btn(box,'Blow the wind',go);K.btn(box,'Reset',idle);
+ K.btn(box,'Start the wind',go);K.btn(box,'Reset',idle);
  say=K.say(box);
  function draw(p){
   var s=S.l(20,170,460,170,C.ink,3)+'<path d="M160 170 Q240 105 320 170Z" fill="#e0c389" stroke="'+C.ink+'" stroke-width="2"/>',moved=0;
@@ -14,7 +14,7 @@
   if(p>0&&p<1)for(var j=0;j<4;j++)s+=S.a(120,70+j*22,190+30*j,70+j*22,C.blue,2.5,8);
   svg.innerHTML=s;return moved;
  }
- function idle(){clearInterval(timer);draw(0);say('Pick the ground, then press <b>Blow the wind</b>.');}
- function go(){clearInterval(timer);t=0;timer=setInterval(function(){t+=.04;var m=draw(Math.min(1,t));if(t>=1){clearInterval(timer);say(grass?'With grass, only <b>'+m+' of 14</b> grains moved, and not far. Plant roots and blades hold the sand and slow the wind near the ground.':'On bare sand, <b>'+m+' of 14</b> grains blew away. Wind moves sand little by little, and bare sand has nothing to stop it.');}},30);}
+ function idle(){clearInterval(timer);draw(0);say('Pick the ground, then press <b>Start the wind</b>.');}
+ function go(){clearInterval(timer);t=0;timer=setInterval(function(){t+=.04;var m=draw(Math.min(1,t));if(t>=1){clearInterval(timer);say(grass?'With grass, only <b>'+m+' of 14</b> grains moved, and not far. Plant roots and blades hold the sand and slow the wind near the ground.':'On bare sand, <b>'+m+' of 14</b> grains moved away. Wind moves sand little by little, and bare sand has nothing to stop it.');}},30);}
  idle();
 })();</script>
