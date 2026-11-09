@@ -61,7 +61,10 @@ function anchor(html, after, page) {
   const [from, end] = sectionRange(html, after);
   const p = /<p class="idea">[\s\S]*?<\/p>/.exec(html.slice(from, end));
   if (!p) throw new Error(page + ': no idea line in ' + after);
-  return from + p.index + p[0].length;
+  let at = from + p.index + p[0].length;
+  const cx = /^\s*<p class="ctx"[^>]*>[\s\S]*?<\/p>/.exec(html.slice(at, end));
+  if (cx) at += cx[0].length; // keep the background paragraph above the figures
+  return at;
 }
 const byPage = {};
 for (const f of figs) (byPage[f.page] ||= []).push(f);

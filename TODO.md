@@ -17,10 +17,10 @@ Plan: one lead agent splits the work by grade folder, one sub-agent per folder, 
 
 ## New units (written 2026-11-05, merged to main)
 
-7.10 Acids & Bases, 7.11 Nutrition, Health & Disease, 8.10 Simple Machines & Work, 8.11 Climate Evidence & Change and 6th Unit 15 Data & Statistics are written, built from the specs in `docs/new-units/` with `make_unit.py`, and checked by Phi-4. Still open:
+7.10 Acids & Bases, 7.11 Nutrition, Health & Disease, 8.11 Climate Evidence & Change and 6th Unit 15 Data & Statistics are written, built from the specs in `docs/new-units/` with `make_unit.py`, and checked by Phi-4. Simple machines moved from 8.10 to K-5 Unit 3.5 in November 2026, so 8th grade runs 8.1 to 8.9 then 8.11 (no 8.10). Still open:
 
 - A human science read of all five.
-- A student run of the 8.10 and 8.11 tutor-note activities.
+- A student run of the 8.11 tutor-note activities and the K-5 Unit 3.5 Simple Machines activities.
 - Add them to the question bank and the arcade.
 
 High school is out of scope.

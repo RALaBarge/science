@@ -163,5 +163,93 @@
     "credit": "NASA and ESA (public domain)."
    }
   ]
+ },
+ {
+  "id": "h8c-88-zoom",
+  "page": "unit-8.8-genetics-and-heredity.html",
+  "after": "s1",
+  "items": [
+   {
+    "file": "h8c-88-zoom-1-body.webp",
+    "alt": "A cartoon girl standing in a park.",
+    "year": "1 Body",
+    "caption": "A person is made of trillions of cells.",
+    "credit": "",
+    "w": 800,
+    "h": 514
+   },
+   {
+    "file": "h8c-88-zoom-2-cell.webp",
+    "alt": "A pink round cell with a purple nucleus and small coloured organelles.",
+    "year": "2 Cell",
+    "caption": "Zoom into one cell: it has a nucleus in the middle and small parts called organelles around it.",
+    "credit": "",
+    "w": 800,
+    "h": 514
+   },
+   {
+    "file": "h8c-88-zoom-3-nucleus.webp",
+    "alt": "A cell with a large nucleus containing four blue X-shaped chromosomes.",
+    "year": "3 Nucleus",
+    "caption": "Inside the nucleus, DNA is packed into chromosomes.",
+    "credit": "",
+    "w": 800,
+    "h": 514
+   },
+   {
+    "file": "h8c-88-zoom-4-chromosome.webp",
+    "alt": "A single X-shaped chromosome with striped bands.",
+    "year": "4 Chromosome",
+    "caption": "A copied chromosome has the classic X shape: two identical halves joined in the middle.",
+    "credit": "",
+    "w": 800,
+    "h": 514
+   },
+   {
+    "file": "h8c-88-zoom-5-dna.webp",
+    "alt": "A twisting double helix of blue and orange strands joined by coloured rungs.",
+    "year": "5 DNA",
+    "caption": "Unwind a chromosome and you find DNA: a double helix whose rungs are the letters A, T, C and G.",
+    "credit": "Illustration made with an AI image model (cartoon style, not to scale).",
+    "w": 800,
+    "h": 514
+   }
+  ]
+ },
+ {
+  "id": "h8c-89-beetles",
+  "page": "unit-8.9-natural-selection-and-common-ancestry.html",
+  "after": "s1",
+  "file": "h8c-89-beetles-grass.webp",
+  "maxw": 720,
+  "w": 800,
+  "h": 450,
+  "alt": "A grassy lawn where leaf-green beetles are almost invisible among the blades while four dark brown beetles stand out clearly.",
+  "caption": "Camouflage in action: on green grass a bird finds brown beetles easily and misses the green ones, so green beetles are more likely to survive and have young.",
+  "credit": "Illustration made with an AI image model (cartoon style, not to scale)."
+ },
+ {
+  "id": "h8c-89-finch",
+  "page": "unit-8.9-natural-selection-and-common-ancestry.html",
+  "after": "s2",
+  "file": "h8c-89-finch-beaks.webp",
+  "maxw": 720,
+  "w": 800,
+  "h": 450,
+  "alt": "Three finch heads in profile in a row, with a slim shallow beak on the left, a medium beak in the middle and a very deep tall beak on the right.",
+  "caption": "Beak depth is how tall the beak is from top to bottom. Left to right: shallow, medium and deep. Deeper beaks crack harder seeds. Schematic drawing, not to scale.",
+  "credit": "Illustration made with an AI image model (cartoon style, not to scale)."
+ },
+ {
+  "id": "h8c-89-tree",
+  "page": "unit-8.9-natural-selection-and-common-ancestry.html",
+  "after": "hero",
+  "file": "h8c-89-tree-of-life.webp",
+  "maxw": 720,
+  "w": 800,
+  "h": 450,
+  "alt": "A leafy tree whose trunk splits into branches that split again, with small plant, animal and fungus shapes among the leaves.",
+  "caption": "The tree of life. All living things trace back to one common ancestor at the trunk; each time a group splits, the two branches change on their own, and every branch tip is a living group.",
+  "credit": "Illustration made with an AI image model (cartoon style, not to scale)."
  }
 ]

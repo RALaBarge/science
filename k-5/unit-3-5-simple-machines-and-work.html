@@ -1,4 +1,4 @@
-<title>Simple Machines and Work</title>
+<title>Simple Machines</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
 /* Layout concept: one long lesson column. Each concept opens with a one-sentence big idea, then a grid of labelled visual aids
@@ -283,14 +283,15 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 </script>
 <header class="hero">
   <div class="styleswitch" id="styleSwitch" role="group" aria-label="Page style">Style <button class="chip" type="button" data-style="classic" aria-pressed="false">Classic</button><button class="chip" type="button" data-style="retro" aria-pressed="true">Retro space</button></div>
-  <p class="kicker">Eighth grade science · Unit 8.10</p>
-  <h1>Simple Machines &amp; Work</h1>
-  <p class="lede">A crowbar, a ramp, a pulley and a bike gear all do the same job: they let a small force do a big task, at a price. This unit defines <b>work</b> in the physics sense, builds a lever, a ramp and a pulley you can adjust, and shows the price every machine charges. Use the fair-test steps from <b>Unit 0: How Science Works</b> when you compare designs.</p>
-  <p class="bridge"><b>Where we left off:</b> Unit 8.1 covered forces and Unit 8.2 covered energy transformation and conservation. Work is how energy is transferred by a force moving something. Machines are where those ideas meet design: how do you do a job with less effort, and what does that cost?</p>
-  <nav class="toc" aria-label="In this unit"><h2>In this unit</h2><ol><li><a href="#s1">Work</a></li><li><a href="#s2">Levers</a></li><li><a href="#s3">Ramps and pulleys</a></li><li><a href="#s4">No free work</a></li><li><a href="#s5">Check yourself</a></li></ol></nav>
-  <div class="hero-art"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 220" role="img" aria-label="A lever, a ramp and a pulley, each lifting a load: all trade a smaller force for a longer distance">
+  <p class="kicker">Grade 3 · Unit 3.5</p>
+  <h1>Simple Machines</h1>
+  <p class="lede">How can a ramp, a seesaw or a rope on a flagpole make a job easier?</p>
+  <p class="intro">A simple machine is a tool with few or no moving parts that helps you push or pull. There are six: the lever, the ramp, the wedge, the screw, the wheel and axle, and the pulley. You will find them at home, at school and around Michigan. A machine can change how hard you push and which way you push. It cannot give you a free job: you pay by pushing over a longer way. Read it together with a grown-up, then try the activities.</p>
+  <nav class="toc" aria-label="In this lesson"><h2>In this lesson</h2><ol><li><a href="#s1">What a machine does</a></li><li><a href="#s2">Levers and seesaws</a></li><li><a href="#s3">Ramps, wedges and screws</a></li><li><a href="#s4">Wheels and pulleys</a></li><li><a href="#kit">Try it at home or in class</a></li><li><a href="#check">Check yourself</a></li></ol></nav>
+  <p class="howto">Look for these tags: <span class="tag analogy">Analogy</span> <span class="tag diagram">Diagram</span> <span class="tag try">Try it</span> <span class="tag data">Data</span> <span class="tag real">Real world</span></p>
+  <div class="hero-art"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 220" role="img" aria-label="A lever, a ramp and a pulley, each lifting a load with a small push">
   <title>Three simple machines</title>
-  <desc>A seesaw-style lever with the fulcrum close to the load, a ramp that raises a crate over a long slope, and a pulley with two rope sections holding up a load. Each shows a short arrow for the force you push and a long arrow for the distance you move.</desc>
+  <desc>A seesaw-style lever with the pivot close to the load, a ramp that raises a crate over a long slope, and a pulley with a rope holding up a load. Each shows a short arrow for the push you use.</desc>
   <rect x="8" y="8" width="624" height="204" rx="16" style="fill:var(--surface);stroke:var(--line);stroke-width:2"/>
   <g transform="translate(24 20)">
     <path d="M10 130 L180 70" style="stroke:var(--ink);stroke-width:6;stroke-linecap:round"/>
@@ -318,44 +319,172 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 </header>
 
 <main>
-<section class="sec" id="s1"><div><p class="kicker">Concept 1 · Work, force and distance</p><h2>Work is force times distance</h2></div><p class="idea">In physics, <mark>work</mark> is done when a <mark>force</mark> moves an object in the direction of the force: <b>work = force &times; distance</b>. With force in newtons and distance in meters, work is in <mark>joules</mark> (1 N &times; 1 m = 1 J). Holding a heavy box still, or carrying it level, does no work on it in this sense because it does not move in the direction of the force.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Money spent</h3><p class="cap">Work is like energy spent. Pushing twice as hard over the same distance spends twice as much. Pushing the same hard over twice the distance also spends twice as much.</p><p>It breaks down because people get tired from holding a box too, even though no work is done on it. Muscles use energy to hold tension even when nothing moves.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Work calculator</h3><div class="ctl"><label for="wkF">Force: <span id="wkFV"></span> N</label><input id="wkF" type="range" min="0" max="500" step="10" value="100"></div><div class="ctl"><label for="wkD">Distance moved: <span id="wkDV"></span> m</label><input id="wkD" type="range" min="0" max="10" step="0.5" value="2"></div><div class="stage"><svg id="wkSvg" viewBox="0 0 480 200" role="img" aria-label="A rectangle whose width is distance and height is force; its area is the work"></svg></div><p class="readout" id="wkR" aria-live="polite"></p></article><article class="aid wide"><span class="tag data">Data</span><h3>Rough amounts of work</h3><div class="tw"><table class="tbl" style="min-width:560px"><thead><tr><th>Task</th><th>Force</th><th>Distance</th><th>Work</th></tr></thead><tbody><tr><td>Lift a 1 kg apple 1 m</td><td>about 10 N (the weight)</td><td>1 m</td><td>about 10 J</td></tr><tr><td>Lift a 20 kg backpack onto a table 0.8 m high</td><td>about 200 N</td><td>0.8 m</td><td>about 160 J</td></tr><tr><td>Climb a 3 m flight of stairs (40 kg student)</td><td>about 400 N</td><td>3 m</td><td>about 1,200 J</td></tr><tr><td>Hold a 10 kg box still for a minute</td><td>about 100 N</td><td>0 m</td><td>0 J</td></tr></tbody></table></div><p class="cap">Weight is mass times 9.8 N per kg, rounded to 10 N per kg here. Work against gravity equals the weight times the height gained.</p></article><article class="aid"><span class="tag try">Try it</span><h3>Work or no work?</h3><p class="cap"><b>Test:</b> does the force move the object in the direction of the force? If yes, work = force &times; distance. If the object does not move, or moves at right angles to the force, that force does no work. Look at four examples first, then sort the six below.</p><div class="quad" style="grid-template-columns:repeat(2,minmax(0,1fr))"><div><h4>Holding a suitcase</h4><svg viewBox="0 0 200 150" role="img" aria-label="Holding a suitcase: the person holds a suitcase still: an upward force but no movement"><title>Holding a suitcase</title><desc>the person holds a suitcase still: an upward force but no movement</desc><path d="M10 140 H190" style="stroke:var(--ink);stroke-width:2.5"/><circle cx="70" cy="40" r="9" style="fill:var(--surface);stroke:var(--ink);stroke-width:2.5"/><path d="M70 49 V88 M70 88 l-10 30 M70 88 l10 30" style="stroke:var(--ink);stroke-width:2.5;stroke-linecap:round;fill:none"/><rect x="86" y="86" width="30" height="24" rx="3" style="fill:var(--absorb)"/><path d="M101 84 L101 52" marker-end="url(#mReflect)" style="stroke:var(--reflect);stroke-width:4"/><text x="130" y="74" font-size="10" text-anchor="start">force up</text><text x="100" y="12" font-size="11" text-anchor="middle">no movement: 0 J</text></svg><p>Force, but no distance: no work.</p></div><div><h4>Pushing a cart</h4><svg viewBox="0 0 200 150" role="img" aria-label="Pushing a cart: the person pushes a cart forward so it moves in the direction of the push"><title>Pushing a cart</title><desc>the person pushes a cart forward so it moves in the direction of the push</desc><path d="M10 140 H190" style="stroke:var(--ink);stroke-width:2.5"/><circle cx="50" cy="40" r="9" style="fill:var(--surface);stroke:var(--ink);stroke-width:2.5"/><path d="M50 49 V88 M50 88 l-10 30 M50 88 l10 30" style="stroke:var(--ink);stroke-width:2.5;stroke-linecap:round;fill:none"/><rect x="90" y="84" width="56" height="30" rx="3" style="fill:var(--absorb)"/><circle cx="102" cy="124" r="8" style="fill:var(--ink)"/><circle cx="134" cy="124" r="8" style="fill:var(--ink)"/><path d="M62 70 L100 70" marker-end="url(#mReflect)" style="stroke:var(--reflect);stroke-width:4"/><path d="M110 60 L170 60" marker-end="url(#mAbsorb)" style="stroke:var(--absorb);stroke-width:4"/><text x="140" y="50" font-size="10" text-anchor="middle">it moves</text></svg><p>Force and motion line up: work.</p></div><div><h4>Carrying a bag level</h4><svg viewBox="0 0 200 150" role="img" aria-label="Carrying a bag level: the lifting force points up while the bag moves sideways, so that force does no work"><title>Carrying a bag level</title><desc>the lifting force points up while the bag moves sideways, so that force does no work</desc><path d="M10 140 H190" style="stroke:var(--ink);stroke-width:2.5"/><circle cx="50" cy="40" r="9" style="fill:var(--surface);stroke:var(--ink);stroke-width:2.5"/><path d="M50 49 V88 M50 88 l-10 30 M50 88 l10 30" style="stroke:var(--ink);stroke-width:2.5;stroke-linecap:round;fill:none"/><rect x="72" y="86" width="24" height="22" rx="3" style="fill:var(--absorb)"/><path d="M84 84 L84 52" marker-end="url(#mReflect)" style="stroke:var(--reflect);stroke-width:4"/><path d="M110 100 L170 100" marker-end="url(#mAbsorb)" style="stroke:var(--absorb);stroke-width:4"/><text x="140" y="90" font-size="10" text-anchor="middle">moves sideways</text></svg><p>Up force, sideways motion: no work by that force.</p></div><div><h4>Lifting a book</h4><svg viewBox="0 0 200 150" role="img" aria-label="Lifting a book: the person lifts a book upward so it moves in the direction of the lifting force"><title>Lifting a book</title><desc>the person lifts a book upward so it moves in the direction of the lifting force</desc><path d="M10 140 H190" style="stroke:var(--ink);stroke-width:2.5"/><circle cx="50" cy="40" r="9" style="fill:var(--surface);stroke:var(--ink);stroke-width:2.5"/><path d="M50 49 V88 M50 88 l-10 30 M50 88 l10 30" style="stroke:var(--ink);stroke-width:2.5;stroke-linecap:round;fill:none"/><rect x="90" y="96" width="30" height="10" rx="2" style="fill:var(--absorb)"/><path d="M105 92 L105 40" marker-end="url(#mReflect)" style="stroke:var(--reflect);stroke-width:4"/><path d="M140 106 L140 60" marker-end="url(#mAbsorb)" style="stroke:var(--absorb);stroke-width:4"/><text x="150" y="50" font-size="10" text-anchor="start">it rises</text></svg><p>Force and motion both up: work.</p></div></div><div class="items" id="wkSort"></div><p class="score" id="wkSortS">0 of 6 correct</p></article></div></section>
-<section class="sec" id="s2"><div><p class="kicker">Concept 2 · Levers</p><h2>A lever turns a long, light push into a short, strong lift</h2></div><p class="idea">A <mark>lever</mark> is a rigid bar that turns on a <mark>fulcrum</mark>. The farther from the fulcrum you push, the less force you need. Ideal <mark>mechanical advantage</mark> = effort arm / load arm. The three classes differ by which of fulcrum, load and effort is in the middle.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>A playground seesaw</h3><div class="stage"><svg viewBox="0 0 480 170" role="img" aria-label="A seesaw balanced on a pivot: a 300 newton load 1 metre from the pivot balances a 150 newton load 2 metres from it, since both give 300 newton-metres"><title>Balanced seesaw</title><desc>A plank on a triangle pivot. On the left a 300 newton weight sits 1 metre from the pivot. On the right a 150 newton weight sits 2 metres from the pivot. Force times distance is 300 newton metres on both sides.</desc><path d="M30 110 H450" style="stroke:var(--ink);stroke-width:2.5;stroke-width:7;stroke-linecap:round"/><path d="M215 118 L240 80 L265 118 Z" style="fill:var(--muted)"/><rect x="130" y="70" width="40" height="36" rx="4" style="fill:var(--absorb)"/><text x="150" y="93" font-size="12" text-anchor="middle" style="fill:var(--on-color);font-weight:700">300 N</text><rect x="360" y="70" width="40" height="36" rx="4" style="fill:var(--absorb)"/><text x="380" y="93" font-size="12" text-anchor="middle" style="fill:var(--on-color);font-weight:700">150 N</text><path d="M150 128 H240 M240 128 H380" style="stroke:var(--ink);stroke-width:1.5"/><text x="195" y="146" font-size="12" text-anchor="middle" style="font-weight:700">1 m</text><text x="310" y="146" font-size="12" text-anchor="middle" style="font-weight:700">2 m</text><text x="240" y="30" font-size="13" text-anchor="middle" style="font-weight:700">300 N &times; 1 m = 150 N &times; 2 m = 300 N&middot;m</text><text x="240" y="50" font-size="12" text-anchor="middle">balanced: half the weight, double the distance</text></svg></div><p class="cap">A small child far from the pivot can balance a heavier child close to it. Distance from the fulcrum is as important as the push.</p><p>It matches the torque idea in Unit 8.1 and in the <a href="../balance-duel.html">Balance Duel game</a>: force &times; distance from the pivot has to match on both sides.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Move the fulcrum</h3><div class="ctl"><label for="lvX">Fulcrum is <span id="lvXV"></span> m from the load (bar is 3 m long; load weighs 300 N)</label><input id="lvX" type="range" min="0.3" max="2.7" step="0.1" value="0.6"></div><div class="stage"><svg id="lvSvg" viewBox="0 0 480 200" role="img" aria-label="A 3 meter bar on a fulcrum with the load at the left end and the effort at the right end"></svg></div><p class="readout" id="lvR" aria-live="polite"></p></article><article class="aid wide"><span class="tag data">Data</span><h3>Three classes of lever</h3><div class="trio" style="margin-bottom:12px"><div><h4>First class: fulcrum in the middle</h4><svg class="lvc" XX-class lever: The fulcrum is between the load on the left and the effort on the right; the load arrow and the effort arrow both point down."><title>First-class lever</title><desc>The fulcrum is between the load on the left and the effort on the right; the load arrow and the effort arrow both point down.</desc><path d="M14 80 H206" style="stroke:var(--ink);stroke-width:6;stroke-linecap:round"/><path d="M99 112 L110 84 L121 112 Z" style="fill:var(--muted)"/><text x="110" y="128" font-size="11" text-anchor="middle" style="font-weight:700">fulcrum</text><rect x="27" y="58" width="26" height="19" rx="3" style="fill:var(--absorb)"/><path d="M40 20 V54" marker-end="url(#mAbsorb)" style="stroke:var(--absorb);stroke-width:3"/><text x="40" y="14" font-size="11" text-anchor="middle" style="font-weight:700">load</text><path d="M180 20 V68" marker-end="url(#mReflect)" style="stroke:var(--reflect);stroke-width:3"/><text x="180" y="14" font-size="11" text-anchor="middle" style="font-weight:700">effort</text></svg><p>Seesaw, crowbar, scissors. Effort and load push in opposite senses about the pivot.</p></div><div><h4>Second class: load in the middle</h4><svg class="lvc" viewBox="0 0 220 172" role="img" aria-label="Second-class lever: The fulcrum is at the left end, the load is in the middle pointing down, and the effort lifts up at the right end."><title>Second-class lever</title><desc>The fulcrum is at the left end, the load is in the middle pointing down, and the effort lifts up at the right end.</desc><path d="M14 80 H206" style="stroke:var(--ink);stroke-width:6;stroke-linecap:round"/><path d="M13 112 L24 84 L35 112 Z" style="fill:var(--muted)"/><text x="24" y="128" font-size="11" text-anchor="middle" style="font-weight:700">fulcrum</text><rect x="87" y="58" width="26" height="19" rx="3" style="fill:var(--absorb)"/><path d="M100 20 V54" marker-end="url(#mAbsorb)" style="stroke:var(--absorb);stroke-width:3"/><text x="100" y="14" font-size="11" text-anchor="middle" style="font-weight:700">load</text><path d="M196 150 V94" marker-end="url(#mReflect)" style="stroke:var(--reflect);stroke-width:3"/><text x="196" y="168" font-size="11" text-anchor="middle" style="font-weight:700">effort</text></svg><p>Wheelbarrow, nutcracker. The load sits between the fulcrum and your lift, so the effort arm is longer.</p></div><div><h4>Third class: effort in the middle</h4><svg class="lvc" viewBox="0 0 220 172" role="img" aria-label="Third-class lever: The fulcrum is at the left end, the effort lifts up in the middle, and the load at the right end points down."><title>Third-class lever</title><desc>The fulcrum is at the left end, the effort lifts up in the middle, and the load at the right end points down.</desc><path d="M14 80 H206" style="stroke:var(--ink);stroke-width:6;stroke-linecap:round"/><path d="M13 112 L24 84 L35 112 Z" style="fill:var(--muted)"/><text x="24" y="128" font-size="11" text-anchor="middle" style="font-weight:700">fulcrum</text><rect x="183" y="58" width="26" height="19" rx="3" style="fill:var(--absorb)"/><path d="M196 20 V54" marker-end="url(#mAbsorb)" style="stroke:var(--absorb);stroke-width:3"/><text x="196" y="14" font-size="11" text-anchor="middle" style="font-weight:700">load</text><path d="M100 150 V94" marker-end="url(#mReflect)" style="stroke:var(--reflect);stroke-width:3"/><text x="100" y="168" font-size="11" text-anchor="middle" style="font-weight:700">effort</text></svg><p>Tweezers, fishing rod, forearm. The effort is close to the fulcrum, so the load arm is longer.</p></div></div><div class="tw"><table class="tbl" style="min-width:560px"><thead><tr><th>Class</th><th>In the middle</th><th>Examples</th><th>Trade</th></tr></thead><tbody><tr><td>First</td><td>Fulcrum</td><td>Seesaw, crowbar, scissors</td><td>Can give force or distance gain</td></tr><tr><td>Second</td><td>Load</td><td>Wheelbarrow, nutcracker, bottle opener</td><td>Always gives force gain</td></tr><tr><td>Third</td><td>Effort</td><td>Tweezers, fishing rod, your forearm</td><td>Gives speed and distance, needs more force</td></tr></tbody></table></div><p class="cap">A third-class lever has a mechanical advantage below 1, so it needs more force than the load, but the load moves farther and faster.</p></article><article class="aid"><span class="tag real">Real world</span><h3>Levers in your body</h3><div class="stage"><svg viewBox="0 0 360 200" role="img" aria-label="Forearm as a third-class lever: the elbow is the fulcrum, the biceps pulls up about 4 centimetres from the elbow, and the weight in the hand is about 35 centimetres away"><title>Forearm lever</title><desc>An upper arm points down to the elbow. The forearm bone extends right from the elbow to the hand holding a weight. The biceps muscle runs from the shoulder side down to a point on the forearm close to the elbow and pulls up. The load arrow points down at the hand.</desc>
-<path d="M60 14 V100" style="stroke:var(--muted);stroke-width:14;stroke-linecap:round"/>
-<path d="M60 100 H300" style="stroke:var(--muted);stroke-width:12;stroke-linecap:round"/>
-<path d="M48 40 C34 62 40 84 82 96 L88 90 C60 78 62 56 70 40 Z" style="fill:var(--absorb);fill-opacity:.55;stroke:var(--absorb);stroke-width:2"/>
-<text x="100" y="66" font-size="12" style="font-weight:700">biceps</text>
-<circle cx="60" cy="100" r="9" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/><text x="60" y="130" font-size="12" text-anchor="middle" style="font-weight:700">fulcrum (elbow)</text>
-<path d="M86 88 V44" marker-end="url(#mReflect)" style="stroke:var(--reflect);stroke-width:4"/><text x="92" y="38" font-size="12" style="font-weight:700">effort (biceps pulls up)</text>
-<rect x="276" y="104" width="30" height="30" rx="4" style="fill:var(--absorb)"/><path d="M291 140 V186" marker-end="url(#mAbsorb)" style="stroke:var(--absorb);stroke-width:4"/><text x="276" y="196" font-size="12" text-anchor="end" style="font-weight:700">load (weight in hand)</text>
-<path d="M60 150 H86" style="stroke:var(--ink);stroke-width:2"/><text x="73" y="168" font-size="11" text-anchor="middle">about 4 cm</text>
-<path d="M60 150 H291" style="stroke:var(--ink);stroke-width:1.5;stroke-dasharray:5 4"/><text x="180" y="146" font-size="11" text-anchor="middle">about 35 cm</text>
-</svg></div><p class="cap">Your forearm is a third-class lever: the elbow is the fulcrum, the load is in your hand, and your biceps pulls close to the elbow. The biceps works hard and moves a little, so your hand moves a lot. Try it: hold a heavy book at arm length, then hold it close to your chest. The same book feels much heavier at arm length because the load arm is longer, so the biceps must pull far harder (roughly eight times the weight with these distances).</p></article></div></section>
-<section class="sec" id="s3"><div><p class="kicker">Concept 3 · Inclined planes and pulleys</p><h2>A longer path means less force</h2></div><p class="idea">A <mark>ramp</mark> (inclined plane) lets you lift a load with a smaller push over a longer path. A <mark>pulley system</mark> with <b>n</b> rope sections holding the load cuts the force by about n and lengthens the rope you pull by n. The same trade appears in the <mark>wedge</mark> (two ramps back to back), the <mark>screw</mark> (a ramp wrapped around a rod) and the <mark>wheel and axle</mark>.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>A switchback trail</h3><div class="stage"><svg viewBox="0 0 440 200" role="img" aria-label="Two paths up the same hill: a straight steep one and a zigzag one that is longer but gentler"><title>Switchback trail</title><desc>A steep dashed path goes straight to the top. A zigzag path of switchbacks reaches the same height with a much longer, gentler slope.</desc><path d="M30 190 L190 30 H260" style="display:none"/><path d="M20 190 L180 40" style="fill:none;stroke:var(--absorb);stroke-width:3.5;stroke-dasharray:6 5"/><path d="M230 190 L330 150 L250 130 L350 100 L270 80 L350 60 L290 40" style="fill:none;stroke:var(--transmit);stroke-width:3.5"/><path d="M10 192 H380" style="stroke:var(--ink);stroke-width:2.5"/><text x="20.0" y="24.0" font-size="12" text-anchor="start" style="font-weight:700">Straight up: short, steep, hard push</text><text x="215.0" y="24.0" font-size="12" text-anchor="start" style="font-weight:700">Switchbacks: long, gentle, easy steps</text><path d="M392 40 V190" style="stroke:var(--muted);stroke-width:1.5"/><text x="396.0" y="120.0" font-size="10" text-anchor="start">same</text><text x="396.0" y="134.0" font-size="10" text-anchor="start">climb</text></svg></div><p class="cap">A mountain road zigzags up instead of going straight. The climb is the same height, but each step is gentler. You walk farther and tire less per step.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Ramp length lab</h3><div class="ctl"><p class="cap"><b>Predict first:</b> if you double the ramp length, what happens to the push you need? And to the work you do? Then drag and check.</p><label for="rpL">Ramp length: <span id="rpLV"></span> m (the crate weighs 300 N and must rise 1.2 m)</label><input id="rpL" type="range" min="1.2" max="6" step="0.2" value="3"></div><div class="stage"><svg id="rpSvg" viewBox="0 70 480 144" role="img" aria-label="A crate on a ramp rising 1.2 metres; the ramp length and the push arrow change with the slider"></svg></div><div class="chips" id="rpChips" role="group" aria-label="Friction"></div><div id="rpBars" class="bars"></div><p class="readout" id="rpR" aria-live="polite"></p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Pulley lab</h3><div class="ctl"><label for="plN">Rope sections holding the load: <span id="plNV"></span></label><input id="plN" type="range" min="1" max="6" step="1" value="2"></div><p class="cap"><b>Predict first:</b> you add a rope section. Does the pull get smaller, the rope you pull get longer, or both? Drag from 1 to 6 and watch the picture and the three bars.</p><div class="stage"><svg id="plPic" viewBox="0 0 480 250" role="img" aria-label="A pulley system lifting a 600 newton load, with the chosen number of rope sections drawn between the upper and lower pulley blocks"></svg></div><div class="stage"><svg id="plSvg" viewBox="0 0 480 160" role="img" aria-label="Bars comparing effort force and rope pulled for the chosen number of rope sections"></svg></div><p class="readout" id="plR" aria-live="polite"></p></article><article class="aid wide"><span class="tag real">Real world</span><h3>Machines around you</h3><div class="quad"><div><h4>Wedge</h4><svg viewBox="0 0 200 150" role="img" aria-label="Wedge: pushing down on the thick end drives the sides of the wedge apart and splits the log"><title>Wedge</title><desc>pushing down on the thick end drives the sides of the wedge apart and splits the log</desc><rect x="30" y="86" width="140" height="48" rx="4" style="fill:var(--surface);stroke:var(--ink);stroke-width:2.5"/><path d="M84 86 L100 112 L116 86 Z" style="fill:var(--muted)"/><path d="M84 86 L100 130" style="stroke:var(--ink);stroke-width:2"/><path d="M100 14 V56" marker-end="url(#mReflect)" style="stroke:var(--reflect);stroke-width:4"/><text x="108" y="30" font-size="11" style="font-weight:700">push down</text><path d="M84 112 H52" marker-end="url(#mAbsorb)" style="stroke:var(--absorb);stroke-width:3"/><path d="M116 112 H148" marker-end="url(#mAbsorb)" style="stroke:var(--absorb);stroke-width:3"/><text x="100" y="146" font-size="11" text-anchor="middle">pushes the log apart</text></svg><p>Two ramps back to back.</p></div><div><h4>Screw</h4><svg viewBox="0 0 200 150" role="img" aria-label="Screw: a ramp wrapped around a rod: turning it many times moves it a small distance forward"><title>Screw</title><desc>a ramp wrapped around a rod: turning it many times moves it a small distance forward</desc><path d="M100 14 V120" style="stroke:var(--ink);stroke-width:22;stroke-linecap:butt;opacity:.25"/><path d="M89 30 L111 40 M89 46 L111 56 M89 62 L111 72 M89 78 L111 88 M89 94 L111 104" style="stroke:var(--ink);stroke-width:3"/><path d="M100 120 L100 134" style="stroke:var(--ink);stroke-width:5"/><path d="M70 14 H130" style="stroke:var(--ink);stroke-width:8;stroke-linecap:round"/><path d="M148 22 C164 14 164 40 148 34" marker-end="url(#mReflect)" style="fill:none;stroke:var(--reflect);stroke-width:3"/><text x="168" y="60" font-size="11" text-anchor="middle">turn</text><text x="100" y="148" font-size="11" text-anchor="middle">small step per turn</text></svg><p>A ramp wrapped around a rod.</p></div><div><h4>Wheel and axle</h4><svg viewBox="0 0 200 150" role="img" aria-label="Wheel and axle: a force on the large wheel rim turns the small axle with a bigger force over a shorter distance"><title>Wheel and axle</title><desc>a force on the large wheel rim turns the small axle with a bigger force over a shorter distance</desc><circle cx="100" cy="72" r="52" style="fill:var(--surface);stroke:var(--ink);stroke-width:3"/><circle cx="100" cy="72" r="14" style="fill:var(--muted);stroke:var(--ink);stroke-width:2"/><path d="M152 72 V122" marker-end="url(#mReflect)" style="stroke:var(--reflect);stroke-width:4"/><text x="158" y="104" font-size="11" style="font-weight:700">effort</text><text x="100" y="76" font-size="9" text-anchor="middle" style="fill:var(--surface)">axle</text><text x="100" y="146" font-size="11" text-anchor="middle">big wheel turns small axle</text></svg><p>Big turn at the rim, strong turn at the axle.</p></div><div><h4>Pulley</h4><svg viewBox="0 0 200 150" role="img" aria-label="Pulley: a rope over a wheel hung from above changes the direction of the pull"><title>Pulley</title><desc>a rope over a wheel hung from above changes the direction of the pull</desc><rect x="50" y="6" width="100" height="7" rx="3" style="fill:var(--ink)"/><path d="M100 13 V30" style="stroke:var(--ink);stroke-width:3"/><circle cx="100" cy="46" r="16" style="fill:var(--surface);stroke:var(--ink);stroke-width:3"/><path d="M84 46 V110" style="stroke:var(--reflect);stroke-width:3"/><rect x="68" y="110" width="32" height="26" rx="4" style="fill:var(--absorb)"/><path d="M116 46 V108" marker-end="url(#mReflect)" style="stroke:var(--reflect);stroke-width:3"/><text x="122" y="84" font-size="11" style="font-weight:700">pull down</text><text x="84" y="148" font-size="11" text-anchor="middle">load rises</text></svg><p>Rope over a wheel.</p></div></div><div class="tw"><table class="tbl" style="min-width:560px"><thead><tr><th>Machine</th><th>Type</th><th>What it trades</th></tr></thead><tbody><tr><td>Wheelchair ramp</td><td>Inclined plane</td><td>Longer path for gentler push</td></tr><tr><td>Axe, knife</td><td>Wedge</td><td>Force over a long edge becomes a splitting push</td></tr><tr><td>Jar lid, bolt, light bulb base</td><td>Screw</td><td>Many turns for small, strong forward motion</td></tr><tr><td>Flagpole, window blinds</td><td>Pulley</td><td>Direction change or force reduction</td></tr><tr><td>Doorknob, steering wheel</td><td>Wheel and axle</td><td>Small turn at the rim for big turn at the axle, or the reverse</td></tr></tbody></table></div></article></div></section>
-<section class="sec" id="s4"><div><p class="kicker">Concept 4 · Work in, work out, efficiency</p><h2>Machines change the force, not the total work</h2></div><p class="idea">A machine can make the push smaller, bigger or differently aimed, but it cannot give out more work than you put in. Because of friction, <mark>work out</mark> is always less than <mark>work in</mark>. <mark>Efficiency</mark> = work out / work in. Energy is conserved; the missing work became thermal energy.</p><div class="aids"><article class="aid"><span class="tag analogy">Analogy</span><h3>Currency exchange</h3><p class="cap">A machine is like a currency exchange: you can swap one big coin for many small ones, but you always lose a little to the fee. The fee here is friction.</p></article><article class="aid wide"><span class="tag try">Try it</span><h3>Where did the work go?</h3><div class="chips" id="efChips" role="group" aria-label="Machine"></div><div id="efBars" class="bars"></div><p class="readout" id="efR" aria-live="polite"></p></article><article class="aid wide"><span class="tag data">Data</span><h3>Typical efficiencies</h3><div class="bars" style="margin:6px 0"><div class="brow" style="grid-template-columns:150px minmax(0,1fr)"><span class="lab">Well-oiled bike gears</span><div class="stack" role="img" aria-label="Well-oiled bike gears: about 95 percent"><div class="seg t" style="width:95%;min-width:56px">~95%</div></div></div><div class="brow" style="grid-template-columns:150px minmax(0,1fr)"><span class="lab">Simple pulley</span><div class="stack" role="img" aria-label="Simple pulley: about 80 percent"><div class="seg t" style="width:80%;min-width:56px">~80%</div></div></div><div class="brow" style="grid-template-columns:150px minmax(0,1fr)"><span class="lab">Steep smooth ramp</span><div class="stack" role="img" aria-label="Steep smooth ramp: about 85 percent"><div class="seg t" style="width:85%;min-width:56px">~85%</div></div></div><div class="brow" style="grid-template-columns:150px minmax(0,1fr)"><span class="lab">Long rough ramp</span><div class="stack" role="img" aria-label="Long rough ramp: about 50 percent"><div class="seg t" style="width:50%;min-width:56px">~50%</div></div></div><div class="brow" style="grid-template-columns:150px minmax(0,1fr)"><span class="lab">Gasoline car engine</span><div class="stack" role="img" aria-label="Gasoline car engine: about 27 percent"><div class="seg t" style="width:27%;min-width:56px">~27%</div></div></div></div><p class="cap">Bars use the middle of each range in the table below (pulley 70 to 90%, ramp 80 to 90%, rough ramp 40 to 60%, engine 25 to 30%). Longer bar = more of the work in comes out as useful work.</p><div class="tw"><table class="tbl" style="min-width:420px"><thead><tr><th>Machine</th><th>Efficiency (typical)</th></tr></thead><tbody><tr><td>Well-oiled bike gears</td><td>about 95%</td></tr><tr><td>Simple pulley with some friction</td><td>about 70 to 90%</td></tr><tr><td>Steep ramp with a smooth board</td><td>about 80 to 90%</td></tr><tr><td>Long ramp with rough surface</td><td>about 40 to 60%</td></tr><tr><td>Gasoline car engine</td><td>about 25 to 30%</td></tr></tbody></table></div><p class="cap">Values are rough. They show a pattern: more sliding surface means more friction and lower efficiency.</p></article><article class="aid"><span class="tag real">Real world</span><h3>Design challenge</h3><p class="cap"><b>Goal:</b> lift a 20 kg crate 1 m into a truck. <b>Criteria:</b> push under 100 N. <b>Constraints:</b> ramp under 5 m long, budget $40. Which machine and what length will you choose, and how will you test it (Unit 0, one change at a time)?</p><p class="cap"><b>Worked start.</b> 20 kg weighs about 200 N, so lifting it 1 m straight up takes 200 J and 200 N of push, double your 100 N limit. A frictionless ramp needs force = 200 N &times; (1 m / length), so the length must be at least 2 m to get down to 100 N. Real ramps have friction: with a friction coefficient of 0.2 (rough board), a 4 m ramp needs about 89 N and a 5 m ramp about 79 N, so 4 m works and fits the 5 m limit. Test it: change only the length, pull the crate with a spring scale, record the force three times, and compare with your prediction.</p></article></div></section>
 
-<section class="sec" id="s5">
-  <div><p class="kicker">Check yourself</p><h2>Can you explain it?</h2></div>
-  <p class="idea">You push a 300 N crate up a 6 m ramp to a platform 1.2 m high. Your friend says the ramp "saves work". Is your friend right? Compare the work needed to lift the crate straight up and the work you put in on the ramp.</p>
-  <details><summary>Show a model answer</summary><div class="in"><p>Lifting straight up takes 300 N &times; 1.2 m = 360 J. With no friction the ramp needs a 60 N push over 6 m, which is also 360 J. With friction the push is larger, so the work in is more than 360 J. The ramp reduced the force but did not save work.</p></div></details>
+<section class="sec" id="s1">
+  <div><p class="kicker">Concept 1</p><h2>What a machine does</h2></div>
+  <p class="idea">A simple machine makes a job easier by changing how you push or pull. You may need a smaller push, or you may push a different way. The price is a longer way to go.</p>
+  <p>Think about getting a heavy box into a truck. You can lift it straight up with one big effort. Or you can slide it up a long ramp with a small push. The box ends up in the same place, but the ramp job took less push and more walking. That trade is the big idea of this whole lesson. No simple machine makes the job free. It only changes the push into one that is easier for you.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>A steep hill and a gentle path</h3>
+      <p class="cap">Climbing a short, steep hill is hard on your legs. Walking up a long, gentle path to the same top is easier on each step, but you walk farther. A ramp works like the gentle path.</p>
+    </article>
+    <article class="aid">
+      <span class="tag try">Try it</span>
+      <h3>Say the trade</h3>
+      <p>Finish this sentence out loud for each machine you meet: “The machine lets me use a ______ push, but I have to move ______.”</p>
+      <p class="tip">“Smaller push, longer way. Never free.”</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag data">Data</span>
+      <h3>The six simple machines</h3>
+      <div class="quad" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+        <div><h4>Lever</h4><p>A bar that turns on a pivot. A seesaw, a shovel.</p></div>
+        <div><h4>Ramp</h4><p>A slope. A wheelchair ramp, a boat ramp.</p></div>
+        <div><h4>Wedge</h4><p>A shape that gets thin at one end. An axe, a knife.</p></div>
+        <div><h4>Screw</h4><p>A ramp wrapped around a rod. A jar lid, an ice-fishing auger.</p></div>
+        <div><h4>Wheel and axle</h4><p>A wheel on a rod. A doorknob, a bike.</p></div>
+        <div><h4>Pulley</h4><p>A wheel with a rope. The flagpole at school.</p></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s2">
+  <div><p class="kicker">Concept 2</p><h2>Levers and seesaws</h2></div>
+  <p class="idea">A lever is a stiff bar that turns on a pivot, called the fulcrum. The farther from the fulcrum you push, the less push you need.</p>
+  <p>A seesaw is a lever, and its middle is the fulcrum. A heavy friend who sits close to the middle can be balanced by a small friend who sits far out. A shovel is a lever too. So are a crowbar, scissors and a bottle opener. When you push far from the pivot you move through a bigger circle, so your hands move farther but you push less.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>A playground seesaw</h3>
+      <p class="cap">A small child far from the middle can balance a bigger child close to the middle. Where you sit matters as much as how much you weigh.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>Balance the seesaw</h3>
+      <p class="cap"><b>Predict first:</b> the heavy friend (2 blocks) sits 2 steps from the middle. Where must the small friend (1 block) sit to balance? Then slide and check.</p>
+      <div class="ctl"><label for="ssD">The small friend sits <span id="ssDV"></span> steps from the middle</label><input id="ssD" type="range" min="1" max="5" step="1" value="2"></div>
+      <div class="stage"><svg id="ssSvg" viewBox="0 0 480 200" role="img" aria-label="A seesaw with a heavy friend of 2 blocks on the left, 2 steps from the middle, and a small friend of 1 block on the right at the chosen distance"></svg></div>
+      <p class="readout" id="ssR" aria-live="polite"></p>
+    </article>
+    <article class="aid">
+      <span class="tag real">Real world</span>
+      <h3>Levers near you</h3>
+      <ul><li>A snow shovel: your top hand is far from the blade.</li><li>A claw hammer pulling a nail.</li><li>A pry bar lifting the lid off a paint can.</li><li>A hockey stick or fishing rod, which gives a fast swing for a bigger push.</li></ul>
+      <p class="cap">For more balancing, try the <a href="../balance-duel.html">Balance Duel game</a>. Ignore the numbers and watch which side drops.</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s3">
+  <div><p class="kicker">Concept 3</p><h2>Ramps, wedges and screws</h2></div>
+  <p class="idea">A ramp lets you raise something with a smaller push over a longer way. A wedge is a ramp that moves, and a screw is a ramp wrapped around a rod.</p>
+  <p>A ramp is a slope. Pushing a heavy cart up a long, gentle ramp takes less push than lifting it straight up, but you push it farther. A wedge is two ramps back to back. When you hit an axe into a log, the thin edge pushes the wood apart. A screw is a ramp wound around a rod, so turning it many times moves it a little way with a strong pull. Rubbing (friction) on a rough ramp means you push a bit harder than you would on a smooth one.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>A zigzag mountain road</h3>
+      <div class="stage"><svg viewBox="0 0 440 200" role="img" aria-label="Two paths up the same hill: a straight steep one and a zigzag one that is longer but gentler"><title>Zigzag trail</title><desc>A steep dashed path goes straight to the top. A zigzag path reaches the same height with a much longer, gentler slope.</desc><path d="M20 190 L180 40" style="fill:none;stroke:var(--absorb);stroke-width:3.5;stroke-dasharray:6 5"/><path d="M230 190 L330 150 L250 130 L350 100 L270 80 L350 60 L290 40" style="fill:none;stroke:var(--transmit);stroke-width:3.5"/><path d="M10 192 H380" style="stroke:var(--ink);stroke-width:2.5"/><text x="20" y="24" font-size="12" text-anchor="start" style="font-weight:700">Straight up: short, steep</text><text x="215" y="24" font-size="12" text-anchor="start" style="font-weight:700">Zigzag: long, gentle</text></svg></div>
+      <p class="cap">Mountain roads zigzag. The climb is the same height, but each part is gentler, so the car works less hard at any moment.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>Ramp length lab</h3>
+      <p class="cap"><b>Predict first:</b> a crate must go up 1 m (about 3 ft). If the ramp is twice as long, is the push bigger, smaller or the same? Then pick a ramp and check.</p>
+      <div class="chips" id="rpChips" role="group" aria-label="Ramp length"></div>
+      <div class="stage"><svg id="rpSvg" viewBox="0 0 480 170" role="img" aria-label="A crate on a ramp that rises 1 metre; the ramp length changes with the chosen button"></svg></div>
+      <div id="rpBars" class="bars"></div>
+      <p class="readout" id="rpR" aria-live="polite"></p>
+    </article>
+    <article class="aid wide">
+      <span class="tag real">Real world</span>
+      <h3>Ramps, wedges and screws near you</h3>
+      <ul><li><b>Ramp:</b> a boat ramp where a trailer slides a boat into a Michigan lake, a wheelchair ramp at a library, a slide.</li><li><b>Wedge:</b> an axe splitting firewood for a campfire or a cabin stove, a knife, a doorstop, your front teeth.</li><li><b>Screw:</b> a jar lid, a light bulb base, a hand-turned ice-fishing auger that drills through the ice, a wood screw.</li></ul>
+      <div class="quad" style="margin-top:10px;grid-template-columns:repeat(2,minmax(0,1fr))">
+        <div><h4>Wedge</h4><svg viewBox="0 0 200 150" role="img" aria-label="Wedge: pushing down on the thick end drives the sides of the wedge apart and splits the log"><title>Wedge</title><desc>Pushing down on the thick end drives the sides of the wedge apart and splits the log.</desc><rect x="30" y="86" width="140" height="48" rx="4" style="fill:var(--surface);stroke:var(--ink);stroke-width:2.5"/><path d="M84 86 L100 112 L116 86 Z" style="fill:var(--muted)"/><path d="M84 86 L100 130" style="stroke:var(--ink);stroke-width:2"/><path d="M100 14 V56" marker-end="url(#mReflect)" style="stroke:var(--reflect);stroke-width:4"/><text x="108" y="30" font-size="11" style="font-weight:700">push down</text><path d="M84 112 H52" marker-end="url(#mAbsorb)" style="stroke:var(--absorb);stroke-width:3"/><path d="M116 112 H148" marker-end="url(#mAbsorb)" style="stroke:var(--absorb);stroke-width:3"/><text x="100" y="146" font-size="11" text-anchor="middle">pushes the log apart</text></svg><p>Two ramps back to back.</p></div>
+        <div><h4>Screw</h4><svg viewBox="0 0 200 150" role="img" aria-label="Screw: a ramp wrapped around a rod, so turning it many times moves it a small distance forward"><title>Screw</title><desc>A ramp wrapped around a rod: turning it many times moves it a small distance forward.</desc><path d="M100 14 V120" style="stroke:var(--ink);stroke-width:22;stroke-linecap:butt;opacity:.25"/><path d="M89 30 L111 40 M89 46 L111 56 M89 62 L111 72 M89 78 L111 88 M89 94 L111 104" style="stroke:var(--ink);stroke-width:3"/><path d="M100 120 L100 134" style="stroke:var(--ink);stroke-width:5"/><path d="M70 14 H130" style="stroke:var(--ink);stroke-width:8;stroke-linecap:round"/><path d="M148 22 C164 14 164 40 148 34" marker-end="url(#mReflect)" style="fill:none;stroke:var(--reflect);stroke-width:3"/><text x="168" y="60" font-size="11" text-anchor="middle">turn</text><text x="100" y="148" font-size="11" text-anchor="middle">small step per turn</text></svg><p>A ramp wrapped around a rod.</p></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="s4">
+  <div><p class="kicker">Concept 4</p><h2>Wheels and pulleys</h2></div>
+  <p class="idea">A wheel and axle turns a small turn into a strong one. A pulley uses a rope over a wheel to change the direction of a pull, and more ropes holding the load mean a smaller pull.</p>
+  <p>A wheel and axle is a big wheel fixed to a small rod. A doorknob is a wheel and axle: a small turn of your hand on the knob turns the rod inside with more force. A steering wheel works the same way. A pulley is a grooved wheel with a rope. On a school flagpole, a rope over a pulley lets you pull down to make the flag go up. When several ropes hold the load, each rope carries a share, so the pull gets smaller but you have to pull more rope.</p>
+  <div class="aids">
+    <article class="aid">
+      <span class="tag analogy">Analogy</span>
+      <h3>Sharing the weight</h3>
+      <p class="cap">Two friends carrying a heavy backpack each feel half of the weight. Each rope holding a load carries a share too. More ropes means a smaller share for each, and a smaller pull for you.</p>
+    </article>
+    <article class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>Rope lab</h3>
+      <p class="cap"><b>Predict first:</b> you add a second rope to hold the load. Does the pull get smaller, does the rope you pull get longer, or both? Pick and check.</p>
+      <div class="chips" id="plChips" role="group" aria-label="Ropes holding the load"></div>
+      <div class="stage"><svg id="plSvg" viewBox="0 0 480 220" role="img" aria-label="Pulley blocks with the chosen number of ropes holding a load"></svg></div>
+      <div id="plBars" class="bars"></div>
+      <p class="readout" id="plR" aria-live="polite"></p>
+    </article>
+    <article class="aid">
+      <span class="tag diagram">Diagram</span>
+      <h3>Wheel and axle</h3>
+      <div class="stage"><svg viewBox="0 0 200 150" role="img" aria-label="Wheel and axle: a push on the large wheel rim turns the small axle with a stronger turn"><title>Wheel and axle</title><desc>A push on the large wheel rim turns the small axle with a stronger turn.</desc><circle cx="100" cy="72" r="52" style="fill:var(--surface);stroke:var(--ink);stroke-width:3"/><circle cx="100" cy="72" r="14" style="fill:var(--muted);stroke:var(--ink);stroke-width:2"/><path d="M152 72 V122" marker-end="url(#mReflect)" style="stroke:var(--reflect);stroke-width:4"/><text x="158" y="104" font-size="11" style="font-weight:700">push</text><text x="100" y="146" font-size="11" text-anchor="middle">big wheel turns small axle</text></svg></div>
+      <p class="cap">A big turn at the rim gives a strong turn at the axle.</p>
+    </article>
+    <article class="aid">
+      <span class="tag real">Real world</span>
+      <h3>Wheels and pulleys near you</h3>
+      <ul><li>A doorknob, a steering wheel, a screwdriver handle, bicycle pedals.</li><li>The flagpole rope at school, window blinds, a clothesline.</li><li>A pulley on a boat or dock that raises a flag or a sail.</li></ul>
+    </article>
+    <article class="aid wide">
+      <span class="tag try">Try it</span>
+      <h3>Name that machine</h3>
+      <p class="cap">Which simple machine is each one? Choose an answer for all six.</p>
+      <div class="items" id="mcSort"></div>
+      <p class="score" id="mcSortS">0 of 6 correct</p>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="kit">
+  <div><p class="kicker">Hands-on: design or investigate</p><h2>Try it at home or in class</h2></div>
+  <p class="idea">Pull a toy car up a ramp with a rubber band and see how the stretch changes when the ramp is longer. The stretch of the rubber band tells you how hard you pull. Change only the ramp length each time.</p>
+  <div class="aids">
+    <article class="aid"><span class="tag try">Try it</span><h3>What you need</h3><ul><li>A toy car or a small box with a loop of string</li><li>A rubber band</li><li>A board or stiff cardboard, about 1 m (3 ft) long</li><li>Books to make a stack 20 cm (8 in) high</li><li>A ruler</li><li>Paper and pencil</li><li>A few coins and a pencil for the seesaw</li></ul><p class="cap"><b>Safety:</b> Keep fingers clear when the car slides. Do not point a stretched rubber band at anyone. An axe or saw is for grown-ups only.</p></article>
+    <article class="aid"><span class="tag try">Try it</span><h3>Ramp and rubber band</h3><ul><li>Hook the rubber band on the car. Lift the car straight up 20 cm (8 in) and measure how long the stretched band is (5 minutes).</li><li>Make a short ramp that rises 20 cm (8 in). Pull the car up slowly with the band and measure the stretched band (5 minutes).</li><li>Make the ramp longer, still 20 cm high. Pull again and measure (5 minutes).</li><li>Repeat each trial three times. Draw a bar for each: a longer bar means more stretch and a bigger pull (10 minutes).</li></ul><p><b>Notice:</b> Usually the rubber band stretches less on the longer ramp, so the pull is smaller. But the car traveled farther.</p><p class="cap"><b>Why it matters:</b> It is a fair test. You changed one thing, the ramp length, and kept the rest the same.</p></article>
+    <article class="aid"><span class="tag try">Try it</span><h3>Seesaw at home</h3><p>You need: a ruler, a pencil and some coins.</p><ol><li>Balance the ruler on the pencil at its middle.</li><li>Put 2 coins on one side, 2 steps from the middle. A step is about 2 cm (a bit under 1 in).</li><li>Find where 1 coin must sit on the other side to balance (5 minutes).</li></ol><p class="cap"><b>Notice:</b> If your coins are the same size, 1 coin balances about 4 steps out. Check your own ruler and write down what you find.</p></article>
+  </div>
+  <details class="deep"><summary>No time? Use this data</summary><div class="in"><p class="cap">This data is a backup. Collect your own when you can.</p><ul><li>Lift straight up: the rubber band stretches a lot.</li><li>Short ramp: it stretches less.</li><li>Long ramp: it stretches the least, but the car travels the farthest.</li></ul><p>A rough ramp needs a little more pull because of rubbing, so cover the board with smooth paper for the cleanest result.</p></div></details>
+  <p class="cap"><b>Near you:</b> Many Michigan lakes have a boat ramp. It is a long, gentle slope so a truck can back a trailer in and the boat can slide off. Look for one the next time you visit a lake.</p>
+</section>
+
+<section class="sec" id="check">
+  <div><p class="kicker">Check yourself</p><h2>What did you learn?</h2></div>
   <div class="items" id="quiz"></div>
   <p class="score" id="quizScore">0 of 6 correct</p>
   <h3 style="margin-top:8px">Words to know</h3>
-  <dl class="glossary"><div><dt>work</dt><dd>Energy transferred when a force moves an object; force times distance in the direction of the force.</dd></div><div><dt>joule</dt><dd>The unit of work and energy: one newton-meter.</dd></div><div><dt>lever</dt><dd>A rigid bar that turns on a fulcrum.</dd></div><div><dt>fulcrum</dt><dd>The pivot point of a lever.</dd></div><div><dt>mechanical advantage</dt><dd>How many times a machine multiplies your force (load force / effort force).</dd></div><div><dt>inclined plane</dt><dd>A ramp: a sloping surface that lets you raise a load with less force.</dd></div><div><dt>pulley</dt><dd>A wheel with a rope that changes the direction or amount of force.</dd></div><div><dt>efficiency</dt><dd>Work out divided by work in, often written as a percent.</dd></div></dl>
-  <details><summary>Tutor notes: hands-on kit, misconceptions, pacing</summary><div class="in"><p><b>Kit (about $12):</b> a spring scale (newtons), a ruler, a 1 m board, books, a toy cart or small crate, string, two pulleys or a "pulley" from spools and a dowel, a meter stick fulcrum, small weights.</p><ul><li><b>Concept 1:</b> Lift a known weight with the spring scale; compute work. Compare lifting it slowly and holding it still.</li><li><b>Concept 2:</b> Balance a meter stick on a pencil with weights at different distances; record effort distance and weight for each position.</li><li><b>Concept 3:</b> Pull the cart up ramps of 30, 60 and 120 cm to the same height with the spring scale. Record the force each time.</li><li><b>Concept 4:</b> Compute work in and out for each trial and efficiency.</li></ul><p><b>Common misconceptions:</b></p><ul><li>"Machines make work easier, so they save work." They reduce force; the work is the same or more.</li><li>"Holding a box is work." Not in physics terms, since the box does not move.</li><li>"A machine with a mechanical advantage of 3 triples the energy." It triples the force and reduces distance to a third.</li></ul><p><b>Pacing:</b> about four 30-minute sessions. <b>Method link:</b> change one thing at a time (ramp length, then surface) and repeat trials; see Unit 0.</p></div></details>
+  <ul class="words"><li><b>Simple machine:</b> a tool that changes how hard or which way you push or pull.</li><li><b>Lever:</b> a stiff bar that turns on a pivot.</li><li><b>Fulcrum:</b> the pivot a lever turns on.</li><li><b>Ramp:</b> a slope that helps you raise something. Also called an inclined plane.</li><li><b>Wedge:</b> a shape that is thin at one end and pushes things apart.</li><li><b>Screw:</b> a ramp wrapped around a rod.</li><li><b>Wheel and axle:</b> a wheel fixed to a rod so they turn together.</li><li><b>Pulley:</b> a wheel with a rope.</li><li><b>Friction:</b> a rubbing force that slows things down.</li><li><b>Fair test:</b> a test where you change only one thing.</li></ul>
+  <details><summary>Tutor notes: misconceptions and pacing</summary><div class="in">
+    <p><b>Pacing:</b> four 30-minute sessions, one for each concept. Let the child do the home seesaw and the rubber-band ramp before the sliders.</p>
+    <p><b>Common misconceptions to listen for:</b></p><ul><li>“A machine makes the job free.” Correct: it changes the push and the distance. You push less, over a longer way.</li><li>“A heavier friend always wins the seesaw.” Correct: where you sit counts as much as how much you weigh.</li><li>“A ramp makes the thing lighter.” Correct: the thing weighs the same; you hold up less of it at once.</li><li>“A screw is not a machine.” Correct: it is a ramp wrapped around a rod.</li></ul>
+    <p><b>Limits and cautions:</b></p><ul><li>This unit is not a named grade 3 expectation in Michigan. It applies the pushes and pulls from Unit 3.1 and gives practice with fair tests and design.</li><li>The half and quarter pushes in the ramp and rope labs ignore friction. Real machines need a little more push.</li><li>The physics meaning of “work” (force times distance) is for later grades. Here we only say that you push over a longer way.</li></ul>
+    <p><b>Connections:</b> Builds on: 3.1 Forces, Motion, and Magnets; Unit 0: How Science Works. Builds toward: 4.1 Energy, Speed, and Collisions; 6th Unit 3 Forces, Motion and Energy; 8th Unit 8.1 Contact Forces and Collisions.</p></div></details>
 </section>
 
-<section class="sec related" id="more"><div><p class="kicker">Keep exploring</p><h2>Related lessons</h2></div><p class="idea">Up next: <a href="unit-8.11-climate-evidence-and-change.html">Unit 8.11: Climate Evidence &amp; Change</a>.</p><ul><li><a href="unit-8.1-contact-forces-and-collisions.html">Unit 8.1: Contact Forces &amp; Collisions</a><span class="why">Forces and torque.</span></li><li><a href="unit-8.2-energy-transformation-and-conservation.html">Unit 8.2: Energy Transformation &amp; Conservation</a><span class="why">Energy is conserved.</span></li><li><a href="../6th/unit-03-forces-motion-and-energy.html">Unit 3: Forces, Motion &amp; Energy</a><span class="why">Speed, force and energy basics.</span></li><li><a href="../k-5/unit-3-1-forces-motion-and-magnets.html">K-5 Unit 3.1: Forces, Motion &amp; Magnets</a><span class="why">Pushes and pulls.</span></li><li><a href="../k-5/unit-00-how-science-works.html">Unit 0: How Science Works</a><span class="why">Fair tests and design.</span></li></ul></section>
+<section class="sec related" id="more"><div><p class="kicker">Keep exploring</p><h2>More lessons</h2></div><p class="idea">Up next: <a href="unit-4-1-energy-speed-and-collisions.html">4.1 Energy, Speed, and Collisions</a>. <a href="unit-00-how-science-works.html">Unit 0: How Science Works</a> explains the method every Try it uses.</p><ul><li><a href="unit-3-1-forces-motion-and-magnets.html">3.1 Forces, Motion, and Magnets</a><span class="why">Pushes and pulls.</span></li><li><a href="../6th/unit-03-forces-motion-and-energy.html">6th Grade Unit 3: Forces, Motion &amp; Energy</a><span class="why">Forces and energy, a few years on.</span></li><li><a href="../8th/unit-8.1-contact-forces-and-collisions.html">8th Grade Unit 8.1: Contact Forces &amp; Collisions</a><span class="why">Forces and balance, with numbers.</span></li></ul></section>
 </main>
 
-<footer>Built for eighth-grade tutoring. Work and simple machines are not named in the NGSS middle-school standards; this unit supports MS-PS2-2 (force and motion), MS-PS3-5 (energy transfer) and MS-ETS1-1 to MS-ETS1-4 (design). Values are rounded; weight uses 10 N per kg for easy arithmetic.</footer>
-
+<footer>Written for read-aloud and independent reading with a grown-up nearby; hands-on parts use cheap kit materials. Simple machines are not a named Michigan performance expectation; this unit supports testing and comparing designs.</footer>
 
 
 <script>
 (function(){
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const safe=fn=>{try{fn()}catch(e){console.error(e)}};
-const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const setPressed=(g,b)=>$$('button',g).forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));
 function mkChips(g,labels,sel=0){ g.innerHTML=labels.map((l,i)=>`<button class="chip" type="button" data-i="${i}" aria-pressed="${i===sel}">${l}</button>`).join(''); }
 function chipsOn(g,fn){ g.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return; setPressed(g,b); fn(+b.dataset.i,b); }); }
@@ -373,106 +502,78 @@ function finalQuiz(Q){
     $$('.opt',row).forEach(o=>{ o.disabled=true; if(+o.dataset.j===x.a)o.classList.add('good'); }); if(!ok)b.classList.add('bad'); else right++;
     $('.fb',row).textContent=(ok?'Correct. ':'Not quite. ')+x.e; sc.textContent=`${right} of ${Q.length} correct`; });
 }
-/* bars: rows [label, value, text, cls('r'|'t'|'a')]; opt {log:true, labW:140, max} */
-function bars(el,rows,opt={}){
-  const log=opt.log, vals=rows.map(r=>r[1]), mx=opt.max||Math.max(...vals), mn=log?Math.log10(Math.min(...vals))-.3:0, top=log?Math.log10(mx)+.3:mx;
-  el.innerHTML=rows.map(([n,v,t,c])=>`<div class="brow" style="grid-template-columns:${opt.labW||140}px minmax(0,1fr)"><span class="lab">${n}</span><div class="stack" role="img" aria-label="${n}: ${t}"><div class="seg ${c||'t'}" style="width:${Math.max(4,((log?Math.log10(v):v)-mn)/(top-mn)*100)}%;min-width:48px">${t}</div></div></div>`).join('')+(log?'<p class="cap" style="margin-top:2px">Log scale.</p>':'');
-}
-/* line: generic SVG chart. o:{x0,x1,y0,y1,xt,yt,xl,yl,series:[{pts,color,w,dash}],dots,hl:[[y,label,color]],mark,bands:[[y0,y1,label]],W,H,L,B,T,R} */
-function line(svg,o){
-  const W=o.W||640,H=o.H||260,L=o.L||56,B=o.B||40,T=o.T||16,R=o.R||16;
-  const X=x=>L+(x-o.x0)/(o.x1-o.x0)*(W-L-R), Y=y=>H-B-(y-o.y0)/(o.y1-o.y0)*(H-B-T);
-  let s='';
-  (o.bands||[]).forEach(b=>{ s+=`<rect x="${L}" y="${Y(b[1])}" width="${W-L-R}" height="${Y(b[0])-Y(b[1])}" style="fill:var(--transmit);fill-opacity:.14"/><text x="${L+6}" y="${Y(b[1])+13}" font-size="11">${b[2]}</text>`; });
-  o.yt.forEach(v=>{ s+=`<line x1="${L}" y1="${Y(v)}" x2="${W-R}" y2="${Y(v)}" style="stroke:var(--line)"/><text x="${L-6}" y="${Y(v)+4}" font-size="12" text-anchor="end">${v}</text>`; });
-  o.xt.forEach(v=>{ const a=Array.isArray(v)?v:[v,v]; s+=`<text x="${X(a[0])}" y="${H-B+16}" font-size="12" text-anchor="middle">${a[1]}</text>`; });
-  (o.hl||[]).forEach(v=>{ s+=`<line x1="${L}" y1="${Y(v[0])}" x2="${W-R}" y2="${Y(v[0])}" style="stroke:${v[2]};stroke-width:2;stroke-dasharray:6 5"/><text x="${W-R-4}" y="${Y(v[0])-5}" font-size="11" text-anchor="end">${v[1]}</text>`; });
-  s+=`<line x1="${L}" y1="${H-B}" x2="${W-R}" y2="${H-B}" style="stroke:var(--ink);stroke-width:2"/><line x1="${L}" y1="${T}" x2="${L}" y2="${H-B}" style="stroke:var(--ink);stroke-width:2"/>`;
-  (o.series||[]).forEach(se=>{ if(se.pts.length) s+=`<path d="${se.pts.map((p,i)=>`${i?'L':'M'}${X(p[0]).toFixed(1)} ${Y(p[1]).toFixed(1)}`).join('')}" style="fill:none;stroke:${se.color};stroke-width:${se.w||4};stroke-linejoin:round${se.dash?';stroke-dasharray:'+se.dash:''}"/>`; });
-  (o.dots||[]).forEach(d=>{ s+=`<circle cx="${X(d[0])}" cy="${Y(d[1])}" r="5" style="fill:var(--reflect);fill-opacity:.7;stroke:var(--ink);stroke-width:1.5"/>`; });
-  if(o.mark) s+=`<circle cx="${X(o.mark[0])}" cy="${Y(o.mark[1])}" r="8" style="fill:var(--beam);stroke:var(--ink);stroke-width:2.5"/>`;
-  s+=`<text x="${(L+W-R)/2}" y="${H-4}" font-size="13" text-anchor="middle">${o.xl}</text><text transform="rotate(-90 14 ${(T+H-B)/2})" x="14" y="${(T+H-B)/2}" font-size="13" text-anchor="middle">${o.yl}</text>`;
-  svg.innerHTML=s;
+/* bars: rows [label, percent width, text, cls('r'|'t'|'a')] */
+function bars(el,rows){
+  el.innerHTML=rows.map(([n,w,t,c])=>`<div class="brow" style="grid-template-columns:130px minmax(0,1fr)"><span class="lab">${n}</span><div class="stack" role="img" aria-label="${n}: ${t}"><div class="seg ${c||'t'}" style="width:${w}%;min-width:90px">${t}</div></div></div>`).join('');
 }
 
-
+/* Seesaw: heavy friend 2 blocks x 2 steps = 4; small friend 1 block x d steps. */
 safe(()=>{
-const F=$('#wkF'), D=$('#wkD'), svg=$('#wkSvg'), rd=$('#wkR');
-const d=()=>{ const f=+F.value, x=+D.value; $('#wkFV').textContent=f; $('#wkDV').textContent=x;
- const w=f*x, X0=40, Y0=170, sw=x/10*400, sh=f/500*140;
- svg.innerHTML=`<line x1="${X0}" y1="${Y0}" x2="450" y2="${Y0}" style="stroke:var(--ink);stroke-width:2"/><line x1="${X0}" y1="${Y0}" x2="${X0}" y2="20" style="stroke:var(--ink);stroke-width:2"/>
- <rect x="${X0}" y="${Y0-sh}" width="${sw}" height="${sh}" style="fill:var(--absorb);fill-opacity:.55;stroke:var(--absorb);stroke-width:2"/>
- <text x="245" y="192" font-size="12" text-anchor="middle">distance (0 to 10 m)</text><text transform="rotate(-90 14 95)" x="14" y="95" font-size="12" text-anchor="middle">force (0 to 500 N)</text>`;
- rd.innerHTML= w? `Work = ${f} N &times; ${x} m = <b>${w.toLocaleString()} J</b>. The shaded area is the work.`: 'Force or distance is zero, so the work done is <b>0 J</b>.'; };
-F.addEventListener('input',d); D.addEventListener('input',d); d();
-});
-safe(()=>{
-quizBox($('#wkSort'),$('#wkSortS'),[
- {n:'Lifting a book from the floor to a shelf',a:0,e:'A force moves the book up: work.'},{n:'Holding a heavy suitcase still',a:1,e:'No movement, no work on the suitcase.'},
- {n:'Carrying a bag level along a hallway',a:1,e:'Your lifting force is up; the bag moves sideways. No work on it by that force.'},{n:'Pushing a stalled car that does not move',a:1,e:'The car does not move, so no work.'},
- {n:'Pushing a shopping cart across a store',a:0,e:'The push moves the cart: work.'},{n:'Pulling a sled along level snow with a rope',a:0,e:'The pull moves the sled along: work.'}],['Work done','No work done']);
-});
-safe(()=>{
-const X=$('#lvX'), svg=$('#lvSvg'), rd=$('#lvR');
-const d=()=>{ const x=+X.value; $('#lvXV').textContent=x.toFixed(1); const L=300, e=3-x, F=L*x/e, MA=e/x;
- const px=m=>40+m/3*400, fx=px(x);
- svg.innerHTML=`<path d="M${px(0)} 110 L${px(3)} 110" style="stroke:var(--ink);stroke-width:8;stroke-linecap:round"/>
- <path d="M${fx-18} 160 L${fx} 114 L${fx+18} 160 Z" style="fill:var(--muted)"/>
- <rect x="${px(0)-4}" y="76" width="36" height="30" rx="4" style="fill:var(--absorb)"/><text x="${px(0)+14}" y="68" font-size="12" text-anchor="middle">load 300 N</text>
- <path d="M${px(3)} 36 V100" style="stroke:var(--reflect);stroke-width:5"/><path d="M${px(3)} 108 L${px(3)-8} 92 L${px(3)+8} 92 Z" style="fill:var(--reflect)"/><text x="${px(3)-4}" y="30" font-size="12" text-anchor="end">effort ${F.toFixed(0)} N</text>
- <text x="${(px(0)+fx)/2}" y="190" font-size="12" text-anchor="middle">${x.toFixed(1)} m</text><text x="${(fx+px(3))/2}" y="190" font-size="12" text-anchor="middle">${e.toFixed(1)} m</text>`;
- rd.innerHTML=`Effort needed: <b>${F.toFixed(0)} N</b> (mechanical advantage <b>${MA.toFixed(1)}</b>). To raise the load 10 cm you must move the effort end <b>${(MA*10).toFixed(0)} cm</b>. ${MA>1?'Less force, more distance.':MA<1?'More force, less distance: this setup is a speed gainer.':'Equal.'}`; };
-X.addEventListener('input',d); d();
-});
-safe(()=>{
-const sl=$('#rpL'), chips=$('#rpChips'), bx=$('#rpBars'), rd=$('#rpR'); mkChips(chips,['No friction','Some friction (smooth board)'],0); let mu=0;
-const W=300,H=1.2;
-const d=()=>{ const L=+sl.value; $('#rpLV').textContent=L.toFixed(1); const s=H/L, c=Math.sqrt(1-s*s), F=W*(s+mu*c), win=F*L, wout=W*H;
- bars(bx,[['Push needed (N)',F,F.toFixed(0)+' N','a'],['Work in (J)',win,win.toFixed(0)+' J','a'],['Work out (J)',wout,wout.toFixed(0)+' J','t']],{labW:130,max:Math.max(W,win)*1.05});
- draw(L,F); rd.innerHTML=`Push <b>${F.toFixed(0)} N</b> over ${L.toFixed(1)} m: work in <b>${win.toFixed(0)} J</b>. Lifting straight up needs ${wout} J. Efficiency <b>${(100*wout/win).toFixed(0)}%</b>. ${mu? 'A longer ramp lowers the push but adds more friction work.':'With no friction the work is the same on every ramp.'}`; };
-const rs=$('#rpSvg');
-const draw=(L,F)=>{ const k=62, h=1.2*k, run=Math.sqrt(L*L-1.44)*k, x0=36, yg=186, tx=x0+run, ty=yg-h, ang=Math.atan2(h,run)*180/Math.PI;
- const t=0.42, cx=x0+run*t, cy=yg-h*t, alen=18+F/300*72;
- rs.innerHTML=`<title>Ramp and crate</title><desc>A ramp ${L.toFixed(1)} metres long lifts a 300 newton crate 1.2 metres onto a platform. The push arrow is ${F.toFixed(0)} newtons.</desc>
- <path d="M${x0} ${yg} H470" style="stroke:var(--ink);stroke-width:2"/>
- <path d="M${tx} ${ty} H470 V${yg} H${tx} Z" style="fill:var(--surface);stroke:var(--ink);stroke-width:2.5"/>
- <path d="M${x0} ${yg} L${tx} ${ty} L${tx} ${yg} Z" style="fill:var(--surface);stroke:var(--ink);stroke-width:2.5;stroke-linejoin:round"/>
- <path d="M${tx+14} ${ty} V${yg}" style="stroke:var(--muted);stroke-width:1.5;stroke-dasharray:4 4"/><text x="${tx+20}" y="${(ty+yg)/2+4}" font-size="12" style="font-weight:700">1.2 m up</text>
- <text x="${((x0+tx)/2).toFixed(0)}" y="204" font-size="12" text-anchor="middle" style="font-weight:700">ramp length ${L.toFixed(1)} m (along the slope)</text>
- <g transform="translate(${cx.toFixed(1)} ${cy.toFixed(1)}) rotate(${(-ang).toFixed(1)})"><rect x="-16" y="-30" width="32" height="28" rx="3" style="fill:var(--absorb)"/><text x="0" y="-12" font-size="10" text-anchor="middle" style="fill:var(--on-color);font-weight:700">300 N</text>
- <path d="M${-20-alen} -16 H-20" marker-end="url(#mReflect)" style="stroke:var(--reflect);stroke-width:4"/><text x="${-20-alen}" y="-36" font-size="12" style="font-weight:700">push ${F.toFixed(0)} N</text></g>`; };
-chipsOn(chips,i=>{mu=i?0.2:0;d();}); sl.addEventListener('input',d); d();
-});
-safe(()=>{
-const N=$('#plN'), svg=$('#plSvg'), rd=$('#plR');
-const d=()=>{ const n=+N.value; $('#plNV').textContent=n; const load=600, h=0.5, F=load/n, rope=h*n;
- const bw=(v,m)=>Math.round(v/m*300);
- { let r='', x1=150, x2=250, y1=52, y2=176;
-  for(let i=0;i<n;i++){ const x=n===1?200:x1+i*(x2-x1)/(n-1); r+=`<path d="M${x.toFixed(1)} ${y1} V${y2}" style="stroke:var(--reflect);stroke-width:4"/>`; }
-  r+=`<path d="M270 36 H318 V150" marker-end="url(#mReflect)" style="fill:none;stroke:var(--reflect);stroke-width:4"/>`;
-  $('#plPic').innerHTML=`<title>Pulley system with ${n} rope section${n>1?'s':''}</title><desc>${n} rope section${n>1?'s join':' joins'} the upper block to the lower block that carries the 600 newton load. Each section carries ${F.toFixed(0)} newtons. The free end of the rope is pulled with ${F.toFixed(0)} newtons.</desc>
-  <rect x="100" y="6" width="260" height="8" rx="3" style="fill:var(--ink)"/>
-  <rect x="130" y="14" width="140" height="38" rx="8" style="fill:var(--surface);stroke:var(--ink);stroke-width:3"/><text x="200" y="38" font-size="12" text-anchor="middle" style="font-weight:700">fixed pulley block</text>
-  ${r}
-  <rect x="130" y="176" width="140" height="24" rx="8" style="fill:var(--surface);stroke:var(--ink);stroke-width:3"/><text x="200" y="192" font-size="12" text-anchor="middle" style="font-weight:700">moving block</text>
-  <path d="M200 200 V206" style="stroke:var(--ink);stroke-width:3"/><rect x="170" y="206" width="60" height="30" rx="4" style="fill:var(--absorb)"/><text x="200" y="226" font-size="12" text-anchor="middle" style="fill:var(--on-color);font-weight:700">600 N</text>
-  <text x="330" y="120" font-size="12" style="font-weight:700">pull ${F.toFixed(0)} N</text><text x="330" y="136" font-size="12">${rope.toFixed(1)} m of rope</text>
-  <text x="330" y="156" font-size="12">each section carries ${F.toFixed(0)} N</text>`; }
- svg.innerHTML=`<text x="10" y="30" font-size="12">Effort force (N)</text><rect x="150" y="14" width="${bw(F,600)}" height="22" style="fill:var(--reflect)"/><text x="${160+bw(F,600)}" y="31" font-size="12">${F.toFixed(0)} N</text>
- <text x="10" y="80" font-size="12">Rope you pull (m)</text><rect x="150" y="64" width="${bw(rope,3)}" height="22" style="fill:var(--absorb)"/><text x="${160+bw(rope,3)}" y="81" font-size="12">${rope.toFixed(1)} m</text>
- <text x="10" y="130" font-size="12">Work in (J)</text><rect x="150" y="114" width="${bw(F*rope,600)}" height="22" style="fill:var(--transmit)"/><text x="${160+bw(F*rope,600)}" y="131" font-size="12">${(F*rope).toFixed(0)} J</text>`;
- rd.innerHTML=`Lifting a 600 N load 0.5 m with ${n} rope section${n>1?'s':''}: pull with about <b>${F.toFixed(0)} N</b> over <b>${rope.toFixed(1)} m</b> of rope. The work is the same <b>${(F*rope).toFixed(0)} J</b> in every case (friction ignored).`; };
-N.addEventListener('input',d); d();
-});
-safe(()=>{
-const M=[{n:'Ramp (smooth board)',win:420,wout:360,t:'Some of your work is lost sliding against the board.'},{n:'Pulley (some friction)',win:380,wout:300,t:'Friction in the wheel bearings and the rope bends takes some work.'},{n:'Bike gears (oiled)',win:316,wout:300,t:'Very little is lost: a clean, oiled chain is efficient.'},{n:'Rough ramp (carpet)',win:700,wout:360,t:'Lots of sliding friction: about half the work is lost.'}];
-const chips=$('#efChips'), bx=$('#efBars'), rd=$('#efR'); mkChips(chips,M.map(m=>m.n),0);
-const d=i=>{ const m=M[i]; bars(bx,[['Work in',m.win,m.win+' J','a'],['Work out',m.wout,m.wout+' J','t'],['Lost as heat',m.win-m.wout,(m.win-m.wout)+' J','r']],{labW:110,max:m.win*1.05});
- rd.innerHTML=`${m.t} Efficiency <b>${(100*m.wout/m.win).toFixed(0)}%</b>. The "lost" work was not destroyed; it became thermal energy. Example values for teaching.`; };
-chipsOn(chips,d); d(0);
+const s=$('#ssD'), v=$('#ssDV'), svg=$('#ssSvg'), rd=$('#ssR'); const STEP=40, PX=240;
+const d=()=>{ const n=+s.value; v.textContent=n; const th=Math.max(-14,Math.min(10,(n-4)*6));
+ const blk=(x,y)=>`<rect x="${x}" y="${y}" width="28" height="28" rx="4" style="fill:var(--absorb);stroke:var(--ink);stroke-width:2"/>`;
+ let ticks=''; for(let i=-5;i<=5;i++){ if(i===0)continue; ticks+=`<circle cx="${PX+i*STEP}" cy="112" r="2.5" style="fill:var(--surface)"/>`; }
+ svg.innerHTML=`<g transform="rotate(${th} ${PX} 112)"><path d="M30 112 H450" style="stroke:var(--ink);stroke-width:12;stroke-linecap:round"/>${ticks}
+ ${blk(PX-2*STEP-14,56)}${blk(PX-2*STEP-14,28)}<text x="${PX-2*STEP}" y="20" font-size="12" text-anchor="middle" style="font-weight:700">heavy friend: 2 blocks</text>
+ ${blk(PX+n*STEP-14,56)}<text x="${Math.min(PX+n*STEP,420)}" y="42" font-size="12" text-anchor="middle" style="font-weight:700">small friend: 1 block</text></g>
+ <path d="M${PX-30} 176 L${PX} 118 L${PX+30} 176 Z" style="fill:var(--muted)"/><text x="${PX}" y="194" font-size="12" text-anchor="middle" style="font-weight:700">fulcrum (the middle)</text>`;
+ rd.innerHTML= n===4 ? 'Balanced! One block 4 steps out balances two blocks 2 steps out. Far from the middle, a small weight does a big job.'
+  : n<4 ? 'The heavy friend side is down. The small friend is too close to the middle. Slide out farther.'
+  : 'The small friend side is down. That is too far out. Slide back toward the middle.'; };
+s.addEventListener('input',d); d();
 });
 
-finalQuiz([{"q": "You lift a 50 N bag 2 m straight up. The work you do on it is...", "o": ["25 J", "52 J", "100 J"], "a": 2, "e": "Work = 50 N times 2 m = 100 J."}, {"q": "A student holds a 10 kg box still for a minute. The work done on the box is...", "o": ["Large", "Zero", "Equal to its weight"], "a": 1, "e": "The box does not move, so the distance is zero."}, {"q": "A crowbar has 0.2 m on the load side and 1.0 m on the effort side. Its ideal mechanical advantage is...", "o": ["0.2", "1.2", "5"], "a": 2, "e": "Effort arm / load arm = 1.0 / 0.2 = 5."}, {"q": "A longer ramp to the same height needs...", "o": ["A smaller push over a longer distance", "A bigger push but less distance", "A smaller push over a shorter distance"], "a": 0, "e": "A longer, gentler ramp reduces the force."}, {"q": "A pulley system with 4 rope sections holding the load (no friction). To lift a 400 N load you pull with about...", "o": ["100 N and pull 4 times as much rope", "400 N and pull the same rope", "1600 N"], "a": 0, "e": "Force is divided by 4 and rope length multiplied by 4."}, {"q": "Why is the work out of a real ramp less than the work in?", "o": ["Energy is destroyed", "A ramp stores some of the work inside itself", "Friction turns some work into thermal energy"], "a": 2, "e": "Friction makes heat. Energy is conserved, not lost."}]);
+/* Ramp: rise is always 1 m. Ramp length 1 (straight up), 2 or 4 m. Push is about 1/length (no friction). */
+safe(()=>{
+const R=[{L:1,n:'Straight up (1 m)',p:100,t:'Full push',x:'You lift it straight up with the biggest push, but only 1 m of moving.'},
+ {L:2,n:'Short ramp (2 m long)',p:50,t:'About half the push',x:'A ramp twice as long needs about half the push, but you move the crate 2 m.'},
+ {L:4,n:'Long ramp (4 m long)',p:25,t:'About a quarter of the push',x:'A ramp four times as long needs about a quarter of the push, but you move the crate 4 m.'}];
+const chips=$('#rpChips'), svg=$('#rpSvg'), bx=$('#rpBars'), rd=$('#rpR'); mkChips(chips,R.map(r=>r.n),1);
+const d=i=>{ const r=R[i], H=90, run=Math.sqrt(r.L*r.L-1)*H*0.9, x0=60, y0=140, x1=x0+run, y1=y0-H, mx=(x0+x1)/2, my=(y0+y1)/2, ang=Math.atan2(y1-y0,x1-x0)*180/Math.PI;
+ svg.innerHTML=`<path d="M20 140 H460" style="stroke:var(--ink);stroke-width:3"/>${r.L>1?`<path d="M${x0} ${y0} L${x1} ${y0} L${x1} ${y1} Z" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:3;stroke-linejoin:round"/>`:`<path d="M${x1} ${y0} V${y1}" style="stroke:var(--ink);stroke-width:3;stroke-dasharray:5 4"/>`}
+ <g transform="translate(${mx} ${my}) rotate(${r.L>1?ang:0})"><rect x="-16" y="-30" width="32" height="28" rx="4" style="fill:var(--absorb)"/></g>
+ <path d="M${x1+20} ${y0} V${y1}" style="stroke:var(--muted);stroke-width:2"/><text x="${x1+28}" y="${(y0+y1)/2+4}" font-size="12" style="font-weight:700">up 1 m</text>
+ <text x="${x0}" y="164" font-size="12" style="font-weight:700">${r.L>1?'ramp: '+r.L+' m long':'no ramp'}</text>`;
+ bars(bx,[['Push you need',r.p,r.t,'a'],['Way you move it',r.L*25,r.L+' m','t']]);
+ rd.innerHTML=r.x+' Rough ramps need a bit more push because of rubbing.'; };
+chipsOn(chips,d); d(1);
+});
+
+/* Ropes: n ropes hold the load; pull is about 1/n, rope pulled is n times. */
+safe(()=>{
+const P=[{n:1,l:'1 rope (flagpole)',p:100,t:'Full pull'},{n:2,l:'2 ropes',p:50,t:'About half the pull'},{n:4,l:'4 ropes',p:25,t:'About a quarter of the pull'}];
+const chips=$('#plChips'), svg=$('#plSvg'), bx=$('#plBars'), rd=$('#plR'); mkChips(chips,P.map(p=>p.l),1);
+const d=i=>{ const p=P[i], n=p.n; let r=''; const x0=200, gap=n>1?80/(n-1):0;
+ for(let k=0;k<n;k++){ const x=n>1?x0+k*gap:240; r+=`<path d="M${x} 52 V150" style="stroke:var(--reflect);stroke-width:3"/>`; }
+ svg.innerHTML=`<rect x="170" y="8" width="140" height="8" rx="3" style="fill:var(--ink)"/>
+ <rect x="180" y="16" width="120" height="36" rx="8" style="fill:var(--surface);stroke:var(--ink);stroke-width:3"/><text x="240" y="39" font-size="12" text-anchor="middle" style="font-weight:700">top block</text>
+ ${r}<rect x="180" y="150" width="120" height="24" rx="8" style="fill:var(--surface);stroke:var(--ink);stroke-width:3"/><text x="240" y="166" font-size="12" text-anchor="middle" style="font-weight:700">moving block</text>
+ <path d="M240 174 V182" style="stroke:var(--ink);stroke-width:3"/><rect x="210" y="182" width="60" height="30" rx="4" style="fill:var(--absorb)"/><text x="240" y="202" font-size="12" text-anchor="middle" style="fill:var(--on-color);font-weight:700">load</text>
+ <text x="330" y="100" font-size="12" style="font-weight:700">${n} rope${n>1?'s':''} hold the load</text>`;
+ bars(bx,[['Pull you need',p.p,p.t,'a'],['Rope you pull',n*25,n+' times as much','t']]);
+ rd.innerHTML=`With ${n} rope${n>1?'s':''} holding the load, each rope carries a share, so the pull is ${n>1?'about 1 out of '+n+' of the load':'the full load'}. You pull ${n} times as much rope. Rubbing in the wheels makes real pulleys need a little more.`; };
+chipsOn(chips,d); d(1);
+});
+
+safe(()=>{
+quizBox($('#mcSort'),$('#mcSortS'),[
+ {n:'A seesaw',a:0,e:'A seesaw is a stiff bar that turns on a pivot: a lever.'},
+ {n:'A wheelchair ramp',a:1,e:'A slope that raises you with a smaller push: a ramp.'},
+ {n:'An axe splitting a log',a:2,e:'The thin edge pushes the wood apart: a wedge.'},
+ {n:'The rope on a flagpole',a:5,e:'A rope over a wheel: a pulley.'},
+ {n:'A jar lid',a:3,e:'A ramp wrapped around a rod: a screw.'},
+ {n:'A doorknob',a:4,e:'A wheel fixed to a rod: a wheel and axle.'}],
+ ['Lever','Ramp','Wedge','Screw','Wheel and axle','Pulley']);
+});
+
+finalQuiz([
+ {"q":"A ramp and a straight lift raise a box to the same height. What is the ramp's trade?","o":["A smaller push over a longer way","A bigger push over a shorter way","No push at all"],"a":0,"e":"A longer, gentler ramp needs less push, but you move the box farther."},
+ {"q":"A small child wants to balance a bigger child on a seesaw. Where should the small child sit?","o":["Closer to the middle than the big child","Farther from the middle than the big child","Right in the middle"],"a":1,"e":"The farther from the fulcrum, the more a small weight can do."},
+ {"q":"Which machine is the rope on a school flagpole?","o":["A wedge","A screw","A pulley"],"a":2,"e":"A rope over a wheel is a pulley. It lets you pull down to raise the flag."},
+ {"q":"Which one is a wedge?","o":["An axe","A doorknob","A seesaw"],"a":0,"e":"An axe has a thin edge that pushes wood apart. That makes it a wedge."},
+ {"q":"An ice-fishing auger turns round and round to drill a hole. Which simple machine does it use?","o":["A screw","A lever","A ramp that does not move"],"a":0,"e":"A screw is a ramp wrapped around a rod. Turning it moves it forward a little each time."},
+ {"q":"What is true about every simple machine?","o":["It makes the job completely free","It changes the push, and you pay by moving over a longer way","It makes things lighter"],"a":1,"e":"Machines change how you push. They do not make a job free, and they do not change weight."}
+]);
 })();
 </script>
 </body>

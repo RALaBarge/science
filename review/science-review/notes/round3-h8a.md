@@ -1,0 +1,7 @@
+# Round 3 - h8a (8th units 8.1, 8.2, 8.3, 8.4, 8.5, 8.7, 8.11)
+
+- Added a background paragraph (`<p class="bgtxt">`, 4-8 sentences) directly under the idea line of every concept section: 35 total (8.1: 5, 8.2: 5, 8.3: 6 incl. `circuits`, 8.4: 5, 8.5: 5, 8.7: 5, 8.11: 4). Each defines the key words used by the analogy/try-it/data blocks that follow. Style sits in a marked `<!--bg8-css-start-->...<!--bg8-css-end-->` block before the hero header. Script (re-runnable, strips and re-adds its own paragraphs) is in the scratchpad `bg.py`.
+- Weak spots fixed: tiny stacked-bar labels were clipped on phone width ("5% useful" in 8.2 Efficiency, "3% absorbed" in 8.4 Absorption, "1,007 m/s" and "1,480 m/s" in 8.4 Speed of sound). `.seg` now uses `min-width:max-content` and the 8.4 speed bars use `min-width:max-content;padding:0 6px`.
+- Verified in headless Chrome (desktop 1280, phone 390): no console or page errors, no horizontal scroll, no empty or collapsed `.aid` blocks, no clipped text in `.aid`; screenshots of changed areas checked. Line endings kept as they were (8.2 and 8.4 are LF in HEAD, the rest CRLF).
+- No images added. `inject.mjs` not run. Note for the lead: figures in figures.json anchored `after: sN` insert right after the idea line, so they would land above my paragraph on a re-run. The current 8.7 figures use `end:s2` and `end:s5`, so they are not affected.
+- Nothing committed.

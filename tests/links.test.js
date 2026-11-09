@@ -36,10 +36,10 @@ for (const file of walk(ROOT)) {
 const count = (grade) => readdirSync(path.join(ROOT, grade)).filter((f) => f.endsWith('.html')).length;
 check('site home exists', existsSync(path.join(ROOT, 'index.html')));
 check('arcade hub exists', existsSync(path.join(ROOT, 'arcade.html')));
-check('k-5 has 24 lessons', count('k-5') === 24, String(count('k-5')));
+check('k-5 has 25 lessons', count('k-5') === 25, String(count('k-5')));
 check('6th has 15 lessons', count('6th') === 15, String(count('6th')));
 check('7th has 11 lessons', count('7th') === 11, String(count('7th')));
-check('8th has 11 lessons', count('8th') === 11, String(count('8th')));
+check('8th has 10 lessons', count('8th') === 10, String(count('8th')));
 check('extras has 3 pages', count('extras') === 3, String(count('extras')));
 check('design log published', existsSync(path.join(ROOT, 'design-log.html')));
 check(`${checked} relative links resolve`, problems.length === 0, problems.slice(0, 8).join(' | '));
