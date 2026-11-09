@@ -320,5 +320,327 @@
   "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\52-stick.webp",
   "unit": "unit-5-2-gravity-stars-and-sky-patterns",
   "where": "Try it at home shadow clock"
+ },
+ "g6d-stove": {
+  "prompt": "Full-body side view of a happy cartoon child standing a step back from a kitchen stove, one arm snapped back and lifted away from a steaming warm pot that sits alone on the stove, hand open and clearly separated from the pot. A glowing yellow nerve path is drawn inside the child's body: starting at the fingertips, running up the arm to the spine, then a short glowing loop back to the arm. Zoomed-out wide view, whole child and stove fully in frame with empty margin around.",
+  "seed": 303,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6d-stove.webp",
+  "unit": "6th-09",
+  "where": "hot-stove reflex"
+ },
+ "g6d-defense": {
+  "prompt": "A wide side-by-side illustration in three clear panels showing how the body defends against germs, cute cartoon style. Left panel: a thick brick-like wall of skin cells with small green spiky germ creatures stopped outside. Middle panel: a big friendly blue white blood cell blob swallowing small green germ creatures inside the body. Right panel: a team of small blue and gold defender cells with antibody Y-shapes targeting a green germ. Zoomed out, everything fully in frame.",
+  "seed": 202,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6d-defense.webp",
+  "unit": "6th-09",
+  "where": "three layers of defense"
+ },
+ "g6d-smell": {
+  "prompt": "Classic 1940s Looney Tunes style cartoon, bold ink outlines, bright flat colors. A freshly baked pie cooling on a windowsill at the left, with a thick wavy curling scent trail rising and drifting across the whole picture to the right, tiny sparkles in the trail. A cartoon dog floats in the air with eyes closed in bliss, nose stretched out sniffing and following the scent trail, whole body in frame, zoomed out. No text, no letters.",
+  "seed": 11,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6d-smell.webp",
+  "unit": "6th-10",
+  "where": "smells prove particles move"
+ },
+ "12-lakeweb": {
+  "prompt": "cross-section of a Great Lakes freshwater lake ecosystem, side view: green algae and tiny plankton drifting in sunlit water, water fleas, small silvery fish schooling, a large lake trout, an eagle perched above on a pine, sandy bottom with reeds and a native clam, soft teal and blue palette, wide scene",
+  "seed": 1201,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\12-lakeweb.webp",
+  "unit": "12",
+  "where": "r2 g6e"
+ },
+ "13-hero": {
+  "prompt": "wide panoramic scene, left to right: a tall white wind turbine on a green hill, a solar panel array angled to the sun, a factory smokestack with a puff of grey smoke, a small cozy house, connected by power lines on poles, clear blue sky with exactly one small sun in the upper left corner, flat ground",
+  "seed": 1311,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\13-hero.webp",
+  "unit": "13",
+  "where": "r2 g6e"
+ },
+ "15-soup-unstirred": {
+  "prompt": "a cooking pot of broth that has NOT been stirred: the chunks of carrot, potato and peas have all sunk to the bottom of the pot, the top is clear golden broth, a ladle dipping into the top only scooping clear broth, kitchen counter",
+  "seed": 1501,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\15-soup-unstirred.webp",
+  "unit": "15",
+  "where": "r2 g6e"
+ },
+ "15-soup-stirred": {
+  "prompt": "a cooking pot of well-stirred vegetable soup: carrots, potatoes, peas and herbs spread evenly everywhere through the broth, a ladle lifting a spoonful full of vegetables and broth, steam, kitchen counter",
+  "seed": 1502,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\15-soup-stirred.webp",
+  "unit": "15",
+  "where": "r2 g6e"
+ },
+ "g6c-u7-hero-cell": {
+  "prompt": "3D rendered scientific illustration, a single round animal cell floating in the center of the frame, whole cell fully visible with dark space around it, cut open like a cutaway showing the inside, translucent glossy membrane, large purple nucleus, orange bean-shaped mitochondria, folded pink endoplasmic reticulum, stacked golgi, soft studio lighting, deep navy blue background, highly detailed, no text. ",
+  "seed": 12,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u7-hero-cell.webp",
+  "unit": "6th-07",
+  "where": ""
+ },
+ "g6c-u7-cell-animal": {
+  "prompt": "3D rendered scientific illustration, a single round animal cell floating in the center of the frame, whole cell fully visible with dark space around it, front cutaway view showing the inside: big purple nucleus in the middle with a bright nucleolus, four orange bean-shaped mitochondria, folded pink endoplasmic reticulum, stacked golgi, tiny dots, translucent teal membrane, jelly cytoplasm, soft studio lighting, deep navy blue background, no text. ",
+  "seed": 22,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u7-cell-animal.webp",
+  "unit": "6th-07",
+  "where": ""
+ },
+ "g6c-u7-cell-plant": {
+  "prompt": "3D rendered scientific illustration, a single plant cell shaped like a rounded rectangular box floating in the center of the frame, whole cell fully visible with dark space around it, cutaway view showing the inside: thick green cell wall, huge pale blue central vacuole in the middle, purple nucleus at the side, many bright green oval chloroplasts, a few orange mitochondria, soft studio lighting, deep navy blue background, no text. ",
+  "seed": 32,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u7-cell-plant.webp",
+  "unit": "6th-07",
+  "where": ""
+ },
+ "g6c-u7-lego-brick": {
+  "prompt": "photograph, natural lighting, sharp focus, detailed, no text. A single pink LEGO brick on a clean white surface, macro product photo, soft shadow.",
+  "seed": 41,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u7-lego-brick.webp",
+  "unit": "6th-07",
+  "where": ""
+ },
+ "g6c-u7-lego-wall": {
+  "prompt": "photograph, product photo of a wall built from staggered red and yellow LEGO bricks, like a small brick wall, many bricks laid in overlapping rows, on a clean white surface, soft shadow, no text. ",
+  "seed": 44,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u7-lego-wall.webp",
+  "unit": "6th-07",
+  "where": ""
+ },
+ "g6c-u7-lego-castle": {
+  "prompt": "photograph, natural lighting, sharp focus, detailed, no text. A LEGO castle with towers and a gate built from blue and grey bricks, on a clean white surface, product photo.",
+  "seed": 43,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u7-lego-castle.webp",
+  "unit": "6th-07",
+  "where": ""
+ },
+ "g6c-u7-solar-farm": {
+  "prompt": "photograph, natural lighting, sharp focus, detailed, no text. A field of solar panels in bright sunshine under a blue sky, rows of panels, green grass.",
+  "seed": 51,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u7-solar-farm.webp",
+  "unit": "6th-07",
+  "where": ""
+ },
+ "g6c-u7-battery": {
+  "prompt": "photograph, natural lighting, sharp focus, detailed, no text. A pile of rechargeable batteries glowing slightly green with charge, product photo on a dark surface.",
+  "seed": 52,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u7-battery.webp",
+  "unit": "6th-07",
+  "where": ""
+ },
+ "g6c-u7-power-plant": {
+  "prompt": "photograph, natural lighting, sharp focus, detailed, no text. A modern power plant with tall smokestacks and cooling towers releasing white steam at dusk, power lines.",
+  "seed": 53,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u7-power-plant.webp",
+  "unit": "6th-07",
+  "where": ""
+ },
+ "g6c-u7-perfume": {
+  "prompt": "photograph, natural lighting, sharp focus, detailed, no text. A glass perfume bottle spraying a fine mist into a softly lit room, the mist spreading outward, soft bokeh.",
+  "seed": 61,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u7-perfume.webp",
+  "unit": "6th-07",
+  "where": ""
+ },
+ "g6c-u7-doorman": {
+  "prompt": "warm detailed digital painting, rich colors, soft lighting, friendly, no text. A friendly doorman in a dark suit standing at an entrance door with velvet rope, checking a guest list, evening lights.",
+  "seed": 62,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u7-doorman.webp",
+  "unit": "6th-07",
+  "where": ""
+ },
+ "g6c-u7-celery-fresh": {
+  "prompt": "photograph, natural lighting, sharp focus, detailed, no text. A glass of clear water with crisp fresh green celery stalks standing straight upright, bright kitchen counter, studio photo.",
+  "seed": 71,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u7-celery-fresh.webp",
+  "unit": "6th-07",
+  "where": ""
+ },
+ "g6c-u7-celery-same": {
+  "prompt": "photograph, natural lighting, sharp focus, detailed, no text. A glass of lightly cloudy water with green celery stalks standing mostly upright and normal, bright kitchen counter, studio photo.",
+  "seed": 72,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u7-celery-same.webp",
+  "unit": "6th-07",
+  "where": ""
+ },
+ "g6c-u7-celery-salty": {
+  "prompt": "photograph, natural lighting, sharp focus, detailed, no text. A glass of cloudy salty water with limp wilted floppy celery stalks drooping and bending over the rim, bright kitchen counter, studio photo.",
+  "seed": 73,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u7-celery-salty.webp",
+  "unit": "6th-07",
+  "where": ""
+ },
+ "g6c-u7-school-student": {
+  "prompt": "warm detailed digital painting, rich colors, soft lighting, friendly, no text. A cheerful student sitting at a desk with a notebook, close up, classroom background.",
+  "seed": 81,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u7-school-student.webp",
+  "unit": "6th-07",
+  "where": ""
+ },
+ "g6c-u7-school-class": {
+  "prompt": "warm detailed digital painting, rich colors, soft lighting, friendly, no text. A classroom of students working together at tables with a teacher, seen from the front.",
+  "seed": 82,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u7-school-class.webp",
+  "unit": "6th-07",
+  "where": ""
+ },
+ "g6c-u7-school-dept": {
+  "prompt": "warm detailed digital painting, rich colors, soft lighting, friendly, no text. A school science room with students at lab benches using microscopes, teacher at a blank whiteboard, bright windows.",
+  "seed": 86,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u7-school-dept.webp",
+  "unit": "6th-07",
+  "where": ""
+ },
+ "g6c-u7-school-ops": {
+  "prompt": "warm detailed digital painting, rich colors, soft lighting, friendly, no text. A school cafeteria and front hallway seen from above, staff serving lunch, custodian, students walking, no signs, no writing anywhere.",
+  "seed": 87,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u7-school-ops.webp",
+  "unit": "6th-07",
+  "where": ""
+ },
+ "g6c-u7-school-whole": {
+  "prompt": "warm detailed digital painting, rich colors, soft lighting, friendly, no text. A whole school community: school building, playground full of students and teachers, sunny day, aerial view.",
+  "seed": 85,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u7-school-whole.webp",
+  "unit": "6th-07",
+  "where": ""
+ },
+ "g6c-u7-body-musclecell": {
+  "prompt": "3D rendered scientific illustration, cross-section cutaway of a cell, translucent glossy membrane, soft studio lighting, depth of field, highly detailed, medical illustration, deep navy blue background, no text, no labels. A single long skeletal muscle fiber cell with fine red-pink stripes and several nuclei, seen in cutaway.",
+  "seed": 91,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u7-body-musclecell.webp",
+  "unit": "6th-07",
+  "where": ""
+ },
+ "g6c-u7-body-muscletissue": {
+  "prompt": "microscope-style 3D render of muscle tissue, bundle of many parallel red-pink muscle fibers, glossy, dark background, no text. ",
+  "seed": 92,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u7-body-muscletissue.webp",
+  "unit": "6th-07",
+  "where": ""
+ },
+ "g6c-u7-body-heart": {
+  "prompt": "realistic 3D medical illustration of a human heart with arteries and veins, glossy, dark background, no text. ",
+  "seed": 93,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u7-body-heart.webp",
+  "unit": "6th-07",
+  "where": ""
+ },
+ "g6c-u7-body-circ": {
+  "prompt": "medical illustration of the human circulatory system, red arteries and blue veins branching through a translucent human body silhouette, dark background, no text. ",
+  "seed": 94,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u7-body-circ.webp",
+  "unit": "6th-07",
+  "where": ""
+ },
+ "g6c-u7-body-person": {
+  "prompt": "a smiling healthy person standing, full body, simple clean studio portrait, dark background, no text. ",
+  "seed": 95,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u7-body-person.webp",
+  "unit": "6th-07",
+  "where": ""
+ },
+ "g6c-u8-kitchen-farmer": {
+  "prompt": "photograph, natural lighting, sharp focus, detailed, no text. A vegetable garden in bright sunshine with rows of leafy green plants and ripe tomatoes, a farmer in a straw hat holding a basket of fresh vegetables.",
+  "seed": 101,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u8-kitchen-farmer.webp",
+  "unit": "6th-08",
+  "where": ""
+ },
+ "g6c-u8-kitchen-diner": {
+  "prompt": "photograph, natural lighting, sharp focus, detailed, no text. A happy family sitting at a restaurant table about to eat a colorful meal, warm light, smiling faces.",
+  "seed": 102,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u8-kitchen-diner.webp",
+  "unit": "6th-08",
+  "where": ""
+ },
+ "g6c-u8-kitchen-fungi": {
+  "prompt": "photograph, natural lighting, sharp focus, detailed, no text. Mushrooms and bracket fungi growing on a decaying log in a mossy forest, macro photo, soft green light.",
+  "seed": 103,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u8-kitchen-fungi.webp",
+  "unit": "6th-08",
+  "where": ""
+ },
+ "g6c-u8-leaf-maple": {
+  "prompt": "studio photograph on a plain white background, soft shadow, sharp focus, detailed botanical specimen, no text. A single sugar maple leaf, bright green, five pointed lobes with a few pointed teeth, held flat, centered.",
+  "seed": 111,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u8-leaf-maple.webp",
+  "unit": "6th-08",
+  "where": ""
+ },
+ "g6c-u8-leaf-oak": {
+  "prompt": "studio photograph on a plain white background, soft shadow, sharp focus, detailed botanical specimen, no text. A single white oak leaf, green, long wavy outline with rounded finger-like lobes, every lobe tip smooth and round, no pointed tips, centered.",
+  "seed": 212,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u8-leaf-oak.webp",
+  "unit": "6th-08",
+  "where": ""
+ },
+ "g6c-u8-leaf-birch": {
+  "prompt": "studio photograph on a plain white background, soft shadow, sharp focus, detailed botanical specimen, no text. A paper birch twig with two oval-triangular leaves with a pointed tip and a finely toothed edge, white bark on the twig, centered.",
+  "seed": 113,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u8-leaf-birch.webp",
+  "unit": "6th-08",
+  "where": ""
+ },
+ "g6c-u8-leaf-pine": {
+  "prompt": "studio photograph on a plain white background, soft shadow, sharp focus, detailed botanical specimen, no text. Eastern white pine twig, long soft slender bright green needles grouped in small bundles of five, each bundle joined at the base, needles drooping gracefully, centered.",
+  "seed": 214,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u8-leaf-pine.webp",
+  "unit": "6th-08",
+  "where": ""
+ },
+ "g6c-u8-leaf-fir": {
+  "prompt": "studio photograph on a plain white background, soft shadow, sharp focus, detailed botanical specimen, no text. A balsam fir branch with short flat dark green single needles arranged in two rows along the twig, centered.",
+  "seed": 115,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u8-leaf-fir.webp",
+  "unit": "6th-08",
+  "where": ""
+ },
+ "g6c-u8-an-fish": {
+  "prompt": "photograph, natural lighting, sharp focus, detailed, no text. A silver Atlantic salmon, whole fish side view, swimming mid-water in a clear river, sharp.",
+  "seed": 221,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u8-an-fish.webp",
+  "unit": "6th-08",
+  "where": ""
+ },
+ "g6c-u8-an-frog": {
+  "prompt": "photograph, natural lighting, sharp focus, detailed, no text. A green frog sitting on a lily pad, close up, soft background.",
+  "seed": 122,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u8-an-frog.webp",
+  "unit": "6th-08",
+  "where": ""
+ },
+ "g6c-u8-an-turtle": {
+  "prompt": "photograph, natural lighting, sharp focus, detailed, no text. A painted turtle sitting on a log in the sun, close up, soft background.",
+  "seed": 123,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u8-an-turtle.webp",
+  "unit": "6th-08",
+  "where": ""
+ },
+ "g6c-u8-an-bird": {
+  "prompt": "photograph, natural lighting, sharp focus, detailed, no text. An American robin with orange chest standing on green grass, close up, soft background.",
+  "seed": 124,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u8-an-bird.webp",
+  "unit": "6th-08",
+  "where": ""
+ },
+ "g6c-u8-an-deer": {
+  "prompt": "photograph, natural lighting, sharp focus, detailed, no text. A brown white-tailed deer buck with antlers standing in a green meadow at sunrise, looking at the camera, head and shoulders.",
+  "seed": 225,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6c-u8-an-deer.webp",
+  "unit": "6th-08",
+  "where": ""
+ },
+ "g6b-trafficfree": {
+  "prompt": "photograph, aerial view from above of a straight four-lane highway on a sunny day, only five or six cars on the whole road, spread far apart with lots of empty pavement between them, green fields on both sides, natural lighting, sharp detail",
+  "seed": 4101,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6b-trafficfree.webp",
+  "unit": "unit-06-natural-hazards",
+  "where": "Concept 3 traffic analogy: open road"
+ },
+ "g6b-trafficjam": {
+  "prompt": "photograph, aerial view from above of a straight four-lane highway on a sunny day, every lane completely packed with cars and trucks bumper to bumper in a traffic jam, dense line of vehicles filling the road, green fields on both sides, natural lighting, sharp detail",
+  "seed": 4102,
+  "file": "C:\\ai\\repos\\science-biotech\\k5-images\\webp\\g6b-trafficjam.webp",
+  "unit": "unit-06-natural-hazards",
+  "where": "Concept 3 traffic analogy: jam"
  }
 }

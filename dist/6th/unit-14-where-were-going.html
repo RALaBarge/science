@@ -63,8 +63,7 @@ h1{font-size:clamp(2.4rem,9vw,4.2rem);font-weight:800;letter-spacing:-.025em}
 #gv-canvas{height:min(62vw,430px);min-height:300px}
 #gv-side{height:150px}
 #fm-canvas{height:min(72vw,480px);min-height:320px}
-#hx-canvas{height:120px}
-#st-canvas{aspect-ratio:2.5/1;height:auto}
+#pl-svg{display:block;width:100%;height:auto;border-radius:10px;background:#04060d}.pl-chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}.pl-chips .btn[aria-pressed=true]{background:var(--ink);color:var(--surface)}
 .ctl{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center}
 .btn{font-size:.95rem;padding:8px 14px;min-height:42px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer}
 .btn:hover{border-color:var(--ink)}
@@ -193,7 +192,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
   <div class="kicker">Earth in space &middot; extra unit &middot; 6th grade</div>
   <h1>Where We&rsquo;re Going</h1>
   <p class="lede">Right now you are moving at about 230 kilometers every second. You, this room and the whole solar system are circling the center of the Milky Way. Here is what we are orbiting, how long a lap takes, and how the Sun and planets got here in the first place.</p>
-  <nav class="toc" aria-label="In this unit"><h2>In this unit</h2><ol><li><a href="#ride">&middot; The ride</a></li><li><a href="#orbit">&middot; What we orbit</a></li><li><a href="#helix">&middot; The corkscrew picture</a></li><li><a href="#formation">&middot; How it began</a></li><li><a href="#know">&middot; Known vs. debated</a></li><li><a href="#check">&middot; Check yourself</a></li></ol></nav>
+  <nav class="toc" aria-label="In this unit"><h2>In this unit</h2><ol><li><a href="#ride">&middot; The ride</a></li><li><a href="#orbit">&middot; What we orbit</a></li><li><a href="#formation">&middot; How it began</a></li><li><a href="#know">&middot; Known vs. debated</a></li><li><a href="#check">&middot; Check yourself</a></li></ol></nav>
 </header>
 
 
@@ -285,13 +284,15 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 
 <section class="sec" id="orbit">
   <h2>Concept 2 &middot; What are we orbiting?</h2>
-  <p class="idea">Not just the black hole in the middle. We orbit <mark>the combined pull of everything inside our orbit</mark>: stars, gas and dark matter.</p>
+  <p class="idea">Gravity pulls between <mark>anything that has mass</mark>, so the Sun feels the pull of every star, cloud of gas and clump of dark matter. We orbit <mark>the combined pull of everything inside our orbit</mark>, not just the black hole in the middle.</p>
   <div class="aids">
     <div class="aid wide">
-      <span class="tag analogy">Analogy</span>
-      <h3>Weighing the galaxy</h3>
-      <canvas id="st-canvas" class="space" width="750" height="300" role="img" aria-label="A balance scale. A tiny gold dot, the black hole, sits on a high left pan. A huge pile of blue dots, everything else inside our orbit, weighs down the right pan."></canvas>
-      <p class="cap">Put the galaxy on a scale. On one side is the black hole at the center, called <b>Sagittarius A*</b>, about 4.3 million Suns of mass. On the other side is everything else inside our orbit: stars, gas, dust and dark matter, roughly 100 billion Suns. The pile outweighs the black hole about <b>25,000 to 1</b>, so the scale tips almost all the way down. The total is uncertain by a third or so, but the black hole is a tiny part either way. That is why we orbit the pull of the whole galaxy, not just the center.</p>
+      <span class="tag try">Try it</span>
+      <h3>Whose pull keeps the Sun in orbit?</h3>
+      <div class="pl-chips" role="group" aria-label="Which pull to show"><button class="btn" type="button" id="pl-a" aria-pressed="false">Black hole only</button><button class="btn" type="button" id="pl-b" aria-pressed="true">Everything inside our orbit</button></div>
+      <svg id="pl-svg" viewBox="0 0 640 330" role="img" aria-label="Top-down sketch of the galaxy. A tiny gold dot, the black hole, is at the center. Many blue dots, the stars, gas and dark matter, fill the area inside a dashed orbit circle. The Sun is on the circle. Arrows show the pulls on the Sun."></svg>
+      <p class="cap" id="pl-cap" aria-live="polite"></p>
+      <p class="cap"><b>Not to scale.</b> The real galaxy has hundreds of billions of stars; this sketch uses about a hundred dots. The black hole is about 4.3 million Suns of mass; everything else inside our orbit is roughly 100 billion Suns, about <b>25,000 times</b> more. The total is uncertain by a third or so, but the black hole is a tiny part either way.</p>
     </div>
   </div>
   <details class="deep"><summary>How can we weigh the galaxy?</summary><div class="in">
@@ -300,30 +301,10 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
   </div></details>
 </section>
 
-<section class="sec" id="helix">
-  <h2>Concept 3 &middot; The corkscrew picture</h2>
-  <p class="idea">The planets do not trail behind the Sun like a tail. <mark>The whole solar system moves along together.</mark></p>
-  <div class="aids">
-    <div class="aid wide">
-      <span class="tag myth">Check the video in your head</span>
-      <div class="callout">
-        <h3>You may have seen a video with the planets spiraling behind the Sun</h3>
-        <p>That kind of animation shows something true: if you follow Earth through the whole galaxy, its path is a long, gentle wave. But it can leave three wrong ideas. <b>1.</b> It can look like the planets are being dragged behind the Sun. They are not. They are moving at the same 230 km/s as the Sun and circling it because of its gravity. <b>2.</b> The coils look tight. In real proportions they are not (try the picture below). <b>3.</b> It can look like Earth moves backward at times. It never does.</p>
-      </div>
-      <canvas id="hx-canvas" class="space" role="img" aria-label="Earth's path through the galaxy drawn to scale: a nearly straight line with a very small wiggle"></canvas>
-      <div class="ctl"><label class="sld"><input id="hx-stretch" type="checkbox"> Stretch the wiggle &times;10 so I can see it</label></div>
-      <p class="cap">In the time Earth makes one trip around the Sun, the whole solar system moves forward about <b>48.5 AU</b> (230 km/s &times; one year). Earth&rsquo;s sideways wiggle is at most <b>1 AU</b>. So the true picture is a very long, very slightly wavy line. Earth&rsquo;s speed around the Sun (30 km/s) is much smaller than the Sun&rsquo;s speed through the galaxy (230 km/s), so Earth is always moving forward through the galaxy.</p>
-    </div>
-  </div>
-  <details class="deep"><summary>Which way do the planets&rsquo; orbits face?</summary><div class="in">
-    <p>The planets orbit in almost the same flat plane, tilted at only a few degrees from each other. That plane is tilted about 60&deg; from the plane of the Milky Way&rsquo;s disk. The Sun&rsquo;s direction of travel is also not straight along the axis of the planets&rsquo; orbits. It is about 30&deg; away from it. So &ldquo;planets spiraling around a straight line behind the Sun&rdquo; is a cartoon: a useful one, but not an exact photograph.</p>
-  </div></details>
-</section>
-
 <div class="part">Part B &middot; Where we came from</div>
 
 <section class="sec" id="formation">
-  <h2>Concept 4 &middot; How the solar system began</h2>
+  <h2>Concept 3 &middot; How the solar system began</h2>
   <p class="idea">About 4.6 billion years ago, a cloud of gas and dust <mark>collapsed into a Sun and a spinning disk</mark>. The planets grew out of that disk.</p>
   <div class="aids">
     <div class="aid wide">
@@ -430,7 +411,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
 </section>
 
 <section class="sec" id="know">
-  <h2>Concept 5 &middot; What we know, and what we are still arguing about</h2>
+  <h2>Concept 4 &middot; What we know, and what we are still arguing about</h2>
   <p class="idea">Science is full of settled facts and open questions, and <mark>good scientists can tell which is which</mark>.</p>
   <div class="aids">
     <div class="aid wide">
@@ -470,13 +451,10 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
     <div class="q"><h3>2. What mostly provides the gravity that keeps the Sun in orbit around the galaxy?</h3>
       <div class="opts"><button class="opt" type="button">Only the black hole at the center</button><button class="opt" type="button" data-ok="1">All the mass inside our orbit: stars, gas, dust and dark matter</button><button class="opt" type="button">The nearest star</button><button class="opt" type="button">The Moon</button></div>
       <div class="ex" hidden><b class="verdict"></b>On the scale, the black hole is about 1 part in 25,000 of the mass inside our orbit. Everything inside our orbit adds up to the pull we feel.</div></div>
-    <div class="q"><h3>3. What is misleading about a video showing planets spiraling behind the Sun like a tail?</h3>
-      <div class="opts"><button class="opt" type="button" data-ok="1">The planets are not dragged behind. They move along with the Sun and orbit it by gravity.</button><button class="opt" type="button">The Sun is not moving at all</button><button class="opt" type="button">The planets do not orbit the Sun</button><button class="opt" type="button">Earth moves backward half the time</button></div>
-      <div class="ex" hidden><b class="verdict"></b>The planets travel with the Sun at the same 230 km/s. Seen to scale, Earth&rsquo;s path is a very long line with only a tiny wiggle.</div></div>
-    <div class="q"><h3>4. Why did the collapsing cloud flatten into a disk?</h3>
+    <div class="q"><h3>3. Why did the collapsing cloud flatten into a disk?</h3>
       <div class="opts"><button class="opt" type="button">Because the Sun pushed everything flat with light</button><button class="opt" type="button" data-ok="1">Spinning material can fall in along the spin axis but keeps whirling sideways, and bumping cancels up-and-down motion</button><button class="opt" type="button">Because planets were already there</button><button class="opt" type="button">Because it was cold</button></div>
       <div class="ex" hidden><b class="verdict"></b>Spin plus collisions. Up-and-down motion gets canceled, and what remains is a flat, spinning sheet.</div></div>
-    <div class="q"><h3>5. Why did the biggest planets form beyond the frost line?</h3>
+    <div class="q"><h3>4. Why did the biggest planets form beyond the frost line?</h3>
       <div class="opts"><button class="opt" type="button">It was warmer there</button><button class="opt" type="button" data-ok="1">Ice could form there, adding extra solid material for cores to grow, so they got big enough to hold lots of gas</button><button class="opt" type="button">There were no other planets nearby</button><button class="opt" type="button">The Sun pulled harder there</button></div>
       <div class="ex" hidden><b class="verdict"></b>Beyond the frost line, ice added building material, so cores grew large and fast.</div></div>
     <div class="q"><h3>Think and write</h3>
@@ -1210,70 +1188,32 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
   });
 })();
 
-/* Small visuals: to-scale "corkscrew" check, and the balance-scale comparison. */
+/* Pull diagram: black hole only vs everything inside our orbit (not to scale). */
 (function () {
   'use strict';
-  var $ = function (s) { return document.querySelector(s); };
-  function fit(cv) {
-    var d = Math.min(window.devicePixelRatio || 1, 2), w = cv.clientWidth, h = cv.clientHeight;
-    if (!w || !h) return false;
-    if (cv.width !== Math.round(w * d) || cv.height !== Math.round(h * d)) { cv.width = Math.round(w * d); cv.height = Math.round(h * d); }
-    cv.getContext('2d').setTransform(d, 0, 0, d, 0, 0); return true;
+  var svg = document.getElementById('pl-svg'); if (!svg) return;
+  var cx = 250, cy = 165, R = 130, sunx = cx + R, suny = cy, seed = 11, dots = [], k, NS = 'http://www.w3.org/2000/svg';
+  function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  for (k = 0; k < 120; k++) { var a = rnd() * 6.2832, r = Math.sqrt(rnd()) * (R - 8); dots.push([cx + r * Math.cos(a), cy + r * Math.sin(a) * 1]); }
+  function draw(all) {
+    var h = '<defs><marker id="plh" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" refX="12" refY="8" orient="auto"><path d="M0 0L16 8L0 16Z" fill="#ffd36a"/></marker></defs>';
+    h += '<circle cx="' + cx + '" cy="' + cy + '" r="' + R + '" fill="rgba(120,150,255,0.07)" stroke="#9db4ff" stroke-width="2" stroke-dasharray="7 6"/>';
+    dots.forEach(function (d) { h += '<circle cx="' + d[0].toFixed(1) + '" cy="' + d[1].toFixed(1) + '" r="2.2" fill="#8fb0ff" opacity="' + (all ? 0.9 : 0.25) + '"/>'; });
+    if (all) { for (k = 0; k < 120; k += 5) { h += '<line x1="' + dots[k][0].toFixed(1) + '" y1="' + dots[k][1].toFixed(1) + '" x2="' + (sunx - 10) + '" y2="' + suny + '" stroke="#8fb0ff" stroke-width="1" opacity="0.35"/>'; } }
+    h += '<circle cx="' + cx + '" cy="' + cy + '" r="5" fill="#ffd36a"/><circle cx="' + cx + '" cy="' + cy + '" r="11" fill="none" stroke="#ffd36a" stroke-width="2"/>';
+    h += '<circle cx="' + sunx + '" cy="' + suny + '" r="8" fill="#ffe08a"/>';
+    var len = all ? 90 : 8;
+    h += '<line x1="' + (sunx - 12) + '" y1="' + suny + '" x2="' + (sunx - 12 - len) + '" y2="' + suny + '" stroke="#ffd36a" stroke-width="' + (all ? 6 : 3) + '" marker-end="url(#plh)"/>';
+    h += '<g font-family="system-ui,sans-serif" font-size="13" fill="#e8ecff"><text x="' + cx + '" y="' + (cy + 30) + '" text-anchor="middle" fill="#ffd36a">black hole</text><text x="' + (sunx + 14) + '" y="' + (suny - 14) + '">Sun</text><text x="' + (sunx + 14) + '" y="' + (suny + 6) + '" fill="#ffd36a">pull on the Sun</text><text x="' + cx + '" y="' + (cy - R - 8) + '" text-anchor="middle" fill="#9db4ff">our orbit</text></g>';
+    svg.innerHTML = h;
+    document.getElementById('pl-cap').textContent = all
+      ? 'Every star, cloud and clump inside the orbit pulls on the Sun a little. Add up all those small pulls and you get a strong pull toward the center. This is what keeps the Sun in its orbit.'
+      : 'Counting only the black hole, the pull is tiny: about 1 part in 25,000 of the total (the arrow here is not even to scale; it would be nearly invisible). The black hole is not what holds the Sun in orbit.';
+    document.getElementById('pl-a').setAttribute('aria-pressed', String(!all)); document.getElementById('pl-b').setAttribute('aria-pressed', String(all));
   }
-  // --- Earth's path through the galaxy, to scale: forward 48.5 AU per orbit, sideways wiggle at most 1 AU ---
-  var hc = $('#hx-canvas'), stretch = $('#hx-stretch'), visible = true, t0 = performance.now();
-  if (hc) {
-    var hctx = hc.getContext('2d');
-    if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { visible = e[0].isIntersecting; }).observe(hc);
-    (function loop(now) {
-      requestAnimationFrame(loop);
-      if (!visible || !fit(hc)) return;
-      var W = hc.clientWidth, H = hc.clientHeight, c = hctx, orbits = 3, pxPerAU = (W - 40) / (48.5 * orbits), amp = 1 * pxPerAU * (stretch.checked ? 10 : 1);
-      c.fillStyle = '#060913'; c.fillRect(0, 0, W, H);
-      var mid = H / 2, ph = ((now - t0) / 1000 / 7) % 1;                     // one full lap of the picture every 7 s
-      c.strokeStyle = 'rgba(255,255,255,0.18)'; c.setLineDash([4, 5]); c.beginPath(); c.moveTo(20, mid); c.lineTo(W - 20, mid); c.stroke(); c.setLineDash([]);
-      c.strokeStyle = '#6aa7ff'; c.lineWidth = 2; c.beginPath();
-      for (var x = 0; x <= W - 40; x += 2) { var a = x / pxPerAU / 48.5 * 2 * Math.PI; c.lineTo(20 + x, mid - amp * Math.sin(a)); }
-      c.stroke();
-      var xs = ph * (W - 40), ang = xs / pxPerAU / 48.5 * 2 * Math.PI;
-      c.fillStyle = '#ffe08a'; c.beginPath(); c.arc(20 + xs, mid, 6, 0, 6.2832); c.fill();      // Sun on the straight line
-      c.fillStyle = '#6aa7ff'; c.beginPath(); c.arc(20 + xs, mid - amp * Math.sin(ang), 3.2, 0, 6.2832); c.fill(); // Earth
-      c.fillStyle = 'rgba(255,255,255,0.85)'; c.font = '12px system-ui,sans-serif'; c.textAlign = 'left';
-      c.fillText('Sun (straight line)', 24, 16); c.fillStyle = '#9cc4ff'; c.fillText('Earth’s path', 24, H - 8);
-      c.textAlign = 'right'; c.fillStyle = 'rgba(255,255,255,0.7)';
-      c.fillText(stretch.checked ? 'wiggle stretched ×10 so you can see it' : 'true proportions: 1 wide, 48.5 long', W - 10, H - 8);
-    })(performance.now());
-  }
-  // --- balance scale: black hole vs everything else inside our orbit ---
-  var sc = $('#st-canvas');
-  if (sc) {
-    var c2 = sc.getContext('2d'), W2 = sc.width, H2 = sc.height, px = W2 / 2, py = 205, tilt = 0.2, L = 250, k, rr;
-    c2.fillStyle = '#060913'; c2.fillRect(0, 0, W2, H2);
-    // stand
-    c2.strokeStyle = '#8a93b8'; c2.lineWidth = 6; c2.lineCap = 'round';
-    c2.beginPath(); c2.moveTo(px, py); c2.lineTo(px, H2 - 22); c2.moveTo(px - 60, H2 - 22); c2.lineTo(px + 60, H2 - 22); c2.stroke();
-    // beam tipped down on the right
-    var lx = px - L * Math.cos(tilt), ly = py - L * Math.sin(tilt), rx = px + L * Math.cos(tilt), ry = py + L * Math.sin(tilt);
-    c2.lineWidth = 7; c2.beginPath(); c2.moveTo(lx, ly); c2.lineTo(rx, ry); c2.stroke();
-    c2.fillStyle = '#8a93b8'; c2.beginPath(); c2.arc(px, py, 9, 0, 6.2832); c2.fill();
-    // pans
-    function pan(x, y, w) { c2.strokeStyle = '#8a93b8'; c2.lineWidth = 2; c2.beginPath(); c2.moveTo(x, y); c2.lineTo(x - w / 2, y + 40); c2.moveTo(x, y); c2.lineTo(x + w / 2, y + 40); c2.stroke(); c2.fillStyle = '#8a93b8'; c2.fillRect(x - w / 2, y + 40, w, 6); }
-    pan(lx, ly, 90); pan(rx, ry, 170);
-    // black hole: one gold dot
-    c2.fillStyle = '#ffd36a'; c2.beginPath(); c2.arc(lx, ly + 34, 4, 0, 6.2832); c2.fill();
-    c2.strokeStyle = '#ffd36a'; c2.lineWidth = 2; c2.beginPath(); c2.arc(lx, ly + 34, 11, 0, 6.2832); c2.stroke();
-    // pile of blue dots on the right pan (a mound)
-    var seed = 7; function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
-    for (k = 0; k < 700; k++) {
-      var u = rnd() * 2 - 1, h = (1 - u * u) * 60 * rnd();
-      c2.fillStyle = 'rgba(130,165,255,' + (0.45 + 0.4 * rnd()) + ')';
-      c2.beginPath(); c2.arc(rx + u * 80, ry + 38 - h, 2.2, 0, 6.2832); c2.fill();
-    }
-    c2.font = 'bold 15px system-ui,sans-serif'; c2.textAlign = 'center';
-    c2.fillStyle = '#ffd36a'; c2.fillText('Black hole: 4.3 million Suns', lx, ly - 22);
-    c2.fillStyle = '#b9ccff'; c2.fillText('Everything else inside our orbit', rx, ry - 70); c2.fillText('about 100 billion Suns', rx, ry - 50);
-    c2.fillStyle = '#e8ecff'; c2.font = 'bold 22px system-ui,sans-serif'; c2.fillText('about 25,000 : 1', px, 40);
-  }
+  document.getElementById('pl-a').addEventListener('click', function () { draw(false); });
+  document.getElementById('pl-b').addEventListener('click', function () { draw(true); });
+  draw(true);
 })();
 
 </script>

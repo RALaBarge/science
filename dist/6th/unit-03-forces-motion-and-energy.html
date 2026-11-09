@@ -708,7 +708,7 @@ html[data-style="retro"] .toc,html[data-style="retro"] body::before{background:#
     <article class="aid">
       <span class="tag try">Try it</span>
       <h3>Ride the coaster</h3>
-      <div class="stage"><svg id="rcSvg" viewBox="0 0 480 240" role="img" aria-label="A roller coaster track with a car. Move the slider to place the car along the track."></svg></div>
+      <div class="stage"><svg id="rcSvg" viewBox="0 0 510 240" role="img" aria-label="A roller coaster track with a car. Move the slider to place the car along the track."></svg></div>
       <div class="ctl"><label for="rcX">Car position along the track</label><input id="rcX" type="range" min="0" max="100" value="0"></div>
       <div class="btnrow"><button class="btn" id="rcPlay" type="button">Ride it</button></div>
       <p class="readout" id="rcR" aria-live="polite"></p>
@@ -1371,8 +1371,7 @@ safe(()=>{
     const u=+sl.value/100, h=hAt(u), pe=500*9.8*h/1000, ke=TOT-pe, v=Math.sqrt(2*9.8*(40-h));
     svg.innerHTML=`<path d="${path}" style="fill:none;stroke:var(--ink);stroke-width:5"/><line x1="20" y1="${Y(40)}" x2="460" y2="${Y(40)}" style="stroke:var(--muted);stroke-dasharray:5 5"/><text x="464" y="${Y(40)+4}" font-size="12" style="fill:var(--muted)">start</text>
       <line x1="${X(u)}" y1="${Y(h)}" x2="${X(u)}" y2="214" style="stroke:var(--muted);stroke-dasharray:4 4"/>
-      <circle cx="${X(u)}" cy="${Y(h)-12}" r="12" style="fill:var(--beam);stroke:var(--ink);stroke-width:3"/>
-      <text x="${X(u)}" y="232" font-size="13" text-anchor="middle">${h.toFixed(0)} m high</text>`;
+      <circle cx="${X(u)}" cy="${Y(h)-12}" r="12" style="fill:var(--beam);stroke:var(--ink);stroke-width:3"/>`;
     rd.innerHTML=`Height <b>${h.toFixed(0)} m</b> · speed <b>${v.toFixed(0)} m/s</b> (${(v*2.237).toFixed(0)} mph).`;
     bars.innerHTML=`<div class="brow" style="grid-template-columns:110px minmax(0,1fr)"><span class="lab">Potential</span><div class="stack"><div class="seg r" style="width:${pe/TOT*100}%">${pe/TOT>.14?Math.round(pe)+' kJ':''}</div></div></div>
       <div class="brow" style="grid-template-columns:110px minmax(0,1fr)"><span class="lab">Kinetic</span><div class="stack"><div class="seg a" style="width:${ke/TOT*100}%">${ke/TOT>.14?Math.round(ke)+' kJ':''}</div></div></div>
